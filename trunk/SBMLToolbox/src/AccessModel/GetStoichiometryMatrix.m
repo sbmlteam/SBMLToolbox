@@ -3,6 +3,7 @@ function varargout = GetStoichiometryMatrix(SBMLModel)
 % returns 
 %       1) stoichiometry matrix
 %       2) an array of character names of all species within the model 
+
 %--------------------------------------------------------------------------
 
 %

@@ -1,4 +1,18 @@
 function y = GetDegree(symPoly, var)
+% GetDegree(symPoly, var) takes a symbolic polynomial and a single symbol
+% and returns the degree of the symbol var in the symbolic polynomial symPoly
+%
+% -----------------------------------------------
+% EXAMPLE: 
+%   GetDegree(a1^2*bd*c^3, a1)  =   2
+% 
+%   GetDegree(a1^2*bd*c^3, c)   =   3
+% 
+%   GetDegree(a1^2*bd*c^3, bd)  =   1
+%
+%   GetDegree(a1^2*bd*c^3, x)   =   0
+% -----------------------------------------------
+
 %
 %  Filename    : GetDegree.m
 %  Description :takes a symbolic polynomial and a single symbol
@@ -49,19 +63,6 @@ function y = GetDegree(symPoly, var)
 %      mailto:sbml-team@caltech.edu
 %
 %  Contributor(s):
-% GetDegree(symPoly, var) takes a symbolic polynomial and a single symbol
-% and returns the degree of the symbol var in the symbolic polynomial symPoly
-%
-% -----------------------------------------------
-% EXAMPLE: 
-%   GetDegree(a1^2*bd*c^3, a1)  =   2
-% 
-%   GetDegree(a1^2*bd*c^3, c)   =   3
-% 
-%   GetDegree(a1^2*bd*c^3, bd)  =   1
-%
-%   GetDegree(a1^2*bd*c^3, x)   =   0
-% -----------------------------------------------
 
 % check thar var is a single symbol
 symArrayVar = CreateSymArray(var);

@@ -7,8 +7,11 @@ function y = DetermineSpeciesRoleInReaction(SBMLSpecies, SBMLReaction)
 %                   reactant or modifier
 %           and recording the position in the list of products/reactants
 %
+%           [isProduct, isReactant, isModifier, positionInProductList,
+%           positionInReactantList]
+%
 %--------------------------------------------------------------------------
-% EXAMPLE:    y   =   IsSpeciesInReaction(s, r)
+% EXAMPLE:    y   =   DetermineSpeciesRoleInReaction(s, r)
 %                 =   0                 if s is not in r
 %                 =   [1, 0, 0, 2, 0]   if s is product no 2 in r 
 %                 =   [0, 1, 0, 0, 1]   if s is reactant no 1 in r
@@ -80,7 +83,7 @@ SBMLLevel = 1;
 if (~isSBML_Species(SBMLSpecies, 1))
     SBMLLevel = 2;
     if(~isSBML_Species(SBMLSpecies, 2))
-        error('IsSpeciesInReaction(SBMLSpecies, SBMLReaction)\n%s', 'first input must be an SBML Species structure');
+        error('DetermineSpeciesRoleInReaction(SBMLSpecies, SBMLReaction)\n%s', 'first input must be an SBML Species structure');
     end;
 end;
 
