@@ -26,7 +26,7 @@ end;
 %                      relevant commas
 
 piecewiseBrackets = 1;
-while(piecewiseBrackets <= length(Pairs))
+while(piecewiseBrackets <= length(OpeningBracketIndex))
     if (Pairs(piecewiseBrackets, 1) > Start)
         break;
     else
@@ -42,7 +42,7 @@ for i = 1:length(CommaIndex)
         CommaIndex(i) = 0;
     end;
     
-    for j = piecewiseBrackets+1:length(Pairs)
+    for j = piecewiseBrackets+1:length(OpeningBracketIndex)
         if ((CommaIndex(i) > Pairs(j, 1)) && (CommaIndex(i) < Pairs(j, 2)))
             CommaIndex(i) = 0;
         end;
