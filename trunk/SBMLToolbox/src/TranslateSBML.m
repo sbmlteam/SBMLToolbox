@@ -1,4 +1,4 @@
-% TranslateSBML('filename') translates sbml into a matlab structure
+% TranslateSBML translates sbml into a matlab structure
 %
 %  Filename    : TranslateSBML.m
 %  Description : MATLAB help file for TranslateSBML
@@ -50,10 +50,10 @@
 %  Contributor(s):
 %
 %
-% TranslateSBML('filename') translates sbml into a matlab structure
+% TranslateSBML((optional)'filename') translates sbml into a matlab structure
 %
 % filename is the name of the file containing the sbml definition of a
-% model
+% model - if not supplied a browse window is opened
 %
 % TranslateSBML returns a structure with the following fields
 % i.e. a sbml model structure
