@@ -1361,140 +1361,154 @@ GetCompartment (mxArray * mxCompartments,
 		/* assign values for different types of rules */
 		switch(CharToTypecode(pacTypecode)) {
 			case SBML_ASSIGNMENT_RULE:
-				pAssignRule = AssignmentRule_create();
-				SBase_init((Rule_t *)pAssignRule, CharToTypecode(pacTypecode));
+
+                pAssignRule = AssignmentRule_create();
+				
+                SBase_init((Rule_t *)pAssignRule, CharToTypecode(pacTypecode));
 				AssignmentRule_setVariable(pAssignRule, pacVariable);			
 				SBase_setNotes(pAssignRule, pacNotes);
 				SBase_setAnnotation(pAssignRule, pacAnnotationString);
-				if (unSBMLLevel == 1)
+				
+                if (unSBMLLevel == 1)
 				{
 					Rule_setFormula((Rule_t *)pAssignRule, pacFormula);
 				}
 				else if (unSBMLLevel == 2)
 				{
 					Rule_setFormula((Rule_t *)pAssignRule, pacFormula);
-//					Rule_setMathFromFormula((Rule_t *)pAssignRule);
 					Rule_setMath((Rule_t *)pAssignRule, SBML_parseFormula(pacFormula));
 				}
 
-				
-				
 				/* add the Rule to the model */
 				Model_addRule(sbmlModel,(Rule_t *) pAssignRule);
-				break;
-		  case SBML_ALGEBRAIC_RULE:
-				pAlgRule = AlgebraicRule_create();
-				SBase_init((Rule_t *)pAlgRule, CharToTypecode(pacTypecode));
+				
+                break;
+		  
+            case SBML_ALGEBRAIC_RULE:
+				
+                pAlgRule = AlgebraicRule_create();
+				
+                SBase_init((Rule_t *)pAlgRule, CharToTypecode(pacTypecode));
 				SBase_setNotes(pAlgRule, pacNotes);
 				SBase_setAnnotation(pAlgRule, pacAnnotationString);
-				if (unSBMLLevel == 1)
+				
+                if (unSBMLLevel == 1)
 				{
 					Rule_setFormula((Rule_t *)pAlgRule, pacFormula);
 				}
 				else if (unSBMLLevel == 2)
 				{
 					Rule_setFormula((Rule_t *)pAlgRule, pacFormula);
-//					Rule_setMathFromFormula((Rule_t *)pAlgRule);
 					Rule_setMath((Rule_t *)pAlgRule, SBML_parseFormula(pacFormula));
 				}
 
-				
-				
 				/* add the Rule to the model */
 				Model_addRule(sbmlModel,(Rule_t *) pAlgRule);
-				break;
-		  case SBML_RATE_RULE:
-				pRateRule = RateRule_create();
-				SBase_init((Rule_t *)pRateRule, CharToTypecode(pacTypecode));
+				
+                break;
+		  
+            case SBML_RATE_RULE:
+				
+                pRateRule = RateRule_create();
+				
+                SBase_init((Rule_t *)pRateRule, CharToTypecode(pacTypecode));
 				RateRule_setVariable(pRateRule, pacVariable);			
 				SBase_setNotes(pRateRule, pacNotes);
 				SBase_setAnnotation(pRateRule, pacAnnotationString);
-				if (unSBMLLevel == 1)
+				
+                if (unSBMLLevel == 1)
 				{
 					Rule_setFormula((Rule_t *)pRateRule, pacFormula);
 				}
 				else if (unSBMLLevel == 2)
 				{
 					Rule_setFormula((Rule_t *)pRateRule, pacFormula);
-//					Rule_setMathFromFormula((Rule_t *)pRateRule);
 					Rule_setMath((Rule_t *)pRateRule, SBML_parseFormula(pacFormula));
 				}
 
-				
-				
 				/* add the Rule to the model */
 				Model_addRule(sbmlModel,(Rule_t *) pRateRule);
-				break;
-		  case SBML_SPECIES_CONCENTRATION_RULE:
-				pSpeciesConcentrationRule = SpeciesConcentrationRule_create();
-				SBase_init((Rule_t *)pSpeciesConcentrationRule, CharToTypecode(pacTypecode));
+				
+                break;
+		  
+            case SBML_SPECIES_CONCENTRATION_RULE:
+				
+                pSpeciesConcentrationRule = SpeciesConcentrationRule_create();
+				
+                SBase_init((Rule_t *)pSpeciesConcentrationRule, CharToTypecode(pacTypecode));
 				SpeciesConcentrationRule_setSpecies(pSpeciesConcentrationRule, pacSpecies);			
 				SBase_setNotes(pSpeciesConcentrationRule, pacNotes);
 				SBase_setAnnotation(pSpeciesConcentrationRule, pacAnnotationString);
-				if (unSBMLLevel == 1)
+				
+                if (unSBMLLevel == 1)
 				{
 					Rule_setFormula((Rule_t *)pSpeciesConcentrationRule, pacFormula);
 				}
 				else if (unSBMLLevel == 2)
 				{
 					Rule_setFormula((Rule_t *)pSpeciesConcentrationRule, pacFormula);
-//					Rule_setMathFromFormula((Rule_t *)pSpeciesConcentrationRule);
 					Rule_setMath((Rule_t *)pSpeciesConcentrationRule, SBML_parseFormula(pacFormula));
 				}
 
-				
-				
 				/* add the Rule to the model */
 				Model_addRule(sbmlModel,(Rule_t *) pSpeciesConcentrationRule);
-				break;
-		  case SBML_COMPARTMENT_VOLUME_RULE:
-				pCompartmentVolumeRule = CompartmentVolumeRule_create();
-				SBase_init((Rule_t *)pCompartmentVolumeRule, CharToTypecode(pacTypecode));
+				
+                break;
+		  
+            case SBML_COMPARTMENT_VOLUME_RULE:
+				
+                pCompartmentVolumeRule = CompartmentVolumeRule_create();
+				
+                SBase_init((Rule_t *)pCompartmentVolumeRule, CharToTypecode(pacTypecode));
 				CompartmentVolumeRule_setCompartment(pCompartmentVolumeRule, pacCompartment);			
 				SBase_setNotes(pCompartmentVolumeRule, pacNotes);
 				SBase_setAnnotation(pCompartmentVolumeRule, pacAnnotationString);
-				if (unSBMLLevel == 1)
+				
+                if (unSBMLLevel == 1)
 				{
 					Rule_setFormula((Rule_t *)pCompartmentVolumeRule, pacFormula);
 				}
 				else if (unSBMLLevel == 2)
 				{
 					Rule_setFormula((Rule_t *)pCompartmentVolumeRule, pacFormula);
-//					Rule_setMathFromFormula((Rule_t *)pCompartmentVolumeRule);
 					Rule_setMath((Rule_t *)pCompartmentVolumeRule, SBML_parseFormula(pacFormula));
 				}
 
-				
-				
 				/* add the Rule to the model */
 				Model_addRule(sbmlModel,(Rule_t *) pCompartmentVolumeRule);
-				break;
-		  case SBML_PARAMETER_RULE:
-				pParameterRule = ParameterRule_create();
-				SBase_init((Rule_t *)pParameterRule, CharToTypecode(pacTypecode));
+				
+                break;
+		  
+            case SBML_PARAMETER_RULE:
+				
+                pParameterRule = ParameterRule_create();
+				
+                SBase_init((Rule_t *)pParameterRule, CharToTypecode(pacTypecode));
 				ParameterRule_setName(pParameterRule, pacName);			
 				ParameterRule_setUnits(pParameterRule, pacUnits);			
 				SBase_setNotes(pParameterRule, pacNotes);
 				SBase_setAnnotation(pParameterRule, pacAnnotationString);
-				if (unSBMLLevel == 1)
+				
+                if (unSBMLLevel == 1)
 				{
 					Rule_setFormula((Rule_t *)pParameterRule, pacFormula);
 				}
 				else if (unSBMLLevel == 2)
 				{
 					Rule_setFormula((Rule_t *)pParameterRule, pacFormula);
-//					Rule_setMathFromFormula((Rule_t *)pParameterRule);
 					Rule_setMath((Rule_t *)pParameterRule, SBML_parseFormula(pacFormula));
 				}
 
-				
-				
 				/* add the Rule to the model */
 				Model_addRule(sbmlModel,(Rule_t *) pParameterRule);
-				break;
-		  default:
-				mexErrMsgTxt("Error in rule assignment");
-				break;
+				
+                break;
+		  
+            default:
+				
+                mexErrMsgTxt("Error in rule assignment");
+				
+                break;
 		}
 
 	}
