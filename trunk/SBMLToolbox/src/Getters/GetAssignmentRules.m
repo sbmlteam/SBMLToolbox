@@ -59,14 +59,21 @@ function AssignRules = GetAssignmentRules(SBMLModel)
 
 j = 1;
 for i = 1:length(SBMLModel.rule)
-    AR = strcmp(SBMLModel.rule(i).typecode, 'SBML_ASSIGNMENT_RULE');
-    SCR = strcmp(SBMLModel.rule(i).typecode, 'SBML_SPECIES_CONCENTRATION_RULE');
-    CVR = strcmp(SBMLModel.rule(i).typecode, 'SBML_COMPARTMENT_VOLUME_RULE');
-    PR = strcmp(SBMLModel.rule(i).typecode, 'SBML_PARAMETER_RULE');
-    
-    if (AR | SCR | CVR |PR)
+    if (strcmp(SBMLModel.rule(i).typecode, 'SBML_ASSIGNMENT_RULE'))
         AssignRules(j) = SBMLModel.rule(i);
         j = j + 1;
+    elseif (SBMLModel.SBML_level == 1)
+        if ((strcmp(SBMLModel.rule(i).typecode, 'SBML_SPECIES_CONCENTRATION_RULE')) & (strcmp(SBMLModel.rule(i).type, 'scalar')))
+            AssignRules(j) = SBMLModel.rule(i);
+            j = j + 1;
+        elseif ((strcmp(SBMLModel.rule(i).typecode, 'SBML_COMPARTMENT_VOLUME_RULE')) & (strcmp(SBMLModel.rule(i).type, 'scalar')))
+            AssignRules(j) = SBMLModel.rule(i);
+            j = j + 1;
+        elseif ((strcmp(SBMLModel.rule(i).typecode, 'SBML_PARAMETER_RULE')) & (strcmp(SBMLModel.rule(i).type, 'scalar')))
+            AssignRules(j) = SBMLModel.rule(i);
+            j = j + 1;
+        end;
+             
     end;
 end;
 

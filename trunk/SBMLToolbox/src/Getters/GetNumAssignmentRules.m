@@ -55,15 +55,19 @@ function y = GetNumAssignmentRules(SBMLModel)
 y = 0;
 
 %------------------------------------------------------------
+% get level
+SBMLLevel = SBMLModel.SBML_level;
 
 for i = 1:length(SBMLModel.rule)
     if (strcmp(SBMLModel.rule(i).typecode, 'SBML_ASSIGNMENT_RULE'))
         y = y + 1;
-    elseif (strcmp(SBMLModel.rule(i).typecode, 'SBML_SPECIES_CONCENTRATION_RULE'))
-        y = y + 1;
-    elseif (strcmp(SBMLModel.rule(i).typecode, 'SBML_COMPARTMENT_VOLUME_RULE'))
-        y = y + 1;
-    elseif (strcmp(SBMLModel.rule(i).typecode, 'SBML_PARAMETER_RULE'))
-        y = y + 1;
+    elseif(SBMLLevel == 1) 
+        if ((strcmp(SBMLModel.rule(i).typecode, 'SBML_SPECIES_CONCENTRATION_RULE')) & (strcmp(SBMLModel.rule(i).type, 'scalar')))
+            y = y + 1;
+        elseif ((strcmp(SBMLModel.rule(i).typecode, 'SBML_COMPARTMENT_VOLUME_RULE')) & (strcmp(SBMLModel.rule(i).type, 'scalar')))
+            y = y + 1;
+        elseif ((strcmp(SBMLModel.rule(i).typecode, 'SBML_PARAMETER_RULE')) & (strcmp(SBMLModel.rule(i).type, 'scalar')))
+            y = y + 1;
+        end;
     end;
 end;
