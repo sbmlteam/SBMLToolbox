@@ -1,4 +1,13 @@
 function varargout = GetSpeciesSymbols(SBMLModel)
+% GetSpeciesSymbols takes a SBMLModel 
+% and returns 
+%           1) an array of symbols representing all species within the model 
+%           2) an array of the initial concentration values of each species
+%           3) an array of character names of the symbols
+% NOTE: if the initial concentrations are not set then the value NaN is used
+
+
+%--------------------------------------------------------------------------
 %
 %  Filename    : GetSpeciesSymbols.m
 %  Description : GetSpeciesSymbols takes a SBMLModel 
@@ -52,14 +61,6 @@ function varargout = GetSpeciesSymbols(SBMLModel)
 %
 %  Contributor(s):
 %
-% GetSpeciesSymbols takes a SBMLModel 
-% and returns 
-%           1) an array of symbols representing all species within the model 
-%           2) an array of the initial concentration values of each species
-%           3) an array of character names of the symbols
-%
-% NOTE: if the initial concentrations are not set then the value -1 is used
-%--------------------------------------------------------------------------
 
 % check input is an SBML model
 if (~isSBML_Model(SBMLModel))
@@ -94,18 +95,11 @@ for i = 1:NumSpecies
     
     % get the initial concentration values
     % add to an array
-    % if value is not set use -1
-    if (SBMLModel.species(i).isSetInitialAmount)
-        Values(i) = SBMLModel.species(i).initialAmount;
-    else
-        if (SBMLModel.SBML_level == 2)
-            if (SBMLModel.species(i).isSetInitialConcentration)
-                Values(i) = SBMLModel.species(i).initialConcentration;
-            else
-                Values(i) = -1;
-            end;         
-        else
-            Values(i) = -1;
+    Values(i) = SBMLModel.species(i).initialAmount;
+    
+    if (SBMLModel.SBML_level == 2)
+        if (SBMLModel.species(i).isSetInitialConcentration)
+            Values(i) = SBMLModel.species(i).initialConcentration;
         end;
     end;
     
