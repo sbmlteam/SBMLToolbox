@@ -1931,7 +1931,9 @@ GetUnit ( mxArray * mxUnits,
 		
         /* get kinetic law */
         mxKineticLaw = mxGetField(mxReaction, i, "kineticLaw");
-        GetKineticLaw(mxKineticLaw, unSBMLLevel, unSBMLVersion, pReaction);
+        if (mxIsEmpty(mxKineticLaw) != 1) {
+            GetKineticLaw(mxKineticLaw, unSBMLLevel, unSBMLVersion, pReaction);
+        }
         
 		/* level 1 only */
 		if (unSBMLLevel == 1)
