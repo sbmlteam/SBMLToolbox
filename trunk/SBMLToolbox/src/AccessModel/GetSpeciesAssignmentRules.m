@@ -67,8 +67,8 @@ end;
 % get information from the model
 Species = GetSpecies(SBMLModel);
 NumberSpecies = length(SBMLModel.species);
-AssignRules = GetAssignmentRules(SBMLModel);
-NumAssignRules = GetNumAssignmentRules(SBMLModel);
+AssignRules = Model_getListOfAssignmentRules(SBMLModel);
+NumAssignRules = Model_getNumAssignmentRules(SBMLModel);
 
 % for each species loop through each reaction and determine whether the species
 % takes part and in what capacity

@@ -95,6 +95,7 @@ for i = 1:NumberSpecies
 
             SpeciesType = DetermineSpeciesRoleInReaction(SBMLModel.species(i), SBMLModel.reaction(j));
 
+            TotalOccurences = 0;
             % record numbers of occurences of species as reactant/product
             % and check that we can deal with reaction
             if (sum(SpeciesType)>0)

@@ -1,13 +1,13 @@
-function AlgebraicRules = GetAlgebraicRules(SBMLModel)
-% GetAlgebraicRules takes an SBMLModel and returns an array
-% of the algebraic rules
- 
+function y = Model_getNumRateRules(SBMLModel)
+% Model_getNumRateRules takes a matlab sbml model structure
+% and returns the number of rate rules in the model
+
 %
-%  Filename    : GetAlgebraicRules.m
-%  Description : takes a SBMLModel and returns the algebraic rules in the model
+%  Filename    : Model_getNumRateRules.m
+%  Description : takes a SBMLModel and returns the number of rate rules in the model
 %  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
 %  Organization: University of Hertfordshire STRC
-%  Created     : 2004-12-06
+%  Created     : 2004-11-12
 %  Revision    : $Id$
 %  Source      : $Source $
 %
@@ -52,15 +52,26 @@ function AlgebraicRules = GetAlgebraicRules(SBMLModel)
 %
 %  Contributor(s):
 
+y = 0;
 
-j = 1;
+%------------------------------------------------------------
+% get level
+SBMLLevel = SBMLModel.SBML_level;
+
 for i = 1:length(SBMLModel.rule)
-    if (strcmp(SBMLModel.rule(i).typecode, 'SBML_ALGEBRAIC_RULE'))
-        AlgebraicRules(j) = SBMLModel.rule(i);
-        j = j + 1;
+    if (strcmp(SBMLModel.rule(i).typecode, 'SBML_RATE_RULE'))
+        y = y + 1;
+    elseif(SBMLLevel == 1) 
+        if ((strcmp(SBMLModel.rule(i).typecode, 'SBML_ASSIGNMENT_RULE')) & (strcmp(SBMLModel.rule(i).type, 'rate')))
+            y = y + 1;
+        elseif ((strcmp(SBMLModel.rule(i).typecode, 'SBML_SPECIES_CONCENTRATION_RULE')) & (strcmp(SBMLModel.rule(i).type, 'rate')))
+            y = y + 1;
+        elseif ((strcmp(SBMLModel.rule(i).typecode, 'SBML_COMPARTMENT_VOLUME_RULE')) & (strcmp(SBMLModel.rule(i).type, 'rate')))
+            y = y + 1;
+        elseif ((strcmp(SBMLModel.rule(i).typecode, 'SBML_PARAMETER_RULE')) & (strcmp(SBMLModel.rule(i).type, 'rate')))
+            y = y + 1;
+        end;
     end;
 end;
 
-if (j == 1)
-    AlgebraicRules = '';
-end;
+

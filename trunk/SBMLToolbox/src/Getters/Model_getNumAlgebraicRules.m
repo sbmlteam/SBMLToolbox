@@ -1,13 +1,13 @@
-function y = GetNumAssignmentRules(SBMLModel)
-% GetNumAssignmentRules takes a matlab sbml model structure
-% and returns the number of assignment rules in the model
+function y = Model_getNumAlgebraicRules(SBMLModel)
+% Model_getNumAlgebraicRules takes a matlab sbml model structure
+% and returns the number of algebraic rules in the model
 
 %
-%  Filename    : GetNumAssignmentRules.m
-%  Description : takes a SBMLModel and returns the number of assignment rules in the model
+%  Filename    : Model_getNumAlgebraicRules.m
+%  Description : takes a SBMLModel and returns the number of algebraic rules in the model
 %  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
 %  Organization: University of Hertfordshire STRC
-%  Created     : 2004-02-02
+%  Created     : 2004-12-06
 %  Revision    : $Id$
 %  Source      : $Source $
 %
@@ -55,19 +55,9 @@ function y = GetNumAssignmentRules(SBMLModel)
 y = 0;
 
 %------------------------------------------------------------
-% get level
-SBMLLevel = SBMLModel.SBML_level;
 
 for i = 1:length(SBMLModel.rule)
-    if (strcmp(SBMLModel.rule(i).typecode, 'SBML_ASSIGNMENT_RULE'))
+    if (strcmp(SBMLModel.rule(i).typecode, 'SBML_ALGEBRAIC_RULE'))
         y = y + 1;
-    elseif(SBMLLevel == 1) 
-        if ((strcmp(SBMLModel.rule(i).typecode, 'SBML_SPECIES_CONCENTRATION_RULE')) & (strcmp(SBMLModel.rule(i).type, 'scalar')))
-            y = y + 1;
-        elseif ((strcmp(SBMLModel.rule(i).typecode, 'SBML_COMPARTMENT_VOLUME_RULE')) & (strcmp(SBMLModel.rule(i).type, 'scalar')))
-            y = y + 1;
-        elseif ((strcmp(SBMLModel.rule(i).typecode, 'SBML_PARAMETER_RULE')) & (strcmp(SBMLModel.rule(i).type, 'scalar')))
-            y = y + 1;
-        end;
     end;
 end;
