@@ -1,4 +1,10 @@
 function [x,y] = GetSpeciesRateLaws(SBMLModel)
+% GetSpeciesRateLaws(SBMLModel) takes an SBML model 
+% returns 
+%       1)array of species symbols
+%       2)an array of symbolic representations of the rate law for each species
+%--------------------------------------------------------------------------
+
 %
 %  Filename    : GetSpeciesRateLaws.m
 %  Description : GetSpeciesRateLaws(SBMLModel) takes an SBML model 
@@ -99,60 +105,76 @@ for i = 1:NumSpecies
         %determine which reactions it occurs within 
         for j = 1:NumReactions
             
-            SpeciesType = IsSpeciesInReaction(SBMLModel.species(i), SBMLModel.reaction(j));
-            
-            % record numbers of occurences of species as reactant/product 
+            SpeciesType = DetermineSpeciesRoleInReaction(SBMLModel.species(i), SBMLModel.reaction(j));
+
+            % record numbers of occurences of species as reactant/product
             % and check that we can deal with reaction
-            if (SpeciesType(1)>0)
-                
-                NoModifiers = length(SpeciesType);
+            if (sum(SpeciesType)>0)
+
                 NoReactants = SpeciesType(2);
-                NoProducts =  SpeciesType(3+NoReactants);
-                SavedNoReactants = SpeciesType(2);
-                
+                NoProducts =  SpeciesType(1);
+                TotalOccurences = NoReactants + NoProducts; 
+
                 %--------------------------------------------------------------
                 % check that a species does not occur twice on one side of the
                 % reaction
                 if (NoReactants > 1 || NoProducts > 1)
-                    error('GetRateLaws(SBMLModel)\n%s', 'SPECIES OCCURS MORE THAN ONCE ON ONE SIDE OF REACTION');
+                    error('GetSpeciesRateLaws(SBMLModel)\n%s', 'SPECIES OCCURS MORE THAN ONCE ON ONE SIDE OF REACTION');
                 end;
-                
+
                 %--------------------------------------------------------------
-                % check if species is a modifier and exit if it is
-                if (SpeciesType(NoModifiers) > 0)
-                    error('GetRateLaws(SBMLModel)\n%s', 'CANNOT DEAL WITH MODIFIERS YET');
+                % check that reaction has a kinetic law formula
+                if (isempty(SBMLModel.reaction(j).kineticLaw))
+                    error('GetSpeciesRateLaws(SBMLModel)\n%s', 'NO KINETC LAW SUPPLIED');
                 end;
                 %--------------------------------------------------------------
-                
+
+
             end;
             
             % species has been found in this reaction
-            while (SpeciesType(1) > 0) % 
+            while (TotalOccurences > 0) %
                 
                 % add the kinetic law to the output for this species
                 if (isempty(symOut))
                     
-                    if(NoProducts > 0) 
-                        symOut = SpeciesType(3+SavedNoReactants+1) * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
+                    if(NoProducts > 0)
+                        stoichiometry = sym(SBMLModel.reaction(j).product(SpeciesType(4)).stoichiometry/double(SBMLModel.reaction(j).product(SpeciesType(4)).denominator));
+                        if ((SBMLModel.SBML_level == 2) && (~isempty(SBMLModel.reaction(j).product(SpeciesType(4)).stoichiometryMath)))
+                            stoichiometry = charFormula2sym(SBMLModel.reaction(j).product(SpeciesType(4)).stoichiometryMath);
+                        end;
+                        symOut = stoichiometry * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
                         NoProducts = NoProducts - 1;
-                    elseif (NoReactants > 0) 
+                    elseif (NoReactants > 0)
+                        stoichiometry = sym(SBMLModel.reaction(j).reactant(SpeciesType(5)).stoichiometry/double(SBMLModel.reaction(j).reactant(SpeciesType(5)).denominator));
+                        if ((SBMLModel.SBML_level == 2) && (~isempty(SBMLModel.reaction(j).reactant(SpeciesType(5)).stoichiometryMath)))
+                            stoichiometry = charFormula2sym(SBMLModel.reaction(j).reactant(SpeciesType(5)).stoichiometryMath);
+                        end;
                         symOut =  - SpeciesType(3) * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
                         NoReactants = NoReactants - 1;
-                    end; 
-                    
+                    end;
+
                 else
                     
                     if(NoProducts > 0) 
-                        symOut = symOut + SpeciesType(3+SavedNoReactants+1) * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
+                         stoichiometry = sym(SBMLModel.reaction(j).product(SpeciesType(4)).stoichiometry/double(SBMLModel.reaction(j).product(SpeciesType(4)).denominator));
+                        if ((SBMLModel.SBML_level == 2) && (~isempty(SBMLModel.reaction(j).product(SpeciesType(4)).stoichiometryMath)))
+                            stoichiometry = charFormula2sym(SBMLModel.reaction(j).product(SpeciesType(4)).stoichiometryMath);
+                        end;
+                       symOut = symOut + stoichiometry * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
                         NoProducts = NoProducts - 1;
                     elseif (NoReactants > 0) 
-                        symOut = symOut - SpeciesType(3) * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
+                        stoichiometry = sym(SBMLModel.reaction(j).reactant(SpeciesType(5)).stoichiometry/double(SBMLModel.reaction(j).reactant(SpeciesType(5)).denominator));
+                        if ((SBMLModel.SBML_level == 2) && (~isempty(SBMLModel.reaction(j).reactant(SpeciesType(5)).stoichiometryMath)))
+                            stoichiometry = charFormula2sym(SBMLModel.reaction(j).reactant(SpeciesType(5)).stoichiometryMath);
+                        end;
+                        symOut = symOut - stoichiometry * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
                         NoReactants = NoReactants - 1;
                     end; 
                     
                 end; % isempty(output)
                 
-                SpeciesType(1) = SpeciesType(1) - 1;
+                TotalOccurences = TotalOccurences - 1;
                 
             end; % while found > 0
             
