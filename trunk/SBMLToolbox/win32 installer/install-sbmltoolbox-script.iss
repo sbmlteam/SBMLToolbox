@@ -1,5 +1,5 @@
 ;  Filename    : install_libsbml_script.iss
-;  Description : file to create windows installation of libsbml
+;  Description : file to create windows installation of sbmltoolbox
 ;  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
 ;  Organization: University of Hertfordshire STRC
 ;  Created     : 2004-03-15
@@ -49,12 +49,14 @@
 
 [Setup]
 AppName=SBMLToolbox
-AppVerName=SBMLToolbox 1.0.2
+AppVerName=SBMLToolbox 2.0.2 beta
 AppPublisher=SBMLTeam
 AppPublisherURL=http://www.sbml.org
 AppSupportURL=http://www.sbml.org
 AppUpdatesURL=http://www.sbml.org
-DefaultDirName=C:\SBMLToolbox-1.0.2
+
+
+DefaultDirName={pf}\SBML\SBMLToolbox-2.0.0-beta
 DefaultGroupName=SBMLToolbox
 DisableProgramGroupPage=yes
 WizardSmallImageFile=sbmltoolbox-installer-mini-logo.bmp
@@ -75,7 +77,7 @@ Root: HKCU; Subkey: "Software\SBML"; Flags: uninsdeletekeyifempty
 Root: HKCU; Subkey: "Software\SBML\SBMLToolbox"; Flags: uninsdeletekey
 Root: HKLM; Subkey: "Software\SBML"; Flags: uninsdeletekeyifempty
 Root: HKLM; Subkey: "Software\SBML\SBMLToolbox"; Flags: uninsdeletekey
-Root: HKLM; Subkey: "Software\SBML\SBMLToolbox"; ValueType: string; ValueName: "Version"; ValueData: "1.0.2"
+Root: HKLM; Subkey: "Software\SBML\SBMLToolbox"; ValueType: string; ValueName: "Version"; ValueData: "2.0.0b"
 Root: HKLM; Subkey: "Software\SBML\SBMLToolbox"; ValueType: string; ValueName: "InstallPath"; ValueData: "{app}"
 
 [Code]
@@ -195,6 +197,24 @@ begin
   Result := Vers;
 end;
 
+{function to check whether a version of toolbox already exists}
+function DoesToolboxExist(): Boolean;
+var
+     VersionNo: String;
+     Exists: Boolean;
+begin
+     VersionNo := GetToolboxVersion();
+     
+     if (VersionNo = '') then
+      Exists := False
+      else
+      Exists := True;
+
+      
+      Result := Exists;
+
+end;
+
 {function to check whether a preinstalled version number is later than the
   current installation
   returns 1 is the version installed is later than this version
@@ -231,6 +251,16 @@ begin
     Later := -1;
   end;
 
+  {check for a beta version}
+  if (Later = 0) then begin
+    if (Length(CurrentVers) = 6) then begin
+      if (Length(VersionNo) < 6) then begin
+        Later := 1;
+      end else begin
+        Later := 0;
+      end;
+    end;
+  end;
   Result:= Later;
 
 end;
@@ -256,7 +286,6 @@ begin
   else
     MatlabExists := True;
 
-
   {look for libsbml in environmental PATH }
   Temp := GetEnv('PATH');
   Temp1 := FileSearch('libsbml.lib', Temp);
@@ -271,7 +300,7 @@ begin
 
   {look for a version no and check whether it is later than this}
   LibsbmlVersion := GetLibsbmlVersion();
-  LaterLibsbmlVers := LaterVersion(LibsbmlVersion, '2.1.0');
+  LaterLibsbmlVers := LaterVersion(LibsbmlVersion, '2.2.0');
 
   if ((LibsbmlVersion = '') and (not LibsbmlPath))  then
     LibsbmlNotFound := True;
@@ -279,29 +308,22 @@ begin
   {look for SBMLbinding in matlab toolbox directory
    this is where it will be if installed using the
    libsbml installation package}
-  Temp := Format1('%s\toolbox\SBMLBinding', MLRoot);
+  Temp := Format1('%s\SBMLBinding', MLRoot);
 
   TempBool := DirExists(Temp);
 
   if (TempBool) then
     BindingExists := True
-  else
+ else
     BindingExists := False;
 
   
-  {look for SBMLToolbox}
-  ToolboxPath := 'C:\SBMLToolbox-1.0.1';
+  {look for prvious version of SBMLToolbox}
+  ToolboxExists := DoesToolboxExist();
 
-  TempBool := DirExists(ToolboxPath);
-  
-  if (TempBool) then
-    ToolboxExists := True
-  else
-    ToolboxExists := False;
-
-  {look for a version no and check whether it is later than this}
+    {look for a version no and check whether it is later than this}
   ToolboxVersion := GetToolboxVersion();
-  LaterToolboxVers := LaterVersion(ToolboxVersion, '1.0.2');
+  LaterToolboxVers := LaterVersion(ToolboxVersion, '2.0.0b');
 
   if not MatlabExists then begin
     Result := MsgBox('MATLAB cannot be locacted on this system.' #13 'The SBMLToolbox requires MATLAB.' #13#13 'Do you want to continue?', mbConfirmation, MB_YESNO) = idYes;
@@ -380,7 +402,7 @@ begin
         ScriptDlgPageOpen();
 
         ScriptDlgPageSetCaption('libsbml library files');
-        ScriptDlgPageSetSubCaption1('SBMLToolbox uses libsbml 2.1.0');
+        ScriptDlgPageSetSubCaption1('SBMLToolbox 2.0.0b uses libsbml 2.2.0');
         ScriptDlgPageClearCustom();
 
         if LibsbmlPath then begin
@@ -457,7 +479,7 @@ begin
     end;
     wpReady:
     if (BindingDelete = '1') then begin
-      DirName := GetMatlabroot('') + '\toolbox\SBMLbinding';
+      DirName := GetMatlabroot('') + '\SBMLbinding';
       Deleted := DelTree(DirName, True, True, True);
       if not Deleted then begin
         MsgBox('Setup could not delete directory ''' + DirName + '''.', mbInformation, MB_OK);
@@ -511,7 +533,7 @@ begin
   if BindingExists then begin
     if (BindingDelete = '1') then begin
       S := S + 'Deleting libsbml matlab binding files from' + NewLine;
-      S := S + '      ' + GetMatlabroot('') + '\toolbox\SBMLbinding';
+      S := S + '      ' + GetMatlabroot('') + '\SBMLbinding';
       S := S + NewLine;
     end else begin
       S := S + 'Not deleting libsbml matlab binding files' + NewLine;
