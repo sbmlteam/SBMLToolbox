@@ -1,5 +1,6 @@
 % BuildTranslate_Win32 builds the TranslateSBML executable in windows
 % environment
+
 %
 %
 %  Filename    : BuildTranslate_Win32.m
@@ -67,5 +68,5 @@
 %                   WIN32 header files
 
 
-mex TranslateSBML.c -I'..\extern\include' ..\extern\bin\libsbml.lib
+mex TranslateSBML.c -I'..\extern\include' C:\WINDOWS\SYSTEM32\libsbml.lib
 
