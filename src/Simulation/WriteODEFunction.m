@@ -221,18 +221,17 @@ fprintf(fileID, '\nelse\n');
 
 fprintf(fileID, '\n\t%% species concentration rate equations\n');
 for i = 1:NumberSpecies
-    fprintf(fileID, '\t%%%s\n', SpeciesNames{i});
-    
+
     % check whether rate defined by kinetic law or rule
     KL = strcmp(RateLaws{i}, '0');
     R = strcmp(RateRules{i}, '0');
-    
+
     if ((KL ~= 1) & (R ~= 1))
         error('WriteODEFunction(SBMLModel)\n%s', 'rates provided by rule and kinetic law');
     elseif ((KL == 1) & (R == 0))
-        fprintf(fileID, '\txdot(%u) = %s;\n', i, RateRules{i});
-    elseif ((R == 1) & (KL == 0)) 
-        fprintf(fileID, '\txdot(%u) = %s;\n', i, RateLaws{i});
+        Array{i} = sprintf('\txdot(%u) = %s;\n', i, RateRules{i});
+    elseif ((R == 1) & (KL == 0))
+        Array{i} = sprintf('\txdot(%u) = %s;\n', i, RateLaws{i});
     else
         % here no rate law has been provided by either kinetic law or rate
         % rule - need to check whether the species concenrn is in an
@@ -243,15 +242,21 @@ for i = 1:NumberSpecies
             RuleNo = 0;
         end;
         if (RuleNo == 0)
-            % not set by assignment 
-            fprintf(fileID, '\txdot(%u) = 0;\n', i);
+            % not set by assignment
+            Array{i} = sprintf('\txdot(%u) = 0;\n', i);
         else
             DifferentiatedRule = DifferentiateRule(SBMLModel.rule(RuleNo), SpeciesNames);
-            fprintf(fileID, '\txdot(%u) = %s;\n', i, DifferentiatedRule{1});
+            Array{i} = sprintf('\txdot(%u) = %s;\n', i, DifferentiatedRule{1});
         end;
     end;
+end; % for Numspecies
 
+% need to check that assignments are made in appropriate order
+Array = OrderArray(Array);
+for i = 1:NumberSpecies
+    fprintf(fileID, '%s', Array{i});
 end;
+
 
 
 fprintf(fileID, '\nend;\n');
@@ -359,3 +364,112 @@ for i = 1:NoElements-1
     formula = strcat(formula, Elements{i}, Divider(i));
 end;
 formula = strcat(formula, Elements{NoElements});
+
+
+%--------------------------------------------------------------------------
+% function to put rate assignments in appropriate order
+% eg
+%       xdot(2) = 3
+%       xdot(1) = 3* xdot(2)
+
+function Output = OrderArray(Array)
+
+if (length(Array) > 9)
+    error('cannot deal with more than 10 species yet');
+end;
+
+NewArrayIndex = 1;
+TempArrayIndex = 1;
+TempArray2Index = 1;
+NumberInNewArray = 0;
+NumberInTempArray = 0;
+NumberInTempArray2 = 0;
+TempArray2 = {};
+
+% put any formula withoutxdot on RHS into new array
+for i = 1:length(Array)
+    if (length(strfind(Array{i}, 'xdot'))> 1)
+        % xdot occurs more than once
+        % put in temp array
+        TempArray{TempArrayIndex} = Array{i};
+        TempArrayIndices(TempArrayIndex) = i;
+
+        % update
+        TempArrayIndex = TempArrayIndex + 1;
+        NumberInTempArray = NumberInTempArray + 1;
+
+    else
+        % no xdot on RHS
+        % put in New array
+        NewArray{NewArrayIndex} = Array{i};
+        NewArrayIndices(NewArrayIndex) = i;
+
+        % update
+        NewArrayIndex = NewArrayIndex + 1;
+        NumberInNewArray = NumberInNewArray + 1;
+
+
+    end;
+end;
+
+while (NumberInTempArray > 0)
+    % go thru temp array
+    for i = 1:NumberInTempArray
+        % find positions of xdot
+        Xdot = strfind(TempArray{i}, 'xdot');
+
+        % check whether indices of xdot on RHS are already in new array
+        Found = 0;
+        for j = 2:length(Xdot)
+            Number = str2num(TempArray{i}(Xdot(j)+5));
+            if (sum(ismember(NewArrayIndices, Number)) == 1)
+                Found = 1;
+            else
+                Found = 0;
+            end;
+        end;
+
+        % if all have been found put in new array
+        if (Found == 1)
+            % put in New array
+            NewArray{NewArrayIndex} = TempArray{i};
+            NewArrayIndices(NewArrayIndex) = TempArrayIndices(i);
+
+            % update
+            NewArrayIndex = NewArrayIndex + 1;
+            NumberInNewArray = NumberInNewArray + 1;
+
+        else
+            % put in temp array2
+            TempArray2{TempArray2Index} = TempArray{i};
+            TempArray2Indices(TempArray2Index) = TempArrayIndices(i);
+
+            % update
+            TempArray2Index = TempArray2Index + 1;
+            NumberInTempArray2 = NumberInTempArray2 + 1;
+
+
+        end;
+
+
+
+    end;
+
+    %Realloctate temp arrays
+
+    if (~isempty(TempArray2))
+        TempArray = TempArray2;
+        TempArrayIndices = TempArray2Indices;
+        NumberInTempArray = NumberInTempArray2;
+        TempArray2Index = 1;
+        NumberInTempArray2 = 0;
+    else
+        NumberInTempArray = 0;
+    end;
+
+
+
+
+end; % of while NumInTempArray > 0
+
+Output = NewArray;
