@@ -120,7 +120,13 @@ end;
 
 
 % display items common to all rules
-set(handles.Type, 'String', Rule.typecode);
+if ((Level == 1) & (~isempty(Rule.type)))
+    TypeDisplay = sprintf('%s - %s', Rule.typecode, Rule.type);
+else
+    TypeDisplay = Rule.typecode;
+end;
+
+set(handles.Type, 'String', TypeDisplay);
 set(handles.Formula, 'String', Rule.formula);
 
 % display items for particular rule type
