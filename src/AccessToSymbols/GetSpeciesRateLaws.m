@@ -150,7 +150,7 @@ for i = 1:NumSpecies
                         if ((SBMLModel.SBML_level == 2) && (~isempty(SBMLModel.reaction(j).reactant(SpeciesType(5)).stoichiometryMath)))
                             stoichiometry = charFormula2sym(SBMLModel.reaction(j).reactant(SpeciesType(5)).stoichiometryMath);
                         end;
-                        symOut =  - SpeciesType(3) * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
+                        symOut =  - stoichiometry * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
                         NoReactants = NoReactants - 1;
                     end;
 
