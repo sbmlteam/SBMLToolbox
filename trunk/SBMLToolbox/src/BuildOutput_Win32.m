@@ -1,5 +1,6 @@
 % BuildOutput_Win32 builds the OutputSBML executable in windows
 % environment
+
 %
 %
 %  Filename    : BuildOutput_Win32.m
@@ -57,7 +58,7 @@
 % exists on within the SBMLToolbox path as shown
 % 
 %   SBMLToolbox
-%       -src
+%       -toolbox
 %           OutputSBML.c
 %       -docs
 %       -extern
@@ -67,4 +68,4 @@
 %                   WIN32 header files
 
 
-mex OutputSBML.c -I'C:\Libsbml_sandbox\libsbml\src' C:\WINDOWS\SYSTEM32\libsbml.lib
+mex OutputSBML.c  -I'..\extern\include' ..\extern\bin\libsbml.lib

@@ -58,7 +58,7 @@
 % exists on within the SBMLToolbox path as shown
 % 
 %   SBMLToolbox
-%       -src
+%       -toolbox
 %           TranslateSBML.c
 %       -docs
 %       -extern
@@ -68,5 +68,5 @@
 %                   WIN32 header files
 
 
-mex C:\Libsbml_sandbox\libsbml\bindings\matlab\TranslateSBML.c -I'C:\Libsbml_sandbox\libsbml\src' C:\WINDOWS\SYSTEM32\libsbml.lib
+mex TranslateSBML.c  -I'..\extern\include' ..\extern\bin\libsbml.lib
 
