@@ -13,7 +13,7 @@ function value = Event_isSetName(SBMLEvent)
 sbmlLevel = 2;
 
 if (~isSBML_Event(SBMLEvent, sbmlLevel))
-    error(sprintf('%s\n%s', 'Event_isSetName(SBMLEvent)', 'argument must be an SBML functionDefinition structure'));
+    error(sprintf('%s\n%s', 'Event_isSetName(SBMLEvent)', 'argument must be an SBML event structure'));
 end;
 
 value = ~isempty(SBMLEvent.name);
