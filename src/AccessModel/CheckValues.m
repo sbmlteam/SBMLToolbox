@@ -112,7 +112,7 @@ SBMLModel = varargin{1};
 [Species, SpeciesValues] = GetSpecies(SBMLModel);
 
 
-[Parameter, ParameterValues] = GetAllParameters(SBMLModel);
+[Parameter, ParameterValues] = GetAllParametersUnique(SBMLModel);
 
 % keep a copy of initial values
 handles.InitialSpeciesValues = SpeciesValues;
