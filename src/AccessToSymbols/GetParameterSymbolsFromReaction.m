@@ -1,4 +1,14 @@
 function varargout = GetParameterSymbolsFromReaction(SBMLReaction)
+% GetParameterSymbolsFromReaction takes a SBMLReaction 
+% and returns 
+%           1) an array of symbols representing all parameters defined 
+%               within the kinetic law of the reaction 
+%           2) an array of the values of each parameter
+%           3) an array of character names of the symbols
+%
+% NOTE: if the values are not set then the value NaN is used
+
+%--------------------------------------------------------------------------
 %
 %  Filename    : GetParameterSymbolsFromReaction.m
 %  Description : GetParameterSymbolsFromReaction takes a SBMLReaction 
@@ -53,15 +63,6 @@ function varargout = GetParameterSymbolsFromReaction(SBMLReaction)
 %
 %  Contributor(s):
 %
-% GetParameterSymbolsFromReaction takes a SBMLReaction 
-% and returns 
-%           1) an array of symbols representing all parameters defined 
-%               within the kinetic law of the reaction 
-%           2) an array of the values of each parameter
-%           3) an array of character names of the symbols
-%
-% NOTE: if the values are not set then the value -1 is used
-%--------------------------------------------------------------------------
 
 % check input is an SBML reaction and determine level
 Level = 1;
@@ -105,12 +106,7 @@ for i = 1:NumParams
     CharArray{i} = name;
     
     % put the value into the array
-    % if value is not set use -1
-    if (SBMLReaction.kineticLaw.parameter(i).isSetValue)
-        Values(i) = SBMLReaction.kineticLaw.parameter(i).value;
-    else
-        Values(i) = -1;
-    end;
+    Values(i) = SBMLReaction.kineticLaw.parameter(i).value;
     
 end;
 
