@@ -1,5 +1,5 @@
-function [Species, RateLaws] = GetRateLawsFromReactionsA(SBMLModel)
-% GetRateLawsFromReactions takes an SBMLModel 
+function [Species, RateLaws] = Model_determineRateLawsFromReactions(SBMLModel)
+% Model_determineRateLawsFromReactions takes an SBMLModel 
 % and returns
 %             1) an array of species names
 %             2) an array of the character representation of the rate laws
@@ -7,7 +7,7 @@ function [Species, RateLaws] = GetRateLawsFromReactionsA(SBMLModel)
 
 %--------------------------------------------------------------------------
 %
-%  Filename    : GetRateLawsFromReactions.m
+%  Filename    : Model_determineRateLawsFromReactions.m
 %  Description : takes a SBMLModel and returns rate laws
 %  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
 %  Organization: University of Hertfordshire STRC
@@ -59,7 +59,7 @@ function [Species, RateLaws] = GetRateLawsFromReactionsA(SBMLModel)
 
 % check input is an SBML model
 if (~isSBML_Model(SBMLModel))
-    error('GetRateLawsFromReactions(SBMLModel)\n%s', 'input must be an SBMLModel structure');
+    error('Model_determineRateLawsFromReactions(SBMLModel)\n%s', 'input must be an SBMLModel structure');
 end;
 
 %--------------------------------------------------------------
@@ -108,13 +108,13 @@ for i = 1:NumberSpecies
                 % check that a species does not occur twice on one side of the
                 % reaction
                 if (NoReactants > 1 || NoProducts > 1)
-                    error('GetRateLawsFromReactions(SBMLModel)\n%s', 'SPECIES OCCURS MORE THAN ONCE ON ONE SIDE OF REACTION');
+                    error('Model_determineRateLawsFromReactions(SBMLModel)\n%s', 'SPECIES OCCURS MORE THAN ONCE ON ONE SIDE OF REACTION');
                 end;
 
                 %--------------------------------------------------------------
                 % check that reaction has a kinetic law formula
                 if (isempty(SBMLModel.reaction(j).kineticLaw))
-                    error('GetRateLawsFromReactions(SBMLModel)\n%s', 'NO KINETC LAW SUPPLIED');
+                    error('Model_determineRateLawsFromReactions(SBMLModel)\n%s', 'NO KINETC LAW SUPPLIED');
                 end;
                 %--------------------------------------------------------------
 

@@ -116,3 +116,4 @@
 %       and returns
 %           1) amount of each species at the time limit/equilibrium
 
+%   CheckValues                    - Filename    : CheckValues.m

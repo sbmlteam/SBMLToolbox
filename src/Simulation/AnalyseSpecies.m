@@ -70,8 +70,8 @@ function Species = AnalyseSpecies(SBMLModel)
 %
 %  Contributor(s):
 
-[name, KineticLaw] = GetRateLawsFromReactions(SBMLModel);
-[n, RateRule] = GetRateLawsFromRules(SBMLModel);
+[name, KineticLaw] = Model_determineRateLawsFromReactions(SBMLModel);
+[n, RateRule] = Model_determineRateLawsFromRules(SBMLModel);
 [n, AssignRule] = GetSpeciesAssignmentRules(SBMLModel);
 [n, AlgRules] = GetSpeciesAlgebraicRules(SBMLModel);
 [n, Values] = GetSpecies(SBMLModel);
