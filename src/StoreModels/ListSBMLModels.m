@@ -83,10 +83,10 @@ for nNumber = 1:n_level1
 end;
 
 for nNumber =1:n_level2
-    name = Models_l2(nNumber).name;
+    name = Models_l2(nNumber).id;
     k = isempty(name);
     if (k == 1)
-        name = Models_l2(nNumber).id;
+        name = Models_l2(nNumber).name;
     end;
     i = int2str(nNumber);
     f = int2str(2);
