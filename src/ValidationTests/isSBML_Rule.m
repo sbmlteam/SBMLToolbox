@@ -1,4 +1,36 @@
 function y = isSBML_Rule(SBMLStructure, Level)
+% isSBML_Rule(SBMLStructure, Level) checks that SBMLStructure represents a rule 
+% within an sbml model of the specified level
+% 
+% if SBMLStructure represents a rule within an SBML model
+% it has the appropriate fields 
+% eg    Typecode
+%       Notes
+%       Annotations
+%       Type (1)
+%       Formula
+%       Variable
+%       Species
+%       Compartment
+%       ParameterName
+%       ParameterUnits
+%
+% NOTE number in brackets indicates field is appropriate for that level of
+% sbml only
+%
+% Returns 1 if SBMLStructure is a structure containing each of the above
+% fields and the typecode is one of
+%   "SBML_ALGEBRAIC_RULE", "SBML_SPECIES_CONCENTRATION_RULE",
+%   "SBML_COMPARTMENT_VOLUME_RULE", "SBML_PARAMETER_RULE", 
+%   "SBML_ASSIGNMENT_RULE", "SBML_RATE_RULE"
+% 
+% Returns 0 if SBMLStructure is not a structure 
+% or does not contain one of the above fields
+% or the typecode is not one of 
+%   "SBML_ALGEBRAIC_RULE", "SBML_SPECIES_CONCENTRATION_RULE",
+%   "SBML_COMPARTMENT_VOLUME_RULE", "SBML_PARAMETER_RULE", 
+%   "SBML_ASSIGNMENT_RULE", "SBML_RATE_RULE"
+
 %
 %  Filename    : isSBML_Rule.m
 %  Description : validates whether a MATLAB structure 
@@ -50,35 +82,13 @@ function y = isSBML_Rule(SBMLStructure, Level)
 %
 %  Contributor(s):
 %
-% isSBML_Rule(SBMLStructure) checks that SBMLStructure represents a rule within an sbml model
-% 
-% if SBMLStructure represents a rule within an SBML model
-% it has the appropriate fields 
-% eg    Typecode
-%       Notes
-%       Annotations
-%       Formula
-%       Variable
-%       Species
-%       Compartment
-%       ParameterName
-%       ParameterUnits
-%
-% Returns 1 if SBMLStructure is a structure containing each of the above
-% fields and the typecode is one of
-%   "SBML_ALGEBRAIC_RULE", "SBML_SPECIES_CONCENTRATION_RULE",
-%   "SBML_COMPARTMENT_VOLUME_RULE", "SBML_PARAMETER_RULE", 
-%   "SBML_ASSIGNMENT_RULE", "SBML_RATE_RULE"
-% 
-% Returns 0 if SBMLStructure is not a structure 
-% or does not contain one of the above fields
-% or the typecode is not one of 
-%   "SBML_ALGEBRAIC_RULE", "SBML_SPECIES_CONCENTRATION_RULE",
-%   "SBML_COMPARTMENT_VOLUME_RULE", "SBML_PARAMETER_RULE", 
-%   "SBML_ASSIGNMENT_RULE", "SBML_RATE_RULE"
-
-SBMLfieldnames = {'typecode', 'notes', 'annotation','formula', 'variable', 'species', 'compartment', 'name', 'units'};
-nNumberFields = 9;
+if (Level == 1) 
+    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'type', 'formula', 'variable', 'species', 'compartment', 'name', 'units'};
+    nNumberFields = 10;
+else
+    SBMLfieldnames = {'typecode', 'notes', 'annotation','formula', 'variable', 'species', 'compartment', 'name', 'units'};
+    nNumberFields = 9;
+end;
 typecode = {'SBML_ALGEBRAIC_RULE', 'SBML_SPECIES_CONCENTRATION_RULE', 'SBML_COMPARTMENT_VOLUME_RULE', 'SBML_PARAMETER_RULE', 'SBML_ASSIGNMENT_RULE', 'SBML_RATE_RULE'};
 nNumberTypecodes = 6;
 

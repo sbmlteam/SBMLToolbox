@@ -1211,6 +1211,7 @@ GetCompartment (mxArray * mxCompartments,
 	char * pacNotes;
 	char * pacAnnotations;
 	char * pacAnnotationString;
+    char * pacType;
     char * pacFormula;
 	char * pacVariable;
 	char * pacSpecies;
@@ -1220,7 +1221,7 @@ GetCompartment (mxArray * mxCompartments,
     
 
 
-	mxArray * mxTypecode, * mxNotes, * mxAnnotations, * mxFormula, * mxVariable, * mxCompartment, * mxSpecies, * mxName, * mxUnits;
+	mxArray * mxTypecode, * mxNotes, * mxAnnotations, * mxFormula, * mxVariable, * mxCompartment, * mxSpecies, * mxName, * mxUnits, * mxType;
 
 	AssignmentRule_t *pAssignRule;
 	AlgebraicRule_t * pAlgRule;
@@ -1357,6 +1358,20 @@ GetCompartment (mxArray * mxCompartments,
 			mexErrMsgTxt("Cannot copy Units");
 		}
 		
+        if (unSBMLLevel == 1) {
+            
+        /* get Type */
+            mxType = mxGetField(mxRule, i, "type");
+            nBuflen = (mxGetM(mxType)*mxGetN(mxType)+1);
+            pacType = (char *)mxCalloc(nBuflen, sizeof(char));
+            nStatus = mxGetString(mxType, pacType, nBuflen);
+            
+            if (nStatus != 0)
+            {
+                mexErrMsgTxt("Cannot copy Type");
+            }
+            
+        }
 
 		/* assign values for different types of rules */
 		switch(CharToTypecode(pacTypecode)) {
@@ -1371,6 +1386,7 @@ GetCompartment (mxArray * mxCompartments,
 				
                 if (unSBMLLevel == 1)
 				{
+                    AssignmentRule_setType(pAssignRule, RuleType_forName(pacType));
 					Rule_setFormula((Rule_t *)pAssignRule, pacFormula);
 				}
 				else if (unSBMLLevel == 2)
@@ -1442,6 +1458,7 @@ GetCompartment (mxArray * mxCompartments,
 				
                 if (unSBMLLevel == 1)
 				{
+                    AssignmentRule_setType(pSpeciesConcentrationRule, RuleType_forName(pacType));
 					Rule_setFormula((Rule_t *)pSpeciesConcentrationRule, pacFormula);
 				}
 				else if (unSBMLLevel == 2)
@@ -1466,6 +1483,7 @@ GetCompartment (mxArray * mxCompartments,
 				
                 if (unSBMLLevel == 1)
 				{
+                    AssignmentRule_setType(pCompartmentVolumeRule, RuleType_forName(pacType));
 					Rule_setFormula((Rule_t *)pCompartmentVolumeRule, pacFormula);
 				}
 				else if (unSBMLLevel == 2)
@@ -1491,6 +1509,7 @@ GetCompartment (mxArray * mxCompartments,
 				
                 if (unSBMLLevel == 1)
 				{
+                    AssignmentRule_setType(pParameterRule, RuleType_forName(pacType));
 					Rule_setFormula((Rule_t *)pParameterRule, pacFormula);
 				}
 				else if (unSBMLLevel == 2)
