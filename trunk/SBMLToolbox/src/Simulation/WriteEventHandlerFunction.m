@@ -234,11 +234,11 @@ switch (Func)
         FunctionString = sprintf('%s - %s', Variable, Constant);
         direction = -1;
     case 'gt'
-        FunctionString = sprintf('%s - %s - eps', Constant, Variable );
-         direction = 1;
+        FunctionString = sprintf('%s - %s + eps', Constant, Variable );
+         direction = 0;
    case 'geq'
         FunctionString = sprintf('%s - %s', Constant, Variable );
-        direction = 1;
+        direction = 0;
     otherwise
         error('unrecognised function in trigger');
 end;

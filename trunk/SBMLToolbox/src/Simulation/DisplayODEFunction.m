@@ -160,27 +160,43 @@ if ((SBMLModel.SBML_level == 2) && (length(SBMLModel.event) ~= 0))
 
     TimeCourse = [];
     SpeciesCourse = [];
-    
+
     while ((~isempty(Time_span)) && (Time_span(1) < Time_span(end)))
 
         [TimeCourseA, SpeciesCourseA] = ode45(fhandle, Time_span, InitConds, options);
+        
+        % need to catch case where the time span entered was two sequential
+        % times from the original time-span
+        % e.g. original Time_span = [0, 0.1, ..., 4.9, 5.0]
+        % Time_span = [4.9, 5.0]
+        %
+        % ode solver will output points between
+        if (length(Time_span) == 2)
+            NewTimeCourse = [TimeCourseA(1); TimeCourseA(end)];
+            TimeCourseA = NewTimeCourse;
+            for i = 1:length(SBMLModel.species)
+                NewSpecies(1,i) = SpeciesCourseA(1, i);
+                NewSpecies(2,i) = SpeciesCourseA(end, i);
+            end;
+            SpeciesCourseA = NewSpecies;
 
-        % lose event time
-        if (TimeCourseA(end) ~= Time_span(end))
-            
-        TimeCourseA = TimeCourseA(1:length(TimeCourseA)-1);
+        end;
+
+        % keep copy of event time
+        eventTime = TimeCourseA(end);
         for i = 1:length(SBMLModel.species)
-            SpeciesCourseB(:,i) = SpeciesCourseA(1:length(SpeciesCourseA)-1, i);
             SpeciesValues(i) = SpeciesCourseA(length(SpeciesCourseA), i);
         end;
+
+        if (TimeCourseA(end) ~= Time_span(end))
+
+            TimeCourseA = TimeCourseA(1:length(TimeCourseA)-1);
+            for i = 1:length(SBMLModel.species)
+                SpeciesCourseB(:,i) = SpeciesCourseA(1:length(SpeciesCourseA)-1, i);
+            end;
         else
             SpeciesCourseB = SpeciesCourseA;
         end;
-        
-        % keep copy of calculations
-        TimeCourse = [TimeCourse;TimeCourseA];
-        SpeciesCourse = [SpeciesCourse;SpeciesCourseB];
-
         % adjust the time span
         Time_spanA = Time_span - TimeCourseA(length(TimeCourseA));
         Time_span_new = Time_spanA((find(Time_spanA==0)+1): length(Time_spanA));
@@ -188,8 +204,17 @@ if ((SBMLModel.SBML_level == 2) && (length(SBMLModel.event) ~= 0))
         Time_span = Time_span_new + TimeCourseA(length(TimeCourseA));
 
         % get new initial conditions
-        InitConds = feval(AfterEventHandle, SpeciesValues);
+        if (~isempty(Time_span))
+            SpeciesValues = feval(AfterEventHandle, SpeciesValues);
+            [t,NewValues] = ode45(fhandle, [eventTime, Time_span(1)], SpeciesValues);
+            for i = 1:length(SBMLModel.species)
+                InitConds(i) = NewValues(length(NewValues), i);
+            end;
+        end;
 
+        % keep copy of calculations
+        TimeCourse = [TimeCourse;TimeCourseA];
+        SpeciesCourse = [SpeciesCourse;SpeciesCourseB];
 
         TimeCourseA = [];
         SpeciesCourseA = [];
