@@ -64,6 +64,7 @@ end;
 [ParameterNames, ParameterValues] = GetAllParametersUnique(SBMLModel);
 [SpeciesNames, SpeciesValues] = GetSpecies(SBMLModel);
 NumberSpecies = length(SBMLModel.species);
+NumFuncs = length(SBMLModel.functionDefinition);
 
 %---------------------------------------------------------------
 % get the name/id of the model
@@ -140,6 +141,30 @@ fprintf(fileID, '\n%%--------------------------------------------------------\n'
 fprintf(fileID, '%% output values\n\n');
 for i = 1:NumberSpecies
     fprintf(fileID, 'Values(%u) = %s;\n', i, SpeciesNames{i});
+end;
+
+% put in any function definitions
+
+if (NumFuncs > 0)
+    fprintf(fileID, '\n\n%%---------------------------------------------------\n%%Function definitions\n\n');
+    
+    for i = 1:NumFuncs
+        Name = SBMLModel.functionDefinition(i).id;
+        
+        Elements = GetArgumentsFromLambdaFunction(SBMLModel.functionDefinition(i).math);
+        
+        fprintf(fileID, '%%function %s\n\n', Name);
+        fprintf(fileID, 'function returnValue = %s(', Name);
+        for j = 1:length(Elements)-1
+            if (j == length(Elements)-1)
+            fprintf(fileID, '%s', Elements{j});
+            else
+                fprintf(fileID, '%s, ', Elements{j});
+            end;
+        end;
+        fprintf(fileID, ')\n\nreturnValue = %s;\n\n\n', Elements{end});
+    end;
+        
 end;
 
 
