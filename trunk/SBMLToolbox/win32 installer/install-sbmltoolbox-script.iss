@@ -64,12 +64,12 @@ WizardImageFile=sbmltoolbox-installer-graphic.bmp
 
 
 [Files]
-Source: "C:\SBMLToolbox\*"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\SBMLToolbox\src\*"; DestDir: "{app}\src"; Flags: ignoreversion recursesubdirs
-;Source: "C:\SBMLToolbox\docs\*"; DestDir: "{app}\docs"; Flags: ignoreversion recursesubdirs
-;Source: "C:\SBMLToolbox\extern\*"; DestDir: "{app}\extern"; Flags: ignoreversion recursesubdirs
-;Source: "C:\SBMLToolbox\extern\bin\*"; DestDir: "{sys}"; Check: GetSys;
-;Source: "C:\SBMLToolbox\extern\bin\*"; DestDir: "{code:GetLibDir}"; Flags: ignoreversion; Check: GetOverwrite;
+Source: "C:\SBMLToolbox_2.0.0_beta\*"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\SBMLToolbox_2.0.0_beta\toolbox\*"; DestDir: "{app}\toolbox"; Flags: ignoreversion recursesubdirs
+Source: "C:\SBMLToolbox_2.0.0_beta\docs\*"; DestDir: "{app}\docs"; Flags: ignoreversion recursesubdirs
+Source: "C:\SBMLToolbox_2.0.0_beta\extern\*"; DestDir: "{app}\extern"; Flags: ignoreversion recursesubdirs
+Source: "C:\SBMLToolbox_2.0.0_beta\extern\bin\*"; DestDir: "{sys}"; Check: GetSys;
+Source: "C:\SBMLToolbox_2.0.0_beta\extern\bin\*"; DestDir: "{code:GetLibDir}"; Flags: ignoreversion; Check: GetOverwrite;
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
