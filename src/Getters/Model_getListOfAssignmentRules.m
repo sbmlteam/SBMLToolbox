@@ -1,5 +1,5 @@
-function AssignRules = GetAssignmentRules(SBMLModel)
-% GetAssignmentRules takes an SBMLModel and returns an array
+function AssignRules = Model_getListOfAssignmentRules(SBMLModel)
+% Model_getListOfAssignmentRules takes an SBMLModel and returns an array
 % of the Assignment rules
 % i.e. those with typecode:   'SBML_ASSIGNMENT_RULE'
 %                             'SBML_SPECIES_CONCENTRATION_RULE'
@@ -7,7 +7,7 @@ function AssignRules = GetAssignmentRules(SBMLModel)
 %                             'SBML_PARAMETER_RULE'
  
 %
-%  Filename    : GetAssignmentRules.m
+%  Filename    : Model_getListOfAssignmentRules.m
 %  Description : takes a SBMLModel and returns the assignment rules in the model
 %  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
 %  Organization: University of Hertfordshire STRC

@@ -67,8 +67,8 @@ end;
 % get information from the model
 Species = GetSpecies(SBMLModel);
 NumberSpecies = length(SBMLModel.species);
-Rules = GetAlgebraicRules(SBMLModel);
-NumRules = GetNumAlgebraicRules(SBMLModel);
+Rules = Model_getListOfAlgebraicRules(SBMLModel);
+NumRules = Model_getNumAlgebraicRules(SBMLModel);
 
 for i = 1:NumberSpecies
     output = '';

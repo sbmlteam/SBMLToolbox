@@ -1,17 +1,13 @@
-function RateRules = GetRateRules(SBMLModel)
-% GetRateRules takes an SBMLModel and returns an array
-% of the Rate rules
-% i.e. those with typecode:   'SBML_RATE_RULE'
-%                             'SBML_SPECIES_CONCENTRATION_RULE'
-%                             'SBML_COMPARTMENT_VOLUME_RULE'
-%                             'SBML_PARAMETER_RULE'
- 
+function y = Model_getNumAssignmentRules(SBMLModel)
+% Model_getNumAssignmentRules takes a matlab sbml model structure
+% and returns the number of assignment rules in the model
+
 %
-%  Filename    : GetRateRules.m
-%  Description : takes a SBMLModel and returns the rate rules in the model
+%  Filename    : Model_getNumAssignmentRules.m
+%  Description : takes a SBMLModel and returns the number of assignment rules in the model
 %  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
 %  Organization: University of Hertfordshire STRC
-%  Created     : 2004-11-12
+%  Created     : 2004-02-02
 %  Revision    : $Id$
 %  Source      : $Source $
 %
@@ -56,25 +52,22 @@ function RateRules = GetRateRules(SBMLModel)
 %
 %  Contributor(s):
 
+y = 0;
 
-j = 1;
+%------------------------------------------------------------
+% get level
+SBMLLevel = SBMLModel.SBML_level;
+
 for i = 1:length(SBMLModel.rule)
-    
-    if (strcmp(SBMLModel.rule(i).typecode, 'SBML_RATE_RULE'))
-        RateRules(j) = SBMLModel.rule(i);
-        j = j + 1;
-    elseif (SBMLModel.SBML_level == 1)
-        if ((strcmp(SBMLModel.rule(i).typecode, 'SBML_SPECIES_CONCENTRATION_RULE')) & (strcmp(SBMLModel.rule(i).type, 'rate')))
-            RateRules(j) = SBMLModel.rule(i);
-            j = j + 1;
-        elseif ((strcmp(SBMLModel.rule(i).typecode, 'SBML_ASSIGNMENT_RULE')) & (strcmp(SBMLModel.rule(i).type, 'rate')))
-            RateRules(j) = SBMLModel.rule(i);
-            j = j + 1;
+    if (strcmp(SBMLModel.rule(i).typecode, 'SBML_ASSIGNMENT_RULE'))
+        y = y + 1;
+    elseif(SBMLLevel == 1) 
+        if ((strcmp(SBMLModel.rule(i).typecode, 'SBML_SPECIES_CONCENTRATION_RULE')) & (strcmp(SBMLModel.rule(i).type, 'scalar')))
+            y = y + 1;
+        elseif ((strcmp(SBMLModel.rule(i).typecode, 'SBML_COMPARTMENT_VOLUME_RULE')) & (strcmp(SBMLModel.rule(i).type, 'scalar')))
+            y = y + 1;
+        elseif ((strcmp(SBMLModel.rule(i).typecode, 'SBML_PARAMETER_RULE')) & (strcmp(SBMLModel.rule(i).type, 'scalar')))
+            y = y + 1;
         end;
-             
     end;
-end;
-
-if (j == 1)
-    RateRules = '';
 end;
