@@ -1,4 +1,38 @@
 function y = isSBML_Species(SBMLStructure, Level)
+% isSBML_Species(SBMLStructure, Level) checks that SBMLStructure represents a species 
+% within an sbml model of specified level
+% 
+% if SBMLStructure represents a species within an SBML model
+% it has the appropriate fields
+% eg    Typecode
+%       Notes
+%       Annotations
+%       Name
+%       Id (2)
+%       Compartment
+%       InitialAmount
+%       InitialConcentration (2)
+%       Units (1)
+%       SubstanceUnits (2)
+%       SpatialSizeUnits (2)
+%       HasOnlySubstanceUnits (2)
+%       BoundaryCondition
+%       Charge
+%       Constant (2)
+%       isSetInitialAmount
+%       isSetInitialConcentration (2)
+%       isSetCharge
+%
+% NOTE number in brackets indicates field is appropriate for that level of
+% sbml only
+%
+% Returns 1 if SBMLStructure is a structure containing each of the above
+% fields and the typecode is "SBML_SPECIES"
+% 
+% Returns 0 if SBMLStructure is not a structure 
+% or does not contain one of the above fields
+% or the typecode is not "SBML_SPECIES"
+
 %
 %  Filename    : isSBML_Species.m
 %  Description : validates whether a MATLAB structure 
@@ -50,40 +84,6 @@ function y = isSBML_Species(SBMLStructure, Level)
 %
 %  Contributor(s):
 %
-% isSBML_Species(SBMLStructure, Level) checks that SBMLStructure represents a species 
-% within an sbml model of specified level
-% 
-% if SBMLStructure represents a species within an SBML model
-% it has the appropriate fields
-% eg    Typecode
-%       Notes
-%       Annotations
-%       Name
-%       Id (2)
-%       Compartment
-%       InitialAmount
-%       InitialConcentration (2)
-%       Units (1)
-%       SubstanceUnits (2)
-%       SpatialSizeUnits (2)
-%       HasOnlySubstanceUnits (2)
-%       BoundaryCondition
-%       Charge
-%       Constant (2)
-%       isSetInitialAmount
-%       isSetInitialConcentration (2)
-%       isSetCharge
-%
-% NOTE number in brackets indicates field is appropriate for that level of
-% sbml only
-%
-% Returns 1 if SBMLStructure is a structure containing each of the above
-% fields and the typecode is "SBML_SPECIES"
-% 
-% Returns 0 if SBMLStructure is not a structure 
-% or does not contain one of the above fields
-% or the typecode is not "SBML_SPECIES"
-
 if (Level == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'compartment', 'initialAmount', 'units', 'boundaryCondition', 'charge', 'isSetInitialAmount', 'isSetCharge'};
     nNumberFields = 11;

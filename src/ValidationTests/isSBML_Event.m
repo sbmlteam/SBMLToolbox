@@ -1,4 +1,29 @@
 function y = isSBML_Event(SBMLStructure, Level)
+% isSBML_Event(SBMLStructure, Level) checks that SBMLStructure represents a Event
+% within an sbml model of specified level
+% 
+% if SBMLStructure represents a Event within an SBML model
+% it has the appropriate fields (ONLY IN LEVEL 2)
+% eg    Typecode (2)
+%       Notes (2)
+%       Annotations (2)
+%       Name (2)
+%       Id (2)
+%       Trigger (2)
+%       Delay (2)
+%       TimeUnits (2)
+%       ListEventassignment (2)
+%
+% NOTE number in brackets indicates field is appropriate for that level of
+% sbml only
+%
+% Returns 1 if SBMLStructure is a structure containing each of the above
+% fields and the typecode is "SBML_EVENT"
+% 
+% Returns 0 if SBMLStructure is not a structure 
+% or does not contain one of the above fields
+% or the typecode is not "SBML_EVENT"
+
 %
 %  Filename    : isSBML_Event.m
 %  Description : validates whether a MATLAB structure 
@@ -50,31 +75,6 @@ function y = isSBML_Event(SBMLStructure, Level)
 %
 %  Contributor(s):
 %
-% isSBML_Event(SBMLStructure, Level) checks that SBMLStructure represents a Event
-% within an sbml model of specified level
-% 
-% if SBMLStructure represents a Event within an SBML model
-% it has the appropriate fields (ONLY IN LEVEL 2)
-% eg    Typecode (2)
-%       Notes (2)
-%       Annotations (2)
-%       Name (2)
-%       Id (2)
-%       Trigger (2)
-%       Delay (2)
-%       TimeUnits (2)
-%       ListEventassignment (2)
-%
-% NOTE number in brackets indicates field is appropriate for that level of
-% sbml only
-%
-% Returns 1 if SBMLStructure is a structure containing each of the above
-% fields and the typecode is "SBML_EVENT"
-% 
-% Returns 0 if SBMLStructure is not a structure 
-% or does not contain one of the above fields
-% or the typecode is not "SBML_EVENT"
-
 if (Level == 1)
     y = 0;
     return;

@@ -1,4 +1,27 @@
 function y = isSBML_SpeciesReference(SBMLStructure, Level)
+% isSBML_SpeciesRefernce(SBMLStructure, Level) checks that SBMLStructure represents a species reference 
+% within an sbml model of the specified level
+% 
+% if SBMLStructure represents a species reference within an SBML model
+% it has the appropriate fields
+% eg    Typecode
+%       Notes
+%       Annotations
+%       Species
+%       Stoichiometry
+%       Denominator
+%       StoichiometryMath (2)
+%
+% NOTE number in brackets indicates field is appropriate for that level of
+% sbml only
+%
+% Returns 1 if SBMLStructure is a structure containing each of the above
+% fields and the typecode is "SBML_SPECIES_REFERENCE"
+% 
+% Returns 0 if SBMLStructure is not a structure 
+% or does not contain one of the above fields
+% or the typecode is not "SBML_SPECIES_REFERENCE"
+
 %
 %  Filename    : isSBML_SpeciesReference.m
 %  Description : validates whether a MATLAB structure 
@@ -49,31 +72,7 @@ function y = isSBML_SpeciesReference(SBMLStructure, Level)
 %      mailto:sbml-team@caltech.edu
 %
 %  Contributor(s):
-%
-% isSBML_SpeciesRefernce(SBMLStructure, Level) checks that SBMLStructure represents a species reference 
-% within an sbml model of the specified level
-% 
-% if SBMLStructure represents a species reference within an SBML model
-% it has the appropriate fields
-% eg    Typecode
-%       Notes
-%       Annotations
-%       Species
-%       Stoichiometry
-%       Denominator
-%       StoichiometryMath (2)
-%
-% NOTE number in brackets indicates field is appropriate for that level of
-% sbml only
-%
-% Returns 1 if SBMLStructure is a structure containing each of the above
-% fields and the typecode is "SBML_SPECIES_REFERENCE"
-% 
-% Returns 0 if SBMLStructure is not a structure 
-% or does not contain one of the above fields
-% or the typecode is not "SBML_SPECIES_REFERENCE"
-
-if (Level == 1)
+%if (Level == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation','species', 'stoichiometry', 'denominator'};
     nNumberFields = 6;
 else

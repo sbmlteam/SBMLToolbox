@@ -1,4 +1,34 @@
 function y = isSBML_Model(SBMLStructure)
+% isSBML_Model(SBMLStructure) checks that SBMLStructure represents an sbml model
+% 
+% if SBMLStructure represents an SBML model
+% it has the appropriate fields 
+% eg    Typecode
+%       Notes
+%       Annotations
+%       Level
+%       Version
+%       Name
+%       Id (2)
+%       ListFunctionDefinition (2)
+%       ListUnitDefinition
+%       ListCompartment
+%       ListSpecies
+%       ListParameter
+%       ListRule
+%       ListReaction
+%       ListEvent (2)
+%
+% NOTE number in brackets indicates field is appropriate for that level of
+% sbml only
+%
+% Returns 1 if SBMLStructure is a structure containing each of the above
+% fields and the typecode is "SBML_MODEL"
+% 
+% Returns 0 if SBMLStructure is not a structure 
+% or does not contain one of the above fields
+% or the typecode is not "SBML_MODEL"
+
 %
 %  Filename    : isSBML_Model.m
 %  Description : validates whether a MATLAB structure 
@@ -50,36 +80,6 @@ function y = isSBML_Model(SBMLStructure)
 %
 %  Contributor(s):
 %
-% isSBML_Model(SBMLStructure) checks that SBMLStructure represents an sbml model
-% 
-% if SBMLStructure represents an SBML model
-% it has the appropriate fields 
-% eg    Typecode
-%       Notes
-%       Annotations
-%       Level
-%       Version
-%       Name
-%       Id (2)
-%       ListFunctionDefinition (2)
-%       ListUnitDefinition
-%       ListCompartment
-%       ListSpecies
-%       ListParameter
-%       ListRule
-%       ListReaction
-%       ListEvent (2)
-%
-% NOTE number in brackets indicates field is appropriate for that level of
-% sbml only
-%
-% Returns 1 if SBMLStructure is a structure containing each of the above
-% fields and the typecode is "SBML_MODEL"
-% 
-% Returns 0 if SBMLStructure is not a structure 
-% or does not contain one of the above fields
-% or the typecode is not "SBML_MODEL"
-
 % check that there is a level
 y = isfield(SBMLStructure, 'SBML_level');
 if (y == 0)

@@ -1,4 +1,29 @@
 function y = isSBML_Parameter(SBMLStructure, Level)
+% isSBML_Parameter(SBMLStructure, Level) checks that SBMLStructure represents a parameter 
+% within an sbml model of the specified level
+% 
+% if SBMLStructure represents a parameter within an SBML model
+% it has the appropriate fields 
+% eg    Typecode
+%       Notes
+%       Annotations
+%       Name
+%       Id (2)
+%       Value
+%       Units
+%       Constant (2)
+%       isSetValue
+%
+% NOTE number in brackets indicates field is appropriate for that level of
+% sbml only
+%
+% Returns 1 if SBMLStructure is a structure containing each of the above
+% fields and the typecode is "SBML_PARAMETER"
+% 
+% Returns 0 if SBMLStructure is not a structure 
+% or does not contain one of the above fields
+% or the typecode is not "SBML_PARAMETER"
+
 %
 %  Filename    : isSBML_Parameter.m
 %  Description : validates whether a MATLAB structure 
@@ -50,31 +75,6 @@ function y = isSBML_Parameter(SBMLStructure, Level)
 %
 %  Contributor(s):
 %
-% isSBML_Parameter(SBMLStructure, Level) checks that SBMLStructure represents a parameter 
-% within an sbml model of the specified level
-% 
-% if SBMLStructure represents a parameter within an SBML model
-% it has the appropriate fields 
-% eg    Typecode
-%       Notes
-%       Annotations
-%       Name
-%       Id (2)
-%       Value
-%       Units
-%       Constant (2)
-%       isSetValue
-%
-% NOTE number in brackets indicates field is appropriate for that level of
-% sbml only
-%
-% Returns 1 if SBMLStructure is a structure containing each of the above
-% fields and the typecode is "SBML_PARAMETER"
-% 
-% Returns 0 if SBMLStructure is not a structure 
-% or does not contain one of the above fields
-% or the typecode is not "SBML_PARAMETER"
-
 if (Level == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'value', 'units', 'isSetValue'};
     nNumberFields = 7;

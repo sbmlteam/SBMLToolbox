@@ -1,4 +1,33 @@
 function y = isSBML_Compartment(SBMLStructure, Level)
+% isSBML_Compartment(SBMLStructure, Level) checks that SBMLStructure represents a compartment 
+% within an sbml model of the specified level
+% 
+% if SBMLStructure represents a compartment within an SBML model
+% it has the following fields 
+% eg    Typecode
+%       Notes
+%       Annotations
+%       Name
+%       Id (2)
+%       SpatialDimensions (2)
+%       Size (2)
+%       Volume (1)
+%       Units
+%       Outside
+%       Constant (2)
+%       isSetSize (2)
+%       isSetVolume
+%
+% NOTE number in brackets indicates field is appropriate for that level of
+% sbml only
+%
+% Returns 1 if SBMLStructure is a structure containing each of the above
+% fields and the typecode is "SBML_COMPARTMENT"
+% 
+% Returns 0 if SBMLStructure is not a structure 
+% or does not contain one of the above fields
+% or the typecode is not "SBML_COMPARTMENT"
+
 %
 %  Filename    : isSBML_Compartment.m
 %  Description : validates whether a MATLAB structure 
@@ -50,34 +79,6 @@ function y = isSBML_Compartment(SBMLStructure, Level)
 %
 %  Contributor(s):
 %
-% isSBML_Compartment(SBMLStructure, Level) checks that SBMLStructure represents a compartment 
-% within an sbml model of the specified level
-% 
-% if SBMLStructure represents a compartment within an SBML model
-% it has the following fields 
-% eg    Typecode
-%       Notes
-%       Annotations
-%       Name
-%       Id (2)
-%       SpatialDimensions (2)
-%       Size (2)
-%       Volume (1)
-%       Units
-%       Outside
-%       Constant (2)
-%       isSetSize (2)
-%       isSetVolume
-%
-% NOTE number in brackets indicates field is appropriate for that level of
-% sbml only
-%
-% Returns 1 if SBMLStructure is a structure containing each of the above
-% fields and the typecode is "SBML_COMPARTMENT"
-% 
-% Returns 0 if SBMLStructure is not a structure 
-% or does not contain one of the above fields
-% or the typecode is not "SBML_COMPARTMENT"
 
 if (Level == 1) 
     SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'volume', 'units', 'outside', 'isSetVolume'};
