@@ -43,8 +43,8 @@
 #     California Institute of Technology
 #     Pasadena, CA, 91125, USA
 #
-#     http://www.cds.caltech.edu/erato
-#     mailto:sysbio-team@caltech.edu
+#     http://www.sbml.org
+#     mailto:sbml-team@caltech.edu
 #
 # Contributor(s):
 #
@@ -57,11 +57,15 @@ XCPPFLAGS = $(CPPFLAGS) -I/usr/local/include
 LIBS      = -lsbml
 
 programs = TranslateSBML.mexglx
+	   OutputSBML.mexglx
 
 all: $(programs)
 
 
 TranslateSBML.mexglx: TranslateSBML.c
+	$(MEX) $(XCFLAGS) $(XCPPFLAGS) $(XLDFLAGS) $^ $(LIBS)
+
+OutputSBML.mexglx: OutputSBML.c
 	$(MEX) $(XCFLAGS) $(XCPPFLAGS) $(XLDFLAGS) $^ $(LIBS)
 
 clean:
