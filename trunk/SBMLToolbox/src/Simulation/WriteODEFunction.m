@@ -376,9 +376,9 @@ formula = strcat(formula, Elements{NoElements});
 
 function Output = OrderArray(Array)
 
-if (length(Array) > 9)
-    error('cannot deal with more than 10 species yet');
-end;
+% if (length(Array) > 9)
+%     error('cannot deal with more than 10 species yet');
+% end;
 
 NewArrayIndex = 1;
 TempArrayIndex = 1;
