@@ -144,16 +144,32 @@ for i = 1:length(ParameterNames)
     fprintf(fileID, '%s = %i;\n', ParameterNames{i}, ParameterValues(i));
 end;
 
+% write the initial concentration values for the species
+fprintf(fileID, '\n%%--------------------------------------------------------\n');
+fprintf(fileID, '%% initial species values - these may be overridden by assignment rules\n\n');
+
+for i = 1:length(SpeciesNames)
+    fprintf(fileID, '%s = %i;\n', SpeciesNames{i}, SpeciesValues(i));
+end;
+
 % write assignment rules
 fprintf(fileID, '\n%%--------------------------------------------------------\n');
-fprintf(fileID, '%% deal with any assignment rules\n');
-for i = 1:GetNumAssignmentRules(SBMLModel)
-    % will need to modify this for models with more than one rule type
-    rule = WriteRule(SBMLModel.rule(i));
-    if (~isempty(rule))
-        fprintf(fileID, '%s\n', rule);
-    end;
+fprintf(fileID, '%% assignment rules\n');
+
+
+AssignRules = GetAssignmentRules(SBMLModel);
+for i = 1:length(AssignRules)
+     rule = WriteRule(AssignRules(i));
+     fprintf(fileID, '%s\n', rule);
 end;
+% 
+% for i = 1:GetNumAssignmentRules(SBMLModel)
+%     % will need to modify this for models with more than one rule type
+%     rule = WriteRule(SBMLModel.rule(i));
+%     if (~isempty(rule))
+%         fprintf(fileID, '%s\n', rule);
+%     end;
+% end;
         
 
 % write code to calculate concentration values
@@ -227,6 +243,11 @@ end;
 switch (SBMLRule.typecode)
     case 'SBML_ASSIGNMENT_RULE'
         y = sprintf('%s = %s;', SBMLRule.variable, SBMLRule.formula);
+    case 'SBML_SPECIES_CONCENTRATION_RULE'
+        y = sprintf('%s = %s;', SBMLRule.species, SBMLRule.formula);
+    case 'SBML_PARAMETER_RULE'
+        y = sprintf('%s = %s;', SBMLRule.name, SBMLRule.formula);
+
     otherwise
         error('No assignment rules');
 end;
