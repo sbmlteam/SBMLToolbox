@@ -92,7 +92,7 @@ end;
 % and any parameters
 [Species, Rates] = GetSpeciesRateLaws(SBMLModel);
 
-[Parameters] = GetAllParameterSymbols(SBMLModel);
+[Parameters] = GetAllParameterSymbolsUnique(SBMLModel);
 
 %------------------------------------------------------------
 %check that values for the parameters 
