@@ -154,7 +154,7 @@ mexFunction (int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 		mexErrMsgTxt("Too many input arguments\nUSAGE: OutputSBML(SBMLModel)");
 	}
   
-	nStatus = mexCallMATLAB(1, mxCheckStructure, 1, mxModel, "IsSBML_Model");
+	nStatus = mexCallMATLAB(1, mxCheckStructure, 1, mxModel, "isSBML_Model");
 	
 	if ((nStatus != 0) || (mxIsLogicalScalarTrue(mxCheckStructure[0]) != 1))
 	{
@@ -1964,7 +1964,7 @@ GetUnit ( mxArray * mxUnits,
 		
         /* get kinetic law */
         mxKineticLaw = mxGetField(mxReaction, i, "kineticLaw");
-        if (mxIsEmpty(mxKineticLaw) != 1) {
+		if ((mxKineticLaw != NULL) && (mxIsEmpty(mxKineticLaw) != 1)) {
             GetKineticLaw(mxKineticLaw, unSBMLLevel, unSBMLVersion, pReaction);
         }
         
