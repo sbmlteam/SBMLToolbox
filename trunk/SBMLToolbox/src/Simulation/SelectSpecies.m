@@ -1,6 +1,6 @@
 function varargout = SelectSpecies(varargin)
 %
-%  Filename    : SelecteSpecies.m
+%  Filename    : SelectSpecies.m
 %  Description : takes a SBMLModel and returns an array of species selected
 %                   by the user
 %  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
@@ -70,7 +70,7 @@ function varargout = SelectSpecies(varargin)
 %      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
 %      instance to run (singleton)".
 %
-% SelecteSpecies takes an SBML Model
+% SelectSpecies takes an SBML Model
 % and returns an array of Species selected by the user
 
 
