@@ -124,10 +124,10 @@ if (n_level1 == 0)
     ListNames_l1 = 'None saved';
 end;
 for nNumber = 1:n_level2
-    Name = Models_l2(nNumber).name;
+    Name = Models_l2(nNumber).id;
     k = isempty(Name);
     if (k == 1)
-        Name = Models_l2(nNumber).id;
+        Name = Models_l2(nNumber).name;
     end;
     ListNames_l2{nNumber} = Name;
 end;
@@ -245,10 +245,10 @@ for nNumber = 1:n_level1
     ListNames_l1{nNumber} = Models_l1(nNumber).name;
 end;
 for nNumber = 1:n_level2
-    Name = Models_l2(nNumber).name;
+    Name = Models_l2(nNumber).id;
     k = isempty(Name);
     if (k == 1)
-        Name = Models_l2(nNumber).id;
+        Name = Models_l2(nNumber).name;
     end;
     ListNames_l2{nNumber} = Name;
 end;

@@ -209,10 +209,10 @@ if ((nargin > 3) && (varargin{4} == 1))
     if (SBMLModel.SBML_level == 1)
         Name = SBMLModel.name;
     else
-        if (isempty(SBMLModel.name))
-            Name = SBMLModel.id;
-        else
+        if (isempty(SBMLModel.id))
             Name = SBMLModel.name;
+        else
+            Name = SBMLModel.id;
         end;
     end;
 
