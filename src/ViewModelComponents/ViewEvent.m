@@ -1,4 +1,11 @@
 function varargout = ViewEvent(varargin)
+% ViewEvent takes
+%                        a MATLAB_SBMLEvent structure
+%                 and drives a GUI that illustrates the event structure fields and values 
+%
+%       NOTE: at present there is no output from this function but it could
+%       be edited to allow creation and editing of the event
+
 % VIEWEVENT M-file for ViewEvent.fig
 %
 %  Filename    : ViewEvent.m

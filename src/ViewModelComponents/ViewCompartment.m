@@ -1,4 +1,11 @@
 function varargout = ViewCompartment(varargin)
+% ViewCompartment takes
+%                        a MATLAB_SBMLCompartment structure
+%                 and drives a GUI that illustrates the compartment structure fields and values 
+%
+%       NOTE: at present there is no output from this function but it could
+%       be edited to allow creation and editing of the compartment
+
 % VIEWCOMPARTMENT M-file for ViewCompartment.fig
 %
 %  Filename    : ViewCompartment.m

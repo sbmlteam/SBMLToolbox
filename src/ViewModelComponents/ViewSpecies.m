@@ -1,4 +1,11 @@
 function varargout = ViewSpecies(varargin)
+% ViewSpecies takes
+%                        a MATLAB_SBMLSpecies structure
+%                 and drives a GUI that illustrates the species structure fields and values 
+%
+%       NOTE: at present there is no output from this function but it could
+%       be edited to allow creation and editing of the species
+
 % VIEWSPECIES M-file for ViewSpecies.fig
 %
 %  Filename    : ViewSpecies.m

@@ -1,4 +1,11 @@
 function varargout = ViewUnitDefinition(varargin)
+% ViewUnitDefinition takes
+%                        a MATLAB_SBMLUnitDefinition structure
+%                 and drives a GUI that illustrates the unitDefinition structure fields and values 
+%
+%       NOTE: at present there is no output from this function but it could
+%       be edited to allow creation and editing of the unitDefinition
+
 % VIEWUNITDEFINITION M-file for ViewUnitDefinition.fig
 %
 %  Filename    : ViewUnitDefinition.m

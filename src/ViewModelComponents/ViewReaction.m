@@ -1,4 +1,11 @@
 function varargout = ViewReaction(varargin)
+% ViewReaction takes
+%                        a MATLAB_SBMLReaction structure
+%                 and drives a GUI that illustrates the reaction structure fields and values 
+%
+%       NOTE: at present there is no output from this function but it could
+%       be edited to allow creation and editing of the reaction
+
 % VIEWREACTION M-file for ViewReaction.fig
 %
 %  Filename    : ViewReaction.m

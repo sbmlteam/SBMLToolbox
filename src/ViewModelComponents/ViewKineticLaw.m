@@ -1,4 +1,11 @@
 function varargout = ViewKineticLaw(varargin)
+% ViewKineticLaw takes
+%                        a MATLAB_SBMLKineticLaw structure
+%                 and drives a GUI that illustrates the kineticLaw structure fields and values 
+%
+%       NOTE: at present there is no output from this function but it could
+%       be edited to allow creation and editing of the kineticLaw
+
 % VIEWKINETICLAW M-file for ViewKineticLaw.fig
 %
 %  Filename    : ViewKineticLaw.m
