@@ -131,12 +131,15 @@ for i = 1:length(SBMLModel.species)
             Species(i).ConvertedToAssignRule = 1;
             Rule = Species(i).AlgebraicRule{1};
             Species(i).ConvertedRule = Convert(name(i), char(Rule));
-        end;
-    else
+        else
             Species(i).ConvertedToAssignRule = 0;
             Species(i).ConvertedRule = '';
-        
-   end;
+        end;
+    else
+        Species(i).ConvertedToAssignRule = 0;
+        Species(i).ConvertedRule = '';
+
+    end;
 
 end;
 

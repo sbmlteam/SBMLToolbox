@@ -5,6 +5,7 @@ function DisplayODEFunction(varargin)
 %       3) number of time steps (optional)
 %       4) a flag to indicate whther to output the simulation data as a CSV
 %       file flag = 1 - outputs file (optional)
+%       5) a flag to indicate whether to plot the output
 %          
 %  and plots the results of the ode45 solver 
 
@@ -68,8 +69,8 @@ function DisplayODEFunction(varargin)
 % get inputs
 if (nargin < 1)
     error('DisplayODEFunction(SBMLModel, ...)\n%s', 'must have at least one argument');
-elseif (nargin > 4)
-    error('DisplayODEFunction(SBMLModel, ...)\n%s', 'cannot have more than four arguments');
+elseif (nargin > 5)
+    error('DisplayODEFunction(SBMLModel, ...)\n%s', 'cannot have more than five arguments');
 end;
 
 
@@ -221,13 +222,96 @@ if ((SBMLModel.SBML_level == 2) && (length(SBMLModel.event) ~= 0))
         SpeciesCourseB = [];
     end;
 else
-    % if no events or algebraic rules
+    % if no events
     [TimeCourse, SpeciesCourse] = ode45(fhandle, Time_span, InitConds);
 end;
 
-%--------------------------------------------------------------
+%check whether solution is feasible and if not use a stiff equation solver
+if (ismember(1, isnan(SpeciesCourse)))
+    disp('Equations appear to be stiff - solution being recalculated with ode23s/n');
+    if (nargin > 2)
+        delta_t = Time_limit/varargin{3};
+        Time_span = [0:delta_t:Time_limit];
+        Number_points = length(Time_span);
+    else
+        Time_span = [0, Time_limit];
+    end;
+
+    TimeCourse = [];
+    SpeciesCourse = [];
+    % if there are events
+    if ((SBMLModel.SBML_level == 2) && (length(SBMLModel.event) ~= 0))
+        while ((~isempty(Time_span)) && (Time_span(1) < Time_span(end)))
+
+            [TimeCourseA, SpeciesCourseA] = ode23s(fhandle, Time_span, InitConds, options);
+
+            % need to catch case where the time span entered was two sequential
+            % times from the original time-span
+            % e.g. original Time_span = [0, 0.1, ..., 4.9, 5.0]
+            % Time_span = [4.9, 5.0]
+            %
+            % ode solver will output points between
+            if (length(Time_span) == 2)
+                NewTimeCourse = [TimeCourseA(1); TimeCourseA(end)];
+                TimeCourseA = NewTimeCourse;
+                for i = 1:length(SBMLModel.species)
+                    NewSpecies(1,i) = SpeciesCourseA(1, i);
+                    NewSpecies(2,i) = SpeciesCourseA(end, i);
+                end;
+                SpeciesCourseA = NewSpecies;
+
+            end;
+
+            % keep copy of event time
+            eventTime = TimeCourseA(end);
+            for i = 1:length(SBMLModel.species)
+                SpeciesValues(i) = SpeciesCourseA(length(SpeciesCourseA), i);
+            end;
+
+            if (TimeCourseA(end) ~= Time_span(end))
+
+                TimeCourseA = TimeCourseA(1:length(TimeCourseA)-1);
+                for i = 1:length(SBMLModel.species)
+                    SpeciesCourseB(:,i) = SpeciesCourseA(1:length(SpeciesCourseA)-1, i);
+                end;
+            else
+                SpeciesCourseB = SpeciesCourseA;
+            end;
+            % adjust the time span
+            Time_spanA = Time_span - TimeCourseA(length(TimeCourseA));
+            Time_span_new = Time_spanA((find(Time_spanA==0)+1): length(Time_spanA));
+            Time_span = [];
+            Time_span = Time_span_new + TimeCourseA(length(TimeCourseA));
+
+            % get new initial conditions
+            if (~isempty(Time_span))
+                SpeciesValues = feval(AfterEventHandle, SpeciesValues);
+                [t,NewValues] = ode23s(fhandle, [eventTime, Time_span(1)], SpeciesValues);
+                for i = 1:length(SBMLModel.species)
+                    InitConds(i) = NewValues(length(NewValues), i);
+                end;
+            end;
+
+            % keep copy of calculations
+            TimeCourse = [TimeCourse;TimeCourseA];
+            SpeciesCourse = [SpeciesCourse;SpeciesCourseB];
+
+            TimeCourseA = [];
+            SpeciesCourseA = [];
+            SpeciesCourseB = [];
+        end;
+    else
+        % if no events
+        [TimeCourse, SpeciesCourse] = ode23s(fhandle, Time_span, InitConds);
+    end;
+
+end;
 
 Species = GetSpecies(SBMLModel);
+
+%--------------------------------------------------------------
+if ((nargin > 4) && (varargin{5} == 1))
+
 PlotSpecies = SelectSpecies(SBMLModel);
 
 % line styles - will look at these
@@ -261,6 +345,7 @@ if (Plot ~= 0)
     xlabel('time t');
     ylabel('amount');
     legend(PlottedSpecies, -1);
+end;
 end;
 %-------------------------------------------------------------------------
 % write output file
