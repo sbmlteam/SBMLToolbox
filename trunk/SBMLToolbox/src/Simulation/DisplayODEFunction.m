@@ -150,7 +150,7 @@ if ((SBMLModel.SBML_level == 2) && (length(SBMLModel.event) ~= 0))
     AfterEventHandle = str2func(afterEvent);
 
     % solve - need to deal with events here
-    options = odeset('Events', eventHandle);
+    options = odeset('Events', eventHandle, 'RelTol', RelTol, 'AbsTol', AbsTol);
 
     TimeCourse = [];
     SpeciesCourse = [];
