@@ -96,7 +96,7 @@ bSBML = isstruct(SBMLStructure);
 
 % check it contains each of the fields listed
 index = 1;
-while (bSBML == 1 && index < nNumberFields)
+while (bSBML == 1 && index <= nNumberFields)
     bSBML = isfield(SBMLStructure, SBMLfieldnames(index));
     index = index + 1;
 end;
