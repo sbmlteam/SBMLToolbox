@@ -30,3 +30,9 @@ else
 end;
 
 Compartment = cell2struct(Values, SBMLfieldnames, 2);
+
+%check created structure is appropriate
+if (~isSBML_Compartment(Compartment, sbmlLevel))
+    Compartment = [];
+    warning('Failed to create compartment');
+end;

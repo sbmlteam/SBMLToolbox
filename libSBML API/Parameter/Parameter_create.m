@@ -32,3 +32,9 @@ end;
 
 Parameter = cell2struct(Values, SBMLfieldnames, 2);
 warning on all;
+
+%check created structure is appropriate
+if (~isSBML_Parameter(Parameter, sbmlLevel))
+    Parameter = [];
+    warning('Failed to create parameter');
+end;
