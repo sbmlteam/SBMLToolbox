@@ -62,6 +62,10 @@
 %       2) an array of the symbols used within the formula as second output
 %           argument
 % 
+% CreateSymArray
+%    takes any symbolic expression or set of symbolic expressions
+%   and returns an array of the single symbolic expressions found in the input 
+%
 % GetAllParameterSymbols 
 %     takes a SBMLModel 
 %   and returns 
