@@ -63,13 +63,13 @@ end;
 Rules = length(SBMLModel.rule);
 if (SBMLModel.SBML_level == 2)
     Funcs = length(SBMLModel.functionDefinition);
-    Events = length(SBMLModel.event);
+    NumEvents = length(SBMLModel.event);
 else
     Funcs = 0;
-    Events = 0;
+    NumEvents = 0;
 end;
 
-if ((Rules ~= 0) || (Funcs ~= 0) || (Events ~= 0))
+if ((Rules ~= 0) || (Funcs ~= 0) || (NumEvents ~= 0))
     disp('Note this procedure does not yet fully deal with rules, events or functions');
     disp('They will NOT be included in the calculation');
 end;
@@ -246,7 +246,12 @@ for i = 1:NumberSpecies
             Array{i} = sprintf('\txdot(%u) = 0;\n', i);
         else
             DifferentiatedRule = DifferentiateRule(SBMLModel.rule(RuleNo), SpeciesNames);
-            Array{i} = sprintf('\txdot(%u) = %s;\n', i, DifferentiatedRule{1});
+            
+            if (iscell(DifferentiatedRule))
+                Array{i} = sprintf('\txdot(%u) = %s;\n', i, DifferentiatedRule{1});
+            else
+                Array{i} = sprintf('\txdot(%u) = %s;\n', i, DifferentiatedRule(1));
+            end;
         end;
     end;
 end; % for Numspecies
@@ -262,6 +267,13 @@ end;
 fprintf(fileID, '\nend;\n');
 
 fclose(fileID);
+
+% -----------------------------------------------------------------
+% write two additional files for events
+
+WriteEventHandlerFunction(SBMLModel);
+WriteEventAssignmentFunction(SBMLModel);
+
 
 %--------------------------------------------------------------------------
 
