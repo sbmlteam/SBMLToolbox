@@ -123,10 +123,17 @@ fprintf(fileID, '\n%%--------------------------------------------------------\n'
 fprintf(fileID, '%% event assignments\n\n');
 
 for i = 1:length(SBMLModel.event)
+    % need to determine which events have been triggered
+    if (i == 1)
+        fprintf(fileID, 'if (%s)\n', SBMLModel.event(i).trigger);
+    else
+        fprintf(fileID, 'elseif (%s)\n', SBMLModel.event(i).trigger);
+    end;
     for j = 1:length(SBMLModel.event(i).eventAssignment)
-        fprintf(fileID, '%s = %s;\n', SBMLModel.event(i).eventAssignment(j).variable, SBMLModel.event(i).eventAssignment(j).math);
+        fprintf(fileID, '\t%s = %s;\n', SBMLModel.event(i).eventAssignment(j).variable, SBMLModel.event(i).eventAssignment(j).math);
     end;
 end;
+fprintf(fileID, 'end;\n');
 
 % output values
 fprintf(fileID, '\n%%--------------------------------------------------------\n');
