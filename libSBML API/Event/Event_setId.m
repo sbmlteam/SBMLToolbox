@@ -5,7 +5,7 @@ function SBMLEvent = Event_setId(SBMLEvent, id)
 %             and    2) a string representing the id to be set
 %
 %             and returns 
-%               the functionDefinition with the id set
+%               the event with the id set
 %
 %       SBMLEvent = Event_setId(SBMLEvent, 'id')
 
@@ -13,9 +13,9 @@ function SBMLEvent = Event_setId(SBMLEvent, id)
 sbmlLevel = 2;
 
 if (~isSBML_Event(SBMLEvent, sbmlLevel))
-    error(sprintf('%s\n%s', 'Event_setId(SBMLEvent, id)', 'first argument must be an SBML functionDefinition structure'));
+    error(sprintf('%s\n%s', 'Event_setId(SBMLEvent, id)', 'first argument must be an SBML event structure'));
 elseif (~ischar(id))
-    error(sprintf('Event_setId(SBMLEvent, id)\n%s', 'second argument must be a string representing the id of the functionDefinition'));
+    error(sprintf('Event_setId(SBMLEvent, id)\n%s', 'second argument must be a string representing the id of the event'));
 end;
 
 SBMLEvent.id = id;

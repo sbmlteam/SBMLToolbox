@@ -4,7 +4,7 @@ function SBMLEvent = Event_unsetName(SBMLEvent)
 %             takes an SBMLEvent structure 
 %
 %             and returns 
-%               the functionDefinition with the name unset
+%               the event with the name unset
 %               (i.e. name = '')
 %
 %       SBMLEvent = Event_unsetName(SBMLEvent)
@@ -13,7 +13,7 @@ function SBMLEvent = Event_unsetName(SBMLEvent)
 sbmlLevel = 2;
 
 if (~isSBML_Event(SBMLEvent, sbmlLevel))
-    error(sprintf('%s\n%s', 'Event_unsetName(SBMLEvent)', 'argument must be an SBML functionDefinition structure'));
+    error(sprintf('%s\n%s', 'Event_unsetName(SBMLEvent)', 'argument must be an SBML event structure'));
 end;
 
 SBMLEvent.name = '';

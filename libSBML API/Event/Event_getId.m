@@ -4,7 +4,7 @@ function id = Event_getId(SBMLEvent)
 %             takes an SBMLEvent structure 
 %
 %             and returns 
-%               the id of the functionDefinition as a string
+%               the id of the event as a string
 %
 %       id = Event_getId(SBMLEvent)
 
@@ -12,7 +12,7 @@ function id = Event_getId(SBMLEvent)
 sbmlLevel = 2;
 
 if (~isSBML_Event(SBMLEvent, sbmlLevel))
-    error(sprintf('%s\n%s', 'Event_getId(SBMLEvent)', 'argument must be an SBML functionDefinition structure'));
+    error(sprintf('%s\n%s', 'Event_getId(SBMLEvent)', 'argument must be an SBML event structure'));
 end;
 
 id = SBMLEvent.id;
