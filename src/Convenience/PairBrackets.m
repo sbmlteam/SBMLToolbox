@@ -33,7 +33,7 @@ OriginalPairs = pairs;
 
 TempPairs = sort(pairs, 1, 'ascend');
 
-for i = 1:length(pairs)
+for i = 1:length(OpeningBracketIndex)
     pairs(i, 1) = TempPairs(i, 1);
     j = find(OriginalPairs == pairs(i, 1));
     pairs(i, 2) = OriginalPairs(j, 2);
