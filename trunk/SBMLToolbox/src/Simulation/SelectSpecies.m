@@ -1,4 +1,9 @@
 function varargout = SelectSpecies(varargin)
+% SelectSpecies takes an SBML Model
+% displays a GUI that allows the user to add/remove species from a list
+% and returns an array of Species selected by the user
+
+
 %
 %  Filename    : SelectSpecies.m
 %  Description : takes a SBMLModel and returns an array of species selected
@@ -70,8 +75,6 @@ function varargout = SelectSpecies(varargin)
 %      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
 %      instance to run (singleton)".
 %
-% SelectSpecies takes an SBML Model
-% and returns an array of Species selected by the user
 
 
 % Begin initialization code - DO NOT EDIT
@@ -135,7 +138,13 @@ output = {};
 for i = 1:handles.SelectedNumber
     output(i) = handles.SelectedSpecies(i);
 end;
-varargout{1} = output;
+
+% catch case when user hasnt selected any species
+if (handles.SelectedNumber == 0)
+    varargout{1} = '';
+else
+    varargout{1} = output;
+end;
 
 % close the figure
 close(handles.figure1);
@@ -180,7 +189,7 @@ Number = get(handles.List_Selected, 'Value');
 
 % remove from list of selected species
 handles.SelectedNumber = handles.SelectedNumber - 1;
- 
+
 for i = 1:Number-1
     TempSelectedSpecies(i) = handles.SelectedSpecies(i);
 end;
@@ -189,11 +198,15 @@ for i = Number:handles.SelectedNumber
     TempSelectedSpecies(i) = handles.SelectedSpecies(i+1);
 end;
 
-for i = 1:handles.SelectedNumber;
-    handles.SelectedSpecies(i) = TempSelectedSpecies(i);
-    Edit_string(i) = handles.SelectedSpecies(i);
+% catch case where only slected item is being removed
+if (handles.SelectedNumber == 0)
+    Edit_string = '';
+else
+    for i = 1:handles.SelectedNumber;
+        handles.SelectedSpecies(i) = TempSelectedSpecies(i);
+        Edit_string(i) = handles.SelectedSpecies(i);
+    end;
 end;
-
 % update the list
 set(handles.List_Selected, 'Value', handles.SelectedNumber);
 set(handles.List_Selected, 'String', Edit_string);
@@ -209,6 +222,7 @@ function OK_button_Callback(hObject, eventdata, handles)
 % hObject    handle to OK_button (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
 if isequal(get(handles.figure1, 'waitstatus'), 'waiting')
     % The GUI is still in UIWAIT, us UIRESUME
     uiresume(handles.figure1);
