@@ -54,6 +54,7 @@ function varargout = PlotSelectedTimeCourse(varargin)
 % PlotSelectedTimeCourse takes a SBMLModel 
 % and plots the time course of user selected species to equilibrium
 % second argument can be the time limit to which to plot
+% third argument can be the number of time steps that will be plotted
 % possible output is the concentration of each species at the time limit
 %--------------------------------------------------------------------------
 
@@ -117,14 +118,17 @@ NewSpecies = Species + IntRate;
 
 %-----------------------------------------------------------------------
 % calculate values to use in iterative process
-delta_t = abs((1/max(ParameterValues))/10);
-
 if (nargin > 1)
     Time_limit = varargin{2};
 else
     Time_limit = abs((1/max(ParameterValues))*60);
 end;
-tolerance = abs(0.000001 * max(SpeciesValues));
+
+if (nargin > 2)
+    delta_t = Time_limit/varargin{3};
+else
+    delta_t = abs((1/max(ParameterValues))/10);
+end;
 
 % substitute fixed values into the NewSpecies symbolic form
 NewSpecies = subs(NewSpecies, Parameters, ParameterValues);
@@ -172,12 +176,6 @@ while (Time < Time_limit)
         break;
     end;
    
-    % check whether the required tolerance has been achieved
-    check = abs(NewValues-OldValues) < tolerance;
-    if (sum(check) == length(SpeciesValues))
-        break;
-    end;
-    
     % assign values
     OldValues = NewValues;
 end;
