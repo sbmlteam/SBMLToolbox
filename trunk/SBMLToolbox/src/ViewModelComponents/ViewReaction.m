@@ -156,7 +156,6 @@ set(handles.ListProducts, 'String', ListProds);
 handles.ProdIndex = 1;
 handles.ReactIndex = 1;
 set(handles.Reversible, 'Value', Reaction.reversible);
-set(handles.Fast, 'Value', Reaction.fast);
 
 % dislay items for each level only
 % hide display otherwise if not included within a level
@@ -166,6 +165,7 @@ if (Level == 1)
     set(handles.Modifier_text, 'Visible', 'off');
     set(handles.OptName, 'Visible', 'off');
     set(handles.OptionalName, 'Visible', 'off');
+    set(handles.Fast, 'Value', Reaction.fast);
 else
     set(handles.Name, 'String', Reaction.id);
     % determine whether the optional name field has a value
@@ -174,6 +174,11 @@ else
         set(handles.OptionalName, 'Visible', 'off');
     else
         set(handles.OptionalName, 'String', Reaction.name);
+    end;
+    if (Reaction.IsSetFast == 1)
+        set(handles.Fast, 'Value', Reaction.fast);
+    else
+        set(handles.Fast, 'Value', 0);
     end;
     set(handles.ListModifiers, 'String', ListMods);
     handles.ModIndex = 1;
