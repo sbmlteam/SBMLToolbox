@@ -54,6 +54,8 @@ function varargout = PlotTimeCourse(varargin)
 % PlotTimeCourse takes a SBMLModel 
 % and plots the time course of each species to equilibrium
 % second argument can be the time limit to which to plot
+% third argument can be the number of time steps that will be plotted
+% fourth argument indicates whether an output file is required
 % possible output is the concentration of each species at the time limit
 %--------------------------------------------------------------------------
 
@@ -117,14 +119,17 @@ NewSpecies = Species + IntRate;
 
 %-----------------------------------------------------------------------
 % calculate values to use in iterative process
-delta_t = abs((1/max(ParameterValues))/10);
-
 if (nargin > 1)
     Time_limit = varargin{2};
 else
     Time_limit = abs((1/max(ParameterValues))*60);
 end;
-tolerance = abs(0.000001 * max(SpeciesValues));
+
+if (nargin > 2)
+    delta_t = Time_limit/varargin{3};
+else
+    delta_t = abs((1/max(ParameterValues))/10);
+end;
 
 % substitute fixed values into the NewSpecies symbolic form
 NewSpecies = subs(NewSpecies, Parameters, ParameterValues);
@@ -150,7 +155,7 @@ for i = 1:length(Species)
 end;
 
 %-----------------------------------------------------------------------
-% iterate to required tolerance 
+% iterate to required limit 
 while (Time < Time_limit)
     % calculate new values
     Time = Time + delta_t;
@@ -172,12 +177,6 @@ while (Time < Time_limit)
         break;
     end;
    
-    % check whether the required tolerance has been achieved
-    check = abs(NewValues-OldValues) < tolerance;
-    if (sum(check) == length(SpeciesValues))
-        break;
-    end;
-    
     % assign values
     OldValues = NewValues;
 end;
@@ -200,6 +199,52 @@ for i = 1:length(Species)
 end;
 
 %-------------------------------------------------------------------------
+% write output file
+if ((nargin > 3) && (varargin{4} == 1))
+
+    %---------------------------------------------------------------
+    % get the name/id of the model
+
+    Name = '';
+    if (SBMLModel.SBML_level == 1)
+        Name = SBMLModel.name;
+    else
+        if (isempty(SBMLModel.name))
+            Name = SBMLModel.id;
+        else
+            Name = SBMLModel.name;
+        end;
+    end;
+
+    fileName = strcat(Name, '.CSV');
+    %--------------------------------------------------------------------
+    % open the file for writing
+
+    fileID = fopen(fileName, 'w');
+
+    % write the header
+    fprintf(fileID,  'time');
+    for i = 1: length(Species)
+        fprintf(fileID, ',%s', Speciesnames{i});
+    end;
+    fprintf(fileID, '\n');
+    
+    % write each time course tep values
+    for i = 1:counter 
+        fprintf(fileID, '%0.5g', TimeCourse(i));
+        
+        for j = 1:length(Species)
+            fprintf(fileID, ',%1.16g', SpeciesCourse{j}(i));
+        end;
+        fprintf(fileID, '\n');
+        
+    end;
+    
+    fclose(fileID);
+
+
+end;
+
 % assign output
 for i = 1:length(Species)
     Concs(i) = SpeciesCourse{i}(counter);
