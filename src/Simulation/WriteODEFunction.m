@@ -192,9 +192,9 @@ for i = 1:NumberSpecies
     if (Species(i).ChangedByAssignmentRule == 0)
  
         % not set by rule - use value given
-        if (isnan(Species(i).initialValue))
+        if (isnan(Species(i).initialValue))                      
             error('WriteODEFunction(SBMLModel)\n%s', 'species concentration not provided or assigned by rule');
-        else
+         else
             fprintf(fileID, '\txdot(%u) = %i;\n', i, Species(i).initialValue);
         end;
 
@@ -332,9 +332,10 @@ Divide = ismember(f, Dividers);
 
 % dividers between brackets do not count
 if (Brackets ~= 0)
+    [NumPairs,y] = size(Brackets);
 for i = 1:length(Divide)
     if (Divide(i) == 1)
-        for j = 1:length(Brackets)
+        for j = 1:NumPairs
             if ((i > Brackets(j,1)) && (i < Brackets(j, 2)))
                 Divide(i) = 0;
             end;
