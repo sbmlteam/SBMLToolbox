@@ -1,21 +1,24 @@
-function [Species, AlgebraicRules] = GetSpeciesAlgebraicRules(SBMLModel)
-% GetSpeciesAlgebraicRules takes an SBMLModel 
-% and returns
-%             1) an array of species names
-%             2) an array of the character representation of each algebraic
-%             rule the species appears in
+function FunctionIds = Model_getFunctionIds(SBMLModel)
+%
+%   Model_getFunctionIds 
+%             takes  an SBMLModel structure 
+%
+%             and returns 
+%               an array of the ids of all functionDefinitions within the
+%               model
+%
+%       FunctionIds = Model_getFunctionIds(SBMLModel)
 
-%--------------------------------------------------------------------------
+
+%  Filename    :   Model_getFunctionIds.m
+%  Description : 
+%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
+%  Organization:   University of Hertfordshire STRI
+%  Created     :   11-Feb-2005
+%  Revision    :   $Id$
+%  Source      :   $Source v $
 %
-%  Filename    : GetSpeciesAlgebraicRules.m
-%  Description : takes a SBMLModel and returns assignments
-%  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
-%  Organization: University of Hertfordshire STRC
-%  Created     : 2004-12-06
-%  Revision    : $Id$
-%  Source      : $Source $
-%
-%  Copyright 2003 California Institute of Technology, the Japan Science
+%  Copyright 2005 California Institute of Technology, the Japan Science
 %  and Technology Corporation, and the University of Hertfordshire
 %
 %  This library is free software; you can redistribute it and/or modify it
@@ -46,7 +49,7 @@ function [Species, AlgebraicRules] = GetSpeciesAlgebraicRules(SBMLModel)
 %  The original code contained here was initially developed by:
 %
 %      Sarah Keating
-%      Science and Technology Research Centre
+%      Science and Technology Research Institute
 %      University of Hertfordshire
 %      Hatfield, AL10 9AB
 %      United Kingdom
@@ -57,42 +60,16 @@ function [Species, AlgebraicRules] = GetSpeciesAlgebraicRules(SBMLModel)
 %  Contributor(s):
 
 
+%-------------------------------------------------------------------
 % check input is an SBML model
 if (~isSBML_Model(SBMLModel))
-    error('GetSpeciesAlgebraicRules(SBMLModel)\n%s', 'input must be an SBMLModel structure');
+    error('Model_getFunctionIds(SBMLModel)\n%s', 'input must be an SBMLModel structure');
+end;
+   
+FunctionIds = {};
+if (SBMLModel.SBML_level == 2)
+    for i = 1:length(SBMLModel.functionDefinition)
+        FunctionIds{i} = SBMLModel.functionDefinition(i).id;
+    end;
 end;
 
-%--------------------------------------------------------------
-
-% get information from the model
-Species = GetSpecies(SBMLModel);
-NumberSpecies = length(SBMLModel.species);
-Rules = Model_getListOfAlgebraicRules(SBMLModel);
-NumRules = Model_getNumAlgebraicRules(SBMLModel);
-
-for i = 1:NumberSpecies
-    output = '';
-
-
-    if (NumRules > 0)
-        %determine which rules it occurs within
-        RuleNo = Species_isInAlgebraicRule(SBMLModel.species(i), Rules);
-
-        for j = 1:length(RuleNo)
-            if (RuleNo(j) > 0)
-                output{j} = Rules(RuleNo(j)).formula;
-            end;
-        end;
-    end;
-
-
-
-    % finished looking for this species
-    % record rate law and loop to next species
-    % rate = 0 if no law found
-    if (isempty(output))
-        AlgebraicRules{i} = '0';
-    else
-        AlgebraicRules{i} = output;
-    end;
-end; % for NumSpecies

@@ -1,17 +1,12 @@
-function [Species, AlgebraicRules] = GetSpeciesAlgebraicRules(SBMLModel)
-% GetSpeciesAlgebraicRules takes an SBMLModel 
-% and returns
-%             1) an array of species names
-%             2) an array of the character representation of each algebraic
-%             rule the species appears in
+function y = RemoveDuplicates(FullArray)
+% RemoveDuplicates takes any array and returns it with any duplicates removed
 
-%--------------------------------------------------------------------------
 %
-%  Filename    : GetSpeciesAlgebraicRules.m
-%  Description : takes a SBMLModel and returns assignments
+%  Filename    : RemoveDuplicates.m
+%  Description : takes any array and returns it with any duplicates removed
 %  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
 %  Organization: University of Hertfordshire STRC
-%  Created     : 2004-12-06
+%  Created     : 2004-02-02
 %  Revision    : $Id$
 %  Source      : $Source $
 %
@@ -55,44 +50,59 @@ function [Species, AlgebraicRules] = GetSpeciesAlgebraicRules(SBMLModel)
 %      mailto:sbml-team@caltech.edu
 %
 %  Contributor(s):
+%
 
+% check whether array is a column vector
+[size_x, size_y] = size(FullArray);
+if (size_y == 1 && size_x ~= 1)
+    y = RemoveDuplicatesColumn(FullArray);
+    return;
+end;
+%-------------------------------------------------------------
+% find number of elements in existing array
+NoElements = length(FullArray);
 
-% check input is an SBML model
-if (~isSBML_Model(SBMLModel))
-    error('GetSpeciesAlgebraicRules(SBMLModel)\n%s', 'input must be an SBMLModel structure');
+if (NoElements == 0)
+    y = [];
+    return;
 end;
 
-%--------------------------------------------------------------
+% copy first element of the array to the new array
+newArrayIndex = 1;
+NewArray(1) = FullArray(1);
 
-% get information from the model
-Species = GetSpecies(SBMLModel);
-NumberSpecies = length(SBMLModel.species);
-Rules = Model_getListOfAlgebraicRules(SBMLModel);
-NumRules = Model_getNumAlgebraicRules(SBMLModel);
-
-for i = 1:NumberSpecies
-    output = '';
-
-
-    if (NumRules > 0)
-        %determine which rules it occurs within
-        RuleNo = Species_isInAlgebraicRule(SBMLModel.species(i), Rules);
-
-        for j = 1:length(RuleNo)
-            if (RuleNo(j) > 0)
-                output{j} = Rules(RuleNo(j)).formula;
-            end;
-        end;
+%loop through all elements
+% if they do not already exist in new array copy them into it
+for i = 2:NoElements
+    element = FullArray(i);
+    if (~ismember(element, NewArray))
+        newArrayIndex = newArrayIndex + 1;
+        NewArray(newArrayIndex) = element;
     end;
+end;
 
+y = NewArray;
+   
 
+function y = RemoveDuplicatesColumn(FullArray)
+% RemoveDuplicatesCell takes column vector
+% and returns it with any duplicates removed
 
-    % finished looking for this species
-    % record rate law and loop to next species
-    % rate = 0 if no law found
-    if (isempty(output))
-        AlgebraicRules{i} = '0';
-    else
-        AlgebraicRules{i} = output;
+% find number of elements in existing array
+[NoElements, x] = size(FullArray);
+
+% copy first element of the array to the new array
+newArrayIndex = 1;
+NewArray(1,x) = FullArray(1);
+
+%loop through all elements
+% if they already exist in new array do not copy
+for i = 2:NoElements
+    element = FullArray(i);
+    if (~ismember(element, NewArray))
+        newArrayIndex = newArrayIndex + 1;
+        NewArray(newArrayIndex,x) = element;
     end;
-end; % for NumSpecies
+end;
+
+y = NewArray;
