@@ -21,4 +21,4 @@ elseif (~isIntegralNumber(denominator))
     error(sprintf('SpeciesReference_setDenominator(SBMLSpeciesReference, denominator)\n%s', 'second argument must be an integer representing the denominator of the speciesreference'));
 end;
 
-SBMLSpeciesReference.denominator = denominator;
+SBMLSpeciesReference.denominator = int32(denominator);
