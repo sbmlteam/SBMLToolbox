@@ -250,11 +250,6 @@ function y = WriteRule(SBMLRule)
 
 y = '';
 
-% check that input is a rule
-if (~isSBML_Rule(SBMLRule))
-    error('WriteRule(SBMLRule)\n%s', 'first argument must be an SBMLRule structure');
-end;
-%------------------------------------------------------------
 
 switch (SBMLRule.typecode)
     case 'SBML_ASSIGNMENT_RULE'

@@ -95,7 +95,7 @@ for i = 1:NumberSpecies
         j = 0;
         while (j <NumRateRules)
          
-            if (strcmp(Species(i), RateRules(j+1).variable))
+            if ((strcmp(Species(i), RateRules(j+1).variable)) | (strcmp(Species(i), RateRules(j+1).species)))
                 output = RateRules(j+1).formula;
                 break;
             else
