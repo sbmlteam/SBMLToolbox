@@ -58,21 +58,6 @@ if (~isSBML_Model(SBMLModel))
     error('WriteODEFunction(SBMLModel)\n%s', 'argument must be an SBMLModel structure');
 end;
 
-%------------------------------------------------------------
-% look for rules/functions/events and warn user that these are not dealt with yet
-Rules = length(SBMLModel.rule);
-if (SBMLModel.SBML_level == 2)
-    Funcs = length(SBMLModel.functionDefinition);
-    NumEvents = length(SBMLModel.event);
-else
-    Funcs = 0;
-    NumEvents = 0;
-end;
-
-if ((Rules ~= 0) || (Funcs ~= 0) || (NumEvents ~= 0))
-    disp('Note this procedure does not yet fully deal with rules, events or functions');
-    disp('They will NOT be included in the calculation');
-end;
 % -------------------------------------------------------------
 % get information from the model
 
@@ -80,6 +65,15 @@ end;
 Species = AnalyseSpecies(SBMLModel);
 NumberSpecies = length(SBMLModel.species);
 Speciesnames = GetSpecies(SBMLModel);
+
+if (SBMLModel.SBML_level == 2)
+    NumEvents = length(SBMLModel.event);
+    NumFuncs = length(SBMLModel.functionDefinition);
+else
+    NumEvents = 0;
+    NumFuncs = 0;
+end;
+
 %---------------------------------------------------------------
 % get the name/id of the model
 
@@ -270,6 +264,31 @@ end;
 
 
 fprintf(fileID, '\nend;\n');
+
+% put in any function definitions
+
+if (NumFuncs > 0)
+    fprintf(fileID, '\n\n%%---------------------------------------------------\n%%Function definitions\n\n');
+    
+    for i = 1:NumFuncs
+        Name = SBMLModel.functionDefinition(i).id;
+        
+        Elements = GetArgumentsFromLambdaFunction(SBMLModel.functionDefinition(i).math);
+        
+        fprintf(fileID, '%%function %s\n\n', Name);
+        fprintf(fileID, 'function returnValue = %s(', Name);
+        for j = 1:length(Elements)-1
+            if (j == length(Elements)-1)
+            fprintf(fileID, '%s', Elements{j});
+            else
+                fprintf(fileID, '%s, ', Elements{j});
+            end;
+        end;
+        fprintf(fileID, ')\n\nreturnValue = %s;\n\n\n', Elements{end});
+    end;
+        
+end;
+
 
 fclose(fileID);
 
