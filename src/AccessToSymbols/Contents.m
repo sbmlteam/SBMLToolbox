@@ -106,6 +106,13 @@
 %       2) an array of the initial concentration values of each species
 %       3) an array of character names of the symbols
 % 
+% GetStoichiometryMatrixSyms(SBMLModel) 
+%     takes an SBML model 
+%    and returns 
+%        1) stoichiometry matrix
+%        2) an array of symbols respresenting each species in same order
+%           as the stoichiometry matrix treats them
+%
 % IsSpeciesInReaction
 %     takes a SBML species and  reaction and determines where the species takes part in the reaction
 %   returns   0   if species is NOT part of the reaction
