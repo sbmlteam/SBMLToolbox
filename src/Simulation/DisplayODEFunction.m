@@ -150,6 +150,9 @@ fhandle = str2func(Name);
 InitConds = feval(fhandle);
  % set the tolerances of the odesolver to appropriate values
 RelTol = min(InitConds(find(InitConds~= 0))) * 1e-4;
+if (RelTol > 1e-6)
+    RelTol = 1e-6;
+end;
 AbsTol = RelTol * 1e-4;
 
 options = odeset('RelTol', RelTol, 'AbsTol', AbsTol);
