@@ -1,4 +1,7 @@
 function ListSBMLModels
+% ListSBMLModels lists the sbml models saved in SBML_Models.mat
+% returns the Number and Name of the model
+
 %
 %  Filename    : ListSBMLModels.m
 %  Description : lists the models in data file SBML_Models
@@ -49,8 +52,6 @@ function ListSBMLModels
 %
 %  Contributor(s):
 %
-% ListSBMLModels lists the sbml models saved in SBML_Models.mat
-% returns the Number and Name of the model
 
 % check whether file exists
 fId = fopen('SBML_Models.mat');

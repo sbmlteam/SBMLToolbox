@@ -1,4 +1,18 @@
 function Model = LoadSBMLModel(input, Level)
+% LoadSBMLModel(input, level) returns a sbml model of specified leve from SBML_Models.mat
+%
+% input can be either
+% an integer representing the index of the model in
+% the data file e.g. Models(int)
+%
+% or it can be the name (or id for level 2)of the model
+%
+% if two or more models in the data file have the same name 
+% LoadSBMLModel will return the first model it matches
+%
+% the function also checks that the structure returned is a valid sbml
+% model structure
+
 %
 %  Filename    : LoadSBMLModel.m
 %  Description : loads a model from data file SBML_Models
@@ -49,19 +63,6 @@ function Model = LoadSBMLModel(input, Level)
 %
 %  Contributor(s):
 %
-% LoadSBMLModel(input, level) returns a sbml model of specified leve from SBML_Models.mat
-%
-% input can be either
-% an integer representing the index of the model in
-% the data file e.g. Models(int)
-%
-% or it can be the name (or id for level 2)of the model
-%
-% if two or more models in the data file have the same name 
-% LoadSBMLModel will return the first model it matches
-%
-% the function also checks that the structure returned is a valid sbml
-% model structure
 
 bInt = 0;
 % check what type of arguments have been input

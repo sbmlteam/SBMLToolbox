@@ -1,4 +1,13 @@
 function varargout = BrowseModels(varargin)
+% varargout = BrowseModels(number) raises a GUI that browses the data file
+% SBML_Models.dat
+%
+% number is the the number of output arguments
+%   number = 0 - no output expected (ie no model to be loaded)
+%   number = 1 - output expected (ie return model)
+%
+% This GUI should be called using BrowseSBML_Models.m
+
 % BROWSEMODELS M-file for BrowseModels.fig
 %
 %  Filename    : BrowseModels.m

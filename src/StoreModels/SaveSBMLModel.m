@@ -1,4 +1,11 @@
 function SaveSBMLModel(SBMLModel)
+% SaveSBML(SBMLModel) saves the SBMLModel structure to the disk
+%
+% Checks that SBMLModel is an sbml model structure
+% checks whether the SBML_Models.mat file exists and creates if necessary
+% adds the SBMLModel to the file as the next structure
+% saves the SBML_Models.mat file
+
 %
 %  Filename    : SaveSBMLModel.m
 %  Description : saves a model to data file SBML_Models
@@ -49,12 +56,6 @@ function SaveSBMLModel(SBMLModel)
 %
 %  Contributor(s):
 %
-% SaveSBML(SBMLModel) saves the SBMLModel structure to the disk
-%
-% Checks that SBMLModel is an sbml model structure
-% checks whether the SBML_Models.mat file exists and creates if necessary
-% adds the SBMLModel to the file as the next structure
-% saves the SBML_Models.mat file
 
 bSBML = 0;
 bSBML = isSBML_Model(SBMLModel);

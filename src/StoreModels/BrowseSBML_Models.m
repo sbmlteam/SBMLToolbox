@@ -1,5 +1,13 @@
 function varargout = BrowseSBML_Models
 % varargout = BrowseSBML_Models enables a GUI that browses the Matlab data file SBML_Models.dat
+% If an output argument is specified then a model can be loaded from the data file 
+% into the output argument; the close option remains disabled until the
+% load has been completed
+%
+% If no output argument is specified then the load function is disabled
+%
+% This GUI also allows models to be deleted from the data file 
+
 %
 %  Filename    : BrowseSBML_Models.m
 %  Description : initialises and runs the BrowseModels GUI
@@ -51,13 +59,6 @@ function varargout = BrowseSBML_Models
 %  Contributor(s):
 %
 % 
-% If an output argument is specified then a model can be loaded from the data file 
-% into the output argument; the close option remains disabled until the
-% load has been completed
-%
-% If no output argument is specified then the load function is disabled
-%
-% This GUI also allows models to be deleted from the data file 
 
 % check whether file exists
 %   probably want to this elsewhere
