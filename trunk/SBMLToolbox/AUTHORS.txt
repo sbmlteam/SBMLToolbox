@@ -1,0 +1,13 @@
+The original code contained here was initially developed by:
+
+      Sarah Keating
+      Science and Technology Research Centre
+      University of Hertfordshire
+      Hatfield, AL10 9AB
+      United Kingdom
+
+      http://www.sbml.org
+      mailto:sbml-team@caltech.edu
+
+
+
