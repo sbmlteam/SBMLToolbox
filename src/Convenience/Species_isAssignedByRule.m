@@ -1,18 +1,19 @@
-function y = IsSpeciesInAlgebraicRule(SBMLSpecies, SBMLRules)
-% IsSpeciesInAlgebraicRule takes an SBMLSpecies structure and an array of SBMLRule structures
+function y = Species_isAssignedByRule(SBMLSpecies, SBMLRules)
+% Species_isAssignedByRule takes an SBMLSpecies structure and an array of SBMLRule structures
 % and returns
-%             0 if the species is not in an algebraic rule
-%             [n1, n2] if the species occurs as within a rule
-%     where n1, n2 refers to the index of the matched rule in the array
+%             0 if the species is not assigned by a rule
+%             n if the species occurs as the species field of a SPECIES_CONCENTRATION_RULE
+%                                  or as the variable field of an ASSIGNMENT_RULE
+%     where n refers to the index of the matched rule in the array
 
 %------------------------------------------------------------------------
 %
-%  Filename    : IsSpeciesInAlgebraicRule.m
+%  Filename    : Species_isAssignedByRule.m
 %  Description : takes a SBMLSpecies and set of rules and returns the
 %  number of the assignment rules for the species
 %  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
 %  Organization: University of Hertfordshire STRC
-%  Created     : 2004-12-06
+%  Created     : 2004-11-09
 %  Revision    : $Id$
 %  Source      : $Source $
 %
@@ -66,7 +67,7 @@ SBMLLevel = 1;
 if (~isSBML_Species(SBMLSpecies, SBMLLevel))
     SBMLLevel = 2;
     if (~isSBML_Species(SBMLSpecies, SBMLLevel))
-        error('IsSpeciesInAlgebraicRule(SBMLSpecies, SBMLRules)\n%s', 'first argument must be an SBMLSpecies structure');
+        error('Species_isAssignedByRule(SBMLSpecies, SBMLRules)\n%s', 'first argument must be an SBMLSpecies structure');
     end;
 end;
 
@@ -74,18 +75,18 @@ end;
 NumRules = length(SBMLRules);
 
 if (NumRules < 1)
-    error('IsSpeciesInAlgebraicRule(SBMLSpecies, SBMLRules)\n%s', 'SBMLRule structure is empty');
+    error('Species_isAssignedByRule(SBMLSpecies, SBMLRules)\n%s', 'SBMLRule structure is empty');
 else
     for i = 1:NumRules
         if (~isSBML_Rule(SBMLRules(i), SBMLLevel))
-            error('IsSpeciesAssignedByRule(SBMLSpecies, SBMLRules)\n%s', 'second argument must be an array of SBMLRule structures');
+            error('Species_isAssignedByRule(SBMLSpecies, SBMLRules)\n%s', 'second argument must be an array of SBMLRule structures');
         end;
     end;
 end;
 
 %--------------------------------------------------------------------------
 
-% loop through each rule and check whether the species occurs
+% loop through each rule and check whether the species is assigned by it
 %determine the name or id of the species
 if (SBMLLevel == 1)
     name = SBMLSpecies.name;
@@ -97,11 +98,18 @@ else
     end;
 end;
 
-y = [];
 for i = 1:NumRules
-    index = strfind(SBMLRules(i).formula, name);
-    if (~isempty(index))
-        y = [y;i];
+    if (strcmp(SBMLRules(i).typecode, 'SBML_ASSIGNMENT_RULE'))
+        if (strcmp(SBMLRules(i).variable, name))
+            % once found return as cannot occur more than once
+            y = i;
+            return;
+        end;
+    elseif ((strcmp(SBMLRules(i).typecode, 'SBML_SPECIES_CONCENTRATION_RULE')) & (strcmp(SBMLRules(i).type, 'scalar')))
+        if (strcmp(SBMLRules(i).species, name))
+            y = i;
+            return;
+        end;
     end;
 end;
 

@@ -91,7 +91,7 @@ for i = 1:NumberSpecies
 
         if (NumAssignRules > 0)
         %determine which rules it occurs within
-        RuleNo = IsSpeciesAssignedByRule(SBMLModel.species(i), AssignRules);
+        RuleNo = Species_isAssignedByRule(SBMLModel.species(i), AssignRules);
         if (RuleNo > 0)
             output = AssignRules(RuleNo).formula;
 
