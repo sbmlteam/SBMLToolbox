@@ -148,8 +148,45 @@ fhandle = str2func(Name);
 % get initial conditions
 InitConds = feval(fhandle);
 
-% solve 
-[TimeCourse, SpeciesCourse] = ode45(fhandle, Time_span, InitConds);
+% if there are events
+if ((SBMLModel.SBML_level == 2) && (length(SBMLModel.event) ~= 0))
+    eventName = strcat(Name, '_events');
+    afterEvent = strcat(Name, '_eventAssign');
+    eventHandle = str2func(eventName);
+    AfterEventHandle = str2func(afterEvent);
+
+    % solve - need to deal with events here
+    options = odeset('Events', eventHandle);
+
+    TimeCourse = [];
+    SpeciesCourse = [];
+    
+    while ((~isempty(Time_span)) && (Time_span(1) < Time_span(end)))
+
+        [TimeCourseA, SpeciesCourseA] = ode45(fhandle, Time_span, InitConds, options);
+
+        % keep copy of calculations
+        TimeCourse = [TimeCourse;TimeCourseA];
+        SpeciesCourse = [SpeciesCourse;SpeciesCourseA];
+
+        % adjust the time span
+        Time_spanA = Time_span - TimeCourseA(length(TimeCourseA)-1);
+        Time_span_new = Time_spanA(find(Time_spanA==0): length(Time_spanA));
+        Time_span = [];
+        Time_span = Time_span_new + TimeCourseA(length(TimeCourseA)-1);
+
+        % get new initial conditions
+        InitConds = feval(AfterEventHandle, SpeciesCourseA);
+
+
+        TimeCourseA = [];
+        SpeciesCourseA = [];
+    end;
+else
+    % if no events
+    [TimeCourse, SpeciesCourse] = ode45(fhandle, Time_span, InitConds);
+end;
+
 %--------------------------------------------------------------
 
 Species = GetSpecies(SBMLModel);
@@ -181,11 +218,12 @@ for i = 1:length(Species)
         plotCount = plotCount + 1;
     end;
 end;
-hold off;
-xlabel('time t');
-ylabel('amount');
-legend(PlottedSpecies, -1);
-
+if (Plot ~= 0) 
+    hold off;
+    xlabel('time t');
+    ylabel('amount');
+    legend(PlottedSpecies, -1);
+end;
 %-------------------------------------------------------------------------
 % write output file
 if ((nargin > 3) && (varargin{4} == 1))
