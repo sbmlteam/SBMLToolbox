@@ -1,4 +1,14 @@
 function varargout = CheckValues(varargin)
+% CheckValues 
+%         takes an SBMLModel
+%         
+%   displays a GUI that allows the user to view and/or edit the values
+%         for the initial concentration of species and parameter values
+% 
+%     and returns
+%         1) an array of values for the initial concentration of the species
+%         2) an array of values for the parameters
+
 %
 %  Filename    : CheckValues.m
 %  Description : takes a SBMLModel and returns an array of values for the species
@@ -70,13 +80,6 @@ function varargout = CheckValues(varargin)
 %      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
 %      instance to run (singleton)".
 %
-% CheckValues 
-%         takes an SBMLModel
-%         provides a GUI that allows the user to view and/or edit the values
-%         for the initial concentration of species and parameter values
-%     and returns
-%         1) an array of values for the initial concentration of the species
-%         2) an array of values for the parameters
 
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...

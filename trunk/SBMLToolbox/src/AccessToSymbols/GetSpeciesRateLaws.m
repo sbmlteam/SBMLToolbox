@@ -105,7 +105,7 @@ for i = 1:NumSpecies
         %determine which reactions it occurs within 
         for j = 1:NumReactions
             
-            SpeciesType = DetermineSpeciesRoleInReaction(SBMLModel.species(i), SBMLModel.reaction(j));
+            SpeciesType = Species_determineRoleInReaction(SBMLModel.species(i), SBMLModel.reaction(j));
 
             % record numbers of occurences of species as reactant/product
             % and check that we can deal with reaction
