@@ -288,9 +288,25 @@ fprintf(fileID, '%% calculate concentration values\n\n');
 
 fprintf(fileID, 'if (nargin == 0)\n');
 fprintf(fileID, '\n\t%% initial concentrations\n');
+    
+% need to catch any initial concentrations that are not set
+NotSet = isnan(SpeciesValues);
 
 for i = 1:NumberSpecies
-    fprintf(fileID, '\txdot(%u) = %i;\n', i, SpeciesValues(i));
+    if (NotSet(i) == 1)
+        RuleNo = IsSpeciesAssignedByRule(SBMLModel.species(i), SBMLModel.rule);
+        
+        if (RuleNo == 0)
+            error('WriteODEFunction(SBMLModel)\n%s', 'species concentration not provided or assigned by rule');
+            
+        else
+            fprintf(fileID, '\txdot(%u) = %s;\n', i, SBMLModel.rule(RuleNo).formula);
+            
+        end;
+    else
+        
+        fprintf(fileID, '\txdot(%u) = %i;\n', i, SpeciesValues(i));
+    end;
 end;
 
 fprintf(fileID, '\nelse\n');
