@@ -14,8 +14,10 @@ end;
 
 SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name', 'id', 'trigger', 'delay', 'timeUnits', 'eventAssignment'};
 Values = {'SBML_EVENT', '', '', '', '', '', '', '', []};
+eventAssignment = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'variable', {}, 'math', {})
 
 Event = cell2struct(Values, SBMLfieldnames, 2);
+Event = setfield(Event, 'eventAssignment', eventAssignment);
 
 %check created structure is appropriate
 if (~isSBML_Event(Event, sbmlLevel))
