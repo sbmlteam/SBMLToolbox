@@ -289,9 +289,23 @@ end;
 %--------------------------------------------------------------------------
 function formula = DifferentiateRule(f, SpeciesNames)
 
-Dividers = '+-';
+Brackets = PairBrackets(f);
 
+Dividers = '+-';
 Divide = ismember(f, Dividers);
+
+% dividers between brackets do not count
+for i = 1:length(Divide)
+    if (Divide(i) == 1)
+        for j = 1:length(Brackets)
+            if ((i > Brackets{j}(1)) && (i < Brackets{j}(2)))
+                Divide(i) = 0;
+            end;
+        end;
+    end;
+end;
+    
+
 Divider = '';
 NoElements = 1;
 element = '';
@@ -475,3 +489,15 @@ while (NumberInTempArray > 0)
 end; % of while NumInTempArray > 0
 
 Output = NewArray;
+
+function pairs = PairBrackets(formula)
+
+Open = strfind(formula, '(');
+Close = strfind(formula, ')');
+
+if (isempty(Open))
+    pairs = {};
+end;
+for i = 1:length(Open)
+    pairs{i} = [Open(i), Close(i)];
+end;
