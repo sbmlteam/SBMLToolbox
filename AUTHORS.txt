@@ -1,7 +1,7 @@
 The original code contained here was initially developed by:
 
       Sarah Keating
-      Science and Technology Research Centre
+      Science and Technology Research Institute
       University of Hertfordshire
       Hatfield, AL10 9AB
       United Kingdom
