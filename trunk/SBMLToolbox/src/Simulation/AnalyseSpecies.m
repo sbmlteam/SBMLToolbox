@@ -130,6 +130,17 @@ for i = 1:length(SBMLModel.species)
         if (Species(i).InAlgebraicRule == 1)
             Species(i).ConvertedToAssignRule = 1;
             Rule = Species(i).AlgebraicRule{1};
+            
+            % need to look at whether rule contains a user definined
+            % function
+            FunctionIds = GetFunctionIds(SBMLModel);
+            for f = 1:length(FunctionIds)
+                if (strfind(char(Rule), FunctionIds{f}))
+                    Rule = SubstituteFunction(char(Rule), SBMLModel.functionDefinition(f));
+                end;
+                
+            end;
+            
             SubsRule = SubsAssignmentRules(SBMLModel, char(Rule));
             Species(i).ConvertedRule = Arrange(SubsRule, name{i}, name);
         else

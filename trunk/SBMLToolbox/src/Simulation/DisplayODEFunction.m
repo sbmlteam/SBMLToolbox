@@ -81,20 +81,6 @@ if (~isSBML_Model(SBMLModel))
     error('DisplayODEFunction(SBMLModel)\n%s', 'first argument must be an SBMLModel structure');
 end;
 %------------------------------------------------------------
-% look for rules/functions and warn user that these are not dealt with yet
-Rules = length(SBMLModel.rule);
-if (SBMLModel.SBML_level == 2)
-    Funcs = length(SBMLModel.functionDefinition);
-else
-    Funcs = 0;
-end;
-
-if ((Rules ~= 0) || (Funcs ~= 0))
-    disp('Note this procedure does not yet deal with rules or functions');
-    disp('They will NOT be included in the calculation');
-end;
-
-%------------------------------------------------------------
 % calculate values to use in iterative process
 if (nargin > 2)
     Time_limit = varargin{3};
