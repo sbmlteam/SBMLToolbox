@@ -108,18 +108,13 @@ for i = 1:NumberSpecies
                 % check that a species does not occur twice on one side of the
                 % reaction
                 if (NoReactants > 1 || NoProducts > 1)
-                    error('WriteODEFunction(SBMLModel)\n%s', 'SPECIES OCCURS MORE THAN ONCE ON ONE SIDE OF REACTION');
+                    error('GetRateLawsFromReactions(SBMLModel)\n%s', 'SPECIES OCCURS MORE THAN ONCE ON ONE SIDE OF REACTION');
                 end;
                 
                 %--------------------------------------------------------------
-                % check if species is a modifier and exit if it is
-                if (SpeciesType(NoModifiers) > 0)
-                    error('WriteODEFunction(SBMLModel)\n%s', 'CANNOT DEAL WITH MODIFIERS YET');
-                end;
-                %--------------------------------------------------------------
                 % check that reaction has a kinetic law formula
                 if (isempty(SBMLModel.reaction(j).kineticLaw))
-                    error('WriteODEFunction(SBMLModel)\n%s', 'NO KINETC LAW SUPPLIED');
+                    error('GetRateLawsFromReactions(SBMLModel)\n%s', 'NO KINETC LAW SUPPLIED');
                 end;
                 %--------------------------------------------------------------
                 
