@@ -87,6 +87,7 @@ for i = 1:NumSpecies
         if (sum(SpeciesType) == 0)
             % not in this reaction
             StoichiometryMatrix(i,j) = 0;
+            TotalOccurences = 0;
         else
 
             % record numbers of occurences of species as reactant/product
