@@ -215,10 +215,22 @@ end; % for NumSpecies
 fprintf(fileID, '\nelse\n');
 
 fprintf(fileID, '\n\t%% species concentration rate equations\n');
+NeedToOrderArray = 0;
 for i = 1:NumberSpecies
 
     if (Species(i).ChangedByReaction == 1)
+        % need to look for piecewise functions
+        if (isempty(findstr(char(Species(i).KineticLaw), 'piecewise')))
+        
+        
         Array{i} = sprintf('\txdot(%u) = %s;\n', i, char(Species(i).KineticLaw));
+        
+        else
+            Arguments = DealWithPiecewise(char(Species(i).KineticLaw));
+            
+            Array{i} = sprintf('\tif (%s) \n\t\txdot(%u) = %s;\n\telse\n\t\txdot(%u) = %s;\n\tend;\n', Arguments{1}, i, Arguments{2}, i, Arguments{3});
+
+        end;
    
     elseif (Species(i).ChangedByRateRule == 1)
         Array{i} = sprintf('\txdot(%u) = %s;\n', i, char(Species(i).RateRule));
@@ -229,6 +241,7 @@ for i = 1:NumberSpecies
         % assignment rule which may impact on the rate
         DifferentiatedRule = DifferentiateRule(char(Species(i).AssignmentRule), Speciesnames);
         Array{i} = sprintf('\txdot(%u) = %s;\n', i, char(DifferentiatedRule));
+        NeedToOrderArray = 1;
            
     elseif (Species(i).ConvertedToAssignRule == 1)
         % here no rate law has been provided by either kinetic law or rate
@@ -236,7 +249,7 @@ for i = 1:NumberSpecies
         % algebraic rule which may impact on the rate
         DifferentiatedRule = DifferentiateRule(char(Species(i).ConvertedRule), Speciesnames);
         Array{i} = sprintf('\txdot(%u) = %s;\n', i, char(DifferentiatedRule));
-
+        NeedToOrderArray = 1;
     else
         % not set by anything
         Array{i} = sprintf('\txdot(%u) = 0;\n', i);
@@ -245,7 +258,11 @@ for i = 1:NumberSpecies
 end; % for Numspecies
 
 % need to check that assignments are made in appropriate order
-Array = OrderArray(Array);
+% deals with rules that have been differentiated where xdot may occur on
+% both sides of an equation
+if (NeedToOrderArray == 1)
+    Array = OrderArray(Array);
+end;
 for i = 1:NumberSpecies
     fprintf(fileID, '%s', Array{i});
 end;
@@ -295,16 +312,17 @@ Dividers = '+-';
 Divide = ismember(f, Dividers);
 
 % dividers between brackets do not count
+if (Brackets ~= 0)
 for i = 1:length(Divide)
     if (Divide(i) == 1)
         for j = 1:length(Brackets)
-            if ((i > Brackets{j}(1)) && (i < Brackets{j}(2)))
+            if ((i > Brackets(j,1)) && (i < Brackets(j, 2)))
                 Divide(i) = 0;
             end;
         end;
     end;
 end;
-    
+end;    
 
 Divider = '';
 NoElements = 1;
@@ -490,14 +508,3 @@ end; % of while NumInTempArray > 0
 
 Output = NewArray;
 
-function pairs = PairBrackets(formula)
-
-Open = strfind(formula, '(');
-Close = strfind(formula, ')');
-
-if (isempty(Open))
-    pairs = {};
-end;
-for i = 1:length(Open)
-    pairs{i} = [Open(i), Close(i)];
-end;
