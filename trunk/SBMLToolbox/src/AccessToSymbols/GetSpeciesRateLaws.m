@@ -80,78 +80,98 @@ for i = 1:NumSpecies
     output = '';
     symOut = sym(output);
     
-    %determine which reactions it occurs within 
-    for j = 1:NumReactions
-        
-        SpeciesType = IsSpeciesInReaction(SBMLModel.species(i), SBMLModel.reaction(j));
-       
-        % record numbers of occurences of species as reactant/product 
-        % and check that we can deal with reaction
-        if (SpeciesType(1)>0)
-            
-            NoModifiers = length(SpeciesType);
-            NoReactants = SpeciesType(2);
-            NoProducts =  SpeciesType(3+NoReactants);
-            SavedNoReactants = SpeciesType(2);
-            
-            %--------------------------------------------------------------
-            % check that a species does not occur twice on one side of the
-            % reaction
-            if (NoReactants > 1 || NoProducts > 1)
-                error('GetRateLaws(SBMLModel)\n%s', 'SPECIES OCCURS MORE THAN ONCE ON ONE SIDE OF REACTION');
-            end;
-       
-            %--------------------------------------------------------------
-            % check if species is a modifier and exit if it is
-            if (SpeciesType(NoModifiers) > 0)
-                error('GetRateLaws(SBMLModel)\n%s', 'CANNOT DEAL WITH MODIFIERS YET');
-            end;
-            %--------------------------------------------------------------
-            
-        end;
-       
-        % species has been found in this reaction
-        while (SpeciesType(1) > 0) % 
-                    
-            % add the kinetic law to the output for this species
-            if (isempty(symOut))
-
-                if(NoProducts > 0) 
-                    symOut = SpeciesType(3+SavedNoReactants+1) * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
-                    NoProducts = NoProducts - 1;
-                elseif (NoReactants > 0) 
-                    symOut =  - SpeciesType(3) * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
-                    NoReactants = NoReactants - 1;
-                end; 
-               
-            else
- 
-                if(NoProducts > 0) 
-                    symOut = symOut + SpeciesType(3+SavedNoReactants+1) * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
-                    NoProducts = NoProducts - 1;
-               elseif (NoReactants > 0) 
-                    symOut = symOut - SpeciesType(3) * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
-                    NoReactants = NoReactants - 1;
-                end; 
-                
-            end; % isempty(output)
-            
-            SpeciesType(1) = SpeciesType(1) - 1;
-            
-        end; % while found > 0
-        
-        if (~isempty(symOut))
-            
-            % make the parameter symbols unique
-            Params = GetParameterSymbolsFromReaction(SBMLModel.reaction(j));
-            ParamsUnique = GetParameterSymbolsFromReactionUnique(SBMLModel.reaction(j));
-            
-            symOut = subs(symOut, Params, ParamsUnique);
-        end;
-        
-        
-    end; % for NumReactions
+    % if species is a boundary condition (or constant in level 2
+    % no rate law is required
+    % will need to adapt for rules
+    boundary = SBMLModel.species(i).boundaryCondition;
+    if (SBMLModel.SBML_level == 2)
+        constant = SBMLModel.species(i).constant;
+    else
+        constant = -1;
+    end;
     
+    if (boundary == 1)
+        symOut = sym('0');
+    elseif (constant ==1)
+        symOut = sym('0');
+    else
+        
+        %determine which reactions it occurs within 
+        for j = 1:NumReactions
+            
+            SpeciesType = IsSpeciesInReaction(SBMLModel.species(i), SBMLModel.reaction(j));
+            
+            % record numbers of occurences of species as reactant/product 
+            % and check that we can deal with reaction
+            if (SpeciesType(1)>0)
+                
+                NoModifiers = length(SpeciesType);
+                NoReactants = SpeciesType(2);
+                NoProducts =  SpeciesType(3+NoReactants);
+                SavedNoReactants = SpeciesType(2);
+                
+                %--------------------------------------------------------------
+                % check that a species does not occur twice on one side of the
+                % reaction
+                if (NoReactants > 1 || NoProducts > 1)
+                    error('GetRateLaws(SBMLModel)\n%s', 'SPECIES OCCURS MORE THAN ONCE ON ONE SIDE OF REACTION');
+                end;
+                
+                %--------------------------------------------------------------
+                % check if species is a modifier and exit if it is
+                if (SpeciesType(NoModifiers) > 0)
+                    error('GetRateLaws(SBMLModel)\n%s', 'CANNOT DEAL WITH MODIFIERS YET');
+                end;
+                %--------------------------------------------------------------
+                
+            end;
+            
+            % species has been found in this reaction
+            while (SpeciesType(1) > 0) % 
+                
+                % add the kinetic law to the output for this species
+                if (isempty(symOut))
+                    
+                    if(NoProducts > 0) 
+                        symOut = SpeciesType(3+SavedNoReactants+1) * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
+                        NoProducts = NoProducts - 1;
+                    elseif (NoReactants > 0) 
+                        symOut =  - SpeciesType(3) * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
+                        NoReactants = NoReactants - 1;
+                    end; 
+                    
+                else
+                    
+                    if(NoProducts > 0) 
+                        symOut = symOut + SpeciesType(3+SavedNoReactants+1) * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
+                        NoProducts = NoProducts - 1;
+                    elseif (NoReactants > 0) 
+                        symOut = symOut - SpeciesType(3) * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
+                        NoReactants = NoReactants - 1;
+                    end; 
+                    
+                end; % isempty(output)
+                
+                SpeciesType(1) = SpeciesType(1) - 1;
+                
+            end; % while found > 0
+            
+            if (~isempty(symOut))
+                
+                % make the parameter symbols unique
+                Params = GetParameterSymbolsFromReaction(SBMLModel.reaction(j));
+                ParamsUnique = GetParameterSymbolsFromReactionUnique(SBMLModel.reaction(j));
+                if (~isempty(Params))
+                    symOut = subs(symOut, Params, ParamsUnique);
+                end;
+            end;
+            
+            
+        end; % for NumReactions
+        
+    end; % if boundary condition
+    
+
     % finished looking for this species
     % record rate law and loop to next species
     % put the species symbol if no law found
@@ -162,12 +182,6 @@ for i = 1:NumSpecies
     end;
     
 end; % for NumSpecies
-
-% % make the parameter symbols unique
-% Params = GetAllParameters(SBMLModel);
-% ParamsUnique = GetAllParametersUnique(SBMLModel);
-% 
-% symRateLaws = subs(symRateLaws, Params, ParamsUnique)
 
 %--------------------------------------------------------------------------
 % assign outputs
