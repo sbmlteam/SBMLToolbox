@@ -1,8 +1,8 @@
-function y = CreateSymArray(Input)
+function y = GetDegree(symPoly, var)
 %
-%  Filename    : CreateSymArray.m
-%  Description : takes any symbolic expression or set of symbolic expressions
-%                  and returns an array of the single symbolic expressions found in the input
+%  Filename    : GetDegree.m
+%  Description :takes a symbolic polynomial and a single symbol
+%               and returns the degree of the symbol in the symbolic polynomial
 %  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
 %  Organization: University of Hertfordshire STRC
 %  Created     : 2004-02-02
@@ -49,74 +49,75 @@ function y = CreateSymArray(Input)
 %      mailto:sbml-team@caltech.edu
 %
 %  Contributor(s):
+% GetDegree(symPoly, var) takes a symbolic polynomial and a single symbol
+% and returns the degree of the symbol var in the symbolic polynomial symPoly
 %
-% CreateSymArray(Input) takes any symbolic expression or set of symbolic expressions
-% and returns an array of the single symbolic expressions found in the input 
+% -----------------------------------------------
+% EXAMPLE: 
+%   GetDegree(a1^2*bd*c^3, a1)  =   2
+% 
+%   GetDegree(a1^2*bd*c^3, c)   =   3
+% 
+%   GetDegree(a1^2*bd*c^3, bd)  =   1
 %
-%----------------------------------------------------------------
-% EXAMPLE: CreateSymArray(a1^2*bd*c^3)
-%           =   [a1, bd, c]
-%----------------------------------------------------------------
+%   GetDegree(a1^2*bd*c^3, x)   =   0
+% -----------------------------------------------
 
-if (isempty(Input))
-    y = [];
+% check thar var is a single symbol
+symArrayVar = CreateSymArray(var);
+NoSyms = length(symArrayVar);
+
+% check that inputs are symbolic
+if (~(isa(symPoly, 'sym')))
+    error('%s\n%s', 'GetDegree(symPoly, var)', 'symPoly must be a symbolic expression');
+elseif (~(isa(var, 'sym')) || NoSyms ~=1)
+    error('%s\n%s', 'GetDegree(symPoly, var)', 'var must be a single symbol');
+end;
+
+% ------------------------------------------------------------------------
+% determine all symbols present in the polynomial
+cSymbols = CreateSymArray(symPoly);   
+NoSyms = length(cSymbols);
+
+%loop through each symbol in the polynomial
+% and substitute 1 if not the symbol being considered
+indexVar = find(cSymbols == var);
+if (isempty(indexVar))
+    y = 0;
     return;
+elseif ((indexVar == 1) && (NoSyms == 1))
+    symPolySub(1) = cSymbols(1);
+else
+for i = 1:indexVar-1
+    symPolySub(i) = cSymbols(i);
+    Array(i) = 1;
 end;
+for i = indexVar:NoSyms-1
+    symPolySub(i) = cSymbols(i+1);
+    Array(i) = 1;
+end;
+        symPolySub = subs(symPoly, symPolySub, Array);
+end;
+% for i = 1:NoSyms
+%     if(~(cSymbols(i) == var))
+%         symPolySub = subs(symPoly, symPolySub, Array);
+%     end;
+% end;
 
-% check that input is symbolic
-if (~(isa(Input, 'sym')))
-    error('%s\n%s', 'CreateSymArray(Input)', 'Input must be symbolic');
-end;
+% check that we still have variables
+% if not degree = 0 return
+if (isnumeric(symPolySub))
+     y = 0;
+     return;
+ end;
 
 %----------------------------------------------------------------
+% convert to a polynomial with coefficients for each degree of var
+% e.g. sym2poly(x^3 + 2*x + 6) = [1, 0, 2, 6]
 
-% determine all symbols present in the input
-% NOTE: Input = a1^2*bd*c^3
-%       symbols = findsym(Input) = 'a1,bd,c'
-symbols = findsym(Input);
-NoChars = length(symbols);
+vecPoly = sym2poly(symPolySub);
 
-% add a comma at the end to facilitate the transfer from char to sym
-symbols(NoChars+1) = ',';
+No = length(vecPoly);
 
-% catch case of symbolic input representing a number
-if (NoChars == 0)
-    y = [];
-    return;
-end;
-
-%----------------------------------------------------------------
-
-% loop through the input and determine the char 
-% representation for each symbol
-
-% add each as a symbol to the output array
-
-NoSyms = 0;
-cSymbol = '';
-i = 1;
-Start = 1;
-End = 1;
-% NOTE: symbols = 'a1,bd,c,'
-while (i < NoChars+2)
-    
-    if (symbols(i) == ',')
-        % comma indicates the end of a symbol
-        End = i-1;
-        cSymbol = symbols(Start:End);
-        
-        % add to array of symbols
-        NoSyms = NoSyms+1;
-        cSymbols(NoSyms) = sym(cSymbol);
-        cSymbol = '';
-        
-        i = i+1;
-        Start = i;
-    else
-        i = i+ 1;           
-    end;
-    
-end;
-
-% return the array of symbols
-y = RemoveDuplicates(cSymbols);
+% degree of the polynomial is the size of the vector minus 1
+y = No - 1;
