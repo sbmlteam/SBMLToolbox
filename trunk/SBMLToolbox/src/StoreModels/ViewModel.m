@@ -1,4 +1,14 @@
 function varargout = ViewModel(varargin)
+% ViewModel(Model) raises a GUI that illustrate the SBML model 'Model'
+%
+% It shows the Name or Id of the model with the SBML Level and version.
+%
+% The structures within the Model are listed and future development will
+% allow each of these to be viewed
+%
+% Save to SBML_Models allows the model to be saved to the Matlab data file
+% SBML_Models.dat
+
 % VIEWMODEL M-file for ViewModel.fig
 %
 %  Filename    : ViewModel.m
@@ -50,15 +60,6 @@ function varargout = ViewModel(varargin)
 %
 %  Contributor(s):
 %
-% ViewModel(Model) raises a GUI that illustrate the SBML model 'Model'
-%
-% It shows the Name or Id of the model with the SBML Level and version.
-%
-% The structures within the Model are listed and future development will
-% allow each of these to be viewed
-%
-% Save to SBML_Models allows the model to be saved to the Matlab data file
-% SBML_Models.dat
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;

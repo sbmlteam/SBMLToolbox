@@ -1,4 +1,16 @@
 function Model = DeleteSBMLModel(input, Level)
+% DeleteSBMLModel(input, level) deletes a sbml model of specified level from SBML_Models.mat
+%
+% input can be either
+% an integer representing the index of the model in
+% the data file e.g. Models(int)
+%
+% or it can be the name or id (level 2) of the model
+%
+% if two or more models in the data file have the same name 
+% (which shouldnt happen as this should be caught when saving)
+% DeleteSBMLModel will delete the first model it matches
+
 %
 %  Filename    : DeleteSBMLModel.m
 %  Description : deletes a model from data file SBML_Models
@@ -49,18 +61,6 @@ function Model = DeleteSBMLModel(input, Level)
 %
 %  Contributor(s):
 %
-% DeleteSBMLModel(input, level) deletes a sbml model of specified level from SBML_Models.mat
-%
-% input can be either
-% an integer representing the index of the model in
-% the data file e.g. Models(int)
-%
-% or it can be the name or id (level 2) of the model
-%
-% if two or more models in the data file have the same name 
-% (which shouldnt happen as this should be caught when saving)
-% DeleteSBMLModel will delete the first model it matches
-
 
 bInt = 0;
 % check what type of arguments have been input

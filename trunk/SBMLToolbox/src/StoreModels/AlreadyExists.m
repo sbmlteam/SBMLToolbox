@@ -1,4 +1,9 @@
 function varargout = AlreadyExists(varargin)
+% AlreadyExists raises a modal dialog box if a model being loaded to
+% SBML_Models data file already exists in the data file.
+%
+% The user is prompted for overwrite permission
+
 % ALREADYEXISTS M-file for AlreadyExists.fig
 %
 %  Filename    : AlreadyExists.m
@@ -50,10 +55,6 @@ function varargout = AlreadyExists(varargin)
 %
 %  Contributor(s):
 %
-% AlreadyExists raises a modal dialog box if a model being loaded to
-% SBML_Models data file already exists in the data file.
-%
-% The user is prompted for overwrite permission
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
