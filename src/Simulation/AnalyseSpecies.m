@@ -133,7 +133,7 @@ for i = 1:length(SBMLModel.species)
             
             % need to look at whether rule contains a user definined
             % function
-            FunctionIds = GetFunctionIds(SBMLModel);
+            FunctionIds = Model_getFunctionIds(SBMLModel);
             for f = 1:length(FunctionIds)
                 if (strfind(char(Rule), FunctionIds{f}))
                     Rule = SubstituteFunction(char(Rule), SBMLModel.functionDefinition(f));
