@@ -60,13 +60,12 @@
 %       -src
 %           TranslateSBML.c
 %       -docs
-%       -libraries
-%           -win32
+%       -extern
 %               -bin
 %                   libsbml.lib etc...
 %               -include
 %                   WIN32 header files
 
 
-mex TranslateSBML.c -I'..\libraries\win32\include' ..\libraries\win32\bin\libsbml.lib
+mex TranslateSBML.c -I'..\extern\include' ..\extern\bin\libsbml.lib
 
