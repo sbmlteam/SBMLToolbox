@@ -74,17 +74,12 @@ if ((Rules ~= 0) || (Funcs ~= 0) || (NumEvents ~= 0))
     disp('They will NOT be included in the calculation');
 end;
 % -------------------------------------------------------------
-
 % get information from the model
+
 [ParameterNames, ParameterValues] = GetAllParametersUnique(SBMLModel);
-[SpeciesNames, SpeciesValues] = GetSpecies(SBMLModel);
+Species = AnalyseSpecies(SBMLModel);
 NumberSpecies = length(SBMLModel.species);
-NumReactions = length(SBMLModel.reaction);
-
-[a, RateLaws] = GetRateLawsFromReactions(SBMLModel);
-
-[a, RateRules] = GetRateLawsFromRules(SBMLModel);
-
+Speciesnames = GetSpecies(SBMLModel);
 %---------------------------------------------------------------
 % get the name/id of the model
 
@@ -127,7 +122,7 @@ fprintf(fileID, '%%\n');
 fprintf(fileID, '%%The species in this model are related to the output vectors with the following indices\n');
 fprintf(fileID, '%%\tIndex\tSpecies name\n');
 for i = 1:NumberSpecies
-    fprintf(fileID, '%%\t  %u  \t  %s\n', i, SpeciesNames{i});
+    fprintf(fileID, '%%\t  %u  \t  %s\n', i, char(Species(i).Name));
 end;
 fprintf(fileID, '%%\n');
 
@@ -153,15 +148,15 @@ fprintf(fileID, '%% initial species values - these may be overridden by assignme
 fprintf(fileID, 'if (nargin == 0)\n');
 fprintf(fileID, '\n\t%% initial concentrations\n');
 
-for i = 1:length(SpeciesNames)
-    fprintf(fileID, '\t%s = %i;\n', SpeciesNames{i}, SpeciesValues(i));
+for i = 1:NumberSpecies
+    fprintf(fileID, '\t%s = %i;\n', char(Species(i).Name), Species(i).initialValue);
 end;
 
 fprintf(fileID, '\nelse\n');
 
 fprintf(fileID, '\t%% floating species concentrations\n');
 for i = 1:NumberSpecies
-    fprintf(fileID, '\t%s = x(%u);\n', SpeciesNames{i}, i);
+    fprintf(fileID, '\t%s = x(%u);\n', char(Species(i).Name), i);
 end;
 
 fprintf(fileID, '\nend;\n');
@@ -177,7 +172,15 @@ for i = 1:length(AssignRules)
      fprintf(fileID, '%s\n', rule);
 end;
 
-        
+% write algebraic rules        
+fprintf(fileID, '\n%%--------------------------------------------------------\n');
+fprintf(fileID, '%% algebraic rules\n');
+
+for i = 1:NumberSpecies
+    if (Species(i).ConvertedToAssignRule == 1)
+        fprintf(fileID, '%s = %s;\n', char(Species(i).Name), Species(i).ConvertedRule);
+    end;
+end;
 
 % write code to calculate concentration values
 fprintf(fileID, '\n%%--------------------------------------------------------\n');
@@ -189,30 +192,22 @@ fprintf(fileID, '\n\t%% initial concentrations\n');
 % need to catch any initial concentrations that are not set
 % and case where an initial concentration is set but is incosistent with a
 % later rule
-NotSet = isnan(SpeciesValues);
 
 for i = 1:NumberSpecies
 
-    % get assignment rule if exists for the species
-    if (length(SBMLModel.rule) ~= 0)
-        RuleNo = IsSpeciesAssignedByRule(SBMLModel.species(i), SBMLModel.rule);
-    else
-        RuleNo = 0;
-    end;
-        
-        
-    if (RuleNo == 0)
+    if (Species(i).ChangedByAssignmentRule == 0)
+ 
         % not set by rule - use value given
-        if (NotSet(i) == 1)
+        if (isnan(Species(i).initialValue))
             error('WriteODEFunction(SBMLModel)\n%s', 'species concentration not provided or assigned by rule');
-
         else
-            fprintf(fileID, '\txdot(%u) = %i;\n', i, SpeciesValues(i));
-
+            fprintf(fileID, '\txdot(%u) = %i;\n', i, Species(i).initialValue);
         end;
+
     else
+ 
         % initial concentration set by rule
-        fprintf(fileID, '\txdot(%u) = %s;\n', i, SpeciesNames{i});
+        fprintf(fileID, '\txdot(%u) = %s;\n', i, char(Species(i).Name));
 
    end;
 end; % for NumSpecies
@@ -222,37 +217,30 @@ fprintf(fileID, '\nelse\n');
 fprintf(fileID, '\n\t%% species concentration rate equations\n');
 for i = 1:NumberSpecies
 
-    % check whether rate defined by kinetic law or rule
-    KL = strcmp(RateLaws{i}, '0');
-    R = strcmp(RateRules{i}, '0');
-
-    if ((KL ~= 1) & (R ~= 1))
-        error('WriteODEFunction(SBMLModel)\n%s', 'rates provided by rule and kinetic law');
-    elseif ((KL == 1) & (R == 0))
-        Array{i} = sprintf('\txdot(%u) = %s;\n', i, RateRules{i});
-    elseif ((R == 1) & (KL == 0))
-        Array{i} = sprintf('\txdot(%u) = %s;\n', i, RateLaws{i});
-    else
+    if (Species(i).ChangedByReaction == 1)
+        Array{i} = sprintf('\txdot(%u) = %s;\n', i, char(Species(i).KineticLaw));
+   
+    elseif (Species(i).ChangedByRateRule == 1)
+        Array{i} = sprintf('\txdot(%u) = %s;\n', i, char(Species(i).RateRule));
+    
+    elseif (Species(i).ChangedByAssignmentRule == 1)
         % here no rate law has been provided by either kinetic law or rate
-        % rule - need to check whether the species concenrn is in an
+        % rule - need to check whether the species is in an
         % assignment rule which may impact on the rate
-        if (length(SBMLModel.rule) ~= 0)
-            RuleNo = IsSpeciesAssignedByRule(SBMLModel.species(i), SBMLModel.rule);
-        else
-            RuleNo = 0;
-        end;
-        if (RuleNo == 0)
-            % not set by assignment
-            Array{i} = sprintf('\txdot(%u) = 0;\n', i);
-        else
-            DifferentiatedRule = DifferentiateRule(SBMLModel.rule(RuleNo), SpeciesNames);
-            
-            if (iscell(DifferentiatedRule))
-                Array{i} = sprintf('\txdot(%u) = %s;\n', i, DifferentiatedRule{1});
-            else
-                Array{i} = sprintf('\txdot(%u) = %s;\n', i, DifferentiatedRule(1));
-            end;
-        end;
+        DifferentiatedRule = DifferentiateRule(char(Species(i).AssignmentRule), Speciesnames);
+        Array{i} = sprintf('\txdot(%u) = %s;\n', i, char(DifferentiatedRule));
+           
+    elseif (Species(i).ConvertedToAssignRule == 1)
+        % here no rate law has been provided by either kinetic law or rate
+        % rule - need to check whether the species is in an
+        % algebraic rule which may impact on the rate
+        DifferentiatedRule = DifferentiateRule(char(Species(i).ConvertedRule), Speciesnames);
+        Array{i} = sprintf('\txdot(%u) = %s;\n', i, char(DifferentiatedRule));
+
+    else
+        % not set by anything
+        Array{i} = sprintf('\txdot(%u) = 0;\n', i);
+
     end;
 end; % for Numspecies
 
@@ -299,9 +287,7 @@ switch (SBMLRule.typecode)
 end;
 
 %--------------------------------------------------------------------------
-function formula = DifferentiateRule(SBMLRule, SpeciesNames)
-
-f = SBMLRule.formula;
+function formula = DifferentiateRule(f, SpeciesNames)
 
 Dividers = '+-';
 

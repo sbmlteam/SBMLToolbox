@@ -221,7 +221,7 @@ if ((SBMLModel.SBML_level == 2) && (length(SBMLModel.event) ~= 0))
         SpeciesCourseB = [];
     end;
 else
-    % if no events
+    % if no events or algebraic rules
     [TimeCourse, SpeciesCourse] = ode45(fhandle, Time_span, InitConds);
 end;
 
