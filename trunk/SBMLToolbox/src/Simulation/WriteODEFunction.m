@@ -101,7 +101,7 @@ fileName = strcat(Name, '.m');
 fileID = fopen(fileName, 'w');
 
 % write the function declaration
-fprintf(fileID,  'function xdot = %s(time, x)\n', Name);
+fprintf(fileID,  'function xdot = %s(time, x_values)\n', Name);
 
 % need to add comments to output file
 fprintf(fileID, '%% function %s takes\n', Name);
@@ -110,7 +110,7 @@ fprintf(fileID, '%% either\t1) no arguments\n');
 fprintf(fileID, '%%       \t    and returns a vector of the initial species concentrations\n');
 fprintf(fileID, '%%\n');
 fprintf(fileID, '%% or    \t2) time - the elapsed time since the beginning of the reactions\n');
-fprintf(fileID, '%%       \t   x    - vector of the current concentrations of the species\n');
+fprintf(fileID, '%%       \t   x_values    - vector of the current concentrations of the species\n');
 fprintf(fileID, '%%       \t    and returns a vector of the rate of change of concentration of each of the species\n');
 fprintf(fileID, '%%\n');
 fprintf(fileID, '%% %s can be used with matlabs odeN functions as \n', Name);
@@ -156,7 +156,7 @@ fprintf(fileID, '\nelse\n');
 
 fprintf(fileID, '\t%% floating species concentrations\n');
 for i = 1:NumberSpecies
-    fprintf(fileID, '\t%s = x(%u);\n', char(Species(i).Name), i);
+    fprintf(fileID, '\t%s = x_values(%u);\n', char(Species(i).Name), i);
 end;
 
 fprintf(fileID, '\nend;\n');
