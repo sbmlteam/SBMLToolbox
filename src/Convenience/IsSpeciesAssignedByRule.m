@@ -105,7 +105,7 @@ for i = 1:NumRules
             y = i;
             return;
         end;
-    elseif (strcmp(SBMLRules(i).typecode, 'SBML_SPECIES_CONCENTRATION_RULE'))
+    elseif ((strcmp(SBMLRules(i).typecode, 'SBML_SPECIES_CONCENTRATION_RULE')) & (strcmp(SBMLRules(i).type, 'scalar')))
         if (strcmp(SBMLRules(i).species, name))
             y = i;
             return;
