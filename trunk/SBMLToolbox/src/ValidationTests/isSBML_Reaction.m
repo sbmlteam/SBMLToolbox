@@ -82,7 +82,7 @@ if (Level == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'reactant', 'product', 'kineticLaw', 'reversible', 'fast'};
     nNumberFields = 9;
 else
-    SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'reactant', 'product', 'modifier', 'kineticLaw', 'reversible', 'fast', 'IsSetFast'};
+    SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'reactant', 'product', 'modifier', 'kineticLaw', 'reversible', 'fast', 'isSetFast'};
     nNumberFields = 12;
 end;
     
@@ -100,6 +100,15 @@ while (bSBML == 1 && index <= nNumberFields)
     index = index + 1;
 end;
 
+% catch cases where isSetFast field was capitalised (Version 1.0.2)
+if (Level == 2 && bSBML == 0)
+    % may have failed on case
+    if (index == 13)
+        bSBML = isfield(SBMLStructure, 'IsSetFast');
+    end;
+end;
+    
+    
 % check that it contains only the fields listed
 if (bSBML == 1)
     names = fieldnames(SBMLStructure);
