@@ -31,7 +31,7 @@ else
     SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name', 'id', 'reactant', 'product', 'modifier', 'kineticLaw', 'reversible', 'fast', 'IsSetFast' };
     Values = {'SBML_REACTION', '', '', '', '', [], [], [], [], int32(0),  int32(-1), int32(0)};
     reactant = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'species', {}, 'stoichiometry', {}, 'denominator', {}, 'stoichiometryMath', {});
-    product = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'species', {}, 'stoichiometry', {}, 'denominator', {}), 'stoichiometryMath', {};
+    product = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'species', {}, 'stoichiometry', {}, 'denominator', {}, 'stoichiometryMath', {});
     modifier = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'species', {});
 end;
 
