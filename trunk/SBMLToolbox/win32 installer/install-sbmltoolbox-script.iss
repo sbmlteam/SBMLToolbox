@@ -63,11 +63,11 @@ WizardImageFile=sbmltoolbox-installer-graphic.bmp
 
 [Files]
 Source: "C:\SBMLToolbox\*"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\SBMLToolbox\src\*"; DestDir: "{app}\src"; Flags: ignoreversion recursesubdirs
-Source: "C:\SBMLToolbox\docs\*"; DestDir: "{app}\docs"; Flags: ignoreversion recursesubdirs
-Source: "C:\SBMLToolbox\extern\*"; DestDir: "{app}\extern"; Flags: ignoreversion recursesubdirs
-Source: "C:\SBMLToolbox\extern\bin\*"; DestDir: "{sys}"; Check: GetSys;
-Source: "C:\SBMLToolbox\extern\bin\*"; DestDir: "{code:GetLibDir}"; Flags: ignoreversion; Check: GetOverwrite;
+;Source: "C:\SBMLToolbox\src\*"; DestDir: "{app}\src"; Flags: ignoreversion recursesubdirs
+;Source: "C:\SBMLToolbox\docs\*"; DestDir: "{app}\docs"; Flags: ignoreversion recursesubdirs
+;Source: "C:\SBMLToolbox\extern\*"; DestDir: "{app}\extern"; Flags: ignoreversion recursesubdirs
+;Source: "C:\SBMLToolbox\extern\bin\*"; DestDir: "{sys}"; Check: GetSys;
+;Source: "C:\SBMLToolbox\extern\bin\*"; DestDir: "{code:GetLibDir}"; Flags: ignoreversion; Check: GetOverwrite;
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
@@ -87,6 +87,60 @@ var
   LibsbmlVersion, LibsbmlPathDir, ToolboxVersion, ToolboxPath: String;
   LaterLibsbmlVers, LaterToolboxVers : Integer;
   LibsbmlOverwrite, BindingDelete, LibsbmlSystem : String;
+
+
+{functions to activate buttons and url on screen}
+procedure AboutButtonOnClick(Sender: TObject);
+begin
+
+{*********************************************************************************************************
+ The text for this message box is what the user will see if they click the About button during installation
+
+ Feel free to alter it to taste but beware it must all be on one line.
+
+  Note: it includes a version number
+**********************************************************************************************************}
+  MsgBox('This setup installs the Windows release of SBMLToolbox 2.0.0 (beta) using libSBML 2.2.0. All the necessary libraries are included.', mbInformation, mb_Ok);
+end;
+
+procedure URLLabelOnClick(Sender: TObject);
+var
+  Dummy: Integer;
+begin
+  InstShellExec('http://www.sbml.org', '', '', SW_SHOWNORMAL, Dummy);
+end;
+
+
+{function to initialise the wizard form
+i.e. add an about button and the url to all sheets}
+procedure InitializeWizard();
+var
+  AboutButton, CancelButton: TButton;
+  URLLabel: TNewStaticText;
+begin
+ CancelButton := WizardForm.CancelButton;
+
+
+  AboutButton := TButton.Create(WizardForm);
+  AboutButton.Left := WizardForm.ClientWidth - CancelButton.Left - CancelButton.Width;
+  AboutButton.Top := CancelButton.Top;
+  AboutButton.Width := CancelButton.Width;
+  AboutButton.Height := CancelButton.Height;
+  AboutButton.Caption := '&About...';
+  AboutButton.OnClick := @AboutButtonOnClick;
+  AboutButton.Parent := WizardForm;
+
+  URLLabel := TNewStaticText.Create(WizardForm);
+  URLLabel.Top := AboutButton.Top + AboutButton.Height - URLLabel.Height - 2;
+  URLLabel.Left := AboutButton.Left + AboutButton.Width + 20;
+  URLLabel.Caption := 'www.sbml.org';
+  URLLabel.Font.Style := URLLabel.Font.Style + [fsUnderLine];
+  URLLabel.Font.Color := clBlue;
+  URLLabel.Cursor := crHand;
+  URLLabel.OnClick := @URLLabelOnClick;
+  URLLabel.Parent := WizardForm;
+
+ end;
 
 {function to return matlab root directory}
 function GetMatlabRoot(S : String): String;
