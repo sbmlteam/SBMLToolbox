@@ -175,11 +175,22 @@ else
     else
         set(handles.OptionalName, 'String', Reaction.name);
     end;
-    if (Reaction.IsSetFast == 1)
-        set(handles.Fast, 'Value', Reaction.fast);
+    
+    % catch case where isSetFast was capitalized (vers 1.0.2)
+    if (isfield(Reaction, 'IsSetFast'))
+        if (Reaction.IsSetFast == 1)
+            set(handles.Fast, 'Value', Reaction.fast);
+        else
+            set(handles.Fast, 'Value', 0);
+        end;
     else
-        set(handles.Fast, 'Value', 0);
+        if (Reaction.isSetFast == 1)
+            set(handles.Fast, 'Value', Reaction.fast);
+        else
+            set(handles.Fast, 'Value', 0);
+        end;
     end;
+    
     set(handles.ListModifiers, 'String', ListMods);
     handles.ModIndex = 1;
 end;

@@ -1997,7 +1997,13 @@ GetUnit ( mxArray * mxUnits,
 			Reaction_setId(pReaction, pacId);
 		
 			/* get isSetFast */
-			mxIsSetFast = mxGetField(mxReaction, i, "IsSetFast");
+			mxIsSetFast = mxGetField(mxReaction, i, "isSetFast");
+            
+            /* hack to catch bug in version 1.0.2 where field name was set as IsSetFast */
+            if (mxIsSetFast == NULL)
+            {
+                mxIsSetFast = mxGetField(mxReaction, i, "IsSetFast");
+            }
 			unIsSetFast = (unsigned int)mxGetScalar(mxIsSetFast);
 
 
