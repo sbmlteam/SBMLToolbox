@@ -1,4 +1,11 @@
 function varargout = ViewEventAssignment(varargin)
+% ViewEventAssignment takes
+%                        a MATLAB_SBMLEventAssignment structure
+%                 and drives a GUI that illustrates the eventAssignment structure fields and values 
+%
+%       NOTE: at present there is no output from this function but it could
+%       be edited to allow creation and editing of the eventAssignment
+
 % VIEWEVENTASSIGNMENT M-file for ViewEventAssignment.fig
 %
 %  Filename    : ViewEventAssignment.m

@@ -1,4 +1,11 @@
 function varargout = ViewSpeciesReference(varargin)
+% ViewSpeciesReference takes
+%                        a MATLAB_SBMLSpeciesReference structure
+%                 and drives a GUI that illustrates the speciesReference structure fields and values 
+%
+%       NOTE: at present there is no output from this function but it could
+%       be edited to allow creation and editing of the speciesReference
+
 % VIEWSPECIESREFERENCE M-file for ViewSpeciesReference.fig
 %
 %  Filename    : ViewSpeciesReference.m

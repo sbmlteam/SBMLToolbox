@@ -1,4 +1,11 @@
 function varargout = ViewParameter(varargin)
+% ViewParameter takes
+%                        a MATLAB_SBMLParameter structure
+%                 and drives a GUI that illustrates the parameter structure fields and values 
+%
+%       NOTE: at present there is no output from this function but it could
+%       be edited to allow creation and editing of the parameter
+
 % VIEWPARAMETER M-file for ViewParameter.fig
 %
 %  Filename    : ViewParameter.m
