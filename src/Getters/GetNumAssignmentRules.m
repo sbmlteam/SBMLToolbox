@@ -54,15 +54,16 @@ function y = GetNumAssignmentRules(SBMLModel)
 
 y = 0;
 
-% check input is an SBML model
-if (~isSBML_Model(SBMLModel))
-    error('GetNumAssignmentRules(SBMLModel)\n%s', 'argument must be an SBMLModel structure');
-end;
-
 %------------------------------------------------------------
 
 for i = 1:length(SBMLModel.rule)
-    if (SBMLModel.rule(i).typecode == 'SBML_ASSIGNMENT_RULE')
+    if (strcmp(SBMLModel.rule(i).typecode, 'SBML_ASSIGNMENT_RULE'))
+        y = y + 1;
+    elseif (strcmp(SBMLModel.rule(i).typecode, 'SBML_SPECIES_CONCENTRATION_RULE'))
+        y = y + 1;
+    elseif (strcmp(SBMLModel.rule(i).typecode, 'SBML_COMPARTMENT_VOLUME_RULE'))
+        y = y + 1;
+    elseif (strcmp(SBMLModel.rule(i).typecode, 'SBML_PARAMETER_RULE'))
         y = y + 1;
     end;
 end;
