@@ -59,26 +59,49 @@ function DisplayODEFunction(varargin)
 % get inputs
 if (nargin < 1)
     error('DisplayODEFunction(SBMLModel, ...)\n%s', 'must have at least one argument');
-elseif (nargin > 2)
-    error('DisplayODEFunction(SBMLModel, ...)\n%s', 'cannot have more than two arguments');
+elseif (nargin > 4)
+    error('DisplayODEFunction(SBMLModel, ...)\n%s', 'cannot have more than four arguments');
 end;
 
 
 SBMLModel = varargin{1};
-if (nargin == 2)
-    t_end = varargin{2};
-else
-    t_end = 10;
-end;
-   
 
 % check first input is an SBML model
 if (~isSBML_Model(SBMLModel))
     error('DisplayODEFunction(SBMLModel)\n%s', 'first argument must be an SBMLModel structure');
 end;
+%------------------------------------------------------------
+% look for rules/functions and warn user that these are not dealt with yet
+Rules = length(SBMLModel.rule);
+if (SBMLModel.SBML_level == 2)
+    Funcs = length(SBMLModel.functionDefinition);
+else
+    Funcs = 0;
+end;
+
+if ((Rules ~= 0) || (Funcs ~= 0))
+    disp('Note this procedure does not yet deal with rules or functions');
+    disp('They will NOT be included in the calculation');
+end;
+
+%------------------------------------------------------------
+% calculate values to use in iterative process
+if (nargin > 1)
+    Time_limit = varargin{2};
+else
+    Time_limit = 10;
+end;
+
+if (nargin > 2)
+    delta_t = Time_limit/varargin{3};
+    Time_span = [0:delta_t:Time_limit];
+    Number_points = length(Time_span);
+else
+    Time_span = [0, Time_limit];
+end;
 
 % check second argument
-if ((length(t_end) ~= 1) || (~isnumeric(t_end)))
+if ((length(Time_limit) ~= 1) || (~isnumeric(Time_limit)))
     error('DisplayODEFunction(SBMLModel, time)\n%s', 'second argument must be a single real number indicating a time limit');
 end;
 
@@ -117,7 +140,7 @@ fhandle = str2func(Name);
 InitConds = feval(fhandle);
 
 % solve 
-[t, x] = ode23(fhandle, [0,t_end], InitConds);
+[TimeCourse, SpeciesCourse] = ode45(fhandle, Time_span, InitConds);
 %--------------------------------------------------------------
 
 Species = GetSpecies(SBMLModel);
@@ -142,7 +165,7 @@ for i = 1:length(Species)
         if (j > 14)
             j = 1;
         end;
-        plot(t,x(:,i),Types{j});
+        plot(TimeCourse,SpeciesCourse(:,i),Types{j});
         hold on;
         j = j+1;
         PlottedSpecies{plotCount} = Species{i};
@@ -154,6 +177,57 @@ xlabel('time t');
 ylabel('amount');
 legend(PlottedSpecies, -1);
 
+%-------------------------------------------------------------------------
+% write output file
+if ((nargin > 3) && (varargin{4} == 1))
+     %------------------------------------------------------------
+
+    % get the character strings for each species name
+    [x, y, Speciesnames] = GetSpeciesSymbols(SBMLModel);
+
+
+    %---------------------------------------------------------------
+    % get the name/id of the model
+
+    Name = '';
+    if (SBMLModel.SBML_level == 1)
+        Name = SBMLModel.name;
+    else
+        if (isempty(SBMLModel.name))
+            Name = SBMLModel.id;
+        else
+            Name = SBMLModel.name;
+        end;
+    end;
+
+    fileName = strcat(Name, '.CSV');
+    %--------------------------------------------------------------------
+    % open the file for writing
+
+    fileID = fopen(fileName, 'w');
+
+    % write the header
+    fprintf(fileID,  'time');
+    for i = 1: length(Species)
+        fprintf(fileID, ',%s', Speciesnames{i});
+    end;
+    fprintf(fileID, '\n');
+    
+    % write each time course tep values
+    for i = 1:Number_points 
+        fprintf(fileID, '%0.5g', TimeCourse(i));
+        
+        for j = 1:length(Species)
+            fprintf(fileID, ',%1.16g', SpeciesCourse(i,j));
+        end;
+        fprintf(fileID, '\n');
+        
+    end;
+    
+    fclose(fileID);
+
+
+end;
 
 
 
