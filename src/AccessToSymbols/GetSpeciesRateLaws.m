@@ -143,14 +143,14 @@ for i = 1:NumSpecies
                         if ((SBMLModel.SBML_level == 2) && (~isempty(SBMLModel.reaction(j).product(SpeciesType(4)).stoichiometryMath)))
                             stoichiometry = charFormula2sym(SBMLModel.reaction(j).product(SpeciesType(4)).stoichiometryMath);
                         end;
-                        symOut = stoichiometry * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
+                        symOut = sym(stoichiometry) * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
                         NoProducts = NoProducts - 1;
                     elseif (NoReactants > 0)
                         stoichiometry = sym(SBMLModel.reaction(j).reactant(SpeciesType(5)).stoichiometry/double(SBMLModel.reaction(j).reactant(SpeciesType(5)).denominator));
                         if ((SBMLModel.SBML_level == 2) && (~isempty(SBMLModel.reaction(j).reactant(SpeciesType(5)).stoichiometryMath)))
                             stoichiometry = charFormula2sym(SBMLModel.reaction(j).reactant(SpeciesType(5)).stoichiometryMath);
                         end;
-                        symOut =  - stoichiometry * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
+                        symOut =  - sym(stoichiometry) * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
                         NoReactants = NoReactants - 1;
                     end;
 
@@ -161,14 +161,14 @@ for i = 1:NumSpecies
                         if ((SBMLModel.SBML_level == 2) && (~isempty(SBMLModel.reaction(j).product(SpeciesType(4)).stoichiometryMath)))
                             stoichiometry = charFormula2sym(SBMLModel.reaction(j).product(SpeciesType(4)).stoichiometryMath);
                         end;
-                       symOut = symOut + stoichiometry * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
+                       symOut = symOut + sym(stoichiometry) * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
                         NoProducts = NoProducts - 1;
                     elseif (NoReactants > 0) 
                         stoichiometry = sym(SBMLModel.reaction(j).reactant(SpeciesType(5)).stoichiometry/double(SBMLModel.reaction(j).reactant(SpeciesType(5)).denominator));
                         if ((SBMLModel.SBML_level == 2) && (~isempty(SBMLModel.reaction(j).reactant(SpeciesType(5)).stoichiometryMath)))
                             stoichiometry = charFormula2sym(SBMLModel.reaction(j).reactant(SpeciesType(5)).stoichiometryMath);
                         end;
-                        symOut = symOut - stoichiometry * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
+                        symOut = symOut - sym(stoichiometry) * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
                         NoReactants = NoReactants - 1;
                     end; 
                     
