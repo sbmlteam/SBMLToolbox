@@ -75,9 +75,9 @@ elseif (sbmlLevel ~= 2)
 end;
 
 SBMLSpecies.initialConcentration = initialConcentration;
-SBMLSpecies.isSetInitialConcentration = 1;
+SBMLSpecies.isSetInitialConcentration = int32(1);
 
 warning off all;
 SBMLSpecies.initialAmount = 0/0;
-SBMLSpecies.isSetInitialAmount = 0;
+SBMLSpecies.isSetInitialAmount = int32(0);
 warning on all;

@@ -71,4 +71,4 @@ if (~isSBML_Parameter(SBMLParameter, sbmlLevel))
 end;
 
 SBMLParameter.value = value;
-SBMLParameter.isSetValue = 1;
+SBMLParameter.isSetValue = int32(1);

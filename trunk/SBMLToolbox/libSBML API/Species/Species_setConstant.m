@@ -74,4 +74,4 @@ elseif (sbmlLevel ~= 2)
     error(sprintf('%s\n%s', 'Species_setConstant(SBMLSpecies, constant)', 'no constant field in a level 1 model'));    
 end;
 
-SBMLSpecies.constant = constant;
+SBMLSpecies.constant = int32(constant);

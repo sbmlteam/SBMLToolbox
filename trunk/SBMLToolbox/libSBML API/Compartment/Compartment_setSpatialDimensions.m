@@ -74,4 +74,4 @@ elseif (sbmlLevel ~= 2)
     error(sprintf('%s\n%s', 'Compartment_setSpatialDimensions(SBMLCompartment, spatialDimensions)', 'no spatialDimensions field in a level 1 model'));    
 end;
 
-SBMLCompartment.spatialDimensions = spatialDimensions;
+SBMLCompartment.spatialDimensions = int32(spatialDimensions);

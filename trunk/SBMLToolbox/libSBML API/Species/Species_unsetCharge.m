@@ -71,6 +71,6 @@ if (~isSBML_Species(SBMLSpecies, sbmlLevel))
 end;
 
 warning off all;
-SBMLSpecies.charge = 0;
-SBMLSpecies.isSetCharge = 0;
+SBMLSpecies.charge = int32(0);
+SBMLSpecies.isSetCharge = int32(0);
 warning on all;

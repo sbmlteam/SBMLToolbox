@@ -72,5 +72,5 @@ elseif (~isIntegralNumber(charge))
     error(sprintf('Species_setCharge(SBMLSpecies, charge)\n%s', 'second argument must be an integer representing the charge of the species'));
 end;
 
-SBMLSpecies.charge = charge;
-SBMLSpecies.isSetCharge = 1;
+SBMLSpecies.charge = int32(charge);
+SBMLSpecies.isSetCharge = int32(1);

@@ -72,4 +72,4 @@ elseif ((~isIntegralNumber(boundaryCondition)) || (boundaryCondition < 0) || (bo
     error(sprintf('Species_setBoundaryCondition(SBMLSpecies, boundaryCondition)\n%s', 'second argument must be either true (=1) or false (=0) representing whether the species is boundaryCondition'));
 end;
 
-SBMLSpecies.boundaryCondition = boundaryCondition;
+SBMLSpecies.boundaryCondition = int32(boundaryCondition);

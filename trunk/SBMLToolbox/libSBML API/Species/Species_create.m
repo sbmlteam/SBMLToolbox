@@ -75,10 +75,10 @@ end;
 warning off all;
 if (sbmlLevel == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name', 'compartment', 'initialAmount', 'units', 'boundaryCondition', 'charge', 'isSetInitialAmount', 'isSetCharge' };
-    Values = {'SBML_SPECIES', '', '', '', '', 0/0, '', int32(0), 0, int32(0), int32(0)};
+    Values = {'SBML_SPECIES', '', '', '', '', 0/0, '', int32(0), int32(0), int32(0), int32(0)};
 else
     SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name', 'id', 'compartment', 'initialAmount', 'initialConcentration', 'substanceUnits', 'spatialSizeUnits', 'hasOnlySubstanceUnits',  'boundaryCondition', 'charge', 'constant', 'isSetInitialAmount', 'isSetInitialConcentration', 'isSetCharge'  };
-    Values = {'SBML_SPECIES', '', '', '', '', '', 0/0, 0/0, '', '', int32(0),int32(0), 0, int32(0), int32(0), int32(0), int32(0)};
+    Values = {'SBML_SPECIES', '', '', '', '', '', 0/0, 0/0, '', '', int32(0),int32(0), int32(0), int32(0), int32(0), int32(0), int32(0)};
 end;
 
 Species = cell2struct(Values, SBMLfieldnames, 2);
