@@ -73,6 +73,11 @@
 %       2) an array of the values of each parameter
 %       3) an array of character names of the symbols
 % 
+% GetDegree
+%     takes a symbolic polynomial and a single symbol
+%   and returns 
+%       the degree of the symbol in the polynomial
+%
 % GetGlobalParameterSymbols 
 %     takes a SBMLModel 
 %   and returns 
