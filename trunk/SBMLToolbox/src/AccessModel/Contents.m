@@ -1,5 +1,103 @@
-% SBMLToolbox\AccessModel
+% toolbox\AccessModel
 %
+%  This directory contains functions that allow the user to
+%               derive information from a SBML Model
+%
+%   NOTE: Several functions listed here have been superceded by functions
+%   named in line with libSBML and thus will not be in the Full release
+% 
+% CheckValues 
+%       takes an SBMLModel
+%           provides a GUI that allows the user to view and/or edit the values
+%           for the initial concentration of species and parameter values
+%       and returns
+%           1) an array of values for the initial concentration of the species
+%           2) an array of values for the parameters
+%
+% DetermineSpeciesRoleInReaction
+%       takes a SBML species and  reaction
+%       and determines where the species takes part in the reaction
+%
+%
+% GetAllParameters 
+%       takes a SBMLModel 
+%       and returns 
+%           1) an array of character names representing all parameters (both global and embedded) within the model 
+%           2) an array of the values of each parameter
+%
+% GetAllParametersUnique 
+%       takes a SBMLModel 
+%       and returns 
+%           1) an array of character names representing all parameters (both global and embedded) within the model 
+%               (with reaction names appended)
+%           2) an array of the values of each parameter
+%
+% GetGlobalParameters 
+%       takes a SBMLModel 
+%       and returns 
+%           1) an array of character names representing all global parameters within the model 
+%           2) an array of the values of each parameter
+%
+% GetParameterFromReaction 
+%       takes a SBMLReaction 
+%       and returns 
+%           1) an array of character names representing all parameters defined 
+%               within the kinetic law of the reaction 
+%           2) an array of the values of each parameter
+%
+% GetParameterFromReactionUnique
+%       takes a SBMLReaction 
+%       and returns 
+%           1) an array of character names representing all parameters defined 
+%               within the kinetic law of the reaction 
+%               (with reaction names appended)
+%           2) an array of the values of each parameter
+%
+% GetRateLawsFromReactions 
+%       takes an SBMLModel 
+%       and returns
+%             1) an array of species names
+%             2) an array of the character representation of the rate laws
+%             for each species
+%
+% GetRateLawsFromRules 
+%       takes an SBMLModel 
+%       and returns
+%             1) an array of species names
+%             2) an array of the character representation of the rate laws
+%             for each species from rules
+%
+% GetSpecies 
+%       takes a SBMLModel 
+%       and returns 
+%           1) an array of character names of all species within the model 
+%           2) an array of the initial concentration values of each species
+%
+% GetSpeciesAlgebraicRules 
+%       takes an SBMLModel 
+%       and returns
+%             1) an array of species names
+%             2) an array of the character representation of each algebraic
+%             rule the species appears in
+%
+% GetSpeciesAssignmentRules 
+%       takes an SBMLModel 
+%       and returns
+%             1) an array of species names
+%             2) an array of the character representation of the
+%             concentration for each species assigned by rules
+%
+% GetStoichiometryMatrix 
+%       takes an SBML model 
+%       and returns 
+%           1) stoichiometry matrix
+%           2) an array of character names of all species within the model 
+%
+% IsSpeciesInReaction
+%       takes an SBML species and  reaction
+%       and determines where the species takes part in the reaction
+
+
 %  Filename    : Contents.m
 %  Description : This directory contains functions that allow the user to
 %               derive information from a SBML Model
@@ -115,5 +213,3 @@
 %           equilibrium if no time limit supplied
 %       and returns
 %           1) amount of each species at the time limit/equilibrium
-
-%   CheckValues                    - Filename    : CheckValues.m

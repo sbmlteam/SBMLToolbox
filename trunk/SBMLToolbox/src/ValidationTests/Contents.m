@@ -1,8 +1,8 @@
-% SBMLToolbox\ValidationTests
+% toolbox\Validate_MATLAB_SBML_Structures
 % 
 % isSBML_XXX(SBMLStructure, Level)
-% Functions that return TRUE if SBMLStructure is a structure of type XXX
-% FALSE if SBMLStructure is 
+% Functions that return TRUE(1) if SBMLStructure is a structure of type XXX
+% FALSE (0) if SBMLStructure is 
 %                           NOT a structure
 %                    OR     does not contain the appropriate fields to be of
 %                           type XXX and Level of SBML

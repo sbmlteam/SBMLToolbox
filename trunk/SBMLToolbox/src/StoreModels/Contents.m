@@ -1,4 +1,49 @@
-% SBMLToolbox\StoreModels
+% toolbox\StoreModels
+%
+% This directory contains functions to save and load SBML models
+%   from the data file SBML_Models.mat
+%   and functions to browse the data file
+%
+%
+% FUNCTIONS INCLUDE:
+%
+%   SaveSBMLModel(Model) 
+%       checks that the structure supplied is of the correct form
+%       creates "SBML_Models.mat" if the file does not already exist
+%       write the model to the data file as the next element
+%
+%   LoadSBMLModel(input, level) 
+%       returns a model from "SBML_Models.mat" where
+%       input can be an integer relating to the number of the model within the data file
+%       or the Name field of the model requested
+%       and level is the SBML level (either 1 or 2)
+%
+%   ListSBMLModels 
+%       returns a list of the saved models with index, level and names
+%
+%   DeleteSBMLModel(input, level) 
+%       deletes a model from "SBML_Models.mat" where
+%       input can be an integer relating to the number of the model within the data file
+%       or the Name field of the model requested 
+%       and level is the SBML level (either 1 or 2)
+%
+%   ViewModel(Model) 
+%       raises a GUI that illustrate the SBML model 'Model'
+%
+%   BrowseSBML_Models 
+%       calls BrowseModels which enables a GUI that browses the Matlab data file SBML_Models.dat
+%       If an output argument is specified then a model can be loaded from the data file 
+%       This GUI also allows models to be deleted from the data file 
+%
+%   BrowseModels(number) 
+%       raises a GUI that browses the data file SBML_Models.dat
+%       called from BrowseSBML_Models
+%
+%   AlreadyExists
+%       raises a modal GUI that prompts user for overwrite permission for a
+%       model name that already exists within the SBML_Models data file
+
+
 %
 %  Description : This is the directory for the functions  
 %				 to save sbml models in MATLAB 
@@ -49,45 +94,3 @@
 %
 %  Contributor(s):
 %
-% This directory contains functions to browse and save SBML models
-%
-%
-% FUNCTIONS INCLUDE:
-%
-%  SaveSBMLModel(Model) 
-%           checks that the structure supplied is of the correct form
-%           creates "SBML_Models.mat" if the file does not already exist
-%           write the model to the data file as the next element
-%
-%  LoadSBMLModel(input, level) 
-%       returns a model from "SBML_Models.mat" where
-%       input can be an integer relating to the number of the model within the data file
-%       or the Name field of the model requested
-%       and level is the SBML level (either 1 or 2)
-%
-%  ListSBMLModels 
-%       returns a list of the saved models with index, level and names
-%
-%  DeleteSBMLModel(input, level) 
-%       deletes a model from "SBML_Models.mat" where
-%       input can be an integer relating to the number of the model within the data file
-%       or the Name field of the model requested 
-%       and level is the SBML level (either 1 or 2)
-%
-%  ViewModel(Model) 
-%       raises a GUI that illustrate the SBML model 'Model'
-%
-%  BrowseSBML_Models 
-%       calls BrowseModels which enables a GUI that browses the Matlab data file SBML_Models.dat
-%       If an output argument is specified then a model can be loaded from the data file 
-%       This GUI also allows models to be deleted from the data file 
-%
-% BrowseModels(number) 
-%       raises a GUI that browses the data file SBML_Models.dat
-%       called from BrowseSBML_Models
-%
-%  AlreadyExists
-%       raises a modal GUI that prompts user for overwrite permission for a
-%       model name that already exists within the SBML_Models data file
-
-
