@@ -1,4 +1,26 @@
 function y = isSBML_UnitDefinition(SBMLStructure, Level)
+% isSBML_UnitDefinition(SBMLStructure, Level) checks that SBMLStructure represents a unit definition 
+% within an sbml model od specified level
+% 
+% if SBMLStructure represents a unit definition within an SBML model
+% it has the appropriate fields 
+% eg    Typecode
+%       Notes
+%       Annotations
+%       Name
+%       Id (2)
+%       ListUnit
+%
+% NOTE number in brackets indicates field is appropriate for that level of
+% sbml only
+%
+% Returns 1 if SBMLStructure is a structure containing each of the above
+% fields and the typecode is "SBML_UNIT_DEFINITION"
+% 
+% Returns 0 if SBMLStructure is not a structure 
+% or does not contain one of the above fields
+% or the typecode is not "SBML_UNIT_DEFINITION"
+
 %
 %  Filename    : isSBML_UnitDefinition.m
 %  Description : validates whether a MATLAB structure 
@@ -50,28 +72,6 @@ function y = isSBML_UnitDefinition(SBMLStructure, Level)
 %
 %  Contributor(s):
 %
-% isSBML_UnitDefinition(SBMLStructure, Level) checks that SBMLStructure represents a unit definition 
-% within an sbml model od specified level
-% 
-% if SBMLStructure represents a unit definition within an SBML model
-% it has the appropriate fields 
-% eg    Typecode
-%       Notes
-%       Annotations
-%       Name
-%       Id (2)
-%       ListUnit
-%
-% NOTE number in brackets indicates field is appropriate for that level of
-% sbml only
-%
-% Returns 1 if SBMLStructure is a structure containing each of the above
-% fields and the typecode is "SBML_UNIT_DEFINITION"
-% 
-% Returns 0 if SBMLStructure is not a structure 
-% or does not contain one of the above fields
-% or the typecode is not "SBML_UNIT_DEFINITION"
-
 if (Level == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'unit'};
     nNumberFields = 5;

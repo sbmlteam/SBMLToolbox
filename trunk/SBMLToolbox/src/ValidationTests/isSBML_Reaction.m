@@ -1,4 +1,32 @@
 function y = isSBML_Reaction(SBMLStructure, Level)
+% isSBML_Reaction(SBMLStructure) checks that SBMLStructure represents a reaction 
+% within an sbml model of the specified level
+% 
+% if SBMLStructure represents a reaction within an SBML model
+% it has the appropriate fields 
+% eg    Typecode
+%       Notes
+%       Annotations
+%       Name
+%       Id (2)
+%       ListReactants
+%       ListProducts
+%       ListModifiers (2)
+%       KineticLaw
+%       Reversible
+%       Fast
+%       isSetFast (2)
+%
+% NOTE number in brackets indicates field is appropriate for that level of
+% sbml only
+%
+% Returns 1 if SBMLStructure is a structure containing each of the above
+% fields and the typecode is "SBML_REACTION"
+% 
+% Returns 0 if SBMLStructure is not a structure 
+% or does not contain one of the above fields
+% or the typecode is not "SBML_REACTION"
+
 %
 %  Filename    : isSBML_Reaction.m
 %  Description : validates whether a MATLAB structure 
@@ -50,34 +78,6 @@ function y = isSBML_Reaction(SBMLStructure, Level)
 %
 %  Contributor(s):
 %
-% isSBML_Reaction(SBMLStructure) checks that SBMLStructure represents a reaction 
-% within an sbml model of the specified level
-% 
-% if SBMLStructure represents a reaction within an SBML model
-% it has the appropriate fields 
-% eg    Typecode
-%       Notes
-%       Annotations
-%       Name
-%       Id (2)
-%       ListReactants
-%       ListProducts
-%       ListModifiers (2)
-%       KineticLaw
-%       Reversible
-%       Fast
-%       isSetFast (2)
-%
-% NOTE number in brackets indicates field is appropriate for that level of
-% sbml only
-%
-% Returns 1 if SBMLStructure is a structure containing each of the above
-% fields and the typecode is "SBML_REACTION"
-% 
-% Returns 0 if SBMLStructure is not a structure 
-% or does not contain one of the above fields
-% or the typecode is not "SBML_REACTION"
-
 if (Level == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'reactant', 'product', 'kineticLaw', 'reversible', 'fast'};
     nNumberFields = 9;

@@ -1,4 +1,26 @@
 function y = isSBML_FunctionDefinition(SBMLStructure, Level)
+% isSBML_FunctionDefinition(SBMLStructure, Level) checks that SBMLStructure represents a function definition 
+% within an sbml model of specified level
+% 
+% if SBMLStructure represents a function definition within an SBML model
+% it has the appropriate fields (ONLY IN LEVEL 2)
+% eg    Typecode (2)
+%       Notes (2)
+%       Annotations (2)
+%       Name (2)
+%       Id (2)
+%       MathFormula (2)
+%
+% NOTE number in brackets indicates field is appropriate for that level of
+% sbml only
+%
+% Returns 1 if SBMLStructure is a structure containing each of the above
+% fields and the typecode is "SBML_FUNCTION_DEFINITION"
+% 
+% Returns 0 if SBMLStructure is not a structure 
+% or does not contain one of the above fields
+% or the typecode is not "SBML_FUNCTION_DEFINITION"
+
 %
 %  Filename    : isSBML_FunctionDefinition.m
 %  Description : validates whether a MATLAB structure 
@@ -50,28 +72,6 @@ function y = isSBML_FunctionDefinition(SBMLStructure, Level)
 %
 %  Contributor(s):
 %
-% isSBML_FunctionDefinition(SBMLStructure, Level) checks that SBMLStructure represents a function definition 
-% within an sbml model of specified level
-% 
-% if SBMLStructure represents a function definition within an SBML model
-% it has the appropriate fields (ONLY IN LEVEL 2)
-% eg    Typecode (2)
-%       Notes (2)
-%       Annotations (2)
-%       Name (2)
-%       Id (2)
-%       MathFormula (2)
-%
-% NOTE number in brackets indicates field is appropriate for that level of
-% sbml only
-%
-% Returns 1 if SBMLStructure is a structure containing each of the above
-% fields and the typecode is "SBML_FUNCTION_DEFINITION"
-% 
-% Returns 0 if SBMLStructure is not a structure 
-% or does not contain one of the above fields
-% or the typecode is not "SBML_FUNCTION_DEFINITION"
-
 if (Level == 1)
     y = 0;
     return;

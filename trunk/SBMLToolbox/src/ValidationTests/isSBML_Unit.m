@@ -1,4 +1,28 @@
 function y = isSBML_Unit(SBMLStructure, Level)
+% isSBML_Unit(SBMLStructure, Level) checks that SBMLStructure represents a unit 
+% within an sbml model of specified level
+% 
+% if SBMLStructure represents a unit within an SBML model
+% it has the appropriate fields 
+% eg    Typecode
+%       Notes
+%       Annotations
+%       Kind
+%       Exponent
+%       Scale
+%       Multiplier (2)
+%       Offset (2)
+%
+% NOTE number in brackets indicates field is appropriate for that level of
+% sbml only
+%
+% Returns 1 if SBMLStructure is a structure containing each of the above
+% fields and the typecode is "SBML_UNIT"
+% 
+% Returns 0 if SBMLStructure is not a structure 
+% or does not contain one of the above fields
+% or the typecode is not "SBML_UNIT"
+
 %
 %  Filename    : isSBML_Unit.m
 %  Description : validates whether a MATLAB structure 
@@ -49,32 +73,7 @@ function y = isSBML_Unit(SBMLStructure, Level)
 %      mailto:sbml-team@caltech.edu
 %
 %  Contributor(s):
-%
-% isSBML_Unit(SBMLStructure, Level) checks that SBMLStructure represents a unit 
-% within an sbml model of specified level
-% 
-% if SBMLStructure represents a unit within an SBML model
-% it has the appropriate fields 
-% eg    Typecode
-%       Notes
-%       Annotations
-%       Kind
-%       Exponent
-%       Scale
-%       Multiplier (2)
-%       Offset (2)
-%
-% NOTE number in brackets indicates field is appropriate for that level of
-% sbml only
-%
-% Returns 1 if SBMLStructure is a structure containing each of the above
-% fields and the typecode is "SBML_UNIT"
-% 
-% Returns 0 if SBMLStructure is not a structure 
-% or does not contain one of the above fields
-% or the typecode is not "SBML_UNIT"
-
-if (Level == 1)
+%if (Level == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation','kind', 'exponent', 'scale'};
     nNumberFields = 6;
 else

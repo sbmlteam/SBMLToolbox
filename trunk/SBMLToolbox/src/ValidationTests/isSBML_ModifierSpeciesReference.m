@@ -1,4 +1,24 @@
 function y = isSBML_ModifierSpeciesReference(SBMLStructure, Level)
+% isSBML_ModifierSpeciesReference(SBMLStructure, Level) checks that SBMLStructure represents a modifier species reference 
+% within an sbml model of the specified level
+% 
+% if SBMLStructure represents a modifier species reference within an SBML model
+% it has the appropriate fields (ONLY IN LEVEL 2)
+% eg    Typecode (2)
+%       Notes (2)
+%       Annotations (2)
+%       Species (2)
+%
+% NOTE number in brackets indicates field is appropriate for that level of
+% sbml only
+%
+% Returns 1 if SBMLStructure is a structure containing each of the above
+% fields and the typecode is "SBML_MODIFIER_SPECIES_REFERENCE"
+% 
+% Returns 0 if SBMLStructure is not a structure 
+% or does not contain one of the above fields
+% or the typecode is not "SBML_MODIFIER_SPECIES_REFERENCE"
+
 %
 %  Filename    : isSBML_ModifierSpeciesReference.m
 %  Description : validates whether a MATLAB structure 
@@ -49,28 +69,7 @@ function y = isSBML_ModifierSpeciesReference(SBMLStructure, Level)
 %      mailto:sbml-team@caltech.edu
 %
 %  Contributor(s):
-%
-% isSBML_ModifierSpeciesReference(SBMLStructure, Level) checks that SBMLStructure represents a modifier species reference 
-% within an sbml model of the specified level
-% 
-% if SBMLStructure represents a modifier species reference within an SBML model
-% it has the appropriate fields (ONLY IN LEVEL 2)
-% eg    Typecode (2)
-%       Notes (2)
-%       Annotations (2)
-%       Species (2)
-%
-% NOTE number in brackets indicates field is appropriate for that level of
-% sbml only
-%
-% Returns 1 if SBMLStructure is a structure containing each of the above
-% fields and the typecode is "SBML_MODIFIER_SPECIES_REFERENCE"
-% 
-% Returns 0 if SBMLStructure is not a structure 
-% or does not contain one of the above fields
-% or the typecode is not "SBML_MODIFIER_SPECIES_REFERENCE"
-
-if (Level == 1)
+%if (Level == 1)
     y = 0;
     return;
 else

@@ -1,4 +1,28 @@
 function y = isSBML_KineticLaw(SBMLStructure, Level)
+% isSBML_KineticLaw(SBMLStructure, Level) checks that SBMLStructure represents a kinetic law 
+% within an sbml model of the specified level
+% 
+% if SBMLStructure represents a kinetic law within an SBML model
+% it has the appropriate fields 
+% eg    Typecode
+%       Notes
+%       Annotations
+%       Formula
+%       Math (2)
+%       ListParameter
+%       TimeUnits
+%       SubstanceUnits
+%
+% NOTE number in brackets indicates field is appropriate for that level of
+% sbml only
+%
+% Returns 1 if SBMLStructure is a structure containing each of the above
+% fields and the typecode is "SBML_KINETIC_LAW"
+% 
+% Returns 0 if SBMLStructure is not a structure 
+% or does not contain one of the above fields
+% or the typecode is not "SBML_KINETIC_LAW"
+
 %
 %  Filename    : isSBML_KineticLaw.m
 %  Description : validates whether a MATLAB structure 
@@ -50,30 +74,6 @@ function y = isSBML_KineticLaw(SBMLStructure, Level)
 %
 %  Contributor(s):
 %
-% isSBML_KineticLaw(SBMLStructure, Level) checks that SBMLStructure represents a kinetic law 
-% within an sbml model of the specified level
-% 
-% if SBMLStructure represents a kinetic law within an SBML model
-% it has the appropriate fields 
-% eg    Typecode
-%       Notes
-%       Annotations
-%       Formula
-%       Math (2)
-%       ListParameter
-%       TimeUnits
-%       SubstanceUnits
-%
-% NOTE number in brackets indicates field is appropriate for that level of
-% sbml only
-%
-% Returns 1 if SBMLStructure is a structure containing each of the above
-% fields and the typecode is "SBML_KINETIC_LAW"
-% 
-% Returns 0 if SBMLStructure is not a structure 
-% or does not contain one of the above fields
-% or the typecode is not "SBML_KINETIC_LAW"
-
 if (Level == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation','formula', 'parameter', 'timeUnits', 'substanceUnits'};
     nNumberFields = 7;
