@@ -21,4 +21,4 @@ elseif (~isSBML_KineticLaw(SBMLKineticLaw, sbmlLevel))
     error(sprintf('Reaction_setKineticLaw(SBMLReaction, kineticLaw)\n%s\nof the same level, namely level %u', 'second argument must be an SBML KineticLaw structure', sbmlLevel));
 end;
 
-SBMLReaction.kineticLaw = kineticLaw;
+SBMLReaction.kineticLaw = SBMLKineticLaw;
