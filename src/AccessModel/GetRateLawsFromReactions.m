@@ -1,4 +1,4 @@
-function [Species, RateLaws] = GetRateLawsFromReactions(SBMLModel)
+function [Species, RateLaws] = GetRateLawsFromReactionsA(SBMLModel)
 % GetRateLawsFromReactions takes an SBMLModel 
 % and returns
 %             1) an array of species names
@@ -93,16 +93,15 @@ for i = 1:NumberSpecies
         %determine which reactions it occurs within
         for j = 1:NumReactions
 
-            SpeciesType = IsSpeciesInReaction(SBMLModel.species(i), SBMLModel.reaction(j));
+            SpeciesType = DetermineSpeciesRoleInReaction(SBMLModel.species(i), SBMLModel.reaction(j));
 
             % record numbers of occurences of species as reactant/product
             % and check that we can deal with reaction
-            if (SpeciesType(1)>0)
+            if (sum(SpeciesType)>0)
 
-                NoModifiers = length(SpeciesType);
                 NoReactants = SpeciesType(2);
-                NoProducts =  SpeciesType(3+NoReactants);
-                SavedNoReactants = SpeciesType(2);
+                NoProducts =  SpeciesType(1);
+                TotalOccurences = NoReactants + NoProducts; 
 
                 %--------------------------------------------------------------
                 % check that a species does not occur twice on one side of the
@@ -122,7 +121,7 @@ for i = 1:NumberSpecies
             end;
 
             % species has been found in this reaction
-            while (SpeciesType(1) > 0) %
+            while (TotalOccurences > 0) %
 
                 % add the kinetic law to the output for this species
 
@@ -143,14 +142,21 @@ for i = 1:NumberSpecies
                     end;
 
 
-
+                    % put in stoichiometry
+                    stoichiometry = SBMLModel.reaction(j).product(SpeciesType(4)).stoichiometry/double(SBMLModel.reaction(j).product(SpeciesType(4)).denominator);
+                    if ((SBMLModel.SBML_level == 2) && (~isempty(SBMLModel.reaction(j).product(SpeciesType(4)).stoichiometryMath)))
+                         output = sprintf('%s + (%s) * (%s)', output, SBMLModel.reaction(j).product(SpeciesType(4)).stoichiometryMath, formula);
+                   
+                    else
                     % if stoichiometry = 1 no need to include it in formula
-                    if (SpeciesType(3+SavedNoReactants+1) == 1)
+                    if (stoichiometry == 1)
                         output = sprintf('%s + (%s)', output, formula);
                     else
-                        output = sprintf('%s + %u * (%s)', output, SpeciesType(3+SavedNoReactants+1), formula);
+                        output = sprintf('%s + %u * (%s)', output, stoichiometry, formula);
                     end;
 
+                         
+                    end;
                     NoProducts = NoProducts - 1;
 
                 elseif (NoReactants > 0)
@@ -169,11 +175,20 @@ for i = 1:NumberSpecies
                     end;
 
 
+                    % put in stoichiometry
+                    stoichiometry = SBMLModel.reaction(j).reactant(SpeciesType(5)).stoichiometry/double(SBMLModel.reaction(j).reactant(SpeciesType(5)).denominator);
+                    if ((SBMLModel.SBML_level == 2) && (~isempty(SBMLModel.reaction(j).reactant(SpeciesType(5)).stoichiometryMath)))
+                         output = sprintf('%s - (%s) * (%s)', output, SBMLModel.reaction(j).reactant(SpeciesType(5)).stoichiometryMath, formula);
+                   
+                    else
                     % if stoichiometry = 1 no need to include it in formula
-                    if (SpeciesType(3) == 1)
+                    if (stoichiometry == 1)
                         output = sprintf('%s - (%s)', output, formula);
                     else
-                        output = sprintf('%s - %u * (%s)', output, SpeciesType(3), formula);
+                        output = sprintf('%s - %u * (%s)', output, stoichiometry, formula);
+                    end;
+
+                         
                     end;
                     
                     NoReactants = NoReactants - 1;
@@ -182,7 +197,7 @@ for i = 1:NumberSpecies
                 
                 
                 
-                SpeciesType(1) = SpeciesType(1) - 1;
+                TotalOccurences = TotalOccurences - 1;
                 
             end; % while found > 0
             
