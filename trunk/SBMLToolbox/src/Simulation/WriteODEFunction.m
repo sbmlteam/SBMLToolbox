@@ -78,7 +78,7 @@ end;
 % -------------------------------------------------------------
 
 % get information from the model
-[ParameterNames, ParameterValues] = GetAllParameters(SBMLModel);
+[ParameterNames, ParameterValues] = GetAllParametersUnique(SBMLModel);
 [SpeciesNames, SpeciesValues] = GetSpecies(SBMLModel);
 NumberSpecies = length(SBMLModel.species);
 NumReactions = length(SBMLModel.reaction);
@@ -132,21 +132,46 @@ for i = 1:NumberSpecies
  
             if(NoProducts > 0) 
                 
-                % if stoichiometry = 1 no need to include it in formula
+                 % Deal with case where parameter is defined within the reaction
+                 % and thus the reaction name has been appended to the parameter
+                 % name in the list in case of repeated use of same name
+                 Param_Name = GetParameterFromReaction(SBMLModel.reaction(j));
+                 
+                 
+                 if (~isempty(Param_Name))
+                     ReviseParam_Name = GetParameterFromReactionUnique(SBMLModel.reaction(j));
+                 end;
+                 
+                 formula = SBMLModel.reaction(j).kineticLaw.formula;
+                 
+                 formula = Substitute(Param_Name, ReviseParam_Name, formula);
+                 
+              % if stoichiometry = 1 no need to include it in formula
                 if (SpeciesType(3+SavedNoReactants+1) == 1)
-                    output = sprintf('%s + %s', output, SBMLModel.reaction(j).kineticLaw.formula);
+                    output = sprintf('%s + %s', output, formula);
                 else
-                    output = sprintf('%s + %u * %s', output, SpeciesType(3+SavedNoReactants+1), SBMLModel.reaction(j).kineticLaw.formula);
+                    output = sprintf('%s + %u * %s', output, SpeciesType(3+SavedNoReactants+1), formula);
                 end;
                 
                  NoProducts = NoProducts - 1;
                  
              elseif (NoReactants > 0) 
- % NEED TO DEAL WITH CASE WHERE KINETIC LAW LREADY HAS A MINUS SIGN    
-                % since any kinetic law here will be subtracted any
-                % existing minus signs must be replaced with plus
-                formula = regexprep(SBMLModel.reaction(j).kineticLaw.formula, '-', '+');
+                 % DEAL WITH CASE WHERE KINETIC LAW LREADY HAS A MINUS SIGN    
+                 % since any kinetic law here will be subtracted any
+                 % existing minus signs must be replaced with plus
+                 formula = regexprep(SBMLModel.reaction(j).kineticLaw.formula, '-', '+');
+ 
+                 % Deal with case where parameter is defined within the reaction
+                 % and thus the reaction name has been appended to the parameter
+                 % name in the list in case of repeated use of same name
+                 Param_Name = GetParameterFromReaction(SBMLModel.reaction(j));
                 
+                 if (~isempty(Param_Name))
+                     ReviseParam_Name = GetParameterFromReactionUnique(SBMLModel.reaction(j));
+                 end;
+                 
+                 formula = Substitute(Param_Name, ReviseParam_Name, formula);
+             
                  % if stoichiometry = 1 no need to include it in formula
                  if (SpeciesType(3) == 1)
                      output = sprintf('%s - %s', output, formula);
@@ -158,6 +183,7 @@ for i = 1:NumberSpecies
                  
             end; 
 
+            
             
             SpeciesType(1) = SpeciesType(1) - 1;
             
@@ -266,3 +292,126 @@ end;
 fprintf(fileID, '\nend;\n');
 
 fclose(fileID);
+
+%--------------------------------------------------------------------------
+
+function y = Substitute(InitialCharArray, ReplacementParams, Formula)
+
+% get the number of parameters to be replced
+NumberParams = length(InitialCharArray);
+
+
+% want these in order of shortest to longest
+% since shorter my be subsets of longer 
+% ie.  'alpha'  is a subset of 'alpha1'
+
+% determine length of each parameter
+for i = 1:NumberParams
+    NoCharsInParam(i) = length(InitialCharArray{i});
+end;
+
+% create an array of the index of the shortest to longest
+[NoCharsInParam, Index] = sort(NoCharsInParam);
+
+% rewrite the arrays of parameters from shortest to longest
+for i = 1:NumberParams
+    OrderedCharArray{i} = InitialCharArray{Index(i)};
+    OrderedReplacements{i} = ReplacementParams{Index(i)};
+end;
+
+% determine that occurences of each Initial parameter in the formula
+for i = 1:NumberParams
+    Hits{i} = strfind(Formula, OrderedCharArray{i});
+end;
+
+
+for i = 1:NumberParams
+    
+    for j = 1:length(Hits{i})
+        
+        % check whether a member of later arrays
+        % if so it is a subset ignore
+        for k = i+1:NumberParams
+            if (ismember(Hits{i}(j), Hits{k}))
+                Hits{i}(j) = 0;
+            else 
+                for s = 1:length(Hits{k})
+                    if ((Hits{i}(j) > Hits{k}(s)) && (Hits{i}(j) < Hits{k}(s) + NoCharsInParam(k)))
+                        Hits{i}(j) = 0;
+                    end;
+                end;
+            end;
+        end;
+    end;
+end;
+
+% determine the number of occurences of each parameter
+
+ for i = 1:NumberParams
+     Number(i) = length(find(Hits{i}~=0));
+ end;
+ 
+% create an index of the starting points
+Index = {};
+for i = 1:NumberParams
+    
+    TempIndex = [];
+    for k = 1:length(Hits{i})
+        if (Hits{i}(k) ~= 0)
+            TempIndex = [TempIndex Hits{i}(k)];
+        end;
+    end;
+     Index{i} = TempIndex;
+end;
+
+% replace the parameters in the formula starting with the shortest 
+
+RevisedFormula = Formula;
+
+for i = 1:NumberParams
+    
+    for k = 1:Number(i)
+        
+        % declare temporary
+        NewFormula = '';
+        Remainder = '';
+        
+        % get current length of formula
+        CurrentLength = length(RevisedFormula);
+    
+        % copy from beginning of formula to point before parameter
+        for j = 1:Index{i}(k)-1
+            NewFormula(j) = RevisedFormula(j);
+        end;
+    
+        % add the new parameter name
+        NewFormula = strcat(NewFormula, char(OrderedReplacements{i}));
+    
+        % determine the limit of the remaining formula
+        Limit = CurrentLength - NoCharsInParam(i)-Index{i}(k) + 1;
+        
+        % write formula after occurence of parameter and add to new formula
+        for j = 1:Limit
+            OldIndex = j + Index{i}(k) + NoCharsInParam(i) - 1;
+            Remainder(j) = RevisedFormula(OldIndex);
+        end;
+        
+        NewFormula = strcat(NewFormula, Remainder);
+        
+        % update index
+        % length of formula has changed so locations have changed
+        for j = i:NumberParams
+            for s = 1:length(Index{j})
+                if (Index{j}(s) > Index{i}(k))
+                    Index{j}(s) = Index{j}(s) + length(OrderedReplacements{i}) - NoCharsInParam(i);
+                end;
+            end;
+        end;
+        
+        RevisedFormula = '';
+        RevisedFormula = NewFormula;
+    end;
+    
+end;
+
+y = RevisedFormula;
