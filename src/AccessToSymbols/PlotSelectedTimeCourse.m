@@ -1,4 +1,11 @@
 function varargout = PlotSelectedTimeCourse(varargin)
+% PlotSelectedTimeCourse takes a SBMLModel 
+% and plots the time course of user selected species to equilibrium
+% second argument can be the time limit to which to plot
+% third argument can be the number of time steps that will be plotted
+% possible output is the concentration of each species at the time limit
+%--------------------------------------------------------------------------
+
 %
 %  Filename    : PlotSelectedTimeCourse.m
 %  Description : takes a SBMLModel and optionally a time limit
@@ -51,12 +58,6 @@ function varargout = PlotSelectedTimeCourse(varargin)
 %  Contributor(s):
 %
 %
-% PlotSelectedTimeCourse takes a SBMLModel 
-% and plots the time course of user selected species to equilibrium
-% second argument can be the time limit to which to plot
-% third argument can be the number of time steps that will be plotted
-% possible output is the concentration of each species at the time limit
-%--------------------------------------------------------------------------
 
 % must be at least one input
 if (nargin < 1)

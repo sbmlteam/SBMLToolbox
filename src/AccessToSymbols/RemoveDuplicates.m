@@ -1,4 +1,6 @@
 function y = RemoveDuplicates(FullArray)
+% RemoveDuplicates takes any array and returns it with any duplicates removed
+
 %
 %  Filename    : RemoveDuplicates.m
 %  Description : takes any array and returns it with any duplicates removed
@@ -49,7 +51,6 @@ function y = RemoveDuplicates(FullArray)
 %
 %  Contributor(s):
 %
-% RemoveDuplicates takes any array and returns it with any duplicates removed
 
 % check whether array is a column vector
 [size_x, size_y] = size(FullArray);

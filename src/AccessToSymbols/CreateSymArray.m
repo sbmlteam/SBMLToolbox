@@ -1,4 +1,12 @@
 function y = CreateSymArray(Input)
+% CreateSymArray(Input) takes any symbolic expression or set of symbolic expressions
+% and returns an array of the single symbolic expressions found in the input 
+%
+%----------------------------------------------------------------
+% EXAMPLE: CreateSymArray(a1^2*bd*c^3)
+%           =   [a1, bd, c]
+%----------------------------------------------------------------
+
 %
 %  Filename    : CreateSymArray.m
 %  Description : takes any symbolic expression or set of symbolic expressions
@@ -50,13 +58,6 @@ function y = CreateSymArray(Input)
 %
 %  Contributor(s):
 %
-% CreateSymArray(Input) takes any symbolic expression or set of symbolic expressions
-% and returns an array of the single symbolic expressions found in the input 
-%
-%----------------------------------------------------------------
-% EXAMPLE: CreateSymArray(a1^2*bd*c^3)
-%           =   [a1, bd, c]
-%----------------------------------------------------------------
 
 if (isempty(Input))
     y = [];

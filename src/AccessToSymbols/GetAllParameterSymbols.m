@@ -1,4 +1,13 @@
 function varargout = GetAllParameterSymbols(SBMLModel)
+% GetAllParameterSymbols takes a SBMLModel 
+% and returns 
+%           1) an array of symbols representing all parameters (both global and embedded) within the model 
+%           2) an array of the values of each parameter
+%           3) an array of character names of the symbols
+%
+% NOTE: if the values are not set then the value -1 is used
+%--------------------------------------------------------------------------
+
 %
 %  Filename    : GetAllParameterSymbols.m
 %  Description : % GetAllParameterSymbols takes a SBMLModel 
@@ -52,14 +61,6 @@ function varargout = GetAllParameterSymbols(SBMLModel)
 %
 %  Contributor(s):
 %
-% GetAllParameterSymbols takes a SBMLModel 
-% and returns 
-%           1) an array of symbols representing all parameters (both global and embedded) within the model 
-%           2) an array of the values of each parameter
-%           3) an array of character names of the symbols
-%
-% NOTE: if the values are not set then the value -1 is used
-%--------------------------------------------------------------------------
 
 % check input is an SBML model
 if (~isSBML_Model(SBMLModel))
