@@ -24,12 +24,15 @@ end;
 if (sbmlLevel == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation', 'formula', 'parameter', 'timeUnits', 'substanceUnits'};
     Values = {'SBML_KINETIC_LAW', '', '', '', [], '', ''};
+    parameter = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'name', {}, 'value', {}, 'units', {}, 'isSetValue', {});
 else
     SBMLfieldnames = {'typecode', 'notes', 'annotation', 'formula', 'math', 'parameter', 'timeUnits', 'substanceUnits'};
     Values = {'SBML_KINETIC_LAW', '', '', '', '', [], '', ''};
+    parameter = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'name', {}, 'id', {}, 'value', {}, 'units', {}, 'constant', {}, 'isSetValue', {});
 end;
 
 KineticLaw = cell2struct(Values, SBMLfieldnames, 2);
+KineticLaw = setfield(KineticLaw, 'parameter', parameter);
 
 %check created structure is appropriate
 if (~isSBML_KineticLaw(KineticLaw, sbmlLevel))

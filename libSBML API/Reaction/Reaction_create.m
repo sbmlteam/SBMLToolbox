@@ -25,12 +25,33 @@ warning off all;
 if (sbmlLevel == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name', 'reactant', 'product', 'kineticLaw', 'reversible', 'fast' };
     Values = {'SBML_REACTION', '', '', '', [], [], [], int32(0),  int32(0)};
+    reactant = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'species', {}, 'stoichiometry', {}, 'denominator', {});
+    product = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'species', {}, 'stoichiometry', {}, 'denominator', {});
 else
     SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name', 'id', 'reactant', 'product', 'modifier', 'kineticLaw', 'reversible', 'fast', 'IsSetFast' };
     Values = {'SBML_REACTION', '', '', '', '', [], [], [], [], int32(0),  int32(-1), int32(0)};
+    reactant = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'species', {}, 'stoichiometry', {}, 'denominator', {}, 'stoichiometryMath', {});
+    product = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'species', {}, 'stoichiometry', {}, 'denominator', {}), 'stoichiometryMath', {};
+    modifier = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'species', {});
 end;
 
 Reaction = cell2struct(Values, SBMLfieldnames, 2);
+Reaction = setfield(Reaction, 'product', product);
+Reaction = setfield(Reaction, 'reactant', reactant);
+if (sbmlLevel == 2)
+    Reaction = setfield(Reaction, 'modifier', modifier);
+end;
+if (sbmlLevel == 1)
+    parameter = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'name', {}, 'value', {}, 'units', {}, 'isSetValue', {});
+    kineticLaw = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'formula', {}, 'parameter', parameter, 'timeUnits', {}, 'substanceUnits', {});
+else
+    parameter = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'name', {}, 'id', {}, 'value', {}, 'units', {}, 'constant', {}, 'isSetValue', {});
+    kineticLaw = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'formula', {}, 'math', {}, 'parameter', parameter, 'timeUnits', {}, 'substanceUnits', {});
+end;
+
+% kineticLaw = setfield(kineticLaw, 'parameter', parameter);
+Reaction = setfield(Reaction, 'kineticLaw', kineticLaw);
+
 warning on all;
 
 %check created structure is appropriate
