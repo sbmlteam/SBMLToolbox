@@ -108,6 +108,9 @@ fprintf(fileID, '%%\n');
 
 fprintf(fileID, '\n');
 
+fprintf(fileID, '\n%%--------------------------------------------------------\n');
+fprintf(fileID, '%% constant for use with < or >\neps = 1e-10;\n\n');
+
 % write the parameter values
 fprintf(fileID, '\n%%--------------------------------------------------------\n');
 fprintf(fileID, '%% parameter values\n\n');
@@ -127,18 +130,170 @@ end;
 fprintf(fileID, '\n%%--------------------------------------------------------\n');
 fprintf(fileID, '%% events - point at which value will return 0\n\n');
 
-% need to do something with this 
+dirs = [];
+fprintf(fileID, 'value = [');
 for i = 1:length(SBMLModel.event)
-    fprintf(fileID, 'value = ~%s;\n', SBMLModel.event(i).trigger);
+    [Funcs, directions] = ParseTriggerFunction(SBMLModel.event(i).trigger);
+    for j = 1:length(Funcs)
+        if ((i > 1) || (j > 1))
+            fprintf(fileID, ', %s', Funcs{j});
+        else
+            fprintf(fileID, '%s', Funcs{j});
+        end;
+    end;
+    dirs = [dirs,directions];
 end;
+fprintf(fileID, '];\n');
+
 
 fprintf(fileID, '\n%%stop integration\n');
-fprintf(fileID, 'isterminal = 1;\n\n');
+fprintf(fileID, 'isterminal = [1');
+for i = 2:length(dirs)
+    fprintf(fileID, ', 1');
+end;
+fprintf(fileID, '];\n\n');
 
 % this may depend on  model
 fprintf(fileID, '%%set direction at which event should be looked for\n');
-fprintf(fileID, 'direction = 0;\n\n');
+fprintf(fileID, 'direction = [%d', dirs(1));
+for i = 2:length(dirs)
+    fprintf(fileID, ', %d', dirs(i));
+end;
+fprintf(fileID, '];\n\n');
 
 
 fclose(fileID);
+
+%--------------------------------------------------------------------------
+% other functions
+
+function [FunctionStrings, direction] = ParseTriggerFunction(Trigger)
+
+Trigger = LoseLeadingWhiteSpace(Trigger);
+
+% trigger has the form function(function(variable,constant), function(v,c))
+% need to isolate each
+OpenBracket = strfind(Trigger, '(');
+CloseBracket = strfind(Trigger, ')');
+
+if (length(OpenBracket) == 1)
+    % no subfunctions
+    [FunctionStrings{1}, direction] = ParseTriggerSubFunction(Trigger);
+else
+    Func = Trigger(1:OpenBracket-1);
+
+    Comma = strfind(Trigger, ',');
+
+    if (length(OpenBracket) ~= length(Comma))
+        error('Cannot handle this function');
+    end;
+
+    [Func1, dir1] = ParseTriggerSubFunction(Trigger(OpenBracket(1)+1:Comma(2)-1));
+    [Func2, dir2] = ParseTriggerSubFunction(Trigger(Comma(2)+1:CloseBracket(2)));
+
+
+
+
+    switch (Func)
+        case 'and'
+            FunctionStrings{1} = sprintf('(%s) * (%s)',Func1, Func2);
+            direction = 0;
+        case 'or'
+            FunctionStrings{1} = Func1;
+            FunctionStrings{2} = Func2;
+            direction = [dir1, dir2];
+        otherwise
+            error('unrecognised function in trigger');
+    end;
+
+end;
+
+function [FunctionString, direction] = ParseTriggerSubFunction(Trigger)
+
+FunctionString = '';
+
+Trigger = LoseLeadingWhiteSpace(Trigger);
+
+% trigger has the form function(variable,constant)
+% need to isolate each
+Bracket = strfind(Trigger, '(');
+Func = Trigger(1:Bracket-1);
+
+Comma = strfind(Trigger, ',');
+Variable = Trigger(Bracket+1:Comma-1);
+
+Constant = Trigger(Comma+1:end-1);
+
+% create the approriate function
+
+switch (Func)
+    case 'lt'
+        FunctionString = sprintf('%s - %s + eps', Variable, Constant);
+        direction = -1;
+    case 'leq'
+        FunctionString = sprintf('%s - %s', Variable, Constant);
+        direction = -1;
+    case 'gt'
+        FunctionString = sprintf('%s - %s - eps', Constant, Variable );
+         direction = 1;
+   case 'geq'
+        FunctionString = sprintf('%s - %s', Constant, Variable );
+        direction = 1;
+    otherwise
+        error('unrecognised function in trigger');
+end;
+
+function y = LoseLeadingWhiteSpace(charArray)
+% LoseLeadingWhiteSpace(charArray) takes an array of characters
+% and returns the array with any leading white space removed
+%
+%----------------------------------------------------------------
+% EXAMPLE:
+%           y = LoseLeadingWhiteSpace('     example')
+%           y = 'example'
+%
+
+%------------------------------------------------------------
+% check input is an array of characters
+if (~ischar(charArray))
+    error('LoseLeadingWhiteSpace(input)\n%s', 'input must be an array of characters');
+end;
+
+%-------------------------------------------------------------
+% get the length of the array
+NoChars = length(charArray);
+
+%-------------------------------------------------------------
+% determine the number of leading spaces
+
+% create an array that indicates whether the elements of charArray are
+% spaces
+% e.g. WSpace = isspace('  v b') = [1, 1, 0, 1, 0]
+
+WSpace = isspace(charArray);
+
+%       find the indices of elements that are 0
+%       no spaces equals the index of the first zero minus 1
+% e.g. Zeros = find(WSpace == 0) = [3,5]
+%       NoSpaces = 2;
+
+Zeros = find(WSpace == 0);
+
+if (isempty(Zeros))
+    NoSpaces = 0;
+else
+    NoSpaces = Zeros(1)-1;
+end;
+
+%-----------------------------------------------------------
+% if there is leading white spaces rewrite the array to leave these out
+
+if (NoSpaces > 0)
+    for i = 1: NoChars-NoSpaces
+        y(i) = charArray(i+NoSpaces);
+    end;
+else
+    y = charArray;
+end;
+
 

@@ -165,22 +165,35 @@ if ((SBMLModel.SBML_level == 2) && (length(SBMLModel.event) ~= 0))
 
         [TimeCourseA, SpeciesCourseA] = ode45(fhandle, Time_span, InitConds, options);
 
+        % lose event time
+        if (TimeCourseA(end) ~= Time_span(end))
+            
+        TimeCourseA = TimeCourseA(1:length(TimeCourseA)-1);
+        for i = 1:length(SBMLModel.species)
+            SpeciesCourseB(:,i) = SpeciesCourseA(1:length(SpeciesCourseA)-1, i);
+            SpeciesValues(i) = SpeciesCourseA(length(SpeciesCourseA), i);
+        end;
+        else
+            SpeciesCourseB = SpeciesCourseA;
+        end;
+        
         % keep copy of calculations
         TimeCourse = [TimeCourse;TimeCourseA];
-        SpeciesCourse = [SpeciesCourse;SpeciesCourseA];
+        SpeciesCourse = [SpeciesCourse;SpeciesCourseB];
 
         % adjust the time span
-        Time_spanA = Time_span - TimeCourseA(length(TimeCourseA)-1);
-        Time_span_new = Time_spanA(find(Time_spanA==0): length(Time_spanA));
+        Time_spanA = Time_span - TimeCourseA(length(TimeCourseA));
+        Time_span_new = Time_spanA((find(Time_spanA==0)+1): length(Time_spanA));
         Time_span = [];
-        Time_span = Time_span_new + TimeCourseA(length(TimeCourseA)-1);
+        Time_span = Time_span_new + TimeCourseA(length(TimeCourseA));
 
         % get new initial conditions
-        InitConds = feval(AfterEventHandle, SpeciesCourseA);
+        InitConds = feval(AfterEventHandle, SpeciesValues);
 
 
         TimeCourseA = [];
         SpeciesCourseA = [];
+        SpeciesCourseB = [];
     end;
 else
     % if no events
@@ -261,7 +274,7 @@ if ((nargin > 3) && (varargin{4} == 1))
     fprintf(fileID, '\n');
     
     % write each time course tep values
-    for i = 1:Number_points 
+    for i = 1:length(TimeCourse) 
         fprintf(fileID, '%0.5g', TimeCourse(i));
         
         for j = 1:length(Species)
