@@ -74,4 +74,4 @@ elseif (sbmlLevel ~= 2)
     error(sprintf('%s\n%s', 'Species_setHasOnlySubstanceUnits(SBMLSpecies, hasOnlySubstanceUnits)', 'no hasOnlySubstanceUnits field in a level 1 model'));    
 end;
 
-SBMLSpecies.hasOnlySubstanceUnits = hasOnlySubstanceUnits;
+SBMLSpecies.hasOnlySubstanceUnits = int32(hasOnlySubstanceUnits);

@@ -73,4 +73,4 @@ elseif (sbmlLevel ~= 2)
 end;
 
 SBMLCompartment.size = size;
-SBMLCompartment.isSetSize = 1;
+SBMLCompartment.isSetSize = int32(1);

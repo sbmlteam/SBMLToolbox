@@ -74,5 +74,5 @@ end;
 
 warning off all;
 SBMLSpecies.initialConcentration = 0/0;
-SBMLSpecies.isSetInitialConcentration = 0;
+SBMLSpecies.isSetInitialConcentration = int32(0);
 warning on all;

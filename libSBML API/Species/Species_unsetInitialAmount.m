@@ -72,5 +72,5 @@ end;
 
 warning off all;
 SBMLSpecies.initialAmount = 0/0;
-SBMLSpecies.isSetInitialAmount = 0;
+SBMLSpecies.isSetInitialAmount = int32(0);
 warning on all;

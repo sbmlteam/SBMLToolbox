@@ -72,5 +72,5 @@ end;
 
 warning off all;
 SBMLParameter.value = 0/0;
-SBMLParameter.isSetValue = 0;
+SBMLParameter.isSetValue = int32(0);
 warning on all;

@@ -73,4 +73,4 @@ elseif (sbmlLevel ~= 1)
 end;
 
 SBMLCompartment.volume = volume;
-SBMLCompartment.isSetVolume = 1;
+SBMLCompartment.isSetVolume = int32(1);

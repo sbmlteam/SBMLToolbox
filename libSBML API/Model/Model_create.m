@@ -75,7 +75,7 @@ end;
 warning off all;
 if (sbmlLevel == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation', 'SBML_level', 'SBML_version', 'name', 'unitDefinition', 'compartment', 'species', 'parameter', 'rule', 'reaction'};
-    Values = {'SBML_MODEL', '', '', 1, 2, '', [], [], [], [], [], []};
+    Values = {'SBML_MODEL', '', '', int32(1), int32(2), '', [], [], [], [], [], []};
 
     unit = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'kind', {}, 'exponent',{},  'scale', {});
     unitDefinition = struct( 'typecode', {},  'notes', {},  'annotation', {},  'name', {},  'unit', unit);
@@ -95,7 +95,7 @@ if (sbmlLevel == 1)
 
 else
     SBMLfieldnames = {'typecode', 'notes', 'annotation', 'SBML_level', 'SBML_version', 'name', 'id', 'functionDefinition', 'unitDefinition', 'compartment', 'species', 'parameter', 'rule', 'reaction', 'event'};
-    Values = {'SBML_MODEL', '', '', 2, 1, '', '', [], [], [], [], [], [], [], []};
+    Values = {'SBML_MODEL', '', '', int32(2), int32(1), '', '', [], [], [], [], [], [], [], []};
 
     unit = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'kind', {}, 'exponent',{},  'scale', {}, 'multiplier', {}, 'offset',{});
     unitDefinition = struct('typecode', {},  'notes', {},  'annotation', {},  'name', {},  'id', {},  'unit', unit);
@@ -111,12 +111,12 @@ else
     rule = struct('typecode', {},  'notes', {},  'annotation', {},  'formula', {},  'variable', {},  'species', {},  'compartment', {},  'name', {},  'units', {});
 
     reactant = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'species', {}, 'stoichiometry', {}, 'denominator', {}, 'stoichiometryMath', {});
-    product = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'species', {}, 'stoichiometry', {}, 'denominator', {}), 'stoichiometryMath', {};
+    product = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'species', {}, 'stoichiometry', {}, 'denominator', {}, 'stoichiometryMath', {});
     modifier = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'species', {});
     kineticLaw = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'formula', {}, 'math', {}, 'parameter', parameter, 'timeUnits', {}, 'substanceUnits', {});
     reaction = struct('typecode', {},  'notes', {},  'annotation', {},  'name', {},  'id', {},  'reactant', reactant,  'product', product,  'modifier', modifier,  'kineticLaw', kineticLaw,  'reversible', {},  'fast', {},  'IsSetFast', {});
 
-    eventAssignment = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'variable', {}, 'math', {})
+    eventAssignment = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'variable', {}, 'math', {});
     event = struct('typecode', {},  'notes', {},  'annotation', {},  'name', {},  'id', {},  'trigger', {},  'delay', {},  'timeUnits', {},  'eventAssignment', eventAssignment);
 
 end;
