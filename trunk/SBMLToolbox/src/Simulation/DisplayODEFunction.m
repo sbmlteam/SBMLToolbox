@@ -1,7 +1,7 @@
 function DisplayODEFunction(varargin)
 %
 %  Filename    : DisplayODEFunction.m
-%  Description : takes a SBMLModel and plots teh output from matlabs ode solvers
+%  Description : takes a SBMLModel and plots the output from matlabs ode solvers
 %  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
 %  Organization: University of Hertfordshire STRC
 %  Created     : 2004-02-02
@@ -79,7 +79,7 @@ end;
 
 % check second argument
 if ((length(t_end) ~= 1) || (~isnumeric(t_end)))
-    error('DisplayODEFunction(SBMLModel, time)\n%s', 'second argument must be a single real number');
+    error('DisplayODEFunction(SBMLModel, time)\n%s', 'second argument must be a single real number indicating a time limit');
 end;
 
 %---------------------------------------------------------------
@@ -121,24 +121,46 @@ InitConds = feval(fhandle);
 %--------------------------------------------------------------
 
 Species = GetSpecies(SBMLModel);
+PlotSpecies = SelectSpecies(SBMLModel);
 
 % line styles - will look at these
 Types = {'-oc', '-om', '-oy', '-ok', '-or', '-og', '-ob', '--c', '--m', '--y', '--k', '--r', '--g', '--b'};
 j = 1;
 
 %plot the output
+plotCount = 1;
 for i = 1:length(Species)
-    if j > 14
-        j = 1;
+    % check whether to plot
+    Plot = 0;
+    for k = 1:length(PlotSpecies)
+        if (strcmp(PlotSpecies{k}, Species{i}))
+            Plot = 1;
+        end;
     end;
-    plot(t,x(:,i),Types{j});
-    hold on;
-    j = j+1;
+    
+    if (Plot == 1)
+        if (j > 14)
+            j = 1;
+        end;
+        plot(t,x(:,i),Types{j});
+        hold on;
+        j = j+1;
+        PlottedSpecies{plotCount} = Species{i};
+        plotCount = plotCount + 1;
+    end;
 end;
 hold off;
 xlabel('time t');
 ylabel('amount');
-legend(Species, -1);
+legend(PlottedSpecies, -1);
+
+
+
+
+
+
+
+
 
 
 
