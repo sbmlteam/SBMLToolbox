@@ -1,4 +1,100 @@
-% SBMLToolbox\AccessToSymbols
+% toolbox\AccessToSymbols
+%
+% This directory provides functions that allow access to the Symbolic Math Toolbox
+% 
+% FUNCTIONS INCLUDE:
+% 
+% charFormula2sym
+%     converts a characater representation of a mathematical formula
+%   to a symbolic representation of that formula
+%   and returns 
+%       1) the symbolic representation of the formula as first output argument
+%       2) an array of the symbols used within the formula as second output
+%           argument
+% 
+% CreateSymArray
+%    takes any symbolic expression or set of symbolic expressions
+%   and returns an array of the single symbolic expressions found in the input 
+%
+% GetAllParameterSymbols 
+%     takes a SBMLModel 
+%   and returns 
+%       1) an array of symbols representing all parameters (both global and embedded) within the model 
+%       2) an array of the values of each parameter
+%       3) an array of character names of the symbols
+% 
+% GetAllParameterSymbolsUnique 
+%     takes a SBMLModel 
+%   and returns 
+%       1) an array of symbols representing all parameters 
+%           (both global and embedded) within the model with reaction names appended 
+%       2) an array of the values of each parameter
+%       3) an array of character names of the symbols
+% 
+% GetDegree
+%     takes a symbolic polynomial and a single symbol
+%   and returns 
+%       the degree of the symbol in the polynomial
+%
+% GetEquilibrium 
+%     takes a SBMLModel 
+%   and returns 
+%       1) an array representing the equilibrium values of each species 
+%       2) a structure containing other equilibrium conditions
+%
+% GetGlobalParameterSymbols 
+%     takes a SBMLModel 
+%   and returns 
+%       1) an array of symbols representing all global parameters within the model 
+%       2) an array of the values of each parameter
+%       3) an array of character names of the symbols
+% 
+% GetParameterSymbolsFromReaction 
+%     takes a SBMLReaction 
+%   and returns 
+%       1) an array of symbols representing all parameters defined 
+%               within the kinetic law of the reaction 
+%       2) an array of the values of each parameter
+%       3) an array of character names of the symbols
+% 
+% GetParameterSymbolsFromReactionUnique 
+%     takes a SBMLReaction 
+%   and returns 
+%       1) an array of symbols representing all parameters defined 
+%               within the kinetic law of the reaction with reaction names
+%               appended
+%       2) an array of the values of each parameter
+%       3) an array of character names of the symbols
+% 
+% GetSpeciesRateLaws 
+%     takes an SBML model 
+%   and returns 
+%       1) an array of species symbols
+%       2) an array of symbolic representations of the rate law for each species
+% 
+% GetSpeciesSymbols 
+%     takes a SBMLModel 
+%   and returns 
+%       1) an array of symbols representing all species within the model 
+%       2) an array of the initial concentration values of each species
+%       3) an array of character names of the symbols
+% 
+% GetStoichiometryMatrixSyms(SBMLModel) 
+%     takes an SBML model 
+%    and returns 
+%        1) stoichiometry matrix
+%        2) an array of symbols respresenting each species in same order
+%           as the stoichiometry matrix treats them
+%
+% PlotSelectedTimeCourse  
+%     takes an SBML model 
+%    and plots the time course of user selected species to equilibrium
+%
+% PlotTimeCourse  
+%     takes an SBML model 
+%    and plots the time course of the species to equilibrium
+
+
 %
 %  Filename    : Contents.m
 %  Description : This directory contains the functions that allow the user

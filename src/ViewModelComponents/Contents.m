@@ -1,14 +1,36 @@
-% SBMLToolbox\ViewModelComponents
+% toolbox\ViewModelComponents
 %
-%  Description : This is the directory for the gui functions  
-%				 to view the MATLAB-SBML structures as components of an sbml model 
-%  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
-%  Organization: University of Hertfordshire STRC
-%  Created     : 2003-10-01
-%  Revision    : $Id$
-%  Source      : $Source$
+% Functions to drive GUIs to view MATLAB_SBML model component structures
 %
-%  Copyright 2003 California Institute of Technology, the Japan Science
+%   ViewXXX produces a GUI to display the fields and values of component XXX
+%
+% Functions include
+%
+%   ViewCompartment        
+%   ViewEvent              
+%   ViewEventAssignment    
+%   ViewFunctionDefinition 
+%   ViewKineticLaw         
+%   ViewParameter          
+%   ViewReaction           
+%   ViewRule               
+%   ViewSpecies            
+%   ViewSpeciesReference   
+%   ViewUnit               
+%   ViewUnitDefinition    
+% 
+
+
+
+%  Filename    :   Contents.m
+%  Description : 
+%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
+%  Organization:   University of Hertfordshire STRI
+%  Created     :   12-Feb-2005
+%  Revision    :   $Id$
+%  Source      :   $Source v $
+%
+%  Copyright 2005 California Institute of Technology, the Japan Science
 %  and Technology Corporation, and the University of Hertfordshire
 %
 %  This library is free software; you can redistribute it and/or modify it
@@ -39,7 +61,7 @@
 %  The original code contained here was initially developed by:
 %
 %      Sarah Keating
-%      Science and Technology Research Centre
+%      Science and Technology Research Institute
 %      University of Hertfordshire
 %      Hatfield, AL10 9AB
 %      United Kingdom
@@ -48,19 +70,4 @@
 %      mailto:sbml-team@caltech.edu
 %
 %  Contributor(s):
-%
-% 
-% Functions to drive GUIs to view MATLAB-SBML model components
-%
-%  VIEWCOMPARTMENT M-file for ViewCompartment.fig
-%  VIEWEVENT M-file for ViewEvent.fig
-%  VIEWEVENTASSIGNMENT M-file for ViewEventAssignment.fig
-%  VIEWFUNCTIONDEFINITION M-file for ViewFunctionDefinition.fig
-%  VIEWKINETICLAW M-file for ViewKineticLaw.fig
-%  VIEWPARAMETER M-file for ViewParameter.fig
-%  VIEWREACTION M-file for ViewReaction.fig
-%  VIEWRULE M-file for ViewRule.fig
-%  VIEWSPECIES M-file for ViewSpecies.fig
-%  VIEWSPECIESREFERENCE M-file for ViewSpeciesReference.fig
-%  VIEWUNIT M-file for ViewUnit.fig
-%  VIEWUNITDEFINITION M-file for ViewUnitDefinition.fig
+

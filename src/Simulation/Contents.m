@@ -1,14 +1,55 @@
-% SBMLToolbox\Simulation
+% toolbox\Simulation
 %
-%  Description : This is the directory for the functions  
-%				 to simulate the sbml model 
-%  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
-%  Organization: University of Hertfordshire STRC
-%  Created     : 2003-09-15
-%  Revision    : $Id$
-%  Source      : $Source$
+% This directory contains functions to simulate an SBML model
 %
-%  Copyright 2003 California Institute of Technology, the Japan Science
+%
+% FUNCTIONS INCLUDE:
+%   AnalyseSpecies  
+%       takes a matlab sbml model structure and outputs a
+%       structure detailing the species and how they are manipulated within the
+%       model
+%
+%   DealWithPiecewise              
+%       takes a string representation of a formula that contains the MathML
+%       piecewise function and returns an array of the three components of the 
+%       piecewise function which can then be written as an if else statement
+% 
+%   DisplayODEFunction             
+%       takes a matlab sbml model structure and a number of optional arguments 
+%       and can plot the results of the ode45 solver (ode15s if stiff) and output
+%       a comma seperated variable (CSV) file of the simulation results
+%
+%   GetArgumentsFromLambdaFunction 
+%       takes a string representation of a formula that contains the MathML lambda function 
+%       and returns an array of the components of the lambda function
+%       which can then be used to substitute arguments where the function has been applied
+%
+%   SelectSpecies                  
+%       takes an SBML Model, displays a GUI that allows the user to add/remove species from a list
+%       and returns an array of Species selected by the user
+%
+%   WriteEventAssignmentFunction   
+%       takes a matlab sbml model structure and outputs a file defining a function 
+%       that assigns values following an event (for use with the event option in matlabs ode solvers)
+%
+%   WriteEventHandlerFunction      
+%       takes a matlab sbml model structure and outputs a file defining a function 
+%       that handles an event (for use with the event option in matlabs ode solvers)
+%
+%   WriteODEFunction               
+%       takes a matlab sbml model structure and outputs a file defining a function 
+%       for use with matlabs ode solvers
+
+
+%  Filename    :   Contents.m
+%  Description : 
+%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
+%  Organization:   University of Hertfordshire STRI
+%  Created     :   12-Feb-2005
+%  Revision    :   $Id$
+%  Source      :   $Source v $
+%
+%  Copyright 2005 California Institute of Technology, the Japan Science
 %  and Technology Corporation, and the University of Hertfordshire
 %
 %  This library is free software; you can redistribute it and/or modify it
@@ -39,7 +80,7 @@
 %  The original code contained here was initially developed by:
 %
 %      Sarah Keating
-%      Science and Technology Research Centre
+%      Science and Technology Research Institute
 %      University of Hertfordshire
 %      Hatfield, AL10 9AB
 %      United Kingdom
@@ -48,15 +89,6 @@
 %      mailto:sbml-team@caltech.edu
 %
 %  Contributor(s):
-%
-% 
-% Functions include
-% 
-% WriteODEFunction
-%     outputs a file for use with MATLAB ode solvers
-%     
-% DisplayODEFuncion
-%     uses the output to run n ode solver and display results on a graph
-%     
-% SelectSpecies
-%     allows the user to select the species whose simulation is to be displayed
+
+
+
