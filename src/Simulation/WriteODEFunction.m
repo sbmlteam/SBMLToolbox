@@ -229,12 +229,26 @@ for i = 1:NumberSpecies
     
     if ((KL ~= 1) & (R ~= 1))
         error('WriteODEFunction(SBMLModel)\n%s', 'rates provided by rule and kinetic law');
-    elseif (KL == 1)
+    elseif ((KL == 1) & (R == 0))
         fprintf(fileID, '\txdot(%u) = %s;\n', i, RateRules{i});
-    elseif (R == 1)
+    elseif ((R == 1) & (KL == 0)) 
         fprintf(fileID, '\txdot(%u) = %s;\n', i, RateLaws{i});
     else
-        fprintf(fileID, '\txdot(%u) = 0;\n', i);
+        % here no rate law has been provided by either kinetic law or rate
+        % rule - need to check whether the species concenrn is in an
+        % assignment rule which may impact on the rate
+        if (length(SBMLModel.rule) ~= 0)
+            RuleNo = IsSpeciesAssignedByRule(SBMLModel.species(i), SBMLModel.rule);
+        else
+            RuleNo = 0;
+        end;
+        if (RuleNo == 0)
+            % not set by assignment 
+            fprintf(fileID, '\txdot(%u) = 0;\n', i);
+        else
+            DifferentiatedRule = DifferentiateRule(SBMLModel.rule(RuleNo), SpeciesNames);
+            fprintf(fileID, '\txdot(%u) = %s;\n', i, DifferentiatedRule{1});
+        end;
     end;
 
 end;
@@ -262,3 +276,86 @@ switch (SBMLRule.typecode)
     otherwise
         error('No assignment rules');
 end;
+
+%--------------------------------------------------------------------------
+function formula = DifferentiateRule(SBMLRule, SpeciesNames)
+
+f = SBMLRule.formula;
+
+Dividers = '+-';
+
+Divide = ismember(f, Dividers);
+Divider = '';
+NoElements = 1;
+element = '';
+for i = 1:length(f)
+    if (Divide(i) == 0)
+        element = strcat(element, f(i));
+    else
+        Divider = strcat(Divider, f(i));
+        Elements{NoElements} = element;
+        NoElements = NoElements + 1;
+        element = '';
+    end;
+    
+    % catch last element
+    if (i == length(f))
+        Elements{NoElements} = element;
+    end;
+end;
+
+for i = 1:NoElements
+    % check whether element contains a species name
+    for j = 1:length(SpeciesNames)
+        %     j = 1;
+        A = findstr(SpeciesNames{j}, Elements{i});
+        if (~isempty(A))
+            break;
+        end;
+    end;
+    
+    if (isempty(A))
+        % this element does not contain a species
+        Elements{i} = strrep(Elements{i}, Elements{i}, '0');
+    else
+        % this element does contain a species
+        
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        % WHAT IF MORE THAN ONE SPECIES
+        
+        % for moment assume this would not happen
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        
+        Power = findstr(Elements{i}, '^');
+        if (~isempty(Power))
+            Number = '';
+            Digits = isstrprop(Elements{i}, 'digit');
+            
+            k = Power+1;
+            while ((k < (length(Elements{i})+1)) & (Digits(k) == 1))
+              Number = strcat(Number, Elements{i}(k));
+              k = k + 1;
+            end;
+            
+            Index = str2num(Number); 
+            
+            
+            
+            Replace = sprintf('%u * %s^%u*xdot(%u)', Index, SpeciesNames{j}, Index-1, j);
+            Initial = sprintf('%s^%u', SpeciesNames{j}, Index);
+            Elements{i} = strrep(Elements{i}, Initial, Replace);
+        else
+        
+        Replace = sprintf('xdot(%u)', j);
+         Elements{i} = strrep(Elements(i), SpeciesNames{j}, Replace);
+        
+       end;
+    end;
+end;
+
+% put the formula back together
+formula = '';
+for i = 1:NoElements-1
+    formula = strcat(formula, Elements{i}, Divider(i));
+end;
+formula = strcat(formula, Elements{NoElements});
