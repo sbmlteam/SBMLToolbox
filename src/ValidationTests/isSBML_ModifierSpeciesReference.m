@@ -69,7 +69,8 @@ function y = isSBML_ModifierSpeciesReference(SBMLStructure, Level)
 %      mailto:sbml-team@caltech.edu
 %
 %  Contributor(s):
-%if (Level == 1)
+
+if (Level == 1)
     y = 0;
     return;
 else

@@ -72,7 +72,8 @@ function y = isSBML_SpeciesReference(SBMLStructure, Level)
 %      mailto:sbml-team@caltech.edu
 %
 %  Contributor(s):
-%if (Level == 1)
+
+if (Level == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation','species', 'stoichiometry', 'denominator'};
     nNumberFields = 6;
 else

@@ -73,7 +73,8 @@ function y = isSBML_Unit(SBMLStructure, Level)
 %      mailto:sbml-team@caltech.edu
 %
 %  Contributor(s):
-%if (Level == 1)
+
+if (Level == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation','kind', 'exponent', 'scale'};
     nNumberFields = 6;
 else
