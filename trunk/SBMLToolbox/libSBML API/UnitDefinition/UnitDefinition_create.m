@@ -23,14 +23,19 @@ end;
 
 warning off all;
 if (sbmlLevel == 1)
-    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name', 'unit'};
-    Values = {'SBML_UNIT_DEFINITION', '', '', '', []};
+    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name'};
+    Values = {'SBML_UNIT_DEFINITION', '', '', ''};
+    unit = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'kind', {}, 'exponent',{},  'scale', {})
 else
-    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name', 'id', 'unit'};
-    Values = {'SBML_UNIT_DEFINITION', '', '', '', '', []};
+    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name', 'id'};%, 'unit'};
+    Values = {'SBML_UNIT_DEFINITION', '', '', '', ''};
+    unit = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'kind', {}, 'exponent',{},  'scale', {}, 'multiplier', {}, 'offset',{});
+
 end;
 
 UnitDefinition = cell2struct(Values, SBMLfieldnames, 2);
+UnitDefinition = setfield(UnitDefinition, 'unit', unit);
+
 warning on all;
 
 %check created structure is appropriate
