@@ -140,7 +140,7 @@ for c = 1:NumReactants
 end;
 
 for c = 1:NumModifiers
-    k = strcmp(name, SBMLReaction.reactant(c).species);
+    k = strcmp(name, SBMLReaction.modifier(c).species);
     if (k == 1)
         found = found + 1;
         ModifierNo = ModifierNo + 1;
