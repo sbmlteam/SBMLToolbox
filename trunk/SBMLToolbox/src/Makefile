@@ -56,8 +56,9 @@ XLDFLAGS  = $(LDFLAGS)  -L/usr/local/lib
 XCPPFLAGS = $(CPPFLAGS) -I/usr/local/include
 LIBS      = -lsbml
 
-programs = TranslateSBML.mexglx
-	   OutputSBML.mexglx
+programs = \
+		TranslateSBML.mexglx			\
+	   	OutputSBML.mexglx				
 
 all: $(programs)
 
