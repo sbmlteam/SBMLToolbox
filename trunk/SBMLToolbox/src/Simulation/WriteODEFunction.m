@@ -88,108 +88,127 @@ NumReactions = length(SBMLModel.reaction);
 
 for i = 1:NumberSpecies
     output = '';
-    
-    %determine which reactions it occurs within 
-    for j = 1:NumReactions
-        
-        SpeciesType = IsSpeciesInReaction(SBMLModel.species(i), SBMLModel.reaction(j));
-       
-        % record numbers of occurences of species as reactant/product 
-        % and check that we can deal with reaction
-        if (SpeciesType(1)>0)
-            
-            NoModifiers = length(SpeciesType);
-            NoReactants = SpeciesType(2);
-            NoProducts =  SpeciesType(3+NoReactants);
-            SavedNoReactants = SpeciesType(2);
-            
-            %--------------------------------------------------------------
-            % check that a species does not occur twice on one side of the
-            % reaction
-            if (NoReactants > 1 || NoProducts > 1)
-                error('WriteODEFunction(SBMLModel)\n%s', 'SPECIES OCCURS MORE THAN ONCE ON ONE SIDE OF REACTION');
-            end;
-       
-            %--------------------------------------------------------------
-            % check if species is a modifier and exit if it is
-            if (SpeciesType(NoModifiers) > 0)
-                error('WriteODEFunction(SBMLModel)\n%s', 'CANNOT DEAL WITH MODIFIERS YET');
-            end;
-            %--------------------------------------------------------------
-            % check that reaction has a kinetic law formula
-            if (isempty(SBMLModel.reaction(j).kineticLaw))
-                error('WriteODEFunction(SBMLModel)\n%s', 'NO KINETC LAW SUPPLIED');
-            end;
-            %--------------------------------------------------------------
-
-            
-        end;
-       
-        % species has been found in this reaction
-        while (SpeciesType(1) > 0) % 
-                    
-            % add the kinetic law to the output for this species
  
-            if(NoProducts > 0) 
+    % if species is a boundary condition (or constant in level 2
+    % no rate law is required
+    % will need to adapt for rules
+    boundary = SBMLModel.species(i).boundaryCondition;
+    if (SBMLModel.SBML_level == 2)
+        constant = SBMLModel.species(i).constant;
+    else
+        constant = -1;
+    end;
+    
+    if (boundary == 1)
+        output = '0';
+    elseif (constant ==1)
+        output = '0';
+    else
+        
+        %determine which reactions it occurs within 
+        for j = 1:NumReactions
+            
+            SpeciesType = IsSpeciesInReaction(SBMLModel.species(i), SBMLModel.reaction(j));
+            
+            % record numbers of occurences of species as reactant/product 
+            % and check that we can deal with reaction
+            if (SpeciesType(1)>0)
                 
-                 % Deal with case where parameter is defined within the reaction
-                 % and thus the reaction name has been appended to the parameter
-                 % name in the list in case of repeated use of same name
-                 Param_Name = GetParameterFromReaction(SBMLModel.reaction(j));
-                 
-                 
-                 if (~isempty(Param_Name))
-                     ReviseParam_Name = GetParameterFromReactionUnique(SBMLModel.reaction(j));
-                 end;
-                 
-                 formula = SBMLModel.reaction(j).kineticLaw.formula;
-                 
-                 formula = Substitute(Param_Name, ReviseParam_Name, formula);
-                 
-              % if stoichiometry = 1 no need to include it in formula
-                if (SpeciesType(3+SavedNoReactants+1) == 1)
-                    output = sprintf('%s + %s', output, formula);
-                else
-                    output = sprintf('%s + %u * %s', output, SpeciesType(3+SavedNoReactants+1), formula);
+                NoModifiers = length(SpeciesType);
+                NoReactants = SpeciesType(2);
+                NoProducts =  SpeciesType(3+NoReactants);
+                SavedNoReactants = SpeciesType(2);
+                
+                %--------------------------------------------------------------
+                % check that a species does not occur twice on one side of the
+                % reaction
+                if (NoReactants > 1 || NoProducts > 1)
+                    error('WriteODEFunction(SBMLModel)\n%s', 'SPECIES OCCURS MORE THAN ONCE ON ONE SIDE OF REACTION');
                 end;
                 
-                 NoProducts = NoProducts - 1;
-                 
-             elseif (NoReactants > 0) 
-                 % DEAL WITH CASE WHERE KINETIC LAW LREADY HAS A MINUS SIGN    
-                 % since any kinetic law here will be subtracted any
-                 % existing minus signs must be replaced with plus
-                 formula = regexprep(SBMLModel.reaction(j).kineticLaw.formula, '-', '+');
- 
-                 % Deal with case where parameter is defined within the reaction
-                 % and thus the reaction name has been appended to the parameter
-                 % name in the list in case of repeated use of same name
-                 Param_Name = GetParameterFromReaction(SBMLModel.reaction(j));
+                %--------------------------------------------------------------
+                % check if species is a modifier and exit if it is
+                if (SpeciesType(NoModifiers) > 0)
+                    error('WriteODEFunction(SBMLModel)\n%s', 'CANNOT DEAL WITH MODIFIERS YET');
+                end;
+                %--------------------------------------------------------------
+                % check that reaction has a kinetic law formula
+                if (isempty(SBMLModel.reaction(j).kineticLaw))
+                    error('WriteODEFunction(SBMLModel)\n%s', 'NO KINETC LAW SUPPLIED');
+                end;
+                %--------------------------------------------------------------
                 
-                 if (~isempty(Param_Name))
-                     ReviseParam_Name = GetParameterFromReactionUnique(SBMLModel.reaction(j));
-                 end;
-                 
-                 formula = Substitute(Param_Name, ReviseParam_Name, formula);
-             
-                 % if stoichiometry = 1 no need to include it in formula
-                 if (SpeciesType(3) == 1)
-                     output = sprintf('%s - %s', output, formula);
-                 else
-                     output = sprintf('%s - %u * %s', output, SpeciesType(3), formula);
-                 end;
-                 
-                 NoReactants = NoReactants - 1;
-                 
-            end; 
-
+                
+            end;
             
+            % species has been found in this reaction
+            while (SpeciesType(1) > 0) % 
+                
+                % add the kinetic law to the output for this species
+                
+                if(NoProducts > 0) 
+                    
+                    % Deal with case where parameter is defined within the reaction
+                    % and thus the reaction name has been appended to the parameter
+                    % name in the list in case of repeated use of same name
+                    Param_Name = GetParameterFromReaction(SBMLModel.reaction(j));
+                    
+                    
+                    if (~isempty(Param_Name))
+                        ReviseParam_Name = GetParameterFromReactionUnique(SBMLModel.reaction(j));
+                    end;
+                    
+                    formula = SBMLModel.reaction(j).kineticLaw.formula;
+                    
+                    formula = Substitute(Param_Name, ReviseParam_Name, formula);
+                    
+                    % if stoichiometry = 1 no need to include it in formula
+                    if (SpeciesType(3+SavedNoReactants+1) == 1)
+                        output = sprintf('%s + %s', output, formula);
+                    else
+                        output = sprintf('%s + %u * %s', output, SpeciesType(3+SavedNoReactants+1), formula);
+                    end;
+                    
+                    NoProducts = NoProducts - 1;
+                    
+                elseif (NoReactants > 0) 
+                    % DEAL WITH CASE WHERE KINETIC LAW LREADY HAS A MINUS SIGN    
+                    % since any kinetic law here will be subtracted any
+                    % existing minus signs must be replaced with plus
+                    formula = regexprep(SBMLModel.reaction(j).kineticLaw.formula, '-', '+');
+                    
+                    % Deal with case where parameter is defined within the reaction
+                    % and thus the reaction name has been appended to the parameter
+                    % name in the list in case of repeated use of same name
+                    Param_Name = GetParameterFromReaction(SBMLModel.reaction(j));
+                    
+                    if (~isempty(Param_Name))
+                        ReviseParam_Name = GetParameterFromReactionUnique(SBMLModel.reaction(j));
+                    end;
+                    
+                    formula = Substitute(Param_Name, ReviseParam_Name, formula);
+                    
+                    % if stoichiometry = 1 no need to include it in formula
+                    if (SpeciesType(3) == 1)
+                        output = sprintf('%s - %s', output, formula);
+                    else
+                        output = sprintf('%s - %u * %s', output, SpeciesType(3), formula);
+                    end;
+                    
+                    NoReactants = NoReactants - 1;
+                    
+                end; 
+                
+                
+                
+                SpeciesType(1) = SpeciesType(1) - 1;
+                
+            end; % while found > 0
             
-            SpeciesType(1) = SpeciesType(1) - 1;
-            
-        end; % while found > 0
+        end; % for NumReactions
         
-    end; % for NumReactions
+    end; % if boundary condition
+    
     
     % finished looking for this species
     % record rate law and loop to next species
