@@ -83,6 +83,8 @@ NumReactions = length(SBMLModel.reaction);
 
 [a, RateLaws] = GetRateLawsFromReactions(SBMLModel);
 
+[a, RateRules] = GetRateLawsFromRules(SBMLModel);
+
 %---------------------------------------------------------------
 % get the name/id of the model
 
@@ -148,9 +150,21 @@ end;
 fprintf(fileID, '\n%%--------------------------------------------------------\n');
 fprintf(fileID, '%% initial species values - these may be overridden by assignment rules\n\n');
 
+fprintf(fileID, 'if (nargin == 0)\n');
+fprintf(fileID, '\n\t%% initial concentrations\n');
+
 for i = 1:length(SpeciesNames)
-    fprintf(fileID, '%s = %i;\n', SpeciesNames{i}, SpeciesValues(i));
+    fprintf(fileID, '\t%s = %i;\n', SpeciesNames{i}, SpeciesValues(i));
 end;
+
+fprintf(fileID, '\nelse\n');
+
+fprintf(fileID, '\t%% floating species concentrations\n');
+for i = 1:NumberSpecies
+    fprintf(fileID, '\t%s = x(%u);\n', SpeciesNames{i}, i);
+end;
+
+fprintf(fileID, '\nend;\n');
 
 % write assignment rules
 fprintf(fileID, '\n%%--------------------------------------------------------\n');
@@ -162,14 +176,7 @@ for i = 1:length(AssignRules)
      rule = WriteRule(AssignRules(i));
      fprintf(fileID, '%s\n', rule);
 end;
-% 
-% for i = 1:GetNumAssignmentRules(SBMLModel)
-%     % will need to modify this for models with more than one rule type
-%     rule = WriteRule(SBMLModel.rule(i));
-%     if (~isempty(rule))
-%         fprintf(fileID, '%s\n', rule);
-%     end;
-% end;
+
         
 
 % write code to calculate concentration values
@@ -212,15 +219,24 @@ end; % for NumSpecies
 
 fprintf(fileID, '\nelse\n');
 
-fprintf(fileID, '\t%% floating species concentrations\n');
-for i = 1:NumberSpecies
-    fprintf(fileID, '\t%s = x(%u);\n', SpeciesNames{i}, i);
-end;
-
-fprintf(fileID, '\n\t%% species concentration equations\n');
+fprintf(fileID, '\n\t%% species concentration rate equations\n');
 for i = 1:NumberSpecies
     fprintf(fileID, '\t%%%s\n', SpeciesNames{i});
-    fprintf(fileID, '\txdot(%u) = %s;\n', i, RateLaws{i});
+    
+    % check whether rate defined by kinetic law or rule
+    KL = strcmp(RateLaws{i}, '0');
+    R = strcmp(RateRules{i}, '0');
+    
+    if ((KL ~= 1) & (R ~= 1))
+        error('WriteODEFunction(SBMLModel)\n%s', 'rates provided by rule and kinetic law');
+    elseif (KL == 1)
+        fprintf(fileID, '\txdot(%u) = %s;\n', i, RateRules{i});
+    elseif (R == 1)
+        fprintf(fileID, '\txdot(%u) = %s;\n', i, RateLaws{i});
+    else
+        fprintf(fileID, '\txdot(%u) = 0;\n', i);
+    end;
+
 end;
 
 
