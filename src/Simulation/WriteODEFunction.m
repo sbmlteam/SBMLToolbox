@@ -61,16 +61,18 @@ if (~isSBML_Model(SBMLModel))
 end;
 
 %------------------------------------------------------------
-% look for rules/functions and warn user that these are not dealt with yet
+% look for rules/functions/events and warn user that these are not dealt with yet
 Rules = length(SBMLModel.rule);
 if (SBMLModel.SBML_level == 2)
     Funcs = length(SBMLModel.functionDefinition);
+    Events = length(SBMLModel.event);
 else
     Funcs = 0;
+    Events = 0;
 end;
 
-if ((Rules ~= 0) || (Funcs ~= 0))
-    disp('Note this procedure does not yet deal with rules or functions');
+if ((Rules ~= 0) || (Funcs ~= 0) || (Events ~= 0))
+    disp('Note this procedure does not yet deal with rules, events or functions');
     disp('They will NOT be included in the calculation');
 end;
 % -------------------------------------------------------------
@@ -167,7 +169,7 @@ for i = 1:NumberSpecies
     % record rate law and loop to next species
     % put the species symbol if no law found
     if (isempty(output))
-        RateLaws{i} = SpeciesName{i};
+        RateLaws{i} = SpeciesNames{i};
     else
         RateLaws{i} = output;
     end;
