@@ -58,8 +58,13 @@
 % FUNCTIONS include:
 %  BuildTranslate_Win32 
 %		which builds the TranslateSBML executable
-%  TranslateSBML('filename') 
+%  TranslateSBML 
 %		which translates a sbml file into a matlab structure
+%  BuildOutput_Win32 
+%		which builds the TranslateSBML executable
+%  OutputSBML('SBML_MATLAB structure') 
+%		which translates a sbml-matlab structure and ouputs an sbml file
+%
 %
 % StoreModels
 % -----------
