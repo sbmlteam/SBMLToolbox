@@ -140,6 +140,16 @@ for i = 1:NumSpecies
             
         end; % while found > 0
         
+        if (~isempty(symOut))
+            
+            % make the parameter symbols unique
+            Params = GetParameterSymbolsFromReaction(SBMLModel.reaction(j));
+            ParamsUnique = GetParameterSymbolsFromReactionUnique(SBMLModel.reaction(j));
+            
+            symOut = subs(symOut, Params, ParamsUnique);
+        end;
+        
+        
     end; % for NumReactions
     
     % finished looking for this species
@@ -152,6 +162,12 @@ for i = 1:NumSpecies
     end;
     
 end; % for NumSpecies
+
+% % make the parameter symbols unique
+% Params = GetAllParameters(SBMLModel);
+% ParamsUnique = GetAllParametersUnique(SBMLModel);
+% 
+% symRateLaws = subs(symRateLaws, Params, ParamsUnique)
 
 %--------------------------------------------------------------------------
 % assign outputs
