@@ -12,7 +12,7 @@ if (nargin > 0)
     error(sprintf('%s\n%s\n%s', 'FunctionDefinition_create(sbmlLevel)', 'requires no arguments', 'SEE help FunctionDefinition_create'));
 end;
 
-SBMLfieldnames = {'typecode', 'notes', 'annotation', 'id', 'name', 'math'};
+SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name', 'id', 'math'};
 Values = {'SBML_FUNCTION_DEFINITION', '', '', '', '', ''};
 
 FunctionDefinition = cell2struct(Values, SBMLfieldnames, 2);
