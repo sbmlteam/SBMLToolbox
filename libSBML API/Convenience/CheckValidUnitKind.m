@@ -1,16 +1,13 @@
-function SBMLUnit = Unit_setKind(SBMLUnit, kind)
+function value = CheckValidUnitKind(kind)%
+%   CheckValidUnitKind 
+%             takes a string representing a unit kind
+%             and returns 1 if it is valid 0 otherwise
 %
-%   Unit_setKind 
-%             takes  1) an SBMLUnit structure 
-%             and    2) a string representing the kind to be set
 %
-%             and returns 
-%               the unit with the kind set
-%
-%       SBMLUnit = Unit_setKind(SBMLUnit, 'kind')
+%       value = CheckValidUnitKind('kind')
 
 
-%  Filename    :   Unit_setKind.m
+%  Filename    :   CheckValidUnitKind.m
 %  Description : 
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
 %  Organization:   University of Hertfordshire STRI
@@ -60,16 +57,14 @@ function SBMLUnit = Unit_setKind(SBMLUnit, kind)
 %  Contributor(s):
 
 
-% check that input is correct
-sbmlLevel = 1;
-if (~isSBML_Unit(SBMLUnit, sbmlLevel))
-    sbmlLevel = 2;
-end;
+UNIT_KIND_STRINGS = {'ampere', 'becquerel', 'candela', 'Celsius', 'coulomb', 'dimensionless', 'farad',...
+  'gram', 'gray', 'henry', 'hertz', 'item', 'joule', 'katal', 'kelvin', 'kilogram', 'liter', 'litre',...
+  'lumen', 'lux', 'meter', 'metre', 'mole', 'newton', 'ohm', 'pascal', 'radian', 'second', 'siemens',...
+  'sievert', 'steradian', 'tesla', 'volt', 'watt', 'weber', '(Invalid UnitKind)'};
 
-if (~isSBML_Unit(SBMLUnit, sbmlLevel))
-    error(sprintf('%s\n%s', 'Unit_setKind(SBMLUnit, kind)', 'first argument must be an SBML unit structure'));
-elseif (~ischar(kind) || (~CheckValidUnitKind(kind)))
-    error(sprintf('Unit_setKind(SBMLUnit, kind)\n%s', 'second argument must be a string representing the kind of the unit'));
-end;
 
-SBMLUnit.kind = kind;
+value = 0;
+
+if (ismember(kind, UNIT_KIND_STRINGS))
+    value = 1;
+end;
