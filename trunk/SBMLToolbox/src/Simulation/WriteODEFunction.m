@@ -160,7 +160,7 @@ fprintf(fileID, '\n%%--------------------------------------------------------\n'
 fprintf(fileID, '%% assignment rules\n');
 
 
-AssignRules = GetAssignmentRules(SBMLModel);
+AssignRules = Model_getListOfAssignmentRules(SBMLModel);
 for i = 1:length(AssignRules)
      rule = WriteRule(AssignRules(i));
      fprintf(fileID, '%s\n', rule);
