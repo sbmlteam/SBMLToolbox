@@ -1,4 +1,11 @@
 function varargout = GetGlobalParameters(SBMLModel)
+% GetGlobalParameters takes a SBMLModel 
+% and returns 
+%           1) an array of character names representing all global parameters within the model 
+%           2) an array of the values of each parameter
+%
+
+%--------------------------------------------------------------------------
 %
 %  Filename    : GetGlobalParameters.m
 %  Description : takes a SBMLModel and returns an array of character names representing all global parameters 
@@ -50,13 +57,6 @@ function varargout = GetGlobalParameters(SBMLModel)
 %
 %  Contributor(s):
 %
-% GetGlobalParameters takes a SBMLModel 
-% and returns 
-%           1) an array of character names representing all global parameters within the model 
-%           2) an array of the values of each parameter
-%
-% NOTE: if the values are not set then the value -1 is used
-%--------------------------------------------------------------------------
 
 % check input is an SBML model
 if (~isSBML_Model(SBMLModel))
@@ -86,12 +86,7 @@ for i = 1:NumParams
     CharArray{i} = name;
     
     % put the value into the array
-    % if value is not set use -1
-    if (SBMLModel.parameter(i).isSetValue)
-        Values(i) = SBMLModel.parameter(i).value;
-    else
-        Values(i) = -1;
-    end;
+    Values(i) = SBMLModel.parameter(i).value;
     
 end;
 
