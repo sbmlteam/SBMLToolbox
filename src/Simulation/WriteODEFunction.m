@@ -1,4 +1,7 @@
 function WriteODEFunction(SBMLModel)
+% WriteODEFunction takes a matlab sbml model structure and outputs a file
+% defining a function for use with matlabs ode solvers
+
 %
 %  Filename    : WriteODEFunction.m
 %  Description : takes a SBMLModel and outputs a file
@@ -49,11 +52,6 @@ function WriteODEFunction(SBMLModel)
 %      mailto:sbml-team@caltech.edu
 %
 %  Contributor(s):
-%
-%
-% WriteODEFunction takes a matlab sbml model structure and outputs a file
-% defining a function for use with matlabs ode solvers
-
 
 % check input is an SBML model
 if (~isSBML_Model(SBMLModel))
@@ -72,7 +70,7 @@ else
 end;
 
 if ((Rules ~= 0) || (Funcs ~= 0) || (Events ~= 0))
-    disp('Note this procedure does not yet deal with rules, events or functions');
+    disp('Note this procedure does not yet fully deal with rules, events or functions');
     disp('They will NOT be included in the calculation');
 end;
 % -------------------------------------------------------------
@@ -214,7 +212,7 @@ for i = 1:NumberSpecies
     % record rate law and loop to next species
     % put the species symbol if no law found
     if (isempty(output))
-        RateLaws{i} = SpeciesNames{i};
+        RateLaws{i} = '0';%SpeciesNames{i};
     else
         RateLaws{i} = output;
     end;
@@ -296,6 +294,16 @@ for i = 1:NumberSpecies
 end;
 
 fprintf(fileID, '\nelse\n');
+fprintf(fileID, '\t%% deal with any assignments\n');
+for i = 1:GetNumAssignmentRules(SBMLModel)
+    % will need to modify this for models with more than one rule type
+    rule = WriteRule(SBMLModel.rule(i));
+    if (~isempty(rule))
+        fprintf(fileID, '\t%s\n', rule);
+    end;
+end;
+        
+
 fprintf(fileID, '\t%% floating species concentrations\n');
 for i = 1:NumberSpecies
     fprintf(fileID, '\t%s = x(%u);\n', SpeciesNames{i}, i);
@@ -434,3 +442,21 @@ for i = 1:NumberParams
 end;
 
 y = RevisedFormula;
+
+%-------------------------------------------------------------------------
+function y = WriteRule(SBMLRule)
+
+y = '';
+
+% check that input is a rule
+if (~isSBML_Rule(SBMLRule))
+    error('WriteRule(SBMLRule)\n%s', 'first argument must be an SBMLRule structure');
+end;
+%------------------------------------------------------------
+
+switch (SBMLRule.typecode)
+    case 'SBML_ASSIGNMENT_RULE'
+        y = sprintf('%s = %s;', SBMLRule.variable, SBMLRule.formula);
+    otherwise
+        error('No assignment rules');
+end;

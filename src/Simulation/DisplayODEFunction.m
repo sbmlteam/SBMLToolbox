@@ -1,4 +1,13 @@
 function DisplayODEFunction(varargin)
+% DisplayODEFunction takes 
+%       1) a matlab sbml model structure 
+%       2) time limit (optional)
+%       3) number of time steps (optional)
+%       4) a flag to indicate whther to output the simulation data as a CSV
+%       file flag = 1 - outputs file (optional)
+%          
+%  and plots the results of the ode45 solver 
+
 %
 %  Filename    : DisplayODEFunction.m
 %  Description : takes a SBMLModel and plots the output from matlabs ode solvers
@@ -53,7 +62,7 @@ function DisplayODEFunction(varargin)
 % DisplayODEFunction takes 
 %       1) a matlab sbml model structure 
 %       2) time limit (optional)
-%  and plots the results of the ode23 solver 
+%  and plots the results of the ode45 solver 
 
 
 % get inputs
