@@ -147,21 +147,39 @@ mexFunction (int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 /**
 	* check number and type of input arguments
 	* must be a valid Matlab_SBML structure
+	* and optionally the filename
 	*/
   
-	if (nrhs > 1)
+	if (nrhs > 2)
 	{
-		mexErrMsgTxt("Too many input arguments\nUSAGE: OutputSBML(SBMLModel)");
+		mexErrMsgTxt("Too many input arguments\nUSAGE: OutputSBML(SBMLModel, (filename))");
 	}
   
 	nStatus = mexCallMATLAB(1, mxCheckStructure, 1, mxModel, "isSBML_Model");
 	
 	if ((nStatus != 0) || (mxIsLogicalScalarTrue(mxCheckStructure[0]) != 1))
 	{
-		mexErrMsgTxt("Input must be a valid MATLAB_SBML Structure\nUSAGE: OutputSBML(SBMLModel)");
+		mexErrMsgTxt("First input must be a valid MATLAB_SBML Structure\nUSAGE: OutputSBML(SBMLModel, (filename))");
 	}
 
+  if (nrhs == 2)
+  {
+	
+	  if (mxIsChar(prhs[1]) != 1)
+	  {
+	      mexErrMsgTxt("Second input must be a filename\nUSAGE: OutputSBML(SBMLModel, (filename))");
+	  }
 
+      nBuflen = (mxGetM(prhs[1])*mxGetN(prhs[1])+1);
+      pacFilename = (char *)mxCalloc(nBuflen, sizeof(char));
+      nStatus = mxGetString(prhs[1], pacFilename, nBuflen);
+    
+      if (nStatus != 0)
+      {
+          mexErrMsgTxt("Cannot copy filename");
+      }
+
+  }
 /*********************************************************************************************************
 	* get the details of the model
 	***********************************************************************************************************/
@@ -307,51 +325,67 @@ mexFunction (int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 	* output the resulting model to specified file
 	*********************************************************************************************************/
 
-/**
-	* prompt user for a filename 
-	* and write the document to this
-	*/
-
-	/* extension to look for */
-    mxExt[0] = mxCreateString(".xml");
-    nStatus = mexCallMATLAB(2, mxFilename, 1, mxExt, "uiputfile");
-    
-    if (nStatus != 0)
-    {
-        mexErrMsgTxt("Failed to read filename");
-    }
-
-    /* get the filename returned */ 
-    nBuflen = (mxGetM(mxFilename[0])*mxGetN(mxFilename[0])+1);
-    pacTempString1 = (char *)mxCalloc(nBuflen, sizeof(char));
-    nStatus = mxGetString(mxFilename[0], pacTempString1, nBuflen);
-    
-    if (nStatus != 0)
-    {
-        mexErrMsgTxt("Cannot copy filename");
-    }
-
-	/* get the full path */
-    nBufferLen = (mxGetM(mxFilename[1])*mxGetN(mxFilename[1])+1);
-    pacTempString2 = (char *)mxCalloc(nBufferLen, sizeof(char));
-    nStatus = mxGetString(mxFilename[1], pacTempString2, nBufferLen);
-    
-    if (nStatus != 0)
-    {
-        mexErrMsgTxt("Cannot copy path");
-    }
-
-	/* write full path and filename */
-    pacFilename = (char *) mxCalloc(nBufferLen+nBuflen+4, sizeof(char));
-	strcpy(pacFilename, pacTempString2);
-    strcat(pacFilename, pacTempString1);
-
-	/* check that the extension has been used  */
-	if (strstr(pacFilename, ".xml") == NULL)
+	if (nrhs == 1) 
 	{
-		strcat(pacFilename, ".xml");
-	}
+      /**
+	  * prompt user for a filename 
+	  * and write the document to this
+	  */
+
+	  /* extension to look for */
+      mxExt[0] = mxCreateString(".xml");
+      nStatus = mexCallMATLAB(2, mxFilename, 1, mxExt, "uiputfile");
     
+      if (nStatus != 0)
+      {
+        mexErrMsgTxt("Failed to read filename");
+      }
+
+      /* get the filename returned */ 
+      nBuflen = (mxGetM(mxFilename[0])*mxGetN(mxFilename[0])+1);
+      pacTempString1 = (char *)mxCalloc(nBuflen, sizeof(char));
+      nStatus = mxGetString(mxFilename[0], pacTempString1, nBuflen);
+    
+      if (nStatus != 0)
+      {
+        mexErrMsgTxt("Cannot copy filename");
+      }
+
+	  /* get the full path */
+      nBufferLen = (mxGetM(mxFilename[1])*mxGetN(mxFilename[1])+1);
+      pacTempString2 = (char *)mxCalloc(nBufferLen, sizeof(char));
+      nStatus = mxGetString(mxFilename[1], pacTempString2, nBufferLen);
+    
+      if (nStatus != 0)
+      {
+        mexErrMsgTxt("Cannot copy path");
+      }
+
+	  /* write full path and filename */
+      pacFilename = (char *) mxCalloc(nBufferLen+nBuflen+4, sizeof(char));
+	  strcpy(pacFilename, pacTempString2);
+      strcat(pacFilename, pacTempString1);
+
+	  /* check that the extension has been used  */
+	  if (strstr(pacFilename, ".xml") == NULL)
+	  {
+		strcat(pacFilename, ".xml");
+	  }
+  
+	}
+	else
+	{
+	  /* 
+	   * user has specified a filename
+	   * /
+	  
+	   /* check that the extension has been used  */
+	  if (strstr(pacFilename, ".xml") == NULL)
+	  {
+		strcat(pacFilename, ".xml");
+	  }
+
+	}
 	/* write the SBML document to the filename specified */
 	nStatus = writeSBML(sbmlDocument, pacFilename);
 	mexPrintf("document written\n");
