@@ -130,34 +130,35 @@ end;
 fprintf(fileID, '\n%%--------------------------------------------------------\n');
 fprintf(fileID, '%% events - point at which value will return 0\n\n');
 
-dirs = [];
+numOfFunctions = 0 ;
 fprintf(fileID, 'value = [');
 for i = 1:length(SBMLModel.event)
-    [Funcs, directions] = ParseTriggerFunction(SBMLModel.event(i).trigger);
+    [Funcs, Ignored] = ParseTriggerFunction(SBMLModel.event(i).trigger,[]);
     for j = 1:length(Funcs)
+        numOfFunctions = numOfFunctions + 1;
+        %fprintf(1, '%s\n', Funcs{j});
         if ((i > 1) || (j > 1))
             fprintf(fileID, ', %s', Funcs{j});
         else
             fprintf(fileID, '%s', Funcs{j});
         end;
     end;
-    dirs = [dirs,directions];
 end;
 fprintf(fileID, '];\n');
 
 
 fprintf(fileID, '\n%%stop integration\n');
 fprintf(fileID, 'isterminal = [1');
-for i = 2:length(dirs)
+for i = 2:numOfFunctions
     fprintf(fileID, ', 1');
 end;
 fprintf(fileID, '];\n\n');
 
 % this may depend on  model
 fprintf(fileID, '%%set direction at which event should be looked for\n');
-fprintf(fileID, 'direction = [%d', dirs(1));
-for i = 2:length(dirs)
-    fprintf(fileID, ', %d', dirs(i));
+fprintf(fileID, 'direction = [-1');
+for i = 2:numOfFunctions
+    fprintf(fileID, ', -1');
 end;
 fprintf(fileID, '];\n\n');
 
@@ -167,81 +168,107 @@ fclose(fileID);
 %--------------------------------------------------------------------------
 % other functions
 
-function [FunctionStrings, direction] = ParseTriggerFunction(Trigger)
+function [FunctionStrings, Trigger] = ParseTriggerFunction(Trigger, FunctionStrings)
+
+%fprintf(1,'parsing: %s\n', Trigger);
 
 Trigger = LoseLeadingWhiteSpace(Trigger);
 
 % trigger has the form function(function(variable,constant), function(v,c))
 % need to isolate each
 OpenBracket = strfind(Trigger, '(');
-CloseBracket = strfind(Trigger, ')');
 
-if (length(OpenBracket) == 1)
-    % no subfunctions
-    [FunctionStrings{1}, direction] = ParseTriggerSubFunction(Trigger);
-else
-    Func = Trigger(1:OpenBracket-1);
+Func = Trigger(1:OpenBracket-1);
+Trigger = Trigger(OpenBracket+1:length(Trigger));
 
-    Comma = strfind(Trigger, ',');
-
-    if (length(OpenBracket) ~= length(Comma))
-        error('Cannot handle this function');
-    end;
-
-    [Func1, dir1] = ParseTriggerSubFunction(Trigger(OpenBracket(1)+1:Comma(2)-1));
-    [Func2, dir2] = ParseTriggerSubFunction(Trigger(Comma(2)+1:CloseBracket(2)));
-
-
-
+%fprintf(1,'got function: %s\n', Func);
 
     switch (Func)
         case 'and'
-            FunctionStrings{1} = sprintf('(%s) * (%s)',Func1, Func2);
-            direction = 0;
+            [FunctionStrings, Trigger] = ParseTwoArgumentsAndClose(Trigger, FunctionStrings);
         case 'or'
-            FunctionStrings{1} = Func1;
-            FunctionStrings{2} = Func2;
-            direction = [dir1, dir2];
+            [FunctionStrings, Trigger] = ParseTwoArgumentsAndClose(Trigger, FunctionStrings);
+        case 'lt'
+            [left, right, Trigger] = ParseTwoNumericArgumentsAndClose(Trigger);
+            FunctionString = sprintf('(%s) - (%s) + eps', left, right);
+            FunctionStrings{length(FunctionStrings)+1} = FunctionString;
+        case 'leq'
+            [left, right, Trigger] = ParseTwoNumericArgumentsAndClose(Trigger); 
+            FunctionString = sprintf('(%s) - (%s)', left, right);
+            FunctionStrings{length(FunctionStrings)+1} = FunctionString;
+        case 'gt'
+            [left, right, Trigger] = ParseTwoNumericArgumentsAndClose(Trigger);
+            FunctionString = sprintf('(%s) - (%s) + eps', right, left);
+            FunctionStrings{length(FunctionStrings)+1} = FunctionString;
+        case 'geq'
+            [left, right, Trigger] = ParseTwoNumericArgumentsAndClose(Trigger);
+            FunctionString = sprintf('(%s) - (%s)', right, left);
+            FunctionStrings{length(FunctionStrings)+1} = FunctionString;
         otherwise
-            error('unrecognised function in trigger');
+            error(sprintf('unrecognised function %s in trigger', Func));
     end;
 
-end;
 
-function [FunctionString, direction] = ParseTriggerSubFunction(Trigger)
 
-FunctionString = '';
+function [FunctionStrings, Trigger] = ParseTwoArgumentsAndClose(Trigger, FunctionStrings)
+    %fprintf(1, 'In ParseTwoArgumentsAndClose parsing: %s\n', Trigger);
+    [FunctionStrings, Trigger] = ParseTriggerFunction(Trigger, FunctionStrings);
+    comma = strfind(Trigger, ',');
+    [FunctionStrings, Trigger] = ParseTriggerFunction(Trigger(comma+1:length(Trigger)), FunctionStrings);
+    closeBracket = strfind(Trigger, ')');
+    Trigger = Trigger(closeBracket+1:length(Trigger));
 
-Trigger = LoseLeadingWhiteSpace(Trigger);
 
-% trigger has the form function(variable,constant)
-% need to isolate each
-Bracket = strfind(Trigger, '(');
-Func = Trigger(1:Bracket-1);
+function [left, right, Trigger] = ParseTwoNumericArgumentsAndClose(Trigger)
+    [left, Trigger] = ParseNumericFunction(Trigger);
+    comma = strfind(Trigger, ',');
+    [right, Trigger] = ParseNumericFunction(Trigger(comma+1:length(Trigger)));
+    closeBracket = strfind(Trigger, ')');
+    Trigger = Trigger(closeBracket+1:length(Trigger));
 
-Comma = strfind(Trigger, ',');
-Variable = Trigger(Bracket+1:Comma-1);
+function [func, Trigger] = ParseNumericFunction(Trigger)
+%fprintf(1,'In ParseNumericFunction parsing: %s\n', Trigger);
+openBracket = strfind(Trigger, '(');
+comma = strfind(Trigger, ',');
+closeBracket = strfind(Trigger, ')');
 
-Constant = Trigger(Comma+1:end-1);
-
-% create the approriate function
-
-switch (Func)
-    case 'lt'
-        FunctionString = sprintf('%s - %s + eps', Variable, Constant);
-        direction = -1;
-    case 'leq'
-        FunctionString = sprintf('%s - %s', Variable, Constant);
-        direction = -1;
-    case 'gt'
-        FunctionString = sprintf('%s - %s + eps', Constant, Variable );
-         direction = 0;
-   case 'geq'
-        FunctionString = sprintf('%s - %s', Constant, Variable );
-        direction = 0;
-    otherwise
-        error('unrecognised function in trigger');
-end;
+if (isempty(openBracket) || (length(comma)~=0 && comma(1) < openBracket(1)) || (length(closeBracket)~=0 && closeBracket(1) < openBracket1))
+    % simple case where no nesting 
+    if (length(comma)~=0 && comma(1) < closeBracket(1))
+        % terminated by comma
+        func = Trigger(1:comma(1)-1);
+        Trigger = Trigger(comma(1):length(Trigger));
+    else
+        if (length(closeBracket)~=0)
+            % terminated by close bracket
+            func = Trigger(1:closeBracket(1)-1);
+            Trigger=Trigger(closeBracket(1):length(Trigger));
+        else
+            func=Trigger;
+            Trigger='';
+        end;
+    end;
+else
+    % nested case
+    Func = Trigger(1:OpenBracket-1);
+    Trigger = Trigger(OpenBracket+1:length(Trigger));
+    [subfunc, Trigger] = ParseNumericFunction(Trigger);
+    Func = sprintf('%s(%s', Func, subfunc);
+    Trigger = LoseLeadingWhiteSpace(Trigger);
+    comma = strfind(Trigger, ',');
+    
+    while (length(comma) ~= 0 && comma(1) == 1)
+        [subfunc, Trigger] = ParseNumericFunction(Trigger);
+        Func = sprintf('%s,%s', Func, subfunc);
+        Trigger = LoseLeadingWhiteSpace(Trigger);
+        comma = strfind(Trigger, ',');
+    end
+    Func=sprintf('%s)',Func);
+    closeBracket=strFind(Trigger, ')');
+    Trigger = Trigger(closeBracket(1)+1:length(Trigger));
+end;    
+%fprintf(1,'at end of ParseNumericFunction function: %s\n', func);
+%fprintf(1,'at end of ParseNumericFunction parsing: %s\n', Trigger);
 
 function y = LoseLeadingWhiteSpace(charArray)
 % LoseLeadingWhiteSpace(charArray) takes an array of characters
@@ -295,5 +322,3 @@ if (NoSpaces > 0)
 else
     y = charArray;
 end;
-
-
