@@ -148,19 +148,15 @@ ListLevels{1} = '1';
 ListLevels{2} = '2';
 
 set(handles.ListModels, 'String', ListNames_l1);
-set(handles.SelModel, 'String', Models_l1(handles.Model_l1_Index).name);
+if (exist('Models_l1') == 0) 
+    % do nothing
+else
+    set(handles.SelModel, 'String', Models_l1(handles.Model_l1_Index).name);
+end;
 set(handles.LevelListbox, 'String', ListLevels);
 
-if (n_level1 == 0)
-    handles.ListNames_l1 = 0;
-    handles.ListNames_l2 = ListNames_l2;
-elseif (n_level2 == 0)
-    handles.ListNames_l1 = ListNames_l1;
-    handles.ListNames_l2 = 0;
-else
-    handles.ListNames_l1 = ListNames_l1;
-    handles.ListNames_l2 = ListNames_l2;
-end;
+handles.ListNames_l1 = ListNames_l1;
+handles.ListNames_l2 = ListNames_l2;
 
 % Update handles structure
 guidata(hObject, handles);
