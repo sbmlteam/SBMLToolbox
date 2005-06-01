@@ -50,15 +50,24 @@
 %
 %
 
-
+clear;
 % add the current directory and all subdirectories to the Matlab search
 % path
 ToolboxPath = genpath(pwd);
 addpath(ToolboxPath);
 
+% path2rc is deprecated by version 7.0.4 
+% replaced by savepath
+% but savepath doesnt exist in version 6.5.1 or lower
 
+v = version;
+v_num = str2num(v(1));
 
-s = path2rc;
+if (v_num < 7)
+    s = path2rc;
+else
+    s = savepath;
+end;
 
 if (s ~= 0)
     error('Directory NOT added to the path');
@@ -67,8 +76,9 @@ end;
 % try the executable
 % if it doesnt work teh library files are not on the system path and need
 % to be placed there
+M = struct([]);
 try
-    M = TranslateSBML('test.xml');
+     M = TranslateSBML('test.xml');
 catch
     % determine the matlabroot for windows executable
     % this directory is saved to the environmental variable PATH
@@ -90,8 +100,18 @@ catch
     end;
 end;
 
+if (isempty(M))
+    M = TranslateSBML('test.xml');
+end;
+
+if (isSBML_Model(M))
+    disp('Install successful');
+else
+    error('Installation was unsuccessful.');
+end;
 
 %prompt user for close
+
 cAnswer = input('Do you want to close MATLAB (y/n)?', 's');
 if (cAnswer == 'y')
     exit;
