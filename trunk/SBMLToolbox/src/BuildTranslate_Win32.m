@@ -68,5 +68,5 @@
 %                   WIN32 header files
 
 
-mex C:\New_libsbml\libsbml\src\bindings\matlab\TranslateSBML.c  -I'C:\New_libsbml\libsbml\src' C:\WINDOWS\system32\libsbml.lib
+mex C:\libsbml\src\bindings\matlab\TranslateSBML.c  -I'C:\libsbml\src' C:\WINDOWS\system32\libsbml.lib
 
