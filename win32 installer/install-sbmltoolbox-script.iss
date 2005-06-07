@@ -49,14 +49,14 @@
 
 [Setup]
 AppName=SBMLToolbox
-AppVerName=SBMLToolbox 2.0.2 beta
+AppVerName=SBMLToolbox 2.0.1 beta
 AppPublisher=SBMLTeam
 AppPublisherURL=http://www.sbml.org
 AppSupportURL=http://www.sbml.org
 AppUpdatesURL=http://www.sbml.org
 
 
-DefaultDirName={pf}\SBML\SBMLToolbox-2.0.0-beta
+DefaultDirName={pf}\SBML\SBMLToolbox-2.0.2-beta
 DefaultGroupName=SBMLToolbox
 DisableProgramGroupPage=yes
 WizardSmallImageFile=sbmltoolbox-installer-mini-logo.bmp
@@ -64,12 +64,12 @@ WizardImageFile=sbmltoolbox-installer-graphic.bmp
 
 
 [Files]
-Source: "C:\SBMLToolbox_2.0.0_beta\*"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\SBMLToolbox_2.0.0_beta\toolbox\*"; DestDir: "{app}\toolbox"; Flags: ignoreversion recursesubdirs
-Source: "C:\SBMLToolbox_2.0.0_beta\docs\*"; DestDir: "{app}\docs"; Flags: ignoreversion recursesubdirs
-Source: "C:\SBMLToolbox_2.0.0_beta\extern\*"; DestDir: "{app}\extern"; Flags: ignoreversion recursesubdirs
-Source: "C:\SBMLToolbox_2.0.0_beta\extern\bin\*"; DestDir: "{sys}"; Check: GetSys;
-Source: "C:\SBMLToolbox_2.0.0_beta\extern\bin\*"; DestDir: "{code:GetLibDir}"; Flags: ignoreversion; Check: GetOverwrite;
+Source: "C:\SBMLToolbox for release\*"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\SBMLToolbox for release\toolbox\*"; DestDir: "{app}\toolbox"; Flags: ignoreversion recursesubdirs
+Source: "C:\SBMLToolbox for release\docs\*"; DestDir: "{app}\docs"; Flags: ignoreversion recursesubdirs
+Source: "C:\SBMLToolbox for release\extern\*"; DestDir: "{app}\extern"; Flags: ignoreversion recursesubdirs
+Source: "C:\SBMLToolbox for release\extern\bin\*"; DestDir: "{sys}"; Check: GetSys;
+Source: "C:\SBMLToolbox for release\extern\bin\*"; DestDir: "{code:GetLibDir}"; Flags: ignoreversion; Check: GetOverwrite;
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
@@ -77,7 +77,7 @@ Root: HKCU; Subkey: "Software\SBML"; Flags: uninsdeletekeyifempty
 Root: HKCU; Subkey: "Software\SBML\SBMLToolbox"; Flags: uninsdeletekey
 Root: HKLM; Subkey: "Software\SBML"; Flags: uninsdeletekeyifempty
 Root: HKLM; Subkey: "Software\SBML\SBMLToolbox"; Flags: uninsdeletekey
-Root: HKLM; Subkey: "Software\SBML\SBMLToolbox"; ValueType: string; ValueName: "Version"; ValueData: "2.0.0b"
+Root: HKLM; Subkey: "Software\SBML\SBMLToolbox"; ValueType: string; ValueName: "Version"; ValueData: "2.0.1b"
 Root: HKLM; Subkey: "Software\SBML\SBMLToolbox"; ValueType: string; ValueName: "InstallPath"; ValueData: "{app}"
 
 [Code]
@@ -102,7 +102,7 @@ begin
 
   Note: it includes a version number
 **********************************************************************************************************}
-  MsgBox('This setup installs the Windows release of SBMLToolbox 2.0.0 (beta) using libSBML 2.2.0. All the necessary libraries are included.', mbInformation, mb_Ok);
+  MsgBox('This setup installs the Windows release of SBMLToolbox 2.0.1 (beta) using libSBML 2.3.3. All the necessary libraries are included.', mbInformation, mb_Ok);
 end;
 
 procedure URLLabelOnClick(Sender: TObject);
@@ -300,7 +300,7 @@ begin
 
   {look for a version no and check whether it is later than this}
   LibsbmlVersion := GetLibsbmlVersion();
-  LaterLibsbmlVers := LaterVersion(LibsbmlVersion, '2.2.0');
+  LaterLibsbmlVers := LaterVersion(LibsbmlVersion, '2.3.3');
 
   if ((LibsbmlVersion = '') and (not LibsbmlPath))  then
     LibsbmlNotFound := True;
@@ -323,10 +323,10 @@ begin
 
     {look for a version no and check whether it is later than this}
   ToolboxVersion := GetToolboxVersion();
-  LaterToolboxVers := LaterVersion(ToolboxVersion, '2.0.0b');
+  LaterToolboxVers := LaterVersion(ToolboxVersion, '2.0.1b');
 
   if not MatlabExists then begin
-    Result := MsgBox('MATLAB cannot be locacted on this system.' #13 'The SBMLToolbox requires MATLAB.' #13#13 'Do you want to continue?', mbConfirmation, MB_YESNO) = idYes;
+    Result := MsgBox('MATLAB cannot be located on this system.' #13 'The SBMLToolbox requires MATLAB.' #13#13 'Do you want to continue?', mbConfirmation, MB_YESNO) = idYes;
   end else begin
     { Let Setup run }
     Result := True;
@@ -402,7 +402,7 @@ begin
         ScriptDlgPageOpen();
 
         ScriptDlgPageSetCaption('libsbml library files');
-        ScriptDlgPageSetSubCaption1('SBMLToolbox 2.0.0b uses libsbml 2.2.0');
+        ScriptDlgPageSetSubCaption1('SBMLToolbox 2.0.1b uses libsbml 2.3.3');
         ScriptDlgPageClearCustom();
 
         if LibsbmlPath then begin
