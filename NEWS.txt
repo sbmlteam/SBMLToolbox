@@ -2,7 +2,7 @@
 
 version 2.0.1 beta
 
-	Upgraded to use libsbml 2.3.3
+	Upgraded to use libsbml 2.3.2
 
 	Readme updated with information about all functions
 

@@ -56,7 +56,7 @@ AppSupportURL=http://www.sbml.org
 AppUpdatesURL=http://www.sbml.org
 
 
-DefaultDirName={pf}\SBML\SBMLToolbox-2.0.2-beta
+DefaultDirName={pf}\SBML\SBMLToolbox-2.0.1-beta
 DefaultGroupName=SBMLToolbox
 DisableProgramGroupPage=yes
 WizardSmallImageFile=sbmltoolbox-installer-mini-logo.bmp
@@ -102,7 +102,7 @@ begin
 
   Note: it includes a version number
 **********************************************************************************************************}
-  MsgBox('This setup installs the Windows release of SBMLToolbox 2.0.1 (beta) using libSBML 2.3.3. All the necessary libraries are included.', mbInformation, mb_Ok);
+  MsgBox('This setup installs the Windows release of SBMLToolbox 2.0.1 (beta) using libSBML 2.3.2. All the necessary libraries are included.', mbInformation, mb_Ok);
 end;
 
 procedure URLLabelOnClick(Sender: TObject);
@@ -300,7 +300,7 @@ begin
 
   {look for a version no and check whether it is later than this}
   LibsbmlVersion := GetLibsbmlVersion();
-  LaterLibsbmlVers := LaterVersion(LibsbmlVersion, '2.3.3');
+  LaterLibsbmlVers := LaterVersion(LibsbmlVersion, '2.3.2');
 
   if ((LibsbmlVersion = '') and (not LibsbmlPath))  then
     LibsbmlNotFound := True;
@@ -402,7 +402,7 @@ begin
         ScriptDlgPageOpen();
 
         ScriptDlgPageSetCaption('libsbml library files');
-        ScriptDlgPageSetSubCaption1('SBMLToolbox 2.0.1b uses libsbml 2.3.3');
+        ScriptDlgPageSetSubCaption1('SBMLToolbox 2.0.1b uses libsbml 2.3.2');
         ScriptDlgPageClearCustom();
 
         if LibsbmlPath then begin
