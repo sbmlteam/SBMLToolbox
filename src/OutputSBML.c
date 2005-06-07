@@ -405,13 +405,15 @@ mexFunction (int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 	mxFree(pacAnnotationString);
 	mxFree(pacName);
 	mxFree(pacFilename);
-	mxFree(pacTempString1);
-	mxFree(pacTempString2);
-	
+    if (nrhs == 1)
+    {
+        mxFree(pacTempString1);
+        mxFree(pacTempString2);
+        mxDestroyArray(mxFilename[0]);
+        mxDestroyArray(mxFilename[1]);
+        mxDestroyArray(mxExt[0]);
+    }
 	mxDestroyArray(mxCheckStructure[0]);
-	mxDestroyArray(mxFilename[0]);
-	mxDestroyArray(mxFilename[1]);
-	mxDestroyArray(mxExt[0]);
 
 	
 	SBMLDocument_free(sbmlDocument);
