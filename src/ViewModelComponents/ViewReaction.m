@@ -203,7 +203,7 @@ else
 end;
 
 % disable view kinetic law if necessary
-if (isempty(Reaction.kineticLaw))
+if (isempty(Reaction.kineticLaw) || isempty(Reaction.kineticLaw.formula))
     set(handles.ViewKineticLaw, 'Enable', 'off');
 end;
 
