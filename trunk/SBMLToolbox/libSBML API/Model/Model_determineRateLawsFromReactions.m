@@ -113,7 +113,7 @@ for i = 1:NumberSpecies
 
                 %--------------------------------------------------------------
                 % check that reaction has a kinetic law formula
-                if (isempty(SBMLModel.reaction(j).kineticLaw))
+                if (isempty(SBMLModel.reaction(j).kineticLaw) || isempty(SBMLModel.reaction(j).kineticLaw.formula))
                     error('Model_determineRateLawsFromReactions(SBMLModel)\n%s', 'NO KINETC LAW SUPPLIED');
                 end;
                 %--------------------------------------------------------------
