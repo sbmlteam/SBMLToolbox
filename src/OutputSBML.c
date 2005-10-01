@@ -125,6 +125,10 @@ mexFunction (int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 /*************************************************************************************
 	* validate inputs and outputs
 	**********************************************************************************/
+    if (nrhs < 1)
+    {
+        mexErrMsgTxt("Must supply at least the model as an output argument\nUSAGE: OutputSBML(SBMLModel, (filename))");
+    }
 
 /**
 	* create a copy of the input
@@ -139,7 +143,7 @@ mexFunction (int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 	*/
 	if (nlhs > 0)
 	{
-		mexErrMsgTxt("Too many output arguments\nUSAGE: OutputSBML(SBMLModel)");
+		mexErrMsgTxt("Too many output arguments\nUSAGE: OutputSBML(SBMLModel, (filename))");
 	}
 
 	
@@ -388,7 +392,7 @@ mexFunction (int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 	}
 	/* write the SBML document to the filename specified */
 	nStatus = writeSBML(sbmlDocument, pacFilename);
-	mexPrintf("document written\n");
+	mexPrintf("Document written\n");
 
 
 	if (nStatus != 1)
