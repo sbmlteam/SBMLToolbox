@@ -2,20 +2,15 @@ function y = RunTest()
 
 m = TranslateSBML('test1.xml');
 
-Function{1} = 'GetAllParameters';
-Function{2} = 'GetAllParametersUnique'; 
-Function{3} = 'GetGlobalParameters';
-Function{4} = 'GetParameterFromReaction'; 
-Function{5} = 'GetParameterFromReactionUnique';
-Function{6} = 'GetRateLawsFromReactions'; 
-Function{7} = 'GetRateLawsFromRules'; 
-Function{8} = 'GetSpecies'; 
-Function{9} = 'GetSpeciesAlgebraicRules'; 
-Function{10} = 'GetSpeciesAssignmentRules'; 
-Function{11} = 'GetStoichiometryMatrix'; 
-
 test = 0;
 Totalfail = 0;
+
+test = test + 4;
+fail = TestDetermineSpeciesRoleInReaction;
+if (fail > 1)
+    disp('DetermineSpeciesRoleInReaction failed');
+end;
+Totalfail = Totalfail + fail;
 
 test = test + 1;
 fail = TestFunction('GetSpecies', m, 2, {'S1', 'S2'}, [1.5e-15, 1.5e-15]);

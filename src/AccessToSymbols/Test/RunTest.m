@@ -1,7 +1,5 @@
 function y = RunTest()
 
-m = TranslateSBML('test1.xml');
-
 test = 0;
 Totalfail = 0;
 
@@ -10,32 +8,34 @@ fail = TestcharFormula2sym;
 if (fail == 1)
     disp('charFormula2sym failed');
 end;
+Totalfail = Totalfail + fail;
 
 test = test + 1;
 fail = TestCreateSymArray;
 if (fail == 1)
     disp('CreateSymArray failed');
 end;
+Totalfail = Totalfail + fail;
 
 test = test + 1;
 fail = TestGetAllParameterSymbols;
 if (fail == 1)
     disp('GetAllParameterSymbols failed');
 end;
+Totalfail = Totalfail + fail;
 
 test = test + 1;
 fail = TestGetAllParameterSymbolsUnique;
 if (fail == 1)
     disp('GetAllParameterSymbolsUnique failed');
 end;
+Totalfail = Totalfail + fail;
 
-test = test + 1;
+test = test + 5;
 fail = TestGetDegree;
-if (fail == 1)
+if (fail > 1)
     disp('GetDegree failed');
 end;
-
-
 Totalfail = Totalfail + fail;
 
 disp(sprintf('Number tests: %d', test));
