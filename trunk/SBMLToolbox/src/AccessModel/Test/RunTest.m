@@ -1,58 +1,97 @@
 function y = RunTest()
 
-m = TranslateSBML('test1.xml');
-
 test = 0;
 Totalfail = 0;
 
 test = test + 4;
 fail = TestDetermineSpeciesRoleInReaction;
-if (fail > 1)
+if (fail > 0)
     disp('DetermineSpeciesRoleInReaction failed');
 end;
 Totalfail = Totalfail + fail;
 
 test = test + 1;
-fail = TestFunction('GetSpecies', m, 2, {'S1', 'S2'}, [1.5e-15, 1.5e-15]);
+fail = TestGetAllParameters;
+if (fail == 1)
+    disp('GetAllParameters failed');
+end;
+Totalfail = Totalfail + fail;
 
 test = test + 1;
-fail = TestFunction('GetAllParameters', m, 2, {'k_1', 'k_2'}, [1, 0]);
+fail = TestGetAllParametersUnique;
+if (fail == 1)
+    disp('GetAllParametersUnique failed');
+end;
+Totalfail = Totalfail + fail;
 
 test = test + 1;
-fail = TestFunction('GetAllParametersUnique', m, 2, {'k_1_R1', 'k_2_R2'}, [1, 0]);
+fail = TestGetGlobalParameters;
+if (fail == 1)
+    disp('GetGlobalParameters failed');
+end;
+Totalfail = Totalfail + fail;
 
 test = test + 1;
-fail = TestFunction('GetGlobalParameters', m, 0);
+fail = TestGetParameterFromReaction;
+if (fail == 1)
+    disp('GetParameterFromReaction failed');
+end;
+Totalfail = Totalfail + fail;
 
 test = test + 1;
-fail = TestFunction('GetParameterFromReaction', m.reaction(1), 2, {'k_1'}, [1]);
+fail = TestGetParameterFromReactionUnique;
+if (fail == 1)
+    disp('GetParameterFromReactionUnique failed');
+end;
+Totalfail = Totalfail + fail;
 
 test = test + 1;
-fail = TestFunction('GetParameterFromReactionUnique', m.reaction(1), 2, {'k_1_R1'}, [1]);
+fail = TestGetRateLawsFromReactions;
+if (fail == 1)
+    disp('GetRateLawsFromReactions failed');
+end;
+Totalfail = Totalfail + fail;
 
 test = test + 1;
-fail = TestFunction('GetParameterFromReactionUnique', m.reaction(2), 2, {'k_2_R2'}, [0]);
+fail = TestGetRateLawsFromRules;
+if (fail == 1)
+    disp('GetRateLawsFromRules failed');
+end;
+Totalfail = Totalfail + fail;
 
 test = test + 1;
-fail = TestFunction('GetRateLawsFromReactions', m, 2, {'S1', 'S2'}, {' - (k_1_R1*S1) + (k_2_R2*S2)', ' + (k_1_R1*S1) - (k_2_R2*S2)'});
+fail = TestGetSpecies;
+if (fail == 1)
+    disp('GetSpecies failed');
+end;
+Totalfail = Totalfail + fail;
 
 test = test + 1;
-fail = TestFunction('GetRateLawsFromRules', m, 0);
+fail = TestGetSpeciesAlgebraicRules;
+if (fail == 1)
+    disp('GetSpeciesAlgebraicRules failed');
+end;
+Totalfail = Totalfail + fail;
 
 test = test + 1;
-fail = TestFunction('GetSpeciesAssignmentRules', m, 0);
+fail = TestGetSpeciesAssignmentRules;
+if (fail == 1)
+    disp('GetSpeciesAssignmentRules failed');
+end;
+Totalfail = Totalfail + fail;
 
 test = test + 1;
-fail = TestFunction('GetSpeciesAssignmentRules', m, 0);
+fail = TestGetStoichiometryMatrix;
+if (fail == 1)
+    disp('GetStoichiometryMatrix failed');
+end;
+Totalfail = Totalfail + fail;
 
-test = test + 1;
-fail = TestFunction('GetStoichiometryMatrix', m, 2, [1, 1; 1, 1], {'S1', 'S2'});
-
-
-
-
-
-
+test = test + 2;
+fail = TestIsSpeciesInReaction;
+if (fail > 0)
+    disp('IsSpeciesInReaction failed');
+end;
 Totalfail = Totalfail + fail;
 
 disp(sprintf('Number tests: %d', test));
