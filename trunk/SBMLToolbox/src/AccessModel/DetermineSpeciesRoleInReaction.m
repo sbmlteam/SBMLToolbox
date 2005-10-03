@@ -16,8 +16,6 @@ function y = DetermineSpeciesRoleInReaction(SBMLSpecies, SBMLReaction)
 %                 =   [1, 0, 0, 2, 0]   if s is product no 2 in r 
 %                 =   [0, 1, 0, 0, 1]   if s is reactant no 1 in r
 %                 =   [0, 0, 1, 0, 0]   if s is a modifier in r
-%                 =   [1, 1, 0, 1, 2]   if s is product no 1 
-%                                           and reactant no 2 in r
 %--------------------------------------------------------------------------
 
 %  Filename    : DetermineSpeciesRoleInReaction.m
