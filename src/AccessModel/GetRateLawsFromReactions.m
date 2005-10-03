@@ -1,4 +1,4 @@
-function [Species, RateLaws] = GetRateLawsFromReactionsA(SBMLModel)
+function [Species, RateLaws] = GetRateLawsFromReactions(SBMLModel)
 % GetRateLawsFromReactions takes an SBMLModel 
 % and returns
 %             1) an array of species names
