@@ -64,11 +64,14 @@ function y = GetDegree(symPoly, var)
 %
 %  Contributor(s):
 
-% check thar var is a single symbol
+if (nargin ~= 2)
+    error('Too few input arguments');
+end;
+
+%check thar var is a single symbol
+%and that the inputs are symbolic
 symArrayVar = CreateSymArray(var);
 NoSyms = length(symArrayVar);
-
-% check that inputs are symbolic
 if (~(isa(symPoly, 'sym')))
     error('%s\n%s', 'GetDegree(symPoly, var)', 'symPoly must be a symbolic expression');
 elseif (~(isa(var, 'sym')) || NoSyms ~=1)
@@ -77,7 +80,7 @@ end;
 
 % ------------------------------------------------------------------------
 % determine all symbols present in the polynomial
-cSymbols = CreateSymArray(symPoly);   
+cSymbols = CreateSymArray(symPoly);
 NoSyms = length(cSymbols);
 
 %loop through each symbol in the polynomial
@@ -87,30 +90,26 @@ if (isempty(indexVar))
     y = 0;
     return;
 elseif ((indexVar == 1) && (NoSyms == 1))
-    symPolySub(1) = cSymbols(1);
+%     symPolySub(1) = cSymbols(1);
+    symPolySub = symPoly;
 else
-for i = 1:indexVar-1
-    symPolySub(i) = cSymbols(i);
-    Array(i) = 1;
+    for i = 1:indexVar-1
+        symPolySub(i) = cSymbols(i);
+        Array(i) = 1;
+    end;
+    for i = indexVar:NoSyms-1
+        symPolySub(i) = cSymbols(i+1);
+        Array(i) = 1;
+    end;
+    symPolySub = subs(symPoly, symPolySub, Array);
 end;
-for i = indexVar:NoSyms-1
-    symPolySub(i) = cSymbols(i+1);
-    Array(i) = 1;
-end;
-        symPolySub = subs(symPoly, symPolySub, Array);
-end;
-% for i = 1:NoSyms
-%     if(~(cSymbols(i) == var))
-%         symPolySub = subs(symPoly, symPolySub, Array);
-%     end;
-% end;
 
 % check that we still have variables
 % if not degree = 0 return
 if (isnumeric(symPolySub))
-     y = 0;
-     return;
- end;
+    y = 0;
+    return;
+end;
 
 %----------------------------------------------------------------
 % convert to a polynomial with coefficients for each degree of var
