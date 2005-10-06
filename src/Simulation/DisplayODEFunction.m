@@ -199,7 +199,7 @@ if ((SBMLModel.SBML_level == 2) && (length(SBMLModel.event) ~= 0))
 
         % get new initial conditions
         if (~isempty(Time_span))
-            SpeciesValues = feval(AfterEventHandle, SpeciesValues);
+            SpeciesValues = feval(AfterEventHandle, eventTime, SpeciesValues);
             [t,NewValues] = ode45(fhandle, [eventTime, Time_span(1)], SpeciesValues, options);
             for i = 1:length(SBMLModel.species)
                 InitConds(i) = NewValues(length(NewValues), i);
@@ -278,7 +278,7 @@ if (ismember(1, isnan(SpeciesCourse)))
 
             % get new initial conditions
             if (~isempty(Time_span))
-                SpeciesValues = feval(AfterEventHandle, SpeciesValues);
+                SpeciesValues = feval(AfterEventHandle, eventTime, SpeciesValues);
                 [t,NewValues] = ode23s(fhandle, [eventTime, Time_span(1)], SpeciesValues, options);
                 for i = 1:length(SBMLModel.species)
                     InitConds(i) = NewValues(length(NewValues), i);
@@ -354,7 +354,7 @@ if (~(ismember(1, isnan(SpeciesCourse))))
 
 
         %---------------------------------------------------------------
-        fileName = strcat(Name, '.CSV');
+        fileName = strcat(Name, '.csv');
       
         %--------------------------------------------------------------------
         % open the file for writing
