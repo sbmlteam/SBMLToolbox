@@ -89,10 +89,12 @@ fileName = strcat(Name, '.m');
 fileID = fopen(fileName, 'w');
 
 % write the function declaration
-fprintf(fileID,  'function Values = %s(SpeciesValues)\n', Name);
+fprintf(fileID,  'function Values = %s(time, SpeciesValues)\n', Name);
 
 % need to add comments to output file
 fprintf(fileID, '%% function %s takes\n', Name);
+fprintf(fileID, '%%\n');
+fprintf(fileID, '%% current simulation time and\n');
 fprintf(fileID, '%%\n');
 fprintf(fileID, '%% vector of current species values\n');
 fprintf(fileID, '%%\n');
@@ -125,16 +127,12 @@ fprintf(fileID, '%% event assignments\n\n');
 
 for i = 1:length(SBMLModel.event)
     % need to determine which events have been triggered
-    if (i == 1)
-        fprintf(fileID, 'if (%s)\n', SBMLModel.event(i).trigger);
-    else
-        fprintf(fileID, 'elseif (%s)\n', SBMLModel.event(i).trigger);
-    end;
+    fprintf(fileID, 'if (%s)\n', SBMLModel.event(i).trigger);
     for j = 1:length(SBMLModel.event(i).eventAssignment)
         fprintf(fileID, '\t%s = %s;\n', SBMLModel.event(i).eventAssignment(j).variable, SBMLModel.event(i).eventAssignment(j).math);
     end;
+    fprintf(fileID, 'end;\n');
 end;
-fprintf(fileID, 'end;\n');
 
 % output values
 fprintf(fileID, '\n%%--------------------------------------------------------\n');
@@ -166,7 +164,6 @@ if (NumFuncs > 0)
     end;
         
 end;
-
 
 fclose(fileID);
 

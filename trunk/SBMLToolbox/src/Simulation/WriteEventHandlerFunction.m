@@ -88,7 +88,7 @@ fileName = strcat(Name, '.m');
 fileID = fopen(fileName, 'w');
 
 % write the function declaration
-fprintf(fileID,  'function [value,isterminal,direction] = %s(t, y)\n', Name);
+fprintf(fileID,  'function [value,isterminal,direction] = %s(time, y)\n', Name);
 
 % need to add comments to output file
 fprintf(fileID, '%% function %s takes\n', Name);
@@ -192,7 +192,7 @@ Trigger = Trigger(OpenBracket+1:length(Trigger));
             [left, right, Trigger] = ParseTwoNumericArgumentsAndClose(Trigger);
             FunctionString = sprintf('(%s) - (%s) + eps', left, right);
             FunctionStrings{length(FunctionStrings)+1} = FunctionString;
-        case 'leq'
+        case 'le'
             [left, right, Trigger] = ParseTwoNumericArgumentsAndClose(Trigger); 
             FunctionString = sprintf('(%s) - (%s)', left, right);
             FunctionStrings{length(FunctionStrings)+1} = FunctionString;
@@ -200,7 +200,7 @@ Trigger = Trigger(OpenBracket+1:length(Trigger));
             [left, right, Trigger] = ParseTwoNumericArgumentsAndClose(Trigger);
             FunctionString = sprintf('(%s) - (%s) + eps', right, left);
             FunctionStrings{length(FunctionStrings)+1} = FunctionString;
-        case 'geq'
+        case 'ge'
             [left, right, Trigger] = ParseTwoNumericArgumentsAndClose(Trigger);
             FunctionString = sprintf('(%s) - (%s)', right, left);
             FunctionStrings{length(FunctionStrings)+1} = FunctionString;
