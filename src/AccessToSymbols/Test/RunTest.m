@@ -90,13 +90,6 @@ end;
 Totalfail = Totalfail + fail;
 
 test = test + 1;
-fail = TestGetEquilibrium;
-if (fail == 1)
-    disp('GetEquilibrium failed');
-end;
-Totalfail = Totalfail + fail;
-
-test = test + 1;
 fail = TestGetGlobalParameterSymbols;
 if (fail == 1)
     disp('GetGlobalParameterSymbols failed');
