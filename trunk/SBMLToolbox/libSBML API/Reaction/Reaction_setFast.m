@@ -74,5 +74,5 @@ end;
 
 SBMLReaction.fast = int32(fast);
 if (sbmlLevel == 2)
-    SBMLReaction.IsSetFast = int32(1);
+    SBMLReaction.isSetFast = int32(1);
 end;

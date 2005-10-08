@@ -114,7 +114,7 @@ else
     product = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'species', {}, 'stoichiometry', {}, 'denominator', {}, 'stoichiometryMath', {});
     modifier = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'species', {});
     kineticLaw = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'formula', {}, 'math', {}, 'parameter', parameter, 'timeUnits', {}, 'substanceUnits', {});
-    reaction = struct('typecode', {},  'notes', {},  'annotation', {},  'name', {},  'id', {},  'reactant', reactant,  'product', product,  'modifier', modifier,  'kineticLaw', kineticLaw,  'reversible', {},  'fast', {},  'IsSetFast', {});
+    reaction = struct('typecode', {},  'notes', {},  'annotation', {},  'name', {},  'id', {},  'reactant', reactant,  'product', product,  'modifier', modifier,  'kineticLaw', kineticLaw,  'reversible', {},  'fast', {},  'isSetFast', {});
 
     eventAssignment = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'variable', {}, 'math', {});
     event = struct('typecode', {},  'notes', {},  'annotation', {},  'name', {},  'id', {},  'trigger', {},  'delay', {},  'timeUnits', {},  'eventAssignment', eventAssignment);
