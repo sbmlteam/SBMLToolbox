@@ -162,7 +162,7 @@ Elements{ElementNumber} = element;
 % check for a sign in front of leading brackets
 if (Pairs (1,1) ~= 1)
     if strcmp(OriginalFormula(1), '-')
-        Elements{2} = strcat('-',Elements{2});
+        Elements{1} = strcat('-',Elements{1});
         Elements{3} = strcat('-',Elements{3});
     end;
 end;
