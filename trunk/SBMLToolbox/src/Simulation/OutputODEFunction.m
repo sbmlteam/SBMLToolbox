@@ -1,19 +1,22 @@
-function DisplayODEFunction(varargin)
-% DisplayODEFunction takes 
+function OutputODEFunction(varargin)
+% OutputODEFunction takes 
 %       1) a matlab sbml model structure 
-%       2) time limit (optional)
-%       3) number of time steps (optional)
+%       2) a flag to indicate whether to plot the output
+%       3) time limit (optional)
+%       4) number of time steps (optional)
+%       5) a flag to indicate whther to output the simulation data as a CSV
+%       file flag = 1 - outputs file (optional)
 %          
 %  and plots the results of the ode45 solver 
 
 %
-%  Filename    : DisplayODEFunction.m
+%  Filename    : OutputODEFunction.m
 %  Description : takes a SBMLModel and plots the output from matlabs ode solvers
 %  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
 %  Organization: University of Hertfordshire STRC
 %  Created     : 2004-02-02
 %  Revision    : $Id$
-%  Source      : $Source $
+%  Source      : $Source ,v $
 %
 %  Copyright 2003 California Institute of Technology, the Japan Science
 %  and Technology Corporation, and the University of Hertfordshire
@@ -57,17 +60,13 @@ function DisplayODEFunction(varargin)
 %  Contributor(s):
 %
 %
-% DisplayODEFunction takes 
-%       1) a matlab sbml model structure 
-%       2) time limit (optional)
-%  and plots the results of the ode45 solver 
 
 
 % get inputs
 if (nargin < 1)
-    error('DisplayODEFunction(SBMLModel, ...)\n%s', 'must have at least one argument');
-elseif (nargin > 3)
-    error('DisplayODEFunction(SBMLModel, ...)\n%s', 'cannot have more than three arguments');
+    error('OutputODEFunction(SBMLModel, ...)\n%s', 'must have at least one argument');
+elseif (nargin > 5)
+    error('OutputODEFunction(SBMLModel, ...)\n%s', 'cannot have more than five arguments');
 end;
 
 
@@ -75,18 +74,18 @@ SBMLModel = varargin{1};
 
 % check first input is an SBML model
 if (~isSBML_Model(SBMLModel))
-    error('DisplayODEFunction(SBMLModel)\n%s', 'first argument must be an SBMLModel structure');
+    error('OutputODEFunction(SBMLModel)\n%s', 'first argument must be an SBMLModel structure');
 end;
 %------------------------------------------------------------
 % calculate values to use in iterative process
-if (nargin > 1)
-    Time_limit = varargin{2};
+if (nargin > 2)
+    Time_limit = varargin{3};
 else
     Time_limit = 10;
 end;
 
-if (nargin > 2)
-    delta_t = Time_limit/varargin{3};
+if (nargin > 3)
+    delta_t = Time_limit/varargin{4};
     Time_span = [0:delta_t:Time_limit];
     Number_points = length(Time_span);
 else
@@ -95,7 +94,7 @@ end;
 
 % check third argument
 if ((length(Time_limit) ~= 1) || (~isnumeric(Time_limit)))
-    error('DisplayODEFunction(SBMLModel, time)\n%s', 'third argument must be a single real number indicating a time limit');
+    error('OutputODEFunction(SBMLModel, time)\n%s', 'third argument must be a single real number indicating a time limit');
 end;
 
 %---------------------------------------------------------------
@@ -119,7 +118,7 @@ fileName = strcat(Name, '.m');
 % check whether file exists
 fId = fopen(fileName);
 if (fId == -1)
-    error('DisplayODEFunction(SBMLModel)\n%s\n%s', 'You must use WriteODEFunction to output an ode function for this model', 'before using this function');
+    error('OutputODEFunction(SBMLModel)\n%s\n%s', 'You must use WriteODEFunction to output an ode function for this model', 'before using this function');
 else
     fclose(fId);
 end;
@@ -300,43 +299,89 @@ end;
 Species = GetSpecies(SBMLModel);
 
 %--------------------------------------------------------------
-if (~(ismember(1, isnan(SpeciesCourse))))
+if ((nargin > 1) && (varargin{2} == 1))
+    if (~(ismember(1, isnan(SpeciesCourse))))
 
-    PlotSpecies = SelectSpecies(SBMLModel);
+        PlotSpecies = SelectSpecies(SBMLModel);
 
-    % line styles - will look at these
-    Types = {'-oc', '-om', '-oy', '-ok', '-or', '-og', '-ob', '--c', '--m', '--y', '--k', '--r', '--g', '--b'};
-    j = 1;
+        % line styles - will look at these
+        Types = {'-oc', '-om', '-oy', '-ok', '-or', '-og', '-ob', '--c', '--m', '--y', '--k', '--r', '--g', '--b'};
+        j = 1;
 
-    %plot the output
-    plotCount = 1;
-    for i = 1:length(Species)
-        % check whether to plot
-        Plot = 0;
-        for k = 1:length(PlotSpecies)
-            if (strcmp(PlotSpecies{k}, Species{i}))
-                Plot = 1;
+        %plot the output
+        plotCount = 1;
+        for i = 1:length(Species)
+            % check whether to plot
+            Plot = 0;
+            for k = 1:length(PlotSpecies)
+                if (strcmp(PlotSpecies{k}, Species{i}))
+                    Plot = 1;
+                end;
+            end;
+
+            if (Plot == 1)
+                if (j > 14)
+                    j = 1;
+                end;
+                plot(TimeCourse,SpeciesCourse(:,i),Types{j});
+                hold on;
+                j = j+1;
+                PlottedSpecies{plotCount} = Species{i};
+                plotCount = plotCount + 1;
             end;
         end;
-
-        if (Plot == 1)
-            if (j > 14)
-                j = 1;
-            end;
-            plot(TimeCourse,SpeciesCourse(:,i),Types{j});
-            hold on;
-            j = j+1;
-            PlottedSpecies{plotCount} = Species{i};
-            plotCount = plotCount + 1;
+        if (Plot ~= 0)
+            hold off;
+            xlabel('time t');
+            ylabel('amount');
+            legend(PlottedSpecies, -1);
         end;
-    end;
-    if (Plot ~= 0)
-        hold off;
-        xlabel('time t');
-        ylabel('amount');
-        legend(PlottedSpecies, -1);
     end;
 end;
+%-------------------------------------------------------------------------
+% write output file
+% if simulation has failed do not
+if (~(ismember(1, isnan(SpeciesCourse))))
+    if ((nargin > 4) && (varargin{5} == 1))
+        %------------------------------------------------------------
+
+        % get the character strings for each species name
+        [x, y, Speciesnames] = GetSpeciesSymbols(SBMLModel);
+
+
+        %---------------------------------------------------------------
+        fileName = strcat(Name, '.csv');
+      
+        %--------------------------------------------------------------------
+        % open the file for writing
+
+        fileID = fopen(fileName, 'w');
+
+        % write the header
+        fprintf(fileID,  'time');
+        for i = 1: length(Species)
+            fprintf(fileID, ',%s', Speciesnames{i});
+        end;
+        fprintf(fileID, '\n');
+
+        % write each time course step values
+        for i = 1:length(TimeCourse)
+            fprintf(fileID, '%0.5g', TimeCourse(i));
+
+            for j = 1:length(Species)
+                fprintf(fileID, ',%1.16g', SpeciesCourse(i,j));
+            end;
+            fprintf(fileID, '\n');
+
+        end;
+
+        fclose(fileID);
+
+
+    end;
+end;
+
+
 
 
 
