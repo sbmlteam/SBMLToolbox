@@ -1,31 +1,13 @@
-% SBMLToolbox
-%
-% This is the top level directory for the functions to translate 
-% sbml models into a MATLAB structure which can then be saved.
-%
-%
-% FUNCTIONS include:
-%  BuildTranslate_Win32 
-%		which builds the TranslateSBML executable
-%  TranslateSBML 
-%		which translates a sbml file into a matlab structure
-%  BuildRead_Win32 
-%		which builds the ReadAndValidateSBML executable
-%  ReadAndValidateSBML
-%       which reads an sbml file and validates it
-%       before translating it into a matlab structure
-%  BuildOutput_Win32 
-%		which builds the TranslateSBML executable
-%  OutputSBML('SBML_MATLAB structure') 
-%		which translates a sbml-matlab structure and ouputs an sbml file
-%
+% BuildRead_Win32 builds the ReadAndValidateSBML executable in windows
+% environment
 
 %
-%  Description : This is the top level directory for the functions to translate 
-%				 sbml models into a MATLAB structure which can then be saved.
+%
+%  Filename    : BuildOutput_Win32.m
+%  Description : builds the OutputSBML executable
 %  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
-%  Organization: University of Hertfordshire STRC
-%  Created     : 2003-09-15
+%  Organization: University of Hertfordshire STRI
+%  Created     : 2004-08-23
 %  Revision    : $Id$
 %  Source      : $Source$
 %
@@ -60,7 +42,7 @@
 %  The original code contained here was initially developed by:
 %
 %      Sarah Keating
-%      Science and Technology Research Centre
+%      Science and Technology Research Institute
 %      University of Hertfordshire
 %      Hatfield, AL10 9AB
 %      United Kingdom
@@ -70,24 +52,20 @@
 %
 %  Contributor(s):
 %
-%
-%
-% This is the top level directory for the functions to translate 
-% sbml models into a MATLAB structure which can then be saved.
-%
-%
-% FUNCTIONS include:
-%  BuildTranslate_Win32 
-%		which builds the TranslateSBML executable
-%  TranslateSBML 
-%		which translates a sbml file into a matlab structure
-%  BuildRead_Win32 
-%		which builds the ReadAndValidateSBML executable
-%  ReadAndValidateSBML
-%       which reads an sbml file and validates it
-%       before translating it into a matlab structure
-%  BuildOutput_Win32 
-%		which builds the TranslateSBML executable
-%  OutputSBML('SBML_MATLAB structure') 
-%		which translates a sbml-matlab structure and ouputs an sbml file
-%
+
+% This code assumes that OutputSBML.c, the Win32 include files and the
+% win32 compiled libraries
+% exists on within the SBMLToolbox path as shown
+% 
+%   SBMLToolbox
+%       -toolbox
+%           ReadAndValidateSBML.c
+%       -docs
+%       -extern
+%               -bin
+%                   libsbml.lib etc...
+%               -include
+%                   WIN32 header files
+
+
+mex ReadAndValidateSBML.c -I'..\extern\include' ..\extern\bin\libsbml.lib
