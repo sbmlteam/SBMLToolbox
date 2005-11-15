@@ -1,5 +1,23 @@
     SBMLToolbox NEWS -- History of user-visible changes
 
+OutputODEFunction - an additional function with flags to
+indicate whether to display the output or write the data
+to a comma separated variable file (csv)
+
+DisplayODEFunction - changed to always display the output
+
+OutputSBML - corrected the bug whereby if the user entered
+no argument MATLAB crashed
+
+
+Empty kinetic law is created as an empty structure with 
+an empty parameter structure; this allows the parameters 
+to be counted
+
+
+
+
+
 version 2.0.1 beta
 
 	Upgraded to use libsbml 2.3.2
