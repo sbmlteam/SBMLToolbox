@@ -1,12 +1,12 @@
-function fail = TestGetSpeciesRateLaws(SBMLModel)
-% GetSpeciesRateLaws(SBMLModel) takes an SBML model 
-% returns 
-%       1)array of species symbols
-%       2)an array of symbolic representations of the rate law for each species
-%--------------------------------------------------------------------------
+function fail = TestGetSymbolicRateLawsFromRules
+% GetRateLawsFromRules takes an SBMLModel 
+% and returns
+%             1) an array of species names
+%             2) an array of the character representation of the rate laws
+%             for each species from rules
 
 
-%  Filename    :   TestGetSpeciesRateLaws.m
+%  Filename    :   TestGetRateLawsFromRules.m
 %  Description : 
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
 %  Organization:   University of Hertfordshire STRI
@@ -56,11 +56,11 @@ function fail = TestGetSpeciesRateLaws(SBMLModel)
 %  Contributor(s):
 
 
-m = TranslateSBML('test3.xml');
+m = TranslateSBML('test4.xml');
 
-syms S1 S2 S3 X k k_R2 k_R2;
+syms s1 s2;
 
-species = [S1, S2, S3, X];
-rateLaws = [-k_R2*S1, k_R2*S1-k_R2*S2, k_R2*S2, X];
+species = [s1, s2];
+rules = [sym('5'), sym('0')];
 
-fail = TestFunction('GetSpeciesRateLaws', 1, 2, m, species, rateLaws);
+fail = TestFunction('GetSymbolicRateLawsFromRules', 1, 2, m, species, rules);
