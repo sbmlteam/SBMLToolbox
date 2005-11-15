@@ -1,5 +1,11 @@
     SBMLToolbox NEWS -- History of user-visible changes
 
+version 2.0.2
+
+
+ReadAndValidateSBML - an additional function that validates
+the sbml file being read before importing it
+
 OutputODEFunction - an additional function with flags to
 indicate whether to display the output or write the data
 to a comma separated variable file (csv)
