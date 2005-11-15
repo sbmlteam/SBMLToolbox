@@ -71,4 +71,12 @@ elseif (sbmlLevel ~= 2)
     error(sprintf('%s\n%s', 'Reaction_isSetFast(SBMLReaction)', 'no isSetFast field in a level 1 model'));    
 end;
 
-value = SBMLReaction.isSetFast;
+% catch case in version 1.0.2 where isSetFast fieldname was incorrectly 
+% entered as IsSetFast
+
+if (isfield(SBMLReaction, 'IsSetFast'))
+    value = SBMLReaction.IsSetFast;
+else
+    value = SBMLReaction.isSetFast;
+end;
+
