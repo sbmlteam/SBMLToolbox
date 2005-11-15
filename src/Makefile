@@ -58,6 +58,7 @@ LIBS      = -lsbml
 
 programs = \
 		TranslateSBML.mexglx			\
+		ReadAndValidateSBML.mexglx		\
 	   	OutputSBML.mexglx				
 
 all: $(programs)
@@ -67,6 +68,9 @@ TranslateSBML.mexglx: TranslateSBML.c
 	$(MEX) $(XCFLAGS) $(XCPPFLAGS) $(XLDFLAGS) $^ $(LIBS)
 
 OutputSBML.mexglx: OutputSBML.c
+	$(MEX) $(XCFLAGS) $(XCPPFLAGS) $(XLDFLAGS) $^ $(LIBS)
+
+ReadAndValidateSBML.mexglx: ReadAndValidateSBML.c
 	$(MEX) $(XCFLAGS) $(XCPPFLAGS) $(XLDFLAGS) $^ $(LIBS)
 
 clean:
