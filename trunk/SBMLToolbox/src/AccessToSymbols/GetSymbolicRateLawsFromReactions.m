@@ -1,13 +1,14 @@
-function [x,y] = GetSpeciesRateLaws(SBMLModel)
-% GetSpeciesRateLaws(SBMLModel) takes an SBML model 
+function [Species, RateLaws] = GetSymbolicRateLawsFromReactions(SBMLModel)
+% GetSymbolicRateLawsFromReactions(SBMLModel) takes an SBML model 
 % returns 
 %       1)array of species symbols
 %       2)an array of symbolic representations of the rate law for each species
+%           from rules
 %--------------------------------------------------------------------------
 
 %
-%  Filename    : GetSpeciesRateLaws.m
-%  Description : GetSpeciesRateLaws(SBMLModel) takes an SBML model 
+%  Filename    : GetSymbolicRateLawsFromReactions.m
+%  Description : GetSymbolicRateLawsFromReactions(SBMLModel) takes an SBML model 
 %           returns     1) array of species symbols
 %                       2)an array of symbolic representations of the rate
 %                       law for each species
@@ -15,7 +16,7 @@ function [x,y] = GetSpeciesRateLaws(SBMLModel)
 %  Organization: University of Hertfordshire STRC
 %  Created     : 2004-02-02
 %  Revision    : $Id$
-%  Source      : $Source $
+%  Source      : $Source ,v $
 %
 %  Copyright 2003 California Institute of Technology, the Japan Science
 %  and Technology Corporation, and the University of Hertfordshire
@@ -58,7 +59,7 @@ function [x,y] = GetSpeciesRateLaws(SBMLModel)
 %
 %  Contributor(s):
 %
-% GetSpeciesRateLaws(SBMLModel) takes an SBML model 
+% GetSymbolicRateLawsFromReactions(SBMLModel) takes an SBML model 
 % returns 
 %       1)array of species symbols
 %       2)an array of symbolic representations of the rate law for each species
@@ -66,7 +67,7 @@ function [x,y] = GetSpeciesRateLaws(SBMLModel)
 
 % check input is an SBML model
 if (~isSBML_Model(SBMLModel))
-    error('GetSpeciesRateLaws(SBMLModel)\n%s', 'input must be an SBMLModel structure');
+    error('GetSymbolicRateLawsFromReactions(SBMLModel)\n%s', 'input must be an SBMLModel structure');
 end;
 
 %--------------------------------------------------------------
@@ -88,7 +89,6 @@ for i = 1:NumSpecies
     
     % if species is a boundary condition (or constant in level 2
     % no rate law is required
-    % will need to adapt for rules
     boundary = SBMLModel.species(i).boundaryCondition;
     if (SBMLModel.SBML_level == 2)
         constant = SBMLModel.species(i).constant;
@@ -107,7 +107,7 @@ for i = 1:NumSpecies
             
             SpeciesType = Species_determineRoleInReaction(SBMLModel.species(i), SBMLModel.reaction(j));
 
-			TotalOccurences = 0;
+            TotalOccurences = 0;
             % record numbers of occurences of species as reactant/product
             % and check that we can deal with reaction
             if (sum(SpeciesType)>0)
@@ -120,13 +120,13 @@ for i = 1:NumSpecies
                 % check that a species does not occur twice on one side of the
                 % reaction
                 if (NoReactants > 1 || NoProducts > 1)
-                    error('GetSpeciesRateLaws(SBMLModel)\n%s', 'SPECIES OCCURS MORE THAN ONCE ON ONE SIDE OF REACTION');
+                    error('GetSymbolicRateLawsFromReactions(SBMLModel)\n%s', 'SPECIES OCCURS MORE THAN ONCE ON ONE SIDE OF REACTION');
                 end;
 
                 %--------------------------------------------------------------
                 % check that reaction has a kinetic law formula
                 if (isempty(SBMLModel.reaction(j).kineticLaw))
-                    error('GetSpeciesRateLaws(SBMLModel)\n%s', 'NO KINETC LAW SUPPLIED');
+                    error('GetSymbolicRateLawsFromReactions(SBMLModel)\n%s', 'NO KINETC LAW SUPPLIED');
                 end;
                 %--------------------------------------------------------------
 
@@ -135,6 +135,9 @@ for i = 1:NumSpecies
             
             % species has been found in this reaction
             while (TotalOccurences > 0) %
+                % get names in order to make the parameter symbols unique
+                Params = GetParameterSymbolsFromReaction(SBMLModel.reaction(j));
+                ParamsUnique = GetParameterSymbolsFromReactionUnique(SBMLModel.reaction(j));
                 
                 % add the kinetic law to the output for this species
                 if (isempty(symOut))
@@ -144,14 +147,22 @@ for i = 1:NumSpecies
                         if ((SBMLModel.SBML_level == 2) && (~isempty(SBMLModel.reaction(j).product(SpeciesType(4)).stoichiometryMath)))
                             stoichiometry = charFormula2sym(SBMLModel.reaction(j).product(SpeciesType(4)).stoichiometryMath);
                         end;
-                        symOut = sym(stoichiometry) * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
+                        if (~isempty(Params))
+                            symOut = sym(stoichiometry) * subs(charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula), Params, ParamsUnique);
+                        else
+                            symOut = sym(stoichiometry) * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
+                        end;
                         NoProducts = NoProducts - 1;
                     elseif (NoReactants > 0)
                         stoichiometry = sym(SBMLModel.reaction(j).reactant(SpeciesType(5)).stoichiometry/double(SBMLModel.reaction(j).reactant(SpeciesType(5)).denominator));
                         if ((SBMLModel.SBML_level == 2) && (~isempty(SBMLModel.reaction(j).reactant(SpeciesType(5)).stoichiometryMath)))
                             stoichiometry = charFormula2sym(SBMLModel.reaction(j).reactant(SpeciesType(5)).stoichiometryMath);
                         end;
-                        symOut =  - sym(stoichiometry) * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
+                        if (~isempty(Params))
+                            symOut = - sym(stoichiometry) * subs(charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula), Params, ParamsUnique);
+                        else
+                            symOut = - sym(stoichiometry) * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
+                        end;
                         NoReactants = NoReactants - 1;
                     end;
 
@@ -162,14 +173,22 @@ for i = 1:NumSpecies
                         if ((SBMLModel.SBML_level == 2) && (~isempty(SBMLModel.reaction(j).product(SpeciesType(4)).stoichiometryMath)))
                             stoichiometry = charFormula2sym(SBMLModel.reaction(j).product(SpeciesType(4)).stoichiometryMath);
                         end;
-                       symOut = symOut + sym(stoichiometry) * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
+                        if (~isempty(Params))
+                            symOut = symOut + sym(stoichiometry) * subs(charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula), Params, ParamsUnique);
+                        else
+                            symOut = symOut + sym(stoichiometry) * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
+                        end;
                         NoProducts = NoProducts - 1;
                     elseif (NoReactants > 0) 
                         stoichiometry = sym(SBMLModel.reaction(j).reactant(SpeciesType(5)).stoichiometry/double(SBMLModel.reaction(j).reactant(SpeciesType(5)).denominator));
                         if ((SBMLModel.SBML_level == 2) && (~isempty(SBMLModel.reaction(j).reactant(SpeciesType(5)).stoichiometryMath)))
                             stoichiometry = charFormula2sym(SBMLModel.reaction(j).reactant(SpeciesType(5)).stoichiometryMath);
                         end;
-                        symOut = symOut - sym(stoichiometry) * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
+                        if (~isempty(Params))
+                            symOut = symOut - sym(stoichiometry) * subs(charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula), Params, ParamsUnique);
+                        else
+                            symOut = symOut - sym(stoichiometry) * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
+                        end;
                         NoReactants = NoReactants - 1;
                     end; 
                     
@@ -177,18 +196,7 @@ for i = 1:NumSpecies
                 
                 TotalOccurences = TotalOccurences - 1;
                 
-            end; % while found > 0
-            
-            if (~isempty(symOut))
-                
-                % make the parameter symbols unique
-                Params = GetParameterSymbolsFromReaction(SBMLModel.reaction(j));
-                ParamsUnique = GetParameterSymbolsFromReactionUnique(SBMLModel.reaction(j));
-                if (~isempty(Params))
-                    symOut = subs(symOut, Params, ParamsUnique);
-                end;
-            end;
-            
+            end; % while found > 0           
             
         end; % for NumReactions
         
@@ -197,9 +205,9 @@ for i = 1:NumSpecies
 
     % finished looking for this species
     % record rate law and loop to next species
-    % put the species symbol if no law found
+    % rate = 0 if no law found
     if (isempty(symOut))
-        symRateLaws(i) = Symbols(i);
+        symRateLaws(i) = sym('0');
     else
         symRateLaws(i) = symOut;
     end;
@@ -208,5 +216,5 @@ end; % for NumSpecies
 
 %--------------------------------------------------------------------------
 % assign outputs
-x = Symbols;
-y = symRateLaws;
+Species = Symbols;
+RateLaws = symRateLaws;
