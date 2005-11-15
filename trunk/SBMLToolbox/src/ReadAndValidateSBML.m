@@ -1,31 +1,46 @@
-% SBMLToolbox
+% ReadAndValidateSBML((optional)'filename') translates sbml into a matlab structure
 %
-% This is the top level directory for the functions to translate 
-% sbml models into a MATLAB structure which can then be saved.
+% filename is the name of the file containing the sbml definition of a
+% model - if not supplied a browse window is opened
 %
+% ReadAndValidateSBML checks validates teh input file for correct sbml
+% and will warn the user of any inconsistencies found
+% and prompt user for whether to load the model anyway
 %
-% FUNCTIONS include:
-%  BuildTranslate_Win32 
-%		which builds the TranslateSBML executable
-%  TranslateSBML 
-%		which translates a sbml file into a matlab structure
-%  BuildRead_Win32 
-%		which builds the ReadAndValidateSBML executable
-%  ReadAndValidateSBML
-%       which reads an sbml file and validates it
-%       before translating it into a matlab structure
-%  BuildOutput_Win32 
-%		which builds the TranslateSBML executable
-%  OutputSBML('SBML_MATLAB structure') 
-%		which translates a sbml-matlab structure and ouputs an sbml file
+% ReadAndValidateSBML returns a structure with the following fields
+% i.e. a sbml model structure
+% eg    Typecode
+%       Notes
+%       Annotations
+%       Level
+%       Version
+%       Name
+%       Id (2)
+%       ListFunctionDefinition (2)
+%       ListUnitDefinition
+%       ListCompartment
+%       ListSpecies
+%       ListParameter
+%       ListRule
+%       ListReaction
+%       ListEvent (2)
 %
+% NOTE number in brackets indicates field is appropriate for that level of
+% sbml only
+%
+% where Typecode,  Notes,  Annotations & Name are all of type char * 
+%                           (ie mxArray of char)
+%       ListXX refers to an array of structures of type XXX
+%
+% the structure of each type XXX is defined in help text for 
+% the isSBML_XXX() functions
 
 %
-%  Description : This is the top level directory for the functions to translate 
-%				 sbml models into a MATLAB structure which can then be saved.
-%  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
+%  Filename    : ReadAndValidateSBML.m
+%  Description : MATLAB help file for ReadAndValidateSBML
+%  Author(s)   : SBML Team <sbml-team@caltech.edu>
 %  Organization: University of Hertfordshire STRC
-%  Created     : 2003-09-15
+%  Created     : 2005-11-10
 %  Revision    : $Id$
 %  Source      : $Source$
 %
@@ -70,24 +85,4 @@
 %
 %  Contributor(s):
 %
-%
-%
-% This is the top level directory for the functions to translate 
-% sbml models into a MATLAB structure which can then be saved.
-%
-%
-% FUNCTIONS include:
-%  BuildTranslate_Win32 
-%		which builds the TranslateSBML executable
-%  TranslateSBML 
-%		which translates a sbml file into a matlab structure
-%  BuildRead_Win32 
-%		which builds the ReadAndValidateSBML executable
-%  ReadAndValidateSBML
-%       which reads an sbml file and validates it
-%       before translating it into a matlab structure
-%  BuildOutput_Win32 
-%		which builds the TranslateSBML executable
-%  OutputSBML('SBML_MATLAB structure') 
-%		which translates a sbml-matlab structure and ouputs an sbml file
 %
