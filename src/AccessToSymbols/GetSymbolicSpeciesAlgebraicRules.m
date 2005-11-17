@@ -90,9 +90,9 @@ for i = 1:NumberSpecies
     % finished looking for this species
     % record rate law and loop to next species
     % rate = 0 if no law found
-    if (isempty(symOut))
-        AlgebraicRules{i} = sym('0');
-    else
+%     if (isempty(symOut))
+%         AlgebraicRules{i} = sym('0');
+%     else
         AlgebraicRules{i} = symOut;
-    end;
+%     end;
 end; % for NumSpecies

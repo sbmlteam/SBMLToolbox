@@ -152,6 +152,13 @@ if (fail == 1)
 end;
 Totalfail = Totalfail + fail;
 
+test = test + 2;
+fail = TestAnalyseSpeciesSymbolic;
+if (fail == 1)
+    disp('TestAnalyseSpeciesSymbolic failed');
+end;
+Totalfail = Totalfail + fail;
+
 disp(sprintf('Number tests: %d', test));
 disp(sprintf('Number fails: %d', Totalfail));
 disp(sprintf('Pass rate: %d%%', ((test-Totalfail)/test)*100));

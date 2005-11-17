@@ -63,7 +63,7 @@ syms S1 S2 S3 X;
 
 species = [S1, S2, S3, X];
 
-rules = {[X+S1-S3], [sym('0')], [X+S1-S3], [X+S1-S3]};
+rules = {[X+S1-S3], [sym('')], [X+S1-S3], [X+S1-S3]};
 rules1 = { [X+S1-S3], [S2+S3-X], [X+S1-S3, S2+S3-X], [X+S1-S3, S2+S3-X]};
 
 fail = TestFunction('GetSymbolicSpeciesAlgebraicRules', 1, 2, m, species, rules);

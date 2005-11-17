@@ -87,7 +87,7 @@ for i = 1:NumberSpecies
     end;
     
     if (constant == 1)
-        symOut = sym('0');
+%         symOut = sym('0');
     else
 
         if (NumAssignRules > 0)
@@ -105,10 +105,10 @@ for i = 1:NumberSpecies
     % finished looking for this species
     % record rate law and loop to next species
     % rate = 0 if no law found
-    if (isempty(symOut))
-        AssignmentRules{i} = sym('0');
-    else
+%     if (isempty(symOut))
+%         AssignmentRules{i} = sym('0');
+%     else
         AssignmentRules{i} = symOut;
-    end;
+%     end;
     
 end; % for NumSpecies
