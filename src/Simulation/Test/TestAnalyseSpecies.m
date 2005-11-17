@@ -130,3 +130,42 @@ output(1).ConvertedToAssignRule = 0;
 output(1).ConvertedRule = '';
 
 fail = fail + TestFunction('AnalyseSpecies', 1, 1, m, output);
+
+m = TranslateSBML('test7.xml');
+
+output(1).Name = {'X'};
+output(1).constant = 0;
+output(1).boundaryCondition = 0;
+output(1).initialValue = 0;
+output(1).ChangedByReaction = 0;
+output(1).KineticLaw = '';
+output(1).ChangedByRateRule = 0;
+output(1).RateRule = '';
+output(1).ChangedByAssignmentRule = 0;
+output(1).AssignmentRule = '';
+output(1).InAlgebraicRule = 1;
+output(1).AlgebraicRule = {{'X+S1-S3'}};
+output(1).ConvertedToAssignRule = 1;
+output(1).ConvertedRule = '-S1+S3';
+
+fail = fail + TestFunction('AnalyseSpecies', 1, 1, m, output);
+
+m = TranslateSBML('test8.xml');
+
+output(1).Name = {'S1'};
+output(1).constant = 0;
+output(1).boundaryCondition = 0;
+output(1).initialValue = 0;
+output(1).ChangedByReaction = 0;
+output(1).KineticLaw = '';
+output(1).ChangedByRateRule = 0;
+output(1).RateRule = '';
+output(1).ChangedByAssignmentRule = 0;
+output(1).AssignmentRule = '';
+output(1).InAlgebraicRule = 1;
+output(1).AlgebraicRule = {{'f(S2,S1)-T'}};
+output(1).ConvertedToAssignRule = 1;
+output(1).ConvertedRule = '-S2+T';
+
+fail = fail + TestFunction('AnalyseSpecies', 1, 1, m, output);
+
