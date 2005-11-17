@@ -533,7 +533,11 @@ if (NoNumerics > 0)
                 NewArraySyms(NewArrayCount) = ArraySyms(i);
                 NewArrayCount = NewArrayCount + 1;
             end;
-        end;    
+        end;  
+        % catch case where all symbols in the array are numbers
+        if (NewArrayCount == 1)
+            NewArraySyms = [];
+        end;
     end;
 else
     NewArraySyms = ArraySyms;
