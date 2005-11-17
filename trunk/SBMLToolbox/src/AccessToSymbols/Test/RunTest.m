@@ -138,6 +138,19 @@ if (fail == 1)
 end;
 Totalfail = Totalfail + fail;
 
+test = test + 2;
+fail = TestGetSymbolicSpeciesAlgebraicRules;
+if (fail == 1)
+    disp('TestGetSymbolicSpeciesAlgebraicRules failed');
+end;
+Totalfail = Totalfail + fail;
+
+test = test + 1;
+fail = TestGetSymbolicSpeciesAssignmentRules;
+if (fail == 1)
+    disp('TestGetSymbolicSpeciesAssignmentRules failed');
+end;
+Totalfail = Totalfail + fail;
 
 disp(sprintf('Number tests: %d', test));
 disp(sprintf('Number fails: %d', Totalfail));
