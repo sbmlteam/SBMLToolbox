@@ -61,6 +61,6 @@ m = TranslateSBML('test3.xml');
 syms S1 S2 S3 X;
 
 species = [S1, S2, S3, X];
-rules = {[sym('0')], [sym('0')], [sym('7')], [sym('0')]};
+rules = {[sym('')], [sym('')], [sym('7')], [sym('')]};
 
 fail = TestFunction('GetSymbolicSpeciesAssignmentRules', 1, 2, m, species, rules);
