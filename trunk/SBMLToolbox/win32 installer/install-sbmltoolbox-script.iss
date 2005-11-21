@@ -61,15 +61,16 @@ DefaultGroupName=SBMLToolbox
 DisableProgramGroupPage=yes
 WizardSmallImageFile=sbmltoolbox-installer-mini-logo.bmp
 WizardImageFile=sbmltoolbox-installer-graphic.bmp
+UsePreviousAppDir=no
 
 
 [Files]
-Source: "C:\SBMLToolbox for release\*"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\SBMLToolbox for release\toolbox\*"; DestDir: "{app}\toolbox"; Flags: ignoreversion recursesubdirs
-Source: "C:\SBMLToolbox for release\docs\*"; DestDir: "{app}\docs"; Flags: ignoreversion recursesubdirs
-Source: "C:\SBMLToolbox for release\extern\*"; DestDir: "{app}\extern"; Flags: ignoreversion recursesubdirs
-Source: "C:\SBMLToolbox for release\extern\bin\*"; DestDir: "{sys}"; Check: GetSys;
-Source: "C:\SBMLToolbox for release\extern\bin\*"; DestDir: "{code:GetLibDir}"; Flags: ignoreversion; Check: GetOverwrite;
+Source: "C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox\*"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox\toolbox\*"; DestDir: "{app}\toolbox"; Flags: ignoreversion recursesubdirs
+Source: "C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox\docs\*"; DestDir: "{app}\docs"; Flags: ignoreversion recursesubdirs
+Source: "C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox\extern\*"; DestDir: "{app}\extern"; Flags: ignoreversion recursesubdirs
+Source: "C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox\extern\bin\*"; DestDir: "{sys}"; Check: GetSys;
+Source: "C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox\extern\bin\*"; DestDir: "{code:GetLibDir}"; Flags: ignoreversion; Check: GetOverwrite;
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
