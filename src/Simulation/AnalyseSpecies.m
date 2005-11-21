@@ -69,6 +69,10 @@ function Species = AnalyseSpecies(SBMLModel)
 %      mailto:sbml-team@caltech.edu
 %
 %  Contributor(s):
+% check input is an SBML model
+if (~isSBML_Model(SBMLModel))
+    error('AnalyseSpecies(SBMLModel)\n%s', 'argument must be an SBMLModel structure');
+end;
 
 [name, KineticLaw] = Model_determineRateLawsFromReactions(SBMLModel);
 [n, RateRule] = Model_determineRateLawsFromRules(SBMLModel);
