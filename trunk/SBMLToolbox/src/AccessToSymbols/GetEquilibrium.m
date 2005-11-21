@@ -90,7 +90,7 @@ end;
 
 % get the symbolic form of the species, the corresponding rate laws
 % and any parameters
-[Species, Rates] = GetSpeciesRateLaws(SBMLModel);
+[Species, Rates] = GetSymbolicRateLawsFromReactions(SBMLModel);
 
 [Parameters] = GetAllParameterSymbolsUnique(SBMLModel);
 

@@ -70,6 +70,10 @@ function Species = AnalyseSpeciesSymbolic(SBMLModel)
 %
 %  Contributor(s):
 %------------------------------------------------------------
+if (~isSBML_Model(SBMLModel))
+    error('AnalyseSpeciesSymbolic(SBMLModel)\n%s', 'argument must be an SBMLModel structure');
+end;
+
 % look for functions and warn user that these are not dealt with yet
 if (SBMLModel.SBML_level == 2)
     Funcs = length(SBMLModel.functionDefinition);
