@@ -1,10 +1,14 @@
 function varargout = PlotTimeCourse(varargin)
 % PlotTimeCourse takes a SBMLModel 
 % and plots the time course of each species to equilibrium
-% second argument can be the time limit to which to plot
-% third argument can be the number of time steps that will be plotted
-% fourth argument indicates whether an output file is required
-% possible output is the concentration of each species at the time limit
+% 
+%   additional optional arguments
+%           2)the time limit to which to plot
+%           3)the number of time steps that will be plotted
+%           4)flag to indicate whether to output a csv file
+%
+% returns
+%   the concentration of each species at the time limit
 %--------------------------------------------------------------------------
 
 %
@@ -63,6 +67,8 @@ function varargout = PlotTimeCourse(varargin)
 % must be at least one input
 if (nargin < 1)
     error('PlotTimeCourse(SBMLModel, ...)\n%s', 'must have at least one input');
+elseif (nargin > 4)
+    error('PlotTimeCourse(SBMLModel, ...)\n%s', 'cannot have more than four inputs');    
 end;
 
 % assign inputs 
@@ -91,7 +97,7 @@ end;
 
 % get the symbolic form of the species, the corresponding rate laws
 % and any parameters
-[Species, Rates] = GetSpeciesRateLaws(SBMLModel);
+[Species, Rates] = GetSymbolicRateLawsFromReactions(SBMLModel);
 
 [Parameters] = GetAllParameterSymbolsUnique(SBMLModel);
 
@@ -217,7 +223,7 @@ if ((nargin > 3) && (varargin{4} == 1))
         end;
     end;
 
-    fileName = strcat(Name, '.CSV');
+    fileName = strcat(Name, '.csv');
     %--------------------------------------------------------------------
     % open the file for writing
 

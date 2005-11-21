@@ -1,9 +1,13 @@
 function varargout = PlotSelectedTimeCourse(varargin)
 % PlotSelectedTimeCourse takes a SBMLModel 
 % and plots the time course of user selected species to equilibrium
-% second argument can be the time limit to which to plot
-% third argument can be the number of time steps that will be plotted
-% possible output is the concentration of each species at the time limit
+%
+%   additional optional arguments
+%           2)the time limit to which to plot
+%           3)the number of time steps that will be plotted
+%
+% returns
+%   the concentration of each species at the time limit
 %--------------------------------------------------------------------------
 
 %
@@ -62,6 +66,8 @@ function varargout = PlotSelectedTimeCourse(varargin)
 % must be at least one input
 if (nargin < 1)
     error('PlotSelectedTimeCourse(SBMLModel, ...)\n%s', 'must have at least one input');
+elseif (nargin > 3)
+    error('PlotSelectedTimeCourse(SBMLModel, ...)\n%s', 'cannot have more than three inputs');   
 end;
 
 % assign inputs 
@@ -90,7 +96,7 @@ end;
 
 % get the symbolic form of the species, the corresponding rate laws
 % and any parameters
-[Species, Rates] = GetSpeciesRateLaws(SBMLModel);
+[Species, Rates] = GetSymbolicRateLawsFromReactions(SBMLModel);
 
 [Parameters] = GetAllParameterSymbolsUnique(SBMLModel);
 
