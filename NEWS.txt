@@ -2,6 +2,9 @@
 
 version 2.0.2
 
+functions in AccessToSymbols changed so that the names reflect
+the equivalent functions in AccessModel
+
 
 ReadAndValidateSBML - an additional function that validates
 the sbml file being read before importing it
