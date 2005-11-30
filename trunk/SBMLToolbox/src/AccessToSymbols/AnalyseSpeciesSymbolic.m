@@ -8,6 +8,7 @@ function Species = AnalyseSpeciesSymbolic(SBMLModel)
 %     constant
 %     boundaryCondition
 %     initialValue
+%     isConcentration
 %     ChangedByReaction
 %     KineticLaw
 %     ChangedByRateRule
@@ -108,6 +109,11 @@ for i = 1:length(SBMLModel.species)
 
     Species(i).initialValue = Values(i);
     
+    if (SBMLModel.SBML_level == 2 && SBMLModel.species(i).isSetInitialConcentration == 1)
+        Species(i).isConcentration = 1;
+    else
+        Species(i).isConcentration = 0;
+    end;
     
     if (KineticLaw(i) == 0)
         Species(i).ChangedByReaction = 0;
