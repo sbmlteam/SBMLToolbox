@@ -1,6 +1,11 @@
-    function WriteODEFunction(SBMLModel)
-    % WriteODEFunction takes a matlab sbml model structure and outputs a file
-    % defining a function for use with matlabs ode solvers
+    function WriteODEFunction(varargin)
+    % WriteODEFunction takes 
+    %               1) a matlab sbml model structure
+    %               2) a filename (optional)
+    %   and 
+    %      outputs a file defining a function for use with matlabs ode solvers
+    %
+    %  NOTE: if no filename is supplied the model id is used
 
     %
     %  Filename    : WriteODEFunction.m
@@ -53,9 +58,22 @@
     %
     %  Contributor(s):
 
+    switch (nargin)
+        case 0
+            error('WriteODEFunction(SBMLModel, (optional) filename)\n%s', 'must have at least one argument');
+        case 1
+            SBMLModel = varargin{1};
+            filename = '';
+        case 2
+            SBMLModel = varargin{1};
+            filename = varargin{2};
+        otherwise
+            error('WriteODEFunction(SBMLModel, (optional) filename)\n%s', 'does not take more than two arguments');
+    end;
+    
     % check input is an SBML model
     if (~isSBML_Model(SBMLModel))
-        error('WriteODEFunction(SBMLModel)\n%s', 'argument must be an SBMLModel structure');
+        error('WriteODEFunction(SBMLModel, (optional) filename)\n%s', 'first argument must be an SBMLModel structure');
     end;
 
     % -------------------------------------------------------------
@@ -89,6 +107,12 @@
         end;
     end;
 
+    if (~isempty(filename))
+        Name = filename;
+    elseif (length(Name) > 63)
+        Name = Name(1:60);
+    end;
+    
     fileName = strcat(Name, '.m');
     %--------------------------------------------------------------------
     % open the file for writing
