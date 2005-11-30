@@ -65,6 +65,7 @@
     Species = AnalyseSpecies(SBMLModel);
     NumberSpecies = length(SBMLModel.species);
     Speciesnames = GetSpecies(SBMLModel);
+    [CompartmentNames, CompartmentValues] = GetCompartments(SBMLModel);
 
     if (SBMLModel.SBML_level == 2)
         NumEvents = length(SBMLModel.event);
@@ -126,6 +127,14 @@
 
 
     fprintf(fileID, 'xdot = zeros(%u, 1);\n', NumberSpecies);
+
+    % write the compartment values
+    fprintf(fileID, '\n%%--------------------------------------------------------\n');
+    fprintf(fileID, '%% compartment values\n\n');
+
+    for i = 1:length(CompartmentNames)
+        fprintf(fileID, '%s = %i;\n', CompartmentNames{i}, CompartmentValues(i));
+    end;
 
     % write the parameter values
     fprintf(fileID, '\n%%--------------------------------------------------------\n');
