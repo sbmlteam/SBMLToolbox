@@ -145,6 +145,13 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
+test = test + 2;
+fail = TestGetCompartments;
+if (fail > 0)
+    disp('GetCompartments failed');
+end;
+Totalfail = Totalfail + fail;
+
 disp(sprintf('Number tests: %d', test));
 disp(sprintf('Number fails: %d', Totalfail));
 disp(sprintf('Pass rate: %d%%', ((test-Totalfail)/test)*100));
