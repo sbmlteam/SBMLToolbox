@@ -6,8 +6,12 @@ function OutputODEFunction(varargin)
 %       4) number of time steps (optional)
 %       5) a flag to indicate whther to output the simulation data as a CSV
 %       file flag = 1 - outputs file (optional)
+%       6) a filename
 %          
 %  and plots the results of the ode45 solver 
+%
+% NOTE: a filename is required when WriteODEFunction has been
+%       called with a filename
 
 %
 %  Filename    : OutputODEFunction.m
@@ -65,8 +69,8 @@ function OutputODEFunction(varargin)
 % get inputs
 if (nargin < 1)
     error('OutputODEFunction(SBMLModel, ...)\n%s', 'must have at least one argument');
-elseif (nargin > 5)
-    error('OutputODEFunction(SBMLModel, ...)\n%s', 'cannot have more than five arguments');
+elseif (nargin > 6)
+    error('OutputODEFunction(SBMLModel, ...)\n%s', 'cannot have more than six arguments');
 end;
 
 
@@ -111,6 +115,10 @@ else
     end;
 end;
 
+if (length(Name) > 63)
+    Name = Name(1:60);
+end;
+
 fileName = strcat(Name, '.m');
 
 %--------------------------------------------------------------
@@ -118,7 +126,18 @@ fileName = strcat(Name, '.m');
 % check whether file exists
 fId = fopen(fileName);
 if (fId == -1)
-    error('OutputODEFunction(SBMLModel)\n%s\n%s', 'You must use WriteODEFunction to output an ode function for this model', 'before using this function');
+    if (nargin == 6)
+        Name = varargin{6};
+        fileName = strcat(Name, '.m');
+        fId = fopen(fileName);
+        if (fId == -1)
+            error('OutputODEFunction(SBMLModel)\n%s', 'You have not used this filename with WriteODEFunction');
+        else
+            fclose(fId);
+        end;
+    else
+        error('OutputODEFunction(SBMLModel)\n%s\n%s', 'You must use WriteODEFunction to output an ode function for this model', 'before using this function');
+    end;
 else
     fclose(fId);
 end;

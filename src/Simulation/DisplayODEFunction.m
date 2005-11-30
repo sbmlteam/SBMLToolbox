@@ -3,8 +3,12 @@ function DisplayODEFunction(varargin)
 %       1) a matlab sbml model structure 
 %       2) time limit (optional)
 %       3) number of time steps (optional)
+%       4) a filename (optional)
 %          
 %  and plots the results of the ode45 solver 
+%
+% NOTE: a filename is required when WriteODEFunction has been
+%       called with a filename
 
 %
 %  Filename    : DisplayODEFunction.m
@@ -66,8 +70,8 @@ function DisplayODEFunction(varargin)
 % get inputs
 if (nargin < 1)
     error('DisplayODEFunction(SBMLModel, ...)\n%s', 'must have at least one argument');
-elseif (nargin > 3)
-    error('DisplayODEFunction(SBMLModel, ...)\n%s', 'cannot have more than three arguments');
+elseif (nargin > 4)
+    error('DisplayODEFunction(SBMLModel, ...)\n%s', 'cannot have more than four arguments');
 end;
 
 
@@ -77,6 +81,7 @@ SBMLModel = varargin{1};
 if (~isSBML_Model(SBMLModel))
     error('DisplayODEFunction(SBMLModel)\n%s', 'first argument must be an SBMLModel structure');
 end;
+
 %------------------------------------------------------------
 % calculate values to use in iterative process
 if (nargin > 1)
@@ -93,9 +98,14 @@ else
     Time_span = [0, Time_limit];
 end;
 
-% check third argument
+% check second argument
 if ((length(Time_limit) ~= 1) || (~isnumeric(Time_limit)))
     error('DisplayODEFunction(SBMLModel, time)\n%s', 'third argument must be a single real number indicating a time limit');
+end;
+
+filename = '';
+if (nargin > 3)
+    filename = varargin{4};
 end;
 
 %---------------------------------------------------------------
@@ -110,6 +120,12 @@ else
     else
         Name = SBMLModel.id;
     end;
+end;
+
+if (~isempty(filename))
+    Name = filename;
+elseif (length(Name) > 63)
+    Name = Name(1:60);
 end;
 
 fileName = strcat(Name, '.m');
