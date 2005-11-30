@@ -224,6 +224,7 @@ end; % for NumSpecies
 
 function y = Substitute(InitialCharArray, ReplacementParams, Formula)
 
+Allowed = {'(',')','*','/','+','-','^', ' ', ','};
 % get the number of parameters to be replced
 NumberParams = length(InitialCharArray);
 
@@ -246,10 +247,30 @@ for i = 1:NumberParams
     OrderedReplacements{i} = ReplacementParams{Index(i)};
 end;
 
-RevisedFormula = regexprep(Formula, OrderedCharArray{NumberParams}, OrderedReplacements{NumberParams});
-for i = NumberParams-1:-1:1
-    RevisedFormula = regexprep(RevisedFormula, OrderedCharArray{i}, OrderedReplacements{i});
+RevisedFormula = Formula;
+
+for i = NumberParams:-1:1
+    % before replacing a character need to check that it is not part of a
+    % word etc 
+    NumOccurences = length(findstr(OrderedCharArray{i}, RevisedFormula));
+    for j = 1:NumOccurences
+        k = findstr(OrderedCharArray{i}, RevisedFormula);
+        if (k(j) == 1)
+            before = ' ';
+        else
+            before = RevisedFormula(k(j)-1);
+        end;
+        if ((k(j)+length(OrderedCharArray{i})) < length(RevisedFormula))
+            after = RevisedFormula(k(j)+length(OrderedCharArray{i}));
+        else
+            after = ' ';
+        end;
+        if (ismember(after, Allowed) && ismember(before, Allowed))
+            RevisedFormula = regexprep(RevisedFormula, OrderedCharArray{i}, OrderedReplacements{i}, j);
+        end;
+    end;
 end;
 
 y = RevisedFormula;
+
 
