@@ -2,9 +2,12 @@
 
 version 2.0.2
 
+compartment added to function written by WriteODEFunction
+so variable compartments and non-unit volume models
+are dealt with
+
 functions in AccessToSymbols changed so that the names reflect
 the equivalent functions in AccessModel
-
 
 ReadAndValidateSBML - an additional function that validates
 the sbml file being read before importing it
