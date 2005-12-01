@@ -247,10 +247,12 @@
 
         if (Species(i).ChangedByReaction == 1)
             % need to look for piecewise functions
-            if (isempty(findstr(char(Species(i).KineticLaw), 'piecewise')))
-
-
-                Array{i} = sprintf('\txdot(%u) = %s;\n', i, char(Species(i).KineticLaw));
+            if (isempty(strfind(char(Species(i).KineticLaw), 'piecewise')))
+                if (Species(i).isConcentration == 1)
+                    Array{i} = sprintf('\txdot(%u) = (%s)/%s;\n', i, char(Species(i).KineticLaw), Species(i).compartment);
+                else
+                    Array{i} = sprintf('\txdot(%u) = %s;\n', i, char(Species(i).KineticLaw));
+                end;
 
             else
                 Arguments = DealWithPiecewise(char(Species(i).KineticLaw));
@@ -270,18 +272,20 @@
             %%% Checking for a piecewise in the assignment rule and
             %%% handling it
             %%% Change made by Sumant Turlapati, Entelos, Inc. on June 8th, 2005
-            if (isempty(findstr(char(Species(i).AssignmentRule), 'piecewise')))
+            if (isempty(strfind(char(Species(i).AssignmentRule), 'piecewise')))
                 DifferentiatedRule = DifferentiateRule(char(Species(i).AssignmentRule), Speciesnames);
                 Array{i} = sprintf('\txdot(%u) = %s;\n', i, char(DifferentiatedRule));
                 NeedToOrderArray = 1;
             else
                 error('WriteODEFunction(SBMLModel)\n%s', 'cannot yet deal with a piecewise function within an assignment rule');
                 %char(Species(i).AssignmentRule)
-                Args = DealWithPiecewise(char(Species(i).AssignmentRule));
-                
-                DiffRule1 = DifferentiateRule(char(Args{1}), Speciesnames);
-                DiffRule2 = DifferentiateRule(char(Args{3}), Speciesnames);
-                Array{i} = sprintf('\tif (%s) \n\t\txdot(%d) = %s;\n\telse\n\t\txdot(%u) = %s;\n\tend;\n', Args{2}, i, char(DiffRule1), i, char(DiffRule2));
+                %% taken out as this did not fully handle piecewise in an
+                %% assignment rule
+%                 Args = DealWithPiecewise(char(Species(i).AssignmentRule));
+%                 
+%                 DiffRule1 = DifferentiateRule(char(Args{1}), Speciesnames);
+%                 DiffRule2 = DifferentiateRule(char(Args{3}), Speciesnames);
+%                 Array{i} = sprintf('\tif (%s) \n\t\txdot(%d) = %s;\n\telse\n\t\txdot(%u) = %s;\n\tend;\n', Args{2}, i, char(DiffRule1), i, char(DiffRule2));
             end;
             %DifferentiatedRule = DifferentiateRule(char(Species(i).AssignmentRule), Speciesnames);
             %Array{i} = sprintf('\txdot(%u) = %s;\n', i, char(DifferentiatedRule));
@@ -365,7 +369,7 @@
         %%% Checking for a piecewise in the assignment rule and
             %%% handling it
             %%% Change made by Sumant Turlapati, Entelos, Inc. on June 8th, 2005
-            if (isempty(findstr(char(SBMLRule.formula), 'piecewise')))
+            if (isempty(strfind(char(SBMLRule.formula), 'piecewise')))
                 y = sprintf('%s = %s;', SBMLRule.variable, SBMLRule.formula);
             else
                 Arguments = DealWithPiecewise(char(SBMLRule.formula));
@@ -444,7 +448,7 @@
             % for moment assume this would not happen
             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-            Power = findstr(Elements{i}, '^');
+            Power = strfind(Elements{i}, '^');
             if (~isempty(Power))
                 Number = '';
                 Digits = isstrprop(Elements{i}, 'digit');

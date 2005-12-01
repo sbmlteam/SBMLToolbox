@@ -56,28 +56,28 @@ Totalfail = 0;
 
 test = test + 1;
 fail = TestcharFormula2sym;
-if (fail == 1)
+if (fail > 0)
     disp('charFormula2sym failed');
 end;
 Totalfail = Totalfail + fail;
 
 test = test + 1;
 fail = TestCreateSymArray;
-if (fail == 1)
+if (fail > 0)
     disp('CreateSymArray failed');
 end;
 Totalfail = Totalfail + fail;
 
 test = test + 1;
 fail = TestGetAllParameterSymbols;
-if (fail == 1)
+if (fail > 0)
     disp('GetAllParameterSymbols failed');
 end;
 Totalfail = Totalfail + fail;
 
 test = test + 1;
 fail = TestGetAllParameterSymbolsUnique;
-if (fail == 1)
+if (fail > 0)
     disp('GetAllParameterSymbolsUnique failed');
 end;
 Totalfail = Totalfail + fail;
@@ -91,77 +91,77 @@ Totalfail = Totalfail + fail;
 
 test = test + 1;
 fail = TestGetGlobalParameterSymbols;
-if (fail == 1)
+if (fail > 0)
     disp('GetGlobalParameterSymbols failed');
 end;
 Totalfail = Totalfail + fail;
 
 test = test + 1;
 fail = TestGetParameterSymbolsFromReaction;
-if (fail == 1)
+if (fail > 0)
     disp('GetParameterSymbolsFromReaction failed');
 end;
 Totalfail = Totalfail + fail;
 
 test = test + 1;
 fail = TestGetParameterSymbolsFromReactionUnique;
-if (fail == 1)
+if (fail > 0)
     disp('GetParameterSymbolsFromReactionUnique failed');
 end;
 Totalfail = Totalfail + fail;
 
 test = test + 1;
 fail = TestGetSymbolicRateLawsFromReactions;
-if (fail == 1)
+if (fail > 0)
     disp('TestGetSymbolicRateLawsFromReactions failed');
 end;
 Totalfail = Totalfail + fail;
 
 test = test + 1;
 fail = TestGetSymbolicRateLawsFromRules;
-if (fail == 1)
+if (fail > 0)
     disp('TestGetSymbolicRateLawsFromRules failed');
 end;
 Totalfail = Totalfail + fail;
 
 test = test + 1;
 fail = TestGetSpeciesSymbols;
-if (fail == 1)
+if (fail > 0)
     disp('GetSpeciesSymbols failed');
 end;
 Totalfail = Totalfail + fail;
 
 test = test + 1;
 fail = TestGetStoichiometryMatrixSyms;
-if (fail == 1)
+if (fail > 0)
     disp('GetStoichiometryMatrixSyms failed');
 end;
 Totalfail = Totalfail + fail;
 
 test = test + 2;
 fail = TestGetSymbolicSpeciesAlgebraicRules;
-if (fail == 1)
+if (fail > 0)
     disp('TestGetSymbolicSpeciesAlgebraicRules failed');
 end;
 Totalfail = Totalfail + fail;
 
 test = test + 1;
 fail = TestGetSymbolicSpeciesAssignmentRules;
-if (fail == 1)
+if (fail > 0)
     disp('TestGetSymbolicSpeciesAssignmentRules failed');
 end;
 Totalfail = Totalfail + fail;
 
 test = test + 2;
 fail = TestAnalyseSpeciesSymbolic;
-if (fail == 1)
+if (fail > 0)
     disp('TestAnalyseSpeciesSymbolic failed');
 end;
 Totalfail = Totalfail + fail;
 
 test = test + 2;
 fail = TestGetCompartmentSymbols;
-if (fail == 1)
+if (fail > 0)
     disp('TestGetCompartmentSymbols failed');
 end;
 Totalfail = Totalfail + fail;
