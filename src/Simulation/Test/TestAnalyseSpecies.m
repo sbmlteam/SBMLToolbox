@@ -9,6 +9,7 @@ function fail = TestAnalyseSpecies
 %     boundaryCondition
 %     initialValue
 %     isConcentration
+%     compartment
 %     ChangedByReaction
 %     KineticLaw
 %     ChangedByRateRule
@@ -78,6 +79,7 @@ output(1).constant = 0;
 output(1).boundaryCondition = 0;
 output(1).initialValue = 1e-15;
 output(1).isConcentration = 0;
+output(1).compartment = 'c';
 output(1).ChangedByReaction = 1;
 output(1).KineticLaw = {' - (kf_R1*S1*S3)'};
 output(1).ChangedByRateRule = 0;
@@ -98,6 +100,7 @@ output(1).constant = 0;
 output(1).boundaryCondition = 0;
 output(1).initialValue = 3e-15;
 output(1).isConcentration = 0;
+output(1).compartment = 'compartment';
 output(1).ChangedByReaction = 1;
 output(1).KineticLaw = {' + (k_R2*S2)'};
 output(1).ChangedByRateRule = 0;
@@ -118,6 +121,7 @@ output(1).constant = 0;
 output(1).boundaryCondition = 1;
 output(1).initialValue = 0;
 output(1).isConcentration = 0;
+output(1).compartment = 'c';
 output(1).ChangedByReaction = 0;
 output(1).KineticLaw = '';
 output(1).ChangedByRateRule = 1;
@@ -138,6 +142,7 @@ output(1).constant = 0;
 output(1).boundaryCondition = 0;
 output(1).initialValue = 2;
 output(1).isConcentration = 1;
+output(1).compartment = 'compartment';
 output(1).ChangedByReaction = 0;
 output(1).KineticLaw = '';
 output(1).ChangedByRateRule = 0;

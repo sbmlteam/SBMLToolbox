@@ -9,6 +9,7 @@ function fail = TestAnalyseSpeciesSymbolic
 %     boundaryCondition
 %     initialValue
 %     isConcentration
+%     compartment
 %     ChangedByReaction
 %     KineticLaw
 %     ChangedByRateRule
@@ -73,13 +74,14 @@ function fail = TestAnalyseSpeciesSymbolic
 
 m = TranslateSBML('test6.xml');
 
-syms S1 S3 kf_R1;
+syms S1 S3 kf_R1 c;
 
 output(1).Name = [S1];
 output(1).constant = 0;
 output(1).boundaryCondition = 0;
 output(1).initialValue = 1e-15;
 output(1).isConcentration = 0;
+output(1).compartment = c;
 output(1).ChangedByReaction = 1;
 output(1).KineticLaw = [-(kf_R1*S1*S3)];
 output(1).ChangedByRateRule = 0;
@@ -115,13 +117,14 @@ fail = TestFunction('AnalyseSpeciesSymbolic', 1, 1, m, output);
 % 
 m = TranslateSBML('test7.xml');
 
-syms X S1 S3;
+syms X S1 S3 compartment;
 
 output(1).Name = [X];
 output(1).constant = 0;
 output(1).boundaryCondition = 0;
 output(1).initialValue = 2;
 output(1).isConcentration = 1;
+output(1).compartment = compartment;
 output(1).ChangedByReaction = 0;
 output(1).KineticLaw = '';
 output(1).ChangedByRateRule = 0;
