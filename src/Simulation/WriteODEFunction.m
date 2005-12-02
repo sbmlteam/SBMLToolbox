@@ -291,15 +291,16 @@
                 Array{i} = sprintf('\txdot(%u) = %s;\n', i, char(DifferentiatedRule));
                 NeedToOrderArray = 1;
             else
-                error('WriteODEFunction(SBMLModel)\n%s', 'cannot yet deal with a piecewise function within an assignment rule');
+%                 error('WriteODEFunction(SBMLModel)\n%s', 'cannot yet deal with a piecewise function within an assignment rule');
                 %char(Species(i).AssignmentRule)
                 %% taken out as this did not fully handle piecewise in an
                 %% assignment rule
-%                 Args = DealWithPiecewise(char(Species(i).AssignmentRule));
-%                 
-%                 DiffRule1 = DifferentiateRule(char(Args{1}), Speciesnames);
-%                 DiffRule2 = DifferentiateRule(char(Args{3}), Speciesnames);
-%                 Array{i} = sprintf('\tif (%s) \n\t\txdot(%d) = %s;\n\telse\n\t\txdot(%u) = %s;\n\tend;\n', Args{2}, i, char(DiffRule1), i, char(DiffRule2));
+                Args = DealWithPiecewise(char(Species(i).AssignmentRule));
+                
+                DiffRule1 = DifferentiateRule(char(Args{1}), Speciesnames);
+                DiffRule2 = DifferentiateRule(char(Args{3}), Speciesnames);
+                Array{i} = sprintf('\tif (%s) \n\t\txdot(%d) = %s;\n\telse\n\t\txdot(%u) = %s;\n\tend;\n', Args{2}, i, char(DiffRule1), i, char(DiffRule2));
+           %     NeedToOrderArray = 1;
             end;
             %DifferentiatedRule = DifferentiateRule(char(Species(i).AssignmentRule), Speciesnames);
             %Array{i} = sprintf('\txdot(%u) = %s;\n', i, char(DifferentiatedRule));
@@ -442,9 +443,11 @@
 
     for i = 1:NoElements
         % check whether element contains a species name
+        % need to catch case where element is number and
+        % species names use numbers eg s3 element '3'
         for j = 1:length(SpeciesNames)
             %     j = 1;
-            A = findstr(SpeciesNames{j}, Elements{i});
+            A = strfind(Elements{i}, SpeciesNames{j});
             if (~isempty(A))
                 break;
             end;
