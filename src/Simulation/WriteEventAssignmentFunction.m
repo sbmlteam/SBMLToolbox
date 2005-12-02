@@ -80,6 +80,18 @@ else
     end;
 end;
 
+% version 2.0.2 adds the time_symbol field to the model structure
+% need to check that it exists
+if (isfield(SBMLModel, 'time_symbol'))
+    if (~isempty(SBMLModel.time_symbol))
+        timeVariable = SBMLModel.time_symbol;
+    else
+        timeVariable = 'time';
+    end;
+else
+    timeVariable = 'time';
+end;
+
 Name = strcat(Name, '_eventAssign');
 
 fileName = strcat(Name, '.m');
@@ -89,7 +101,7 @@ fileName = strcat(Name, '.m');
 fileID = fopen(fileName, 'w');
 
 % write the function declaration
-fprintf(fileID,  'function Values = %s(time, SpeciesValues)\n', Name);
+fprintf(fileID,  'function Values = %s(%s, SpeciesValues)\n', Name, timeVariable);
 
 % need to add comments to output file
 fprintf(fileID, '%% function %s takes\n', Name);

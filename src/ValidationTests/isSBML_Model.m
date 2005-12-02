@@ -115,14 +115,16 @@ while (bSBML == 1 && index <= nNumberFields)
 end;
 
 % check that it contains only the fields listed
-if (bSBML == 1)
-    names = fieldnames(SBMLStructure);
-    [m,n] = size(names);
-    if (m ~= nNumberFields)
-        bSBML = 0;
-    end;
-end;
-
+% take out this requirement as a user may wish to 
+% add their own fields
+% if (bSBML == 1)
+%     names = fieldnames(SBMLStructure);
+%     [m,n] = size(names);
+%     if (m ~= nNumberFields)
+%         bSBML = 0;
+%     end;
+% end;
+% 
 % check that the typecode is correct
 if (bSBML == 1)
     type = SBMLStructure.typecode;
