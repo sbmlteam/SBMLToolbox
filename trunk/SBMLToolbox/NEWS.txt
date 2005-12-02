@@ -2,6 +2,15 @@
 
 version 2.0.2
 
+added a time_symbol field to the Model structure
+which contains the declaration of the csymbol time
+if it has been used in the imported model
+- this symbol is then used in the WriteODEFunction
+as the time variable
+
+changed the isSBML_Model function so that it does not
+fail if the structure contains additional fields
+
 compartment added to function written by WriteODEFunction
 so variable compartments and non-unit volume models
 are dealt with

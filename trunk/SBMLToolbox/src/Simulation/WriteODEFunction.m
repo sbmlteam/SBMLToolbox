@@ -88,9 +88,23 @@
     if (SBMLModel.SBML_level == 2)
         NumEvents = length(SBMLModel.event);
         NumFuncs = length(SBMLModel.functionDefinition);
+
+        % version 2.0.2 adds the time_symbol field to the model structure
+        % need to check that it exists
+        if (isfield(SBMLModel, 'time_symbol'))
+            if (~isempty(SBMLModel.time_symbol))
+                timeVariable = SBMLModel.time_symbol;
+            else
+                timeVariable = 'time';
+            end;
+        else
+            timeVariable = 'time';
+        end;
+
     else
         NumEvents = 0;
         NumFuncs = 0;
+        timeVariable = 'time';
     end;
 
     %---------------------------------------------------------------
@@ -120,7 +134,7 @@
     fileID = fopen(fileName, 'w');
 
     % write the function declaration
-    fprintf(fileID,  'function xdot = %s(time, x_values)\n', Name);
+    fprintf(fileID,  'function xdot = %s(%s, x_values)\n', Name, timeVariable);
 
     % need to add comments to output file
     fprintf(fileID, '%% function %s takes\n', Name);
