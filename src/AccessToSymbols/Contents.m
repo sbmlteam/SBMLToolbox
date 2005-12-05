@@ -4,67 +4,77 @@
 % 
 % FUNCTIONS INCLUDE:
 % 
+% AnalyseSpeciesSymbolic 
+%       takes an SBMLmodel 
+%       and returns
+%           structure detailing the species and how they are manipulated within the model
+%
 % charFormula2sym
-%     converts a characater representation of a mathematical formula
-%   to a symbolic representation of that formula
-%   and returns 
-%       1) the symbolic representation of the formula as first output argument
-%       2) an array of the symbols used within the formula as second output
-%           argument
+%       takes a characater representation of a mathematical formula
+%       and returns 
+%           1) the symbolic representation of the formula 
+%           2) an array of the symbols used within the formula 
 % 
 % CreateSymArray
-%    takes any symbolic expression or set of symbolic expressions
-%   and returns an array of the single symbolic expressions found in the input 
+%       takes any symbolic expression or set of symbolic expressions
+%       and returns 
+%           an array of the single symbolic expressions found in the input 
 %
 % GetAllParameterSymbols 
-%     takes a SBMLModel 
-%   and returns 
+%       takes an SBMLModel 
+%       and returns 
 %       1) an array of symbols representing all parameters (both global and embedded) within the model 
 %       2) an array of the values of each parameter
 %       3) an array of character names of the symbols
 % 
 % GetAllParameterSymbolsUnique 
-%     takes a SBMLModel 
-%   and returns 
+%       takes an SBMLModel 
+%       and returns 
 %       1) an array of symbols representing all parameters 
 %           (both global and embedded) within the model with reaction names appended 
 %       2) an array of the values of each parameter
 %       3) an array of character names of the symbols
 % 
+% GetCompartmentSymbols 
+%       takes an SBMLModel 
+%       and returns 
+%           1) an array of symbols representing all compartments within the model 
+%           2) an array of the volume/size values of each compartment
+%           3) an array of character names of the symbols
+%
 % GetDegree
-%     takes a symbolic polynomial and a single symbol
-%   and returns 
-%       the degree of the symbol in the polynomial
+%       takes a symbolic polynomial and a single symbol
+%       and returns 
+%           the degree of the symbol in the polynomial
 %
 % GetEquilibrium 
-%     takes a SBMLModel 
-%   and returns 
-%       1) an array representing the equilibrium values of each species 
-%       2) a structure containing other equilibrium conditions
+%       takes an SBMLModel 
+%       and returns 
+%           1) an array representing the equilibrium values of each species 
+%           2) a structure containing other equilibrium conditions
 %
 % GetGlobalParameterSymbols 
-%     takes a SBMLModel 
-%   and returns 
-%       1) an array of symbols representing all global parameters within the model 
-%       2) an array of the values of each parameter
-%       3) an array of character names of the symbols
+%       takes an SBMLModel 
+%       and returns 
+%           1) an array of symbols representing all global parameters within the model 
+%           2) an array of the values of each parameter
+%           3) an array of character names of the symbols
 % 
 % GetParameterSymbolsFromReaction 
-%     takes a SBMLReaction 
-%   and returns 
-%       1) an array of symbols representing all parameters defined 
+%       takes an SBMLReaction 
+%       and returns 
+%           1) an array of symbols representing all parameters defined 
 %               within the kinetic law of the reaction 
-%       2) an array of the values of each parameter
-%       3) an array of character names of the symbols
+%           2) an array of the values of each parameter
+%           3) an array of character names of the symbols
 % 
 % GetParameterSymbolsFromReactionUnique 
-%     takes a SBMLReaction 
-%   and returns 
-%       1) an array of symbols representing all parameters defined 
-%               within the kinetic law of the reaction with reaction names
-%               appended
-%       2) an array of the values of each parameter
-%       3) an array of character names of the symbols
+%       takes an SBMLReaction 
+%       and returns 
+%           1) an array of symbols representing all parameters defined 
+%               within the kinetic law of the reaction with reaction names appended
+%           2) an array of the values of each parameter
+%           3) an array of character names of the symbols
 % 
 % GetSpeciesRateLaws 
 %     takes an SBML model 
@@ -73,26 +83,66 @@
 %       2) an array of symbolic representations of the rate law for each species
 % 
 % GetSpeciesSymbols 
-%     takes a SBMLModel 
-%   and returns 
-%       1) an array of symbols representing all species within the model 
-%       2) an array of the initial concentration values of each species
-%       3) an array of character names of the symbols
+%       takes an SBMLModel 
+%       and returns 
+%           1) an array of symbols representing all species within the model 
+%           2) an array of the initial concentration/amount values of each species
+%           3) an array of character names of the symbols
 % 
-% GetStoichiometryMatrixSyms(SBMLModel) 
-%     takes an SBML model 
-%    and returns 
-%        1) stoichiometry matrix
-%        2) an array of symbols respresenting each species in same order
-%           as the stoichiometry matrix treats them
+% GetStoichiometryMatrixSyms 
+%       takes an SBML model 
+%       and returns 
+%           1) stoichiometry matrix
+%           2) an array of symbols respresenting each species in same order
+%               as the stoichiometry matrix treats them
 %
-% PlotSelectedTimeCourse  
-%     takes an SBML model 
-%    and plots the time course of user selected species to equilibrium
+% GetSymbolicRateLawsFromReactions 
+%       takes an SBML model 
+%       and returns 
+%           1)array of species symbols
+%           2)an array of symbolic representations of the rate law for each species
+%               from rules
 %
-% PlotTimeCourse  
-%     takes an SBML model 
-%    and plots the time course of the species to equilibrium
+% GetSymbolicRateLawsFromRules 
+%       takes an SBMLModel 
+%       and returns 
+%           1)array of species symbols
+%           2)an array of symbolic representations of the rate law for each species
+%
+% GetSymbolicSpeciesAlgebraicRules 
+%       takes an SBMLModel 
+%       and returns
+%           1) an array of species symbols
+%           2) an array of the symbolic representation of each algebraic
+%             rule the species appears in
+%
+% GetSymbolicSpeciesAssignmentRules 
+%       takes an SBMLModel 
+%       and returns
+%             1) an array of species symbols
+%             2) an array of the symbolic representation of the
+%             assignment for each species assigned by rules
+
+% PlotSelectedTimeCourse takes
+%       1) an SBMLModel
+%       2) time limit (optional)
+%       3) number of time steps (optional)
+%
+%       plots the time course of user selected species to equilibrium
+% 
+%       and returns
+%           1) the value of each species at the time limit (optional)
+%
+% PlotTimeCourse takes 
+%       1) an SBMLModel
+%       2) time limit (optional)
+%       3) number of time steps (optional)
+%       4) a flag to indicate whther to output the data as a CSV (optional)
+%
+%       plots the time course of each species
+% 
+%       and returns
+%           1) the value of each species at the time limit (optional)
 
 
 %

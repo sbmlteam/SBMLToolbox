@@ -1,7 +1,8 @@
 function Species = AnalyseSpeciesSymbolic(SBMLModel)
-% AnalyseSpeciesSymbolic takes a matlab sbml model structure and outputs a
-% structure detailing the species and how they are manipulated within the
-% model
+% AnalyseSpeciesSymbolic takes a matlab sbml model structure 
+% and returns
+%           structure detailing the species and 
+%               how they are manipulated within the model
 % 
 % the structure fields are
 %     Name
