@@ -3,7 +3,7 @@ function [Species, RateLaws] = GetRateLawsFromRules(SBMLModel)
 % and returns
 %             1) an array of species names
 %             2) an array of the character representation of the rate laws
-%             for each species from rules
+%                   for each species from rules
 
 %--------------------------------------------------------------------------
 %

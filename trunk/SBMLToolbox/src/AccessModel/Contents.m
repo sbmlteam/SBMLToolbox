@@ -3,9 +3,6 @@
 %  This directory contains functions that allow the user to
 %               derive information from a SBML Model
 %
-%   NOTE: Several functions listed here have been superceded by functions
-%   named in line with libSBML and thus will not be in the Full release
-% 
 % CheckValues 
 %       takes an SBMLModel
 %           provides a GUI that allows the user to view and/or edit the values
@@ -15,38 +12,46 @@
 %           2) an array of values for the parameters
 %
 % DetermineSpeciesRoleInReaction
-%       takes a SBML species and  reaction
+%       takes an SBML species and  reaction
 %       and determines where the species takes part in the reaction
+%       (see function help for more detail)
 %
 %
 % GetAllParameters 
-%       takes a SBMLModel 
+%       takes an SBMLModel 
 %       and returns 
 %           1) an array of character names representing all parameters (both global and embedded) within the model 
 %           2) an array of the values of each parameter
 %
 % GetAllParametersUnique 
-%       takes a SBMLModel 
+%       takes an SBMLModel 
 %       and returns 
 %           1) an array of character names representing all parameters (both global and embedded) within the model 
 %               (with reaction names appended)
 %           2) an array of the values of each parameter
 %
+% GetCompartments 
+%       takes an SBMLModel 
+%       and returns 
+%           1) an array of character names of all compartments within the model 
+%           2) an array of the size/volume values of each compartment
+%
+%
 % GetGlobalParameters 
-%       takes a SBMLModel 
+%       takes an SBMLModel 
 %       and returns 
 %           1) an array of character names representing all global parameters within the model 
 %           2) an array of the values of each parameter
 %
 % GetParameterFromReaction 
-%       takes a SBMLReaction 
+%       takes an SBMLReaction 
 %       and returns 
 %           1) an array of character names representing all parameters defined 
 %               within the kinetic law of the reaction 
 %           2) an array of the values of each parameter
 %
 % GetParameterFromReactionUnique
-%       takes a SBMLReaction 
+%       takes an SBMLReaction 
 %       and returns 
 %           1) an array of character names representing all parameters defined 
 %               within the kinetic law of the reaction 
@@ -68,7 +73,7 @@
 %             for each species from rules
 %
 % GetSpecies 
-%       takes a SBMLModel 
+%       takes an SBMLModel 
 %       and returns 
 %           1) an array of character names of all species within the model 
 %           2) an array of the initial concentration values of each species
@@ -94,7 +99,7 @@
 %           2) an array of character names of all species within the model 
 %
 % IsSpeciesInReaction
-%       takes an SBML species and  reaction
+%       takes an SBML species and an SBML reaction
 %       and determines where the species takes part in the reaction
 
 
@@ -147,69 +152,3 @@
 %      mailto:sbml-team@caltech.edu
 %
 %  Contributor(s):
-%
-%
-%  This directory contains functions that allow the user to
-%               derive information from a SBML Model
-% 
-% CheckValues 
-%       takes an SBMLModel
-%           provides a GUI that allows the user to view and/or edit the values
-%           for the initial concentration of species and parameter values
-%       and returns
-%           1) an array of values for the initial concentration of the species
-%           2) an array of values for the parameters
-%
-% GetAllParameters 
-%       takes a SBMLModel 
-%       and returns 
-%           1) an array of character names representing all parameters (both global and embedded) within the model 
-%           2) an array of the values of each parameter
-%
-% GetEquilibrium 
-%       takes a SBMLModel 
-%       and returns 
-%           1) an array representing the equilibrium values of each species 
-%           2) a structure containing other equilibrium conditions
-%                 species - symbolic array of species
-%                 initialValues - initial values for each species
-%                 equilValues - equilibrium values ( = 0 if not reached)
-%                 timeValues - values at time limit
-%                 Time - time taken to reach equilibrium
-%                 delta_t - time step used
-%                 tolerance - tolerance achieved
-%                 Time_limit - the time limit on the iterative process
-%
-% GetGlobalParameters 
-%       takes a SBMLModel 
-%       and returns 
-%           1) an array of character names representing all global parameters within the model 
-%           2) an array of the values of each parameter
-%
-% GetParameterFromReaction 
-%       takes a SBMLReaction 
-%       and returns 
-%           1) an array of character names representing all parameters defined 
-%               within the kinetic law of the reaction 
-%           2) an array of the values of each parameter
-%
-% GetSpecies 
-%       takes a SBMLModel 
-%       and returns 
-%           1) an array of character names of all species within the model 
-%           2) an array of the initial concentration values of each species
-%
-% GetStoichiometryMatrix 
-%       takes an SBML model 
-%       and returns 
-%           1) stoichiometry matrix
-%           2) an array of character names of all species within the model 
-%
-% PlotTimeCourse 
-%       takes 
-%           1) an SBMLModel
-%           2) (optional) a time limit
-%           plots the time course of each species to the time limit or
-%           equilibrium if no time limit supplied
-%       and returns
-%           1) amount of each species at the time limit/equilibrium

@@ -3,7 +3,7 @@ function [Species, AssignmentRules] = GetSpeciesAssignmentRules(SBMLModel)
 % and returns
 %             1) an array of species names
 %             2) an array of the character representation of the
-%             concentration for each species assigned by rules
+%                   assignment rule used to assign value to each species 
 
 %--------------------------------------------------------------------------
 %
