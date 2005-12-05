@@ -1,5 +1,5 @@
 function varargout = GetGlobalParameterSymbols(SBMLModel)
-% GetGlobalParameterSymbols takes a SBMLModel 
+% GetGlobalParameterSymbols takes an SBMLModel 
 % and returns 
 %           1) an array of symbols representing all global parameters within the model 
 %           2) an array of the values of each parameter

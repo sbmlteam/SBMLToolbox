@@ -1,11 +1,8 @@
 function [y,z] = charFormula2sym(charArray)
-% charFormula2sym converts a character representation of a mathematical formula
-% to a symbolic representation of that formula
-%
-% returns 
-%     1) the symbolic representation of the formula as first output argument
-%     2) an array of the symbols used within the formula as second output
-%     argument
+% charFormula2sym takes a characater representation of a mathematical formula
+% and returns 
+%           1) the symbolic representation of the formula 
+%           2) an array of the symbols used within the formula 
 %
 %-------------------------------------------------------------------------
 % EXAMPLE:  [y, z] = charFormula2sym('2 * (a^2) + (3 * b) + c')

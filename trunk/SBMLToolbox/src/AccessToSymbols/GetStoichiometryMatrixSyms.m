@@ -1,9 +1,9 @@
 function varargout = GetStoichiometryMatrixSyms(SBMLModel)
 % GetStoichiometryMatrixSyms(SBMLModel) takes an SBML model 
-% returns 
-%       stoichiometry matrix as first output
-%       array of symbols respresenting each species in same order
-%           as the stoichiometry matrix treats them
+% and returns 
+%           1) stoichiometry matrix
+%           2) array of symbols respresenting each species in same order
+%               as the stoichiometry matrix treats them
 %--------------------------------------------------------------------------
 
 %  Filename    : GetStoichiometryMatrixSyms.m
