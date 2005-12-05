@@ -3,10 +3,10 @@ function varargout = CheckValues(varargin)
 %         takes an SBMLModel
 %         
 %   displays a GUI that allows the user to view and/or edit the values
-%         for the initial concentration of species and parameter values
+%         for the initial concentration/amount of species and parameter values
 % 
 %     and returns
-%         1) an array of values for the initial concentration of the species
+%         1) an array of values for the initial concentration/amount of the species
 %         2) an array of values for the parameters
 
 %

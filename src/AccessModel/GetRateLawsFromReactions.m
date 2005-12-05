@@ -3,7 +3,7 @@ function [Species, RateLaws] = GetRateLawsFromReactions(SBMLModel)
 % and returns
 %             1) an array of species names
 %             2) an array of the character representation of the rate laws
-%             for each species
+%                   for each species
 
 %--------------------------------------------------------------------------
 %

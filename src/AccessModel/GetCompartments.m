@@ -2,9 +2,8 @@ function varargout = GetCompartments(SBMLModel)
 % GetCompartments takes a SBMLModel 
 % and returns 
 %           1) an array of character names of all compartments within the model 
-%           2) an array of the initial concentration values of each compartment
+%           2) an array of the size/volume values of each compartment
 %
-% NOTE: if the initial concentrations are not set then the value NaN is used
 
 %--------------------------------------------------------------------------
 %

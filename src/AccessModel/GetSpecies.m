@@ -2,9 +2,9 @@ function varargout = GetSpecies(SBMLModel)
 % GetSpecies takes a SBMLModel 
 % and returns 
 %           1) an array of character names of all species within the model 
-%           2) an array of the initial concentration values of each species
+%           2) an array of the initial concentration/amount values of each species
 %
-% NOTE: if the initial concentrations are not set then the value NaN is used
+% NOTE: if the initial concentration/amount are not set then the value NaN is used
 
 %--------------------------------------------------------------------------
 %

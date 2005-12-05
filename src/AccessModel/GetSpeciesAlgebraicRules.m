@@ -3,7 +3,7 @@ function [Species, AlgebraicRules] = GetSpeciesAlgebraicRules(SBMLModel)
 % and returns
 %             1) an array of species names
 %             2) an array of the character representation of each algebraic
-%             rule the species appears in
+%                   rule the species appears in
 
 %--------------------------------------------------------------------------
 %

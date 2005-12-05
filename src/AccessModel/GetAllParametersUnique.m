@@ -1,7 +1,8 @@
 function varargout = GetAllParametersUnique(SBMLModel)
 % GetAllParametersUnique takes a SBMLModel 
 % and returns 
-%           1) an array of character names representing all parameters (both global and embedded) within the model 
+%           1) an array of character names representing all parameters 
+%               (both global and embedded) within the model 
 %               with reaction names appended to the names of parameters
 %               declared within a reaction
 %           2) an array of the values of each parameter
