@@ -1,15 +1,14 @@
 function varargout = PlotTimeCourse(varargin)
-% PlotTimeCourse takes a SBMLModel 
-% and plots the time course of each species to equilibrium
-% 
-%   additional optional arguments
-%           2)the time limit to which to plot
-%           3)the number of time steps that will be plotted
-%           4)flag to indicate whether to output a csv file
+% PlotTimeCourse takes 
+%       1) an SBMLModel
+%       2) time limit (optional)
+%       3) number of time steps (optional)
+%       4) a flag to indicate whther to output the data as a CSV (optional)
 %
-% returns
-%   the concentration of each species at the time limit
-%--------------------------------------------------------------------------
+%plots the time course of each species
+% 
+%and returns
+%       1) the value of each species at the time limit (optional)
 
 %
 %  Filename    : PlotTimeCourse.m

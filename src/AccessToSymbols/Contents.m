@@ -76,12 +76,6 @@
 %           2) an array of the values of each parameter
 %           3) an array of character names of the symbols
 % 
-% GetSpeciesRateLaws 
-%     takes an SBML model 
-%   and returns 
-%       1) an array of species symbols
-%       2) an array of symbolic representations of the rate law for each species
-% 
 % GetSpeciesSymbols 
 %       takes an SBMLModel 
 %       and returns 

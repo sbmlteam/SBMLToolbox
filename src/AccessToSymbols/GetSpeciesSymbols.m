@@ -1,9 +1,10 @@
 function varargout = GetSpeciesSymbols(SBMLModel)
-% GetSpeciesSymbols takes a SBMLModel 
+% GetSpeciesSymbols takes an SBMLModel 
 % and returns 
 %           1) an array of symbols representing all species within the model 
-%           2) an array of the initial concentration values of each species
+%           2) an array of the initial concentration/amount values of each species
 %           3) an array of character names of the symbols
+%
 % NOTE: if the initial concentrations are not set then the value NaN is used
 
 

@@ -3,7 +3,7 @@ function [Species, AssignmentRules] = GetSymbolicSpeciesAssignmentRules(SBMLMode
 % and returns
 %             1) an array of species symbols
 %             2) an array of the symbolic representation of the
-%             concentration for each species assigned by rules
+%             assignment for each species assigned by rules
 
 %--------------------------------------------------------------------------
 %

@@ -1,6 +1,7 @@
 function y = GetDegree(symPoly, var)
 % GetDegree(symPoly, var) takes a symbolic polynomial and a single symbol
-% and returns the degree of the symbol var in the symbolic polynomial symPoly
+% and returns 
+%           the degree of the symbol var in the symbolic polynomial symPoly
 %
 % -----------------------------------------------
 % EXAMPLE: 

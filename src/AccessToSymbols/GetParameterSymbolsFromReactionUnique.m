@@ -1,5 +1,5 @@
 function varargout = GetParameterSymbolsFromReactionUnique(SBMLReaction)
-% GetParameterSymbolsFromReactionUnique takes a SBMLReaction 
+% GetParameterSymbolsFromReactionUnique takes an SBMLReaction 
 % and returns 
 %           1) an array of symbols representing all parameters defined 
 %               within the kinetic law of the reaction with the reaction

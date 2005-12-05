@@ -1,6 +1,6 @@
 function [Species, RateLaws] = GetSymbolicRateLawsFromReactions(SBMLModel)
 % GetSymbolicRateLawsFromReactions(SBMLModel) takes an SBML model 
-% returns 
+% and returns 
 %       1)array of species symbols
 %       2)an array of symbolic representations of the rate law for each species
 %           from rules

@@ -1,10 +1,9 @@
 function varargout = GetCompartmentSymbols(SBMLModel)
-% GetCompartmentSymbols takes a SBMLModel 
+% GetCompartmentSymbols takes an SBMLModel 
 % and returns 
 %           1) an array of symbols representing all compartments within the model 
 %           2) an array of the volume/size values of each compartment
 %           3) an array of character names of the symbols
-% NOTE: if the initial concentrations are not set then the value NaN is used
 
 %--------------------------------------------------------------------------
 %
