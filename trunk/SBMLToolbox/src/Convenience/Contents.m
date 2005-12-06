@@ -2,28 +2,40 @@
 %
 % This directory contains functions useful to the simulation of an SBML model
 %
+% isIntegralNumber 
+%       takes a number n 
+%       and returns 
+%           1 if it is an integer 
+%           0 otherwise (may of matlab type double)
 %
-% FUNCTIONS INCLUDE:
-%   CheckValidUnitKind 
-%       takes a string representing a unit kind and returns 1 if it is valid 0 otherwise
+% isValidUnitKind 
+%       takes a string representing a unit kind 
+%       and returns 
+%           1 if it is valid 
+%           0 otherwise
 %
-%   isIntegralNumber 
-%       takes a number n and returns 1 if it is an integer 0 otherwise (may
-%       of matlab type double)
+% LoseWhiteSpace            
+%       takes an array of characters 
+%       and returns 
+%           the array with any white space removed
 %
-%   LoseWhiteSpace            
-%       takes an array of characters and returns the array with any white space removed
+% PairBrackets              
+%       takes a string 
+%       and returns 
+%           an array of indices of each pair of brackets
+%               ordered from the opening bracket index
 %
-%   PairBrackets              
-%       takes a string and returns an array of indices of each pair of brackets
-%       ordered from the opening bracket index
+% RemoveDuplicates          
+%       takes any array 
+%       and returns 
+%           the array with any duplicates removed
 %
-%   RemoveDuplicates          
-%       takes any array and returns it with any duplicates removed
-%
-%   SubstituteFunction 
-%       takes a string representation of a formula and an SBMLFunctionDefinition structure defining the formula
-%       and returns the formula with the function substituted
+% SubstituteFunction 
+%       takes 
+%           1) a string representation of a formula 
+%           2) the SBMLFunctionDefinition structure defining the formula
+%       and returns 
+%           the formula with the function substituted
 
 
 %  Filename    :   Contents.m

@@ -1,20 +1,17 @@
-function y = LoseWhiteSpace(charArray)
-% LoseWhiteSpace takes an array of characters 
-%       and returns 
-%           the array with any white space removed
+function fail = TestisValidUnitKind
+%   isValidUnitKind 
+%             takes a string representing a unit kind
+%             and returns 1 if it is valid 0 otherwise
 %
-%----------------------------------------------------------------
-% EXAMPLE:
-%           y = LoseWhiteSpace('     exa  mp le')
-%           y = 'example'
 %
+%       value = isValidUnitKind('kind')
 
 
-%  Filename    :   LoseWhiteSpace.m
+%  Filename    :   TestisValidUnitKind.m
 %  Description : 
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
 %  Organization:   University of Hertfordshire STRI
-%  Created     :   11-Feb-2005
+%  Created     :   04-Oct-2005
 %  Revision    :   $Id$
 %  Source      :   $Source v $
 %
@@ -60,37 +57,14 @@ function y = LoseWhiteSpace(charArray)
 %  Contributor(s):
 
 
-%------------------------------------------------------------
-% check input is an array of characters
-if (~ischar(charArray))
-    error('LoseWhiteSpace(input)\n%s', 'input must be an array of characters');
-end;
+m = TranslateSBML('test1.xml');
 
-%-------------------------------------------------------------
-% get the length of the array
-NoChars = length(charArray);
+kind1 = m.unitDefinition(1).unit.kind;
+kind2 = m.unitDefinition(2).unit(2).kind;
+kind3 = m.unitDefinition(2).unit(3).kind;
+kind4 = m.unitDefinition(3).id;
 
-%-------------------------------------------------------------
-% create an array that indicates whether the elements of charArray are
-% spaces
-% e.g. WSpace = isspace('  v b') = [1, 1, 0, 1, 0]
-% and determine how many
-
-WSpace = isspace(charArray);
-NoSpaces = sum(WSpace);
-
-%-----------------------------------------------------------
-% rewrite the array to leaving out any spaces
-% remove any numbers from the array of symbols
-if (NoSpaces > 0)
-    NewArrayCount = 1;
-    for i = 1:NoChars
-        if (~isspace(charArray(i)))
-            y(NewArrayCount) = charArray(i);
-            NewArrayCount = NewArrayCount + 1;
-        end;
-    end;    
-else
-    y = charArray;
-end;
-
+fail = TestFunction('isValidUnitKind', 1, 1, kind1, 1);
+fail = fail + TestFunction('isValidUnitKind', 1, 1, kind2, 1);
+fail = fail + TestFunction('isValidUnitKind', 1, 1, kind3, 1);
+fail = fail + TestFunction('isValidUnitKind', 1, 1, kind4, 0);

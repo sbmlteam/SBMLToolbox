@@ -1,10 +1,8 @@
 function value = CheckValidUnitKind(kind)%
-%   CheckValidUnitKind 
-%             takes a string representing a unit kind
-%             and returns 1 if it is valid 0 otherwise
-%
-%
-%       value = CheckValidUnitKind('kind')
+% CheckValidUnitKind takes a string representing a unit kind 
+%       and returns 
+%           1 if it is valid 
+%           0 otherwise
 
 
 %  Filename    :   CheckValidUnitKind.m

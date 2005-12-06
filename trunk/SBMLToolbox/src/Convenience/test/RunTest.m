@@ -55,9 +55,9 @@ test = 0;
 Totalfail = 0;
 
 test = test + 4;
-fail = TestCheckValidUnitKind;
+fail = TestisValidUnitKind;
 if (fail > 0)
-    disp('CheckValidUnitKind failed');
+    disp('isValidUnitKind failed');
 end;
 Totalfail = Totalfail + fail;
 
