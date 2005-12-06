@@ -1,13 +1,12 @@
 function Formula = SubstituteFunction(OriginalFormula, SBMLFunctionDefinition)
+% SubstituteFunction 
+%       takes 
+%           1) a string representation of a formula 
+%           2) the SBMLFunctionDefinition structure defining the formula
+%       and returns 
+%           the formula with the function substituted
 %
-%   SubstituteFunction 
-%             takes  1) a string representation of a formula 
-%             and    2) an SBMLFunctionDefinition structure defining the formula
-%
-%             and returns 
-%               the formula with the function substituted
-%
-%       NOTE: the OriginalFormula must contain the id of the
+%       NOTE: the formula must contain the id of the
 %       functionDefinition
 %
 %   EXAMPLE:

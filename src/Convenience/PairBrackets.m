@@ -1,10 +1,7 @@
 function pairs = PairBrackets(formula)
-%
-%   PairBrackets 
-%             takes a string
-%
-%             and returns 
-%               an array of indices of each pair of brackets
+% PairBrackets takes a string 
+%       and returns 
+%           an array of indices of each pair of brackets
 %               ordered from the opening bracket index
 %
 %----------------------------------------------------------------

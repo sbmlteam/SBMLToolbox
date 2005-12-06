@@ -1,20 +1,15 @@
-function y = LoseWhiteSpace(charArray)
-% LoseWhiteSpace takes an array of characters 
+function value = isValidUnitKind(kind)%
+% isValidUnitKind takes a string representing a unit kind 
 %       and returns 
-%           the array with any white space removed
-%
-%----------------------------------------------------------------
-% EXAMPLE:
-%           y = LoseWhiteSpace('     exa  mp le')
-%           y = 'example'
-%
+%           1 if it is valid 
+%           0 otherwise
 
 
-%  Filename    :   LoseWhiteSpace.m
+%  Filename    :   isValidUnitKind.m
 %  Description : 
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
 %  Organization:   University of Hertfordshire STRI
-%  Created     :   11-Feb-2005
+%  Created     :   09-Feb-2005
 %  Revision    :   $Id$
 %  Source      :   $Source v $
 %
@@ -60,37 +55,14 @@ function y = LoseWhiteSpace(charArray)
 %  Contributor(s):
 
 
-%------------------------------------------------------------
-% check input is an array of characters
-if (~ischar(charArray))
-    error('LoseWhiteSpace(input)\n%s', 'input must be an array of characters');
+UNIT_KIND_STRINGS = {'ampere', 'becquerel', 'candela', 'Celsius', 'coulomb', 'dimensionless', 'farad',...
+  'gram', 'gray', 'henry', 'hertz', 'item', 'joule', 'katal', 'kelvin', 'kilogram', 'liter', 'litre',...
+  'lumen', 'lux', 'meter', 'metre', 'mole', 'newton', 'ohm', 'pascal', 'radian', 'second', 'siemens',...
+  'sievert', 'steradian', 'tesla', 'volt', 'watt', 'weber', '(Invalid UnitKind)'};
+
+
+value = 0;
+
+if (ismember(kind, UNIT_KIND_STRINGS))
+    value = 1;
 end;
-
-%-------------------------------------------------------------
-% get the length of the array
-NoChars = length(charArray);
-
-%-------------------------------------------------------------
-% create an array that indicates whether the elements of charArray are
-% spaces
-% e.g. WSpace = isspace('  v b') = [1, 1, 0, 1, 0]
-% and determine how many
-
-WSpace = isspace(charArray);
-NoSpaces = sum(WSpace);
-
-%-----------------------------------------------------------
-% rewrite the array to leaving out any spaces
-% remove any numbers from the array of symbols
-if (NoSpaces > 0)
-    NewArrayCount = 1;
-    for i = 1:NoChars
-        if (~isspace(charArray(i)))
-            y(NewArrayCount) = charArray(i);
-            NewArrayCount = NewArrayCount + 1;
-        end;
-    end;    
-else
-    y = charArray;
-end;
-
