@@ -1,6 +1,9 @@
 function WriteEventAssignmentFunction(SBMLModel)
-% WriteEventAssignmentFunction takes a matlab sbml model structure and outputs a file
-% defining a function that assigns values following an event for use with matlabs ode solvers
+% WriteEventAssignmentFunction takes an SBMLModel
+% and outputs 
+%       a file defining a function that assigns values 
+%           following an event 
+%         (for use with the event option of MATLABs ode solvers)
 
 %
 %  Filename    : WriteEventAssignmentFunction.m

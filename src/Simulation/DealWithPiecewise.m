@@ -1,10 +1,8 @@
 function Elements = DealWithPiecewise(OriginalFormula)
-%
-%   DealWithPiecewise 
-%             takes a string representation of a formula that contains the MathML piecewise function 
-%
-%             and returns 
-%               an array of the three components of the piecewise function
+% DealWithPiecewise takes a string representation of a formula 
+%                   that contains the MathML piecewise function 
+% and returns 
+%           an array of the three components of the piecewise function
 %               which can then be written as an if else statement
 %     
 %   EXAMPLE:

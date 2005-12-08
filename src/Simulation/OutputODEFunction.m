@@ -1,11 +1,11 @@
 function OutputODEFunction(varargin)
 % OutputODEFunction takes 
 %       1) a matlab sbml model structure 
-%       2) a flag to indicate whether to plot the output
+%       2) a flag to indicate whether to plot the output (optional)
 %       3) time limit (optional)
 %       4) number of time steps (optional)
-%       5) a flag to indicate whther to output the simulation data as a CSV
-%       file flag = 1 - outputs file (optional)
+%       5) a flag to indicate whther to output the simulation data as 
+%           a comma separated variable (csv) file
 %       6) a filename
 %          
 %  and plots the results of the ode45 solver 
