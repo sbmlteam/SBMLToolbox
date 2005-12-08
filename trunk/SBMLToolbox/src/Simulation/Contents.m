@@ -2,43 +2,53 @@
 %
 % This directory contains functions to simulate an SBML model
 %
-%
-% FUNCTIONS INCLUDE:
 %   AnalyseSpecies  
-%       takes a matlab sbml model structure and outputs a
-%       structure detailing the species and how they are manipulated within the
-%       model
+%       takes an SBMLModel
+%       and returns
+%           structure detailing the species and 
+%               how they are manipulated within the model
 %
 %   DealWithPiecewise              
 %       takes a string representation of a formula that contains the MathML
-%       piecewise function and returns an array of the three components of the 
-%       piecewise function which can then be written as an if else statement
+%               piecewise function 
+%       and returns 
+%           an array of the three components of the piecewise function 
 % 
 %   DisplayODEFunction             
-%       takes a matlab sbml model structure and a number of optional arguments 
-%       and can plot the results of the ode45 solver (ode15s if stiff) and output
-%       a comma seperated variable (CSV) file of the simulation results
+%       takes an SBMLModel and a number of optional arguments 
+%       and plots the results of the ode45 solver 
 %
 %   GetArgumentsFromLambdaFunction 
-%       takes a string representation of a formula that contains the MathML lambda function 
-%       and returns an array of the components of the lambda function
-%       which can then be used to substitute arguments where the function has been applied
+%       takes a string representation of a formula that contains the MathML 
+%               lambda function 
+%       and returns 
+%           an array of the components of the lambda function
+%
+%   OutputODEFunction             
+%       takes an SBMLModel and a number of optional arguments 
+%       and according to flags 
+%       plots the results of the ode45 solver/outputs the data as a csv file 
 %
 %   SelectSpecies                  
-%       takes an SBML Model, displays a GUI that allows the user to add/remove species from a list
-%       and returns an array of Species selected by the user
+%       takes an SBML Model, 
+%       displays a GUI that allows the user to add/remove species from a list
+%       and returns 
+%           an array of species selected by the user
 %
 %   WriteEventAssignmentFunction   
-%       takes a matlab sbml model structure and outputs a file defining a function 
-%       that assigns values following an event (for use with the event option in matlabs ode solvers)
+%       takes an SBMLModel
+%       and outputs 
+%           a file defining a function that assigns values following an event
 %
 %   WriteEventHandlerFunction      
-%       takes a matlab sbml model structure and outputs a file defining a function 
-%       that handles an event (for use with the event option in matlabs ode solvers)
+%       takes an SBMLModel
+%       and outputs 
+%           a file defining a function that handles an event 
 %
 %   WriteODEFunction               
-%       takes a matlab sbml model structure and outputs a file defining a function 
-%       for use with matlabs ode solvers
+%       takes an SBMLModel and anoptional arguments 
+%       and outputs 
+%           a file defining a function for use with MATLABs ode solvers
 
 
 %  Filename    :   Contents.m

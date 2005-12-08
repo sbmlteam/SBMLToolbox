@@ -68,7 +68,7 @@ end;
 
 if (~isSBML_Unit(SBMLUnit, sbmlLevel))
     error(sprintf('%s\n%s', 'Unit_setKind(SBMLUnit, kind)', 'first argument must be an SBML unit structure'));
-elseif (~ischar(kind) || (~CheckValidUnitKind(kind)))
+elseif (~ischar(kind) || (~isValidUnitKind(kind)))
     error(sprintf('Unit_setKind(SBMLUnit, kind)\n%s', 'second argument must be a string representing the kind of the unit'));
 end;
 

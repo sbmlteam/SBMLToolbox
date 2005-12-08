@@ -1,7 +1,9 @@
 function varargout = SelectSpecies(varargin)
 % SelectSpecies takes an SBML Model
-% displays a GUI that allows the user to add/remove species from a list
-% and returns an array of Species selected by the user
+% displays 
+%           a GUI that allows the user to add/remove species from a list
+% and returns 
+%           an array of Species selected by the user
 
 
 %

@@ -1,10 +1,8 @@
 function Elements = GetArgumentsFromLambdaFunction(OriginalFormula)
-%
-%   GetArgumentsFromLambdaFunction 
-%             takes a string representation of a formula that contains the MathML lambda function 
-%
-%             and returns 
-%               an array of the components of the lambda function
+% GetArgumentsFromLambdaFunction takes a string representation of a formula 
+%                                that contains the MathML lambda function 
+% and returns 
+%           an array of the components of the lambda function
 %               which can then be used to substitute 
 %     
 %   EXAMPLE:

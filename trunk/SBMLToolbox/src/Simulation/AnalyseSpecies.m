@@ -1,7 +1,8 @@
 function Species = AnalyseSpecies(SBMLModel)
-% AnalyseSpecies takes a matlab sbml model structure and outputs a
-% structure detailing the species and how they are manipulated within the
-% model
+% AnalyseSpecies takes an SBMLmodel
+% and returns
+%           structure detailing the species and how they are manipulated 
+%               within the model
 % 
 % the structure fields are
 %     Name
