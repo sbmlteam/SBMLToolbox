@@ -51,6 +51,7 @@
 %
 
 clear;
+clc;
 % add the current directory and all subdirectories to the Matlab search
 % path
 ToolboxPath = genpath(pwd);
@@ -74,7 +75,7 @@ if (s ~= 0)
 end;
 
 % try the executable
-% if it doesnt work teh library files are not on the system path and need
+% if it doesnt work the library files are not on the system path and need
 % to be placed there
 M = struct([]);
 try
@@ -86,14 +87,25 @@ catch
     Path_to_libs = strcat(Path_to_libs, '\bin\win32');
 
     % determine the location of the library files
-    lib{1} = '..\extern\bin\libsbml.lib';
-    lib{2} = '..\extern\bin\xerces-c_2.lib';
-    lib{3} = '..\extern\bin\libsbml.dll';
-    lib{4} = '..\extern\bin\xerces-c_2_5_0.dll';
-    lib{5} = '..\extern\bin\libsbmlD.lib';
-    lib{6} = '..\extern\bin\xerces-c_2D.lib';
-    lib{7} = '..\extern\bin\libsbmlD.dll';
-    lib{8} = '..\extern\bin\xerces-c_2_5_0D.dll';
+    if (exist('..\extern') == 7)
+        lib{1} = '..\extern\bin\libsbml.lib';
+        lib{2} = '..\extern\bin\xerces-c_2.lib';
+        lib{3} = '..\extern\bin\libsbml.dll';
+        lib{4} = '..\extern\bin\xerces-c_2_5_0.dll';
+        lib{5} = '..\extern\bin\libsbmlD.lib';
+        lib{6} = '..\extern\bin\xerces-c_2D.lib';
+        lib{7} = '..\extern\bin\libsbmlD.dll';
+        lib{8} = '..\extern\bin\xerces-c_2_5_0D.dll';
+    else
+        lib{1} = '..\win32\bin\libsbml.lib';
+        lib{2} = '..\win32\bin\xerces-c_2.lib';
+        lib{3} = '..\win32\bin\libsbml.dll';
+        lib{4} = '..\win32\bin\xerces-c_2_5_0.dll';
+        lib{5} = '..\win32\bin\libsbmlD.lib';
+        lib{6} = '..\win32\bin\xerces-c_2D.lib';
+        lib{7} = '..\win32\bin\libsbmlD.dll';
+        lib{8} = '..\win32\bin\xerces-c_2_5_0D.dll';
+    end;
 
     for i = 1:8
        copyfile(lib{i}, Path_to_libs);
