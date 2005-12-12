@@ -103,7 +103,16 @@ end;
 
 OriginalPairs = pairs;
 
-TempPairs = sort(pairs, 1, 'ascend');
+% function 'sort' changes in version 7.0.1
+
+v = version;
+v_num = str2num(v(1));
+
+if (v_num < 7)
+    TempPairs = sort(pairs, 1);
+else
+    TempPairs = sort(pairs, 1, 'ascend');
+end;
 
 for i = 1:length(OpeningBracketIndex)
     pairs(i, 1) = TempPairs(i, 1);
