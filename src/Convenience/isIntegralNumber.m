@@ -62,7 +62,12 @@ function value = isIntegralNumber(number)
 
 value = 0;
 
-if (isinteger(number))
+integerClasses = {'int8', 'uint8', 'int16', 'uint16', 'int32', 'uint32', 'int64', 'uint64'};
+
+% since the function isinteger does not exist in MATLAB Rel 13
+% this is not used
+%if (isinteger(number))
+if (ismember(class(number), integerClasses))
     value = 1;
 elseif (isnumeric(number))
     % if it is an integer 

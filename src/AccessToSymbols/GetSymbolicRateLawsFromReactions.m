@@ -154,7 +154,7 @@ for i = 1:NumSpecies
                         end;
                         NoProducts = NoProducts - 1;
                     elseif (NoReactants > 0)
-                        stoichiometry = sym(SBMLModel.reaction(j).reactant(SpeciesType(5)).stoichiometry/double(SBMLModel.reaction(j).reactant(SpeciesType(5)).denominator));
+                        stoichiometry = sym(double(SBMLModel.reaction(j).reactant(SpeciesType(5)).stoichiometry)/double(SBMLModel.reaction(j).reactant(SpeciesType(5)).denominator));
                         if ((SBMLModel.SBML_level == 2) && (~isempty(SBMLModel.reaction(j).reactant(SpeciesType(5)).stoichiometryMath)))
                             stoichiometry = charFormula2sym(SBMLModel.reaction(j).reactant(SpeciesType(5)).stoichiometryMath);
                         end;

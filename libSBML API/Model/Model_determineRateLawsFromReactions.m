@@ -177,7 +177,7 @@ for i = 1:NumberSpecies
 
 
                     % put in stoichiometry
-                    stoichiometry = SBMLModel.reaction(j).reactant(SpeciesType(5)).stoichiometry/double(SBMLModel.reaction(j).reactant(SpeciesType(5)).denominator);
+                    stoichiometry = double(SBMLModel.reaction(j).reactant(SpeciesType(5)).stoichiometry)/double(SBMLModel.reaction(j).reactant(SpeciesType(5)).denominator);
                     if ((SBMLModel.SBML_level == 2) && (~isempty(SBMLModel.reaction(j).reactant(SpeciesType(5)).stoichiometryMath)))
                          output = sprintf('%s - (%s) * (%s)', output, SBMLModel.reaction(j).reactant(SpeciesType(5)).stoichiometryMath, formula);
                    
