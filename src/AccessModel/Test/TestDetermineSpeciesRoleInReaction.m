@@ -83,6 +83,8 @@ fail = TestFunction('DetermineSpeciesRoleInReaction', 2, 1, s4, r1, 0);
 fail = fail + TestFunction('DetermineSpeciesRoleInReaction', 2, 1, s2, r2, [1,0,0,2,0]);
 fail = fail + TestFunction('DetermineSpeciesRoleInReaction', 2, 1, s1, r1, [0,1,0,0,1]);
 fail = fail + TestFunction('DetermineSpeciesRoleInReaction', 2, 1, s4, r3, [0,0,1,0,0]);
+fail = fail + TestFunction('DetermineSpeciesRoleInReaction', 2, 1, s2, r3, [1,1,0,1,2]);
+
 
 
 

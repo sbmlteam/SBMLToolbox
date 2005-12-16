@@ -16,6 +16,8 @@ function y = DetermineSpeciesRoleInReaction(SBMLSpecies, SBMLReaction)
 %                 =   [1, 0, 0, 2, 0]   if s is product no 2 in r 
 %                 =   [0, 1, 0, 0, 1]   if s is reactant no 1 in r
 %                 =   [0, 0, 1, 0, 0]   if s is a modifier in r
+%                 =   [1, 1, 0, 1, 2]   if s is product no 1 
+%                                           and reactant no 2 in r
 %--------------------------------------------------------------------------
 
 %  Filename    : DetermineSpeciesRoleInReaction.m
@@ -98,6 +100,7 @@ else
         name = SBMLSpecies.id;
     end;
 end;
+reactionName = SBMLReaction.id;
 
 %--------------------------------------------------------------------------
 %determine number of each type of species included within this reaction
@@ -120,8 +123,6 @@ ModifierNo = 0;
 ReactantPosition = 0;
 ProductPosition = 0;
 
-for i = 1:Number
-
 %look for reference to this species
 for c = 1:NumProducts
     if (strcmp(name, SBMLReaction.product(c).species))
@@ -143,11 +144,10 @@ for c = 1:NumModifiers
     end;
 end;
 
-end;
 %--------------------------------------------------------------------------
 % assign output
 if ((ReactantNo > 1) || (ProductNo > 1))
-       error('DetermineSpeciesRoleInReaction(SBMLSpecies, SBMLReaction)\n%s\n%s', 'species occurs more than once as a reactant/product', 'this code does not deal with that situation');
+       error('DetermineSpeciesRoleInReaction(SBMLSpecies, SBMLReaction)\nspecies %s %s %s\n%s', name,'occurs more than once as a reactant/product in reaction', reactionName, 'this code does not deal with that situation');
 end;
 
     y = [ProductNo, ReactantNo, ModifierNo, ProductPosition, ReactantPosition];
