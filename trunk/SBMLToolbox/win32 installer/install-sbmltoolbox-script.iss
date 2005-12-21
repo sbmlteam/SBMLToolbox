@@ -49,14 +49,14 @@
 
 [Setup]
 AppName=SBMLToolbox
-AppVerName=SBMLToolbox 2.0.1 beta
+AppVerName=SBMLToolbox 2.0.2
 AppPublisher=SBMLTeam
 AppPublisherURL=http://www.sbml.org
 AppSupportURL=http://www.sbml.org
 AppUpdatesURL=http://www.sbml.org
 
 
-DefaultDirName={pf}\SBML\SBMLToolbox-2.0.1-beta
+DefaultDirName={pf}\SBML\SBMLToolbox-2.0.2
 DefaultGroupName=SBMLToolbox
 DisableProgramGroupPage=yes
 WizardSmallImageFile=sbmltoolbox-installer-mini-logo.bmp
@@ -78,7 +78,7 @@ Root: HKCU; Subkey: "Software\SBML"; Flags: uninsdeletekeyifempty
 Root: HKCU; Subkey: "Software\SBML\SBMLToolbox"; Flags: uninsdeletekey
 Root: HKLM; Subkey: "Software\SBML"; Flags: uninsdeletekeyifempty
 Root: HKLM; Subkey: "Software\SBML\SBMLToolbox"; Flags: uninsdeletekey
-Root: HKLM; Subkey: "Software\SBML\SBMLToolbox"; ValueType: string; ValueName: "Version"; ValueData: "2.0.1b"
+Root: HKLM; Subkey: "Software\SBML\SBMLToolbox"; ValueType: string; ValueName: "Version"; ValueData: "2.0.2"
 Root: HKLM; Subkey: "Software\SBML\SBMLToolbox"; ValueType: string; ValueName: "InstallPath"; ValueData: "{app}"
 
 [Code]
@@ -103,7 +103,7 @@ begin
 
   Note: it includes a version number
 **********************************************************************************************************}
-  MsgBox('This setup installs the Windows release of SBMLToolbox 2.0.1 (beta) using libSBML 2.3.2. All the necessary libraries are included.', mbInformation, mb_Ok);
+  MsgBox('This setup installs the Windows release of SBMLToolbox 2.0.2 using libSBML 2.3.4. All the necessary libraries are included.', mbInformation, mb_Ok);
 end;
 
 procedure URLLabelOnClick(Sender: TObject);
@@ -301,7 +301,7 @@ begin
 
   {look for a version no and check whether it is later than this}
   LibsbmlVersion := GetLibsbmlVersion();
-  LaterLibsbmlVers := LaterVersion(LibsbmlVersion, '2.3.2');
+  LaterLibsbmlVers := LaterVersion(LibsbmlVersion, '2.3.4');
 
   if ((LibsbmlVersion = '') and (not LibsbmlPath))  then
     LibsbmlNotFound := True;
@@ -324,7 +324,7 @@ begin
 
     {look for a version no and check whether it is later than this}
   ToolboxVersion := GetToolboxVersion();
-  LaterToolboxVers := LaterVersion(ToolboxVersion, '2.0.1b');
+  LaterToolboxVers := LaterVersion(ToolboxVersion, '2.0.2');
 
   if not MatlabExists then begin
     Result := MsgBox('MATLAB cannot be located on this system.' #13 'The SBMLToolbox requires MATLAB.' #13#13 'Do you want to continue?', mbConfirmation, MB_YESNO) = idYes;
@@ -403,7 +403,7 @@ begin
         ScriptDlgPageOpen();
 
         ScriptDlgPageSetCaption('libsbml library files');
-        ScriptDlgPageSetSubCaption1('SBMLToolbox 2.0.1b uses libsbml 2.3.2');
+        ScriptDlgPageSetSubCaption1('SBMLToolbox 2.0.2 uses libsbml 2.3.4');
         ScriptDlgPageClearCustom();
 
         if LibsbmlPath then begin
@@ -424,7 +424,7 @@ begin
       ScriptDlgPageOpen();
 
       ScriptDlgPageSetCaption('libsbml library files');
-      ScriptDlgPageSetSubCaption1('SBMLToolbox uses libsbml 2.1.0');
+      ScriptDlgPageSetSubCaption1('SBMLToolbox uses libsbml 2.3.4');
       ScriptDlgPageClearCustom();
       if LibsbmlPath then begin
 
