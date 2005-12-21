@@ -2,6 +2,8 @@
 
 version 2.0.2
 
+uses libsbml-2.3.4
+
 added a time_symbol field to the Model structure
 which contains the declaration of the csymbol time
 if it has been used in the imported model
