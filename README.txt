@@ -104,10 +104,7 @@ To run:
   ${HOME}/matlab/startup.m
 
 
-If you have any questions or problems with the above install
-procedure, please email Ben Bornstein (bornstei@caltech.edu).  In a
-future release of libsbml, this procedure will be integrated with the
-top-level build ('configure') script.
+NOTE: There are some unresolved issues with installing SBMLToolbox on certain linux configurations. Please contact us if you encounter these.
 
 
 
