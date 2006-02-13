@@ -85,6 +85,15 @@ fail = fail + TestFunction('DetermineSpeciesRoleInReaction', 2, 1, s1, r1, [0,1,
 fail = fail + TestFunction('DetermineSpeciesRoleInReaction', 2, 1, s4, r3, [0,0,1,0,0]);
 fail = fail + TestFunction('DetermineSpeciesRoleInReaction', 2, 1, s2, r3, [1,1,0,1,2]);
 
+m = TranslateSBML('test_l1.xml');
+
+s1 = m.species(1);
+s4 = m.species(4);
+
+r1 = m.reaction(1);
+
+fail = fail + TestFunction('DetermineSpeciesRoleInReaction', 2, 1, s4, r1, 0);
+fail = fail + TestFunction('DetermineSpeciesRoleInReaction', 2, 1, s1, r1, [0,1,0,0,1]);
 
 
 
