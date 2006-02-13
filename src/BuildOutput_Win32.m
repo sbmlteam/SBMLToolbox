@@ -68,4 +68,4 @@
 %                   WIN32 header files
 
 
-mex OutputSBML.c -I'..\extern\include' ..\extern\bin\libsbml.lib
+mex OutputSBML.c -I'..\extern\include' -I'..\extern\include\sbml' ..\extern\bin\libsbml.lib
