@@ -1,5 +1,14 @@
     SBMLToolbox NEWS -- History of user-visible changes
 
+caught bug in the scripts to build the executables
+- these need two include directories specified
+to deal with the fact that the binding exists as part
+of libSBML and SBMLToolbox
+
+fixed bug in DetermineSpeciesRoleInReaction
+which failed for a level 1 model
+
+
 version 2.0.2
 
 uses libsbml-2.3.4
