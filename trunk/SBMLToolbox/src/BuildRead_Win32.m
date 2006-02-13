@@ -68,4 +68,4 @@
 %                   WIN32 header files
 
 
-mex ReadAndValidateSBML.c -I'..\extern\include' ..\extern\bin\libsbml.lib
+mex ReadAndValidateSBML.c -I'..\extern\include' -I'..\extern\include\sbml' ..\extern\bin\libsbml.lib

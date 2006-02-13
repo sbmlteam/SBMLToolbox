@@ -1,13 +1,13 @@
-% BuildTranslate_Win32 builds the TranslateSBML executable in windows
+% BuildRead_Win32 builds the ReadAndValidateSBML executable in windows
 % environment
 
 %
 %
-%  Filename    : BuildTranslate_Win32.m
-%  Description : builds the TranslateSBML executable
+%  Filename    : BuildOutput_Win32.m
+%  Description : builds the OutputSBML executable
 %  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
-%  Organization: University of Hertfordshire STRC
-%  Created     : 2003-09-15
+%  Organization: University of Hertfordshire STRI
+%  Created     : 2004-08-23
 %  Revision    : $Id$
 %  Source      : $Source$
 %
@@ -42,7 +42,7 @@
 %  The original code contained here was initially developed by:
 %
 %      Sarah Keating
-%      Science and Technology Research Centre
+%      Science and Technology Research Institute
 %      University of Hertfordshire
 %      Hatfield, AL10 9AB
 %      United Kingdom
@@ -53,20 +53,19 @@
 %  Contributor(s):
 %
 
-% This code assumes that TranslateSBML.c, the Win32 include files and the
+% This code assumes that OutputSBML.c, the Win32 include files and the
 % win32 compiled libraries
 % exists on within the SBMLToolbox path as shown
 % 
 %   SBMLToolbox
 %       -toolbox
-%           TranslateSBML.c
+%           ReadAndValidateSBML.c
 %       -docs
-%       -extern
+%       -win32
 %               -bin
 %                   libsbml.lib etc...
 %               -include
 %                   WIN32 header files
 
 
-mex  TranslateSBML.c  -I'..\extern\include' -I'..\extern\include\sbml' ..\extern\bin\libsbml.lib
-
+mex ReadAndValidateSBML.c -I'..\win32\include' -I'..\win32\include\sbml' ..\win32\bin\libsbml.lib
