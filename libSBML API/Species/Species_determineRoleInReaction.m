@@ -93,14 +93,20 @@ end;
 
 if (SBMLLevel == 1)
     name = SBMLSpecies.name;
+    reactionName = SBMLReaction.name;
 else
     if (isempty(SBMLSpecies.id))
         name = SBMLSpecies.name;
     else
         name = SBMLSpecies.id;
     end;
+    
+    if (isempty(SBMLReaction.id))
+        reactionName = SBMLReaction.name;
+    else
+        reactionName = SBMLReaction.id;
+    end;
 end;
-reactionName = SBMLReaction.id;
 
 %--------------------------------------------------------------------------
 %determine number of each type of species included within this reaction
