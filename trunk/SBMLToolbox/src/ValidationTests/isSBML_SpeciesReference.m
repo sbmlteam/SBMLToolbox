@@ -1,5 +1,6 @@
-function y = isSBML_SpeciesReference(SBMLStructure, Level)
-% isSBML_SpeciesRefernce(SBMLStructure, Level) checks that SBMLStructure represents a species reference 
+function y = isSBML_SpeciesReference(varargin)
+% isSBML_SpeciesRefernce(SBMLStructure, Level, Version(optional)) 
+% checks that SBMLStructure represents a species reference 
 % within an sbml model of the specified level
 % 
 % if SBMLStructure represents a species reference within an SBML model
@@ -73,12 +74,33 @@ function y = isSBML_SpeciesReference(SBMLStructure, Level)
 %
 %  Contributor(s):
 
+%input arguments
+if (nargin < 2 || nargin > 3)
+    error('wrong number of input arguments');
+end;
+
+SBMLStructure = varargin{1};
+Level = varargin{2};
+
+if (nargin == 3)
+    Version = varargin{3};
+else
+    Version = 1;
+end;
+
 if (Level == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation','species', 'stoichiometry', 'denominator'};
     nNumberFields = 6;
 else
-    SBMLfieldnames = {'typecode', 'notes', 'annotation','species', 'stoichiometry', 'denominator', 'stoichiometryMath'};
-    nNumberFields = 7;
+    if (Version == 1)
+        SBMLfieldnames = {'typecode', 'notes', 'annotation','species', 'stoichiometry', ...
+            'denominator', 'stoichiometryMath'};
+        nNumberFields = 7;
+    else
+        SBMLfieldnames = {'typecode', 'notes', 'annotation','species', 'id', 'name', ...
+            'sboTerm', 'stoichiometry', 'stoichiometryMath'};
+        nNumberFields = 9;
+    end;
 end;
 typecode = 'SBML_SPECIES_REFERENCE';
 

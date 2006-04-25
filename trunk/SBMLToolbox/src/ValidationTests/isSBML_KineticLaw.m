@@ -1,5 +1,6 @@
-function y = isSBML_KineticLaw(SBMLStructure, Level)
-% isSBML_KineticLaw(SBMLStructure, Level) checks that SBMLStructure represents a kinetic law 
+function y = isSBML_KineticLaw(varargin)
+% isSBML_KineticLaw(SBMLStructure, Level, Version(optional)) 
+% checks that SBMLStructure represents a kinetic law 
 % within an sbml model of the specified level
 % 
 % if SBMLStructure represents a kinetic law within an SBML model
@@ -74,12 +75,33 @@ function y = isSBML_KineticLaw(SBMLStructure, Level)
 %
 %  Contributor(s):
 %
+%input arguments
+if (nargin < 2 || nargin > 3)
+    error('wrong number of input arguments');
+end;
+
+SBMLStructure = varargin{1};
+Level = varargin{2};
+
+if (nargin == 3)
+    Version = varargin{3};
+else
+    Version = 1;
+end;
+
 if (Level == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation','formula', 'parameter', 'timeUnits', 'substanceUnits'};
     nNumberFields = 7;
 else
-    SBMLfieldnames = {'typecode', 'notes', 'annotation','formula', 'math','parameter', 'timeUnits', 'substanceUnits'};
-    nNumberFields = 8;
+    if (Version == 1)
+        SBMLfieldnames = {'typecode', 'notes', 'annotation','formula', 'math','parameter', ...
+            'timeUnits', 'substanceUnits'};
+        nNumberFields = 8;
+    else
+        SBMLfieldnames = {'typecode', 'notes', 'annotation','formula', 'math','parameter', ...
+            'timeUnits', 'substanceUnits', 'sboTerm'};
+        nNumberFields = 9;
+    end;
 end;
 typecode = 'SBML_KINETIC_LAW';
 
@@ -118,7 +140,7 @@ if(bSBML == 1)
     index = 1;
     [x, nNumberParameters] = size(SBMLStructure.parameter); 
     while (bSBML == 1 && index <= nNumberParameters)
-        bSBML = isSBML_Parameter(SBMLStructure.parameter(index), Level);
+        bSBML = isSBML_Parameter(SBMLStructure.parameter(index), Level, Version);
         index = index + 1;
     end;
 end;

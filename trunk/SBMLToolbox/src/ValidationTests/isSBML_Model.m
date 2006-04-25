@@ -93,12 +93,30 @@ if (Level < 1 || Level > 2)
     return;
 end;
 
+% get version
+Version = SBMLStructure.SBML_version;
+if (Version < 1 || Version > 2)
+    y = 0;
+    return;
+end;
+
+
 if (Level == 1)
-    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'SBML_level', 'SBML_version', 'name', 'unitDefinition', 'compartment', 'species', 'parameter', 'rule', 'reaction'};
+    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'SBML_level', 'SBML_version', 'name', 'unitDefinition',...
+        'compartment', 'species', 'parameter', 'rule', 'reaction'};
     nNumberFields = 12;
 else
-    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'SBML_level', 'SBML_version', 'name', 'id', 'functionDefinition', 'unitDefinition', 'compartment', 'species', 'parameter', 'rule', 'reaction', 'event'};
-    nNumberFields = 15;
+    if (Version == 1)
+        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'SBML_level', 'SBML_version', 'name', 'id', ...
+            'functionDefinition', 'unitDefinition', 'compartment', 'species', 'parameter', 'rule', 'reaction',...
+            'event'};
+        nNumberFields = 15;
+    else
+        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'SBML_level', 'SBML_version', 'name', 'id', ...
+            'sboTerm', 'functionDefinition', 'unitDefinition', 'compartmentType', 'speciesType', 'compartment', ...
+            'species', 'parameter', 'initialAssignment', 'rule', 'constraint', 'reaction', 'event'};
+        nNumberFields = 20;
+    end;
 end;
 typecode = 'SBML_MODEL';
 
@@ -140,7 +158,7 @@ if (bSBML == 1)
         index = 1;
         [x, nNumber] = size(SBMLStructure.functionDefinition);
         while (bSBML == 1 && index <= nNumber)
-            bSBML = isSBML_FunctionDefinition(SBMLStructure.functionDefinition(index), Level);
+            bSBML = isSBML_FunctionDefinition(SBMLStructure.functionDefinition(index), Level, Version);
             index = index + 1;
         end;
     end;
@@ -148,42 +166,42 @@ if (bSBML == 1)
     index = 1;
     [x, nNumber] = size(SBMLStructure.unitDefinition);
     while (bSBML == 1 && index <= nNumber)
-        bSBML = isSBML_UnitDefinition(SBMLStructure.unitDefinition(index), Level);
+        bSBML = isSBML_UnitDefinition(SBMLStructure.unitDefinition(index), Level, Version);
         index = index + 1;
     end;
 
     index = 1;
     [x, nNumber] = size(SBMLStructure.compartment);
     while (bSBML == 1 && index <= nNumber)
-        bSBML = isSBML_Compartment(SBMLStructure.compartment(index), Level);
+        bSBML = isSBML_Compartment(SBMLStructure.compartment(index), Level, Version);
         index = index + 1;
     end;
 
     index = 1;
     [x, nNumber] = size(SBMLStructure.species);
     while (bSBML == 1 && index <= nNumber)
-        bSBML = isSBML_Species(SBMLStructure.species(index), Level);
+        bSBML = isSBML_Species(SBMLStructure.species(index), Level, Version);
         index = index + 1;
     end;
 
     index = 1;
     [x, nNumber] = size(SBMLStructure.parameter);
     while (bSBML == 1 && index <= nNumber)
-        bSBML = isSBML_Parameter(SBMLStructure.parameter(index), Level);
+        bSBML = isSBML_Parameter(SBMLStructure.parameter(index), Level, Version);
         index = index + 1;
     end;
 
     index = 1;
     [x, nNumber] = size(SBMLStructure.rule);
     while (bSBML == 1 && index <= nNumber)
-        bSBML = isSBML_Rule(SBMLStructure.rule(index), Level);
+        bSBML = isSBML_Rule(SBMLStructure.rule(index), Level, Version);
         index = index + 1;
     end;
 
     index = 1;
     [x, nNumber] = size(SBMLStructure.reaction);
     while (bSBML == 1 && index <= nNumber)
-        bSBML = isSBML_Reaction(SBMLStructure.reaction(index), Level);
+        bSBML = isSBML_Reaction(SBMLStructure.reaction(index), Level, Version);
         index = index + 1;
     end;
 
@@ -191,10 +209,41 @@ if (bSBML == 1)
         index = 1;
         [x, nNumber] = size(SBMLStructure.event);
         while (bSBML == 1 && index <= nNumber)
-            bSBML = isSBML_Event(SBMLStructure.event(index), Level);
+            bSBML = isSBML_Event(SBMLStructure.event(index), Level, Version);
             index = index + 1;
         end;
     end;
+    
+    if (Level == 2 && Version == 2)
+        index = 1;
+        [x, nNumber] = size(SBMLStructure.compartmentType);
+        while (bSBML == 1 && index <= nNumber)
+            bSBML = isSBML_CompartmentType(SBMLStructure.compartmentType(index), Level, Version);
+            index = index + 1;
+        end;
+    
+        index = 1;
+        [x, nNumber] = size(SBMLStructure.speciesType);
+        while (bSBML == 1 && index <= nNumber)
+            bSBML = isSBML_SpeciesType(SBMLStructure.speciesType(index), Level, Version);
+            index = index + 1;
+        end;
 
+        index = 1;
+        [x, nNumber] = size(SBMLStructure.initialAssignment);
+        while (bSBML == 1 && index <= nNumber)
+            bSBML = isSBML_InitialAssignment(SBMLStructure.initialAssignment(index), Level, Version);
+            index = index + 1;
+        end;
+ 
+        index = 1;
+        [x, nNumber] = size(SBMLStructure.constraint);
+        while (bSBML == 1 && index <= nNumber)
+            bSBML = isSBML_Constraint(SBMLStructure.constraint(index), Level, Version);
+            index = index + 1;
+        end;
+    
+    end;
+    
 end;
 y = bSBML;

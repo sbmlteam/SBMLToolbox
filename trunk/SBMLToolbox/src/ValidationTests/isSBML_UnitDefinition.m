@@ -1,6 +1,7 @@
-function y = isSBML_UnitDefinition(SBMLStructure, Level)
-% isSBML_UnitDefinition(SBMLStructure, Level) checks that SBMLStructure represents a unit definition 
-% within an sbml model od specified level
+function y = isSBML_UnitDefinition(varargin)
+% isSBML_UnitDefinition(SBMLStructure, Level, Version(optional)) 
+% checks that SBMLStructure represents a unit definition 
+% within an sbml model of specified level
 % 
 % if SBMLStructure represents a unit definition within an SBML model
 % it has the appropriate fields 
@@ -72,12 +73,31 @@ function y = isSBML_UnitDefinition(SBMLStructure, Level)
 %
 %  Contributor(s):
 %
+%input arguments
+if (nargin < 2 || nargin > 3)
+    error('wrong number of input arguments');
+end;
+
+SBMLStructure = varargin{1};
+Level = varargin{2};
+
+if (nargin == 3)
+    Version = varargin{3};
+else
+    Version = 1;
+end;
+
 if (Level == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'unit'};
     nNumberFields = 5;
 else
-    SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'unit'};
-    nNumberFields = 6;
+    if (Version == 1)
+        SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'unit'};
+        nNumberFields = 6;
+    else
+        SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'unit'};
+        nNumberFields = 6;
+    end;
 end;
     
  typecode = 'SBML_UNIT_DEFINITION';
@@ -117,7 +137,7 @@ if(bSBML == 1)
     index = 1;
     [x, nNumber] = size(SBMLStructure.unit); 
     while (bSBML == 1 && index <= nNumber)
-        bSBML = isSBML_Unit(SBMLStructure.unit(index), Level);
+        bSBML = isSBML_Unit(SBMLStructure.unit(index), Level, Version);
         index = index + 1;
     end;
 end;

@@ -1,5 +1,6 @@
-function y = isSBML_SpeciesConcentrationRule(SBMLStructure, Level)
-% isSBML_SpeciesConcentrationRule(SBMLStructure, Level) checks that SBMLStructure represents a species concentration rule 
+function y = isSBML_SpeciesConcentrationRule(varargin)
+% isSBML_SpeciesConcentrationRule(SBMLStructure, Level, Version(optional)) 
+% checks that SBMLStructure represents a species concentration rule 
 % within an sbml model of the specified level
 % 
 % if SBMLStructure represents a species concentration rule within an SBML model
@@ -76,9 +77,23 @@ function y = isSBML_SpeciesConcentrationRule(SBMLStructure, Level)
 %
 %  Contributor(s):
 %
+%input arguments
+if (nargin < 2 || nargin > 3)
+    error('wrong number of input arguments');
+end;
+
+SBMLStructure = varargin{1};
+Level = varargin{2};
+
+if (nargin == 3)
+    Version = varargin{3};
+else
+    Version = 1;
+end;
+
 typecode = 'SBML_SPECIES_CONCENTRATION_RULE';
 
-bSBML = isSBML_Rule(SBMLStructure, Level);
+bSBML = isSBML_Rule(SBMLStructure, Level, Version);
 
 
 % check that the typecode is correct

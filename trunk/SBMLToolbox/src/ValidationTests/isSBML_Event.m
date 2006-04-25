@@ -1,5 +1,6 @@
-function y = isSBML_Event(SBMLStructure, Level)
-% isSBML_Event(SBMLStructure, Level) checks that SBMLStructure represents a Event
+function y = isSBML_Event(varargin)
+% isSBML_Event(SBMLStructure, Level, Version(optional)) 
+% checks that SBMLStructure represents a Event
 % within an sbml model of specified level
 % 
 % if SBMLStructure represents a Event within an SBML model
@@ -75,12 +76,34 @@ function y = isSBML_Event(SBMLStructure, Level)
 %
 %  Contributor(s):
 %
+
+%input arguments
+if (nargin < 2 || nargin > 3)
+    error('wrong number of input arguments');
+end;
+
+SBMLStructure = varargin{1};
+Level = varargin{2};
+
+if (nargin == 3)
+    Version = varargin{3};
+else
+    Version = 1;
+end;
+
 if (Level == 1)
     y = 0;
     return;
 else
-    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name', 'id', 'trigger', 'delay', 'timeUnits', 'eventAssignment'};
-    nNumberFields = 9;
+    if (Version == 1)
+        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name', 'id', 'trigger', 'delay', ...
+            'timeUnits', 'eventAssignment'};
+        nNumberFields = 9;
+    else
+        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name', 'id', 'trigger', 'delay', ...
+            'timeUnits', 'sboTerm', 'eventAssignment'};
+        nNumberFields = 10;
+    end;
 end;
     
  typecode = 'SBML_EVENT';
@@ -120,7 +143,7 @@ if(bSBML == 1)
     index = 1;
     [x, nNumber] = size(SBMLStructure.eventAssignment); 
     while (bSBML == 1 && index <= nNumber)
-        bSBML = isSBML_EventAssignment(SBMLStructure.eventAssignment(index), Level);
+        bSBML = isSBML_EventAssignment(SBMLStructure.eventAssignment(index), Level, Version);
         index = index + 1;
     end;
 end;
