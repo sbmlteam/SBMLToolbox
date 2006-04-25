@@ -1,5 +1,6 @@
-function y = isSBML_EventAssignment(SBMLStructure, Level)
-% isSBML_EventAssignment(SBMLStructure, Level) checks that SBMLStructure represents a EventAssignment
+function y = isSBML_EventAssignment(varargin)
+% isSBML_EventAssignment(SBMLStructure, Level, Version(optional)) 
+% checks that SBMLStructure represents a EventAssignment
 % within an sbml model of specified level
 % 
 % if SBMLStructure represents a EventAssignment within an SBML model
@@ -71,12 +72,31 @@ function y = isSBML_EventAssignment(SBMLStructure, Level)
 %
 %  Contributor(s):
 %
+%input arguments
+if (nargin < 2 || nargin > 3)
+    error('wrong number of input arguments');
+end;
+
+SBMLStructure = varargin{1};
+Level = varargin{2};
+
+if (nargin == 3)
+    Version = varargin{3};
+else
+    Version = 1;
+end;
+
 if (Level == 1)
     y = 0;
     return;
 else
-    SBMLfieldnames = {'typecode', 'notes', 'annotation','variable', 'math'};
-    nNumberFields = 5;
+    if (Version == 1)
+        SBMLfieldnames = {'typecode', 'notes', 'annotation','variable', 'math'};
+        nNumberFields = 5;
+    else
+        SBMLfieldnames = {'typecode', 'notes', 'annotation','variable', 'sboTerm', 'math'};
+        nNumberFields = 6;
+    end;
 end;
     
  typecode = 'SBML_EVENT_ASSIGNMENT';

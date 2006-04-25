@@ -1,5 +1,6 @@
-function y = isSBML_ModifierSpeciesReference(SBMLStructure, Level)
-% isSBML_ModifierSpeciesReference(SBMLStructure, Level) checks that SBMLStructure represents a modifier species reference 
+function y = isSBML_ModifierSpeciesReference(varargin)
+% isSBML_ModifierSpeciesReference(SBMLStructure, Level, Version(optional)) 
+% checks that SBMLStructure represents a modifier species reference 
 % within an sbml model of the specified level
 % 
 % if SBMLStructure represents a modifier species reference within an SBML model
@@ -70,12 +71,31 @@ function y = isSBML_ModifierSpeciesReference(SBMLStructure, Level)
 %
 %  Contributor(s):
 
+%input arguments
+if (nargin < 2 || nargin > 3)
+    error('wrong number of input arguments');
+end;
+
+SBMLStructure = varargin{1};
+Level = varargin{2};
+
+if (nargin == 3)
+    Version = varargin{3};
+else
+    Version = 1;
+end;
+
 if (Level == 1)
     y = 0;
     return;
 else
-    SBMLfieldnames = {'typecode', 'notes', 'annotation','species'};
-    nNumberFields = 4;
+    if (Version == 1)
+        SBMLfieldnames = {'typecode', 'notes', 'annotation','species'};
+        nNumberFields = 4;
+    else
+        SBMLfieldnames = {'typecode', 'notes', 'annotation','species', 'id', 'name', 'sboTerm'};
+        nNumberFields = 7;
+    end;
 end;
 typecode = 'SBML_MODIFIER_SPECIES_REFERENCE';
 

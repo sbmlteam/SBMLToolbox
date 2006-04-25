@@ -1,5 +1,6 @@
-function y = isSBML_FunctionDefinition(SBMLStructure, Level)
-% isSBML_FunctionDefinition(SBMLStructure, Level) checks that SBMLStructure represents a function definition 
+function y = isSBML_FunctionDefinition(varargin)
+% isSBML_FunctionDefinition(SBMLStructure, Level, Version(optional)) 
+% checks that SBMLStructure represents a function definition 
 % within an sbml model of specified level
 % 
 % if SBMLStructure represents a function definition within an SBML model
@@ -72,12 +73,31 @@ function y = isSBML_FunctionDefinition(SBMLStructure, Level)
 %
 %  Contributor(s):
 %
+%input arguments
+if (nargin < 2 || nargin > 3)
+    error('wrong number of input arguments');
+end;
+
+SBMLStructure = varargin{1};
+Level = varargin{2};
+
+if (nargin == 3)
+    Version = varargin{3};
+else
+    Version = 1;
+end;
+
 if (Level == 1)
     y = 0;
     return;
 else
+    if (Version == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'math'};
     nNumberFields = 6;
+    else
+        SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'math'};
+        nNumberFields = 6;
+    end;
 end;
     
  typecode = 'SBML_FUNCTION_DEFINITION';

@@ -1,5 +1,6 @@
-function y = isSBML_Compartment(SBMLStructure, Level)
-% isSBML_Compartment(SBMLStructure, Level) checks that SBMLStructure represents a compartment 
+function y = isSBML_Compartment(varargin)
+% isSBML_Compartment(SBMLStructure, Level, Version(optional)) 
+% checks that SBMLStructure represents a compartment 
 % within an sbml model of the specified level
 % 
 % if SBMLStructure represents a compartment within an SBML model
@@ -80,12 +81,36 @@ function y = isSBML_Compartment(SBMLStructure, Level)
 %  Contributor(s):
 %
 
+if (nargin < 2 || nargin > 3)
+    error('wrong number of input arguments');
+end;
+
+SBMLStructure = varargin{1};
+Level = varargin{2};
+
+if (nargin == 3)
+    Version = varargin{3};
+else
+    Version = 1;
+end;
+
+
+    
+
+
 if (Level == 1) 
     SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'volume', 'units', 'outside', 'isSetVolume'};
     nNumberFields = 8;
 else 
-    SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'spatialDimensions', 'size', 'units', 'outside', 'constant', 'isSetSize','isSetVolume'};
-    nNumberFields = 12;
+    if (Version == 1)
+        SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'spatialDimensions', ...
+            'size', 'units', 'outside', 'constant', 'isSetSize','isSetVolume'};
+        nNumberFields = 12;
+    else
+        SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'compartmentType', ...
+            'spatialDimensions', 'size', 'units', 'outside', 'constant', 'isSetSize','isSetVolume'};
+        nNumberFields = 13;
+    end;
 end;
 typecode = 'SBML_COMPARTMENT';
 

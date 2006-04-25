@@ -1,5 +1,6 @@
-function y = isSBML_RateRule(SBMLStructure, Level)
-% isSBML_RateRule(SBMLStructure, Level) checks that SBMLStructure represents a rate rule 
+function y = isSBML_RateRule(varargin)
+% isSBML_RateRule(SBMLStructure, Level, Version(optional)) 
+% checks that SBMLStructure represents a rate rule 
 % within an sbml model of the specified level
 % 
 % if SBMLStructure represents a rate rule within an SBML model
@@ -76,9 +77,23 @@ function y = isSBML_RateRule(SBMLStructure, Level)
 %
 %  Contributor(s):
 %
+%input arguments
+if (nargin < 2 || nargin > 3)
+    error('wrong number of input arguments');
+end;
+
+SBMLStructure = varargin{1};
+Level = varargin{2};
+
+if (nargin == 3)
+    Version = varargin{3};
+else
+    Version = 1;
+end;
+
 typecode = 'SBML_RATE_RULE';
 
-bSBML = isSBML_Rule(SBMLStructure, Level);
+bSBML = isSBML_Rule(SBMLStructure, Level, Version);
 
 
 % check that the typecode is correct

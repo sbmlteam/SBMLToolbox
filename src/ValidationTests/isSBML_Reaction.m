@@ -1,5 +1,6 @@
-function y = isSBML_Reaction(SBMLStructure, Level)
-% isSBML_Reaction(SBMLStructure) checks that SBMLStructure represents a reaction 
+function y = isSBML_Reaction(varargin)
+% isSBML_Reaction(SBMLStructure, Level, Version(optional)) 
+% checks that SBMLStructure represents a reaction 
 % within an sbml model of the specified level
 % 
 % if SBMLStructure represents a reaction within an SBML model
@@ -78,12 +79,34 @@ function y = isSBML_Reaction(SBMLStructure, Level)
 %
 %  Contributor(s):
 %
+%input arguments
+if (nargin < 2 || nargin > 3)
+    error('wrong number of input arguments');
+end;
+
+SBMLStructure = varargin{1};
+Level = varargin{2};
+
+if (nargin == 3)
+    Version = varargin{3};
+else
+    Version = 1;
+end;
+
 if (Level == 1)
-    SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'reactant', 'product', 'kineticLaw', 'reversible', 'fast'};
+    SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'reactant', 'product', 'kineticLaw', ...
+        'reversible', 'fast'};
     nNumberFields = 9;
 else
-    SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'reactant', 'product', 'modifier', 'kineticLaw', 'reversible', 'fast', 'isSetFast'};
-    nNumberFields = 12;
+    if (Version == 1)
+        SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'reactant', 'product', ...
+            'modifier', 'kineticLaw', 'reversible', 'fast', 'isSetFast'};
+        nNumberFields = 12;
+    else
+        SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'reactant', 'product', ...
+            'modifier', 'kineticLaw', 'reversible', 'fast', 'sboTerm', 'isSetFast'};
+        nNumberFields = 13;
+    end;
 end;
     
 typecode = 'SBML_REACTION';
@@ -132,14 +155,14 @@ if(bSBML == 1)
     index = 1;
     [x, nNumberReactants] = size(SBMLStructure.reactant);
     while (bSBML == 1 && index <= nNumberReactants)
-        bSBML = isSBML_SpeciesReference(SBMLStructure.reactant(index), Level);
+        bSBML = isSBML_SpeciesReference(SBMLStructure.reactant(index), Level, Version);
         index = index + 1;
     end;
 
     index = 1;
     [x, nNumberProducts] = size(SBMLStructure.product);
     while (bSBML == 1 && index <= nNumberProducts)
-        bSBML = isSBML_SpeciesReference(SBMLStructure.product(index), Level);
+        bSBML = isSBML_SpeciesReference(SBMLStructure.product(index), Level, Version);
         index = index + 1;
     end;
 
@@ -147,14 +170,14 @@ if(bSBML == 1)
         index = 1;
         [x, nNumberModifiers] = size(SBMLStructure.modifier);
         while (bSBML == 1 && index <= nNumberModifiers)
-            bSBML = isSBML_ModifierSpeciesReference(SBMLStructure.modifier(index), Level);
+            bSBML = isSBML_ModifierSpeciesReference(SBMLStructure.modifier(index), Level, Version);
             index = index + 1;
         end;
     end;
 
     % if a kinetic law is present check that it is valid
     if (bSBML == 1 && ~isempty(SBMLStructure.kineticLaw))
-        bSBML = isSBML_KineticLaw(SBMLStructure.kineticLaw, Level);
+        bSBML = isSBML_KineticLaw(SBMLStructure.kineticLaw, Level, Version);
     end;
 end;
 y = bSBML;

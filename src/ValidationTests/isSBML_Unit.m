@@ -1,5 +1,6 @@
-function y = isSBML_Unit(SBMLStructure, Level)
-% isSBML_Unit(SBMLStructure, Level) checks that SBMLStructure represents a unit 
+function y = isSBML_Unit(varargin)
+% isSBML_Unit(SBMLStructure, Level, Version(optional)) 
+% checks that SBMLStructure represents a unit 
 % within an sbml model of specified level
 % 
 % if SBMLStructure represents a unit within an SBML model
@@ -74,12 +75,31 @@ function y = isSBML_Unit(SBMLStructure, Level)
 %
 %  Contributor(s):
 
+%input arguments
+if (nargin < 2 || nargin > 3)
+    error('wrong number of input arguments');
+end;
+
+SBMLStructure = varargin{1};
+Level = varargin{2};
+
+if (nargin == 3)
+    Version = varargin{3};
+else
+    Version = 1;
+end;
+
 if (Level == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation','kind', 'exponent', 'scale'};
     nNumberFields = 6;
 else
-    SBMLfieldnames = {'typecode', 'notes', 'annotation','kind', 'exponent', 'scale', 'multiplier', 'offset'};
-    nNumberFields = 8;
+    if (Version == 1)
+        SBMLfieldnames = {'typecode', 'notes', 'annotation','kind', 'exponent', 'scale', 'multiplier', 'offset'};
+        nNumberFields = 8;
+    else
+        SBMLfieldnames = {'typecode', 'notes', 'annotation','kind', 'exponent', 'scale', 'multiplier'};
+        nNumberFields = 7;
+    end;
 end;
 
 typecode = 'SBML_UNIT';

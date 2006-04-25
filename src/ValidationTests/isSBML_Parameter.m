@@ -1,5 +1,6 @@
-function y = isSBML_Parameter(SBMLStructure, Level)
-% isSBML_Parameter(SBMLStructure, Level) checks that SBMLStructure represents a parameter 
+function y = isSBML_Parameter(varargin)
+% isSBML_Parameter(SBMLStructure, Level, Version(optional)) 
+% checks that SBMLStructure represents a parameter 
 % within an sbml model of the specified level
 % 
 % if SBMLStructure represents a parameter within an SBML model
@@ -75,12 +76,32 @@ function y = isSBML_Parameter(SBMLStructure, Level)
 %
 %  Contributor(s):
 %
+%input arguments
+if (nargin < 2 || nargin > 3)
+    error('wrong number of input arguments');
+end;
+
+SBMLStructure = varargin{1};
+Level = varargin{2};
+
+if (nargin == 3)
+    Version = varargin{3};
+else
+    Version = 1;
+end;
+
 if (Level == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'value', 'units', 'isSetValue'};
     nNumberFields = 7;
 else
-    SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'value', 'units', 'constant', 'isSetValue'};
-    nNumberFields = 9;
+    if (Version == 1)
+        SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'value', 'units', 'constant', 'isSetValue'};
+        nNumberFields = 9;
+    else
+        SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'value', 'units', ...
+            'constant', 'sboTerm', 'isSetValue'};
+        nNumberFields = 10;
+    end;
 end;
     
 typecode = 'SBML_PARAMETER';
