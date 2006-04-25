@@ -108,7 +108,7 @@ mexFunction (int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 	mxArray * mxFilename[2], * mxExt[1];
 	int nStatus;
 	char *pacFilename, *pacTempString1, *pacTempString2;
-    int nBuflen, nBufferLen;
+  int nBuflen, nBufferLen;
 	
 	SBMLDocument_t *sbmlDocument;
 	Model_t *sbmlModel;
@@ -125,10 +125,10 @@ mexFunction (int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 /*************************************************************************************
 	* validate inputs and outputs
 	**********************************************************************************/
-    if (nrhs < 1)
-    {
-        mexErrMsgTxt("Must supply at least the model as an output argument\nUSAGE: OutputSBML(SBMLModel, (filename))");
-    }
+  if (nrhs < 1)
+  {
+      mexErrMsgTxt("Must supply at least the model as an output argument\nUSAGE: OutputSBML(SBMLModel, (filename))");
+  }
 
 /**
 	* create a copy of the input
@@ -146,8 +146,6 @@ mexFunction (int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 		mexErrMsgTxt("Too many output arguments\nUSAGE: OutputSBML(SBMLModel, (filename))");
 	}
 
-	
-	
 /**
 	* check number and type of input arguments
 	* must be a valid Matlab_SBML structure
@@ -174,14 +172,14 @@ mexFunction (int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 	      mexErrMsgTxt("Second input must be a filename\nUSAGE: OutputSBML(SBMLModel, (filename))");
 	  }
 
-      nBuflen = (mxGetM(prhs[1])*mxGetN(prhs[1])+1);
-      pacFilename = (char *)mxCalloc(nBuflen, sizeof(char));
-      nStatus = mxGetString(prhs[1], pacFilename, nBuflen);
-    
-      if (nStatus != 0)
-      {
-          mexErrMsgTxt("Cannot copy filename");
-      }
+    nBuflen = (mxGetM(prhs[1])*mxGetN(prhs[1])+1);
+    pacFilename = (char *)mxCalloc(nBuflen, sizeof(char));
+    nStatus = mxGetString(prhs[1], pacFilename, nBuflen);
+  
+    if (nStatus != 0)
+    {
+        mexErrMsgTxt("Cannot copy filename");
+    }
 
   }
 /*********************************************************************************************************
@@ -199,106 +197,99 @@ mexFunction (int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 	mxVersion = mxGetField(mxModel[0], 0, "SBML_version");
 	nVersion = (unsigned int) mxGetScalar(mxVersion);
 
-    sbmlDocument = SBMLDocument_createWith(nLevel, nVersion);
+  sbmlDocument = SBMLDocument_createWith(nLevel, nVersion);
 
 	
 	/* create a model within the document */
-    sbmlModel = SBMLDocument_createModel(sbmlDocument);
+  sbmlModel = SBMLDocument_createModel(sbmlDocument);
 
 
 	/* get typecode */
 	mxTypecode = mxGetField(mxModel[0], 0, "typecode");
-    nBuflen = (mxGetM(mxTypecode)*mxGetN(mxTypecode)+1);
-    pacTypecode = (char *)mxCalloc(nBuflen, sizeof(char));
-    nStatus = mxGetString(mxTypecode, pacTypecode, nBuflen);
-    
-    if (nStatus != 0)
-    {
-        mexErrMsgTxt("Cannot copy typecode");
-    }
+  nBuflen = (mxGetM(mxTypecode)*mxGetN(mxTypecode)+1);
+  pacTypecode = (char *)mxCalloc(nBuflen, sizeof(char));
+  nStatus = mxGetString(mxTypecode, pacTypecode, nBuflen);
+  
+  if (nStatus != 0)
+  {
+      mexErrMsgTxt("Cannot copy typecode");
+  }
 
 	SBase_init(sbmlModel, CharToTypecode(pacTypecode));
 
 	
 	/* get notes */
 	mxNotes = mxGetField(mxModel[0], 0, "notes");
-    nBuflen = (mxGetM(mxNotes)*mxGetN(mxNotes)+1);
-    pacNotes = (char *)mxCalloc(nBuflen, sizeof(char));
-    nStatus = mxGetString(mxNotes, pacNotes, nBuflen);
-    
-    if (nStatus != 0)
-    {
-        mexErrMsgTxt("Cannot copy notes");
-    }
+  nBuflen = (mxGetM(mxNotes)*mxGetN(mxNotes)+1);
+  pacNotes = (char *)mxCalloc(nBuflen, sizeof(char));
+  nStatus = mxGetString(mxNotes, pacNotes, nBuflen);
+  
+  if (nStatus != 0)
+  {
+      mexErrMsgTxt("Cannot copy notes");
+  }
 
 	SBase_setNotes(sbmlModel, pacNotes);
 
 	
-    /* get annotations  */
-    mxAnnotations = mxGetField(mxModel[0], 0, "annotation");
-    nBuflen = (mxGetM(mxAnnotations)*mxGetN(mxAnnotations)+1);
-    pacAnnotations = (char *)mxCalloc(nBuflen, sizeof(char));
-    
-    nStatus = mxGetString(mxAnnotations, pacAnnotations, nBuflen);
-    
-    if (nStatus != 0)
-    {
-        mexErrMsgTxt("Cannot copy annotations");
-    }
+  /* get annotations  */
+  mxAnnotations = mxGetField(mxModel[0], 0, "annotation");
+  nBuflen = (mxGetM(mxAnnotations)*mxGetN(mxAnnotations)+1);
+  pacAnnotations = (char *)mxCalloc(nBuflen, sizeof(char));
+  
+  nStatus = mxGetString(mxAnnotations, pacAnnotations, nBuflen);
+  
+  if (nStatus != 0)
+  {
+      mexErrMsgTxt("Cannot copy annotations");
+  }
 
-    /* add the tags to the annotation string */
-    if (strcmp(pacAnnotations, ""))
-    {
-        pacAnnotationString = (char *)mxCalloc(nBuflen+30, sizeof(char));
-        strcpy(pacAnnotationString, "<annotation>\n\t\t");
-        strcat(pacAnnotationString, pacAnnotations);
-        strcat(pacAnnotationString, "\n\t</annotation>");
-    }
-    else
-    {
-        pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));    
-    }
+  /* add the tags to the annotation string */
+  if (strcmp(pacAnnotations, ""))
+  {
+      pacAnnotationString = (char *)mxCalloc(nBuflen+30, sizeof(char));
+      strcpy(pacAnnotationString, "<annotation>\n\t\t");
+      strcat(pacAnnotationString, pacAnnotations);
+      strcat(pacAnnotationString, "\n\t</annotation>");
+  }
+  else
+  {
+      pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));    
+  }
 
 	SBase_setAnnotation(sbmlModel, pacAnnotationString);
 
 	/* get name */
 	mxName = mxGetField(mxModel[0], 0, "name");
-    nBuflen = (mxGetM(mxName)*mxGetN(mxName)+1);
-    pacName = (char *)mxCalloc(nBuflen, sizeof(char));
-    nStatus = mxGetString(mxName, pacName, nBuflen);
-    
-    if (nStatus != 0)
-    {
-        mexErrMsgTxt("Cannot copy name");
-    }
+  nBuflen = (mxGetM(mxName)*mxGetN(mxName)+1);
+  pacName = (char *)mxCalloc(nBuflen, sizeof(char));
+  nStatus = mxGetString(mxName, pacName, nBuflen);
+  
+  if (nStatus != 0)
+  {
+      mexErrMsgTxt("Cannot copy name");
+  }
 
 	Model_setName(sbmlModel, pacName);
 
 	mxCompartments = mxGetField(mxModel[0], 0, "compartment");
 	GetCompartment(mxCompartments, nLevel, nVersion, sbmlModel);
 
-
 	mxParameters = mxGetField(mxModel[0], 0, "parameter");
 	GetParameter(mxParameters, nLevel, nVersion, sbmlModel);
     
-    
-    mxSpecies = mxGetField(mxModel[0], 0, "species");
+  mxSpecies = mxGetField(mxModel[0], 0, "species");
 	GetSpecies(mxSpecies, nLevel, nVersion, sbmlModel);
 
-
-
-    mxRules = mxGetField(mxModel[0], 0, "rule");
+  mxRules = mxGetField(mxModel[0], 0, "rule");
 	GetRule(mxRules, nLevel, nVersion, sbmlModel);
 
+  mxUnitDefinitions = mxGetField(mxModel[0], 0, "unitDefinition");
+  GetUnitDefinition(mxUnitDefinitions, nLevel, nVersion, sbmlModel);
 
-    mxUnitDefinitions = mxGetField(mxModel[0], 0, "unitDefinition");
-    GetUnitDefinition(mxUnitDefinitions, nLevel, nVersion, sbmlModel);
-
-
-    mxReactions = mxGetField(mxModel[0], 0, "reaction");
+  mxReactions = mxGetField(mxModel[0], 0, "reaction");
 	GetReaction(mxReactions, nLevel, nVersion, sbmlModel);
 
-    
 	/* level 2 only */
 	if (nLevel == 2)
 	{
@@ -315,12 +306,10 @@ mexFunction (int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 
 		Model_setId(sbmlModel, pacId);
 
-
 		mxFunctionDefinitions = mxGetField(mxModel[0], 0, "functionDefinition");
 		GetFunctionDefinition(mxFunctionDefinitions, nLevel, nVersion, sbmlModel);
 
-		
-        mxEvents = mxGetField(mxModel[0], 0, "event");
+    mxEvents = mxGetField(mxModel[0], 0, "event");
 		GetEvent(mxEvents, nLevel, nVersion, sbmlModel);
 	}
 
@@ -331,76 +320,72 @@ mexFunction (int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 
 	if (nrhs == 1) 
 	{
-      /**
+   /**
 	  * prompt user for a filename 
 	  * and write the document to this
 	  */
 
 	  /* extension to look for */
-      mxExt[0] = mxCreateString(".xml");
-      nStatus = mexCallMATLAB(2, mxFilename, 1, mxExt, "uiputfile");
+    mxExt[0] = mxCreateString(".xml");
+    nStatus = mexCallMATLAB(2, mxFilename, 1, mxExt, "uiputfile");
     
-      if (nStatus != 0)
-      {
-        mexErrMsgTxt("Failed to read filename");
-      }
+    if (nStatus != 0)
+    {
+      mexErrMsgTxt("Failed to read filename");
+    }
 
-      /* get the filename returned */ 
-      nBuflen = (mxGetM(mxFilename[0])*mxGetN(mxFilename[0])+1);
-      pacTempString1 = (char *)mxCalloc(nBuflen, sizeof(char));
-      nStatus = mxGetString(mxFilename[0], pacTempString1, nBuflen);
-    
-      if (nStatus != 0)
-      {
-        mexErrMsgTxt("Cannot copy filename");
-      }
+    /* get the filename returned */ 
+    nBuflen = (mxGetM(mxFilename[0])*mxGetN(mxFilename[0])+1);
+    pacTempString1 = (char *)mxCalloc(nBuflen, sizeof(char));
+    nStatus = mxGetString(mxFilename[0], pacTempString1, nBuflen);
+  
+    if (nStatus != 0)
+    {
+      mexErrMsgTxt("Cannot copy filename");
+    }
 
 	  /* get the full path */
-      nBufferLen = (mxGetM(mxFilename[1])*mxGetN(mxFilename[1])+1);
-      pacTempString2 = (char *)mxCalloc(nBufferLen, sizeof(char));
-      nStatus = mxGetString(mxFilename[1], pacTempString2, nBufferLen);
-    
-      if (nStatus != 0)
-      {
-        mexErrMsgTxt("Cannot copy path");
-      }
+    nBufferLen = (mxGetM(mxFilename[1])*mxGetN(mxFilename[1])+1);
+    pacTempString2 = (char *)mxCalloc(nBufferLen, sizeof(char));
+    nStatus = mxGetString(mxFilename[1], pacTempString2, nBufferLen);
+  
+    if (nStatus != 0)
+    {
+      mexErrMsgTxt("Cannot copy path");
+    }
 
 	  /* write full path and filename */
-      pacFilename = (char *) mxCalloc(nBufferLen+nBuflen+4, sizeof(char));
+    pacFilename = (char *) mxCalloc(nBufferLen+nBuflen+4, sizeof(char));
 	  strcpy(pacFilename, pacTempString2);
-      strcat(pacFilename, pacTempString1);
+    strcat(pacFilename, pacTempString1);
 
 	  /* check that the extension has been used  */
 	  if (strstr(pacFilename, ".xml") == NULL)
 	  {
-		strcat(pacFilename, ".xml");
+  		strcat(pacFilename, ".xml");
 	  }
-  
-	}
+ 	}
 	else
 	{
 	  /* 
 	   * user has specified a filename
 	   * /
 	  
-	   /* check that the extension has been used  */
+	  /* check that the extension has been used  */
 	  if (strstr(pacFilename, ".xml") == NULL)
 	  {
-		strcat(pacFilename, ".xml");
+		  strcat(pacFilename, ".xml");
 	  }
-
 	}
-	/* write the SBML document to the filename specified */
+
+  /* write the SBML document to the filename specified */
 	nStatus = writeSBML(sbmlDocument, pacFilename);
 	mexPrintf("Document written\n");
-
 
 	if (nStatus != 1)
 	{
 		mexErrMsgTxt("Failed to write file");
 	}
-	
-
 	
 	/* free any memory allocated */
 	mxFree(pacTypecode);
@@ -409,20 +394,20 @@ mexFunction (int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 	mxFree(pacAnnotationString);
 	mxFree(pacName);
 	mxFree(pacFilename);
-    if (nrhs == 1)
-    {
-        mxFree(pacTempString1);
-        mxFree(pacTempString2);
-        mxDestroyArray(mxFilename[0]);
-        mxDestroyArray(mxFilename[1]);
-        mxDestroyArray(mxExt[0]);
-    }
+
+  if (nrhs == 1)
+  {
+    mxFree(pacTempString1);
+    mxFree(pacTempString2);
+    mxDestroyArray(mxFilename[0]);
+    mxDestroyArray(mxFilename[1]);
+    mxDestroyArray(mxExt[0]);
+  }
 	mxDestroyArray(mxCheckStructure[0]);
 
-	
 	SBMLDocument_free(sbmlDocument);
-
 }
+
 /**
  * NAME:    CharToTypecode
  *
@@ -574,7 +559,7 @@ void
 GetCompartment (mxArray * mxCompartments,
                unsigned int unSBMLLevel,
                unsigned int unSBMLVersion, 
-			   Model_t * sbmlModel)
+			         Model_t * sbmlModel)
 {
 	int nNoCompartments = mxGetNumberOfElements(mxCompartments);
 
@@ -585,7 +570,7 @@ GetCompartment (mxArray * mxCompartments,
 	char * pacTypecode;
 	char * pacNotes;
 	char * pacAnnotations;
-    char * pacAnnotationString;
+  char * pacAnnotationString;
 	char * pacName;
 	char * pacId;
 	double dVolume;
@@ -647,18 +632,18 @@ GetCompartment (mxArray * mxCompartments,
 			mexErrMsgTxt("Cannot copy annotations");
 		}
 
-        /* add the tags to the annotation string */
-        if (strcmp(pacAnnotations, ""))
-        {
-            pacAnnotationString = (char *)mxCalloc(nBuflen+30, sizeof(char));
-            strcpy(pacAnnotationString, "<annotation>\n\t\t\t");
-            strcat(pacAnnotationString, pacAnnotations);
-            strcat(pacAnnotationString, "\n\t\t</annotation>");
-        }
-        else
-        {
-            pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));
-        }
+    /* add the tags to the annotation string */
+    if (strcmp(pacAnnotations, ""))
+    {
+        pacAnnotationString = (char *)mxCalloc(nBuflen+30, sizeof(char));
+        strcpy(pacAnnotationString, "<annotation>\n\t\t\t");
+        strcat(pacAnnotationString, pacAnnotations);
+        strcat(pacAnnotationString, "\n\t\t</annotation>");
+    }
+    else
+    {
+        pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));
+    }
 
 		SBase_setAnnotation(pCompartment, pacAnnotationString);
 
@@ -769,6 +754,19 @@ GetCompartment (mxArray * mxCompartments,
 		/* add the compartment to the model */
 		Model_addCompartment(sbmlModel, pCompartment);
 
+    /* free any memory allocated */
+	  mxFree(pacTypecode);
+	  mxFree(pacNotes);
+	  mxFree(pacAnnotations);
+	  mxFree(pacAnnotationString);
+	  mxFree(pacName);
+  	mxFree(pacUnits);
+  	mxFree(pacOutside);
+		/* level 2 only */
+		if (unSBMLLevel == 2)
+		{
+  	  mxFree(pacId);
+    }
 	}
 }
 /**
@@ -789,7 +787,7 @@ GetCompartment (mxArray * mxCompartments,
  GetParameter ( mxArray * mxParameters,
                unsigned int unSBMLLevel,
                unsigned int unSBMLVersion, 
-			   Model_t * sbmlModel)
+			         Model_t * sbmlModel)
 {
 	int nNoParameters = mxGetNumberOfElements(mxParameters);
 
@@ -799,7 +797,7 @@ GetCompartment (mxArray * mxCompartments,
 	char * pacTypecode;
 	char * pacNotes;
 	char * pacAnnotations;
-    char * pacAnnotationString;
+  char * pacAnnotationString;
 	char * pacName;
 	char * pacId;
 	double dValue;
@@ -858,18 +856,18 @@ GetCompartment (mxArray * mxCompartments,
 			mexErrMsgTxt("Cannot copy annotations");
 		}
    
-        /* add the tags to the annotation string */
-        if (strcmp(pacAnnotations, ""))
-        {
-            pacAnnotationString = (char *)mxCalloc(nBuflen+30, sizeof(char));
-            strcpy(pacAnnotationString, "<annotation>\n\t\t\t");
-            strcat(pacAnnotationString, pacAnnotations);
-            strcat(pacAnnotationString, "\n\t\t</annotation>");
-        }
-        else
-        {
-            pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));
-        }
+    /* add the tags to the annotation string */
+    if (strcmp(pacAnnotations, ""))
+    {
+        pacAnnotationString = (char *)mxCalloc(nBuflen+30, sizeof(char));
+        strcpy(pacAnnotationString, "<annotation>\n\t\t\t");
+        strcat(pacAnnotationString, pacAnnotations);
+        strcat(pacAnnotationString, "\n\t\t</annotation>");
+    }
+    else
+    {
+        pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));
+    }
 
 		SBase_setAnnotation(pParameter, pacAnnotationString);
 
@@ -907,7 +905,6 @@ GetCompartment (mxArray * mxCompartments,
 		unIsSetValue = (unsigned int)mxGetScalar(mxIsSetValue);
 
 
-
 		/* get value */
 		mxValue = mxGetField(mxParameters, i, "value");
 		dValue = mxGetScalar(mxValue);
@@ -917,7 +914,6 @@ GetCompartment (mxArray * mxCompartments,
 		}
 
 
-		
 		/* level 2 */
 		if (unSBMLLevel == 2)
 		{
@@ -944,6 +940,19 @@ GetCompartment (mxArray * mxCompartments,
 
 		/* add the parameter to the model */
 		Model_addParameter(sbmlModel, pParameter);
+
+    /* free any memory allocated */
+	  mxFree(pacTypecode);
+	  mxFree(pacNotes);
+	  mxFree(pacAnnotations);
+	  mxFree(pacAnnotationString);
+	  mxFree(pacName);
+  	mxFree(pacUnits);
+		/* level 2 only */
+		if (unSBMLLevel == 2)
+		{
+  	  mxFree(pacId);
+    }
 	}
 
 }
@@ -965,7 +974,7 @@ GetCompartment (mxArray * mxCompartments,
  GetSpecies ( mxArray * mxSpecies,
                unsigned int unSBMLLevel,
                unsigned int unSBMLVersion, 
-			   Model_t * sbmlModel)
+			         Model_t * sbmlModel)
 {
 	int nNoSpecies = mxGetNumberOfElements(mxSpecies);
 
@@ -975,7 +984,7 @@ GetCompartment (mxArray * mxCompartments,
 	char * pacTypecode;
 	char * pacNotes;
 	char * pacAnnotations;
-    char * pacAnnotationString;
+  char * pacAnnotationString;
 	char * pacName;
 	char * pacId;
 	char * pacCompartment;
@@ -1044,18 +1053,18 @@ GetCompartment (mxArray * mxCompartments,
 			mexErrMsgTxt("Cannot copy annotations");
 		}
 
-        /* add the tags to the annotation string */
-        if (strcmp(pacAnnotations, ""))
-        {
-            pacAnnotationString = (char *)mxCalloc(nBuflen+30, sizeof(char));
-            strcpy(pacAnnotationString, "<annotation>\n\t\t\t");
-            strcat(pacAnnotationString, pacAnnotations);
-            strcat(pacAnnotationString, "\n\t\t</annotation>");
-        }
-        else
-        {
-            pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));
-        }
+    /* add the tags to the annotation string */
+    if (strcmp(pacAnnotations, ""))
+    {
+        pacAnnotationString = (char *)mxCalloc(nBuflen+30, sizeof(char));
+        strcpy(pacAnnotationString, "<annotation>\n\t\t\t");
+        strcat(pacAnnotationString, pacAnnotations);
+        strcat(pacAnnotationString, "\n\t\t</annotation>");
+    }
+    else
+    {
+        pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));
+    }
 
 
 		SBase_setAnnotation(pSpecies, pacAnnotationString);
@@ -1212,12 +1221,30 @@ GetCompartment (mxArray * mxCompartments,
 			nConstant = (int)mxGetScalar(mxConstant);
 
 			Species_setConstant(pSpecies, nConstant);
-
-			
 		}
 
 		/* add the species to the model */
 		Model_addSpecies(sbmlModel, pSpecies);
+
+    /* free any memory allocated */
+	  mxFree(pacTypecode);
+	  mxFree(pacNotes);
+	  mxFree(pacAnnotations);
+	  mxFree(pacAnnotationString);
+	  mxFree(pacName);
+  	mxFree(pacCompartment);
+		/* level 1 only */
+		if (unSBMLLevel == 1)
+		{
+  	  mxFree(pacUnits);
+    }
+		/* level 2 only */
+		if (unSBMLLevel == 2)
+		{
+  	  mxFree(pacId);
+  	  mxFree(pacSubstanceUnits);
+  	  mxFree(pacSpatialSizeUnits);
+    }
 	}
 
 }
@@ -1240,7 +1267,7 @@ GetCompartment (mxArray * mxCompartments,
  GetRule ( mxArray * mxRule,
                unsigned int unSBMLLevel,
                unsigned int unSBMLVersion, 
-			   Model_t * sbmlModel)
+			         Model_t * sbmlModel)
 {
 	int nNoRules = mxGetNumberOfElements(mxRule);
 
@@ -1251,16 +1278,14 @@ GetCompartment (mxArray * mxCompartments,
 	char * pacNotes;
 	char * pacAnnotations;
 	char * pacAnnotationString;
-    char * pacType;
-    char * pacFormula;
+  char * pacType;
+  char * pacFormula;
 	char * pacVariable;
 	char * pacSpecies;
 	char * pacCompartment;
 	char * pacName;
 	char * pacUnits;
     
-
-
 	mxArray * mxTypecode, * mxNotes, * mxAnnotations, * mxFormula, * mxVariable, * mxCompartment, * mxSpecies, * mxName, * mxUnits, * mxType;
 
 	AssignmentRule_t *pAssignRule;
@@ -1311,20 +1336,18 @@ GetCompartment (mxArray * mxCompartments,
 			mexErrMsgTxt("Cannot copy annotations");
 		}
 
-        /* add the tags to the annotation string */
-        if (strcmp(pacAnnotations, ""))
-        {
-            pacAnnotationString = (char *)mxCalloc(nBuflen+30, sizeof(char));
-            strcpy(pacAnnotationString, "<annotation>\n\t\t\t");
-            strcat(pacAnnotationString, pacAnnotations);
-            strcat(pacAnnotationString, "\n\t\t</annotation>");
-        }
-        else
-        {
-            pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));
-        }
-
-
+    /* add the tags to the annotation string */
+    if (strcmp(pacAnnotations, ""))
+    {
+        pacAnnotationString = (char *)mxCalloc(nBuflen+30, sizeof(char));
+        strcpy(pacAnnotationString, "<annotation>\n\t\t\t");
+        strcat(pacAnnotationString, pacAnnotations);
+        strcat(pacAnnotationString, "\n\t\t</annotation>");
+    }
+    else
+    {
+        pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));
+    }
 
 		/* get formula */
 		mxFormula = mxGetField(mxRule, i, "formula");
@@ -1398,178 +1421,179 @@ GetCompartment (mxArray * mxCompartments,
 			mexErrMsgTxt("Cannot copy Units");
 		}
 		
-        if (unSBMLLevel == 1) {
-            
-        /* get Type */
-            mxType = mxGetField(mxRule, i, "type");
-            nBuflen = (mxGetM(mxType)*mxGetN(mxType)+1);
-            pacType = (char *)mxCalloc(nBuflen, sizeof(char));
-            nStatus = mxGetString(mxType, pacType, nBuflen);
-            
-            if (nStatus != 0)
-            {
-                mexErrMsgTxt("Cannot copy Type");
-            }
-            
-        }
+    if (unSBMLLevel == 1) 
+    {
+      /* get Type */
+      mxType = mxGetField(mxRule, i, "type");
+      nBuflen = (mxGetM(mxType)*mxGetN(mxType)+1);
+      pacType = (char *)mxCalloc(nBuflen, sizeof(char));
+      nStatus = mxGetString(mxType, pacType, nBuflen);
+      
+      if (nStatus != 0)
+      {
+          mexErrMsgTxt("Cannot copy Type");
+      }
+    }
 
 		/* assign values for different types of rules */
 		switch(CharToTypecode(pacTypecode)) {
-			case SBML_ASSIGNMENT_RULE:
+      case SBML_ASSIGNMENT_RULE:
+        pAssignRule = AssignmentRule_create();
 
-                pAssignRule = AssignmentRule_create();
-				
-                SBase_init((Rule_t *)pAssignRule, CharToTypecode(pacTypecode));
-				AssignmentRule_setVariable(pAssignRule, pacVariable);			
-				SBase_setNotes(pAssignRule, pacNotes);
-				SBase_setAnnotation(pAssignRule, pacAnnotationString);
-				
-                if (unSBMLLevel == 1)
-				{
-                    AssignmentRule_setType(pAssignRule, RuleType_forName(pacType));
-					Rule_setFormula((Rule_t *)pAssignRule, pacFormula);
-				}
-				else if (unSBMLLevel == 2)
-				{
-					Rule_setFormula((Rule_t *)pAssignRule, pacFormula);
-					Rule_setMath((Rule_t *)pAssignRule, SBML_parseFormula(pacFormula));
-				}
+        SBase_init((Rule_t *)pAssignRule, CharToTypecode(pacTypecode));
+        AssignmentRule_setVariable(pAssignRule, pacVariable);			
+        SBase_setNotes(pAssignRule, pacNotes);
+        SBase_setAnnotation(pAssignRule, pacAnnotationString);
 
-				/* add the Rule to the model */
-				Model_addRule(sbmlModel,(Rule_t *) pAssignRule);
-				
-                break;
-		  
-            case SBML_ALGEBRAIC_RULE:
-				
-                pAlgRule = AlgebraicRule_create();
-				
-                SBase_init((Rule_t *)pAlgRule, CharToTypecode(pacTypecode));
-				SBase_setNotes(pAlgRule, pacNotes);
-				SBase_setAnnotation(pAlgRule, pacAnnotationString);
-				
-                if (unSBMLLevel == 1)
-				{
-					Rule_setFormula((Rule_t *)pAlgRule, pacFormula);
-				}
-				else if (unSBMLLevel == 2)
-				{
-					Rule_setFormula((Rule_t *)pAlgRule, pacFormula);
-					Rule_setMath((Rule_t *)pAlgRule, SBML_parseFormula(pacFormula));
-				}
+        if (unSBMLLevel == 1)
+        {
+          AssignmentRule_setType(pAssignRule, RuleType_forName(pacType));
+          Rule_setFormula((Rule_t *)pAssignRule, pacFormula);
+        }
+        else if (unSBMLLevel == 2)
+        {
+          Rule_setFormula((Rule_t *)pAssignRule, pacFormula);
+          Rule_setMath((Rule_t *)pAssignRule, SBML_parseFormula(pacFormula));
+        }
 
-				/* add the Rule to the model */
-				Model_addRule(sbmlModel,(Rule_t *) pAlgRule);
-				
-                break;
-		  
-            case SBML_RATE_RULE:
-				
-                pRateRule = RateRule_create();
-				
-                SBase_init((Rule_t *)pRateRule, CharToTypecode(pacTypecode));
-				RateRule_setVariable(pRateRule, pacVariable);			
-				SBase_setNotes(pRateRule, pacNotes);
-				SBase_setAnnotation(pRateRule, pacAnnotationString);
-				
-                if (unSBMLLevel == 1)
-				{
-					Rule_setFormula((Rule_t *)pRateRule, pacFormula);
-				}
-				else if (unSBMLLevel == 2)
-				{
-					Rule_setFormula((Rule_t *)pRateRule, pacFormula);
-					Rule_setMath((Rule_t *)pRateRule, SBML_parseFormula(pacFormula));
-				}
+        /* add the Rule to the model */
+        Model_addRule(sbmlModel,(Rule_t *) pAssignRule);
+        break;
 
-				/* add the Rule to the model */
-				Model_addRule(sbmlModel,(Rule_t *) pRateRule);
-				
-                break;
-		  
-            case SBML_SPECIES_CONCENTRATION_RULE:
-				
-                pSpeciesConcentrationRule = SpeciesConcentrationRule_create();
-				
-                SBase_init((Rule_t *)pSpeciesConcentrationRule, CharToTypecode(pacTypecode));
-				SpeciesConcentrationRule_setSpecies(pSpeciesConcentrationRule, pacSpecies);			
-				SBase_setNotes(pSpeciesConcentrationRule, pacNotes);
-				SBase_setAnnotation(pSpeciesConcentrationRule, pacAnnotationString);
-				
-                if (unSBMLLevel == 1)
-				{
-                    AssignmentRule_setType(pSpeciesConcentrationRule, RuleType_forName(pacType));
-					Rule_setFormula((Rule_t *)pSpeciesConcentrationRule, pacFormula);
-				}
-				else if (unSBMLLevel == 2)
-				{
-					Rule_setFormula((Rule_t *)pSpeciesConcentrationRule, pacFormula);
-					Rule_setMath((Rule_t *)pSpeciesConcentrationRule, SBML_parseFormula(pacFormula));
-				}
+      case SBML_ALGEBRAIC_RULE:
+        pAlgRule = AlgebraicRule_create();
 
-				/* add the Rule to the model */
-				Model_addRule(sbmlModel,(Rule_t *) pSpeciesConcentrationRule);
-				
-                break;
-		  
-            case SBML_COMPARTMENT_VOLUME_RULE:
-				
-                pCompartmentVolumeRule = CompartmentVolumeRule_create();
-				
-                SBase_init((Rule_t *)pCompartmentVolumeRule, CharToTypecode(pacTypecode));
-				CompartmentVolumeRule_setCompartment(pCompartmentVolumeRule, pacCompartment);			
-				SBase_setNotes(pCompartmentVolumeRule, pacNotes);
-				SBase_setAnnotation(pCompartmentVolumeRule, pacAnnotationString);
-				
-                if (unSBMLLevel == 1)
-				{
-                    AssignmentRule_setType(pCompartmentVolumeRule, RuleType_forName(pacType));
-					Rule_setFormula((Rule_t *)pCompartmentVolumeRule, pacFormula);
-				}
-				else if (unSBMLLevel == 2)
-				{
-					Rule_setFormula((Rule_t *)pCompartmentVolumeRule, pacFormula);
-					Rule_setMath((Rule_t *)pCompartmentVolumeRule, SBML_parseFormula(pacFormula));
-				}
+        SBase_init((Rule_t *)pAlgRule, CharToTypecode(pacTypecode));
+        SBase_setNotes(pAlgRule, pacNotes);
+        SBase_setAnnotation(pAlgRule, pacAnnotationString);
 
-				/* add the Rule to the model */
-				Model_addRule(sbmlModel,(Rule_t *) pCompartmentVolumeRule);
-				
-                break;
-		  
-            case SBML_PARAMETER_RULE:
-				
-                pParameterRule = ParameterRule_create();
-				
-                SBase_init((Rule_t *)pParameterRule, CharToTypecode(pacTypecode));
-				ParameterRule_setName(pParameterRule, pacName);			
-				ParameterRule_setUnits(pParameterRule, pacUnits);			
-				SBase_setNotes(pParameterRule, pacNotes);
-				SBase_setAnnotation(pParameterRule, pacAnnotationString);
-				
-                if (unSBMLLevel == 1)
-				{
-                    AssignmentRule_setType(pParameterRule, RuleType_forName(pacType));
-					Rule_setFormula((Rule_t *)pParameterRule, pacFormula);
-				}
-				else if (unSBMLLevel == 2)
-				{
-					Rule_setFormula((Rule_t *)pParameterRule, pacFormula);
-					Rule_setMath((Rule_t *)pParameterRule, SBML_parseFormula(pacFormula));
-				}
+        if (unSBMLLevel == 1)
+        {
+          Rule_setFormula((Rule_t *)pAlgRule, pacFormula);
+        }
+        else if (unSBMLLevel == 2)
+        {
+          Rule_setFormula((Rule_t *)pAlgRule, pacFormula);
+          Rule_setMath((Rule_t *)pAlgRule, SBML_parseFormula(pacFormula));
+        }
 
-				/* add the Rule to the model */
-				Model_addRule(sbmlModel,(Rule_t *) pParameterRule);
-				
-                break;
-		  
-            default:
-				
-                mexErrMsgTxt("Error in rule assignment");
-				
-                break;
+        /* add the Rule to the model */
+        Model_addRule(sbmlModel,(Rule_t *) pAlgRule);
+        break;
+
+      case SBML_RATE_RULE:
+        pRateRule = RateRule_create();
+
+        SBase_init((Rule_t *)pRateRule, CharToTypecode(pacTypecode));
+        RateRule_setVariable(pRateRule, pacVariable);			
+        SBase_setNotes(pRateRule, pacNotes);
+        SBase_setAnnotation(pRateRule, pacAnnotationString);
+
+        if (unSBMLLevel == 1)
+        {
+          Rule_setFormula((Rule_t *)pRateRule, pacFormula);
+        }
+        else if (unSBMLLevel == 2)
+        {
+          Rule_setFormula((Rule_t *)pRateRule, pacFormula);
+          Rule_setMath((Rule_t *)pRateRule, SBML_parseFormula(pacFormula));
+        }
+
+        /* add the Rule to the model */
+        Model_addRule(sbmlModel,(Rule_t *) pRateRule);
+        break;
+
+      case SBML_SPECIES_CONCENTRATION_RULE:
+        pSpeciesConcentrationRule = SpeciesConcentrationRule_create();
+
+        SBase_init((Rule_t *)pSpeciesConcentrationRule, CharToTypecode(pacTypecode));
+        SpeciesConcentrationRule_setSpecies(pSpeciesConcentrationRule, pacSpecies);			
+        SBase_setNotes(pSpeciesConcentrationRule, pacNotes);
+        SBase_setAnnotation(pSpeciesConcentrationRule, pacAnnotationString);
+
+        if (unSBMLLevel == 1)
+        {
+          AssignmentRule_setType(pSpeciesConcentrationRule, RuleType_forName(pacType));
+          Rule_setFormula((Rule_t *)pSpeciesConcentrationRule, pacFormula);
+        }
+        else if (unSBMLLevel == 2)
+        {
+          Rule_setFormula((Rule_t *)pSpeciesConcentrationRule, pacFormula);
+          Rule_setMath((Rule_t *)pSpeciesConcentrationRule, SBML_parseFormula(pacFormula));
+        }
+
+        /* add the Rule to the model */
+        Model_addRule(sbmlModel,(Rule_t *) pSpeciesConcentrationRule);
+        break;
+
+      case SBML_COMPARTMENT_VOLUME_RULE:
+        pCompartmentVolumeRule = CompartmentVolumeRule_create();
+
+        SBase_init((Rule_t *)pCompartmentVolumeRule, CharToTypecode(pacTypecode));
+        CompartmentVolumeRule_setCompartment(pCompartmentVolumeRule, pacCompartment);			
+        SBase_setNotes(pCompartmentVolumeRule, pacNotes);
+        SBase_setAnnotation(pCompartmentVolumeRule, pacAnnotationString);
+
+        if (unSBMLLevel == 1)
+        {
+          AssignmentRule_setType(pCompartmentVolumeRule, RuleType_forName(pacType));
+          Rule_setFormula((Rule_t *)pCompartmentVolumeRule, pacFormula);
+        }
+        else if (unSBMLLevel == 2)
+        {
+          Rule_setFormula((Rule_t *)pCompartmentVolumeRule, pacFormula);
+          Rule_setMath((Rule_t *)pCompartmentVolumeRule, SBML_parseFormula(pacFormula));
+        }
+
+        /* add the Rule to the model */
+        Model_addRule(sbmlModel,(Rule_t *) pCompartmentVolumeRule);
+        break;
+
+      case SBML_PARAMETER_RULE:
+        pParameterRule = ParameterRule_create();
+
+        SBase_init((Rule_t *)pParameterRule, CharToTypecode(pacTypecode));
+        ParameterRule_setName(pParameterRule, pacName);			
+        ParameterRule_setUnits(pParameterRule, pacUnits);			
+        SBase_setNotes(pParameterRule, pacNotes);
+        SBase_setAnnotation(pParameterRule, pacAnnotationString);
+
+        if (unSBMLLevel == 1)
+        {
+          AssignmentRule_setType(pParameterRule, RuleType_forName(pacType));
+          Rule_setFormula((Rule_t *)pParameterRule, pacFormula);
+        }
+        else if (unSBMLLevel == 2)
+        {
+          Rule_setFormula((Rule_t *)pParameterRule, pacFormula);
+          Rule_setMath((Rule_t *)pParameterRule, SBML_parseFormula(pacFormula));
+        }
+
+        /* add the Rule to the model */
+        Model_addRule(sbmlModel,(Rule_t *) pParameterRule);
+        break;
+
+      default:
+        mexErrMsgTxt("Error in rule assignment");
+        break;
 		}
 
+    /* free any memory allocated */
+	  mxFree(pacTypecode);
+	  mxFree(pacNotes);
+	  mxFree(pacAnnotations);
+	  mxFree(pacAnnotationString);
+	  mxFree(pacName);
+  	mxFree(pacCompartment);
+	  mxFree(pacFormula);
+  	mxFree(pacVariable);
+	  mxFree(pacUnits);
+  	mxFree(pacSpecies);
+		/* level 1 only */
+		if (unSBMLLevel == 1)
+		{
+  	  mxFree(pacType);
+    }
 	}
 
 }
@@ -1601,7 +1625,7 @@ GetUnitDefinition ( mxArray * mxUnitDefinitions,
 	char * pacTypecode;
 	char * pacNotes;
 	char * pacAnnotations;
-    char * pacAnnotationString;
+  char * pacAnnotationString;
 	char * pacName;
 	char * pacId = NULL;
 
@@ -1654,18 +1678,18 @@ GetUnitDefinition ( mxArray * mxUnitDefinitions,
 			mexErrMsgTxt("Cannot copy annotations");
 		}
 
-        /* add the tags to the annotation string */
-        if (strcmp(pacAnnotations, ""))
-        {
-            pacAnnotationString = (char *)mxCalloc(nBuflen+30, sizeof(char));
-            strcpy(pacAnnotationString, "<annotation>\n\t\t\t");
-            strcat(pacAnnotationString, pacAnnotations);
-            strcat(pacAnnotationString, "\n\t\t</annotation>");
-        }
-        else
-        {
-            pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));
-        }
+    /* add the tags to the annotation string */
+    if (strcmp(pacAnnotations, ""))
+    {
+        pacAnnotationString = (char *)mxCalloc(nBuflen+30, sizeof(char));
+        strcpy(pacAnnotationString, "<annotation>\n\t\t\t");
+        strcat(pacAnnotationString, pacAnnotations);
+        strcat(pacAnnotationString, "\n\t\t</annotation>");
+    }
+    else
+    {
+        pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));
+    }
 
 
 		SBase_setAnnotation(pUnitDefinition, pacAnnotationString);
@@ -1710,6 +1734,18 @@ GetUnitDefinition ( mxArray * mxUnitDefinitions,
 		/* add the unit definition to the model */
 		Model_addUnitDefinition(sbmlModel, pUnitDefinition);
 
+    /* free any memory allocated */
+	  mxFree(pacTypecode);
+	  mxFree(pacNotes);
+	  mxFree(pacAnnotations);
+	  mxFree(pacAnnotationString);
+	  mxFree(pacName);
+		/* level 2 only */
+		if (unSBMLLevel == 2)
+		{
+  	  mxFree(pacId);
+    }
+
 	}
 }
 
@@ -1741,7 +1777,7 @@ GetUnit ( mxArray * mxUnits,
 	char * pacTypecode;
 	char * pacNotes;
 	char * pacAnnotations;
-    char * pacAnnotationString;
+  char * pacAnnotationString;
 	char * pacKind;
 	int nExponent;
 	int nScale;
@@ -1798,18 +1834,18 @@ GetUnit ( mxArray * mxUnits,
 			mexErrMsgTxt("Cannot copy annotations");
 		}
         
-        /* add the tags to the annotation string */
-        if (strcmp(pacAnnotations, ""))
-        {
-            pacAnnotationString = (char *)mxCalloc(nBuflen+30, sizeof(char));
-            strcpy(pacAnnotationString, "<annotation>\n\t\t\t\t");
-            strcat(pacAnnotationString, pacAnnotations);
-            strcat(pacAnnotationString, "\n\t\t\t</annotation>");
-        }
-        else
-        {
-            pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));
-        }
+    /* add the tags to the annotation string */
+    if (strcmp(pacAnnotations, ""))
+    {
+        pacAnnotationString = (char *)mxCalloc(nBuflen+30, sizeof(char));
+        strcpy(pacAnnotationString, "<annotation>\n\t\t\t\t");
+        strcat(pacAnnotationString, pacAnnotations);
+        strcat(pacAnnotationString, "\n\t\t\t</annotation>");
+    }
+    else
+    {
+        pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));
+    }
 
 
 		SBase_setAnnotation(pUnit, pacAnnotationString);
@@ -1864,6 +1900,12 @@ GetUnit ( mxArray * mxUnits,
 		/* add the unit to the unit definition */
 		UnitDefinition_addUnit(sbmlUnitDefinition, pUnit);
 
+    /* free any memory allocated */
+	  mxFree(pacTypecode);
+	  mxFree(pacNotes);
+	  mxFree(pacAnnotations);
+	  mxFree(pacAnnotationString);
+	  mxFree(pacKind);
 	}
 }
 /**
@@ -1894,7 +1936,7 @@ GetUnit ( mxArray * mxUnits,
 	char * pacTypecode;
 	char * pacNotes;
 	char * pacAnnotations;
-    char * pacAnnotationString;
+  char * pacAnnotationString;
 	char * pacName;
 	int nReversible;
 	int nFast;
@@ -1955,18 +1997,18 @@ GetUnit ( mxArray * mxUnits,
 		}
 
 
-        /* add the tags to the annotation string */
-        if (strcmp(pacAnnotations, ""))
-        {
-            pacAnnotationString = (char *)mxCalloc(nBuflen+30, sizeof(char));
-            strcpy(pacAnnotationString, "<annotation>\n\t\t\t");
-            strcat(pacAnnotationString, pacAnnotations);
-            strcat(pacAnnotationString, "\n\t\t</annotation>");
-        }
-        else
-        {
-            pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));
-        }
+    /* add the tags to the annotation string */
+    if (strcmp(pacAnnotations, ""))
+    {
+        pacAnnotationString = (char *)mxCalloc(nBuflen+30, sizeof(char));
+        strcpy(pacAnnotationString, "<annotation>\n\t\t\t");
+        strcat(pacAnnotationString, pacAnnotations);
+        strcat(pacAnnotationString, "\n\t\t</annotation>");
+    }
+    else
+    {
+        pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));
+    }
 
 		SBase_setAnnotation(pReaction, pacAnnotationString);
 
@@ -2002,11 +2044,11 @@ GetUnit ( mxArray * mxUnits,
 		GetSpeciesReference(mxProducts, unSBMLLevel, unSBMLVersion, pReaction, 1);
 
 		
-        /* get kinetic law */
-        mxKineticLaw = mxGetField(mxReaction, i, "kineticLaw");
+    /* get kinetic law */
+    mxKineticLaw = mxGetField(mxReaction, i, "kineticLaw");
 		if ((mxKineticLaw != NULL) && (mxIsEmpty(mxKineticLaw) != 1)) {
-            GetKineticLaw(mxKineticLaw, unSBMLLevel, unSBMLVersion, pReaction);
-        }
+      GetKineticLaw(mxKineticLaw, unSBMLLevel, unSBMLVersion, pReaction);
+    }
         
 		/* level 1 only */
 		if (unSBMLLevel == 1)
@@ -2016,7 +2058,6 @@ GetUnit ( mxArray * mxUnits,
 			nFast = (int)mxGetScalar(mxFast);
 
 			Reaction_setFast(pReaction, nFast);
-
 		}
 		
 
@@ -2039,12 +2080,13 @@ GetUnit ( mxArray * mxUnits,
 			/* get isSetFast */
 			mxIsSetFast = mxGetField(mxReaction, i, "isSetFast");
             
-            /* hack to catch bug in version 1.0.2 where field name was set as IsSetFast */
-            if (mxIsSetFast == NULL)
-            {
-                mxIsSetFast = mxGetField(mxReaction, i, "IsSetFast");
-            }
-			unIsSetFast = (unsigned int)mxGetScalar(mxIsSetFast);
+      /* hack to catch bug in version 1.0.2 where field name was set as IsSetFast */
+      if (mxIsSetFast == NULL)
+      {
+          mxIsSetFast = mxGetField(mxReaction, i, "IsSetFast");
+      }
+
+      unIsSetFast = (unsigned int)mxGetScalar(mxIsSetFast);
 
 
 			/* get fast */
@@ -2057,13 +2099,23 @@ GetUnit ( mxArray * mxUnits,
 
  			/* get modifiers */
 			mxModifiers = mxGetField(mxReaction, i, "modifier");
-    		GetModifier(mxModifiers, unSBMLLevel, unSBMLVersion, pReaction);
-
-
-		}
+  		GetModifier(mxModifiers, unSBMLLevel, unSBMLVersion, pReaction);
+    }
 
 		/* add the Reaction to the model */
 		Model_addReaction(sbmlModel, pReaction);
+
+    /* free any memory allocated */
+	  mxFree(pacTypecode);
+	  mxFree(pacNotes);
+	  mxFree(pacAnnotations);
+	  mxFree(pacAnnotationString);
+	  mxFree(pacName);
+		/* level 2 only */
+		if (unSBMLLevel == 2)
+		{
+  	  mxFree(pacId);
+    }
 	}
 
 }
@@ -2090,142 +2142,155 @@ GetUnit ( mxArray * mxUnits,
 	int nStatus;
 	int nBuflen;
 
-    char * pacTypecode;
-    char * pacNotes;
-    char * pacAnnotations;
-    char * pacAnnotationString;
-    char * pacFormula;
-    char * pacTimeUnits;
-    char * pacSubstanceUnits;
-    char * pacMath;
+  char * pacTypecode;
+  char * pacNotes;
+  char * pacAnnotations;
+  char * pacAnnotationString;
+  char * pacFormula;
+  char * pacTimeUnits;
+  char * pacSubstanceUnits;
+  char * pacMath;
 
  	mxArray * mxTypecode, * mxNotes, * mxAnnotations, * mxFormula, * mxTimeUnits, * mxSubstanceUnits;
 	mxArray * mxMath, * mxParameter;
 
-    KineticLaw_t *pKineticLaw;
-    
-    pKineticLaw = KineticLaw_create();
-    
-    /* get typecode */
-    mxTypecode = mxGetField(mxKineticLaw, 0, "typecode");
-    nBuflen = (mxGetM(mxTypecode)*mxGetN(mxTypecode)+1);
-    pacTypecode = (char *)mxCalloc(nBuflen, sizeof(char));
-    nStatus = mxGetString(mxTypecode, pacTypecode, nBuflen);
-    
-    if (nStatus != 0)
-    {
-        mexErrMsgTxt("Cannot copy typecode");
-    }
-    
-    SBase_init(pKineticLaw, CharToTypecode(pacTypecode));
-    
-    
-    /* get notes */
-    mxNotes = mxGetField(mxKineticLaw, 0, "notes");
-    nBuflen = (mxGetM(mxNotes)*mxGetN(mxNotes)+1);
-    pacNotes = (char *)mxCalloc(nBuflen, sizeof(char));
-    nStatus = mxGetString(mxNotes, pacNotes, nBuflen);
-    
-    if (nStatus != 0)
-    {
-        mexErrMsgTxt("Cannot copy notes");
-    }
-    
-    SBase_setNotes(pKineticLaw, pacNotes);
-    
-    
-    /* get annotations */
-    mxAnnotations = mxGetField(mxKineticLaw, 0, "annotation");
-    nBuflen = (mxGetM(mxAnnotations)*mxGetN(mxAnnotations)+1);
-    pacAnnotations = (char *)mxCalloc(nBuflen, sizeof(char));
-    nStatus = mxGetString(mxAnnotations, pacAnnotations, nBuflen);
-    
-    if (nStatus != 0)
-    {
-        mexErrMsgTxt("Cannot copy annotations");
-    }
+  KineticLaw_t *pKineticLaw;
+  
+  pKineticLaw = KineticLaw_create();
+  
+  /* get typecode */
+  mxTypecode = mxGetField(mxKineticLaw, 0, "typecode");
+  nBuflen = (mxGetM(mxTypecode)*mxGetN(mxTypecode)+1);
+  pacTypecode = (char *)mxCalloc(nBuflen, sizeof(char));
+  nStatus = mxGetString(mxTypecode, pacTypecode, nBuflen);
+  
+  if (nStatus != 0)
+  {
+      mexErrMsgTxt("Cannot copy typecode");
+  }
+  
+  SBase_init(pKineticLaw, CharToTypecode(pacTypecode));
+  
+  
+  /* get notes */
+  mxNotes = mxGetField(mxKineticLaw, 0, "notes");
+  nBuflen = (mxGetM(mxNotes)*mxGetN(mxNotes)+1);
+  pacNotes = (char *)mxCalloc(nBuflen, sizeof(char));
+  nStatus = mxGetString(mxNotes, pacNotes, nBuflen);
+  
+  if (nStatus != 0)
+  {
+      mexErrMsgTxt("Cannot copy notes");
+  }
+  
+  SBase_setNotes(pKineticLaw, pacNotes);
+  
+  
+  /* get annotations */
+  mxAnnotations = mxGetField(mxKineticLaw, 0, "annotation");
+  nBuflen = (mxGetM(mxAnnotations)*mxGetN(mxAnnotations)+1);
+  pacAnnotations = (char *)mxCalloc(nBuflen, sizeof(char));
+  nStatus = mxGetString(mxAnnotations, pacAnnotations, nBuflen);
+  
+  if (nStatus != 0)
+  {
+      mexErrMsgTxt("Cannot copy annotations");
+  }
          
-        /* add the tags to the annotation string */
-    if (strcmp(pacAnnotations, ""))
-    {
-        pacAnnotationString = (char *)mxCalloc(nBuflen+30, sizeof(char));
-        strcpy(pacAnnotationString, "<annotation>\n\t\t\t\t");
-        strcat(pacAnnotationString, pacAnnotations);
-        strcat(pacAnnotationString, "\n\t\t\t</annotation>");
-    }
-    else
-    {
-        pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));
-    }
+  /* add the tags to the annotation string */
+  if (strcmp(pacAnnotations, ""))
+  {
+      pacAnnotationString = (char *)mxCalloc(nBuflen+30, sizeof(char));
+      strcpy(pacAnnotationString, "<annotation>\n\t\t\t\t");
+      strcat(pacAnnotationString, pacAnnotations);
+      strcat(pacAnnotationString, "\n\t\t\t</annotation>");
+  }
+  else
+  {
+      pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));
+  }
 
    
-    SBase_setAnnotation(pKineticLaw, pacAnnotationString);
+  SBase_setAnnotation(pKineticLaw, pacAnnotationString);
 
-    /* get formula */
-    mxFormula = mxGetField(mxKineticLaw, 0, "formula");
-    nBuflen = (mxGetM(mxFormula)*mxGetN(mxFormula)+1);
-    pacFormula = (char *)mxCalloc(nBuflen, sizeof(char));
-    nStatus = mxGetString(mxFormula, pacFormula, nBuflen);
+  /* get formula */
+  mxFormula = mxGetField(mxKineticLaw, 0, "formula");
+  nBuflen = (mxGetM(mxFormula)*mxGetN(mxFormula)+1);
+  pacFormula = (char *)mxCalloc(nBuflen, sizeof(char));
+  nStatus = mxGetString(mxFormula, pacFormula, nBuflen);
+  
+  if (nStatus != 0)
+  {
+      mexErrMsgTxt("Cannot copy annotations");
+  }
+  
+  KineticLaw_setFormula(pKineticLaw, pacFormula);
+
+  
+  /* get timeUnits */
+  mxTimeUnits = mxGetField(mxKineticLaw, 0, "timeUnits");
+  nBuflen = (mxGetM(mxTimeUnits)*mxGetN(mxTimeUnits)+1);
+  pacTimeUnits = (char *)mxCalloc(nBuflen, sizeof(char));
+  nStatus = mxGetString(mxTimeUnits, pacTimeUnits, nBuflen);
+  
+  if (nStatus != 0)
+  {
+      mexErrMsgTxt("Cannot copy annotations");
+  }
+  
+  KineticLaw_setTimeUnits(pKineticLaw, pacTimeUnits);
+
+
+  /* get substanceUnits */
+  mxSubstanceUnits = mxGetField(mxKineticLaw, 0, "substanceUnits");
+  nBuflen = (mxGetM(mxSubstanceUnits)*mxGetN(mxSubstanceUnits)+1);
+  pacSubstanceUnits = (char *)mxCalloc(nBuflen, sizeof(char));
+  nStatus = mxGetString(mxSubstanceUnits, pacSubstanceUnits, nBuflen);
+  
+  if (nStatus != 0)
+  {
+      mexErrMsgTxt("Cannot copy annotations");
+  }
+  
+  KineticLaw_setSubstanceUnits(pKineticLaw, pacSubstanceUnits);
+
+  /* get list of parameters */
+  mxParameter = mxGetField(mxKineticLaw, 0, "parameter");
+  GetParameterFromKineticLaw(mxParameter, unSBMLLevel, unSBMLVersion, pKineticLaw);
+  
+  if (unSBMLLevel == 2)
+  {
+    /* get Math */
+    mxMath = mxGetField(mxKineticLaw, 0, "math");
+    nBuflen = (mxGetM(mxMath)*mxGetN(mxMath)+1);
+    pacMath = (char *)mxCalloc(nBuflen, sizeof(char));
+    nStatus = mxGetString(mxMath, pacMath, nBuflen);
     
     if (nStatus != 0)
     {
-        mexErrMsgTxt("Cannot copy annotations");
+        mexErrMsgTxt("Cannot copy Math");
     }
     
-    KineticLaw_setFormula(pKineticLaw, pacFormula);
+    KineticLaw_setMath(pKineticLaw, SBML_parseFormula(pacMath));
+    
+  }
 
-    
-    /* get timeUnits */
-    mxTimeUnits = mxGetField(mxKineticLaw, 0, "timeUnits");
-    nBuflen = (mxGetM(mxTimeUnits)*mxGetN(mxTimeUnits)+1);
-    pacTimeUnits = (char *)mxCalloc(nBuflen, sizeof(char));
-    nStatus = mxGetString(mxTimeUnits, pacTimeUnits, nBuflen);
-    
-    if (nStatus != 0)
-    {
-        mexErrMsgTxt("Cannot copy annotations");
-    }
-    
-    KineticLaw_setTimeUnits(pKineticLaw, pacTimeUnits);
+  /* add kinetic law to the reaction */
+  Reaction_setKineticLaw(sbmlReaction, pKineticLaw);
 
-
-   /* get substanceUnits */
-    mxSubstanceUnits = mxGetField(mxKineticLaw, 0, "substanceUnits");
-    nBuflen = (mxGetM(mxSubstanceUnits)*mxGetN(mxSubstanceUnits)+1);
-    pacSubstanceUnits = (char *)mxCalloc(nBuflen, sizeof(char));
-    nStatus = mxGetString(mxSubstanceUnits, pacSubstanceUnits, nBuflen);
-    
-    if (nStatus != 0)
-    {
-        mexErrMsgTxt("Cannot copy annotations");
-    }
-    
-    KineticLaw_setSubstanceUnits(pKineticLaw, pacSubstanceUnits);
-
-    /* get list of parameters */
-    mxParameter = mxGetField(mxKineticLaw, 0, "parameter");
-    GetParameterFromKineticLaw(mxParameter, unSBMLLevel, unSBMLVersion, pKineticLaw);
-    
-    if (unSBMLLevel == 2)
-    {
-        /* get Math */
-        mxMath = mxGetField(mxKineticLaw, 0, "math");
-        nBuflen = (mxGetM(mxMath)*mxGetN(mxMath)+1);
-        pacMath = (char *)mxCalloc(nBuflen, sizeof(char));
-        nStatus = mxGetString(mxMath, pacMath, nBuflen);
-        
-        if (nStatus != 0)
-        {
-            mexErrMsgTxt("Cannot copy Math");
-        }
-        
-        KineticLaw_setMath(pKineticLaw, SBML_parseFormula(pacMath));
-        
-    }
-
-    /* add kinetic law to the reaction */
-    Reaction_setKineticLaw(sbmlReaction, pKineticLaw);
-    
+  /* free any memory allocated */
+	mxFree(pacTypecode);
+	mxFree(pacNotes);
+	mxFree(pacAnnotations);
+	mxFree(pacAnnotationString);
+	mxFree(pacTimeUnits);
+  mxFree(pacSubstanceUnits);
+	mxFree(pacFormula);
+	/* level 2 only */
+	if (unSBMLLevel == 2)
+	{
+  	mxFree(pacMath);
+  }
 }
 
 /**
@@ -2256,15 +2321,15 @@ GetUnit ( mxArray * mxUnits,
 	int nStatus;
 	int nBuflen;
 
-    char * pacTypecode;
-    char * pacNotes;
-    char * pacAnnotations;
-    char * pacAnnotationString;
-    char * pacSpecies;
-    int nStoichiometry;
-    int nDenominator;
-    double dStoichiometry;
-    char * pacStoichiometryMath;
+  char * pacTypecode;
+  char * pacNotes;
+  char * pacAnnotations;
+  char * pacAnnotationString;
+  char * pacSpecies;
+  int nStoichiometry;
+  int nDenominator;
+  double dStoichiometry;
+  char * pacStoichiometryMath;
 
   SpeciesReference_t *pSpeciesReference;
  
@@ -2317,18 +2382,18 @@ GetUnit ( mxArray * mxUnits,
 			mexErrMsgTxt("Cannot copy annotations");
 		}
         
-        /* add the tags to the annotation string */
-        if (strcmp(pacAnnotations, ""))
-        {
-            pacAnnotationString = (char *)mxCalloc(nBuflen+30, sizeof(char));
-            strcpy(pacAnnotationString, "<annotation>\n\t\t\t\t");
-            strcat(pacAnnotationString, pacAnnotations);
-            strcat(pacAnnotationString, "\n\t\t\t</annotation>");
-        }
-        else
-        {
-            pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));
-        }
+    /* add the tags to the annotation string */
+    if (strcmp(pacAnnotations, ""))
+    {
+        pacAnnotationString = (char *)mxCalloc(nBuflen+30, sizeof(char));
+        strcpy(pacAnnotationString, "<annotation>\n\t\t\t\t");
+        strcat(pacAnnotationString, pacAnnotations);
+        strcat(pacAnnotationString, "\n\t\t\t</annotation>");
+    }
+    else
+    {
+        pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));
+    }
 
 		SBase_setAnnotation(pSpeciesReference, pacAnnotationString);
 
@@ -2398,6 +2463,18 @@ GetUnit ( mxArray * mxUnits,
 			Reaction_addProduct(sbmlReaction, pSpeciesReference);
 		}
 
+    /* free any memory allocated */
+	  mxFree(pacTypecode);
+	  mxFree(pacNotes);
+	  mxFree(pacAnnotations);
+	  mxFree(pacAnnotationString);
+  	mxFree(pacSpecies);
+		/* level 2 only */
+		if (unSBMLLevel == 2)
+		{
+  	  mxFree(pacStoichiometryMath);
+    }
+
 	}
 
 }
@@ -2426,11 +2503,11 @@ GetUnit ( mxArray * mxUnits,
 	int nStatus;
 	int nBuflen;
 
-    char * pacTypecode;
-    char * pacNotes;
-    char * pacAnnotations;
-    char * pacAnnotationString;
-    char * pacSpecies;
+  char * pacTypecode;
+  char * pacNotes;
+  char * pacAnnotations;
+  char * pacAnnotationString;
+  char * pacSpecies;
 
   ModifierSpeciesReference_t *pSpeciesReference;
  
@@ -2482,18 +2559,18 @@ GetUnit ( mxArray * mxUnits,
 			mexErrMsgTxt("Cannot copy annotations");
 		}
         
-        /* add the tags to the annotation string */
-        if (strcmp(pacAnnotations, ""))
-        {
-            pacAnnotationString = (char *)mxCalloc(nBuflen+30, sizeof(char));
-            strcpy(pacAnnotationString, "<annotation>\n\t\t\t\t");
-            strcat(pacAnnotationString, pacAnnotations);
-            strcat(pacAnnotationString, "\n\t\t\t</annotation>");
-        }
-        else
-        {
-            pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));
-        }
+    /* add the tags to the annotation string */
+    if (strcmp(pacAnnotations, ""))
+    {
+        pacAnnotationString = (char *)mxCalloc(nBuflen+30, sizeof(char));
+        strcpy(pacAnnotationString, "<annotation>\n\t\t\t\t");
+        strcat(pacAnnotationString, pacAnnotations);
+        strcat(pacAnnotationString, "\n\t\t\t</annotation>");
+    }
+    else
+    {
+        pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));
+    }
 
 
 		SBase_setAnnotation(pSpeciesReference, pacAnnotationString);
@@ -2513,9 +2590,15 @@ GetUnit ( mxArray * mxUnits,
 		ModifierSpeciesReference_setSpecies(pSpeciesReference, pacSpecies);
 
 
-        /* add the modifier to the reaction */
-        Reaction_addModifier(sbmlReaction, pSpeciesReference);
-        
+    /* add the modifier to the reaction */
+    Reaction_addModifier(sbmlReaction, pSpeciesReference);
+
+    /* free any memory allocated */
+	  mxFree(pacTypecode);
+	  mxFree(pacNotes);
+	  mxFree(pacAnnotations);
+	  mxFree(pacAnnotationString);
+  	mxFree(pacSpecies);
 	}
 
 }
@@ -2548,7 +2631,7 @@ GetUnit ( mxArray * mxUnits,
 	char * pacTypecode;
 	char * pacNotes;
 	char * pacAnnotations;
-    char * pacAnnotationString;
+  char * pacAnnotationString;
 	char * pacName;
 	char * pacId;
 	double dValue;
@@ -2608,18 +2691,18 @@ GetUnit ( mxArray * mxUnits,
 		}
    
         
-        /* add the tags to the annotation string */
-        if (strcmp(pacAnnotations, ""))
-        {
-            pacAnnotationString = (char *)mxCalloc(nBuflen+30, sizeof(char));
-            strcpy(pacAnnotationString, "<annotation>\n\t\t\t\t\t");
-            strcat(pacAnnotationString, pacAnnotations);
-            strcat(pacAnnotationString, "\n\t\t\t\t</annotation>");
-        }
-        else
-        {
-            pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));
-        }
+    /* add the tags to the annotation string */
+    if (strcmp(pacAnnotations, ""))
+    {
+        pacAnnotationString = (char *)mxCalloc(nBuflen+30, sizeof(char));
+        strcpy(pacAnnotationString, "<annotation>\n\t\t\t\t\t");
+        strcat(pacAnnotationString, pacAnnotations);
+        strcat(pacAnnotationString, "\n\t\t\t\t</annotation>");
+    }
+    else
+    {
+        pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));
+    }
 
 
 		SBase_setAnnotation(pParameter, pacAnnotationString);
@@ -2695,6 +2778,19 @@ GetUnit ( mxArray * mxUnits,
 
 		/* add the parameter to the kinetic law */
 		KineticLaw_addParameter(sbmlKineticLaw, pParameter);
+
+    /* free any memory allocated */
+	  mxFree(pacTypecode);
+	  mxFree(pacNotes);
+	  mxFree(pacAnnotations);
+	  mxFree(pacAnnotationString);
+	  mxFree(pacName);
+	  mxFree(pacUnits);
+		/* level 2 only */
+		if (unSBMLLevel == 2)
+		{
+  	  mxFree(pacId);
+    }
 	}
 
 }
@@ -2726,7 +2822,7 @@ GetFunctionDefinition ( mxArray * mxFunctionDefinitions,
 	char * pacTypecode;
 	char * pacNotes;
 	char * pacAnnotations;
-    char * pacAnnotationString;
+  char * pacAnnotationString;
 	char * pacName;
 	char * pacId;
 	char * pacFormula;
@@ -2780,18 +2876,18 @@ GetFunctionDefinition ( mxArray * mxFunctionDefinitions,
 			mexErrMsgTxt("Cannot copy annotations");
 		}
 
-        /* add the tags to the annotation string */
-        if (strcmp(pacAnnotations, ""))
-        {
-            pacAnnotationString = (char *)mxCalloc(nBuflen+30, sizeof(char));
-            strcpy(pacAnnotationString, "<annotation>\n\t\t\t");
-            strcat(pacAnnotationString, pacAnnotations);
-            strcat(pacAnnotationString, "\n\t\t</annotation>");
-        }
-        else
-        {
-            pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));
-        }
+    /* add the tags to the annotation string */
+    if (strcmp(pacAnnotations, ""))
+    {
+        pacAnnotationString = (char *)mxCalloc(nBuflen+30, sizeof(char));
+        strcpy(pacAnnotationString, "<annotation>\n\t\t\t");
+        strcat(pacAnnotationString, pacAnnotations);
+        strcat(pacAnnotationString, "\n\t\t</annotation>");
+    }
+    else
+    {
+        pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));
+    }
 
 
 		SBase_setAnnotation(pFuncDefinition, pacAnnotationString);
@@ -2841,6 +2937,14 @@ GetFunctionDefinition ( mxArray * mxFunctionDefinitions,
 		/* add the function definition to the model */
 		Model_addFunctionDefinition(sbmlModel, pFuncDefinition);
 
+    /* free any memory allocated */
+	  mxFree(pacTypecode);
+	  mxFree(pacNotes);
+	  mxFree(pacAnnotations);
+	  mxFree(pacAnnotationString);
+	  mxFree(pacName);
+	  mxFree(pacFormula);
+ 	  mxFree(pacId);
 	}
 }
 /**
@@ -2871,15 +2975,15 @@ GetEvent ( mxArray * mxEvents,
 	char * pacTypecode;
 	char * pacNotes;
 	char * pacAnnotations;
-    char * pacAnnotationString;
+  char * pacAnnotationString;
 	char * pacName;
 	char * pacId;
-    char * pacTrigger;
+  char * pacTrigger;
 	char * pacDelay;
 	char * pacTimeUnits;
 
 	mxArray * mxTypecode, * mxNotes, * mxAnnotations, * mxName, * mxId, * mxTimeUnits;
-    mxArray * mxTrigger, * mxDelay, * mxEventAssignments;
+  mxArray * mxTrigger, * mxDelay, * mxEventAssignments;
 
 	Event_t *pEvent;
 	int i;
@@ -2928,18 +3032,18 @@ GetEvent ( mxArray * mxEvents,
 			mexErrMsgTxt("Cannot copy annotations");
 		}
 
-        /* add the tags to the annotation string */
-        if (strcmp(pacAnnotations, ""))
-        {
-            pacAnnotationString = (char *)mxCalloc(nBuflen+30, sizeof(char));
-            strcpy(pacAnnotationString, "<annotation>\n\t\t\t");
-            strcat(pacAnnotationString, pacAnnotations);
-            strcat(pacAnnotationString, "\n\t\t</annotation>");
-        }
-        else
-        {
-            pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));
-        }
+    /* add the tags to the annotation string */
+    if (strcmp(pacAnnotations, ""))
+    {
+        pacAnnotationString = (char *)mxCalloc(nBuflen+30, sizeof(char));
+        strcpy(pacAnnotationString, "<annotation>\n\t\t\t");
+        strcat(pacAnnotationString, pacAnnotations);
+        strcat(pacAnnotationString, "\n\t\t</annotation>");
+    }
+    else
+    {
+        pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));
+    }
 
 
 		SBase_setAnnotation(pEvent, pacAnnotationString);
@@ -2970,10 +3074,10 @@ GetEvent ( mxArray * mxEvents,
 			mexErrMsgTxt("Cannot copy Trigger");
 		}
 
-        if (strcmp(pacTrigger, ""))
-        {
-    		Event_setTrigger(pEvent, SBML_parseFormula(pacTrigger));
-        }
+    if (strcmp(pacTrigger, ""))
+    {
+      Event_setTrigger(pEvent, SBML_parseFormula(pacTrigger));
+    }
 		
 		/* get Delay */
 		mxDelay = mxGetField(mxEvents, i, "delay");
@@ -2986,10 +3090,10 @@ GetEvent ( mxArray * mxEvents,
 			mexErrMsgTxt("Cannot copy Delay");
 		}
 
-        if (strcmp(pacDelay, ""))
-        {
-            Event_setDelay(pEvent, SBML_parseFormula(pacDelay));
-        }
+    if (strcmp(pacDelay, ""))
+    {
+      Event_setDelay(pEvent, SBML_parseFormula(pacDelay));
+    }
         
 		/* get TimeUnits */
 		mxTimeUnits = mxGetField(mxEvents, i, "timeUnits");
@@ -3005,28 +3109,38 @@ GetEvent ( mxArray * mxEvents,
 		Event_setTimeUnits(pEvent, pacTimeUnits);
 
 		
-        /* get id */
-        mxId = mxGetField(mxEvents, i, "id");
-        nBuflen = (mxGetM(mxId)*mxGetN(mxId)+1);
-        pacId = (char *)mxCalloc(nBuflen, sizeof(char));
-        nStatus = mxGetString(mxId, pacId, nBuflen);
-        
-        if (nStatus != 0)
-        {
-            mexErrMsgTxt("Cannot copy id");
-        }
-        
-        Event_setId(pEvent, pacId);
+    /* get id */
+    mxId = mxGetField(mxEvents, i, "id");
+    nBuflen = (mxGetM(mxId)*mxGetN(mxId)+1);
+    pacId = (char *)mxCalloc(nBuflen, sizeof(char));
+    nStatus = mxGetString(mxId, pacId, nBuflen);
+    
+    if (nStatus != 0)
+    {
+        mexErrMsgTxt("Cannot copy id");
+    }
+    
+    Event_setId(pEvent, pacId);
 
 
-        /* get list of event assignments */
+    /* get list of event assignments */
 		mxEventAssignments = mxGetField(mxEvents, i, "eventAssignment");
 		GetEventAssignment(mxEventAssignments, unSBMLLevel, unSBMLVersion, pEvent);
 
         
-        /* add the event to the model */
+    /* add the event to the model */
 		Model_addEvent(sbmlModel, pEvent);
 
+    /* free any memory allocated */
+	  mxFree(pacTypecode);
+	  mxFree(pacNotes);
+	  mxFree(pacAnnotations);
+	  mxFree(pacAnnotationString);
+	  mxFree(pacName);
+  	mxFree(pacTrigger);
+	  mxFree(pacDelay);
+	  mxFree(pacTimeUnits);
+ 	  mxFree(pacId);
 	}
 }
 /**
@@ -3057,9 +3171,9 @@ GetEventAssignment ( mxArray * mxEventAssignment,
 	char * pacTypecode;
 	char * pacNotes;
 	char * pacAnnotations;
-    char * pacAnnotationString;
+  char * pacAnnotationString;
 	char * pacVariable;
-    char * pacMath;
+  char * pacMath;
 
 	mxArray * mxTypecode, * mxNotes, * mxAnnotations, * mxVariable, * mxMath;
 
@@ -3110,18 +3224,18 @@ GetEventAssignment ( mxArray * mxEventAssignment,
 			mexErrMsgTxt("Cannot copy annotations");
 		}
         
-        /* add the tags to the annotation string */
-        if (strcmp(pacAnnotations, ""))
-        {
-            pacAnnotationString = (char *)mxCalloc(nBuflen+30, sizeof(char));
-            strcpy(pacAnnotationString, "<annotation>\n\t\t\t\t");
-            strcat(pacAnnotationString, pacAnnotations);
-            strcat(pacAnnotationString, "\n\t\t\t</annotation>");
-        }
-        else
-        {
-            pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));
-        }
+    /* add the tags to the annotation string */
+    if (strcmp(pacAnnotations, ""))
+    {
+        pacAnnotationString = (char *)mxCalloc(nBuflen+30, sizeof(char));
+        strcpy(pacAnnotationString, "<annotation>\n\t\t\t\t");
+        strcat(pacAnnotationString, pacAnnotations);
+        strcat(pacAnnotationString, "\n\t\t\t</annotation>");
+    }
+    else
+    {
+        pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));
+    }
 
 
 		SBase_setAnnotation(pEventAssignment, pacAnnotationString);
@@ -3151,15 +3265,22 @@ GetEventAssignment ( mxArray * mxEventAssignment,
 			mexErrMsgTxt("Cannot copy Math");
 		}
 
-        /* if pacMath is empty setMath blows up */
-        if (strcmp(pacMath, ""))
-        {
-            EventAssignment_setMath(pEventAssignment, SBML_parseFormula(pacMath));
-        }
+    /* if pacMath is empty setMath blows up */
+    if (strcmp(pacMath, ""))
+    {
+      EventAssignment_setMath(pEventAssignment, SBML_parseFormula(pacMath));
+    }
 
 
 		/* add the event assignment to the event */
 		Event_addEventAssignment(sbmlEvent, pEventAssignment);
 
+    /* free any memory allocated */
+	  mxFree(pacTypecode);
+	  mxFree(pacNotes);
+	  mxFree(pacAnnotations);
+	  mxFree(pacAnnotationString);
+   	mxFree(pacVariable);
+	  mxFree(pacMath);
 	}
 }
