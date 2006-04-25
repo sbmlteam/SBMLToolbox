@@ -160,7 +160,7 @@ for i = 1:length(SBMLModel.species)
             Species(i).ConvertedToAssignRule = 0;
             Species(i).ConvertedRule = '';
         end;
-    elseif ((isnan(Species(i).initialValue)) && (Species(i).InAlgebraicRule == 1))
+    elseif ((isnan(Species(i).initialValue)) && (Species(i).InAlgebraicRule == 1) && (Species(i).ChangedByAssignmentRule == 0))
         error ('The model is over parameterised and the simulation cannot make decisions regarding rules');
     
     else
