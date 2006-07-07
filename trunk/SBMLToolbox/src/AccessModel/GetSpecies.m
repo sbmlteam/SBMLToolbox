@@ -72,7 +72,7 @@ NumSpecies = length(SBMLModel.species);
 %------------------------------------------------------------
 % loop through the list of species
 for i = 1:NumSpecies
-    
+
     %determine the name or id of the species
     if (SBMLModel.SBML_level == 1)
         name = SBMLModel.species(i).name;
@@ -83,21 +83,32 @@ for i = 1:NumSpecies
             name = SBMLModel.species(i).id;
         end;
     end;
-    
+
     % and array of the character names
     CharArray{i} = name;
-    
+
     % get the initial concentration values
     % add to an array
-    
+
     Values(i) = SBMLModel.species(i).initialAmount;
-    
+
     if (SBMLModel.SBML_level == 2)
         if (SBMLModel.species(i).isSetInitialConcentration)
             Values(i) = SBMLModel.species(i).initialConcentration;
         end;
     end;
-    
+    % might be an initial assignment in l2v2
+    if (SBMLModel.SBML_level == 2 && SBMLModel.SBML_version == 2)
+
+        % remove this from the substtution
+        newSBMLModel = SBMLModel;
+        newSBMLModel.species(i) = [];
+        for ia = 1:length(SBMLModel.initialAssignment)
+            if (strcmp(SBMLModel.initialAssignment(ia).symbol, name))
+                Values(i) = Substitute(SBMLModel.initialAssignment(ia).math, newSBMLModel);
+            end;
+        end;
+    end;
 end;
 
 %--------------------------------------------------------------------------

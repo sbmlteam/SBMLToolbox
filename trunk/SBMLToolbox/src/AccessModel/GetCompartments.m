@@ -71,7 +71,7 @@ NumCompartments = length(SBMLModel.compartment);
 %------------------------------------------------------------
 % loop through the list of compartments
 for i = 1:NumCompartments
-    
+
     %determine the name or id of the compartment
     if (SBMLModel.SBML_level == 1)
         name = SBMLModel.compartment(i).name;
@@ -82,17 +82,29 @@ for i = 1:NumCompartments
             name = SBMLModel.compartment(i).id;
         end;
     end;
-    
+
     % and array of the character names
     CharArray{i} = name;
-    
+
     % get the volume/size
     % add to an array
     if (SBMLModel.SBML_level == 1)
         Values(i) = SBMLModel.compartment(i).volume;
     else
         Values(i) = SBMLModel.compartment(i).size;
-    end;   
+    end;
+    % might be an initial assignment in l2v2
+    if (SBMLModel.SBML_level == 2 && SBMLModel.SBML_version == 2)
+
+        % remove this from the substtution
+        newSBMLModel = SBMLModel;
+        newSBMLModel.compartment(i) = [];
+        for ia = 1:length(SBMLModel.initialAssignment)
+            if (strcmp(SBMLModel.initialAssignment(ia).symbol, name))
+                Values(i) = Substitute(SBMLModel.initialAssignment(ia).math, newSBMLModel);
+            end;
+        end;
+    end;
 end;
 
 %--------------------------------------------------------------------------

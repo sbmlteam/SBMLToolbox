@@ -62,3 +62,10 @@ names = {'S1', 'S2'};
 values = [1.5e-15, 1.45];
 
 fail = TestFunction('GetSpecies', 1, 2, m, names, values);
+
+m = TranslateSBML('test3_l2v2.xml');
+
+names = {'S1', 'S2', 'S3', 'X'};
+values = [3, 6, 0, 5];
+
+fail = fail + TestFunction('GetSpecies', 1, 2, m, names, values);
