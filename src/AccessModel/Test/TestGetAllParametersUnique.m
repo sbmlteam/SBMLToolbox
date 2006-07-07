@@ -64,3 +64,11 @@ names = {'k', 'k_R2'};
 values = [1, 0.1];
 
 fail = TestFunction('GetAllParametersUnique', 1, 2, m, names, values);
+
+m = TranslateSBML('test3_l2v2.xml');
+
+names = {'k', 'k_R2'};
+values = [6, 0.1];
+
+fail = fail + TestFunction('GetAllParametersUnique', 1, 2, m, names, values);
+

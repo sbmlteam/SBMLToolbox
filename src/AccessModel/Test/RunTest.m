@@ -54,30 +54,30 @@ function y = RunTest()
 test = 0;
 Totalfail = 0;
 
-test = test + 5;
+test = test + 7;
 fail = TestDetermineSpeciesRoleInReaction;
 if (fail > 0)
     disp('DetermineSpeciesRoleInReaction failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 1;
+test = test + 2;
 fail = TestGetAllParameters;
 if (fail == 1)
     disp('GetAllParameters failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 1;
+test = test + 2;
 fail = TestGetAllParametersUnique;
 if (fail == 1)
     disp('GetAllParametersUnique failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 1;
+test = test + 2;
 fail = TestGetGlobalParameters;
-if (fail == 1)
+if (fail > 0)
     disp('GetGlobalParameters failed');
 end;
 Totalfail = Totalfail + fail;
@@ -110,7 +110,7 @@ if (fail == 1)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 1;
+test = test + 2;
 fail = TestGetSpecies;
 if (fail == 1)
     disp('GetSpecies failed');
@@ -145,7 +145,7 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 2;
+test = test + 4;
 fail = TestGetCompartments;
 if (fail > 0)
     disp('GetCompartments failed');

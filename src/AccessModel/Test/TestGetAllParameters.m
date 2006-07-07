@@ -62,3 +62,10 @@ names = {'k', 'k'};
 values = [1, 0.1];
 
 fail = TestFunction('GetAllParameters', 1, 2, m, names, values);
+
+m = TranslateSBML('test3_l2v2.xml');
+
+names = {'k', 'k'};
+values = [6, 0.1];
+
+fail = fail + TestFunction('GetAllParameters', 1, 2, m, names, values);
