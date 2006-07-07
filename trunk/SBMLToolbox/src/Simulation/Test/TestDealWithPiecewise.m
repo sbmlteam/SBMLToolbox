@@ -67,3 +67,9 @@ input = 'piecewise(le(s2,4),1.5,0.05)';
 output = {'le(s2,4)', '1.5', '0.05'};
 
 fail = TestFunction('DealWithPiecewise', 1, 1, input, output);
+
+input = 'piecewise(piecewise(1, a<5, 2), 3, 4)';
+output= {'piecewise(1,a<5,2)', '3', '4'};
+
+fail = fail + TestFunction('DealWithPiecewise', 1, 1, input, output);
+
