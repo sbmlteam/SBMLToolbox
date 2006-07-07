@@ -1,7 +1,7 @@
-function y = RunTest()
+function fail = TestSubstitute
 
 
-%  Filename    :   RunTest.m
+%  Filename    :   TestSubstitute.m
 %  Description : 
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
 %  Organization:   University of Hertfordshire STRI
@@ -51,58 +51,17 @@ function y = RunTest()
 %  Contributor(s):
 
 
-test = 0;
-Totalfail = 0;
+m = TranslateSBML('test3_l2v2.xml');
 
-test = test + 4;
-fail = TestisValidUnitKind;
-if (fail > 0)
-    disp('isValidUnitKind failed');
-end;
-Totalfail = Totalfail + fail;
+formula = 'S1*2';
 
-test = test + 2;
-fail = TestisIntegralNumber;
-if (fail > 0)
-    disp('isIntegralNumber failed');
-end;
-Totalfail = Totalfail + fail;
 
-test = test + 1;
-fail = TestLoseWhiteSpace;
-if (fail > 0)
-    disp('LoseWhiteSpace failed');
-end;
-Totalfail = Totalfail + fail;
+fail = TestFunction('Substitute', 2, 1, formula, m, 6);
 
-test = test + 1;
-fail = TestPairBrackets;
-if (fail > 0)
-    disp('PairBrackets failed');
-end;
-Totalfail = Totalfail + fail;
+m = TranslateSBML('test1.xml');
 
-test = test + 2;
-fail = TestRemoveDuplicates;
-if (fail > 0)
-    disp('RemoveDuplicates failed');
-end;
-Totalfail = Totalfail + fail;
+formula = '(x0 + vm) * (km*2)';
 
-test = test + 1;
-fail = TestSubstituteFunction;
-if (fail > 0)
-    disp('SubstituteFunction failed');
-end;
-Totalfail = Totalfail + fail;
 
-test = test + 2;
-fail = TestSubstitute;
-if (fail > 0)
-    disp('Substitute failed');
-end;
-Totalfail = Totalfail + fail;
+fail = fail + TestFunction('Substitute', 2, 1, formula, m, 12);
 
-disp(sprintf('Number tests: %d', test));
-disp(sprintf('Number fails: %d', Totalfail));
-disp(sprintf('Pass rate: %d%%', ((test-Totalfail)/test)*100));
