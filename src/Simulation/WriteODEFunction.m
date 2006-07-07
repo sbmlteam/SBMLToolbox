@@ -269,10 +269,14 @@ for i = 1:NumberSpecies
             end;
 
         else
-            Arguments = DealWithPiecewise(char(Species(i).KineticLaw));
-
-            Array{i} = sprintf('\tif (%s) \n\t\txdot(%u) = %s;\n\telse\n\t\txdot(%u) = %s;\n\tend;\n', Arguments{2}, i, Arguments{1}, i, Arguments{3});
-
+            %%TODO deal with nested piecewise
+            var = sprintf('xdot(%u)', i);
+            Array{i} = WriteOutPiecewise(var, char(Species(i).KineticLaw));
+%             
+%             Arguments = DealWithPiecewise(char(Species(i).KineticLaw));
+% 
+%             Array{i} = sprintf('\tif (%s) \n\t\txdot(%u) = %s;\n\telse\n\t\txdot(%u) = %s;\n\tend;\n', Arguments{2}, i, Arguments{1}, i, Arguments{3});
+% 
         end;
 
     elseif (Species(i).ChangedByRateRule == 1)
@@ -607,4 +611,34 @@ while (NumberInTempArray > 0)
 end; % of while NumInTempArray > 0
 
 Output = NewArray;
+
+
+function output = WriteOutPiecewise(var, formula)
+            
+Arguments = DealWithPiecewise(formula);
+
+if (strfind('piecewise', Arguments{2}))
+    error('Cant do this yet!');
+end;
+
+Text1{1} = sprintf('\n\tif (%s)', Arguments{2});
+
+if (strfind(Arguments{1}, 'piecewise'))
+    Text1{2} = WriteOutPiecewise(var, Arguments{1});
+else
+    Text1{2} = sprintf('\n\t\t%s = %s;', var, Arguments{1});
+end;
+Text1{3} = sprintf('\n\telse');
+
+if (strfind('piecewise', Arguments{3}))
+    Text1{4} = WriteOutPiecewise(var, Arguments{3});
+else
+    Text1{4} = sprintf('\n\t\t%s = %s;\n\tend;\n', var, Arguments{3});
+end;
+
+output = Text1{1};
+for (i = 2:4)
+    output = strcat(output, Text1{i});
+end;
+
 

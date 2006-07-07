@@ -78,9 +78,9 @@ Pairs = PairBrackets(OriginalFormula);
 
 Start = findstr(OriginalFormula, 'piecewise');
 
-if (length(Start) ~= 1)
-    error ('piecwise either does not occur or occurs more than once\n');
-end;
+% if (length(Start) ~= 1)
+%     error ('piecwise either does not occur or occurs more than once/n');
+% end;
 
 
 
@@ -92,7 +92,7 @@ end;
 
 piecewiseBrackets = 1;
 while(piecewiseBrackets <= length(OpeningBracketIndex))
-    if (Pairs(piecewiseBrackets, 1) > Start)
+    if (Pairs(piecewiseBrackets, 1) > Start(1))
         break;
     else
         piecewiseBrackets = piecewiseBrackets + 1;
@@ -140,6 +140,9 @@ for i = 1:length(NonZeros)
         element = strcat(element, OriginalFormula(j));
         j = j + 1;
     end;
+%     if (findstr(element, 'piecewise'))
+%         element = DealWithPiecewise(element);
+%     end;
 
     Elements{ElementNumber} = element;
     ElementNumber = ElementNumber + 1;
@@ -154,6 +157,9 @@ while (j < Pairs(piecewiseBrackets, 2))
     j = j + 1;
 end;
 
+% if (findstr(element, 'piecewise'))
+%     element = DealWithPiecewise(element);
+% end;
 Elements{ElementNumber} = element;
 
 
