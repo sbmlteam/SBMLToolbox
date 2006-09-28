@@ -452,6 +452,9 @@ for i = 1:NoElements
     for j = 1:length(SpeciesNames)
         %     j = 1;
         A = strfind(Elements{i}, SpeciesNames{j});
+        if (length(Elements{i}) ~= length(SpeciesNames{j}))
+            continue;
+        end;
         if (~isempty(A))
             break;
         end;
