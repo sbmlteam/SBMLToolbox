@@ -208,6 +208,371 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
+m = TranslateSBML('l1v2-all.xml');
+
+ud  = m.unitDefinition(1);
+c   = m.compartment(1);
+s   = m.species(1);
+p   = m.parameter(1);
+ar  = m.rule(1);
+scr = m.rule(2);
+cvr = m.rule(3);
+pr  = m.rule(4);
+r   = m.reaction(1);
+
+test = test + 9;
+
+fail = 0;
+
+pass = isSBML_UnitDefinition(ud, 1, 2);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l1v2 UnitDefinition failed');
+end;
+
+pass = isSBML_Compartment(c, 1, 2);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l1v2 Compartment failed');
+end;
+
+pass = isSBML_Species(s, 1, 2);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l1v2 Species failed');
+end;
+
+pass = isSBML_Parameter(p, 1, 2);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l1v2 Parameter failed');
+end;
+
+pass = isSBML_AlgebraicRule(ar, 1, 2);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l1v2 Rule 1 failed');
+end;
+
+pass = isSBML_SpeciesConcentrationRule(scr, 1, 2);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l1v2 Rule 2 failed');
+end;
+
+pass = isSBML_CompartmentVolumeRule(cvr, 1, 2);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l1v2 Rule 3 failed');
+end;
+
+pass = isSBML_ParameterRule(pr, 1, 2);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l1v2 Rule 4 failed');
+end;
+
+pass = isSBML_Reaction(r, 1, 2);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l1v2 Reaction failed');
+end;
+
+Totalfail = Totalfail + fail;
+
+m = TranslateSBML('l2v1-all.xml');
+
+fd  = m.functionDefinition(1);
+ud  = m.unitDefinition(1);
+c   = m.compartment(1);
+s   = m.species(1);
+p   = m.parameter(1);
+ar  = m.rule(1);
+asr = m.rule(2);
+rr  = m.rule(3);
+r   = m.reaction(1);
+e   = m.event(1);
+
+test = test + 10;
+
+fail = 0;
+
+pass = isSBML_FunctionDefinition(fd, 2, 1);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v1 FunctionDefinition failed');
+end;
+
+pass = isSBML_UnitDefinition(ud, 2, 1);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v1 UnitDefinition failed');
+end;
+
+pass = isSBML_Compartment(c, 2, 1);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v1 Compartment failed');
+end;
+
+pass = isSBML_Species(s, 2, 1);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v1 Species failed');
+end;
+
+pass = isSBML_Parameter(p, 2, 1);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v1 Parameter failed');
+end;
+
+pass = isSBML_AlgebraicRule(ar, 2, 1);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v1 Rule 1 failed');
+end;
+
+pass = isSBML_AssignmentRule(asr, 2, 1);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v1 Rule 2 failed');
+end;
+
+pass = isSBML_RateRule(rr, 2, 1);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v1 Rule 3 failed');
+end;
+
+pass = isSBML_Reaction(r, 2, 1);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v1 Reaction failed');
+end;
+
+pass = isSBML_Event(e, 2, 1);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v1 Event failed');
+end;
+
+Totalfail = Totalfail + fail;
+
+m = TranslateSBML('l2v2-all.xml');
+
+fd  = m.functionDefinition(1);
+ud  = m.unitDefinition(1);
+ct  = m.compartmentType(1);
+st  = m.speciesType(1);
+c   = m.compartment(1);
+s   = m.species(1);
+p   = m.parameter(1);
+ia  = m.initialAssignment(1);
+ar  = m.rule(1);
+asr = m.rule(2);
+rr  = m.rule(3);
+con = m.constraint(1);
+r   = m.reaction(1);
+e   = m.event(1);
+
+test = test + 14;
+
+fail = 0;
+
+pass = isSBML_FunctionDefinition(fd,2, 2);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v2 FunctionDefinition failed');
+end;
+
+pass = isSBML_UnitDefinition(ud,2, 2);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v2 UnitDefinition failed');
+end;
+
+pass = isSBML_CompartmentType(ct,2, 2);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v2 CompartmentType failed');
+end;
+
+pass = isSBML_SpeciesType(st,2, 2);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v2 SpeciesType failed');
+end;
+
+pass = isSBML_Compartment(c,2, 2);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v2 Compartment failed');
+end;
+
+pass = isSBML_Species(s,2, 2);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v2 Species failed');
+end;
+
+pass = isSBML_Parameter(p,2, 2);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v2 Parameter failed');
+end;
+
+pass = isSBML_InitialAssignment(ia,2, 2);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v2 InitialAssignment failed');
+end;
+
+pass = isSBML_AlgebraicRule(ar,2, 2);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v2 Rule 1 failed');
+end;
+
+pass = isSBML_AssignmentRule(asr,2, 2);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v2 Rule 2 failed');
+end;
+
+pass = isSBML_RateRule(rr,2, 2);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v2 Rule 3 failed');
+end;
+
+pass = isSBML_Constraint(con,2, 2);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v2 Constraint failed');
+end;
+
+pass = isSBML_Reaction(r,2, 2);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v2 Reaction failed');
+end;
+
+pass = isSBML_Event(e,2, 2);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v2 Event failed');
+end;
+
+Totalfail = Totalfail + fail;
+
+m = TranslateSBML('l2v3-all.xml');
+
+fd  = m.functionDefinition(1);
+ud  = m.unitDefinition(1);
+ct  = m.compartmentType(1);
+st  = m.speciesType(1);
+c   = m.compartment(1);
+s   = m.species(1);
+p   = m.parameter(1);
+ia  = m.initialAssignment(1);
+ar  = m.rule(1);
+asr = m.rule(2);
+rr  = m.rule(3);
+con = m.constraint(1);
+r   = m.reaction(1);
+e   = m.event(1);
+
+test = test + 14;
+
+fail = 0;
+
+pass = isSBML_FunctionDefinition(fd,2, 3);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v3 FunctionDefinition failed');
+end;
+
+pass = isSBML_UnitDefinition(ud,2, 3);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v3 UnitDefinition failed');
+end;
+
+pass = isSBML_CompartmentType(ct,2, 3);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v3 CompartmentType failed');
+end;
+
+pass = isSBML_SpeciesType(st,2, 3);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v3 SpeciesType failed');
+end;
+
+pass = isSBML_Compartment(c,2, 3);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v3 Compartment failed');
+end;
+
+pass = isSBML_Species(s,2, 3);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v3 Species failed');
+end;
+
+pass = isSBML_Parameter(p,2, 3);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v3 Parameter failed');
+end;
+
+pass = isSBML_InitialAssignment(ia,2, 3);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v3 InitialAssignment failed');
+end;
+
+pass = isSBML_AlgebraicRule(ar,2, 3);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v3 Rule 1 failed');
+end;
+
+pass = isSBML_AssignmentRule(asr,2, 3);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v3 Rule 2 failed');
+end;
+
+pass = isSBML_RateRule(rr,2, 3);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v3 Rule 3 failed');
+end;
+
+pass = isSBML_Constraint(con,2, 3);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v3 Constraint failed');
+end;
+
+pass = isSBML_Reaction(r,2, 3);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v3 Reaction failed');
+end;
+
+pass = isSBML_Event(e,2, 3);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v3 Event failed');
+end;
+
+Totalfail = Totalfail + fail;
+
 
 disp(sprintf('Number tests: %d', test));
 disp(sprintf('Number fails: %d', Totalfail));
