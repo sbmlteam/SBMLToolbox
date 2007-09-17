@@ -29,12 +29,15 @@ e_l2 = struct('typecode', {'SBML_EVENT'}, 'notes', {''}, 'annotation', {''}, 'na
 e_l2v2 = struct('typecode', {'SBML_EVENT'}, 'notes', {''}, 'annotation', {''}, 'name', {''}, 'id', {''}, ...
     'trigger', {''}, 'delay', {''}, 'timeUnits', {''}, 'sboTerm', {''}, 'eventAssignment', {''});
 
+e_l2v3 = struct('typecode', {'SBML_EVENT'}, 'notes', {''}, 'annotation', {''}, 'name', {''}, 'id', {''}, ...
+    'trigger', {''}, 'delay', {''},  'sboTerm', {''}, 'eventAssignment', {''});
+
 fail = TestFunction('isSBML_Event', 2, 1, e_l2, 1, 0);
 fail = fail + TestFunction('isSBML_Event', 3, 1, e_l2, 1, 1, 0);
 fail = fail + TestFunction('isSBML_Event', 3, 1, e_l2, 1, 2, 0);
 fail = fail + TestFunction('isSBML_Event', 2, 1, e_l2, 2, 1);
 fail = fail + TestFunction('isSBML_Event', 3, 1, e_l2, 2, 1, 1);
-fail = fail + TestFunction('isSBML_Event', 3, 1, e_l2v2, 2, 2, 1);
+fail = fail + TestFunction('isSBML_Event', 3, 1, e_l2v3, 2, 3, 1);
 
 
 

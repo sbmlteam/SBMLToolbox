@@ -102,9 +102,13 @@ else
         SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'reactant', 'product', ...
             'modifier', 'kineticLaw', 'reversible', 'fast', 'isSetFast'};
         nNumberFields = 12;
-    else
+    elseif (Version == 2)
         SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'reactant', 'product', ...
             'modifier', 'kineticLaw', 'reversible', 'fast', 'sboTerm', 'isSetFast'};
+        nNumberFields = 13;
+    elseif (Version == 3)
+        SBMLfieldnames = {'typecode', 'notes', 'annotation',' sboTerm', 'name', 'id', 'reactant', 'product', ...
+            'modifier', 'kineticLaw', 'reversible', 'fast', 'isSetFast'};
         nNumberFields = 13;
     end;
 end;

@@ -64,7 +64,10 @@ else
     if (Version == 1)
         y = 0;
         return;
-    else
+    elseif (Version == 2)
+        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'math', 'message'};
+        nNumberFields = 6;
+    elseif (Version == 3)
         SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'math', 'message'};
         nNumberFields = 6;
     end;

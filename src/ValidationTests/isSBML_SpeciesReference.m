@@ -96,9 +96,13 @@ else
         SBMLfieldnames = {'typecode', 'notes', 'annotation','species', 'stoichiometry', ...
             'denominator', 'stoichiometryMath'};
         nNumberFields = 7;
-    else
+    elseif (Version == 2)
         SBMLfieldnames = {'typecode', 'notes', 'annotation','species', 'id', 'name', ...
             'sboTerm', 'stoichiometry', 'stoichiometryMath'};
+        nNumberFields = 9;
+    elseif (Version == 3)
+        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'species', 'id', 'name', ...
+            'stoichiometry', 'stoichiometryMath'};
         nNumberFields = 9;
     end;
 end;

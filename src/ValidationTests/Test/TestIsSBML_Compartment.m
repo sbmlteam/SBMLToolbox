@@ -34,12 +34,17 @@ c_l2v2 = struct('typecode', {'SBML_COMPARTMENT'}, 'notes', {''}, 'annotation', {
     'compartmentType', {''}, 'spatialDimensions', {''}, 'size', {''}, 'units', {''}, 'outside', {''}, ...
     'constant', {''}, 'isSetSize', {''},'isSetVolume', {''});
 
+c_l2v3 = struct('typecode', {'SBML_COMPARTMENT'}, 'notes', {''}, 'annotation', {''},'name', {''}, 'id', {''}, ...
+    'compartmentType', {''}, 'spatialDimensions', {''}, 'size', {''}, 'units', {''}, 'outside', {''}, ...
+    'constant', {''}, 'isSetSize', {''},'isSetVolume', {''}, 'sboTerm', {''});
+
 fail = TestFunction('isSBML_Compartment', 2, 1, c_l1, 1, 1);
 fail = fail + TestFunction('isSBML_Compartment', 3, 1, c_l1, 1, 1, 1);
 fail = fail + TestFunction('isSBML_Compartment', 3, 1, c_l1, 1, 2, 1);
 fail = fail + TestFunction('isSBML_Compartment', 2, 1, c_l2, 2, 1);
 fail = fail + TestFunction('isSBML_Compartment', 3, 1, c_l2, 2, 1, 1);
 fail = fail + TestFunction('isSBML_Compartment', 3, 1, c_l2v2, 2, 2, 1);
+fail = fail + TestFunction('isSBML_Compartment', 3, 1, c_l2v3, 2, 3, 1);
 
 
 

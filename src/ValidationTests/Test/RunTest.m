@@ -68,7 +68,7 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 6;
+test = test + 7;
 fail = TestIsSBML_Compartment;
 if (fail > 0)
     disp('isSBML_Compartment failed');
@@ -82,7 +82,7 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 6;
+test = test + 7;
 fail = TestIsSBML_Event;
 if (fail > 0)
     disp('isSBML_Event failed');
@@ -103,7 +103,7 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 6;
+test = test + 7;
 fail = TestIsSBML_KineticLaw;
 if (fail > 0)
     disp('isSBML_KineticLaw failed');
@@ -180,7 +180,7 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 6;
+test = test + 8;
 fail = TestIsSBML_CompartmentType;
 if (fail > 0)
     disp('isSBML_CompartmentType failed');

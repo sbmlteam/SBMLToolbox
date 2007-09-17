@@ -106,10 +106,14 @@ else
         SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'spatialDimensions', ...
             'size', 'units', 'outside', 'constant', 'isSetSize','isSetVolume'};
         nNumberFields = 12;
-    else
+    elseif (Version == 2)
         SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'compartmentType', ...
             'spatialDimensions', 'size', 'units', 'outside', 'constant', 'isSetSize','isSetVolume'};
         nNumberFields = 13;
+    elseif (Version == 3)
+        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'name', 'id', 'compartmentType', ...
+            'spatialDimensions', 'size', 'units', 'outside', 'constant', 'isSetSize','isSetVolume'};
+        nNumberFields = 14;
     end;
 end;
 typecode = 'SBML_COMPARTMENT';
