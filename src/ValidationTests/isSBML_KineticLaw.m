@@ -95,7 +95,7 @@ if (Level == 1)
 else
     if (Version == 1)
         SBMLfieldnames = {'typecode', 'notes', 'annotation','formula', 'math','parameter', ...
-            'timeUnits', 'substanceUnits'};
+            'timeUnits','substanceUnits'};
         nNumberFields = 8;
     elseif (Version == 2)
         SBMLfieldnames = {'typecode', 'notes', 'annotation','formula', 'math','parameter', 'sboTerm'};

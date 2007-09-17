@@ -95,7 +95,7 @@ end;
 
 % get version
 Version = SBMLStructure.SBML_version;
-if (Version < 1 || Version > 2)
+if (Version < 1 || Version > 3)
     y = 0;
     return;
 end;

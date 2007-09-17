@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Pass: (1200) Compartment 'a' is undefined. -->
+<sbml xmlns="http://www.sbml.org/sbml/level1" level="1" version="2">
+	<model>
+	    <listOfUnitDefinitions>
+	        <unitDefinition name="ud1">
+	          <listOfUnits>
+	            <unit kind="mole" exponent="1"/>
+	          </listOfUnits>
+	        </unitDefinition>
+	    </listOfUnitDefinitions>
+		<listOfCompartments>
+			<compartment name="a"/>
+		</listOfCompartments>
+		<listOfSpecies>
+			<species name="s" compartment="a" initialAmount="0"/>
+		</listOfSpecies>
+		<listOfParameters>
+		  <parameter name="p" value="2"/>
+		</listOfParameters>
+		<listOfRules>
+		  <algebraicRule formula="p*4"/>
+		  <speciesConcentrationRule species="s" formula="5"/>
+		  <compartmentVolumeRule compartment="c" formula="2*3"/>
+		  <parameterRule type="rate" parameter="p" formula="3/2"/>
+		</listOfRules>
+		<listOfReactions>
+		   <reaction>
+		    <listOfReactants>
+		        <speciesReference species="s"/>
+		    </listOfReactants>
+		    <kineticLaw formula="9">
+		        <listOfParameters>
+		            <parameter name="k" value="9"/>
+		        </listOfParameters>
+		    </kineticLaw>
+		    </reaction>
+		</listOfReactions>
+	</model>
+</sbml>
