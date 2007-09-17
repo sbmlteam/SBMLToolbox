@@ -25,6 +25,8 @@ function fail = TestIsSBML_CompartmentType
 
 ct_l2v2 = struct('typecode', {'SBML_COMPARTMENT_TYPE'}, 'notes', {''}, 'annotation', {''},'name', ...
     {''}, 'id', {''});
+ct_l2v3 = struct('typecode', {'SBML_COMPARTMENT_TYPE'}, 'notes', {''}, 'annotation', {''},'name', ...
+    {''}, 'id', {''}, 'sboTerm', {''});
 
 
 fail = TestFunction('isSBML_CompartmentType', 2, 1, ct_l2v2, 1, 0);
@@ -33,6 +35,8 @@ fail = fail + TestFunction('isSBML_CompartmentType', 3, 1, ct_l2v2, 1, 2, 0);
 fail = fail + TestFunction('isSBML_CompartmentType', 2, 1, ct_l2v2, 2, 0);
 fail = fail + TestFunction('isSBML_CompartmentType', 3, 1, ct_l2v2, 2, 1, 0);
 fail = fail + TestFunction('isSBML_CompartmentType', 3, 1, ct_l2v2, 2, 2, 1);
+fail = fail + TestFunction('isSBML_CompartmentType', 3, 1, ct_l2v3, 2, 2, 0);
+fail = fail + TestFunction('isSBML_CompartmentType', 3, 1, ct_l2v3, 2, 3, 1);
 
 
 

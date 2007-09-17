@@ -97,10 +97,12 @@ else
         SBMLfieldnames = {'typecode', 'notes', 'annotation','formula', 'math','parameter', ...
             'timeUnits', 'substanceUnits'};
         nNumberFields = 8;
-    else
-        SBMLfieldnames = {'typecode', 'notes', 'annotation','formula', 'math','parameter', ...
-            'timeUnits', 'substanceUnits', 'sboTerm'};
-        nNumberFields = 9;
+    elseif (Version == 2)
+        SBMLfieldnames = {'typecode', 'notes', 'annotation','formula', 'math','parameter', 'sboTerm'};
+        nNumberFields = 7;
+    elseif (Version == 3)
+        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'formula', 'math','parameter'};
+        nNumberFields = 7;
     end;
 end;
 typecode = 'SBML_KINETIC_LAW';

@@ -94,9 +94,12 @@ else
     if (Version == 1)
         SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'unit'};
         nNumberFields = 6;
-    else
+    elseif (Version == 2)
         SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'unit'};
         nNumberFields = 6;
+    elseif (Version == 3)
+        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'name', 'id', 'unit'};
+        nNumberFields = 7;
     end;
 end;
     

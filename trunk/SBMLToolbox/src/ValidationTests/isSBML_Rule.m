@@ -106,7 +106,11 @@ else
         SBMLfieldnames = {'typecode', 'notes', 'annotation','formula', 'variable', 'species', ...
             'compartment', 'name', 'units'};
         nNumberFields = 9;
-    else
+    elseif (Version == 2)
+        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'formula', ...
+            'variable', 'species', 'compartment', 'name', 'units'};
+        nNumberFields = 10;
+    elseif (Version == 3)
         SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'formula', ...
             'variable', 'species', 'compartment', 'name', 'units'};
         nNumberFields = 10;
