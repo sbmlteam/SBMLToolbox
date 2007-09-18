@@ -1,6 +1,6 @@
 function ListSBMLModels
 % ListSBMLModels lists the sbml models saved in SBML_Models.mat
-% returns the Number and Name of the model
+% returns the Number, Level, Version and Name of the model
 
 %
 %  Filename    : ListSBMLModels.m
@@ -63,24 +63,38 @@ end;
 
 % read in the file
 load 'SBML_Models';
-if (exist('Models_l1') == 0) 
-    [m, n_level2] = size(Models_l2);
+if (~exist('Models_l1'))
     n_level1 = 0;
-elseif (exist('Models_l2') == 0)
-    [m, n_level1] = size(Models_l1);
-    n_level2 = 0;               
 else
     [m, n_level1] = size(Models_l1);
+end;
+
+if (~exist('Models_l2'))
+    n_level2 = 0;
+else
     [m, n_level2] = size(Models_l2);
 end;
 
-j = 'NUMBER  LEVEL   NAME';
+if (~exist('Models_l2v2'))
+    n_level2v2 = 0;
+else
+    [m, n_level2v2] = size(Models_l2v2);
+end;
+
+if (~exist('Models_l2v3'))
+    n_level2v3 = 0;
+else
+    [m, n_level2v3] = size(Models_l2v3);
+end;
+
+j = 'NUMBER  LEVEL   VERSION   NAME';
 disp(j)
 for nNumber = 1:n_level1
     name = Models_l1(nNumber).name;
     i = int2str(nNumber);
     f = int2str(1);
-    j = fprintf(1,'  %s       %s     %s\n', i, f,name);
+    g = int2str(Models_l1(nNumber).SBML_version);
+    j = fprintf(1,'  %s       %s        %s      %s\n', i, f, g, name);
 end;
 
 for nNumber =1:n_level2
@@ -91,7 +105,30 @@ for nNumber =1:n_level2
     end;
     i = int2str(nNumber);
     f = int2str(2);
-    j = fprintf(1,'  %s       %s     %s\n', i, f,name);
+    g = int2str(Models_l2(nNumber).SBML_version);
+    j = fprintf(1,'  %s       %s        %s      %s\n', i, f, g, name);
 end;
   
+for nNumber =1:n_level2v2
+    name = Models_l2v2(nNumber).id;
+    k = isempty(name);
+    if (k == 1)
+        name = Models_l2v2(nNumber).name;
+    end;
+    i = int2str(nNumber);
+    f = int2str(2);
+    g = int2str(Models_l2v2(nNumber).SBML_version);
+    j = fprintf(1,'  %s       %s        %s      %s\n', i, f, g, name);
+end;
 
+for nNumber =1:n_level2v3
+    name = Models_l2v3(nNumber).id;
+    k = isempty(name);
+    if (k == 1)
+        name = Models_l2v3(nNumber).name;
+    end;
+    i = int2str(nNumber);
+    f = int2str(2);
+    g = int2str(Models_l2v3(nNumber).SBML_version);
+    j = fprintf(1,'  %s       %s        %s      %s\n', i, f, g, name);
+end;

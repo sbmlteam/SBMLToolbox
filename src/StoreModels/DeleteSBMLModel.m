@@ -1,5 +1,6 @@
-function Model = DeleteSBMLModel(input, Level)
-% DeleteSBMLModel(input, level) deletes a sbml model of specified level from SBML_Models.mat
+function Model = DeleteSBMLModel(varargin)
+% DeleteSBMLModel(input, level, version(optional)) deletes a sbml model of specified level from SBML_Models.mat
+% If version is not specified it defaults to 1
 %
 % input can be either
 % an integer representing the index of the model in
@@ -62,6 +63,23 @@ function Model = DeleteSBMLModel(input, Level)
 %  Contributor(s):
 %
 
+if (nargin < 2 || nargin > 3)
+    error('USAGE: DeleteSBMLModel(x, level, version(optional)) where x is the number or the name of the model');
+else
+    input = varargin{1};
+    Level = varargin{2};
+end;
+
+if (nargin == 3)
+    Version = varargin{3};
+else
+    if (Level == 1)
+        Version = 2;
+    else
+        Version = 1;
+    end;
+end;
+
 bInt = 0;
 % check what type of arguments have been input
 if (isnumeric(input))
@@ -76,7 +94,7 @@ elseif (ischar(input))
         Id = input;
     end;
 else
-    error('USAGE: LoadSBMLModel(x, level) where x is the number or the name of the model');
+    error('USAGE: DeleteSBMLModel(x, level, version(optional)) where x is the number or the name of the model');
 end;
 
 % find the only copy of SBML_Models.mat
@@ -92,21 +110,40 @@ end;
 
 % read in the file
 load 'SBML_Models';
-if (exist('Models_l1') == 0) 
-    [m, n_level2] = size(Models_l2);
+if (~exist('Models_l1'))
     n_level1 = 0;
-elseif (exist('Models_l2') == 0)
-    [m, n_level1] = size(Models_l1);
-    n_level2 = 0;               
 else
     [m, n_level1] = size(Models_l1);
+end;
+
+if (~exist('Models_l2'))
+    n_level2 = 0;
+else
     [m, n_level2] = size(Models_l2);
+end;
+
+if (~exist('Models_l2v2'))
+    n_level2v2 = 0;
+else
+    [m, n_level2v2] = size(Models_l2v2);
+end;
+
+if (~exist('Models_l2v3'))
+    n_level2v3 = 0;
+else
+    [m, n_level2v3] = size(Models_l2v3);
 end;
 
 if (Level == 1)
     n = n_level1;
 else
-    n = n_level2;
+    if (Version == 1)
+        n = n_level2;
+    elseif (Version == 2)
+        n = n_level2v2;
+    else
+        n = n_level2v3;
+    end;
 end;
 
 if (bInt == 1) 
@@ -126,9 +163,29 @@ else
             else
                 nNumber = nNumber + 1;
             end;
-        else
+        elseif (Level == 2 && Version == 1)
             k = strcmp(Models_l2(nNumber).Name, Name);
             l = strcmp(Models_l2(nNumber).Id, Id);
+            if (k == 1)
+                break;
+            elseif (l == 1)
+                break;
+            else
+                nNumber = nNumber + 1;
+            end;
+        elseif (Level == 2 && Version == 2)
+            k = strcmp(Models_l2v2(nNumber).Name, Name);
+            l = strcmp(Models_l2v2(nNumber).Id, Id);
+            if (k == 1)
+                break;
+            elseif (l == 1)
+                break;
+            else
+                nNumber = nNumber + 1;
+            end;
+        elseif (Level == 2 && Version == 3)
+            k = strcmp(Models_l2v3(nNumber).Name, Name);
+            l = strcmp(Models_l2v3(nNumber).Id, Id);
             if (k == 1)
                 break;
             elseif (l == 1)
@@ -142,8 +199,12 @@ else
     % check that a match has been made
     if (Level == 1 && nNumber == n+1 && k ~= 1) 
         error('No model saved with matching name');
-    elseif (Level == 2 && nNumber == n+1 && k ~= 1 && l ~= 1)
-         error('No model saved with matching name or id');
+    elseif (Level == 2 && Version == 1 && nNumber == n_level2+1 && k ~= 1 && l ~=1)
+        error('No model saved with matching name or id');
+    elseif (Level == 2 && Version == 2 && nNumber == n_level2v2+1 && k ~= 1 && l ~=1)
+        error('No model saved with matching name or id');
+    elseif (Level == 2 && Version == 3 && nNumber == n_level2v3+1 && k ~= 1 && l ~=1)
+        error('No model saved with matching name or id');
     end;
 end;
 
@@ -162,26 +223,74 @@ if (Level == 1)
     end;
     n_level1 = n-1;
 else
-    for i = 1:nNumber-1
-        TempModels(i) = Models_l2(i);
+    if (Version == 1)
+        for i = 1:nNumber-1
+            TempModels(i) = Models_l2(i);
+        end;
+        for i = nNumber:n-1
+            TempModels(i) = Models_l2(i + 1);
+        end;
+        clear Models_l2;
+        for i = 1:n-1
+            Models_l2(i) = TempModels(i);
+        end;
+        n_level2 = n-1;
+    elseif (Version == 2)
+        for i = 1:nNumber-1
+            TempModels(i) = Models_l2v2(i);
+        end;
+        for i = nNumber:n-1
+            TempModels(i) = Models_l2v2(i + 1);
+        end;
+        clear Models_l2v2;
+        for i = 1:n-1
+            Models_l2v2(i) = TempModels(i);
+        end;
+        n_level2v2 = n-1;
+    elseif (Version == 3)
+        for i = 1:nNumber-1
+            TempModels(i) = Models_l2v3(i);
+        end;
+        for i = nNumber:n-1
+            TempModels(i) = Models_l2v3(i + 1);
+        end;
+        clear Models_l2v3;
+        for i = 1:n-1
+            Models_l2v3(i) = TempModels(i);
+        end;
+        n_level2v3 = n-1;
     end;
-    for i = nNumber:n-1
-        TempModels(i) = Models_l2(i + 1);
-    end;
-    clear Models_l2;
-    for i = 1:n-1
-        Models_l2(i) = TempModels(i);
-    end;
-    n_level2 = n-1;
 end;
 
 % delete old file and save new list of models
-    if (n_level1 == 0 && n_level2 == 0)
-        delete (Path);
-    elseif (n_level1 == 0)
-        save (Path, 'Models_l2');
-    elseif (n_level2 == 0)
-        save (Path, 'Models_l1');
-    else
-        save(Path, 'Models_l1', 'Models_l2');
+% save each strcuture
+
+index = 1;
+Nums = [n_level1, n_level2, n_level2v2, n_level2v3];
+Present = find(Nums ~= 0);
+
+for i = 1:length(Present)
+    switch (Present(i))
+        case 1 
+            output{index} = 'Models_l1';
+        case 2
+            output{index} = 'Models_l2';
+        case 3
+            output{index} = 'Models_l2v2';
+        case 4
+            output{index} = 'Models_l2v3';
     end;
+    index = index + 1;
+end;
+n = length(output);
+switch (n)
+    case 1
+        save (Path, output{1});
+    case 2
+        save (Path, output{1}, output{2});
+    case 3
+        save (Path, output{1}, output{2}, output{3});
+    case 4
+        save (Path, output{1}, output{2}, output{3}, output{4});
+end;
+

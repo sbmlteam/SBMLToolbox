@@ -100,31 +100,51 @@ handles.output = hObject;
 handles.nargout = varargin{1};
 handles.Model_l1_Index = 1;
 handles.Model_l2_Index = 1;
+handles.Model_l2v2_Index = 1;
+handles.Model_l2v3_Index = 1;
 
 % read in the file
 load 'SBML_Models';
-if (exist('Models_l1') == 0) 
-   [m, n_level2] = size(Models_l2);
+if (~exist('Models_l1'))
    n_level1 = 0;
    handles.Models_l1 = 0;
-   handles.Models_l2 = Models_l2;
-elseif (exist('Models_l2') == 0)
-   [m, n_level1] = size(Models_l1);
-   n_level2 = 0;               
-   handles.Models_l1 = Models_l1;
-   handles.Models_l2 = 0;
 else
    [m, n_level1] = size(Models_l1);
-   [m, n_level2] = size(Models_l2);
    handles.Models_l1 = Models_l1;
+end;
+
+if (~exist('Models_l2'))
+   n_level2 = 0;
+   handles.Models_l2 = 0;
+else
+   [m, n_level2] = size(Models_l2);
    handles.Models_l2 = Models_l2;
+end;
+
+if (~exist('Models_l2v2'))
+   n_level2v2 = 0;
+   handles.Models_l2v2 = 0;
+else
+   [m, n_level2v2] = size(Models_l2v2);
+   handles.Models_l2v2 = Models_l2v2;
+end;
+
+if (~exist('Models_l2v3'))
+   n_level2v3 = 0;
+   handles.Models_l2v3 = 0;
+else
+   [m, n_level2v3] = size(Models_l2v3);
+   handles.Models_l2v3 = Models_l2v3;
 end;
 
 % save in data 
 handles.n_level1 = n_level1;
 handles.n_level2 = n_level2;
+handles.n_level2v2 = n_level2v2;
+handles.n_level2v3 = n_level2v3;
 
-handles.Level = 1;
+handles.Level = 2;
+handles.Version = 3;
 
 for nNumber = 1:n_level1
     ListNames_l1{nNumber} = Models_l1(nNumber).name;
@@ -143,23 +163,55 @@ end;
 if (n_level2 == 0)
     ListNames_l2 = 'None saved';
 end;
+for nNumber = 1:n_level2v2
+    Name = Models_l2v2(nNumber).id;
+    ListNames_l2v2{nNumber} = Name;
+end;
+if (n_level2v2 == 0)
+    ListNames_l2v2 = 'None saved';
+end;
+for nNumber = 1:n_level2v3
+    Name = Models_l2v3(nNumber).id;
+    ListNames_l2v3{nNumber} = Name;
+end;
+if (n_level2v3 == 0)
+    ListNames_l2v3 = 'None saved';
+end;
+
 
 ListLevels{1} = '1';
 ListLevels{2} = '2';
 
-set(handles.ListModels, 'String', ListNames_l1);
-if (exist('Models_l1') == 0) 
-    % do nothing
+ListVersions{1} = '1';
+ListVersions{2} = '2';
+
+ListL2Versions{1} = '1';
+ListL2Versions{2} = '2';
+ListL2Versions{3} = '3';
+
+set(handles.ListModels, 'String', ListNames_l2v3);
+if (exist('Models_l2v3') == 0) 
+    set(handles.SelModel, 'String', 'None');
 else
-    set(handles.SelModel, 'String', Models_l1(handles.Model_l1_Index).name);
+    set(handles.SelModel, 'String', Models_l2v3(handles.Model_l2v3_Index).id);
 end;
 set(handles.LevelListbox, 'String', ListLevels);
+set(handles.LevelListbox, 'Value', handles.Level);
+set(handles.popupversion, 'String', ListL2Versions);
+set(handles.popupversion, 'Value', handles.Version);
+
 
 handles.ListNames_l1 = ListNames_l1;
 handles.ListNames_l2 = ListNames_l2;
+handles.ListNames_l2v2 = ListNames_l2v2;
+handles.ListNames_l2v3 = ListNames_l2v3;
+handles.ListVersions = ListVersions;
+handles.ListL2Versions = ListL2Versions;
 
 % Update handles structure
 guidata(hObject, handles);
+
+set(handles.ViewModel, 'Enable', 'off');
 
 % UIWAIT makes BrowseModels wait for user response (see UIRESUME)
 if (handles.nargout > 0)
@@ -190,7 +242,11 @@ function ViewModel_Callback(hObject, eventdata, handles)
 if (handles.Level == 1)
     ViewModel(handles.Models_l1(handles.Model_l1_Index));
 else
-    ViewModel(handles.Models_l2(handles.Model_l2_Index));
+    if (handles.Version == 1)
+        ViewModel(handles.Models_l2(handles.Model_l2_Index));
+    else
+        ViewModel(handles.Models_l2v2(handles.Model_l2v2_Index));
+    end;
 end;
 
 
@@ -203,7 +259,13 @@ function LoadModel_Callback(hObject, eventdata, handles)
 if (handles.Level == 1)
     handles.output = LoadSBMLModel(handles.Model_l1_Index, 1);
 else
-    handles.output = LoadSBMLModel(handles.Model_l2_Index, 2);
+    if (handles.Version == 1)
+        handles.output = LoadSBMLModel(handles.Model_l2_Index, 2);
+    elseif (handles.Version == 2)
+        handles.output = LoadSBMLModel(handles.Model_l2v2_Index, 2, 2);
+    elseif (handles.Version == 3)
+        handles.output = LoadSBMLModel(handles.Model_l2v3_Index, 2, 3);
+    end;
 end;
 set(handles.Close, 'Enable', 'on');
 set(handles.LoadModel, 'Enable', 'off');
@@ -221,33 +283,60 @@ function DeleteModel_Callback(hObject, eventdata, handles)
 if (handles.Level == 1)
     DeleteSBMLModel(handles.Model_l1_Index, 1);
 else
-    DeleteSBMLModel(handles.Model_l2_Index, 2);
+    if (handles.Version == 1)
+        DeleteSBMLModel(handles.Model_l2_Index, 2);
+    elseif (handles.Version == 2)
+        DeleteSBMLModel(handles.Model_l2v2_Index, 2, 2);
+    elseif (handles.Version == 3)
+        DeleteSBMLModel(handles.Model_l2v3_Index, 2, 3);
+    end;
 end;
 
 load 'SBML_Models';
-if (exist('Models_l1') == 0) 
-   [m, n_level2] = size(Models_l2);
+if (~exist('Models_l1'))
    n_level1 = 0;
    handles.Models_l1 = 0;
-   handles.Models_l2 = Models_l2;
-elseif (exist('Models_l2') == 0)
-   [m, n_level1] = size(Models_l1);
-   n_level2 = 0;               
-   handles.Models_l1 = Models_l1;
-   handles.Models_l2 = 0;
 else
    [m, n_level1] = size(Models_l1);
-   [m, n_level2] = size(Models_l2);
    handles.Models_l1 = Models_l1;
+end;
+
+if (~exist('Models_l2'))
+   n_level2 = 0;
+   handles.Models_l2 = 0;
+else
+   [m, n_level2] = size(Models_l2);
    handles.Models_l2 = Models_l2;
 end;
+
+if (~exist('Models_l2v2'))
+   n_level2v2 = 0;
+   handles.Models_l2v2 = 0;
+else
+   [m, n_level2v2] = size(Models_l2v2);
+   handles.Models_l2v2 = Models_l2v2;
+end;
+
+if (~exist('Models_l2v3'))
+   n_level2v3 = 0;
+   handles.Models_l2v3 = 0;
+else
+   [m, n_level2v3] = size(Models_l2v3);
+   handles.Models_l2v3 = Models_l2v3;
+end;
+
 
 % save in data 
 handles.n_level1 = n_level1;
 handles.n_level2 = n_level2;
+handles.n_level2v2 = n_level2v2;
+handles.n_level2v3 = n_level2v3;
 
 for nNumber = 1:n_level1
     ListNames_l1{nNumber} = Models_l1(nNumber).name;
+end;
+if (n_level1 == 0)
+    ListNames_l1 = 'None saved';
 end;
 for nNumber = 1:n_level2
     Name = Models_l2(nNumber).id;
@@ -257,31 +346,88 @@ for nNumber = 1:n_level2
     end;
     ListNames_l2{nNumber} = Name;
 end;
-if (n_level1 == 0)
-    handles.ListNames_l1 = 0;
-    handles.ListNames_l2 = ListNames_l2;
-elseif (n_level2 == 0)
-    handles.ListNames_l1 = ListNames_l1;
-    handles.ListNames_l2 = 0;
-else
-    handles.ListNames_l1 = ListNames_l1;
-    handles.ListNames_l2 = ListNames_l2;
+if (n_level2 == 0)
+    ListNames_l2 = 'None saved';
 end;
+for nNumber = 1:n_level2v2
+    Name = Models_l2v2(nNumber).id;
+    ListNames_l2v2{nNumber} = Name;
+end;
+if (n_level2v2 == 0)
+    ListNames_l2v2 = 'None saved';
+end;
+for nNumber = 1:n_level2v3
+    Name = Models_l2v3(nNumber).id;
+    ListNames_l2v3{nNumber} = Name;
+end;
+if (n_level2v3 == 0)
+    ListNames_l2v3 = 'None saved';
+end;
+
+
+handles.ListNames_l1 = ListNames_l1;
+handles.ListNames_l2 = ListNames_l2;
+handles.ListNames_l2v2 = ListNames_l2v2;
+handles.ListNames_l2v3 = ListNames_l2v3;
 
 if (handles.Level == 1)
     if (handles.Model_l1_Index > n_level1)
-       handles.Model_l1_Index = n_level1;
+        if (n_level1 == 0)
+            handles.Model_l1_Index = 1;
+           set(handles.ListModels, 'Value', handles.Model_l1_Index);
+           set(handles.ListModels, 'String', ListNames_l1);
+           set(handles.SelModel, 'String', 'None');
+        else
+            handles.Model_l1_Index = n_level1;
+           set(handles.ListModels, 'Value', handles.Model_l1_Index);
+           set(handles.ListModels, 'String', ListNames_l1);
+           set(handles.SelModel, 'String', handles.ListNames_l1(handles.Model_l1_Index));
+        end;
    end;
-   set(handles.ListModels, 'Value', handles.Model_l1_Index);
-   set(handles.ListModels, 'String', ListNames_l1);
-   set(handles.SelModel, 'String', handles.ListNames_l1(handles.Model_l1_Index));
 else
-    if (handles.Model_l2_Index > n_level2)
-       handles.Model_l2_Index = n_level2;
-   end;
-   set(handles.ListModels, 'Value', handles.Model_l2_Index);
-   set(handles.ListModels, 'String', ListNames_l2);
-   set(handles.SelModel, 'String', handles.ListNames_l2(handles.Model_l2_Index));
+    if (handles.Version == 1)
+        if (handles.Model_l2_Index > n_level2)
+            if (n_level2 == 0)
+                handles.Model_l2_Index = 1;
+               set(handles.ListModels, 'Value', handles.Model_l2_Index);
+               set(handles.ListModels, 'String', ListNames_l2);
+               set(handles.SelModel, 'String', 'None');
+            else
+                handles.Model_l2_Index = n_level2;
+               set(handles.ListModels, 'Value', handles.Model_l2_Index);
+               set(handles.ListModels, 'String', ListNames_l2);
+               set(handles.SelModel, 'String', handles.ListNames_l2(handles.Model_l2_Index));
+            end;
+        end;
+    elseif (handles.Version == 2)
+        if (handles.Model_l2v2_Index > n_level2v2)
+            if (n_level2v2 == 0)
+                handles.Model_l2v2_Index = 1;
+               set(handles.ListModels, 'Value', handles.Model_l2v2_Index);
+               set(handles.ListModels, 'String', ListNames_l2v2);
+               set(handles.SelModel, 'String', 'None');
+            else
+                handles.Model_l2v2_Index = n_level2v2;
+               set(handles.ListModels, 'Value', handles.Model_l2v2_Index);
+               set(handles.ListModels, 'String', ListNames_l2v2);
+               set(handles.SelModel, 'String', handles.ListNames_l2v2(handles.Model_l2v2_Index));
+            end;
+        end;
+    elseif (handles.Version == 3)
+        if (handles.Model_l2v3_Index > n_level2v3)
+            if (n_level2v3 == 0)
+                handles.Model_l2v3_Index = 1;
+               set(handles.ListModels, 'Value', handles.Model_l2v3_Index);
+               set(handles.ListModels, 'String', ListNames_l2v3);
+               set(handles.SelModel, 'String', 'None');
+            else
+                handles.Model_l2v3_Index = n_level2v3;
+               set(handles.ListModels, 'Value', handles.Model_l2v3_Index);
+               set(handles.ListModels, 'String', ListNames_l2v3);
+               set(handles.SelModel, 'String', handles.ListNames_l2v3(handles.Model_l2v3_Index));
+            end;
+        end;
+    end;
 end;
 %set(handles.ListModels, 'Value', handles.ModelIndex);
 %set(handles.ListModels, 'String', ListNames);
@@ -330,8 +476,16 @@ if (handles.Level == 1)
     handles.Model_l1_Index = get(handles.ListModels, 'Value');
    set(handles.SelModel, 'String', handles.ListNames_l1(handles.Model_l1_Index));
 else
-   handles.Model_l2_Index = get(handles.ListModels, 'Value');
-   set(handles.SelModel, 'String', handles.ListNames_l2(handles.Model_l2_Index));
+    if (handles.Version == 1)
+       handles.Model_l2_Index = get(handles.ListModels, 'Value');
+       set(handles.SelModel, 'String', handles.ListNames_l2(handles.Model_l2_Index));
+    elseif (handles.Version == 2)
+       handles.Model_l2v2_Index = get(handles.ListModels, 'Value');
+       set(handles.SelModel, 'String', handles.ListNames_l2v2(handles.Model_l2v2_Index));
+    elseif (handles.Version == 3)
+       handles.Model_l2v3_Index = get(handles.ListModels, 'Value');
+       set(handles.SelModel, 'String', handles.ListNames_l2v3(handles.Model_l2v3_Index));
+    end;
 end;   
 guidata(hObject, handles);
 
@@ -363,18 +517,111 @@ function LevelListbox_Callback(hObject, eventdata, handles)
 handles.Level = get(handles.LevelListbox, 'Value');
 handles.Model_l1_Index = 1;
 handles.Model_l2_Index = 1;
+handles.Model_l2v2_Index = 1;
+handles.Model_l2v3_Index = 1;
+
+if (handles.Level == 1)
+    set(handles.popupversion, 'String', handles.ListVersions);
+    if (handles.Version == 3)
+        handles.Version = 2;
+    end;
+    set(handles.popupversion, 'Value', handles.Version);
+    set(handles.ListModels, 'String', handles.ListNames_l1);
+    if (handles.n_level1 == 0)
+        set(handles.SelModel, 'String', 'None');
+    else
+        set(handles.SelModel, 'String', handles.Models_l1(handles.Model_l1_Index).name);
+    end;
+    set(handles.ListModels, 'Value', handles.Model_l1_Index);
+else
+    set(handles.popupversion, 'String', handles.ListL2Versions);
+    set(handles.popupversion, 'Value', handles.Version);
+    if (handles.Version == 1)
+        set(handles.ListModels, 'String', handles.ListNames_l2);
+        if (handles.n_level2 == 0)
+            set(handles.SelModel, 'String', 'None');
+        else
+            set(handles.SelModel, 'String', handles.ListNames_l2(handles.Model_l2_Index));
+        end;
+        set(handles.ListModels, 'Value', handles.Model_l2_Index);
+    else
+        set(handles.ListModels, 'String', handles.ListNames_l2v2);
+        if (handles.n_level2v2 == 0)
+            set(handles.SelModel, 'String', 'None');
+        else
+            set(handles.SelModel, 'String', handles.ListNames_l2v2(handles.Model_l2v2_Index));
+        end;
+        set(handles.ListModels, 'Value', handles.Model_l2v2_Index);
+    end;
+end;guidata(hObject, handles);
+
+
+
+
+
+
+% --- Executes on selection change in popupversion.
+function popupversion_Callback(hObject, eventdata, handles)
+% hObject    handle to popupversion (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = get(hObject,'String') returns popupversion contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from popupversion
+handles.Version = get(handles.popupversion, 'Value');
+handles.Model_l1_Index = 1;
+handles.Model_l2_Index = 1;
+handles.Model_l2v2_Index = 1;
+handles.Model_l2v3_Index = 1;
 
 if (handles.Level == 1)
     set(handles.ListModels, 'String', handles.ListNames_l1);
-    set(handles.SelModel, 'String', handles.Models_l1(handles.Model_l1_Index).name);
+    if (handles.n_level1 == 0)
+        set(handles.SelModel, 'String', 'None');
+    else
+        set(handles.SelModel, 'String', handles.Models_l1(handles.Model_l1_Index).name);
+    end;
     set(handles.ListModels, 'Value', handles.Model_l1_Index);
 else
-    set(handles.ListModels, 'String', handles.ListNames_l2);
-    set(handles.SelModel, 'String', handles.ListNames_l2(handles.Model_l2_Index));
-    set(handles.ListModels, 'Value', handles.Model_l2_Index);
+    if (handles.Version == 1)
+        set(handles.ListModels, 'String', handles.ListNames_l2);
+        if (handles.n_level2 == 0)
+            set(handles.SelModel, 'String', 'None');
+        else
+            set(handles.SelModel, 'String', handles.ListNames_l2(handles.Model_l2_Index));
+        end;
+        set(handles.ListModels, 'Value', handles.Model_l2_Index);
+    elseif (handles.Version == 2)
+        set(handles.ListModels, 'String', handles.ListNames_l2v2);
+        if (handles.n_level2v2 == 0)
+            set(handles.SelModel, 'String', 'None');
+        else
+            set(handles.SelModel, 'String', handles.ListNames_l2v2(handles.Model_l2v2_Index));
+        end;
+        set(handles.ListModels, 'Value', handles.Model_l2v2_Index);
+    elseif (handles.Version == 3)
+        set(handles.ListModels, 'String', handles.ListNames_l2v3);
+        if (handles.n_level2v3 == 0)
+            set(handles.SelModel, 'String', 'None');
+        else
+            set(handles.SelModel, 'String', handles.ListNames_l2v3(handles.Model_l2v3_Index));
+        end;
+        set(handles.ListModels, 'Value', handles.Model_l2v3_Index);
+    end;
 end;
 guidata(hObject, handles);
 
 
+% --- Executes during object creation, after setting all properties.
+function popupversion_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to popupversion (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: popupmenu controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
 
 

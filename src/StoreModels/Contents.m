@@ -29,6 +29,7 @@
 %
 %   ViewModel(Model) 
 %       raises a GUI that illustrate the SBML model 'Model'
+%   NOT IMPLEMENTED BEYOND SBML LEVEL 2 VERSION 1
 %
 %   BrowseSBML_Models 
 %       calls BrowseModels which enables a GUI that browses the Matlab data file SBML_Models.dat
