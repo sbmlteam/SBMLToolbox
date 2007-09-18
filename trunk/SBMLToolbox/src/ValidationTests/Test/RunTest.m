@@ -220,9 +220,15 @@ cvr = m.rule(3);
 pr  = m.rule(4);
 r   = m.reaction(1);
 
-test = test + 9;
+test = test + 10;
 
 fail = 0;
+
+pass = isSBML_Model(m);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l1v2 Model failed');
+end;
 
 pass = isSBML_UnitDefinition(ud, 1, 2);
 if (pass == 0)
@@ -293,9 +299,15 @@ rr  = m.rule(3);
 r   = m.reaction(1);
 e   = m.event(1);
 
-test = test + 10;
+test = test + 11;
 
 fail = 0;
+
+pass = isSBML_Model(m);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v1 Model failed');
+end;
 
 pass = isSBML_FunctionDefinition(fd, 2, 1);
 if (pass == 0)
@@ -376,9 +388,15 @@ con = m.constraint(1);
 r   = m.reaction(1);
 e   = m.event(1);
 
-test = test + 14;
+test = test + 15;
 
 fail = 0;
+
+pass = isSBML_Model(m);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v2 Model failed');
+end;
 
 pass = isSBML_FunctionDefinition(fd,2, 2);
 if (pass == 0)
@@ -483,9 +501,15 @@ con = m.constraint(1);
 r   = m.reaction(1);
 e   = m.event(1);
 
-test = test + 14;
+test = test + 15;
 
 fail = 0;
+
+pass = isSBML_Model(m);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l2v3 Model failed');
+end;
 
 pass = isSBML_FunctionDefinition(fd,2, 3);
 if (pass == 0)

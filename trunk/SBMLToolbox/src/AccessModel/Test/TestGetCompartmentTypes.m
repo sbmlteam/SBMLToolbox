@@ -1,15 +1,15 @@
-function fail = TestGetStoichiometryMatrix
-% GetStoichiometryMatrix(SBMLModel) takes an SBML model 
-% returns 
-%       1) stoichiometry matrix
-%       2) an array of character names of all species within the model 
+function fail = TestGetCompartmentTypes
+% GetCompartmentTypes takes a SBMLModel 
+% and returns 
+%           1) an array of character names of all compartmentTypes within the model 
+%
 
 
-%  Filename    :   TestGetStoichiometryMatrix.m
+%  Filename    :   TestGetCompartmentTypes.m
 %  Description : 
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
 %  Organization:   University of Hertfordshire STRI
-%  Created     :   04-Oct-2005
+%  Created     :   30-Nov-2005
 %  Revision    :   $Id$
 %  Source      :   $Source v $
 %
@@ -55,9 +55,10 @@ function fail = TestGetStoichiometryMatrix
 %  Contributor(s):
 
 
-m = TranslateSBML('test3.xml');
+m = TranslateSBML('l2v3-all.xml');
 
-matrix = [-1, 0; 1, -1; 0, 1; 0, 0];
-species = {'S1', 'S2', 'S3', 'X'};
+names = {'mitochondria'};
 
-fail = TestFunction('GetStoichiometryMatrix', 1, 2, m, matrix, species);
+fail = TestFunction('GetCompartmentTypes', 1, 1, m, names);
+
+

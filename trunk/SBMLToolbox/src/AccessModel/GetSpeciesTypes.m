@@ -1,19 +1,20 @@
-function fail = TestGetStoichiometryMatrix
-% GetStoichiometryMatrix(SBMLModel) takes an SBML model 
-% returns 
-%       1) stoichiometry matrix
-%       2) an array of character names of all species within the model 
-
-
-%  Filename    :   TestGetStoichiometryMatrix.m
-%  Description : 
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  Organization:   University of Hertfordshire STRI
-%  Created     :   04-Oct-2005
-%  Revision    :   $Id$
-%  Source      :   $Source v $
+function varargout = GetSpeciesTypes(SBMLModel)
+% GetSpeciesTypes takes a SBMLModel 
+% and returns 
+%           1) an array of character names of all SpeciesTypes within the model 
 %
-%  Copyright 2005 California Institute of Technology, the Japan Science
+
+%--------------------------------------------------------------------------
+%
+%  Filename    : GetSpeciesTypes.m
+%  Description : returns SpeciesTypes
+%  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
+%  Organization: University of Hertfordshire STRC
+%  Created     : 2004-02-02
+%  Revision    : $Id$
+%  Source      : $Source $
+%
+%  Copyright 2003 California Institute of Technology, the Japan Science
 %  and Technology Corporation, and the University of Hertfordshire
 %
 %  This library is free software; you can redistribute it and/or modify it
@@ -44,7 +45,7 @@ function fail = TestGetStoichiometryMatrix
 %  The original code contained here was initially developed by:
 %
 %      Sarah Keating
-%      Science and Technology Research Institute
+%      Science and Technology Research Centre
 %      University of Hertfordshire
 %      Hatfield, AL10 9AB
 %      United Kingdom
@@ -53,11 +54,32 @@ function fail = TestGetStoichiometryMatrix
 %      mailto:sbml-team@caltech.edu
 %
 %  Contributor(s):
+%
+%
 
+% check input is an SBML model
+if (~isSBML_Model(SBMLModel))
+    error('GetSpeciesTypes(SBMLModel)\n%s', 'input must be an SBMLModel structure');
+end;
 
-m = TranslateSBML('test3.xml');
+%------------------------------------------------------------
+% determine the number of SpeciesTypes within the model
+NumSpeciesTypes = length(SBMLModel.speciesType);
 
-matrix = [-1, 0; 1, -1; 0, 1; 0, 0];
-species = {'S1', 'S2', 'S3', 'X'};
+%------------------------------------------------------------
+% loop through the list of Speciess
+for i = 1:NumSpeciesTypes
 
-fail = TestFunction('GetStoichiometryMatrix', 1, 2, m, matrix, species);
+    % and array of the character names
+    CharArray{i} = SBMLModel.speciesType(i).id;
+
+end;
+
+%--------------------------------------------------------------------------
+% assign output
+
+if (NumSpeciesTypes ~= 0)
+    varargout{1} = CharArray;
+else
+    varargout{1} = [];
+end;

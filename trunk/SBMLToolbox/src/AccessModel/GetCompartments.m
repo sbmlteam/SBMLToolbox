@@ -94,7 +94,7 @@ for i = 1:NumCompartments
         Values(i) = SBMLModel.compartment(i).size;
     end;
     % might be an initial assignment in l2v2
-    if (SBMLModel.SBML_level == 2 && SBMLModel.SBML_version == 2)
+    if (SBMLModel.SBML_level == 2 && SBMLModel.SBML_version > 1)
 
         % remove this from the substtution
         newSBMLModel = SBMLModel;

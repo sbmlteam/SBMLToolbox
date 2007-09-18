@@ -65,7 +65,7 @@
           </apply>
         </math>
       </assignmentRule>
-  </listOfRules>
+  </listOfRules> 
     <listOfReactions>
       <reaction id="R1" reversible="false">
         <listOfReactants>
@@ -83,7 +83,7 @@
             </apply>
           </math>
         </kineticLaw>
-      </reaction>
+      </reaction> 
       <reaction id="R2" reversible="false">
         <listOfReactants>
           <speciesReference species="S2"/>
@@ -103,7 +103,7 @@
             <parameter id="k" value="0.1"/>
           </listOfParameters>
         </kineticLaw>
-      </reaction>
-    </listOfReactions>
+      </reaction> 
+    </listOfReactions> 
   </model>
 </sbml>

@@ -219,7 +219,7 @@ if (bSBML == 1)
         end;
     end;
     
-    if (Level == 2 && Version == 2)
+    if (Level == 2 && Version > 1)
         index = 1;
         [x, nNumber] = size(SBMLStructure.compartmentType);
         while (bSBML == 1 && index <= nNumber)

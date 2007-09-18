@@ -90,7 +90,7 @@ for i = 1:NumParams
     Values(i) = SBMLModel.parameter(i).value;
     
     % might be an initial assignment in l2v2
-    if (SBMLModel.SBML_level == 2 && SBMLModel.SBML_version == 2)
+    if (SBMLModel.SBML_level == 2 && SBMLModel.SBML_version > 1)
         
     % remove this from the substtution
     newSBMLModel = SBMLModel;
