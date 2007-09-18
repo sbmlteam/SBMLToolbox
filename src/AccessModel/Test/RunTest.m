@@ -54,7 +54,7 @@ function y = RunTest()
 test = 0;
 Totalfail = 0;
 
-test = test + 7;
+test = test + 8;
 fail = TestDetermineSpeciesRoleInReaction;
 if (fail > 0)
     disp('DetermineSpeciesRoleInReaction failed');
@@ -96,7 +96,7 @@ if (fail == 1)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 1;
+test = test + 2;
 fail = TestGetRateLawsFromReactions;
 if (fail == 1)
     disp('GetRateLawsFromReactions failed');
@@ -149,6 +149,20 @@ test = test + 4;
 fail = TestGetCompartments;
 if (fail > 0)
     disp('GetCompartments failed');
+end;
+Totalfail = Totalfail + fail;
+
+test = test + 1;
+fail = TestGetCompartmentTypes;
+if (fail > 0)
+    disp('GetCompartmentTypes failed');
+end;
+Totalfail = Totalfail + fail;
+
+test = test + 1;
+fail = TestGetSpeciesTypes;
+if (fail > 0)
+    disp('GetSpeciesTypes failed');
 end;
 Totalfail = Totalfail + fail;
 

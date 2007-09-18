@@ -58,12 +58,16 @@ function y = IsSpeciesInReaction(SBMLSpecies, SBMLReaction)
 % check that input is valid
 SBMLLevel = 1;
 SBMLVersion = 1;
+
 if (~isSBML_Species(SBMLSpecies, 1))
     SBMLLevel = 2;
     if(~isSBML_Species(SBMLSpecies, 2))
         SBMLVersion = 2;
         if(~isSBML_Species(SBMLSpecies, 2, 2))
-            error('IsSpeciesInReaction(SBMLSpecies, SBMLReaction)\n%s', 'first input must be an SBML Species structure');
+            SBMLVersion = 3;
+            if(~isSBML_Species(SBMLSpecies, 2, 3))
+                error('IsSpeciesInReaction(SBMLSpecies, SBMLReaction)\n%s', 'first input must be an SBML Species structure');
+            end;
         end;
     end;
 end;

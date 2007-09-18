@@ -68,7 +68,6 @@ function fail = TestDetermineSpeciesRoleInReaction
 %
 %  Contributor(s):
 
-
 m = TranslateSBML('test2.xml');
 
 s1 = m.species(1);
@@ -105,7 +104,13 @@ r1 = m.reaction(1);
 fail = fail + TestFunction('DetermineSpeciesRoleInReaction', 2, 1, s2, r1, 0);
 fail = fail + TestFunction('DetermineSpeciesRoleInReaction', 2, 1, s1, r1, [0,1,0,0, 1]);
 
+m = TranslateSBML('l2v3-all.xml');
 
+s1 = m.species(1);
+
+r1 = m.reaction(1);
+
+fail = fail + TestFunction('DetermineSpeciesRoleInReaction', 2, 1, s1, r1, [0,1,0,0, 1]);
 
 
 
