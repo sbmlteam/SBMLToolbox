@@ -74,21 +74,35 @@ if (bSBML == 1)
         Path = strcat(Current, '\SBML_Models.mat');
         n_level1 = 0;
         n_level2 = 0;
+        n_level2v2 = 0;
+        n_level2v3 = 0;
     else
     % load existing models and determine number for each level of sbml
         load 'SBML_Models';
         
-        if (exist('Models_l1') == 0) 
-             [m, n_level2] = size(Models_l2);
-             n_level1 = 0;
-        elseif (exist('Models_l2') == 0)
-            [m, n_level1] = size(Models_l1);
-            n_level2 = 0;               
+        if (~exist('Models_l1'))
+            n_level1 = 0;
         else
-            [m, n_level1] = size(Models_l1);
-            [m, n_level2] = size(Models_l2);
+             [m, n_level1] = size(Models_l1);
         end;
-    end;
+        
+        if (~exist('Models_l2'))
+            n_level2 = 0;
+        else
+             [m, n_level2] = size(Models_l2);
+        end;
+        
+        if (~exist('Models_l2v2'))
+            n_level2v2 = 0;
+        else
+             [m, n_level2v2] = size(Models_l2v2);
+        end;
+        
+        if (~exist('Models_l2v3'))
+            n_level2v3 = 0;
+        else
+             [m, n_level2v3] = size(Models_l2v3);
+        end;    end;
     
     fclose(fId);
     
@@ -107,43 +121,115 @@ if (bSBML == 1)
             end;
         end;
     else
-         for index = 1:n_level2
-            k = strcmp(Models_l2(index).name, SBMLModel.name);
-            l = strcmp(Models_l2(index).id, SBMLModel.id);
-            if (k ==1 && l ==1)
-                Answer = AlreadyExists;  %error('Model with this name and id already exists');
-                if (strcmp(Answer, 'No'))
-                    return;
-                else
-                    NewIndex = index;
+        if (SBMLModel.SBML_version == 1)
+            for index = 1:n_level2
+                k = strcmp(Models_l2(index).name, SBMLModel.name);
+                l = strcmp(Models_l2(index).id, SBMLModel.id);
+                if (k ==1 && l ==1)
+                    Answer = AlreadyExists;  %error('Model with this name and id already exists');
+                    if (strcmp(Answer, 'No'))
+                        return;
+                    else
+                        NewIndex = index;
+                    end;
                 end;
             end;
-        end;     
+        elseif (SBMLModel.SBML_version == 2)
+            for index = 1:n_level2v2
+                k = strcmp(Models_l2v2(index).name, SBMLModel.name);
+                l = strcmp(Models_l2v2(index).id, SBMLModel.id);
+                if (k ==1 && l ==1)
+                    Answer = AlreadyExists;  %error('Model with this name and id already exists');
+                    if (strcmp(Answer, 'No'))
+                        return;
+                    else
+                        NewIndex = index;
+                    end;
+                end;
+            end;
+        elseif (SBMLModel.SBML_version == 3)
+            for index = 1:n_level2v3
+                k = strcmp(Models_l2v3(index).name, SBMLModel.name);
+                l = strcmp(Models_l2v3(index).id, SBMLModel.id);
+                if (k ==1 && l ==1)
+                    Answer = AlreadyExists;  %error('Model with this name and id already exists');
+                    if (strcmp(Answer, 'No'))
+                        return;
+                    else
+                        NewIndex = index;
+                    end;
+                end;
+            end;
+        end;
     end;
 
     % add SBMLModel as the next structure and save
     if (SBMLModel.SBML_level == 1)
         if (NewIndex == 0)
             NewIndex = n_level1+1;
+            n_level1 = NewIndex;
         end;
         Models_l1(NewIndex) = SBMLModel;
     else
-        if (NewIndex == 0)
-            NewIndex = n_level2+1;
+        if (SBMLModel.SBML_version == 1)
+            if (NewIndex == 0)
+                NewIndex = n_level2+1;
+                n_level2 = NewIndex;
+            end;
+            Models_l2(NewIndex) = SBMLModel;
+        elseif (SBMLModel.SBML_version == 2)
+            if (NewIndex == 0)
+                NewIndex = n_level2v2+1;
+                n_level2v2 = NewIndex;
+            end;
+            Models_l2v2(NewIndex) = SBMLModel;
+        elseif (SBMLModel.SBML_version == 3)
+            if (NewIndex == 0)
+                NewIndex = n_level2v3+1;
+                n_level2v3 = NewIndex;
+            end;
+            Models_l2v3(NewIndex) = SBMLModel;
         end;
-        Models_l2(NewIndex) = SBMLModel;
     end;
     
     
-    if (SBMLModel.SBML_level == 1 && n_level2 == 0)
-       save(Path, 'Models_l1');
-    elseif (SBMLModel.SBML_level == 2 && n_level1 == 0)
-        save(Path, 'Models_l2');
-    else
-     save (Path, 'Models_l1', 'Models_l2');
-    end;     
+    % save appropriate structures
+    index = 1;
+    Nums = [n_level1, n_level2, n_level2v2, n_level2v3];
+    Present = find(Nums ~= 0);
+
+    for i = 1:length(Present)
+        switch (Present(i))
+            case 1 
+                output{index} = 'Models_l1';
+            case 2
+                output{index} = 'Models_l2';
+            case 3
+                output{index} = 'Models_l2v2';
+            case 4
+                output{index} = 'Models_l2v3';
+        end;
+        index = index + 1;
+    end;
+    n = length(output);
+    switch (n)
+        case 1
+            save (Path, output{1});
+        case 2
+            save (Path, output{1}, output{2});
+        case 3
+            save (Path, output{1}, output{2}, output{3});
+        case 4
+            save (Path, output{1}, output{2}, output{3}, output{4});
+    end;
+
+        
+            
+    
 else
     error('Structure supplied is not an sbml model');
 end;
 
 clear
+
+

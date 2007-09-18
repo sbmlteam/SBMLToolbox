@@ -1,5 +1,6 @@
-function Model = LoadSBMLModel(input, Level)
-% LoadSBMLModel(input, level) returns a sbml model of specified leve from SBML_Models.mat
+function Model = LoadSBMLModel(varargin)
+% LoadSBMLModel(input, level, version(optional)) returns a sbml model of specified level from SBML_Models.mat
+% If version is not specified it defaults to 1
 %
 % input can be either
 % an integer representing the index of the model in
@@ -64,6 +65,23 @@ function Model = LoadSBMLModel(input, Level)
 %  Contributor(s):
 %
 
+if (nargin < 2 || nargin > 3)
+    error('USAGE: LoadSBMLModel(x, level, version(optional)) where x is the number or the name of the model');
+else
+    input = varargin{1};
+    Level = varargin{2};
+end;
+
+if (nargin == 3)
+    Version = varargin{3};
+else
+    if (Level == 1)
+        Version = 2;
+    else
+        Version = 1;
+    end;
+end;
+
 bInt = 0;
 % check what type of arguments have been input
 if (isnumeric(input))
@@ -78,7 +96,7 @@ elseif (ischar(input))
         Id = input;
     end;
 else
-    error('USAGE: LoadSBMLModel(x, level) where x is the number or the name of the model');
+    error('USAGE: LoadSBMLModel(x, level, version(optional)) where x is the number or the name of the model');
 end;
 % find the only copy of SBML_Models.mat
 Path = which ('SBML_Models.mat');
@@ -93,21 +111,40 @@ end;
 
 % read in the file
 load 'SBML_Models';
-if (exist('Models_l1') == 0) 
-    [m, n_level2] = size(Models_l2);
+if (~exist('Models_l1'))
     n_level1 = 0;
-elseif (exist('Models_l2') == 0)
-    [m, n_level1] = size(Models_l1);
-    n_level2 = 0;               
 else
     [m, n_level1] = size(Models_l1);
+end;
+
+if (~exist('Models_l2'))
+    n_level2 = 0;
+else
     [m, n_level2] = size(Models_l2);
+end;
+
+if (~exist('Models_l2v2'))
+    n_level2v2 = 0;
+else
+    [m, n_level2v2] = size(Models_l2v2);
+end;
+
+if (~exist('Models_l2v3'))
+    n_level2v3 = 0;
+else
+    [m, n_level2v3] = size(Models_l2v3);
 end;
 
 if (Level == 1)
     n = n_level1;
 else
-    n = n_level2;
+    if (Version == 1)
+        n = n_level2;
+    elseif (Version == 2)
+        n = n_level2v2;
+    else
+        n = n_level2v3;
+    end;
 end;
 
 if (bInt == 1) 
@@ -118,7 +155,13 @@ if (bInt == 1)
         if (Level == 1)
             Model = Models_l1(nNumber);
         else
-            Model = Models_l2(nNumber);
+            if (Version == 1)
+                Model = Models_l2(nNumber);
+            elseif (Version == 2)
+                Model = Models_l2v2(nNumber);
+            elseif (Version == 3)
+                Model = Models_l2v3(nNumber);
+            end;
         end;
         
         if(isSBML_Model(Model) == 0)
@@ -140,17 +183,47 @@ else
             end;
         end;
     else
-        while (nNumber <= n_level2)
-            k = strcmp(Models_l2(nNumber).Name, Name);
-            l = strcmp(Models_l2(nNumber).Id, Id);
-            if (k == 1)
-                Model = Models_l2(nNumber);
-                break;
-            elseif (l == 1)
-                Model = Models_l2(nNumber);
-                break;
-            else
-                nNumber = nNumber + 1;
+        if (Version == 1)
+            while (nNumber <= n_level2)
+                k = strcmp(Models_l2(nNumber).Name, Name);
+                l = strcmp(Models_l2(nNumber).Id, Id);
+                if (k == 1)
+                    Model = Models_l2(nNumber);
+                    break;
+                elseif (l == 1)
+                    Model = Models_l2(nNumber);
+                    break;
+                else
+                    nNumber = nNumber + 1;
+                end;
+            end;
+        elseif (Version == 2)
+            while (nNumber <= n_level2v2)
+                k = strcmp(Models_l2v2(nNumber).Name, Name);
+                l = strcmp(Models_l2v2(nNumber).Id, Id);
+                if (k == 1)
+                    Model = Models_l2v2(nNumber);
+                    break;
+                elseif (l == 1)
+                    Model = Models_l2v2(nNumber);
+                    break;
+                else
+                    nNumber = nNumber + 1;
+                end;
+            end;
+        elseif (Version == 3)
+            while (nNumber <= n_level2v3)
+                k = strcmp(Models_l2v3(nNumber).Name, Name);
+                l = strcmp(Models_l2v3(nNumber).Id, Id);
+                if (k == 1)
+                    Model = Models_l2v3(nNumber);
+                    break;
+                elseif (l == 1)
+                    Model = Models_l2v3(nNumber);
+                    break;
+                else
+                    nNumber = nNumber + 1;
+                end;
             end;
         end;
     end;
@@ -158,7 +231,11 @@ else
     % check that a match has been made
     if (Level == 1 && nNumber == n_level1+1 && k ~=1)
         error('No model saved with matching name');
-    elseif (Level == 2 && nNumber == n_level2+1 && k ~= 1 && l ~=1)
+    elseif (Level == 2 && Version == 1 && nNumber == n_level2+1 && k ~= 1 && l ~=1)
+        error('No model saved with matching name or id');
+    elseif (Level == 2 && Version == 2 && nNumber == n_level2v2+1 && k ~= 1 && l ~=1)
+        error('No model saved with matching name or id');
+    elseif (Level == 2 && Version == 3 && nNumber == n_level2v3+1 && k ~= 1 && l ~=1)
         error('No model saved with matching name or id');
     end;
     
