@@ -26,18 +26,10 @@ function fail = TestIsSBML_SpeciesConcentrationRule
 scr_l1 = struct('typecode', {'SBML_SPECIES_CONCENTRATION_RULE'}, 'notes', {''}, 'annotation', {''}, 'type', ...
     {''}, 'formula', {''}, 'variable', {''}, 'species', {''}, 'compartment', {''}, 'name', {''}, 'units', {''});
 
-scr_l2 = struct('typecode', {'SBML_SPECIES_CONCENTRATION_RULE'}, 'notes', {''}, 'annotation', {''},  ...
-    'formula', {''}, 'variable', {''}, 'species', {''}, 'compartment', {''}, 'name', {''}, 'units', {''});
-
-scr_l2v2 = struct('typecode', {'SBML_SPECIES_CONCENTRATION_RULE'}, 'notes', {''}, 'annotation', {''}, 'sboTerm', {''}, ...
-    'formula', {''}, 'variable', {''}, 'species', {''}, 'compartment', {''}, 'name', {''}, 'units', {''});
-
 fail = TestFunction('isSBML_SpeciesConcentrationRule', 2, 1, scr_l1, 1, 1);
 fail = fail + TestFunction('isSBML_SpeciesConcentrationRule', 3, 1, scr_l1, 1, 1, 1);
 fail = fail + TestFunction('isSBML_SpeciesConcentrationRule', 3, 1, scr_l1, 1, 2, 1);
-fail = fail + TestFunction('isSBML_SpeciesConcentrationRule', 2, 1, scr_l2, 2, 1);
-fail = fail + TestFunction('isSBML_SpeciesConcentrationRule', 3, 1, scr_l2, 2, 1, 1);
-fail = fail + TestFunction('isSBML_SpeciesConcentrationRule', 3, 1, scr_l2v2, 2, 2, 1);
+fail = fail + TestFunction('isSBML_SpeciesConcentrationRule', 2, 1, scr_l1, 2, 0);
 
 
 

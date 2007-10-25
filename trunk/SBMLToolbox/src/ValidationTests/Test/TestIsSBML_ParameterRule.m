@@ -26,18 +26,10 @@ function fail = TestIsSBML_ParameterRule
 pr_l1 = struct('typecode', {'SBML_PARAMETER_RULE'}, 'notes', {''}, 'annotation', {''}, 'type', ...
     {''}, 'formula', {''}, 'variable', {''}, 'species', {''}, 'compartment', {''}, 'name', {''}, 'units', {''});
 
-pr_l2 = struct('typecode', {'SBML_PARAMETER_RULE'}, 'notes', {''}, 'annotation', {''},  ...
-    'formula', {''}, 'variable', {''}, 'species', {''}, 'compartment', {''}, 'name', {''}, 'units', {''});
-
-pr_l2v2 = struct('typecode', {'SBML_PARAMETER_RULE'}, 'notes', {''}, 'annotation', {''}, 'sboTerm', {''}, ...
-    'formula', {''}, 'variable', {''}, 'species', {''}, 'compartment', {''}, 'name', {''}, 'units', {''});
-
 fail = TestFunction('isSBML_ParameterRule', 2, 1, pr_l1, 1, 1);
 fail = fail + TestFunction('isSBML_ParameterRule', 3, 1, pr_l1, 1, 1, 1);
 fail = fail + TestFunction('isSBML_ParameterRule', 3, 1, pr_l1, 1, 2, 1);
-fail = fail + TestFunction('isSBML_ParameterRule', 2, 1, pr_l2, 2, 1);
-fail = fail + TestFunction('isSBML_ParameterRule', 3, 1, pr_l2, 2, 1, 1);
-fail = fail + TestFunction('isSBML_ParameterRule', 3, 1, pr_l2v2, 2, 2, 1);
+fail = fail + TestFunction('isSBML_ParameterRule', 2, 1, pr_l1, 2, 0);
 
 
 

@@ -75,7 +75,7 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 6;
+test = test + 4;
 fail = TestIsSBML_CompartmentVolumeRule;
 if (fail > 0)
     disp('isSBML_CompartmentVolumeRule failed');
@@ -124,7 +124,7 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 6;
+test = test + 4;
 fail = TestIsSBML_ParameterRule;
 if (fail > 0)
     disp('isSBML_ParameterRule failed');
@@ -152,7 +152,7 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 6;
+test = test + 4;
 fail = TestIsSBML_SpeciesConcentrationRule;
 if (fail > 0)
     disp('isSBML_SpeciesConcentrationRule failed');
