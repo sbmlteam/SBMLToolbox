@@ -84,25 +84,29 @@ SBMLStructure = varargin{1};
 Level = varargin{2};
 
 if (nargin == 3)
-    Version = varargin{3};
+  Version = varargin{3};
 else
-    Version = 1;
+  Version = 1;
 end;
 
 if (Level == 1)
-    SBMLfieldnames = {'typecode', 'notes', 'annotation','kind', 'exponent', 'scale'};
-    nNumberFields = 6;
+  SBMLfieldnames = {'typecode', 'notes', 'annotation','kind', ...
+    'exponent', 'scale'};
+  nNumberFields = 6;
 else
-    if (Version == 1)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation','kind', 'exponent', 'scale', 'multiplier', 'offset'};
-        nNumberFields = 8;
-    elseif (Version == 2)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'kind', 'exponent', 'scale', 'multiplier'};
-        nNumberFields = 7;
-    elseif (Version == 3)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'kind', 'exponent', 'scale', 'multiplier'};
-        nNumberFields = 8;
-    end;
+  if (Version == 1)
+    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'kind', ...
+      'exponent', 'scale', 'multiplier', 'offset'};
+    nNumberFields = 8;
+  elseif (Version == 2)
+    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'kind', ...
+      'exponent', 'scale', 'multiplier'};
+    nNumberFields = 7;
+  elseif (Version == 3)
+    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', ...
+      'kind', 'exponent', 'scale', 'multiplier'};
+    nNumberFields = 8;
+  end;
 end;
 
 typecode = 'SBML_UNIT';
@@ -115,26 +119,26 @@ bSBML = isstruct(SBMLStructure);
 % check it contains each of the fields listed
 index = 1;
 while (bSBML == 1 && index <= nNumberFields)
-    bSBML = isfield(SBMLStructure, SBMLfieldnames(index));
-    index = index + 1;
+  bSBML = isfield(SBMLStructure, SBMLfieldnames(index));
+  index = index + 1;
 end;
 
 % check that it contains only the fields listed
 if (bSBML == 1)
-    names = fieldnames(SBMLStructure);
-    [m,n] = size(names);
-    if (m ~= nNumberFields)
-        bSBML = 0;
-    end;
+  names = fieldnames(SBMLStructure);
+  [m,n] = size(names);
+  if (m ~= nNumberFields)
+    bSBML = 0;
+  end;
 end;
 
 % check that the typecode is correct
 if (bSBML == 1)
-    type = SBMLStructure.typecode;
-    k = strcmp(type, typecode);
-    if (k ~= 1)
-        bSBML = 0;
-    end;
+  type = SBMLStructure.typecode;
+  k = strcmp(type, typecode);
+  if (k ~= 1)
+    bSBML = 0;
+  end;
 end;
     
 

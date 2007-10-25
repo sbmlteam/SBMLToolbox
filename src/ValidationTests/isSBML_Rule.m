@@ -98,30 +98,34 @@ else
 end;
 
 if (Level == 1) 
-    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'type', 'formula', 'variable', 'species', ...
-        'compartment', 'name', 'units'};
+    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'type', 'formula', ...
+      'variable', 'species', 'compartment', 'name', 'units'};
     nNumberFields = 10;
 else
     if (Version == 1)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation','formula', 'variable', 'species', ...
-            'compartment', 'name', 'units'};
+        SBMLfieldnames = {'typecode', 'notes', 'annotation','formula', ...
+          'variable', 'species', 'compartment', 'name', 'units'};
         nNumberFields = 9;
     elseif (Version == 2)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'formula', ...
-            'variable', 'species', 'compartment', 'name', 'units'};
+        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', ...
+          'formula', 'variable', 'species', 'compartment', 'name', 'units'};
         nNumberFields = 10;
     elseif (Version == 3)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'formula', ...
-            'variable', 'species', 'compartment', 'name', 'units'};
+        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', ...
+          'formula', 'variable', 'species', 'compartment', 'name', 'units'};
         nNumberFields = 10;
     end;
 end;
-typecode = {'SBML_ALGEBRAIC_RULE', 'SBML_SPECIES_CONCENTRATION_RULE', 'SBML_COMPARTMENT_VOLUME_RULE', 'SBML_PARAMETER_RULE', 'SBML_ASSIGNMENT_RULE', 'SBML_RATE_RULE'};
-nNumberTypecodes = 6;
+typecodel1 = {'SBML_ALGEBRAIC_RULE', 'SBML_SPECIES_CONCENTRATION_RULE', ...
+  'SBML_COMPARTMENT_VOLUME_RULE', 'SBML_PARAMETER_RULE'};
+nNumberTypecodesl1 = 4;
+
+typecodel2 = {'SBML_ALGEBRAIC_RULE', 'SBML_ASSIGNMENT_RULE', 'SBML_RATE_RULE'};
+nNumberTypecodesl2 = 3;
 
 bSBML = 0;
 
-% check that Model is a structure
+% check that Rule is a structure
 bSBML = isstruct(SBMLStructure);
 
 % check it contains each of the fields listed
@@ -144,9 +148,10 @@ end;
 index = 1;
 nMatch = 0;
 if (bSBML == 1)
-    type = SBMLStructure.typecode;
-    while (index <= nNumberTypecodes)
-        k = strcmp(type, typecode(index));
+type = SBMLStructure.typecode;
+  if (Level == 1)
+    while (index <= nNumberTypecodesl1)
+        k = strcmp(type, typecodel1(index));
         if (k == 1)
             nMatch = nMatch + 1;
         end;
@@ -155,6 +160,18 @@ if (bSBML == 1)
     if (nMatch == 0)
         bSBML = 0;
     end;
+  else
+    while (index <= nNumberTypecodesl2)
+        k = strcmp(type, typecodel2(index));
+        if (k == 1)
+            nMatch = nMatch + 1;
+        end;
+        index = index + 1;
+    end;
+    if (nMatch == 0)
+        bSBML = 0;
+    end;
+  end;
 end;
     
 

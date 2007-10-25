@@ -26,18 +26,10 @@ function fail = TestIsSBML_CompartmentVolumeRule
 cvr_l1 = struct('typecode', {'SBML_COMPARTMENT_VOLUME_RULE'}, 'notes', {''}, 'annotation', {''}, 'type', ...
     {''}, 'formula', {''}, 'variable', {''}, 'species', {''}, 'compartment', {''}, 'name', {''}, 'units', {''});
 
-cvr_l2 = struct('typecode', {'SBML_COMPARTMENT_VOLUME_RULE'}, 'notes', {''}, 'annotation', {''},  ...
-    'formula', {''}, 'variable', {''}, 'species', {''}, 'compartment', {''}, 'name', {''}, 'units', {''});
-
-cvr_l2v2 = struct('typecode', {'SBML_COMPARTMENT_VOLUME_RULE'}, 'notes', {''}, 'annotation', {''}, 'sboTerm', {''}, ...
-    'formula', {''}, 'variable', {''}, 'species', {''}, 'compartment', {''}, 'name', {''}, 'units', {''});
-
 fail = TestFunction('isSBML_CompartmentVolumeRule', 2, 1, cvr_l1, 1, 1);
 fail = fail + TestFunction('isSBML_CompartmentVolumeRule', 3, 1, cvr_l1, 1, 1, 1);
 fail = fail + TestFunction('isSBML_CompartmentVolumeRule', 3, 1, cvr_l1, 1, 2, 1);
-fail = fail + TestFunction('isSBML_CompartmentVolumeRule', 2, 1, cvr_l2, 2, 1);
-fail = fail + TestFunction('isSBML_CompartmentVolumeRule', 3, 1, cvr_l2, 2, 1, 1);
-fail = fail + TestFunction('isSBML_CompartmentVolumeRule', 3, 1, cvr_l2v2, 2, 2, 1);
+fail = fail + TestFunction('isSBML_CompartmentVolumeRule', 2, 1, cvr_l1, 2, 0);
 
 
 

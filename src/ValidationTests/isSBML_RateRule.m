@@ -20,11 +20,17 @@ function y = isSBML_RateRule(varargin)
 % sbml only
 %
 % Returns 1 if SBMLStructure is a structure containing each of the above
-% fields and the typecode is  "SBML_RATE_RULE"
+% fields and the typecode is one of
+%           "SBML_RATE_RULE", "SBML_SPECIES_CONCENTRATION_RULE",
+%   "SBML_COMPARTMENT_VOLUME_RULE", "SBML_PARAMETER_RULE"
 % 
 % Returns 0 if SBMLStructure is not a structure 
 % or does not contain one of the above fields
-% or the typecode is not  "SBML_RATE_RULE"
+% or the typecode is not  one of 
+%           "SBML_RATE_RULE" "SBML_SPECIES_CONCENTRATION_RULE",
+%   "SBML_COMPARTMENT_VOLUME_RULE", "SBML_PARAMETER_RULE",
+%
+% NOTE: where typecode is a Level 1 Rule the type must be set to "rate"
 
 %
 %  Filename    : isSBML_RateRule.m
@@ -91,6 +97,10 @@ else
     Version = 1;
 end;
 
+typecodel1 = {'SBML_SPECIES_CONCENTRATION_RULE', ...
+  'SBML_COMPARTMENT_VOLUME_RULE', 'SBML_PARAMETER_RULE'};
+index = 1;
+
 typecode = 'SBML_RATE_RULE';
 
 bSBML = isSBML_Rule(SBMLStructure, Level, Version);
@@ -98,11 +108,21 @@ bSBML = isSBML_Rule(SBMLStructure, Level, Version);
 
 % check that the typecode is correct
 if (bSBML == 1)
-    type = SBMLStructure.typecode;
-    k = strcmp(type, typecode);
-    if (k ~= 1)
-        bSBML = 0;
+  code = SBMLStructure.typecode;
+  k = strcmp(code, typecode);
+  if (k ~= 1)
+    nMatch = 0;
+    while (index <= 3)
+      k = strcmp(code, typecodel1(index));
+      if (k == 1 && strcmp(SBMLStructure.type, 'rate'))
+        nMatch = nMatch + 1;
+      end;
+      index = index + 1;
     end;
+    if (nMatch == 0)
+      bSBML = 0;
+    end;
+  end;
 end;
     
 

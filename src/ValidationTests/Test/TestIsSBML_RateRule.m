@@ -23,8 +23,8 @@ function fail = TestIsSBML_RateRule
 %  * Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.
 %  */
 
-rr_l1 = struct('typecode', {'SBML_RATE_RULE'}, 'notes', {''}, 'annotation', {''}, 'type', ...
-    {''}, 'formula', {''}, 'variable', {''}, 'species', {''}, 'compartment', {''}, 'name', {''}, 'units', {''});
+rr_l1 = struct('typecode', {'SBML_PARAMETER_RULE'}, 'notes', {''}, 'annotation', {''}, 'type', ...
+    {'rate'}, 'formula', {''}, 'variable', {''}, 'species', {''}, 'compartment', {''}, 'name', {''}, 'units', {''});
 
 rr_l2 = struct('typecode', {'SBML_RATE_RULE'}, 'notes', {''}, 'annotation', {''},  ...
     'formula', {''}, 'variable', {''}, 'species', {''}, 'compartment', {''}, 'name', {''}, 'units', {''});
