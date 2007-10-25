@@ -1,14 +1,11 @@
-function SpeciesConcentrationRule = SpeciesConcentrationRule_create(varargin)
+function SpeciesConcentrationRule = SpeciesConcentrationRule_create()
 %
 %   SpeciesConcentrationRule_create 
-%             optionally takes an SBML level 
 %
 %             and returns 
-%               a speciesConcentrationRule structure of the required level
-%               (default level = 2)
+%               a speciesConcentrationRule structure (level 1 ONLY)
 %
 %       SpeciesConcentrationRule = SpeciesConcentrationRule_create
-%    OR SpeciesConcentrationRule = SpeciesConcentrationRule_create(sbmlLevel)
 
 
 %  Filename    :   SpeciesConcentrationRule_create.m
@@ -61,24 +58,16 @@ function SpeciesConcentrationRule = SpeciesConcentrationRule_create(varargin)
 %  Contributor(s):
 
 
-%default level = 2
-sbmlLevel = 2;
-if (nargin == 1)
-    if ((~isIntegralNumber(varargin{1})) || (varargin{1} < 1) || (varargin{1} > 2))
-        error(sprintf('%s\n%s', 'SpeciesConcentrationRule_create(sbmlLevel)', 'argument must be a valid SBML level i.e. either 1 or 2'));
-    end;
-    sbmlLevel = varargin{1};
-elseif (nargin > 1)
-    error(sprintf('%s\n%s\n%s', 'SpeciesConcentrationRule_create(sbmlLevel)', 'requires either no arguments or just one', 'SEE help SpeciesConcentrationRule_create'));
+%default level = 1
+sbmlLevel = 1;
+if (nargin > 0)
+    error(sprintf('%s\n%s\n%s', 'SpeciesConcentrationRule_create()', ...
+      'requires no arguments', 'SEE help SpeciesConcentrationRule_create'));
 end;
 
-if (sbmlLevel == 1)
-    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'type', 'formula', 'variable', 'species', 'compartment', 'name', 'units'};
-    Values = {'SBML_SPECIES_CONCENTRATION_RULE', '', '', '', '', '', '', '', '', ''};
-else
-    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'formula', 'variable', 'species', 'compartment', 'name', 'units'};
-    Values = {'SBML_SPECIES_CONCENTRATION_RULE', '', '', '', '', '', '', '', ''};
-end;
+SBMLfieldnames = {'typecode', 'notes', 'annotation', 'type', 'formula', ...
+  'variable', 'species', 'compartment', 'name', 'units'};
+Values = {'SBML_SPECIES_CONCENTRATION_RULE', '', '', '', '', '', '', '', '', ''};
 
 SpeciesConcentrationRule = cell2struct(Values, SBMLfieldnames, 2);
 

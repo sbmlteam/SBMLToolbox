@@ -2,13 +2,15 @@ function UnitDefinition = UnitDefinition_create(varargin)
 %
 %   UnitDefinition_create 
 %             optionally takes an SBML level 
+%             optionally takes an SBML version
 %
 %             and returns 
-%               a unitDefinition structure of the required level
-%               (default level = 2)
+%               a unitDefinition structure of the required level and version
+%               (default level = 2 version = 3)
 %
 %       UnitDefinition = UnitDefinition_create
 %    OR UnitDefinition = UnitDefinition_create(sbmlLevel)
+%    OR UnitDefinition = UnitDefinition_create(sbmlLevel, sbmlVersion)
 
 
 %  Filename    :   UnitDefinition_create.m
@@ -62,26 +64,69 @@ function UnitDefinition = UnitDefinition_create(varargin)
 
 
 %default level = 2
+%default version = 3
 sbmlLevel = 2;
-if (nargin == 1)
-    if ((~isIntegralNumber(varargin{1})) || (varargin{1} < 1) || (varargin{1} > 2))
-        error(sprintf('%s\n%s', 'UnitDefinition_create(sbmlLevel)', 'argument must be a valid SBML level i.e. either 1 or 2'));
-    end;
-    sbmlLevel = varargin{1};
-elseif (nargin > 1)
-    error(sprintf('%s\n%s\n%s', 'UnitDefinition_create(sbmlLevel)', 'requires either no arguments or just one', 'SEE help UnitDefinition_create'));
+sbmlVersion = 3;
+
+if (nargin > 2)
+  error(sprintf('%s\n%s\n%s', ...
+    'UnitDefinition_create(sbmlLevel, sbmlVersion)', ...
+    'requires either zero, one or two arguments', ...
+    'SEE help UnitDefinition_create'));
+
+elseif (nargin == 2)
+  if ((~isIntegralNumber(varargin{1})) ...
+      || (varargin{1} < 1) || (varargin{1} > 2))
+    error(sprintf('%s\n%s', ...
+      'UnitDefinition_create(sbmlLevel, sbmlVersion)', ...
+      'first argument must be a valid SBML level i.e. either 1 or 2'));
+  elseif ((~isIntegralNumber(varargin{2})) ...
+      || (varargin{2} < 1) || (varargin{2} > 3))
+    error(sprintf('%s\n%s', 'UnitDefinition_create(sbmlLevel, sbmlVersion)', ...
+      'second argument must be a valid SBML version i.e. either 1, 2 or 3'));
+  end;
+  sbmlLevel = varargin{1};
+  if (sbmlLevel == 1 && varargin{2} == 3)
+    error(sprintf('%s\n%s', 'Level - version mismatch.', ...
+      'Allowed combinations are L1V1 L1V2 L2V1 L2V2 or L2V3'));
+  else
+    sbmlVersion = varargin{2};
+  end;
+    
+elseif (nargin == 1)
+  if ((~isIntegralNumber(varargin{1})) ...
+      || (varargin{1} < 1) || (varargin{1} > 2))
+    error(sprintf('%s\n%s', 'UnitDefinition_create(sbmlLevel)', ...
+      'argument must be a valid SBML level i.e. either 1 or 2'));
+  end;
+  sbmlLevel = varargin{1};
+
 end;
 
 warning off all;
 if (sbmlLevel == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name', 'unit'};
     Values = {'SBML_UNIT_DEFINITION', '', '', '', []};
-    unit = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'kind', {}, 'exponent',{},  'scale', {})
+    unit = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'kind', {}, ...
+      'exponent',{},  'scale', {})
 else
+  if (sbmlVersion == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name', 'id', 'unit'};
     Values = {'SBML_UNIT_DEFINITION', '', '', '', '', []};
-    unit = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'kind', {}, 'exponent',{},  'scale', {}, 'multiplier', {}, 'offset',{});
-
+    unit = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'kind', {}, ...
+      'exponent',{},  'scale', {}, 'multiplier', {}, 'offset',{});
+  elseif (sbmlVersion == 2)
+    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name', 'id', 'unit'};
+    Values = {'SBML_UNIT_DEFINITION', '', '', '', '', []};
+    unit = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'kind', {}, ...
+      'exponent',{},  'scale', {}, 'multiplier', {});
+  elseif (sbmlVersion == 3)
+    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'name', ...
+      'id', 'unit'};
+    Values = {'SBML_UNIT_DEFINITION', '', '', int32(-1), '', '', []};
+    unit = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'sboTerm', ...
+      {}, 'kind', {}, 'exponent',{},  'scale', {}, 'multiplier', {});
+  end;
 end;
 
 UnitDefinition = cell2struct(Values, SBMLfieldnames, 2);
@@ -90,7 +135,7 @@ UnitDefinition = setfield(UnitDefinition, 'unit', unit);
 warning on all;
 
 %check created structure is appropriate
-if (~isSBML_UnitDefinition(UnitDefinition, sbmlLevel))
+if (~isSBML_UnitDefinition(UnitDefinition, sbmlLevel, sbmlVersion))
     UnitDefinition = [];
     warning('Failed to create unitDefinition');
 end;

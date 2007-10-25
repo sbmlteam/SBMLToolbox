@@ -1,14 +1,11 @@
-function CompartmentVolumeRule = CompartmentVolumeRule_create(varargin)
+function CompartmentVolumeRule = CompartmentVolumeRule_create()
 %
 %   CompartmentVolumeRule_create 
-%             optionally takes an SBML level 
 %
 %             and returns 
-%               a compartmentVolumeRule structure of the required level
-%               (default level = 2)
+%               a compartmentVolumeRule structure (level 1 ONLY)
 %
 %       CompartmentVolumeRule = CompartmentVolumeRule_create
-%    OR CompartmentVolumeRule = CompartmentVolumeRule_create(sbmlLevel)
 
 
 %  Filename    :   CompartmentVolumeRule_create.m
@@ -61,24 +58,16 @@ function CompartmentVolumeRule = CompartmentVolumeRule_create(varargin)
 %  Contributor(s):
 
 
-%default level = 2
-sbmlLevel = 2;
-if (nargin == 1)
-    if ((~isIntegralNumber(varargin{1})) || (varargin{1} < 1) || (varargin{1} > 2))
-        error(sprintf('%s\n%s', 'CompartmentVolumeRule_create(sbmlLevel)', 'argument must be a valid SBML level i.e. either 1 or 2'));
-    end;
-    sbmlLevel = varargin{1};
-elseif (nargin > 1)
-    error(sprintf('%s\n%s\n%s', 'CompartmentVolumeRule_create(sbmlLevel)', 'requires either no arguments or just one', 'SEE help CompartmentVolumeRule_create'));
+%default level = 1
+sbmlLevel = 1;
+if (nargin > 0)
+    error(sprintf('%s\n%s\n%s', 'CompartmentVolumeRule_create()', ...
+      'requires no arguments', 'SEE help CompartmentVolumeRule_create'));
 end;
 
-if (sbmlLevel == 1)
-    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'type', 'formula', 'variable', 'species', 'compartment', 'name', 'units'};
-    Values = {'SBML_COMPARTMENT_VOLUME_RULE', '', '', '', '', '', '', '', '', ''};
-else
-    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'formula', 'variable', 'species', 'compartment', 'name', 'units'};
-    Values = {'SBML_COMPARTMENT_VOLUME_RULE', '', '', '', '', '', '', '', ''};
-end;
+SBMLfieldnames = {'typecode', 'notes', 'annotation', 'type', 'formula', ...
+  'variable', 'species', 'compartment', 'name', 'units'};
+Values = {'SBML_COMPARTMENT_VOLUME_RULE', '', '', '', '', '', '', '', '', ''};
 
 CompartmentVolumeRule = cell2struct(Values, SBMLfieldnames, 2);
 
