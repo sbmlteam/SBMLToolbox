@@ -83,7 +83,13 @@ SBMLLevel = 1;
 if (~isSBML_Species(SBMLSpecies, 1))
     SBMLLevel = 2;
     if(~isSBML_Species(SBMLSpecies, 2))
-        error('Species_determineRoleInReaction(SBMLSpecies, SBMLReaction)\n%s', 'first input must be an SBML Species structure');
+        SBMLVersion = 2;
+        if(~isSBML_Species(SBMLSpecies, 2, 2))
+            SBMLVersion = 3;
+            if (~isSBML_Species(SBMLSpecies, 2, 3))
+                error('Species_determineRoleInReaction(SBMLSpecies, SBMLReaction)\n%s', 'first input must be an SBML Species structure');
+            end;
+        end;
     end;
 end;
 

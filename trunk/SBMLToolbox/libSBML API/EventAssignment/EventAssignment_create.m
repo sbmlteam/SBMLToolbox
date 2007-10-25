@@ -1,10 +1,16 @@
-function EventAssignment = EventAssignment_create
+function EventAssignment = EventAssignment_create(varargin)
 %
 %   EventAssignment_create 
+%             optionally takes an SBML level (which must be 2)
+%             optionally takes an SBML version
+%
 %             returns 
-%               a eventAssignment structure
+%               an eventAssignment structure of the required level and version
+%               (default level = 2 version = 3)
 %
 %       EventAssignment = EventAssignment_create
+%    OR EventAssignment = EventAssignment_create(sbmlLevel)
+%    OR EventAssignment = EventAssignment_create(sbmlLevel, sbmlVersion)
 
 
 %  Filename    :   EventAssignment_create.m
@@ -58,18 +64,50 @@ function EventAssignment = EventAssignment_create
 
 
 %default level = 2
+%default version = 3
 sbmlLevel = 2;
-if (nargin > 0)
-    error(sprintf('%s\n%s\n%s', 'EventAssignment_create(sbmlLevel)', 'requires no arguments', 'SEE help EventAssignment_create'));
+sbmlVersion = 3;
+if (nargin > 2)
+  error(sprintf('%s\n%s\n%s', ...
+    'EventAssignment_create(sbmlLevel, sbmlVersion)', ...
+    'requires either zero, one or two arguments', ...
+    'SEE help EventAssignment_create'));
+
+elseif (nargin == 2)
+  if ((~isIntegralNumber(varargin{1})) || (varargin{1} ~= 2))
+    error(sprintf('%s\n%s', 'EventAssignment_create(sbmlLevel, sbmlVersion)', ...
+      'first argument must be 2'));
+  elseif ((~isIntegralNumber(varargin{2})) || (varargin{2} < 1) || (varargin{2} > 3))
+    error(sprintf('%s\n%s', 'EventAssignment_create(sbmlLevel, sbmlVersion)', ...
+      'second argument must be a valid SBML version i.e. either 1, 2 or 3'));
+  end;
+  sbmlVersion = varargin{2};
+    
+elseif (nargin == 1)
+  if ((~isIntegralNumber(varargin{1})) || (varargin{1} ~= 2))
+    error(sprintf('%s\n%s', 'EventAssignment_create(sbmlLevel, sbmlVersion)', ...
+      'first argument must be 2'));
+  end;
+    
 end;
 
-SBMLfieldnames = {'typecode', 'notes', 'annotation', 'variable', 'math'};
-Values = {'SBML_EVENT_ASSIGNMENT', '', '', '', ''};
+if (sbmlVersion == 1)
+  SBMLfieldnames = {'typecode', 'notes', 'annotation', 'variable', 'math'};
+  Values = {'SBML_EVENT_ASSIGNMENT', '', '', '', ''};
+elseif (sbmlVersion == 2)
+  SBMLfieldnames = {'typecode', 'notes', 'annotation', 'variable', ...
+    'sboTerm', 'math'};
+  Values = {'SBML_EVENT_ASSIGNMENT', '', '', '', int32(-1), ''};
+elseif (sbmlVersion == 3)
+  SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', ...
+    'variable', 'math'};
+  Values = {'SBML_EVENT_ASSIGNMENT', '', '', int32(-1), '', ''};
+end;
 
 EventAssignment = cell2struct(Values, SBMLfieldnames, 2);
 
 %check created structure is appropriate
-if (~isSBML_EventAssignment(EventAssignment, sbmlLevel))
+if (~isSBML_EventAssignment(EventAssignment, sbmlLevel, sbmlVersion))
     EventAssignment = [];
     warning('Failed to create eventAssignment');
 end;
