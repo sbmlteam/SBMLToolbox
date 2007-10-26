@@ -96,19 +96,19 @@ if (sbmlVersion == 1)
     'trigger', 'delay', 'timeUnits', 'eventAssignment'};
   Values = {'SBML_EVENT', '', '', '', '', '', '', '', []};
   eventAssignment = struct('typecode', {}, 'notes', {}, 'annotation', {}, ...
-    'variable', {}, 'math', {})
+    'variable', {}, 'math', {});
 elseif (sbmlVersion == 2)
   SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name', 'id', ...
     'trigger', 'delay', 'timeUnits', 'sboTerm', 'eventAssignment'};
   Values = {'SBML_EVENT', '', '', '', '', '', '', '', int32(-1), []};
   eventAssignment = struct('typecode', {}, 'notes', {}, 'annotation', {}, ...
-    'variable', {}, 'sboTerm', [], 'math', {})
+    'variable', {}, 'sboTerm', [], 'math', {});
 elseif (sbmlVersion == 3)
   SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'name', ...
     'id', 'trigger', 'delay', 'eventAssignment'};
   Values = {'SBML_EVENT', '', '', int32(-1), '', '', '', '', []};
   eventAssignment = struct('typecode', {}, 'notes', {}, 'annotation', {}, ...
-    'sboTerm', {}, 'variable', [], 'math', {})
+    'sboTerm', {}, 'variable', [], 'math', {});
 end;
 
 Event = cell2struct(Values, SBMLfieldnames, 2);
