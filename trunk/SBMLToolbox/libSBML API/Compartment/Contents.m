@@ -2,10 +2,12 @@
 %
 % Files
 %   Compartment_create               - Compartment_create 
+%   Compartment_getCompartmentType   - Compartment_getCompartmentType 
 %   Compartment_getConstant          - Compartment_getConstant 
 %   Compartment_getId                - Compartment_getId 
 %   Compartment_getName              - Compartment_getName 
 %   Compartment_getOutside           - Compartment_getOutside 
+%   Compartment_getSBOTerm           - Compartment_getSBOTerm 
 %   Compartment_getSize              - Compartment_getSize 
 %   Compartment_getSpatialDimensions - Compartment_getSpatialDimensions 
 %   Compartment_getUnits             - Compartment_getUnits 
@@ -18,10 +20,12 @@
 %   Compartment_isSetVolume          - Compartment_isSetVolume 
 %   Compartment_moveIdToName         - Compartment_moveIdToName 
 %   Compartment_moveNameToId         - Compartment_moveNameToId 
+%   Compartment_setCompartmentType   - Compartment_setCompartmentType 
 %   Compartment_setConstant          - Compartment_setConstant 
 %   Compartment_setId                - Compartment_setId 
 %   Compartment_setName              - Compartment_setName 
 %   Compartment_setOutside           - Compartment_setOutside 
+%   Compartment_setSBOTerm           - Compartment_setSBOTerm 
 %   Compartment_setSize              - Compartment_setSize 
 %   Compartment_setSpatialDimensions - Compartment_setSpatialDimensions 
 %   Compartment_setUnits             - Compartment_setUnits 
