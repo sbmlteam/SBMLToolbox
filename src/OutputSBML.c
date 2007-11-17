@@ -51,6 +51,8 @@
 #include <mex.h>
 #include <matrix.h>
 
+#include <string.h>
+
 #include "sbml/SBMLReader.h"
 #include "sbml/SBMLTypes.h"
 
@@ -81,7 +83,7 @@ void GetParameterFromKineticLaw ( mxArray *, unsigned int, unsigned int, Kinetic
 
 mxArray * mxModel[1];
 
-void FreeMem()
+void FreeMem(void)
 {
 	/* destroy arrays created */
 	mxDestroyArray(mxModel[0]);
@@ -134,7 +136,7 @@ mexFunction (int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 	* create a copy of the input
 	*/	
 	mxModel[0] = mxDuplicateArray(prhs[0]);
-
+    mexMakeArrayPersistent(mxModel[0]);
 	mexAtExit(FreeMem);
 
 /**
@@ -215,7 +217,7 @@ mexFunction (int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
       mexErrMsgTxt("Cannot copy typecode");
   }
 
-	SBase_init(sbmlModel, CharToTypecode(pacTypecode));
+	/*SBase_init(sbmlModel, CharToTypecode(pacTypecode)); */
 
 	
 	/* get notes */
@@ -229,7 +231,7 @@ mexFunction (int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
       mexErrMsgTxt("Cannot copy notes");
   }
 
-	SBase_setNotes(sbmlModel, pacNotes);
+	/*SBase_setNotes(sbmlModel, pacNotes); */
 
 	
   /* get annotations  */
@@ -257,7 +259,7 @@ mexFunction (int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
       pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));    
   }
 
-	SBase_setAnnotation(sbmlModel, pacAnnotationString);
+	/*SBase_setAnnotation(sbmlModel, pacAnnotationString); */
 
 	/* get name */
 	mxName = mxGetField(mxModel[0], 0, "name");
@@ -604,7 +606,7 @@ GetCompartment (mxArray * mxCompartments,
 			mexErrMsgTxt("Cannot copy typecode");
 		}
 
-		SBase_init(pCompartment, CharToTypecode(pacTypecode));
+		/*SBase_init(pCompartment, CharToTypecode(pacTypecode)); */
 
 
 		/* get notes */
@@ -618,7 +620,7 @@ GetCompartment (mxArray * mxCompartments,
 			mexErrMsgTxt("Cannot copy notes");
 		}
 
-		SBase_setNotes(pCompartment, pacNotes);
+		/*SBase_setNotes(pCompartment, pacNotes); */
 
 
 		/* get annotations */
@@ -645,7 +647,7 @@ GetCompartment (mxArray * mxCompartments,
         pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));
     }
 
-		SBase_setAnnotation(pCompartment, pacAnnotationString);
+		/*SBase_setAnnotation(pCompartment, pacAnnotationString); */
 
 
 		/* get name */
@@ -828,7 +830,7 @@ GetCompartment (mxArray * mxCompartments,
 			mexErrMsgTxt("Cannot copy typecode");
 		}
 
-		SBase_init(pParameter, CharToTypecode(pacTypecode));
+		/*SBase_init(pParameter, CharToTypecode(pacTypecode)); */
 
 
 		/* get notes */
@@ -842,7 +844,7 @@ GetCompartment (mxArray * mxCompartments,
 			mexErrMsgTxt("Cannot copy notes");
 		}
 
-		SBase_setNotes(pParameter, pacNotes);
+		/*SBase_setNotes(pParameter, pacNotes); */
 
 
 		/* get annotations */
@@ -869,7 +871,7 @@ GetCompartment (mxArray * mxCompartments,
         pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));
     }
 
-		SBase_setAnnotation(pParameter, pacAnnotationString);
+		/*SBase_setAnnotation(pParameter, pacAnnotationString); */
 
 
 		/* get name */
@@ -1025,7 +1027,7 @@ GetCompartment (mxArray * mxCompartments,
 			mexErrMsgTxt("Cannot copy typecode");
 		}
 
-		SBase_init(pSpecies, CharToTypecode(pacTypecode));
+		/*SBase_init(pSpecies, CharToTypecode(pacTypecode)); */
 
 
 		/* get notes */
@@ -1039,7 +1041,7 @@ GetCompartment (mxArray * mxCompartments,
 			mexErrMsgTxt("Cannot copy notes");
 		}
 
-		SBase_setNotes(pSpecies, pacNotes);
+		/*SBase_setNotes(pSpecies, pacNotes); */
 
 
 		/* get annotations */
@@ -1067,7 +1069,7 @@ GetCompartment (mxArray * mxCompartments,
     }
 
 
-		SBase_setAnnotation(pSpecies, pacAnnotationString);
+		/*SBase_setAnnotation(pSpecies, pacAnnotationString); */
 
 
 		/* get name */
@@ -1440,10 +1442,10 @@ GetCompartment (mxArray * mxCompartments,
       case SBML_ASSIGNMENT_RULE:
         pAssignRule = AssignmentRule_create();
 
-        SBase_init((Rule_t *)pAssignRule, CharToTypecode(pacTypecode));
+        /*SBase_init((Rule_t *)pAssignRule, CharToTypecode(pacTypecode)); */
         AssignmentRule_setVariable(pAssignRule, pacVariable);			
-        SBase_setNotes(pAssignRule, pacNotes);
-        SBase_setAnnotation(pAssignRule, pacAnnotationString);
+        /*SBase_setNotes(pAssignRule, pacNotes); */
+        /*SBase_setAnnotation(pAssignRule, pacAnnotationString); */
 
         if (unSBMLLevel == 1)
         {
@@ -1463,9 +1465,9 @@ GetCompartment (mxArray * mxCompartments,
       case SBML_ALGEBRAIC_RULE:
         pAlgRule = AlgebraicRule_create();
 
-        SBase_init((Rule_t *)pAlgRule, CharToTypecode(pacTypecode));
-        SBase_setNotes(pAlgRule, pacNotes);
-        SBase_setAnnotation(pAlgRule, pacAnnotationString);
+        /*SBase_init((Rule_t *)pAlgRule, CharToTypecode(pacTypecode)); */
+        /*SBase_setNotes(pAlgRule, pacNotes); */
+        /*SBase_setAnnotation(pAlgRule, pacAnnotationString); */
 
         if (unSBMLLevel == 1)
         {
@@ -1484,10 +1486,10 @@ GetCompartment (mxArray * mxCompartments,
       case SBML_RATE_RULE:
         pRateRule = RateRule_create();
 
-        SBase_init((Rule_t *)pRateRule, CharToTypecode(pacTypecode));
+        /*SBase_init((Rule_t *)pRateRule, CharToTypecode(pacTypecode)); */
         RateRule_setVariable(pRateRule, pacVariable);			
-        SBase_setNotes(pRateRule, pacNotes);
-        SBase_setAnnotation(pRateRule, pacAnnotationString);
+        /*SBase_setNotes(pRateRule, pacNotes); */
+        /*SBase_setAnnotation(pRateRule, pacAnnotationString); */
 
         if (unSBMLLevel == 1)
         {
@@ -1506,10 +1508,10 @@ GetCompartment (mxArray * mxCompartments,
       case SBML_SPECIES_CONCENTRATION_RULE:
         pSpeciesConcentrationRule = SpeciesConcentrationRule_create();
 
-        SBase_init((Rule_t *)pSpeciesConcentrationRule, CharToTypecode(pacTypecode));
+        /*SBase_init((Rule_t *)pSpeciesConcentrationRule, CharToTypecode(pacTypecode)); */
         SpeciesConcentrationRule_setSpecies(pSpeciesConcentrationRule, pacSpecies);			
-        SBase_setNotes(pSpeciesConcentrationRule, pacNotes);
-        SBase_setAnnotation(pSpeciesConcentrationRule, pacAnnotationString);
+        /*SBase_setNotes(pSpeciesConcentrationRule, pacNotes); */
+        /*SBase_setAnnotation(pSpeciesConcentrationRule, pacAnnotationString); */
 
         if (unSBMLLevel == 1)
         {
@@ -1529,10 +1531,10 @@ GetCompartment (mxArray * mxCompartments,
       case SBML_COMPARTMENT_VOLUME_RULE:
         pCompartmentVolumeRule = CompartmentVolumeRule_create();
 
-        SBase_init((Rule_t *)pCompartmentVolumeRule, CharToTypecode(pacTypecode));
+        /*SBase_init((Rule_t *)pCompartmentVolumeRule, CharToTypecode(pacTypecode)); */
         CompartmentVolumeRule_setCompartment(pCompartmentVolumeRule, pacCompartment);			
-        SBase_setNotes(pCompartmentVolumeRule, pacNotes);
-        SBase_setAnnotation(pCompartmentVolumeRule, pacAnnotationString);
+        /*SBase_setNotes(pCompartmentVolumeRule, pacNotes); */
+        /*SBase_setAnnotation(pCompartmentVolumeRule, pacAnnotationString); */
 
         if (unSBMLLevel == 1)
         {
@@ -1552,11 +1554,11 @@ GetCompartment (mxArray * mxCompartments,
       case SBML_PARAMETER_RULE:
         pParameterRule = ParameterRule_create();
 
-        SBase_init((Rule_t *)pParameterRule, CharToTypecode(pacTypecode));
+        /*SBase_init((Rule_t *)pParameterRule, CharToTypecode(pacTypecode)); */
         ParameterRule_setName(pParameterRule, pacName);			
         ParameterRule_setUnits(pParameterRule, pacUnits);			
-        SBase_setNotes(pParameterRule, pacNotes);
-        SBase_setAnnotation(pParameterRule, pacAnnotationString);
+        /*SBase_setNotes(pParameterRule, pacNotes); */
+        /*SBase_setAnnotation(pParameterRule, pacAnnotationString); */
 
         if (unSBMLLevel == 1)
         {
@@ -1650,7 +1652,7 @@ GetUnitDefinition ( mxArray * mxUnitDefinitions,
 			mexErrMsgTxt("Cannot copy typecode");
 		}
 
-		SBase_init(pUnitDefinition, CharToTypecode(pacTypecode));
+		/*SBase_init(pUnitDefinition, CharToTypecode(pacTypecode)); */
 
 
 		/* get notes */
@@ -1664,7 +1666,7 @@ GetUnitDefinition ( mxArray * mxUnitDefinitions,
 			mexErrMsgTxt("Cannot copy notes");
 		}
 
-		SBase_setNotes(pUnitDefinition, pacNotes);
+		/*SBase_setNotes(pUnitDefinition, pacNotes); */
 
 
 		/* get annotations */
@@ -1692,7 +1694,7 @@ GetUnitDefinition ( mxArray * mxUnitDefinitions,
     }
 
 
-		SBase_setAnnotation(pUnitDefinition, pacAnnotationString);
+		/*SBase_setAnnotation(pUnitDefinition, pacAnnotationString); */
 
 
 		/* get name */
@@ -1806,7 +1808,7 @@ GetUnit ( mxArray * mxUnits,
 			mexErrMsgTxt("Cannot copy typecode");
 		}
 
-		SBase_init(pUnit, CharToTypecode(pacTypecode));
+		/*SBase_init(pUnit, CharToTypecode(pacTypecode)); */
 
 
 		/* get notes */
@@ -1820,7 +1822,7 @@ GetUnit ( mxArray * mxUnits,
 			mexErrMsgTxt("Cannot copy notes");
 		}
 
-		SBase_setNotes(pUnit, pacNotes);
+		/*SBase_setNotes(pUnit, pacNotes); */
 
 
 		/* get annotations */
@@ -1848,7 +1850,7 @@ GetUnit ( mxArray * mxUnits,
     }
 
 
-		SBase_setAnnotation(pUnit, pacAnnotationString);
+		/*SBase_setAnnotation(pUnit, pacAnnotationString); */
 
 
 		/* get kind */
@@ -1968,7 +1970,7 @@ GetUnit ( mxArray * mxUnits,
 			mexErrMsgTxt("Cannot copy typecode");
 		}
 
-		SBase_init(pReaction, CharToTypecode(pacTypecode));
+		/*SBase_init(pReaction, CharToTypecode(pacTypecode)); */
 
 
 		/* get notes */
@@ -1982,7 +1984,7 @@ GetUnit ( mxArray * mxUnits,
 			mexErrMsgTxt("Cannot copy notes");
 		}
 
-		SBase_setNotes(pReaction, pacNotes);
+		/*SBase_setNotes(pReaction, pacNotes); */
 
 
 		/* get annotations */
@@ -2010,7 +2012,7 @@ GetUnit ( mxArray * mxUnits,
         pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));
     }
 
-		SBase_setAnnotation(pReaction, pacAnnotationString);
+		/*SBase_setAnnotation(pReaction, pacAnnotationString); */
 
 
 		/* get name */
@@ -2169,7 +2171,7 @@ GetUnit ( mxArray * mxUnits,
       mexErrMsgTxt("Cannot copy typecode");
   }
   
-  SBase_init(pKineticLaw, CharToTypecode(pacTypecode));
+  /*SBase_init(pKineticLaw, CharToTypecode(pacTypecode)); */
   
   
   /* get notes */
@@ -2183,7 +2185,7 @@ GetUnit ( mxArray * mxUnits,
       mexErrMsgTxt("Cannot copy notes");
   }
   
-  SBase_setNotes(pKineticLaw, pacNotes);
+  /*SBase_setNotes(pKineticLaw, pacNotes); */
   
   
   /* get annotations */
@@ -2211,7 +2213,7 @@ GetUnit ( mxArray * mxUnits,
   }
 
    
-  SBase_setAnnotation(pKineticLaw, pacAnnotationString);
+  /*SBase_setAnnotation(pKineticLaw, pacAnnotationString); */
 
   /* get formula */
   mxFormula = mxGetField(mxKineticLaw, 0, "formula");
@@ -2354,7 +2356,7 @@ GetUnit ( mxArray * mxUnits,
 			mexErrMsgTxt("Cannot copy typecode");
 		}
 
-		SBase_init(pSpeciesReference, CharToTypecode(pacTypecode));
+		/*SBase_init(pSpeciesReference, CharToTypecode(pacTypecode)); */
 
 
 		/* get notes */
@@ -2368,7 +2370,7 @@ GetUnit ( mxArray * mxUnits,
 			mexErrMsgTxt("Cannot copy notes");
 		}
 
-		SBase_setNotes(pSpeciesReference, pacNotes);
+		/*SBase_setNotes(pSpeciesReference, pacNotes); */
 
 
 		/* get annotations */
@@ -2395,7 +2397,7 @@ GetUnit ( mxArray * mxUnits,
         pacAnnotationString = (char *)mxCalloc(nBuflen, sizeof(char));
     }
 
-		SBase_setAnnotation(pSpeciesReference, pacAnnotationString);
+		/*SBase_setAnnotation(pSpeciesReference, pacAnnotationString); */
 
 
 		/* get Species */
@@ -2531,7 +2533,7 @@ GetUnit ( mxArray * mxUnits,
 			mexErrMsgTxt("Cannot copy typecode");
 		}
 
-		SBase_init(pSpeciesReference, CharToTypecode(pacTypecode));
+		/*SBase_init(pSpeciesReference, CharToTypecode(pacTypecode)); */
 
 
 		/* get notes */
@@ -2545,7 +2547,7 @@ GetUnit ( mxArray * mxUnits,
 			mexErrMsgTxt("Cannot copy notes");
 		}
 
-		SBase_setNotes(pSpeciesReference, pacNotes);
+		/*SBase_setNotes(pSpeciesReference, pacNotes); */
 
 
 		/* get annotations */
@@ -2573,7 +2575,7 @@ GetUnit ( mxArray * mxUnits,
     }
 
 
-		SBase_setAnnotation(pSpeciesReference, pacAnnotationString);
+		/*SBase_setAnnotation(pSpeciesReference, pacAnnotationString); */
 
 
 		/* get Species */
@@ -2662,7 +2664,7 @@ GetUnit ( mxArray * mxUnits,
 			mexErrMsgTxt("Cannot copy typecode");
 		}
 
-		SBase_init(pParameter, CharToTypecode(pacTypecode));
+		/*SBase_init(pParameter, CharToTypecode(pacTypecode)); */
 
 
 		/* get notes */
@@ -2676,7 +2678,7 @@ GetUnit ( mxArray * mxUnits,
 			mexErrMsgTxt("Cannot copy notes");
 		}
 
-		SBase_setNotes(pParameter, pacNotes);
+		/*SBase_setNotes(pParameter, pacNotes); */
 
 
 		/* get annotations */
@@ -2705,7 +2707,7 @@ GetUnit ( mxArray * mxUnits,
     }
 
 
-		SBase_setAnnotation(pParameter, pacAnnotationString);
+		/*SBase_setAnnotation(pParameter, pacAnnotationString); */
 
 
 		/* get name */
@@ -2848,7 +2850,7 @@ GetFunctionDefinition ( mxArray * mxFunctionDefinitions,
 			mexErrMsgTxt("Cannot copy typecode");
 		}
 
-		SBase_init(pFuncDefinition, CharToTypecode(pacTypecode));
+		/*SBase_init(pFuncDefinition, CharToTypecode(pacTypecode)); */
 
 
 		/* get notes */
@@ -2862,7 +2864,7 @@ GetFunctionDefinition ( mxArray * mxFunctionDefinitions,
 			mexErrMsgTxt("Cannot copy notes");
 		}
 
-		SBase_setNotes(pFuncDefinition, pacNotes);
+		/*SBase_setNotes(pFuncDefinition, pacNotes); */
 
 
 		/* get annotations */
@@ -2890,7 +2892,7 @@ GetFunctionDefinition ( mxArray * mxFunctionDefinitions,
     }
 
 
-		SBase_setAnnotation(pFuncDefinition, pacAnnotationString);
+		/*SBase_setAnnotation(pFuncDefinition, pacAnnotationString); */
 
 
 		/* get name */
@@ -3004,7 +3006,7 @@ GetEvent ( mxArray * mxEvents,
 			mexErrMsgTxt("Cannot copy typecode");
 		}
 
-		SBase_init(pEvent, CharToTypecode(pacTypecode));
+		/*SBase_init(pEvent, CharToTypecode(pacTypecode)); */
 
 
 		/* get notes */
@@ -3018,7 +3020,7 @@ GetEvent ( mxArray * mxEvents,
 			mexErrMsgTxt("Cannot copy notes");
 		}
 
-		SBase_setNotes(pEvent, pacNotes);
+		/*SBase_setNotes(pEvent, pacNotes); */
 
 
 		/* get annotations */
@@ -3046,7 +3048,7 @@ GetEvent ( mxArray * mxEvents,
     }
 
 
-		SBase_setAnnotation(pEvent, pacAnnotationString);
+		/*SBase_setAnnotation(pEvent, pacAnnotationString); */
 
 
 		/* get name */
@@ -3196,7 +3198,7 @@ GetEventAssignment ( mxArray * mxEventAssignment,
 			mexErrMsgTxt("Cannot copy typecode");
 		}
 
-		SBase_init(pEventAssignment, CharToTypecode(pacTypecode));
+		/*SBase_init(pEventAssignment, CharToTypecode(pacTypecode)); */
 
 
 		/* get notes */
@@ -3210,7 +3212,7 @@ GetEventAssignment ( mxArray * mxEventAssignment,
 			mexErrMsgTxt("Cannot copy notes");
 		}
 
-		SBase_setNotes(pEventAssignment, pacNotes);
+		/*SBase_setNotes(pEventAssignment, pacNotes); */
 
 
 		/* get annotations */
@@ -3238,7 +3240,7 @@ GetEventAssignment ( mxArray * mxEventAssignment,
     }
 
 
-		SBase_setAnnotation(pEventAssignment, pacAnnotationString);
+		/*SBase_setAnnotation(pEventAssignment, pacAnnotationString); */
 
 
 		/* get Variable */
