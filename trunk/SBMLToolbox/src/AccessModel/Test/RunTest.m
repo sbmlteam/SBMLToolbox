@@ -131,7 +131,7 @@ if (fail == 1)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 1;
+test = test + 2;
 fail = TestGetStoichiometryMatrix;
 if (fail == 1)
     disp('GetStoichiometryMatrix failed');
@@ -165,6 +165,14 @@ if (fail > 0)
     disp('GetSpeciesTypes failed');
 end;
 Totalfail = Totalfail + fail;
+
+test = test + 3;
+fail = TestGetStoichiometrySparse;
+if (fail == 1)
+    disp('GetStoichiometrySparse failed');
+end;
+Totalfail = Totalfail + fail;
+
 
 disp(sprintf('Number tests: %d', test));
 disp(sprintf('Number fails: %d', Totalfail));
