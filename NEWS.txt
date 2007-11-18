@@ -1,5 +1,29 @@
     SBMLToolbox NEWS -- History of user-visible changes
 
+
+Version 3.0.0
+
+ - uses libSBML-3.0.2
+ 
+ - The TranslateSBML function has a second optional argument
+   that indicates whether the model is to be validated prior 
+   to import. The default value is 0; indicating no 
+   validation. In the case of no argument to the function; 
+   which opens a browse window to locate the file to import; 
+   the user is prompted to indicate whether validation should 
+   be done. In the case of validation errors these are 
+   displayed to the user, who will be prompted as to 
+   whether to import the model regardless.
+ 
+ - removed the ReadAndValidate function as this was 
+   essentially a version of TranslateSBML that
+   performed validation.
+ 
+ - added support for SBML Level 2 Version 2 and
+   Level 2 Version 3. This support does not extend
+   to the GUI's that could be used to view individual
+   components of a model. 
+
 caught bug in the scripts to build the executables
 - these need two include directories specified
 to deal with the fact that the binding exists as part
