@@ -61,3 +61,10 @@ matrix = [-1, 0; 1, -1; 0, 1; 0, 0];
 species = {'S1', 'S2', 'S3', 'X'};
 
 fail = TestFunction('GetStoichiometryMatrix', 1, 2, m, matrix, species);
+
+m = TranslateSBML('test3_l2v2.xml');
+
+matrix = [-1, 0; 1, -1; 0, 1; 0, 0];
+species = {'S1', 'S2', 'S3', 'X'};
+
+fail = TestFunction('GetStoichiometryMatrix', 1, 2, m, matrix, species);
