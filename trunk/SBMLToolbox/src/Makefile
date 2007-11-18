@@ -58,7 +58,6 @@ LIBS      = -lsbml
 
 programs = \
 		TranslateSBML.mexglx			\
-		ReadAndValidateSBML.mexglx		\
 	   	OutputSBML.mexglx				
 
 all: $(programs)
@@ -70,8 +69,6 @@ TranslateSBML.mexglx: TranslateSBML.c
 OutputSBML.mexglx: OutputSBML.c
 	$(MEX) $(XCFLAGS) $(XCPPFLAGS) $(XLDFLAGS) $^ $(LIBS)
 
-ReadAndValidateSBML.mexglx: ReadAndValidateSBML.c
-	$(MEX) $(XCFLAGS) $(XCPPFLAGS) $(XLDFLAGS) $^ $(LIBS)
 
 clean:
 	/bin/rm -f $(programs) *~
