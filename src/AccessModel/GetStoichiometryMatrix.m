@@ -113,17 +113,27 @@ for i = 1:NumSpecies
         while (TotalOccurences > 0) %
 
             if(NoProducts > 0)
-                stoichiometry = SBMLModel.reaction(j).product(SpeciesRole(4)).stoichiometry/double(SBMLModel.reaction(j).product(SpeciesRole(4)).denominator);
                 if ((SBMLModel.SBML_level == 2) && (~isempty(SBMLModel.reaction(j).product(SpeciesRole(4)).stoichiometryMath)))
                     error('GetStoichiometryMatrix(SBMLModel)\n%s', 'stoichiometry has been entered as a formula');
                 end;
+                if (SBMLModel.SBML_level == 2 && SBMLModel.SBML_version > 1)
+                  denominator = 1.0;
+                else
+                  denominator = double(SBMLModel.reaction(j).product(SpeciesRole(4)).denominator);
+                end;
+                stoichiometry = SBMLModel.reaction(j).product(SpeciesRole(4)).stoichiometry/denominator;
                 StoichiometryMatrix(i,j) = stoichiometry;
                 NoProducts = NoProducts - 1;
             elseif (NoReactants > 0)
-                stoichiometry = SBMLModel.reaction(j).reactant(SpeciesRole(5)).stoichiometry/double(SBMLModel.reaction(j).reactant(SpeciesRole(5)).denominator);
                 if ((SBMLModel.SBML_level == 2) && (~isempty(SBMLModel.reaction(j).reactant(SpeciesRole(5)).stoichiometryMath)))
                     error('GetStoichiometryMatrix(SBMLModel)\n%s', 'stoichiometry has been entered as a formula');
                 end;
+                if (SBMLModel.SBML_level == 2 && SBMLModel.SBML_version > 1)
+                  denominator = 1.0;
+                else
+                  denominator = double(SBMLModel.reaction(j).reactant(SpeciesRole(5)).denominator);
+                end;
+                stoichiometry = SBMLModel.reaction(j).reactant(SpeciesRole(5)).stoichiometry/denominator;
                 StoichiometryMatrix(i,j) = - stoichiometry;
                 NoReactants = NoReactants - 1;
             end;
