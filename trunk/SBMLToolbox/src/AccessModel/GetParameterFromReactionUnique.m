@@ -69,7 +69,10 @@ if (~isSBML_Reaction(SBMLReaction, 1))
     if(~isSBML_Reaction(SBMLReaction, 2))
         Version = 2;
         if (~isSBML_Reaction(SBMLReaction, 2, 2))
-            error('GetParameterFromReactionUnique(SBMLReaction)\n%s', 'input must be an SBMLReaction structure');
+            SBMLVersion = 3;
+            if (~isSBML_Reaction(SBMLReaction, 2, 3))
+                error('GetParameterFromReactionUnique(SBMLReaction)\n%s', 'input must be an SBMLReaction structure');
+            end;
         end;
     end;
 end;
