@@ -69,7 +69,7 @@ if (~isSBML_Model(SBMLModel))
     error(sprintf('%s\n%s', 'Model_createProduct(SBMLModel)', 'first argument must be an SBML model structure'));
 end;
 
-product = SpeciesReference_create(SBMLModel.SBML_level);
+product = SpeciesReference_create(SBMLModel.SBML_level, SBMLModel.SBML_version);
 
 if (length(SBMLModel.reaction) == 0)
     product = [];

@@ -69,7 +69,7 @@ if (~isSBML_Model(SBMLModel))
     error(sprintf('%s\n%s', 'Model_createKineticLaw(SBMLModel)', 'first argument must be an SBML model structure'));
 end;
 
-kineticLaw = KineticLaw_create(SBMLModel.SBML_level);
+kineticLaw = KineticLaw_create(SBMLModel.SBML_level, SBMLModel.SBML_version);
 
 if (length(SBMLModel.reaction) == 0)
     kineticLaw = [];

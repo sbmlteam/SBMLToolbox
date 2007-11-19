@@ -71,7 +71,7 @@ elseif (SBMLModel.SBML_level ~= 2)
     error(sprintf('%s\n%s', 'Model_createEventAssignment(SBMLModel)', 'no events in a level 1 model'));
 end;
 
-eventAssignment = EventAssignment_create;
+eventAssignment = EventAssignment_create(SBMLModel.SBML_level, SBMLModel.SBML_version);
 
 if (length(SBMLModel.event) == 0)
     eventAssignment = [];

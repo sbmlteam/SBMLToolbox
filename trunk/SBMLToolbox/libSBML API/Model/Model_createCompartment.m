@@ -67,6 +67,6 @@ if (~isSBML_Model(SBMLModel))
     error(sprintf('%s\n%s', 'Model_createCompartment(SBMLModel)', 'first argument must be an SBML model structure'));
 end;
 
-compartment = Compartment_create(SBMLModel.SBML_level);
+compartment = Compartment_create(SBMLModel.SBML_level, SBMLModel.SBML_version);
 
 SBMLModel = Model_addCompartment(SBMLModel, compartment);

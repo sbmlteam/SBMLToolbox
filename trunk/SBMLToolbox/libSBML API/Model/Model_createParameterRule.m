@@ -67,6 +67,6 @@ if (~isSBML_Model(SBMLModel))
     error(sprintf('%s\n%s', 'Model_createParameterRule(SBMLModel)', 'first argument must be an SBML model structure'));
 end;
 
-parameterRule = ParameterRule_create(SBMLModel.SBML_level);
+parameterRule = ParameterRule_create(SBMLModel.SBML_level, SBMLModel.SBML_version);
 
 SBMLModel = Model_addRule(SBMLModel, parameterRule);

@@ -67,6 +67,6 @@ if (~isSBML_Model(SBMLModel))
     error(sprintf('%s\n%s', 'Model_createRateRule(SBMLModel)', 'first argument must be an SBML model structure'));
 end;
 
-rateRule = RateRule_create(SBMLModel.SBML_level);
+rateRule = RateRule_create(SBMLModel.SBML_level, SBMLModel.SBML_version);
 
 SBMLModel = Model_addRule(SBMLModel, rateRule);
