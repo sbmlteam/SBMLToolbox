@@ -1,18 +1,18 @@
-function [species, SBMLModel] = Model_createSpecies(SBMLModel)
+function [constraint, SBMLModel] = Model_createConstraint(SBMLModel)
 %
-%   Model_createSpecies 
+%   Model_createConstraint 
 %             takes an SBMLModel structure 
 %
 %             and returns 
-%               as first argument the species structure created
+%               as first argument the constraint structure created
 %               within the model
 %               and as second argument the SBML model structure with the
-%               created species
+%               created constraint
 %
-%       [species, SBMLModel] = Model_createSpecies(SBMLModel)
+%       [constraint, SBMLModel] = Model_createConstraint(SBMLModel)
 
 
-%  Filename    :   Model_createSpecies.m
+%  Filename    :   Model_createConstraint.m
 %  Description : 
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
 %  Organization:   University of Hertfordshire STRI
@@ -64,9 +64,13 @@ function [species, SBMLModel] = Model_createSpecies(SBMLModel)
 
 % check that input is correct
 if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_createSpecies(SBMLModel)', 'first argument must be an SBML model structure'));
+    error(sprintf('%s\n%s', 'Model_createConstraint(SBMLModel)', 'first argument must be an SBML model structure'));
+elseif (SBMLModel.SBML_level ~= 2)
+    error(sprintf('%s\n%s', 'Model_createConstraint(SBMLModel)', 'no constraints in a level 1 model'));   
+elseif (SBMLModel.SBML_version == 1)
+    error(sprintf('%s\n%s', 'Model_createConstraint(SBMLModel)', 'no constraints in a level 2 version 1 model'));   
 end;
 
-species = Species_create(SBMLModel.SBML_level, SBMLModel.SBML_version);
+constraint = Constraint_create(SBMLModel.SBML_level, SBMLModel.SBML_version);
 
-SBMLModel = Model_addSpecies(SBMLModel, species);
+SBMLModel = Model_addConstraint(SBMLModel, constraint);

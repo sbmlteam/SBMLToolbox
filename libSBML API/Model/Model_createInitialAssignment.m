@@ -1,18 +1,18 @@
-function [species, SBMLModel] = Model_createSpecies(SBMLModel)
+function [initialAssignment, SBMLModel] = Model_createInitialAssignment(SBMLModel)
 %
-%   Model_createSpecies 
+%   Model_createInitialAssignment 
 %             takes an SBMLModel structure 
 %
 %             and returns 
-%               as first argument the species structure created
+%               as first argument the initialAssignment structure created
 %               within the model
 %               and as second argument the SBML model structure with the
-%               created species
+%               created initialAssignment
 %
-%       [species, SBMLModel] = Model_createSpecies(SBMLModel)
+%       [initialAssignment, SBMLModel] = Model_createInitialAssignment(SBMLModel)
 
 
-%  Filename    :   Model_createSpecies.m
+%  Filename    :   Model_createInitialAssignment.m
 %  Description : 
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
 %  Organization:   University of Hertfordshire STRI
@@ -64,9 +64,13 @@ function [species, SBMLModel] = Model_createSpecies(SBMLModel)
 
 % check that input is correct
 if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_createSpecies(SBMLModel)', 'first argument must be an SBML model structure'));
+    error(sprintf('%s\n%s', 'Model_createInitialAssignment(SBMLModel)', 'first argument must be an SBML model structure'));
+elseif (SBMLModel.SBML_level ~= 2)
+    error(sprintf('%s\n%s', 'Model_createInitialAssignment(SBMLModel)', 'no initialAssignments in a level 1 model'));   
+elseif (SBMLModel.SBML_version == 1)
+    error(sprintf('%s\n%s', 'Model_createInitialAssignment(SBMLModel)', 'no initialAssignments in a level 2 version 1 model'));   
 end;
 
-species = Species_create(SBMLModel.SBML_level, SBMLModel.SBML_version);
+initialAssignment = InitialAssignment_create(SBMLModel.SBML_level, SBMLModel.SBML_version);
 
-SBMLModel = Model_addSpecies(SBMLModel, species);
+SBMLModel = Model_addInitialAssignment(SBMLModel, initialAssignment);

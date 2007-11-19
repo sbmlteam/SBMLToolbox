@@ -67,6 +67,6 @@ if (~isSBML_Model(SBMLModel))
     error(sprintf('%s\n%s', 'Model_createAssignmentRule(SBMLModel)', 'first argument must be an SBML model structure'));
 end;
 
-assignmentRule = AssignmentRule_create(SBMLModel.SBML_level);
+assignmentRule = AssignmentRule_create(SBMLModel.SBML_level, SBMLModel.SBML_version);
 
 SBMLModel = Model_addRule(SBMLModel, assignmentRule);

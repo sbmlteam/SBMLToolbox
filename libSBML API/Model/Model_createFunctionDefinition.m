@@ -69,6 +69,6 @@ elseif (SBMLModel.SBML_level ~= 2)
     error(sprintf('%s\n%s', 'Model_createFunctionDefinition(SBMLModel)', 'no function definitions in a level 1 model'));   
 end;
 
-functionDefinition = FunctionDefinition_create;
+functionDefinition = FunctionDefinition_create(SBMLModel.SBML_level, SBMLModel.SBML_version);
 
 SBMLModel = Model_addFunctionDefinition(SBMLModel, functionDefinition);

@@ -69,7 +69,7 @@ if (~isSBML_Model(SBMLModel))
     error(sprintf('%s\n%s', 'Model_createReactant(SBMLModel)', 'first argument must be an SBML model structure'));
 end;
 
-reactant = SpeciesReference_create(SBMLModel.SBML_level);
+reactant = SpeciesReference_create(SBMLModel.SBML_level, SBMLModel.SBML_version);
 
 if (length(SBMLModel.reaction) == 0)
     reactant = [];

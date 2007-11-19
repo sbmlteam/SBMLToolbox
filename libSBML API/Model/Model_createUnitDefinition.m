@@ -67,6 +67,6 @@ if (~isSBML_Model(SBMLModel))
     error(sprintf('%s\n%s', 'Model_createUnitDefinition(SBMLModel)', 'first argument must be an SBML model structure'));
 end;
 
-unitDefinition = UnitDefinition_create(SBMLModel.SBML_level);
+unitDefinition = UnitDefinition_create(SBMLModel.SBML_level, SBMLModel.SBML_version);
 
 SBMLModel = Model_addUnitDefinition(SBMLModel, unitDefinition);

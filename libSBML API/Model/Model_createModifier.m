@@ -71,7 +71,7 @@ elseif (SBMLModel.SBML_level ~= 2)
     error(sprintf('%s\n%s', 'Model_createModifier(SBMLModel)', 'no modifiers in a level 1 model'));
 end;
 
-modifier = ModifierSpeciesReference_create;
+modifier = ModifierSpeciesReference_create(SBMLModel.SBML_level, SBMLModel.SBML_version);
 
 if (length(SBMLModel.reaction) == 0)
     modifier = [];

@@ -67,6 +67,6 @@ if (~isSBML_Model(SBMLModel))
     error(sprintf('%s\n%s', 'Model_createSpeciesConcentrationRule(SBMLModel)', 'first argument must be an SBML model structure'));
 end;
 
-speciesConcentrationRule = SpeciesConcentrationRule_create(SBMLModel.SBML_level);
+speciesConcentrationRule = SpeciesConcentrationRule_create(SBMLModel.SBML_level, SBMLModel.SBML_version);
 
 SBMLModel = Model_addRule(SBMLModel, speciesConcentrationRule);
