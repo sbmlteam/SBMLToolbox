@@ -60,14 +60,21 @@ function SBMLModel = Model_addSpecies(SBMLModel, SBMLSpecies)
 %  Contributor(s):
 
 
-% get level
+% get level and version
 sbmlLevel = SBMLModel.SBML_level;
+sbmlVersion = SBMLModel.SBML_version;
 
 % check that input is correct
 if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_addSpecies(SBMLModel, SBMLSpecies)', 'first argument must be an SBML model structure'));
-elseif (~isSBML_Species(SBMLSpecies, sbmlLevel))
-    error(sprintf('%s\n%s\nof the same SBML level, namely level %u', 'Model_addSpecies(SBMLModel, SBMLSpecies)', 'second argument must be an SBML species structure', sbmlLevel));
+    error(sprintf('%s\n%s', ...
+    'Model_addSpecies(SBMLModel, SBMLSpecies)', ...
+    'first argument must be an SBML model structure'));
+elseif (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
+    error(sprintf('%s\n%s\n%s%u%s%u\n', ...
+    'Model_addSpecies(SBMLModel, SBMLSpecies)', ...
+    'second argument must be an SBML Species structure', ...
+    'of the same SBML level and version, namely level ', sbmlLevel, ...
+    ' version ', sbmlVersion));
 end;
 
 numberSpeciess = length(SBMLModel.species);

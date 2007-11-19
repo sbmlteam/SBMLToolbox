@@ -60,14 +60,21 @@ function SBMLModel = Model_addFunctionDefinition(SBMLModel, SBMLFunctionDefiniti
 %  Contributor(s):
 
 
-% get level
+% get level and version
 sbmlLevel = SBMLModel.SBML_level;
+sbmlVersion = SBMLModel.SBML_version;
 
 % check that input is correct
 if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_addFunctionDefinition(SBMLModel, SBMLFunctionDefinition)', 'first argument must be an SBML model structure'));
-elseif (~isSBML_FunctionDefinition(SBMLFunctionDefinition, sbmlLevel))
-    error(sprintf('%s\n%s\nof the same SBML level, namely level %u', 'Model_addFunctionDefinition(SBMLModel, SBMLFunctionDefinition)', 'second argument must be an SBML functionDefinition structure', sbmlLevel));
+    error(sprintf('%s\n%s', ...
+    'Model_addFunctionDefinition(SBMLModel, SBMLFunctionDefinition)', ...
+    'first argument must be an SBML model structure'));
+elseif (~isSBML_FunctionDefinition(SBMLFunctionDefinition, sbmlLevel, sbmlVersion))
+    error(sprintf('%s\n%s\n%s%u%s%u\n', ...
+    'Model_addFunctionDefinition(SBMLModel, SBMLFunctionDefinition)', ...
+    'second argument must be an SBML FunctionDefinition structure', ...
+    'of the same SBML level and version, namely level ', sbmlLevel, ...
+    ' version ', sbmlVersion));
 end;
 
 numberFunctionDefinitions = length(SBMLModel.functionDefinition);

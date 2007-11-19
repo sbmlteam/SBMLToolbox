@@ -60,14 +60,21 @@ function SBMLModel = Model_addUnitDefinition(SBMLModel, SBMLUnitDefinition)
 %  Contributor(s):
 
 
-% get level
+% get level and version
 sbmlLevel = SBMLModel.SBML_level;
+sbmlVersion = SBMLModel.SBML_version;
 
 % check that input is correct
 if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_addUnitDefinition(SBMLModel, SBMLUnitDefinition)', 'first argument must be an SBML model structure'));
-elseif (~isSBML_UnitDefinition(SBMLUnitDefinition, sbmlLevel))
-    error(sprintf('%s\n%s\nof the same SBML level, namely level %u', 'Model_addUnitDefinition(SBMLModel, SBMLUnitDefinition)', 'second argument must be an SBML unitDefinition structure', sbmlLevel));
+    error(sprintf('%s\n%s', ...
+    'Model_addUnitDefinition(SBMLModel, SBMLUnitDefinition)', ...
+    'first argument must be an SBML model structure'));
+elseif (~isSBML_UnitDefinition(SBMLUnitDefinition, sbmlLevel, sbmlVersion))
+    error(sprintf('%s\n%s\n%s%u%s%u\n', ...
+    'Model_addUnitDefinition(SBMLModel, SBMLUnitDefinition)', ...
+    'second argument must be an SBML UnitDefinition structure', ...
+    'of the same SBML level and version, namely level ', sbmlLevel, ...
+    ' version ', sbmlVersion));
 end;
 
 numberUnitDefinitions = length(SBMLModel.unitDefinition);
