@@ -60,14 +60,21 @@ function SBMLModel = Model_addCompartment(SBMLModel, SBMLCompartment)
 %  Contributor(s):
 
 
-% get level
+% get level and version
 sbmlLevel = SBMLModel.SBML_level;
+sbmlVersion = SBMLModel.SBML_version;
 
 % check that input is correct
 if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_addCompartment(SBMLModel, SBMLCompartment)', 'first argument must be an SBML model structure'));
-elseif (~isSBML_Compartment(SBMLCompartment, sbmlLevel))
-    error(sprintf('%s\n%s\nof the same SBML level, namely level %u', 'Model_addCompartment(SBMLModel, SBMLCompartment)', 'second argument must be an SBML compartment structure', sbmlLevel));
+    error(sprintf('%s\n%s', ...
+    'Model_addCompartment(SBMLModel, SBMLCompartment)', ...
+    'first argument must be an SBML model structure'));
+elseif (~isSBML_Compartment(SBMLCompartment, sbmlLevel, sbmlVersion))
+    error(sprintf('%s\n%s\n%s%u%s%u\n', ...
+    'Model_addCompartment(SBMLModel, SBMLCompartment)', ...
+    'second argument must be an SBML Compartment structure', ...
+    'of the same SBML level and version, namely level ', sbmlLevel, ...
+    ' version ', sbmlVersion));
 end;
 
 numberCompartments = length(SBMLModel.compartment);

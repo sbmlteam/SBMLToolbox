@@ -1,16 +1,16 @@
-function SBMLModel = Model_addRule(SBMLModel, SBMLRule)
+function SBMLModel = Model_addSpeciesType(SBMLModel, SBMLSpeciesType)
 %
-%   Model_addRule 
+%   Model_addSpeciesType 
 %             takes  1) an SBMLModel structure 
-%             and    2) an SBMLRule structure
+%             and    2) an SBMLSpeciesType structure
 %
 %             and returns 
-%               the model with the rule added
+%               the model with the species added
 %
-%       SBMLModel = Model_addRule(SBMLModel, SBMLRule)
+%       SBMLModel = Model_addSpeciesType(SBMLModel, SBMLSpeciesType)
 
 
-%  Filename    :   Model_addRule.m
+%  Filename    :   Model_addSpeciesType.m
 %  Description : 
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
 %  Organization:   University of Hertfordshire STRI
@@ -67,17 +67,17 @@ sbmlVersion = SBMLModel.SBML_version;
 % check that input is correct
 if (~isSBML_Model(SBMLModel))
     error(sprintf('%s\n%s', ...
-    'Model_addRule(SBMLModel, SBMLRule)', ...
+    'Model_addSpeciesType(SBMLModel, SBMLSpeciesType)', ...
     'first argument must be an SBML model structure'));
-elseif (~isSBML_Rule(SBMLRule, sbmlLevel, sbmlVersion))
+elseif (~isSBML_SpeciesType(SBMLSpeciesType, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s\n%s%u%s%u\n', ...
-    'Model_addRule(SBMLModel, SBMLRule)', ...
-    'second argument must be an SBML Rule structure', ...
+    'Model_addSpeciesType(SBMLModel, SBMLSpeciesType)', ...
+    'second argument must be an SBML speciesType structure', ...
     'of the same SBML level and version, namely level ', sbmlLevel, ...
     ' version ', sbmlVersion));
 end;
 
-numberRules = length(SBMLModel.rule);
+numberSpeciesTypes = length(SBMLModel.speciesType);
 
-SBMLModel.rule(numberRules+1) = SBMLRule;
+SBMLModel.speciesType(numberSpeciesTypes+1) = SBMLSpeciesType;
 

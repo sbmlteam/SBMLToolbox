@@ -1,16 +1,16 @@
-function SBMLModel = Model_addRule(SBMLModel, SBMLRule)
+function SBMLModel = Model_addCompartmentType(SBMLModel, SBMLCompartmentType)
 %
-%   Model_addRule 
+%   Model_addCompartmentType 
 %             takes  1) an SBMLModel structure 
-%             and    2) an SBMLRule structure
+%             and    2) an SBMLCompartmentType structure
 %
 %             and returns 
-%               the model with the rule added
+%               the model with the compartment added
 %
-%       SBMLModel = Model_addRule(SBMLModel, SBMLRule)
+%       SBMLModel = Model_addCompartmentType(SBMLModel, SBMLCompartmentType)
 
 
-%  Filename    :   Model_addRule.m
+%  Filename    :   Model_addCompartmentType.m
 %  Description : 
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
 %  Organization:   University of Hertfordshire STRI
@@ -67,17 +67,17 @@ sbmlVersion = SBMLModel.SBML_version;
 % check that input is correct
 if (~isSBML_Model(SBMLModel))
     error(sprintf('%s\n%s', ...
-    'Model_addRule(SBMLModel, SBMLRule)', ...
+    'Model_addCompartmentType(SBMLModel, SBMLCompartmentType)', ...
     'first argument must be an SBML model structure'));
-elseif (~isSBML_Rule(SBMLRule, sbmlLevel, sbmlVersion))
+elseif (~isSBML_CompartmentType(SBMLCompartmentType, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s\n%s%u%s%u\n', ...
-    'Model_addRule(SBMLModel, SBMLRule)', ...
-    'second argument must be an SBML Rule structure', ...
+    'Model_addCompartmentType(SBMLModel, SBMLCompartmentType)', ...
+    'second argument must be an SBML compartmentType structure', ...
     'of the same SBML level and version, namely level ', sbmlLevel, ...
     ' version ', sbmlVersion));
 end;
 
-numberRules = length(SBMLModel.rule);
+numberCompartmentTypes = length(SBMLModel.compartmentType);
 
-SBMLModel.rule(numberRules+1) = SBMLRule;
+SBMLModel.compartmentType(numberCompartmentTypes+1) = SBMLCompartmentType;
 
