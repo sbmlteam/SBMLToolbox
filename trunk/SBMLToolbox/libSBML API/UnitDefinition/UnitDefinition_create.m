@@ -108,7 +108,7 @@ if (sbmlLevel == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name', 'unit'};
     Values = {'SBML_UNIT_DEFINITION', '', '', '', []};
     unit = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'kind', {}, ...
-      'exponent',{},  'scale', {})
+      'exponent',{},  'scale', {});
 else
   if (sbmlVersion == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name', 'id', 'unit'};
