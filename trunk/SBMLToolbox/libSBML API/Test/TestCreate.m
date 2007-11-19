@@ -286,6 +286,22 @@ for (version = 2:3)
   end;
 end;
 
+level = 1;
+version = 1;
+for (level = 1:2)
+  obj = Model_create(level, version);
+  numTests = numTests+1;
+  if (~isSBML_Model(obj))
+    fail = fail + 1;
+  end;
+end;
+for (version = 2:3)
+  obj = Model_create(level, version);
+  numTests = numTests+1;
+  if (~isSBML_Model(obj))
+    fail = fail + 1;
+  end;
+end;
 
 
 disp(sprintf('Number tests: %d', numTests));
