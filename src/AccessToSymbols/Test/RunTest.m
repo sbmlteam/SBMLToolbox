@@ -89,7 +89,7 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 1;
+test = test + 2;
 fail = TestGetGlobalParameterSymbols;
 if (fail > 0)
     disp('GetGlobalParameterSymbols failed');
@@ -110,7 +110,7 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 1;
+test = test + 2;
 fail = TestGetSymbolicRateLawsFromReactions;
 if (fail > 0)
     disp('TestGetSymbolicRateLawsFromReactions failed');
@@ -124,7 +124,7 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 1;
+test = test + 2;
 fail = TestGetSpeciesSymbols;
 if (fail > 0)
     disp('GetSpeciesSymbols failed');
@@ -152,20 +152,54 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 2;
+test = test + 3;
 fail = TestAnalyseSpeciesSymbolic;
 if (fail > 0)
     disp('TestAnalyseSpeciesSymbolic failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 2;
+test = test + 3;
 fail = TestGetCompartmentSymbols;
 if (fail > 0)
     disp('TestGetCompartmentSymbols failed');
 end;
 Totalfail = Totalfail + fail;
 
+test = test + 1;
+fail = TestGetCompartmentTypeSymbols;
+if (fail > 0)
+    disp('TestGetCompartmentTypeSymbols failed');
+end;
+Totalfail = Totalfail + fail;
+
+test = test + 1;
+fail = TestGetSpeciesTypeSymbols;
+if (fail > 0)
+    disp('TestGetSpeciesTypeSymbols failed');
+end;
+Totalfail = Totalfail + fail;
+
+test = test + 1;
+fail = TestGetSymbolicSpeciesInitialAssignments;
+if (fail > 0)
+    disp('TestGetSymbolicSpeciesInitialAssignments failed');
+end;
+Totalfail = Totalfail + fail;
+
+test = test + 1;
+fail = TestGetSymbolicCompartmentInitialAssignments;
+if (fail > 0)
+    disp('TestGetSymbolicCompartmentInitialAssignments failed');
+end;
+Totalfail = Totalfail + fail;
+
+test = test + 1;
+fail = TestGetSymbolicParameterInitialAssignments;
+if (fail > 0)
+    disp('TestGetSymbolicParameterInitialAssignments failed');
+end;
+Totalfail = Totalfail + fail;
 
 disp(sprintf('Number tests: %d', test));
 disp(sprintf('Number fails: %d', Totalfail));

@@ -71,7 +71,7 @@ function fail = TestAnalyseSpeciesSymbolic
 %
 %  Contributor(s):
 
-
+fail = 0;
 m = TranslateSBML('test6.xml');
 
 syms S1 S3 kf_R1 c;
@@ -93,28 +93,8 @@ output(1).AlgebraicRule = '';
 output(1).ConvertedToAssignRule = 0;
 output(1).ConvertedRule = '';
 
-fail = TestFunction('AnalyseSpeciesSymbolic', 1, 1, m, output);
+fail = fail + TestFunction('AnalyseSpeciesSymbolic', 1, 1, m, output);
 
-% m = TranslateSBML('test2.xml');
-% 
-% output(1).Name = {'S3'};
-% output(1).constant = 0;
-% output(1).boundaryCondition = 0;
-% output(1).initialValue = 3e-15;
-% output(1).isConcentration = 0;
-% output(1).ChangedByReaction = 1;
-% output(1).KineticLaw = {' + (k_R2*S2)'};
-% output(1).ChangedByRateRule = 0;
-% output(1).RateRule = '';
-% output(1).ChangedByAssignmentRule = 1;
-% output(1).AssignmentRule = {'3+4'};
-% output(1).InAlgebraicRule = 1;
-% output(1).AlgebraicRule = {{'X+S1-S3'}};
-% output(1).ConvertedToAssignRule = 0;
-% output(1).ConvertedRule = '';
-% 
-% fail = fail + TestFunction('AnalyseSpeciesSymbolic', 1, 1, m, output);
-% 
 m = TranslateSBML('test7.xml');
 
 syms X S1 S3 compartment;
@@ -135,5 +115,49 @@ output(1).InAlgebraicRule = 1;
 output(1).AlgebraicRule = [X+S1-S3];
 output(1).ConvertedToAssignRule = 1;
 output(1).ConvertedRule = [-S1+S3];
+
+% fail = fail + TestFunction('AnalyseSpeciesSymbolic', 1, 1, m, output);
+% 
+m = TranslateSBML('test10.xml');
+
+syms X0 y1 X1 cell1;
+
+output(1).Name = X0;
+output(1).constant = 0;
+output(1).boundaryCondition = 0;
+output(1).initialValue = -1;
+output(1).hasInitialAssignment = 1;
+output(1).initialAssignment = [2*y1];
+output(1).isConcentration = 0;
+output(1).compartment = cell1;
+output(1).ChangedByReaction = 0;
+output(1).KineticLaw = '';
+output(1).ChangedByRateRule = 0;
+output(1).RateRule = '';
+output(1).ChangedByAssignmentRule = 0;
+output(1).AssignmentRule = '';
+output(1).InAlgebraicRule = 0;
+output(1).AlgebraicRule = '';
+output(1).ConvertedToAssignRule = 0;
+output(1).ConvertedRule = '';
+
+output(2).Name = X1;
+output(2).constant = 0;
+output(2).boundaryCondition = 0;
+output(2).initialValue = -1;
+output(2).hasInitialAssignment = 0;
+output(2).initialAssignment = '';
+output(2).isConcentration = 0;
+output(2).compartment = cell1;
+output(2).ChangedByReaction = 0;
+output(2).KineticLaw = '';
+output(2).ChangedByRateRule = 0;
+output(2).RateRule = '';
+output(2).ChangedByAssignmentRule = 0;
+output(2).AssignmentRule = '';
+output(2).InAlgebraicRule = 0;
+output(2).AlgebraicRule = '';
+output(2).ConvertedToAssignRule = 0;
+output(2).ConvertedRule = '';
 
 fail = fail + TestFunction('AnalyseSpeciesSymbolic', 1, 1, m, output);

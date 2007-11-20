@@ -58,10 +58,17 @@ function fail = TestGetSpeciesSymbols
 
 m = TranslateSBML('test1.xml');
 
-syms S1 S2;
+syms S1 S2 S3 X;
 
 symbols = [S1, S2];
 names = {'S1', 'S2'};
 values = [1.5e-15, 1.45];
 
 fail = TestFunction('GetSpeciesSymbols', 1, 3, m, symbols, values, names);
+m = TranslateSBML('test3_l2v2.xml');
+
+symbols = [S1, S2, S3, X];
+names = {'S1', 'S2', 'S3', 'X'};
+values = [3, 6, 0, 5];
+
+fail = fail + TestFunction('GetSpeciesSymbols', 1, 3, m, symbols, values, names);
