@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2/version3" level="2" version="3"
+      xmlns:math="http://www.w3.org/1998/Math/MathML">
+    <model sboTerm="SBO:0000004">
+        <listOfCompartments>
+            <compartment id="cell1" size="0.013" compartmentType="mitochondria"/>
+        </listOfCompartments>
+        <listOfSpecies>
+            <species id="X0" compartment="cell1"/>
+            <species id="X1" compartment="cell1"/>
+        </listOfSpecies>
+        <listOfParameters>
+          <parameter id="y"/>
+          <parameter id="y1"/>
+          <parameter id="y2"/>
+          <parameter id="y3" value="1"/>
+        </listOfParameters>
+        <listOfInitialAssignments>
+            <initialAssignment symbol="X0">
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <apply>
+                        <times/>
+                        <ci> y1 </ci>
+                        <cn> 2 </cn>
+                    </apply>
+                </math>
+            </initialAssignment>
+            <initialAssignment symbol="cell1">
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <apply>
+                        <times/>
+                        <ci> y2 </ci>
+                        <cn> 2 </cn>
+                    </apply>
+                </math>
+             </initialAssignment>
+           <initialAssignment symbol="y">
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <apply>
+                        <times/>
+                        <ci> y3 </ci>
+                        <cn> 2 </cn>
+                    </apply>
+                </math>
+            </initialAssignment>
+         </listOfInitialAssignments>        
+    </model>
+</sbml>

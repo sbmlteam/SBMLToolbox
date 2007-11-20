@@ -96,6 +96,18 @@ for i = 1:NumParams
     % put the value into the array
     Values(i) = SBMLModel.parameter(i).value;
     
+    % might be an initial assignment in l2v2
+    if (SBMLModel.SBML_level == 2 && SBMLModel.SBML_version > 1)
+        
+    % remove this from the substtution
+    newSBMLModel = SBMLModel;
+    newSBMLModel.parameter(i) = [];
+        for ia = 1:length(SBMLModel.initialAssignment)
+            if (strcmp(SBMLModel.initialAssignment(ia).symbol, name))
+              Values(i) = Substitute(SBMLModel.initialAssignment(ia).math, newSBMLModel);  
+            end;
+        end;
+    end;
 end;
 
 %--------------------------------------------------------------------------

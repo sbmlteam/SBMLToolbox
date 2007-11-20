@@ -1,16 +1,11 @@
-function fail = TestGetCompartmentSymbols
-% GetCompartmentSymbols takes a SBMLModel 
-% and returns 
-%           1) an array of character names of all compartments within the model 
-%           2) an array of the initial concentration values of each comparment
-%
+function fail = TestGetSymbolicSpeciesInitialAssignments
 
 
-%  Filename    :   TestGetCompartmentSymbols.m
+%  Filename    :   TestGetSymbolicSpeciesInitialAssignments.m
 %  Description : 
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
 %  Organization:   University of Hertfordshire STRI
-%  Created     :   30-Nov-2005
+%  Created     :   04-Oct-2005
 %  Revision    :   $Id$
 %  Source      :   $Source v $
 %
@@ -55,28 +50,12 @@ function fail = TestGetCompartmentSymbols
 %
 %  Contributor(s):
 
-syms compartment c c2;
-m = TranslateSBML('test1.xml');
 
-symbols = [compartment];
-names = {'compartment'};
-values = [1];
+m = TranslateSBML('test10.xml');
 
-fail = TestFunction('GetCompartmentSymbols', 1, 3, m, symbols, values, names);
+syms X0 X1;
 
-m = TranslateSBML('test9.xml');
+species = [X0, X1];
+initial = {[sym('2*y1')], [sym('0')]};
 
-symbols = [c, c2];
-names = {'c', 'c2'};
-values = [1, 0.75];
-
-fail = fail + TestFunction('GetCompartmentSymbols', 1, 3, m, symbols, values, names);
-
-m = TranslateSBML('test3_l2v2.xml');
-
-symbols = [compartment];
-names = {'compartment'};
-values = [3];
-
-fail = fail + TestFunction('GetCompartmentSymbols', 1, 3, m, symbols, values, names);
-
+fail = TestFunction('GetSymbolicSpeciesInitialAssignments', 1, 2, m, species, initial);

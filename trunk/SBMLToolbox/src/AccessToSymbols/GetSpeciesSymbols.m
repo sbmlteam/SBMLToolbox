@@ -103,7 +103,18 @@ for i = 1:NumSpecies
             Values(i) = SBMLModel.species(i).initialConcentration;
         end;
     end;
-    
+    % might be an initial assignment in l2v2
+    if (SBMLModel.SBML_level == 2 && SBMLModel.SBML_version > 1)
+
+        % remove this from the substtution
+        newSBMLModel = SBMLModel;
+        newSBMLModel.species(i) = [];
+        for ia = 1:length(SBMLModel.initialAssignment)
+            if (strcmp(SBMLModel.initialAssignment(ia).symbol, name))
+                Values(i) = Substitute(SBMLModel.initialAssignment(ia).math, newSBMLModel);
+            end;
+        end;
+    end;
 end;
 
 %--------------------------------------------------------------------------

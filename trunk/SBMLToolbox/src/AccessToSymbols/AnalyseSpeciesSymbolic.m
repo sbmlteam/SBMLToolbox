@@ -93,6 +93,9 @@ end;
 [n, AssignRule] = GetSymbolicSpeciesAssignmentRules(SBMLModel);
 [n, AlgRules] = GetSymbolicSpeciesAlgebraicRules(SBMLModel);
 [n, Values] = GetSpecies(SBMLModel);
+if (SBMLModel.SBML_level == 2 && SBMLModel.SBML_version > 1)
+  [n, InitialAss] = GetSymbolicSpeciesInitialAssignments(SBMLModel); 
+end;
 
 % create the output structure
 for i = 1:length(SBMLModel.species)
@@ -109,7 +112,21 @@ for i = 1:length(SBMLModel.species)
     Species(i).constant = const;
     Species(i).boundaryCondition = bc;
 
-    Species(i).initialValue = Values(i);
+    if (isnan(Values(i)))
+      Species(i).initialValue = -1;
+    else
+      Species(i).initialValue = Values(i);
+    end;
+    if (SBMLModel.SBML_level == 2 && SBMLModel.SBML_version > 1)
+      if (InitialAss{i} == sym('0'))
+        Species(i).hasInitialAssignment = 0;
+        Species(i).initialAssignment = '';
+      else
+        Species(i).hasInitialAssignment = i;
+        Species(i).initialAssignment = InitialAss{i};
+      end;
+        
+    end;
     
     if (SBMLModel.SBML_level == 2 && SBMLModel.species(i).isSetInitialConcentration == 1)
         Species(i).isConcentration = 1;
@@ -172,7 +189,7 @@ for i = 1:length(SBMLModel.species)
             Species(i).ConvertedToAssignRule = 0;
             Species(i).ConvertedRule = '';
         end;
-    elseif ((isnan(Species(i).initialValue)) && (Species(i).InAlgebraicRule == 1))
+    elseif ((Species(i).initialValue == -1) && (Species(i).InAlgebraicRule == 1))
         error ('The model is over parameterised and the simulation cannot make decisions regarding rules');
     
     else

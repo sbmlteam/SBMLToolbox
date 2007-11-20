@@ -66,3 +66,12 @@ names = {'k'};
 values = 1;
 
 fail = TestFunction('GetGlobalParameterSymbols', 1, 3, m, symbols, values, names);
+
+m = TranslateSBML('test3_l2v2.xml');
+
+symbols = [k];
+names = {'k'};
+values = 6;
+
+fail = fail + TestFunction('GetGlobalParameterSymbols', 1, 3, m, symbols, values, names);
+

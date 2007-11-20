@@ -1,21 +1,14 @@
-function varargout = GetParameterSymbolsFromReaction(SBMLReaction)
-% GetParameterSymbolsFromReaction takes an SBMLReaction 
+function varargout = GetCompartmentTypeSymbols(SBMLModel)
+% GetCompartmentTypeSymbols takes an SBMLModel 
 % and returns 
-%           1) an array of symbols representing all parameters defined 
-%               within the kinetic law of the reaction 
-%           2) an array of the values of each parameter
-%           3) an array of character names of the symbols
-%
-% NOTE: if the values are not set then the value NaN is used
+%           1) an array of symbols representing all compartmentTypes within the model 
+%           2) an array of character names of the symbols
 
 %--------------------------------------------------------------------------
 %
-%  Filename    : GetParameterSymbolsFromReaction.m
-%  Description : GetParameterSymbolsFromReaction takes a SBMLReaction 
-% and returns   1) an array of symbols representing all parameters defined 
-%               within the kinetic law of the reaction 
-%               2) an array of the values of each parameter
-%               3) an array of character names of the symbols
+%  Filename    : GetCompartmentTypeSymbols.m
+%  Description : takes a SBMLModel and returns an array of character names representing all compartmentTypes 
+%                   and an array of the initial values of each compartmentType
 %  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
 %  Organization: University of Hertfordshire STRC
 %  Created     : 2004-02-02
@@ -63,68 +56,38 @@ function varargout = GetParameterSymbolsFromReaction(SBMLReaction)
 %
 %  Contributor(s):
 %
+%
 
-% check input is an SBML reaction and determine level
-Level = 1;
-if (~isSBML_Reaction(SBMLReaction, 1))
-    Level = 2;
-    if(~isSBML_Reaction(SBMLReaction, 2))
-        Version = 2;
-        if (~isSBML_Reaction(SBMLReaction, 2, 2))
-            SBMLVersion = 3;
-            if (~isSBML_Reaction(SBMLReaction, 2, 3))
-        error('GetParameterSymbolsFromReaction(SBMLReaction)\n%s', 'input must be an SBMLReaction structure');
-            end;
-        end;
-    end;
+% check input is an SBML model
+if (~isSBML_Model(SBMLModel))
+    error('GetCompartmentTypeSymbols(SBMLModel)\n%s', 'input must be an SBMLModel structure');
 end;
 
 %------------------------------------------------------------
-% determine the number of parameters within the reaction
-
-% catch case with no kinetic law
-if (isempty(SBMLReaction.kineticLaw))
-    NumParams = 0;
-else
-    NumParams = length(SBMLReaction.kineticLaw.parameter);
-end;
+% determine the number of compartmentTypes within the model
+NumCompartmentTypes = length(SBMLModel.compartmentType);
 
 %------------------------------------------------------------
-% loop through the list of parameters
-for i = 1:NumParams
+% loop through the list of compartmentTypes
+for i = 1:NumCompartmentTypes
     
-    %determine the name or id of the parameter
-    if (Level == 1)
-        name = SBMLReaction.kineticLaw.parameter(i).name;
-    else
-        if (isempty(SBMLReaction.kineticLaw.parameter(i).id))
-            name = SBMLReaction.kineticLaw.parameter(i).name;
-        else
-            name = SBMLReaction.kineticLaw.parameter(i).id;
-        end;
-    end;
+    name = SBMLModel.compartmentType(i).id;
     
-    % create a symbol from the name
-    % save into an array of symbols
+    % create a symbol from the species name
+    % save into an array of species symbols
     % and array of the character names
     SymbolArray(i) = sym(name);
-    
     CharArray{i} = name;
-    
-    % put the value into the array
-    Values(i) = SBMLReaction.kineticLaw.parameter(i).value;
     
 end;
 
 %--------------------------------------------------------------------------
 % assign output
 
-if (NumParams ~= 0)
+if (NumCompartmentTypes ~= 0)
     varargout{1} = SymbolArray;
-    varargout{2} = Values;
-    varargout{3} = CharArray;
+    varargout{2} = CharArray;
 else
     varargout{1} = [];
     varargout{2} = [];
-    varargout{3} = [];
 end;
