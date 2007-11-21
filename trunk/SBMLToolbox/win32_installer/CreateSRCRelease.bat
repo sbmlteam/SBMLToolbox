@@ -1,31 +1,31 @@
 mkdir SBMLToolbox_src
 cd SBMLToolbox_src
-cp C:\SBMLToolbox\AUTHORS.txt AUTHORS.txt
-cp C:\SBMLToolbox\COPYING.txt COPYING.txt
-cp C:\SBMLToolbox\FUNDING.txt FUNDING.txt
-cp C:\SBMLToolbox\NEWS.txt NEWS.txt
-cp C:\SBMLToolbox\README.txt README.txt
-cp C:\SBMLToolbox\VERSION.txt VERSION.txt
-cp C:\SBMLToolbox\COPYING.html COPYING.html
+copy C:\SBMLToolbox\AUTHORS.txt AUTHORS.txt
+copy C:\SBMLToolbox\COPYING.txt COPYING.txt
+copy C:\SBMLToolbox\FUNDING.txt FUNDING.txt
+copy C:\SBMLToolbox\NEWS.txt NEWS.txt
+copy C:\SBMLToolbox\README.txt README.txt
+copy C:\SBMLToolbox\VERSION.txt VERSION.txt
+copy C:\SBMLToolbox\COPYING.html COPYING.html
 mkdir docs
 mkdir toolbox
 mkdir win32
 cd docs
-cp C:\SBMLToolbox\docs\Manual_SBMLToolbox.pdf Manual_SBMLToolbox.pdf
-cp C:\SBMLToolbox\docs\MATLAB_SBML_Structure.pdf MATLAB_SBML_Structure.pdf
+copy C:\SBMLToolbox\docs\Manual_SBMLToolbox.pdf Manual_SBMLToolbox.pdf
+copy C:\SBMLToolbox\docs\MATLAB_SBML_Structure.pdf MATLAB_SBML_Structure.pdf
 cd ..
 cd win32
 mkdir bin
 mkdir include
 cd bin
-cp C:\libsbml-2.3.4-xerces\win32\bin\libsbml.dll libsbml.dll
-cp C:\libsbml-2.3.4-xerces\win32\bin\libsbmlD.dll libsbmlD.dll
-cp C:\libsbml-2.3.4-xerces\win32\bin\libsbml.lib libsbml.lib
-cp C:\libsbml-2.3.4-xerces\win32\bin\libsbmlD.lib libsbmlD.lib
-cp C:\libsbml-2.3.4-xerces\win32\bin\xerces-c_2_5_0.dll xerces-c_2_5_0.dll
-cp C:\libsbml-2.3.4-xerces\win32\bin\xerces-c_2_5_0D.dll xerces-c_2_5_0D.dll
-cp C:\libsbml-2.3.4-xerces\win32\bin\xerces-c_2.lib xerces-c_2.lib
-cp C:\libsbml-2.3.4-xerces\win32\bin\xerces-c_2D.lib xerces-c_2D.lib
+copy C:\libsbml-2.3.4-xerces\win32\bin\libsbml.dll libsbml.dll
+copy C:\libsbml-2.3.4-xerces\win32\bin\libsbmlD.dll libsbmlD.dll
+copy C:\libsbml-2.3.4-xerces\win32\bin\libsbml.lib libsbml.lib
+copy C:\libsbml-2.3.4-xerces\win32\bin\libsbmlD.lib libsbmlD.lib
+copy C:\libsbml-2.3.4-xerces\win32\bin\xerces-c_2_5_0.dll xerces-c_2_5_0.dll
+copy C:\libsbml-2.3.4-xerces\win32\bin\xerces-c_2_5_0D.dll xerces-c_2_5_0D.dll
+copy C:\libsbml-2.3.4-xerces\win32\bin\xerces-c_2.lib xerces-c_2.lib
+copy C:\libsbml-2.3.4-xerces\win32\bin\xerces-c_2D.lib xerces-c_2D.lib
 cd ..
 cd include
 mkdir sbml
@@ -36,44 +36,47 @@ mkdir util
 mkdir validator
 mkdir xml
 cd C:\libsbml-2.3.4-xerces\win32\include\sbml
-cp * C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\win32\include\sbml
+copy * C:\SBMLToolbox\win32_installer\SBMLToolbox_src\win32\include\sbml
 cd common
-cp * C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\win32\include\sbml\common
+copy * C:\SBMLToolbox\win32_installer\SBMLToolbox_src\win32\include\sbml\common
 cd ..
 cd math
-cp * C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\win32\include\sbml\math
+copy * C:\SBMLToolbox\win32_installer\SBMLToolbox_src\win32\include\sbml\math
 cd ..
 cd util
-cp * C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\win32\include\sbml\util
+copy * C:\SBMLToolbox\win32_installer\SBMLToolbox_src\win32\include\sbml\util
 cd ..
 cd validator
-cp * C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\win32\include\sbml\validator
+copy * C:\SBMLToolbox\win32_installer\SBMLToolbox_src\win32\include\sbml\validator
 cd ..
 cd xml
-cp * C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\win32\include\sbml\xml
-cd C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src
+copy * C:\SBMLToolbox\win32_installer\SBMLToolbox_src\win32\include\sbml\xml
+cd C:\SBMLToolbox\win32_installer\SBMLToolbox_src
 cd toolbox
 mkdir AccessModel
 cd AccessModel
-mkdir test
+mkdir Test
 cd..
 mkdir AccessToSymbols
 cd AccessToSymbols
-mkdir test
+mkdir Test
 cd..
 mkdir Convenience
 cd Convenience
-mkdir test
+mkdir Test
 cd..
 mkdir MATLAB_SBML_Structure_Functions
 cd MATLAB_SBML_Structure_Functions
 mkdir AlgebraicRule
 mkdir AssignmentRule
 mkdir Compartment
+mkdir CompartmentType
 mkdir CompartmentVolumeRule
+mkdir Constraint
 mkdir Event
 mkdir EventAssignment
 mkdir FunctionDefinition
+mkdir InitialAssignment
 mkdir KineticLaw
 mkdir Model
 mkdir ModifierSpeciesReference
@@ -85,146 +88,163 @@ mkdir Rule
 mkdir Species
 mkdir SpeciesConcentrationRule
 mkdir SpeciesReference
+mkdir SpeciesType
+mkdir Test
 mkdir Unit
 mkdir UnitDefinition
 cd ..
 mkdir Simulation
 cd Simulation
-mkdir test
+mkdir Test
 cd..
 mkdir StoreModels
-mkdir test
-cd test
-mkdir test-data
-cd ..
+mkdir Test
 mkdir Validate_MATLAB_SBML_Structures
+cd Validate_MATLAB_SBML_Structures
+mkdir Test
+cd ..
 mkdir ViewModelComponents
-cp C:\libsbml\src\bindings\matlab\TranslateSBML.m TranslateSBML.m
-cp C:\libsbml\src\bindings\matlab\TranslateSBML.c TranslateSBML.c
-cp C:\libsbml\src\bindings\matlab\CheckAndConvert.m CheckAndConvert.m
-cp C:\SBMLToolbox_cvs\src\BuildOutput_Win32_src.m BuildOutput_Win32.m
-cp C:\SBMLToolbox_cvs\src\BuildTranslate_Win32_src.m BuildTranslate_Win32.m
-cp C:\SBMLToolbox_cvs\src\BuildRead_Win32_src.m BuildRead_Win32.m
-cp C:\SBMLToolbox_cvs\src\OutputSBML.m OutputSBML.m
-cp C:\SBMLToolbox_cvs\src\OutputSBML.c OutputSBML.c
-cp C:\SBMLToolbox_cvs\src\ReadAndValidateSBML.m ReadAndValidateSBML.m
-cp C:\SBMLToolbox_cvs\src\ReadAndValidateSBML.c ReadAndValidateSBML.c
-cp C:\SBMLToolbox_cvs\src\Makefile Makefile
-cp C:\SBMLToolbox_cvs\src\Contents.m Contents.m
-cp C:\SBMLToolbox_cvs\src\install.m install.m
-cp C:\SBMLToolbox_cvs\src\SBMLToolbox.m SBMLToolbox.m
-cp C:\SBMLToolbox_cvs\src\make.bat make.bat
-cp C:\SBMLToolbox_cvs\src\test.xml test.xml
-rem test files
-cd C:\libsbml\src\bindings\matlab\test
-cp *.m C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\test
-cd test-data
-cp *.xml C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\test\test-data
-cd C:\SBMLToolbox_cvs\src\Test
-cp *.m C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\test
-cd C:\SBMLToolbox_cvs\src\AccessModel
-cp *.m C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\AccessModel
-cp *.fig C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\AccessModel
+copy C:\libsbml\src\bindings\matlab\TranslateSBML.m TranslateSBML.m
+copy C:\libsbml\src\bindings\matlab\TranslateSBML.c TranslateSBML.c
+copy C:\libsbml\src\bindings\matlab\CheckAndConvert.m CheckAndConvert.m
+copy C:\SBMLToolbox\src\BuildOutput_Win32_src.m BuildOutput_Win32.m
+copy C:\SBMLToolbox\src\BuildTranslate_Win32_src.m BuildTranslate_Win32.m
+copy C:\SBMLToolbox\src\BuildRead_Win32_src.m BuildRead_Win32.m
+copy C:\SBMLToolbox\src\OutputSBML.m OutputSBML.m
+copy C:\SBMLToolbox\src\OutputSBML.c OutputSBML.c
+copy C:\SBMLToolbox\src\ReadAndValidateSBML.m ReadAndValidateSBML.m
+copy C:\SBMLToolbox\src\ReadAndValidateSBML.c ReadAndValidateSBML.c
+copy C:\SBMLToolbox\src\Makefile Makefile
+copy C:\SBMLToolbox\src\Contents.m Contents.m
+copy C:\SBMLToolbox\src\install.m install.m
+copy C:\SBMLToolbox\src\SBMLToolbox.m SBMLToolbox.m
+copy C:\SBMLToolbox\src\make.bat make.bat
+copy C:\SBMLToolbox\src\test.xml test.xml
+cd C:\SBMLToolbox\src\AccessModel
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\AccessModel
+copy *.fig C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\AccessModel
 cd Test
-cp *.m C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\AccessModel\test
-cp *.xml C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\AccessModel\test
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\AccessModel\Test
+copy *.xml C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\AccessModel\Test
 cd ..
 cd ..
 cd AccessToSymbols
-cp *.m C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\AccessToSymbols
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\AccessToSymbols
 cd Test
-cp *.m C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\AccessToSymbols\test
-cp *.xml C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\AccessToSymbols\test
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\AccessToSymbols\Test
+copy *.xml C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\AccessToSymbols\Test
 cd ..
 cd ..
 cd Convenience
-cp *.m C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\Convenience
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Convenience
 cd Test
-cp *.m C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\Convenience\test
-cp *.xml C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\Convenience\test
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Convenience\Test
+copy *.xml C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Convenience\Test
 cd ..
 cd ..
 cd Simulation
-cp *.m C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\Simulation
-cp *.fig C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\Simulation
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Simulation
+copy *.fig C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Simulation
 cd Test
-cp *.m C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\Simulation\test
-cp *.xml C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\Simulation\test
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Simulation\Test
+copy *.xml C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Simulation\Test
 cd ..
 cd ..
 cd StoreModels
-cp *.m C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\StoreModels
-cp *.fig C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\StoreModels
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\StoreModels
+copy *.fig C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\StoreModels
+cd ..
+cd Test
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Test
+copy *.xml C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Test
 cd ..
 cd ValidationTests
-cp *.m C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\Validate_MATLAB_SBML_Structures
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Validate_MATLAB_SBML_Structures
+cd Test
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Validate_MATLAB_SBML_Structures\Test
+copy *.xml C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Validate_MATLAB_SBML_Structures\Test
+cd ..
 cd ..
 cd ViewModelComponents
-cp *.m C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\ViewModelComponents
-cp *.fig C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\ViewModelComponents
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\ViewModelComponents
+copy *.fig C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\ViewModelComponents
 cd ..
-cd ..
-cd libSBML API
-cp *.m C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions
+cd MATLAB_SBML_Structure_Functions
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions
 cd AlgebraicRule
-cp *.m C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\AlgebraicRule
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\AlgebraicRule
 cd ..
 cd AssignmentRule
-cp *.m C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\AssignmentRule
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\AssignmentRule
 cd ..
 cd Compartment
-cp *.m C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\Compartment
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\Compartment
+cd ..
+cd CompartmentType
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\CompartmentType
 cd ..
 cd CompartmentVolumeRule
-cp *.m C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\CompartmentVolumeRule
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\CompartmentVolumeRule
+cd ..
+cd Constraint
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\Constraint
 cd ..
 cd Event
-cp *.m C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\Event
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\Event
 cd ..
 cd EventAssignment
-cp *.m C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\EventAssignment
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\EventAssignment
 cd ..
 cd FunctionDefinition
-cp *.m C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\FunctionDefinition
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\FunctionDefinition
+cd ..
+cd InitialAssignment
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\InitialAssignment
 cd ..
 cd KineticLaw
-cp *.m C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\KineticLaw
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\KineticLaw
 cd ..
 cd Model
-cp *.m C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\Model
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\Model
 cd ..
 cd ModifierSpeciesReference
-cp *.m C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\ModifierSpeciesReference
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\ModifierSpeciesReference
 cd ..
 cd Parameter
-cp *.m C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\Parameter
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\Parameter
 cd ..
 cd ParameterRule
-cp *.m C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\ParameterRule
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\ParameterRule
 cd ..
 cd RateRule
-cp *.m C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\RateRule
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\RateRule
 cd ..
 cd Reaction
-cp *.m C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\Reaction
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\Reaction
 cd ..
 cd Rule
-cp *.m C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\Rule
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\Rule
 cd ..
 cd Species
-cp *.m C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\Species
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\Species
 cd ..
 cd SpeciesConcentrationRule
-cp *.m C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\SpeciesConcentrationRule
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\SpeciesConcentrationRule
 cd ..
 cd SpeciesReference
-cp *.m C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\SpeciesReference
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\SpeciesReference
+cd ..
+cd SpeciesType
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\SpeciesType
+cd ..
+cd Test
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\Test
 cd ..
 cd Unit
-cp *.m C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\Unit
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\Unit
 cd ..
 cd UnitDefinition
-cp *.m C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\UnitDefinition
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\UnitDefinition
 cd ..
 
 
