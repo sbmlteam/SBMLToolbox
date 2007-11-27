@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Pass: (1200) Compartment 'a' is undefined. -->
+<sbml xmlns="http://www.sbml.org/sbml/level1" level="1" version="2">
+	<model>
+	    <listOfUnitDefinitions>
+	        <unitDefinition name="ud1">
+	          <listOfUnits>
+	            <unit kind="mole" exponent="1"/>
+	          </listOfUnits>
+	        </unitDefinition>
+	    </listOfUnitDefinitions>
+		<listOfCompartments>
+			<compartment name="c"/>
+		</listOfCompartments>
+		<listOfSpecies>
+             <species name="S1" compartment="c" initialAmount="1e-015"/>
+             <species name="S2" compartment="c" initialAmount="2e-015"/>
+             <species name="S3" compartment="c" initialAmount="1e-015"/>
+             <species name="S4" compartment="c" initialAmount="1e-015"/>
+			<species name="s" compartment="c" initialAmount="0"/>
+		</listOfSpecies>
+		<listOfParameters>
+		  <parameter name="p" value="2"/>
+		</listOfParameters>
+		<listOfRules>
+		  <algebraicRule formula="p*4"/>
+		  <speciesConcentrationRule species="s" formula="5"/>
+		  <compartmentVolumeRule compartment="c" formula="2*3"/>
+		  <parameterRule type="rate" name="p" formula="3/2"/>
+		</listOfRules>
+		<listOfReactions>
+            <reaction name="R1" reversible="false">
+              <listOfReactants>
+                <speciesReference species="S1"/>
+                <speciesReference species="S2"/>
+              </listOfReactants>
+              <listOfProducts>
+                <speciesReference species="S3"/>
+              </listOfProducts>
+              <kineticLaw formula="kf*S1*S2">
+                <listOfParameters>
+                  <parameter name="kf" value="750000000000000"/>
+                </listOfParameters>
+              </kineticLaw>
+            </reaction>
+		   <reaction name="r">
+		    <listOfReactants>
+		        <speciesReference species="S4"/>
+		    </listOfReactants>
+		    <kineticLaw formula="9">
+		        <listOfParameters>
+		            <parameter name="k" value="9"/>
+		        </listOfParameters>
+		    </kineticLaw>
+		    </reaction>
+		</listOfReactions>
+	</model>
+</sbml>
