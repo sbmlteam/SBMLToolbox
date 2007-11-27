@@ -1,10 +1,4 @@
 function y = TestFunction(varargin)
-% TestFunction takes 
-%           name of function
-%           number of input arguments (0-3)
-%           number of output arguments (0-3)
-%           input arguments
-%           output arguments
 
 
 %  Filename    :   TestFunction.m
@@ -55,8 +49,6 @@ function y = TestFunction(varargin)
 %      mailto:sbml-team@caltech.edu
 %
 %  Contributor(s):
-
-% TestFunction takes an argument
 
 y = 0;
 if (nargin < 3)
