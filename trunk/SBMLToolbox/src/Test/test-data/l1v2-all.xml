@@ -6,8 +6,16 @@
 	        <unitDefinition name="ud1">
 	          <listOfUnits>
 	            <unit kind="mole" exponent="1"/>
+                <unit kind="second" exponent="-1"/>
 	          </listOfUnits>
 	        </unitDefinition>
+            <unitDefinition name="vol_per_time_per_mol">
+              <listOfUnits>
+                <unit kind="litre" exponent="2"/>
+                <unit kind="second" exponent="-1"/>
+                <unit kind="mole" exponent="-1"/>
+              </listOfUnits>
+            </unitDefinition>
 	    </listOfUnitDefinitions>
 		<listOfCompartments>
 			<compartment name="c"/>
@@ -20,13 +28,17 @@
 			<species name="s" compartment="c" initialAmount="0"/>
 		</listOfSpecies>
 		<listOfParameters>
-		  <parameter name="p" value="2"/>
+		  <parameter name="p" value="2" units="dimensionless"/>
+		  <parameter name="k_c" value="3" units="litre"/>
+		  <parameter name="k_s" value="2" units="mole"/>
+		  <parameter name="k_t" value="2" units="second"/>
+		  <parameter name="k_p" value="2" units="dimensionless"/>
 		</listOfParameters>
 		<listOfRules>
 		  <algebraicRule formula="p*4"/>
-		  <speciesConcentrationRule species="s" formula="5"/>
-		  <compartmentVolumeRule compartment="c" formula="2*3"/>
-		  <parameterRule type="rate" name="p" formula="3/2"/>
+		  <speciesConcentrationRule species="s" formula="k_s/k_c"/>
+		  <compartmentVolumeRule compartment="c" formula="p*k_c"/>
+		  <parameterRule type="rate" name="p" formula="k_p/k_t"/>
 		</listOfRules>
 		<listOfReactions>
             <reaction name="R1" reversible="false">
@@ -39,7 +51,7 @@
               </listOfProducts>
               <kineticLaw formula="kf*S1*S2">
                 <listOfParameters>
-                  <parameter name="kf" value="750000000000000"/>
+                  <parameter name="kf" value="750000000000000" units="vol_per_time_per_mol"/>
                 </listOfParameters>
               </kineticLaw>
             </reaction>
@@ -47,9 +59,9 @@
 		    <listOfReactants>
 		        <speciesReference species="S4"/>
 		    </listOfReactants>
-		    <kineticLaw formula="9">
+		    <kineticLaw formula="k">
 		        <listOfParameters>
-		            <parameter name="k" value="9"/>
+		            <parameter name="k" value="9" units="ud1"/>
 		        </listOfParameters>
 		    </kineticLaw>
 		    </reaction>
