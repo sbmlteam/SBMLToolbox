@@ -208,7 +208,57 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
-m = TranslateSBML('l1v2-all.xml');
+m = TranslateSBML('../../Test/test-data/l1v1.xml');
+
+ud  = m.unitDefinition(1);
+c   = m.compartment(1);
+s   = m.species(1);
+p   = m.parameter(1);
+r   = m.reaction(1);
+
+test = test + 6;
+
+fail = 0;
+
+pass = isSBML_Model(m);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l1v1 Model failed');
+end;
+
+pass = isSBML_UnitDefinition(ud, 1, 1);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l1v1 UnitDefinition failed');
+end;
+
+pass = isSBML_Compartment(c, 1, 1);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l1v1 Compartment failed');
+end;
+
+pass = isSBML_Species(s, 1, 1);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l1v1 Species failed');
+end;
+
+pass = isSBML_Parameter(p, 1, 1);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l1v1 Parameter failed');
+end;
+
+pass = isSBML_Reaction(r, 1, 1);
+if (pass == 0)
+    fail = fail + 1;
+    disp('l1v1 Reaction failed');
+end;
+
+Totalfail = Totalfail + fail;
+
+m = TranslateSBML('../../Test/test-data/l1v2-all.xml');
 
 ud  = m.unitDefinition(1);
 c   = m.compartment(1);
@@ -286,7 +336,7 @@ end;
 
 Totalfail = Totalfail + fail;
 
-m = TranslateSBML('l2v1-all.xml');
+m = TranslateSBML('../../Test/test-data/l2v1-all.xml');
 
 fd  = m.functionDefinition(1);
 ud  = m.unitDefinition(1);
@@ -371,7 +421,7 @@ end;
 
 Totalfail = Totalfail + fail;
 
-m = TranslateSBML('l2v2-all.xml');
+m = TranslateSBML('../../Test/test-data/l2v2-all.xml');
 
 fd  = m.functionDefinition(1);
 ud  = m.unitDefinition(1);
@@ -484,7 +534,7 @@ end;
 
 Totalfail = Totalfail + fail;
 
-m = TranslateSBML('l2v3-all.xml');
+m = TranslateSBML('../../Test/test-data/l2v3-all.xml');
 
 fd  = m.functionDefinition(1);
 ud  = m.unitDefinition(1);

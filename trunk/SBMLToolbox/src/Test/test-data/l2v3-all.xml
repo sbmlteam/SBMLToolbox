@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Pass: (1200) Compartment 'a' is undefined. -->
-<sbml xmlns="http://www.sbml.org/sbml/level2" level="2" version="1">
+<sbml xmlns="http://www.sbml.org/sbml/level2/version3" level="2" version="3">
 	<model>
 	    <listOfFunctionDefinitions>
 	        <functionDefinition id="fd">
@@ -21,6 +21,12 @@
 	          </listOfUnits>
 	        </unitDefinition>
 	    </listOfUnitDefinitions>
+	    <listOfCompartmentTypes>
+	      <compartmentType id="hh"/>
+	    </listOfCompartmentTypes>
+	    <listOfSpeciesTypes>
+	      <speciesType id="gg"/>
+	    </listOfSpeciesTypes>
 		<listOfCompartments>
 			<compartment id="a"/>
 		</listOfCompartments>
@@ -28,8 +34,21 @@
 			<species id="s" compartment="a" initialAmount="0"/>
 		</listOfSpecies>
 		<listOfParameters>
-		  <parameter id="p" value="2"/>
+		  <parameter id="p" value="2" constant="false"/>
+		  <parameter id="p1" value="2" constant="false"/>
+		  <parameter id="p2" value="2" constant="false"/>
+		  <parameter id="p3" value="2" constant="false"/>
+		  <parameter id="x" value="2" constant="false"/>
 		</listOfParameters>
+		<listOfInitialAssignments>
+		  <initialAssignment symbol="p1">
+              <math xmlns="http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                    <power/> <ci> x </ci> <cn> 3 </cn>
+                  </apply>
+              </math>
+		  </initialAssignment>
+		</listOfInitialAssignments>
 		<listOfRules>
 		  <algebraicRule>
               <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -38,14 +57,14 @@
                   </apply>
               </math>
 		  </algebraicRule>
-		  <assignmentRule variable="c">
+		  <assignmentRule variable="p2">
               <math xmlns="http://www.w3.org/1998/Math/MathML">
                   <apply>
                     <power/> <ci> x </ci> <cn> 3 </cn>
                   </apply>
               </math>
 		  </assignmentRule>
-		  <rateRule variable="c">
+		  <rateRule variable="p3">
               <math xmlns="http://www.w3.org/1998/Math/MathML">
                   <apply>
                     <power/> <ci> x </ci> <cn> 3 </cn>
@@ -53,13 +72,22 @@
               </math>
 		  </rateRule>
 		</listOfRules>
+		<listOfConstraints>
+		  <constraint>
+              <math xmlns="http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                    <lt/> <ci> x </ci> <cn> 3 </cn>
+                  </apply>
+              </math>	
+            </constraint>
+		</listOfConstraints>
 		<listOfReactions>
-		   <reaction>
+		   <reaction id="r">
 		    <listOfReactants>
 		        <speciesReference species="s"/>
 		    </listOfReactants>
 		    <kineticLaw>
-		           <math xmlns="http://www.w3.org/1998/Math/MathML">
+		        <math xmlns="http://www.w3.org/1998/Math/MathML">
                   <apply>
                     <power/> <ci> x </ci> <cn> 3 </cn>
                   </apply>
@@ -80,7 +108,7 @@
               </math>
 		      </trigger>
 		      <listOfEventAssignments>
-		        <eventAssignment variable="c">
+		        <eventAssignment variable="p">
 		           <math xmlns="http://www.w3.org/1998/Math/MathML">
                   <apply>
                     <power/> <ci> x </ci> <cn> 3 </cn>

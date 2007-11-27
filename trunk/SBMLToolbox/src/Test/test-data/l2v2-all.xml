@@ -28,13 +28,16 @@
 	      <speciesType id="gg"/>
 	    </listOfSpeciesTypes>
 		<listOfCompartments>
-			<compartment id="a"/>
+			<compartment id="a" constant="false"/>
 		</listOfCompartments>
 		<listOfSpecies>
 			<species id="s" compartment="a" initialAmount="0"/>
 		</listOfSpecies>
 		<listOfParameters>
-		  <parameter id="p" value="2"/>
+		  <parameter id="p" value="2" constant="false"/>
+			<parameter id="c" constant="false"/>
+			<parameter id="c1" constant="false"/>
+			<parameter id="x" constant="false"/>
 		</listOfParameters>
 		<listOfInitialAssignments>
 		  <initialAssignment symbol="c">
@@ -53,14 +56,14 @@
                   </apply>
               </math>
 		  </algebraicRule>
-		  <assignmentRule variable="c">
+		  <assignmentRule variable="c1">
               <math xmlns="http://www.w3.org/1998/Math/MathML">
                   <apply>
                     <power/> <ci> x </ci> <cn> 3 </cn>
                   </apply>
               </math>
 		  </assignmentRule>
-		  <rateRule variable="c">
+		  <rateRule variable="p">
               <math xmlns="http://www.w3.org/1998/Math/MathML">
                   <apply>
                     <power/> <ci> x </ci> <cn> 3 </cn>
@@ -72,13 +75,13 @@
 		  <constraint>
               <math xmlns="http://www.w3.org/1998/Math/MathML">
                   <apply>
-                    <power/> <ci> x </ci> <cn> 3 </cn>
+                    <lt/> <ci> x </ci> <cn> 3 </cn>
                   </apply>
               </math>	
             </constraint>
 		</listOfConstraints>
 		<listOfReactions>
-		   <reaction>
+		   <reaction id="r">
 		    <listOfReactants>
 		        <speciesReference species="s"/>
 		    </listOfReactants>
@@ -104,7 +107,7 @@
               </math>
 		      </trigger>
 		      <listOfEventAssignments>
-		        <eventAssignment variable="c">
+		        <eventAssignment variable="s">
 		           <math xmlns="http://www.w3.org/1998/Math/MathML">
                   <apply>
                     <power/> <ci> x </ci> <cn> 3 </cn>
