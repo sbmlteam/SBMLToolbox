@@ -17,41 +17,52 @@
 	    <listOfUnitDefinitions>
 	        <unitDefinition id="ud1">
 	          <listOfUnits>
-	            <unit kind="mole" exponent="1"/>
+	            <unit kind="litre" exponent="1"/>
 	          </listOfUnits>
 	        </unitDefinition>
 	    </listOfUnitDefinitions>
 		<listOfCompartments>
-			<compartment id="a" constant="false"/>
-			<compartment id="c" constant="false"/>
+			<compartment id="a" constant="false" size="1"/>
+			<compartment id="c" constant="false" size="1"/>
+			<compartment id="c1" constant="false" size="1"/>
 		</listOfCompartments>
 		<listOfSpecies>
 			<species id="s" compartment="a" initialAmount="0"/>
 		</listOfSpecies>
 		<listOfParameters>
-		  <parameter id="p" value="2"/>
-		  <parameter id="x"/>
+		  <parameter id="p" value="2" units="dimensionless"/>
+		  <parameter id="x" units="litre"/>
+		  <parameter id="t" value="2" units="second"/>
+		  <parameter id="k_s" value="2" units="mole"/>
+		  <parameter id="kp" value="2" units="dimensionless" constant="false"/>
+		  <parameter id="kx" units="litre"/>
+		  <parameter id="p1" value="2" units="dimensionless"/>
+		  <parameter id="x1" units="litre"/>
 		</listOfParameters>
 		<listOfRules>
 		  <algebraicRule>
               <math xmlns="http://www.w3.org/1998/Math/MathML">
                   <apply>
-                    <power/> <ci> x </ci> <cn> 3 </cn>
+                    <times/> <ci> kx </ci> <ci> kp </ci>
                   </apply>
               </math>
 		  </algebraicRule>
 		  <assignmentRule variable="c">
               <math xmlns="http://www.w3.org/1998/Math/MathML">
                   <apply>
-                    <power/> <ci> x </ci> <cn> 3 </cn>
+                    <times/> <ci> x1 </ci> <ci> p1 </ci>
                   </apply>
               </math>
 		  </assignmentRule>
 		  <rateRule variable="a">
               <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <apply>
+                  <divide/>
                   <apply>
-                    <power/> <ci> x </ci> <cn> 3 </cn>
+                    <times/> <ci> x </ci> <ci> p </ci>
                   </apply>
+                  <ci> t </ci>
+                </apply>
               </math>
 		  </rateRule>
 		</listOfRules>
@@ -62,12 +73,16 @@
 		    </listOfReactants>
 		    <kineticLaw>
 		           <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <apply>
+                  <divide/>
                   <apply>
-                    <power/> <ci> x </ci> <cn> 3 </cn>
+                    <times/> <ci> k_s </ci> <ci> k </ci>
                   </apply>
+                  <ci> t </ci>
+                </apply>
               </math>
 		        <listOfParameters>
-		            <parameter id="k" value="9"/>
+		            <parameter id="k" value="9" units="dimensionless"/>
 		        </listOfParameters>
 		    </kineticLaw>
 		    </reaction>
@@ -82,10 +97,10 @@
               </math>
 		      </trigger>
 		      <listOfEventAssignments>
-		        <eventAssignment variable="s">
+		        <eventAssignment variable="c1">
 		           <math xmlns="http://www.w3.org/1998/Math/MathML">
                   <apply>
-                    <power/> <ci> x </ci> <cn> 3 </cn>
+                    <times/> <ci> kp </ci> <ci> x </ci>
                   </apply>
               </math>
 		        </eventAssignment>

@@ -28,22 +28,25 @@
 	      <speciesType id="gg"/>
 	    </listOfSpeciesTypes>
 		<listOfCompartments>
-			<compartment id="a" constant="false"/>
+			<compartment id="a" constant="false" size="1"/>
 		</listOfCompartments>
 		<listOfSpecies>
 			<species id="s" compartment="a" initialAmount="0"/>
 		</listOfSpecies>
 		<listOfParameters>
-		  <parameter id="p" value="2" constant="false"/>
-			<parameter id="c" constant="false"/>
-			<parameter id="c1" constant="false"/>
-			<parameter id="x" constant="false"/>
+		  <parameter id="p" value="2" constant="false" units="litre"/>
+			<parameter id="c" constant="false" units="litre"/>
+			<parameter id="c1" constant="false" units="litre"/>
+			<parameter id="x" constant="false" units="litre"/>
+			<parameter id="x1" constant="false" units="dimensionless" value="3"/>
+			<parameter id="t" constant="false" units="second"/>
+			<parameter id="k_s" constant="false" units="mole"/>
 		</listOfParameters>
 		<listOfInitialAssignments>
 		  <initialAssignment symbol="c">
               <math xmlns="http://www.w3.org/1998/Math/MathML">
                   <apply>
-                    <power/> <ci> x </ci> <cn> 3 </cn>
+                    <times/> <ci> x </ci> <ci> x1 </ci>
                   </apply>
               </math>
 		  </initialAssignment>
@@ -59,14 +62,14 @@
 		  <assignmentRule variable="c1">
               <math xmlns="http://www.w3.org/1998/Math/MathML">
                   <apply>
-                    <power/> <ci> x </ci> <cn> 3 </cn>
+                    <times/> <ci> x </ci> <ci> x1 </ci>
                   </apply>
               </math>
 		  </assignmentRule>
 		  <rateRule variable="p">
               <math xmlns="http://www.w3.org/1998/Math/MathML">
                   <apply>
-                    <power/> <ci> x </ci> <cn> 3 </cn>
+                    <divide/> <ci> x </ci> <ci> t </ci>
                   </apply>
               </math>
 		  </rateRule>
@@ -87,12 +90,16 @@
 		    </listOfReactants>
 		    <kineticLaw>
 		           <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <apply>
+                  <divide/>
                   <apply>
-                    <power/> <ci> x </ci> <cn> 3 </cn>
+                    <times/> <ci> s</ci> <ci> k </ci>
                   </apply>
+                   <ci> t </ci>
+               </apply>
               </math>
 		        <listOfParameters>
-		            <parameter id="k" value="9"/>
+		            <parameter id="k" value="9" units="litre"/>
 		        </listOfParameters>
 		    </kineticLaw>
 		    </reaction>
@@ -110,7 +117,7 @@
 		        <eventAssignment variable="s">
 		           <math xmlns="http://www.w3.org/1998/Math/MathML">
                   <apply>
-                    <power/> <ci> x </ci> <cn> 3 </cn>
+                    <divide/> <ci> k_s </ci> <ci> x </ci>
                   </apply>
               </math>
 		        </eventAssignment>
