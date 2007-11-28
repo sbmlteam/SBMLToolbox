@@ -51,14 +51,14 @@ function fail = TestGetAllParameterSymbolsUnique
 %  Contributor(s):
 
 
-m = TranslateSBML('test1.xml');
+m = TranslateSBML('../../Test/test-data/l1v1.xml');
 
-syms k_1_R1 k_2_R2;
+syms k_1_R1 k_2_R2 vm km;
 
-x = [k_1_R1, k_2_R2];
+x = [vm km k_1_R1, k_2_R2];
 
-y = [1, 0];
+y = [2, 2, 1, 0];
 
-z = {'k_1_R1', 'k_2_R2'};
+z = {'vm', 'km', 'k_1_R1', 'k_2_R2'};
 
 fail = TestFunction('GetAllParameterSymbolsUnique', 1, 3, m, x, y, z);

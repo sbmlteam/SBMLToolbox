@@ -57,7 +57,7 @@ function fail = TestCheckValidUnitKind
 %  Contributor(s):
 
 
-m = TranslateSBML('test1.xml');
+m = TranslateSBML('../../Test/test-data/l1v1.xml');
 
 kind1 = m.unitDefinition(1).unit.kind;
 kind2 = m.unitDefinition(2).unit(2).kind;

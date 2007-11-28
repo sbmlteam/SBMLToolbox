@@ -72,16 +72,16 @@ function fail = TestAnalyseSpecies
 %  Contributor(s):
 
 
-m = TranslateSBML('test1.xml');
+m = TranslateSBML('../../Test/test-data/l1v1.xml');
 
 output(1).Name = {'S1'};
 output(1).constant = 0;
 output(1).boundaryCondition = 0;
-output(1).initialValue = 1e-15;
+output(1).initialValue = 1.5e-15;
 output(1).isConcentration = 0;
-output(1).compartment = 'c';
+output(1).compartment = 'compartment';
 output(1).ChangedByReaction = 1;
-output(1).KineticLaw = {' - (kf_R1*S1*S3)'};
+output(1).KineticLaw = {' - (k_1_R1*S1) + (k_2_R2*S2)'};
 output(1).ChangedByRateRule = 0;
 output(1).RateRule = '';
 output(1).ChangedByAssignmentRule = 0;
@@ -90,69 +90,124 @@ output(1).InAlgebraicRule = 0;
 output(1).AlgebraicRule = '';
 output(1).ConvertedToAssignRule = 0;
 output(1).ConvertedRule = '';
+
+output(2).Name = {'S2'};
+output(2).constant = 0;
+output(2).boundaryCondition = 0;
+output(2).initialValue = 1.45;
+output(2).isConcentration = 0;
+output(2).compartment = 'compartment';
+output(2).ChangedByReaction = 1;
+output(2).KineticLaw = {' + (k_1_R1*S1) - (k_2_R2*S2)'};
+output(2).ChangedByRateRule = 0;
+output(2).RateRule = '';
+output(2).ChangedByAssignmentRule = 0;
+output(2).AssignmentRule = '';
+output(2).InAlgebraicRule = 0;
+output(2).AlgebraicRule = '';
+output(2).ConvertedToAssignRule = 0;
+output(2).ConvertedRule = '';
+
+output(3).Name = {'x0'};
+output(3).constant = 0;
+output(3).boundaryCondition = 0;
+output(3).initialValue = 1;
+output(3).isConcentration = 0;
+output(3).compartment = 'compartment';
+output(3).ChangedByReaction = 0;
+output(3).KineticLaw = '';
+output(3).ChangedByRateRule = 0;
+output(3).RateRule = '';
+output(3).ChangedByAssignmentRule = 0;
+output(3).AssignmentRule = '';
+output(3).InAlgebraicRule = 0;
+output(3).AlgebraicRule = '';
+output(3).ConvertedToAssignRule = 0;
+output(3).ConvertedRule = '';
 
 fail = TestFunction('AnalyseSpecies', 1, 1, m, output);
 
-m = TranslateSBML('test2.xml');
-
-output(1).Name = {'S3'};
-output(1).constant = 0;
-output(1).boundaryCondition = 0;
-output(1).initialValue = 3e-15;
-output(1).isConcentration = 0;
-output(1).compartment = 'compartment';
-output(1).ChangedByReaction = 1;
-output(1).KineticLaw = {' + (k_R2*S2)'};
-output(1).ChangedByRateRule = 0;
-output(1).RateRule = '';
-output(1).ChangedByAssignmentRule = 1;
-output(1).AssignmentRule = {'3+4'};
-output(1).InAlgebraicRule = 1;
-output(1).AlgebraicRule = {{'X+S1-S3'}};
-output(1).ConvertedToAssignRule = 0;
-output(1).ConvertedRule = '';
-
-fail = fail + TestFunction('AnalyseSpecies', 1, 1, m, output);
-
-m = TranslateSBML('test3.xml');
-
-output(1).Name = {'s1'};
-output(1).constant = 0;
-output(1).boundaryCondition = 1;
-output(1).initialValue = 0;
-output(1).isConcentration = 0;
-output(1).compartment = 'c';
-output(1).ChangedByReaction = 0;
-output(1).KineticLaw = '';
-output(1).ChangedByRateRule = 1;
-output(1).RateRule = {'5'};
-output(1).ChangedByAssignmentRule = 0;
-output(1).AssignmentRule = '';
-output(1).InAlgebraicRule = 0;
-output(1).AlgebraicRule = '';
-output(1).ConvertedToAssignRule = 0;
-output(1).ConvertedRule = '';
-
-fail = fail + TestFunction('AnalyseSpecies', 1, 1, m, output);
-
-m = TranslateSBML('test7.xml');
-
-output(1).Name = {'X'};
-output(1).constant = 0;
-output(1).boundaryCondition = 0;
-output(1).initialValue = 2;
-output(1).isConcentration = 1;
-output(1).compartment = 'compartment';
-output(1).ChangedByReaction = 0;
-output(1).KineticLaw = '';
-output(1).ChangedByRateRule = 0;
-output(1).RateRule = '';
-output(1).ChangedByAssignmentRule = 0;
-output(1).AssignmentRule = '';
-output(1).InAlgebraicRule = 1;
-output(1).AlgebraicRule = {{'X+S1-S3'}};
-output(1).ConvertedToAssignRule = 1;
-output(1).ConvertedRule = '-S1+S3';
-
-fail = fail + TestFunction('AnalyseSpecies', 1, 1, m, output);
-
+% m = TranslateSBML('../../Test/test-data/test2_sim.xml');
+%  
+% output(1).Name = {'S3'};
+% output(1).constant = 0;
+% output(1).boundaryCondition = 0;
+% output(1).initialValue = 3e-15;
+% output(1).isConcentration = 0;
+% output(1).compartment = 'compartment';
+% output(1).ChangedByReaction = 1;
+% output(1).KineticLaw = {' + (k_R2*S2)'};
+% output(1).ChangedByRateRule = 0;
+% output(1).RateRule = '';
+% output(1).ChangedByAssignmentRule = 1;
+% output(1).AssignmentRule = {'3+4'};
+% output(1).InAlgebraicRule = 1;
+% output(1).AlgebraicRule = {{'X+S1-S3'}};
+% output(1).ConvertedToAssignRule = 0;
+% output(1).ConvertedRule = '';
+% 
+% fail = fail + TestFunction('AnalyseSpecies', 1, 1, m, output);
+ 
+% m = TranslateSBML('test3.xml');
+% 
+% output(1).Name = {'s1'};
+% output(1).constant = 0;
+% output(1).boundaryCondition = 1;
+% output(1).initialValue = 0;
+% output(1).isConcentration = 0;
+% output(1).compartment = 'c';
+% output(1).ChangedByReaction = 0;
+% output(1).KineticLaw = '';
+% output(1).ChangedByRateRule = 1;
+% output(1).RateRule = {'5'};
+% output(1).ChangedByAssignmentRule = 0;
+% output(1).AssignmentRule = '';
+% output(1).InAlgebraicRule = 0;
+% output(1).AlgebraicRule = '';
+% output(1).ConvertedToAssignRule = 0;
+% output(1).ConvertedRule = '';
+% 
+% fail = fail + TestFunction('AnalyseSpecies', 1, 1, m, output);
+% 
+% m = TranslateSBML('test7.xml');
+% 
+% output(1).Name = {'X'};
+% output(1).constant = 0;
+% output(1).boundaryCondition = 0;
+% output(1).initialValue = 2;
+% output(1).isConcentration = 1;
+% output(1).compartment = 'compartment';
+% output(1).ChangedByReaction = 0;
+% output(1).KineticLaw = '';
+% output(1).ChangedByRateRule = 0;
+% output(1).RateRule = '';
+% output(1).ChangedByAssignmentRule = 0;
+% output(1).AssignmentRule = '';
+% output(1).InAlgebraicRule = 1;
+% output(1).AlgebraicRule = {{'X+S1-S3'}};
+% output(1).ConvertedToAssignRule = 1;
+% output(1).ConvertedRule = '-S1+S3';
+% 
+% fail = fail + TestFunction('AnalyseSpecies', 1, 1, m, output);
+% 
+% m = TranslateSBML('test3_l2v2.xml');
+% 
+% output(1).Name = {'X0'};
+% output(1).speciesType='Glucose';
+% output(1).constant = 0;
+% output(1).boundaryCondition = 0;
+% output(1).initialValue = 0.026;
+% output(1).isConcentration = 0;
+% output(1).compartment = 'cell';
+% output(1).ChangedByReaction = 0;
+% output(1).KineticLaw = '';
+% output(1).ChangedByRateRule = 0;
+% output(1).RateRule = '';
+% output(1).ChangedByAssignmentRule = 0;
+% output(1).AssignmentRule = '';
+% output(1).InAlgebraicRule = 0;
+% output(1).AlgebraicRule = '';
+% output(1).ConvertedToAssignRule = 0;
+% output(1).ConvertedRule = '';
+% 
+% fail = fail + TestFunction('AnalyseSpecies', 1, 1, m, output);
