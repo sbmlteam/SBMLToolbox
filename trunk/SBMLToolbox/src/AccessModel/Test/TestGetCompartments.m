@@ -56,7 +56,7 @@ function fail = TestGetCompartments
 %  Contributor(s):
 
 
-m = TranslateSBML('test1.xml');
+m = TranslateSBML('../../Test/test-data/l1v1.xml');
 
 names = {'compartment'};
 values = [1];

@@ -56,7 +56,7 @@ function fail = TestGetCompartmentSymbols
 %  Contributor(s):
 
 syms compartment c c2;
-m = TranslateSBML('test1.xml');
+m = TranslateSBML('../../Test/test-data/l1v1.xml');
 
 symbols = [compartment];
 names = {'compartment'};

@@ -54,7 +54,7 @@ function y = RunTest()
 test = 0;
 Totalfail = 0;
 
-test = test + 5;
+test = test + 6;
 fail = TestAnalyseSpecies;
 if (fail > 0)
     disp('AnalyseSpecies failed');

@@ -59,14 +59,14 @@ function fail = TestGetAllParameterSymbols
 %  Contributor(s):
 
 
-m = TranslateSBML('test1.xml');
+m = TranslateSBML('../../Test/test-data/l1v1.xml');
 
-syms k_1 k_2;
+syms k_1 k_2 vm km;
 
-x = [k_1, k_2];
+x = [vm, km, k_1, k_2];
 
-y = [1, 0];
+y = [2, 2, 1, 0];
 
-z = {'k_1', 'k_2'};
+z = {'vm', 'km', 'k_1', 'k_2'};
 
 fail = TestFunction('GetAllParameterSymbols',1, 3, m, x, y, z);

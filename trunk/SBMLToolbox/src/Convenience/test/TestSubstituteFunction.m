@@ -69,10 +69,10 @@ function fail = TestSubstituteFunction
 %  Contributor(s):
 
 
-m = TranslateSBML('test2.xml');
+m = TranslateSBML('../../Test/test-data/species.xml');
 
 fd = m.functionDefinition;
-formula = 'f(y)';
+formula = 'f(y, z)';
 
 
-fail = TestFunction('SubstituteFunction', 2, 1, formula, fd, 'y*2');
+fail = TestFunction('SubstituteFunction', 2, 1, formula, fd, 'y*z');

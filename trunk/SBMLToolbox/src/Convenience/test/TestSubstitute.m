@@ -58,7 +58,7 @@ formula = 'S1*2';
 
 fail = TestFunction('Substitute', 2, 1, formula, m, 6);
 
-m = TranslateSBML('test1.xml');
+m = TranslateSBML('../../Test/test-data/l1v1.xml');
 
 formula = '(x0 + vm) * (km*2)';
 
