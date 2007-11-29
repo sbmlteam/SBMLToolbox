@@ -57,7 +57,7 @@ function fail = TestGetParameterFromReaction
 %  Contributor(s):
 
 
-m = TranslateSBML('test3.xml');
+m = TranslateSBML('../../Test/test-data/algebraicRules.xml');
 r = m.reaction(2);
 
 names = {'k'};

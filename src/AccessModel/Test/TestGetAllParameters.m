@@ -56,16 +56,16 @@ function fail = TestGetAllParameters
 %  Contributor(s):
 
 
-m = TranslateSBML('test3.xml');
+m = TranslateSBML('../../Test/test-data/algebraicRules.xml');
 
-names = {'k', 'k'};
-values = [1, 0.1];
+names = {'k', 's1', 's2', 'k'};
+values = [1, 3, 4, 0.1];
 
 fail = TestFunction('GetAllParameters', 1, 2, m, names, values);
 
-m = TranslateSBML('test3_l2v2.xml');
+m = TranslateSBML('../../Test/test-data/initialAssignments.xml');
 
-names = {'k', 'k'};
-values = [6, 0.1];
+names = {'k', 'k1', 's1', 's2', 's3', 'c', 'c1', 'k'};
+values = [6, 2, 3, 4, 1, 6, 2, 0.1];
 
 fail = fail + TestFunction('GetAllParameters', 1, 2, m, names, values);

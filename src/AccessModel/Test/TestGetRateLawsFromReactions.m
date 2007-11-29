@@ -56,7 +56,7 @@ function fail = TestGetRateLawsFromReactions
 %  Contributor(s):
 
 
-m = TranslateSBML('test3.xml');
+m = TranslateSBML('../../Test/test-data/algebraicRules.xml');
 
 species = {'S1', 'S2', 'S3', 'X'};
 rateLaws = {' - (k*S1)', ' + (k*S1) - (k_R2*S2)', ' + (k_R2*S2)', '0'};

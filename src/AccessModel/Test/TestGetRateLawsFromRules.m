@@ -56,9 +56,9 @@ function fail = TestGetRateLawsFromRules
 %  Contributor(s):
 
 
-m = TranslateSBML('test4.xml');
+m = TranslateSBML('../../Test/test-data/rateRules.xml');
 
 species = {'s1', 's2'};
-rules = {'5', '0'};
+rules = {'k', '0'};
 
 fail = TestFunction('GetRateLawsFromRules', 1, 2, m, species, rules);

@@ -94,7 +94,7 @@ r1 = m.reaction(1);
 fail = fail + TestFunction('DetermineSpeciesRoleInReaction', 2, 1, s4, r1, 0);
 fail = fail + TestFunction('DetermineSpeciesRoleInReaction', 2, 1, s1, r1, [0,1,0,0,1]);
 
-m = TranslateSBML('test3_l2v2.xml');
+m = TranslateSBML('../../Test/test-data/initialAssignments.xml');
 
 s1 = m.species(1);
 s2 = m.species(3);

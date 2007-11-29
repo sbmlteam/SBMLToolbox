@@ -56,11 +56,11 @@ function fail = TestGetSymbolicRateLawsFromRules
 %  Contributor(s):
 
 
-m = TranslateSBML('test4.xml');
+m = TranslateSBML('../../Test/test-data/rateRules.xml');
 
-syms s1 s2;
+syms s1 s2 k;
 
 species = [s1, s2];
-rules = [sym('5'), sym('0')];
+rules = [k, sym('0')];
 
 fail = TestFunction('GetSymbolicRateLawsFromRules', 1, 2, m, species, rules);

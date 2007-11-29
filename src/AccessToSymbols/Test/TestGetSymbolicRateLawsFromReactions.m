@@ -56,7 +56,7 @@ function fail = TestGetSpeciesRateLaws(SBMLModel)
 %  Contributor(s):
 
 
-m = TranslateSBML('test3.xml');
+m = TranslateSBML('../../Test/test-data/algebraicRules.xml');
 
 syms S1 S2 S3 X k k_R2 X0;
 

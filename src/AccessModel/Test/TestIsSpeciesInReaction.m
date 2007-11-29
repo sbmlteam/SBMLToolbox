@@ -57,7 +57,7 @@ function fail = TestIsSpeciesInReaction
 %  Contributor(s):
 
 
-m = TranslateSBML('test3.xml');
+m = TranslateSBML('../../Test/test-data/algebraicRules.xml');
 
 r1 = m.reaction(1);
 

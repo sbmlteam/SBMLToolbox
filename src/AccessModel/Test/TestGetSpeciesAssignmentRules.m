@@ -56,9 +56,9 @@ function fail = TestGetSpeciesAssignmentRules
 %  Contributor(s):
 
 
-m = TranslateSBML('test3.xml');
+m = TranslateSBML('../../Test/test-data/algebraicRules.xml');
 
-species = {'S1', 'S2', 'S3', 'X'};
-rules = {'0', '0', '3+4', '0'};
+species = {'S1', 'S2', 'S3', 'X', 'S4'};
+rules = {'0', '0', 's1+s2', '0', '0'};
 
 fail = TestFunction('GetSpeciesAssignmentRules', 1, 2, m, species, rules);
