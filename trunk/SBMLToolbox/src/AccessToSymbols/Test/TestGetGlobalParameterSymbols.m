@@ -57,21 +57,21 @@ function fail = TestGetGlobalParameterSymbols
 %  Contributor(s):
 
 
-m = TranslateSBML('test3.xml');
+m = TranslateSBML('../../Test/test-data/algebraicRules.xml');
 
-syms k;
+syms k s1 s2 k1 s3 c c1;
 
-symbols = [k];
-names = {'k'};
-values = 1;
+symbols = [k s1 s2];
+names = {'k', 's1', 's2'};
+values = [1, 3, 4];
 
 fail = TestFunction('GetGlobalParameterSymbols', 1, 3, m, symbols, values, names);
 
-m = TranslateSBML('test3_l2v2.xml');
+m = TranslateSBML('../../Test/test-data/initialAssignments.xml');
 
-symbols = [k];
-names = {'k'};
-values = 6;
+symbols = [k, k1, s1, s2, s3, c, c1];
+names = {'k', 'k1', 's1', 's2', 's3', 'c', 'c1'};
+values = [6, 2, 3, 4, 1, 6, 2];
 
 fail = fail + TestFunction('GetGlobalParameterSymbols', 1, 3, m, symbols, values, names);
 

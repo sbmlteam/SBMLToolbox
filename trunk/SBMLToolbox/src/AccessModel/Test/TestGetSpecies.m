@@ -63,9 +63,9 @@ values = [1.5e-15, 1.45, 1];
 
 fail = TestFunction('GetSpecies', 1, 2, m, names, values);
 
-m = TranslateSBML('test3_l2v2.xml');
+m = TranslateSBML('../../Test/test-data/initialAssignments.xml');
 
-names = {'S1', 'S2', 'S3', 'X'};
-values = [3, 6, 0, 5];
+names = {'S1', 'S2', 'S3', 'X', 'S4'};
+values = [3, 6, 0, 9, 0];
 
 fail = fail + TestFunction('GetSpecies', 1, 2, m, names, values);

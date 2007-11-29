@@ -57,10 +57,10 @@ function fail = TestGetStoichiometryMatrixSyms
 %  Contributor(s):
 
 
-m = TranslateSBML('test3.xml');
+m = TranslateSBML('../../Test/test-data/algebraicRules.xml');
 
-syms S1 S2 S3 X;
-matrix = [-1, 0; 1, -1; 0, 1; 0, 0];
-species = [S1, S2, S3, X];
+syms S1 S2 S3 X S4;
+matrix = [-1, 0; 1, -1; 0, 0; 0, 0; 0, 1];
+species = [S1, S2, S3, X, S4];
 
 fail = TestFunction('GetStoichiometryMatrixSyms', 1, 2, m, matrix, species);

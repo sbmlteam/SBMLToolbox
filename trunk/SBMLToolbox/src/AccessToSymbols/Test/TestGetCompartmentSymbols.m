@@ -72,7 +72,7 @@ values = [1, 0.75];
 
 fail = fail + TestFunction('GetCompartmentSymbols', 1, 3, m, symbols, values, names);
 
-m = TranslateSBML('test3_l2v2.xml');
+m = TranslateSBML('../../Test/test-data/initialAssignments.xml');
 
 symbols = [compartment];
 names = {'compartment'};

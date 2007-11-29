@@ -56,11 +56,11 @@ function fail = TestGetSymbolicSpeciesAssignmentRules
 %  Contributor(s):
 
 
-m = TranslateSBML('test3.xml');
+m = TranslateSBML('../../Test/test-data/algebraicRules.xml');
 
-syms S1 S2 S3 X;
+syms S1 S2 S3 X S4 s1 s2;
 
-species = [S1, S2, S3, X];
-rules = {[sym('')], [sym('')], [sym('7')], [sym('')]};
+species = [S1, S2, S3, X, S4];
+rules = {[sym('')], [sym('')], [s1+s2], [sym('')], [sym('')]};
 
 fail = TestFunction('GetSymbolicSpeciesAssignmentRules', 1, 2, m, species, rules);

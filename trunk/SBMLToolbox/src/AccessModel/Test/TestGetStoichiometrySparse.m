@@ -55,13 +55,13 @@ function fail = TestGetStoichiometryMatrix
 %  Contributor(s):
 
 
-m = TranslateSBML('test3.xml');
+m = TranslateSBML('../../Test/test-data/algebraicRules.xml');
 
 matrix = [-1, 0; 1, -1; 0, 1; 0, 0];
 
 fail = TestFunction('GetStoichiometrySparse', 1, 1, m, matrix);
 
-m = TranslateSBML('test3_l2v2.xml');
+m = TranslateSBML('../../Test/test-data/initialAssignments.xml');
 
 matrix = [-1, 0; 1, -1; 0, 1; 0, 0];
 
