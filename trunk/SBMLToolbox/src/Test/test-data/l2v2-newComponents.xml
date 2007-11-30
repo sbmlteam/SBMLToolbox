@@ -14,10 +14,10 @@
         </listOfCompartments>
         <listOfSpecies>
             <species id="X0" compartment="cell" speciesType="Glucose"/>
-            <species id="X1" compartment="cell"/>
+            <species id="X1" compartment="cell" initialConcentration="0.013"/>
         </listOfSpecies>
         <listOfParameters>
-          <parameter id="y" units="dimensionless"/>
+          <parameter id="y" units="dimensionless" value="2"/>
         </listOfParameters>
         <listOfInitialAssignments>
             <initialAssignment symbol="X0" sboTerm="SBO:0000064">
