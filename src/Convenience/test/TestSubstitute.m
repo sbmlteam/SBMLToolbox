@@ -51,12 +51,12 @@ function fail = TestSubstitute
 %  Contributor(s):
 
 
-m = TranslateSBML('test3_l2v2.xml');
+m = TranslateSBML('../../Test/test-data/initialAssignments.xml');
 
 formula = 'S1*2';
 
-
 fail = TestFunction('Substitute', 2, 1, formula, m, 6);
+
 
 m = TranslateSBML('../../Test/test-data/l1v1.xml');
 
