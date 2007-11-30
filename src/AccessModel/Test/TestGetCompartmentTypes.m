@@ -55,7 +55,7 @@ function fail = TestGetCompartmentTypes
 %  Contributor(s):
 
 
-m = TranslateSBML('l2v3-all.xml');
+m = TranslateSBML('../../Test/test-data/l2v2-newComponents.xml');
 
 names = {'mitochondria'};
 

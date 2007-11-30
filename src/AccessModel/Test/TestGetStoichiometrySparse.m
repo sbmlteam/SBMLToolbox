@@ -67,7 +67,7 @@ matrix = [-1, 0; 1, -1; 0, 1; 0, 0];
 
 fail = TestFunction('GetStoichiometrySparse', 1, 1, m, matrix);
 
-m = TranslateSBML('testsparse.xml');
+m = TranslateSBML('../../Test/test-data/sparseStoichiometry.xml');
 
 matrix = sparse(zeros(12,4));
 matrix(1,1) = -1;

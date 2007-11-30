@@ -18,9 +18,6 @@
       <species id="S9" compartment="compartment" initialAmount="0"/>
       <species id="X2" compartment="compartment" initialAmount="0"/>
     </listOfSpecies>
-    <listOfParameters>
-      <parameter id="k" value="1"/>
-    </listOfParameters>
     <listOfReactions>
       <reaction id="R1" reversible="false">
         <listOfReactants>
@@ -38,7 +35,7 @@
           <speciesReference species="S3"/>
         </listOfProducts>
       </reaction>
-      <reaction id="R1" reversible="false">
+      <reaction id="R3" reversible="false">
         <listOfReactants>
           <speciesReference species="S9"/>
         </listOfReactants>
@@ -46,7 +43,7 @@
           <speciesReference species="X2"/>
         </listOfProducts>
       </reaction>
-      <reaction id="R1" reversible="false">
+      <reaction id="R4" reversible="false">
         <listOfReactants>
           <speciesReference species="S4"/>
         </listOfReactants>
