@@ -63,9 +63,9 @@ rateLaws = {' - (k*S1)', ' + (k*S1) - (k_R2*S2)', ' + (k_R2*S2)', '0'};
 
 fail = TestFunction('GetRateLawsFromReactions', 1, 2, m, species, rateLaws);
 
-m = TranslateSBML('l2v3-all.xml');
+m = TranslateSBML('../../Test/test-data/l2v2-newComponents.xml');
 
-species = {'X0'};
-rateLaws = {' - (2*X0)'};
+species = {'X0', 'X1'};
+rateLaws = {' - (v_in*X0/t_in)', '0'};
 
 fail = TestFunction('GetRateLawsFromReactions', 1, 2, m, species, rateLaws);
