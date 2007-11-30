@@ -144,7 +144,11 @@ for i = 1:NumberSpecies
 
 
                     % put in stoichiometry
-                    stoichiometry = SBMLModel.reaction(j).product(SpeciesRole(4)).stoichiometry/double(SBMLModel.reaction(j).product(SpeciesRole(4)).denominator);
+                    if (SBMLModel.SBML_level == 2 && SBMLModel.SBML_version > 1)
+                        stoichiometry = SBMLModel.reaction(j).product(SpeciesRole(4)).stoichiometry;
+                    else
+                        stoichiometry = SBMLModel.reaction(j).product(SpeciesRole(4)).stoichiometry/double(SBMLModel.reaction(j).product(SpeciesRole(4)).denominator);
+                    end;
                     if ((SBMLModel.SBML_level == 2) && (~isempty(SBMLModel.reaction(j).product(SpeciesRole(4)).stoichiometryMath)))
                          output = sprintf('%s + (%s) * (%s)', output, SBMLModel.reaction(j).product(SpeciesRole(4)).stoichiometryMath, formula);
                    
@@ -177,7 +181,11 @@ for i = 1:NumberSpecies
 
 
                     % put in stoichiometry
-                    stoichiometry = double(SBMLModel.reaction(j).reactant(SpeciesRole(5)).stoichiometry)/double(SBMLModel.reaction(j).reactant(SpeciesRole(5)).denominator);
+                    if (SBMLModel.SBML_level == 2 && SBMLModel.SBML_version > 1)
+                        stoichiometry = SBMLModel.reaction(j).reactant(SpeciesRole(5)).stoichiometry;
+                    else
+                        stoichiometry = SBMLModel.reaction(j).reactant(SpeciesRole(5)).stoichiometry/double(SBMLModel.reaction(j).reactant(SpeciesRole(5)).denominator);
+                    end;
                     if ((SBMLModel.SBML_level == 2) && (~isempty(SBMLModel.reaction(j).reactant(SpeciesRole(5)).stoichiometryMath)))
                          output = sprintf('%s - (%s) * (%s)', output, SBMLModel.reaction(j).reactant(SpeciesRole(5)).stoichiometryMath, formula);
                    
