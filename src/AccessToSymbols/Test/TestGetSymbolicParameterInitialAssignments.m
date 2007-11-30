@@ -51,11 +51,12 @@ function fail = TestGetSymbolicParameterInitialAssignments
 %  Contributor(s):
 
 
-m = TranslateSBML('test10.xml');
+m = TranslateSBML('../../Test/test-data/initialAssignments.xml');
 
-syms y y1 y2 y3;
+syms k k1 s1 s2 s3 c c1;
 
-parameter = [y y1 y2 y3];
-initial = {[sym('2*y3')], [sym('0')], [sym('0')], [sym('0')] };
+parameter = [k k1 s1 s2 s3 c c1];
+initial = {[s1*k1/s3], [sym('0')], [sym('0')], [sym('0')], [sym('0')], ...
+                                              [sym('0')], [sym('0')] };
 
 fail = TestFunction('GetSymbolicParameterInitialAssignments', 1, 2, m, parameter, initial);

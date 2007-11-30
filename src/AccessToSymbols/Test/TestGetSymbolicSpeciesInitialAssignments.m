@@ -51,11 +51,11 @@ function fail = TestGetSymbolicSpeciesInitialAssignments
 %  Contributor(s):
 
 
-m = TranslateSBML('test10.xml');
+m = TranslateSBML('../../Test/test-data/initialAssignments.xml');
 
-syms X0 X1;
+syms X S1 S2 S3 S4;
 
-species = [X0, X1];
-initial = {[sym('2*y1')], [sym('0')]};
+species = [S1, S2, S3, X, S4];
+initial = {[sym('0')], [sym('0')], [sym('0')], [sym('s1+s2+2*s3')], [sym('0')]};
 
 fail = TestFunction('GetSymbolicSpeciesInitialAssignments', 1, 2, m, species, initial);

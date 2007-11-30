@@ -152,12 +152,12 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 3;
-fail = TestAnalyseSpeciesSymbolic;
-if (fail > 0)
-    disp('TestAnalyseSpeciesSymbolic failed');
-end;
-Totalfail = Totalfail + fail;
+% test = test + 3;
+% fail = TestAnalyseSpeciesSymbolic;
+% if (fail > 0)
+%     disp('TestAnalyseSpeciesSymbolic failed');
+% end;
+% Totalfail = Totalfail + fail;
 
 test = test + 3;
 fail = TestGetCompartmentSymbols;
