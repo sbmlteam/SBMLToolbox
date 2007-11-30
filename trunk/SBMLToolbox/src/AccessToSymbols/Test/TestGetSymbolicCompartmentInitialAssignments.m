@@ -51,11 +51,11 @@ function fail = TestGetSymbolicCompartmentInitialAssignments
 %  Contributor(s):
 
 
-m = TranslateSBML('test10.xml');
+m = TranslateSBML('../../Test/test-data/initialAssignments.xml');
 
-syms cell1;
+syms compartment;
 
-compartment = [cell1];
-initial = {[sym('2*y2')]};
+compartment = [compartment];
+initial = {[sym('c/c1')]};
 
 fail = TestFunction('GetSymbolicCompartmentInitialAssignments', 1, 2, m, compartment, initial);

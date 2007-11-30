@@ -58,15 +58,16 @@ function fail = TestGetSpeciesRateLaws(SBMLModel)
 
 m = TranslateSBML('../../Test/test-data/algebraicRules.xml');
 
-syms S1 S2 S3 X k k_R2 X0;
+syms S1 S2 S3 X k k_R2 X0 X1 v_in t_in;
 
 species = [S1, S2, S3, X];
 rateLaws = [-k*S1, k*S1-k_R2*S2, k_R2*S2, sym('0')];
 
 fail = TestFunction('GetSymbolicRateLawsFromReactions', 1, 2, m, species, rateLaws);
-m = TranslateSBML('l2v3-all.xml');
 
-species = [X0];
-rateLaws = [-(2*X0)];
+m = TranslateSBML('../../Test/test-data/l2v2-newComponents.xml');
+
+species = [X0, X1];
+rateLaws = [-(v_in*X0/t_in), sym('0')];
 
 fail = TestFunction('GetSymbolicRateLawsFromReactions', 1, 2, m, species, rateLaws);

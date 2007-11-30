@@ -55,7 +55,7 @@ function fail = TestGetCompartmentSymbols
 %
 %  Contributor(s):
 
-syms compartment c c2;
+syms compartment c c2 c1 a;
 m = TranslateSBML('../../Test/test-data/l1v1.xml');
 
 symbols = [compartment];
@@ -64,11 +64,11 @@ values = [1];
 
 fail = TestFunction('GetCompartmentSymbols', 1, 3, m, symbols, values, names);
 
-m = TranslateSBML('test9.xml');
+m = TranslateSBML('../../Test/test-data/l2v1-all.xml');
 
-symbols = [c, c2];
-names = {'c', 'c2'};
-values = [1, 0.75];
+symbols = [a, c, c1];
+names = {'a', 'c', 'c1'};
+values = [1, 1, 1];
 
 fail = fail + TestFunction('GetCompartmentSymbols', 1, 3, m, symbols, values, names);
 
