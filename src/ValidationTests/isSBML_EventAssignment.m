@@ -5,20 +5,22 @@ function y = isSBML_EventAssignment(varargin)
 % 
 % if SBMLStructure represents a EventAssignment within an SBML model
 % it has the appropriate fields (ONLY IN LEVEL 2)
-% eg    Typecode (2)
-%       Notes (2)
-%       Annotations (2)
-%       Variable (2)
-%       MathFormula (2)
+% eg    Typecode (L2V1)
+%       Notes (L2V1)
+%       Annotations (L2V1)
+%       SBOTerm (L2V2)
+%       Variable (L2V1)
+%       MathFormula (L2V1)
 %
-% NOTE number in brackets indicates field is appropriate for that level of
-% sbml only
+% NOTE: content of brackets indicates the level and version of sbml from which the given field
+% is appropriate.
 %
 % Returns 1 if SBMLStructure is a structure containing each of the above
-% fields and the typecode is "SBML_EVENT_ASSIGNMENT"
+% fields (appropriate with the given level and version) 
+% and the typecode is "SBML_EVENT_ASSIGNMENT"
 % 
 % Returns 0 if SBMLStructure is not a structure 
-% or does not contain one of the above fields
+% or does not contain one of the appropriate fields
 % or the typecode is not "SBML_EVENT_ASSIGNMENT"
 
 %
