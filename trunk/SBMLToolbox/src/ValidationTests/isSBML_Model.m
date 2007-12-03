@@ -9,24 +9,29 @@ function y = isSBML_Model(SBMLStructure)
 %       Level
 %       Version
 %       Name
-%       Id (2)
-%       ListFunctionDefinition (2)
+%       Id (L2V1)
+%       SBOTerm (L2V2)
+%       ListFunctionDefinition (L2V1)
 %       ListUnitDefinition
+%       ListOfCompartmentTypes (L2V2)
+%       ListOfSpeciesTypes (L2V2)
 %       ListCompartment
 %       ListSpecies
 %       ListParameter
+%       ListOfInitialAssignments (L2V2)
 %       ListRule
+%       ListOfConstraints (L2V2)
 %       ListReaction
 %       ListEvent (2)
 %
-% NOTE number in brackets indicates field is appropriate for that level of
-% sbml only
+% NOTE: content of brackets indicates the level and version of sbml for which the given field
+% is appropriate.
 %
 % Returns 1 if SBMLStructure is a structure containing each of the above
-% fields and the typecode is "SBML_MODEL"
+% fields (appropriate with teh given leve and version) and the typecode is "SBML_MODEL"
 % 
 % Returns 0 if SBMLStructure is not a structure 
-% or does not contain one of the above fields
+% or does not contain one of the appropriate fields
 % or the typecode is not "SBML_MODEL"
 
 %
