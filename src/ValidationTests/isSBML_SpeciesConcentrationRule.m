@@ -3,12 +3,13 @@ function y = isSBML_SpeciesConcentrationRule(varargin)
 % checks that SBMLStructure represents a species concentration rule 
 % within an sbml model of the specified level
 % 
-% if SBMLStructure represents a species concentration rule within an SBML model
+% if SBMLStructure represents a rule within an SBML model
 % it has the appropriate fields 
 % eg    Typecode
 %       Notes
 %       Annotations
-%       Type (1)
+%       SBOTerm (L2V2)
+%       Type (L1V1 - L1V2)
 %       Formula
 %       Variable
 %       Species
@@ -16,14 +17,15 @@ function y = isSBML_SpeciesConcentrationRule(varargin)
 %       ParameterName
 %       ParameterUnits
 %
-% NOTE number in brackets indicates field is appropriate for that level of
-% sbml only
+% NOTE: content of brackets indicates the level and version of sbml from which the given field
+% is appropriate.
 %
 % Returns 1 if SBMLStructure is a structure containing each of the above
-% fields and the typecode is  "SBML_COMPARTMENT_VOLUME_RULE"
+% fields (appropriate with the given level and version) 
+% and the typecode is  "SBML_COMPARTMENT_VOLUME_RULE"
 % 
 % Returns 0 if SBMLStructure is not a structure 
-% or does not contain one of the above fields
+% or does not contain one of the appropriate fields
 % or the typecode is not  "SBML_COMPARTMENT_VOLUME_RULE"
 
 %

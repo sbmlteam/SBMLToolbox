@@ -8,7 +8,8 @@ function y = isSBML_Rule(varargin)
 % eg    Typecode
 %       Notes
 %       Annotations
-%       Type (1)
+%       SBOTerm (L2V2)
+%       Type (L1V1 - L1V2)
 %       Formula
 %       Variable
 %       Species
@@ -16,17 +17,18 @@ function y = isSBML_Rule(varargin)
 %       ParameterName
 %       ParameterUnits
 %
-% NOTE number in brackets indicates field is appropriate for that level of
-% sbml only
+% NOTE: content of brackets indicates the level and version of sbml from which the given field
+% is appropriate.
 %
 % Returns 1 if SBMLStructure is a structure containing each of the above
-% fields and the typecode is one of
+% fields (appropriate with the given level and version) 
+% and the typecode is one of
 %   "SBML_ALGEBRAIC_RULE", "SBML_SPECIES_CONCENTRATION_RULE",
 %   "SBML_COMPARTMENT_VOLUME_RULE", "SBML_PARAMETER_RULE", 
 %   "SBML_ASSIGNMENT_RULE", "SBML_RATE_RULE"
 % 
 % Returns 0 if SBMLStructure is not a structure 
-% or does not contain one of the above fields
+% or does not contain one of the appropriate fields
 % or the typecode is not one of 
 %   "SBML_ALGEBRAIC_RULE", "SBML_SPECIES_CONCENTRATION_RULE",
 %   "SBML_COMPARTMENT_VOLUME_RULE", "SBML_PARAMETER_RULE", 
