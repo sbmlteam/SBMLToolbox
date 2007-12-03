@@ -5,19 +5,23 @@ function y = isSBML_ModifierSpeciesReference(varargin)
 % 
 % if SBMLStructure represents a modifier species reference within an SBML model
 % it has the appropriate fields (ONLY IN LEVEL 2)
-% eg    Typecode (2)
-%       Notes (2)
-%       Annotations (2)
-%       Species (2)
+% eg    Typecode (L2V1)
+%       Notes (L2V1)
+%       Annotations (L2V1)
+%       SBOTerm (L2V2)
+%       Species (L2V1)
+%       Id (L2V2)
+%       Name (L2V2)
 %
-% NOTE number in brackets indicates field is appropriate for that level of
-% sbml only
+% NOTE: content of brackets indicates the level and version of sbml from which the given field
+% is appropriate.
 %
 % Returns 1 if SBMLStructure is a structure containing each of the above
-% fields and the typecode is "SBML_MODIFIER_SPECIES_REFERENCE"
+% fields (appropriate with the given level and version) 
+% and the typecode is "SBML_MODIFIER_SPECIES_REFERENCE"
 % 
 % Returns 0 if SBMLStructure is not a structure 
-% or does not contain one of the above fields
+% or does not contain one of the appropriate fields
 % or the typecode is not "SBML_MODIFIER_SPECIES_REFERENCE"
 
 %

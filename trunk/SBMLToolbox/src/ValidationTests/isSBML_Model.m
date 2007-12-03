@@ -24,11 +24,11 @@ function y = isSBML_Model(SBMLStructure)
 %       ListReaction
 %       ListEvent (2)
 %
-% NOTE: content of brackets indicates the level and version of sbml for which the given field
+% NOTE: content of brackets indicates the level and version of sbml from which the given field
 % is appropriate.
 %
 % Returns 1 if SBMLStructure is a structure containing each of the above
-% fields (appropriate with teh given leve and version) and the typecode is "SBML_MODEL"
+% fields (appropriate with the given level and version) and the typecode is "SBML_MODEL"
 % 
 % Returns 0 if SBMLStructure is not a structure 
 % or does not contain one of the appropriate fields

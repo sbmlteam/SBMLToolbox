@@ -8,20 +8,22 @@ function y = isSBML_KineticLaw(varargin)
 % eg    Typecode
 %       Notes
 %       Annotations
+%       SBOTerm (L2V2)
 %       Formula
-%       Math (2)
+%       Math (L2V1)
 %       ListParameter
-%       TimeUnits
-%       SubstanceUnits
+%       TimeUnits (L2V1 - L2V1)
+%       SubstanceUnits (L2V1 - L2V1)
 %
-% NOTE number in brackets indicates field is appropriate for that level of
-% sbml only
+% NOTE: content of brackets indicates the level and version of sbml from which the given field
+% is appropriate.
 %
 % Returns 1 if SBMLStructure is a structure containing each of the above
-% fields and the typecode is "SBML_KINETIC_LAW"
+% fields (appropriate with the given level and version) 
+% and the typecode is "SBML_KINETIC_LAW"
 % 
 % Returns 0 if SBMLStructure is not a structure 
-% or does not contain one of the above fields
+% or does not contain one of the appropriate fields
 % or the typecode is not "SBML_KINETIC_LAW"
 
 %

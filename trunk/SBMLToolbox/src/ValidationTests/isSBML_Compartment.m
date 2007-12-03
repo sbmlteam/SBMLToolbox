@@ -9,24 +9,27 @@ function y = isSBML_Compartment(varargin)
 %       Notes
 %       Annotations
 %       Name
-%       Id (2)
-%       SpatialDimensions (2)
-%       Size (2)
-%       Volume (1)
+%       SBOTerm (L2V3)
+%       Id (L2V1)
+%       CompartmentType (L2V2)
+%       SpatialDimensions (L2V1)
+%       Size (L2V1)
+%       Volume (L1V1 - L1V2)
 %       Units
 %       Outside
-%       Constant (2)
-%       isSetSize (2)
+%       Constant (L2V1)
+%       isSetSize (L2V1)
 %       isSetVolume
 %
-% NOTE number in brackets indicates field is appropriate for that level of
-% sbml only
+% NOTE: content of brackets indicates the level and version of sbml from which the given field
+% is appropriate.
 %
 % Returns 1 if SBMLStructure is a structure containing each of the above
-% fields and the typecode is "SBML_COMPARTMENT"
+% fields (appropriate with the given level and version) 
+% and the typecode is "SBML_COMPARTMENT"
 % 
 % Returns 0 if SBMLStructure is not a structure 
-% or does not contain one of the above fields
+% or does not contain one of the appropriate fields
 % or the typecode is not "SBML_COMPARTMENT"
 
 %
