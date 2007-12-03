@@ -4,7 +4,7 @@ function y = isSBML_CompartmentType(varargin)
 % within an sbml model of specified level
 % 
 % if SBMLStructure represents a CompartmentType within an SBML model
-% it has the appropriate fields (ONLY IN LEVEL 2 VERSION 2)
+% it has the appropriate fields (ONLY IN LEVEL 2 VERSION 2 onwards)
 % eg    Typecode (2)
 %       Notes (2)
 %       Annotations (2)
@@ -12,11 +12,15 @@ function y = isSBML_CompartmentType(varargin)
 %       Id (2)
 %
 %
+% NOTE: content of brackets indicates the level and version of sbml from which the given field
+% is appropriate.
+%
 % Returns 1 if SBMLStructure is a structure containing each of the above
-% fields and the typecode is "SBML_COMPARTMENT_TYPE"
+% fields (appropriate with the given level and version) 
+% and the typecode is "SBML_COMPARTMENT_TYPE"
 % 
 % Returns 0 if SBMLStructure is not a structure 
-% or does not contain one of the above fields
+% or does not contain one of the appropriate fields
 % or the typecode is not "SBML_COMPARTMENT_TYPE"
 
 % /**

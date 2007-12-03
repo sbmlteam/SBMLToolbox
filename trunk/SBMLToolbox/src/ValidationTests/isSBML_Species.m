@@ -8,30 +8,33 @@ function y = isSBML_Species(varargin)
 % eg    Typecode
 %       Notes
 %       Annotations
+%       SBOTerm (L2V3)
 %       Name
-%       Id (2)
+%       Id (L2V1)
+%       SpeciesType (L2V2)
 %       Compartment
 %       InitialAmount
-%       InitialConcentration (2)
-%       Units (1)
-%       SubstanceUnits (2)
-%       SpatialSizeUnits (2)
-%       HasOnlySubstanceUnits (2)
+%       InitialConcentration (L2V1)
+%       Units (L1V1 - L1V2)
+%       SubstanceUnits (L2V1)
+%       SpatialSizeUnits (L2V1 - L2V2)
+%       HasOnlySubstanceUnits (L2V1)
 %       BoundaryCondition
 %       Charge
-%       Constant (2)
+%       Constant (L2V1)
 %       isSetInitialAmount
-%       isSetInitialConcentration (2)
+%       isSetInitialConcentration (L2V1)
 %       isSetCharge
 %
-% NOTE number in brackets indicates field is appropriate for that level of
-% sbml only
+% NOTE: content of brackets indicates the level and version of sbml from which the given field
+% is appropriate.
 %
 % Returns 1 if SBMLStructure is a structure containing each of the above
-% fields and the typecode is "SBML_SPECIES"
+% fields (appropriate with the given level and version) 
+% and the typecode is "SBML_SPECIES"
 % 
 % Returns 0 if SBMLStructure is not a structure 
-% or does not contain one of the above fields
+% or does not contain one of the appropriate fields
 % or the typecode is not "SBML_SPECIES"
 
 %

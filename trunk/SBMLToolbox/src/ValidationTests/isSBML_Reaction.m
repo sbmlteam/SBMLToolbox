@@ -8,24 +8,26 @@ function y = isSBML_Reaction(varargin)
 % eg    Typecode
 %       Notes
 %       Annotations
+%       SBOTerm (L2V2)
 %       Name
-%       Id (2)
+%       Id (L2V1)
 %       ListReactants
 %       ListProducts
-%       ListModifiers (2)
+%       ListModifiers (L2V1)
 %       KineticLaw
 %       Reversible
 %       Fast
-%       isSetFast (2)
+%       isSetFast (L2V1)
 %
-% NOTE number in brackets indicates field is appropriate for that level of
-% sbml only
+% NOTE: content of brackets indicates the level and version of sbml from which the given field
+% is appropriate.
 %
 % Returns 1 if SBMLStructure is a structure containing each of the above
-% fields and the typecode is "SBML_REACTION"
+% fields (appropriate with the given level and version) 
+% and the typecode is "SBML_REACTION"
 % 
 % Returns 0 if SBMLStructure is not a structure 
-% or does not contain one of the above fields
+% or does not contain one of the appropriate fields
 % or the typecode is not "SBML_REACTION"
 
 %
