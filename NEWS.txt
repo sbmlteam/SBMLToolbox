@@ -5,6 +5,10 @@ Version 3.0.0
 
  - uses libSBML-3.0.2
  
+ - added the GetStoichiometrySparse function contributed by
+   Arsen Batagov. This returns the stoichiometry matrix as a 
+   sparse matrix and is much quicker for larger models.
+ 
  - The TranslateSBML function has a second optional argument
    that indicates whether the model is to be validated prior 
    to import. The default value is 0; indicating no 
@@ -24,13 +28,8 @@ Version 3.0.0
    to the GUI's that could be used to view individual
    components of a model. 
 
-caught bug in the scripts to build the executables
-- these need two include directories specified
-to deal with the fact that the binding exists as part
-of libSBML and SBMLToolbox
-
-fixed bug in DetermineSpeciesRoleInReaction
-which failed for a level 1 model
+ - fixed bug in DetermineSpeciesRoleInReaction
+   which failed for a level 1 model
 
 
 version 2.0.2
