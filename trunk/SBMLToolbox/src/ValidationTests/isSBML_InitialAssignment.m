@@ -5,19 +5,23 @@ function y = isSBML_InitialAssignment(varargin)
 % 
 % if SBMLStructure represents a InitialAssignment within an SBML model
 % it has the appropriate fields (ONLY IN LEVEL 2 VERSION 2)
-% eg    Typecode (2)
-%       Notes (2)
-%       Annotations (2)
-%       Symbol(2)
-%       SBOTerm (2)
-%       Math (2)
+% eg    Typecode (L2V2)
+%       Notes (L2V2)
+%       Annotations (L2V2)
+%       Symbol(L2V2)
+%       SBOTerm (L2V2)
+%       Math (L2V2)
 %
+%
+% NOTE: content of brackets indicates the level and version of sbml from which the given field
+% is appropriate.
 %
 % Returns 1 if SBMLStructure is a structure containing each of the above
-% fields and the typecode is "SBML_INITIAL_ASSIGNMENT"
+% fields (appropriate with the given level and version) 
+% and the typecode is "SBML_INITIAL_ASSIGNMENT"
 % 
 % Returns 0 if SBMLStructure is not a structure 
-% or does not contain one of the above fields
+% or does not contain one of the appropriate fields
 % or the typecode is not "SBML_INITIAL_ASSIGNMENT"
 
 % /**
