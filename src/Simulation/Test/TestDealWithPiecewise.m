@@ -73,3 +73,16 @@ output= {'piecewise(1,a<5,2)', '3', '4'};
 
 fail = fail + TestFunction('DealWithPiecewise', 1, 1, input, output);
 
+m = TranslateSBML('../../Test/test-data/piecewise.xml');
+
+input = m.reaction.kineticLaw.math;
+output = {'p1', 'leq(kf,4)', 'p2'};
+
+fail = fail + TestFunction('DealWithPiecewise', 1, 1, input, output);
+
+m = TranslateSBML('../../Test/test-data/nestedPiecewise.xml');
+
+input = m.reaction.kineticLaw.math;
+output = {'piecewise(p1,leq(kf,4),p2)', 'leq(kf,4)', 'p2'};
+
+fail = fail + TestFunction('DealWithPiecewise', 1, 1, input, output);
