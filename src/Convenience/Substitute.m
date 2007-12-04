@@ -2,7 +2,8 @@ function value = Substitute(OriginalFormula, SBMLModel)
 % Substitute 
 %       takes 
 %           1) a string representation of a formula 
-%           2) the SBMLModel structure 
+%           2) the SBMLModel structure
+%       and returns 
 %           the value calculated when all variables are substituted
 %
 %
@@ -119,7 +120,7 @@ if (NoOpeningBrackets == 0 && NoClosingBrackets == 0)
     value = Subs(OriginalFormula, SBMLModel);
     return;
 elseif (NoOpeningBrackets ~= NoClosingBrackets)
-    error('charFormula2sym(input)\n%s', 'mismatch in brackets in input');
+    error('Substitute(OriginalFormula, SBMLModel)\n%s', 'mismatch in brackets in formula');
 end;
 
 %-------------------------------------------------------------------------
@@ -231,7 +232,7 @@ end;
 
 % check correct numbers
 if (NoSubFunctions-1 > NoOperators || NoOperators > NoSubFunctions)
-    error('charFormula2sym(input)\n%s\n%s%i\n%s%i','Invalid formula - CANNOT convert', 'No Subfunctions = ', NoSubFunctions, 'No Operators =', NoOperators);
+    error('Substitute(OriginalFormula, SBMLModel)\n%s\n%s%i\n%s%i','Invalid formula - CANNOT convert', 'No Subfunctions = ', NoSubFunctions, 'No Operators =', NoOperators);
 end;
 
 %-------------------------------------------------------------------------
@@ -289,22 +290,9 @@ value = WriteFormula(FormulaArray, ExpIndex, MultIndex, DivIndex, PlusIndex, Min
 %**************************************************************************
 
 function y = Subs(charArray, SBMLModel)
-% ConvertToSym(charArray) converts a char array that represents a mathematical formula
-% to a symbolic representation of that formula
-% 
-% returns 
-%     1) the symbolic representation of the formula as first output argument
-%     2) an array of the symbols used within the formula as second output
-%     argument
-%
-% NOTE: ConvertToSym should only be called for a single expression
-%       of the form a op1 b op2 c etc.
-%       where a, b and c are either numbers or symbols
-%       and op is an arithmetic operator: +  - * / ^
-%       i.e. NO brackets
 %
 %------------------------------------------------------------
-% EXAMPLE: [x,y] = ConvertToSym('a1*b*a1+a1/b-c^2')
+% EXAMPLE: [y] = Subs('a1*b*a1+a1/b-c^2')
 %           x   =   a1^2*b+a1/b-c^2
 %           y   =   [a1, b, c]
 %------------------------------------------------------------
@@ -471,7 +459,7 @@ end;
 %-------------------------------------------------------------
 % check that number of Symbols and operators is consistent
 if (NoSymbols < NoOperators || NoSymbols > NoOperators+1)
-    error('ConvertToSym(input)\n%s\n%s%i\n%s%i','Invalid formula - CANNOT convert', 'No Symbols = ', NoSymbols, 'No Operators =', NoOperators);
+    error('Subs(input)\n%s\n%s%i\n%s%i','Invalid formula - CANNOT convert', 'No Symbols = ', NoSymbols, 'No Operators =', NoOperators);
 end;
 
 % create the array of symbols used; substituting for value
