@@ -5,19 +5,23 @@ function y = isSBML_Constraint(varargin)
 % 
 % if SBMLStructure represents a Constraint within an SBML model
 % it has the appropriate fields (ONLY IN LEVEL 2 VERSION 2)
-% eg    Typecode (2)
-%       Notes (2)
-%       Annotations (2)
-%       sboTerm (2)
-%       Math (2)
-%       Message (2)
+% eg    Typecode (L2V2)
+%       Notes (L2V2)
+%       Annotations (L2V2)
+%       sboTerm (L2V2)
+%       Math (L2V2)
+%       Message (L2V2)
 %
+%
+% NOTE: content of brackets indicates the level and version of sbml from which the given field
+% is appropriate.
 %
 % Returns 1 if SBMLStructure is a structure containing each of the above
-% fields and the typecode is "SBML_CONSTRAINT"
+% fields (appropriate with the given level and version) 
+% and the typecode is "SBML_CONSTRAINT"
 % 
 % Returns 0 if SBMLStructure is not a structure 
-% or does not contain one of the above fields
+% or does not contain one of the appropriate fields
 % or the typecode is not "SBML_CONSTRAINT"
 
 % /**
