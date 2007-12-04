@@ -78,9 +78,9 @@ Pairs = PairBrackets(OriginalFormula);
 
 Start = findstr(OriginalFormula, 'piecewise');
 
-% if (length(Start) ~= 1)
-%     error ('piecwise either does not occur or occurs more than once/n');
-% end;
+if (length(Start) == 0)
+    error('DealWithPiecewise(formula)\n%s', 'piecewise either does not occur in the formula');
+end;
 
 
 

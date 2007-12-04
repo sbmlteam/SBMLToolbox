@@ -76,3 +76,11 @@ output2 = {'x', 'y', 'x+y'};
 
 fail = TestFunction('GetArgumentsFromLambdaFunction', 1, 1, input1, output1);
 fail = fail + TestFunction('GetArgumentsFromLambdaFunction', 1, 1, input2, output2);
+
+m = TranslateSBML('../../Test/test-data/l2v1-all.xml');
+
+input = m.functionDefinition.math;
+output = {'x', 'power(x,3)'};
+
+fail = fail + TestFunction('GetArgumentsFromLambdaFunction', 1, 1, input, output);
+
