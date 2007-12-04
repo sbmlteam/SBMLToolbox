@@ -61,12 +61,15 @@ function SBMLCompartment = Compartment_setSpatialDimensions(SBMLCompartment, spa
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_Compartment(SBMLCompartment, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLCompartment))
+    error(sprintf('%s\n%s', ...
+      'Compartment_setSpatialDimensions(SBMLCompartment)', ...
+      'argument must be an SBML compartment structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLCompartment);
 
-if (~isSBML_Compartment(SBMLCompartment, sbmlLevel))
+if (~isSBML_Compartment(SBMLCompartment, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'Compartment_setSpatialDimensions(SBMLCompartment, spatialDimensions)', 'first argument must be an SBML model structure'));
 elseif ((~isIntegralNumber(spatialDimensions)) || (spatialDimensions < 0) || (spatialDimensions > 3))
     error(sprintf('Compartment_setSpatialDimensions(SBMLCompartment, spatialDimensions)\n%s', 'second argument must be an integer between 0 and 3 representing the spatial dimensions of the compartment'));

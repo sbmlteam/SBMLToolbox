@@ -61,12 +61,14 @@ function value = SpeciesReference_isSetSpecies(SBMLSpeciesReference)
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_SpeciesReference(SBMLSpeciesReference, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLSpeciesReference))
+    error(sprintf('%s', ...
+      'argument must be an SBML SpeciesReference structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpeciesReference);
 
-if (~isSBML_SpeciesReference(SBMLSpeciesReference, sbmlLevel))
+if (~isSBML_SpeciesReference(SBMLSpeciesReference, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'SpeciesReference_isSetSpecies(SBMLSpeciesReference)', 'argument must be an SBML speciesreference structure'));
 end;
 

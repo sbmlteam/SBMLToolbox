@@ -61,8 +61,7 @@ function name = SpeciesReference_getName(SBMLSpeciesReference)
 
 % check that input is correct
 if (~isstruct(SBMLSpeciesReference))
-    error(sprintf('%s\n%s', ...
-      'SpeciesReference_getName(SBMLSpeciesReference)', ...
+    error(sprintf('%s', ...
       'argument must be an SBML SpeciesReference structure'));
 end;
  

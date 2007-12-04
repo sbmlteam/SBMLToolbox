@@ -60,16 +60,18 @@ function reaction = Reaction_addProduct(SBMLReaction, SBMLProduct)
 %  Contributor(s):
 
 
-% get level
-sbmlLevel = 2;
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel))
-    sbmlLevel = 1;
-end;
-
 % check that input is correct
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel))
+if (~isstruct(SBMLReaction))
+  error(sprintf('%s\n%s', ...
+    'Reaction_addProduct(SBMLReaction, SBMLProduct)', ...
+    'first argument must be an SBML Reaction structure'));
+end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
+
+if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'Reaction_addProduct(SBMLReaction, SBMLProduct)', 'first argument must be an SBML reaction structure'));
-elseif (~isSBML_SpeciesReference(SBMLProduct, sbmlLevel))
+elseif (~isSBML_SpeciesReference(SBMLProduct, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s\n of the same SBML level, namely level %u', 'Reaction_addProduct(SBMLReaction, SBMLProduct)', 'second argument must be an SBML product structure', sbmlLevel));
 end;
 

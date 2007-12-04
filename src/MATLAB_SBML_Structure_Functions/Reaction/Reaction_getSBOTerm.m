@@ -61,8 +61,7 @@ function sboTerm = Reaction_getSBOTerm(SBMLReaction)
 
 % check that input is correct
 if (~isstruct(SBMLReaction))
-  error(sprintf('%s\n%s', ...
-    'Reaction_setSBOTerm(SBMLReaction, sboTerm)', ...
+  error(sprintf('%s', ...
     'first argument must be an SBML Reaction structure'));
 end;
  

@@ -61,12 +61,14 @@ function SBMLSpeciesReference = SpeciesReference_setStoichiometryMath(SBMLSpecie
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_SpeciesReference(SBMLSpeciesReference, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLSpeciesReference))
+    error(sprintf('%s', ...
+      'argument must be an SBML SpeciesReference structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpeciesReference);
 
-if (~isSBML_SpeciesReference(SBMLSpeciesReference, sbmlLevel))
+if (~isSBML_SpeciesReference(SBMLSpeciesReference, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'SpeciesReference_setStoichiometryMath(SBMLSpeciesReference, stoichiometryMath)', 'first argument must be an SBML speciesreference structure'));
 elseif (~ischar(stoichiometryMath))
     error(sprintf('SpeciesReference_setStoichiometryMath(SBMLSpeciesReference, stoichiometryMath)\n%s', 'second argument must be a string representing the stoichiometryMath of the speciesreference'));

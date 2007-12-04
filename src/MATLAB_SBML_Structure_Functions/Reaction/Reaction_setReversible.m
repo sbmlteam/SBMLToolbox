@@ -61,12 +61,14 @@ function SBMLReaction = Reaction_setReversible(SBMLReaction, reversible)
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLReaction))
+  error(sprintf('%s', ...
+    'first argument must be an SBML Reaction structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
 
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel))
+if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'Reaction_setReversible(SBMLReaction, reversible)', 'first argument must be an SBML model structure'));
 elseif ((~isIntegralNumber(reversible)) || (reversible < 0) || (reversible > 1))
     error(sprintf('Reaction_setReversible(SBMLReaction, reversible)\n%s', 'second argument must be either true (=1) or false (=0) representing whether the reaction is reversible'));

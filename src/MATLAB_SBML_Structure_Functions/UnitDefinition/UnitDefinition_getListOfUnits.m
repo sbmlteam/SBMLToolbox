@@ -59,14 +59,15 @@ function units = UnitDefinition_getListOfUnits(SBMLUnitDefinition)
 %  Contributor(s):
 
 
-% get level
-sbmlLevel = 2;
-if (~isSBML_UnitDefinition(SBMLUnitDefinition, sbmlLevel))
-    sbmlLevel = 1;
-end;
-
 % check that input is correct
-if (~isSBML_UnitDefinition(SBMLUnitDefinition, sbmlLevel))
+if (~isstruct(SBMLUnitDefinition))
+    error(sprintf('%s', ...
+      'argument must be an SBML UnitDefinition structure'));
+end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLUnitDefinition);
+
+if (~isSBML_UnitDefinition(SBMLUnitDefinition, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'UnitDefinition_getListOfUnits(SBMLUnitDefinition)', 'argument must be an SBML unitDefinition structure'));
 end;
 

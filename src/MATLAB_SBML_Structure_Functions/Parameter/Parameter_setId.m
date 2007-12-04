@@ -61,12 +61,15 @@ function SBMLParameter = Parameter_setId(SBMLParameter, id)
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_Parameter(SBMLParameter, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLParameter))
+  error(sprintf('%s\n%s', ...
+    'Parameter_setId(SBMLParameter)', ...
+    'first argument must be an SBML Parameter structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLParameter);
 
-if (~isSBML_Parameter(SBMLParameter, sbmlLevel))
+if (~isSBML_Parameter(SBMLParameter, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'Parameter_setId(SBMLParameter, id)', 'first argument must be an SBML parameter structure'));
 elseif (~ischar(id))
     error(sprintf('Parameter_setId(SBMLParameter, id)\n%s', 'second argument must be a string representing the id of the parameter'));

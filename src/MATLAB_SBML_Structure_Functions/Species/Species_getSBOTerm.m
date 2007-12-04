@@ -61,8 +61,7 @@ function sboTerm = Species_getSBOTerm(SBMLSpecies)
 
 % check that input is correct
 if (~isstruct(SBMLSpecies))
-    error(sprintf('%s\n%s', ...
-      'Species_getSBOTerm(SBMLSpecies)', ...
+    error(sprintf('%s', ...
       'argument must be an SBML Species structure'));
 end;
  

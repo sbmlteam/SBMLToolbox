@@ -60,16 +60,15 @@ function product = Reaction_getProduct(SBMLReaction, number)
 %  Contributor(s):
 
 
-% get level
-sbmlLevel = 2;
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel))
-    sbmlLevel = 1;
-end;
-
 % check that input is correct
+if (~isstruct(SBMLReaction))
+  error(sprintf('%s', ...
+    'first argument must be an SBML Reaction structure'));
+end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
 
-
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel))
+if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'Reaction_getProduct(SBMLReaction, number)', 'first argument must be an SBML reaction structure'));
 elseif ((number < 1) || (~isIntegralNumber(number)))
     error(sprintf('%s\n%s', 'Reaction_getProduct(SBMLReaction, number)', 'second argument must be a positive integer'));

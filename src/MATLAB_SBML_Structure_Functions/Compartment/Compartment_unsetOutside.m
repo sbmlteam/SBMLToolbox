@@ -61,12 +61,15 @@ function SBMLCompartment = Compartment_unsetOutside(SBMLCompartment)
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_Compartment(SBMLCompartment, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLCompartment))
+    error(sprintf('%s\n%s', ...
+      'Compartment_unsetOutside(SBMLCompartment)', ...
+      'argument must be an SBML compartment structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLCompartment);
 
-if (~isSBML_Compartment(SBMLCompartment, sbmlLevel))
+if (~isSBML_Compartment(SBMLCompartment, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'Compartment_unsetOutside(SBMLCompartment)', 'argument must be an SBML compartment structure'));
 end;
 

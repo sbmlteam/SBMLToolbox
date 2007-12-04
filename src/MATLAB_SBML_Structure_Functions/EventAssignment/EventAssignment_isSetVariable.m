@@ -61,9 +61,15 @@ function value = EventAssignment_isSetVariable(SBMLEventAssignment)
 
 
 % check that input is correct
-sbmlLevel = 2;
+if (~isstruct(SBMLEventAssignment))
+  error(sprintf('%s\n%s', ...
+    'EventAssignment_isSetVariable(SBMLEventAssignment)', ...
+    'first argument must be an SBML eventAssignment structure'));
+end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEventAssignment);
 
-if (~isSBML_EventAssignment(SBMLEventAssignment, sbmlLevel))
+if (~isSBML_EventAssignment(SBMLEventAssignment, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'EventAssignment_isSetVariable(SBMLEventAssignment)', 'argument must be an SBML eventAssignment structure'));
 end;
 

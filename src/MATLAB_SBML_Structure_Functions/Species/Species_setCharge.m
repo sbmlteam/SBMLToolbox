@@ -61,12 +61,14 @@ function SBMLSpecies = Species_setCharge(SBMLSpecies, charge)
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_Species(SBMLSpecies, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLSpecies))
+    error(sprintf('%s', ...
+      'argument must be an SBML Species structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel))
+if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'Species_setCharge(SBMLSpecies, charge)', 'first argument must be an SBML model structure'));
 elseif (~isIntegralNumber(charge))
     error(sprintf('Species_setCharge(SBMLSpecies, charge)\n%s', 'second argument must be an integer representing the charge of the species'));

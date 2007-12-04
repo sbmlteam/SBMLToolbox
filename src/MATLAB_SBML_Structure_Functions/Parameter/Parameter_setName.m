@@ -61,12 +61,15 @@ function SBMLParameter = Parameter_setName(SBMLParameter, name)
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_Parameter(SBMLParameter, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLParameter))
+  error(sprintf('%s\n%s', ...
+    'Parameter_setName(SBMLParameter)', ...
+    'first argument must be an SBML Parameter structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLParameter);
 
-if (~isSBML_Parameter(SBMLParameter, sbmlLevel))
+if (~isSBML_Parameter(SBMLParameter, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'Parameter_setName(SBMLParameter, name)', 'first argument must be an SBML parameter structure'));
 elseif (~ischar(name))
     error(sprintf('Parameter_setName(SBMLParameter, name)\n%s', 'second argument must be a string representing the name of the parameter'));

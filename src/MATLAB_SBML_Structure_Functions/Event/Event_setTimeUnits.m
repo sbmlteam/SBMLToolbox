@@ -61,9 +61,15 @@ function SBMLEvent = Event_setTimeUnits(SBMLEvent, timeUnits)
 
 
 % check that input is correct
-sbmlLevel = 2;
+if (~isstruct(SBMLEvent))
+    error(sprintf('%s\n%s', ...
+      'Event_setTimeUnits(SBMLEvent, timeUnits)', ...
+      'argument must be an SBML Constraint structure'));
+end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEvent);
 
-if (~isSBML_Event(SBMLEvent, sbmlLevel))
+if (~isSBML_Event(SBMLEvent, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'Event_setTimeUnits(SBMLEvent, timeUnits)', 'first argument must be an SBML event structure'));
 elseif (~ischar(timeUnits))
     error(sprintf('Event_setTimeUnits(SBMLEvent, timeUnits)\n%s', 'second argument must be a string representing the timeUnits of the event'));

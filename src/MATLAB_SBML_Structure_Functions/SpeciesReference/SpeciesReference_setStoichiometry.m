@@ -62,12 +62,14 @@ function SBMLSpeciesReference = SpeciesReference_setStoichiometry(SBMLSpeciesRef
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_SpeciesReference(SBMLSpeciesReference, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLSpeciesReference))
+    error(sprintf('%s', ...
+      'argument must be an SBML SpeciesReference structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpeciesReference);
 
-if (~isSBML_SpeciesReference(SBMLSpeciesReference, sbmlLevel))
+if (~isSBML_SpeciesReference(SBMLSpeciesReference, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'SpeciesReference_setStoichiometry(SBMLSpeciesReference, stoichiometry)', 'first argument must be an SBML model structure'));
 elseif ((sbmlLevel ~= 2) &&(~isIntegralNumber(stoichiometry)))
     error(sprintf('SpeciesReference_setStoichiometry(SBMLSpeciesReference, stoichiometry)\n%s', 'second argument must be an integer in level 1 models'));

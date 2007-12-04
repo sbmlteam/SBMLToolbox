@@ -61,9 +61,15 @@ function SBMLModifierSpeciesReference = ModifierSpeciesReference_setSpecies(SBML
 
 
 % check that input is correct
-sbmlLevel = 2;
+if (~isstruct(SBMLModifierSpeciesReference))
+    error(sprintf('%s\n%s', ...
+      'ModifierSpeciesReference_setSpecies(SBMLModifierSpeciesReference)', ...
+      'argument must be an SBML modifierSpeciesReference structure'));
+end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLModifierSpeciesReference);
 
-if (~isSBML_ModifierSpeciesReference(SBMLModifierSpeciesReference, sbmlLevel))
+if (~isSBML_ModifierSpeciesReference(SBMLModifierSpeciesReference, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'ModifierSpeciesReference_setSpecies(SBMLModifierSpeciesReference, species)', 'first argument must be an SBML modifierSpeciesReference structure'));
 elseif (~ischar(species))
     error(sprintf('ModifierSpeciesReference_setSpecies(SBMLModifierSpeciesReference, species)\n%s', 'second argument must be a string representing the species of the modifierSpeciesReference'));

@@ -61,12 +61,14 @@ function SBMLUnit = Unit_setScale(SBMLUnit, scale)
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_Unit(SBMLUnit, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLUnit))
+    error(sprintf('%s', ...
+      'argument must be an SBML Unit structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLUnit);
 
-if (~isSBML_Unit(SBMLUnit, sbmlLevel))
+if (~isSBML_Unit(SBMLUnit, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'Unit_setScale(SBMLUnit, scale)', 'first argument must be an SBML model structure'));
 elseif (~isIntegralNumber(scale))
     error(sprintf('Unit_setScale(SBMLUnit, scale)\n%s', 'second argument must be an integer representing the scale of the unit'));

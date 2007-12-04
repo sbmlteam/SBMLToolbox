@@ -61,12 +61,15 @@ function SBMLAssignmentRule = AssignmentRule_setVariable(SBMLAssignmentRule, var
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_AssignmentRule(SBMLAssignmentRule, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLAssignmentRule))
+    error(sprintf('%s\n%s', ...
+      'AssignmentRule_setVariable(SBMLAssignmentRule)', ...
+      'argument must be an SBML assignmentRule structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLAssignmentRule);
 
-if (~isSBML_AssignmentRule(SBMLAssignmentRule, sbmlLevel))
+if (~isSBML_AssignmentRule(SBMLAssignmentRule, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'AssignmentRule_setVariable(SBMLAssignmentRule, variable)', 'first argument must be an SBML assignmentRule structure'));
 elseif (~ischar(variable))
     error(sprintf('AssignmentRule_setVariable(SBMLAssignmentRule, variable)\n%s', 'second argument must be a string representing the variable of the assignmentRule'));

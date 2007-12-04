@@ -61,12 +61,15 @@ function SBMLParameter = Parameter_setUnits(SBMLParameter, units)
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_Parameter(SBMLParameter, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLParameter))
+  error(sprintf('%s\n%s', ...
+    'Parameter_setUnits(SBMLParameter)', ...
+    'first argument must be an SBML Parameter structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLParameter);
 
-if (~isSBML_Parameter(SBMLParameter, sbmlLevel))
+if (~isSBML_Parameter(SBMLParameter, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'Parameter_setUnits(SBMLParameter, units)', 'first argument must be an SBML parameter structure'));
 elseif (~ischar(units))
     error(sprintf('Parameter_setUnits(SBMLParameter, units)\n%s', 'second argument must be a string representing the units of the parameter'));

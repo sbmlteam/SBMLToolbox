@@ -60,16 +60,16 @@ function eventAssignment = Event_getEventAssignment(SBMLEvent, number)
 %  Contributor(s):
 
 
-% get level
-sbmlLevel = 2;
-if (~isSBML_Event(SBMLEvent, sbmlLevel))
-    sbmlLevel = 1;
-end;
-
 % check that input is correct
+if (~isstruct(SBMLEvent))
+    error(sprintf('%s\n%s', ...
+      'Event_getEventAssignment(SBMLEvent, number)', ...
+      'argument must be an SBML Constraint structure'));
+end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEvent);
 
-
-if (~isSBML_Event(SBMLEvent, sbmlLevel))
+if (~isSBML_Event(SBMLEvent, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'Event_getEventAssignment(SBMLEvent, number)', 'first argument must be an SBML event structure'));
 elseif (sbmlLevel ~= 2)
     error(sprintf('%s\n%s', 'Event_getEventAssignment(SBMLEvent, number)', 'no events in level 1 model'));

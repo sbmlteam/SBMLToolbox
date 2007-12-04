@@ -61,12 +61,14 @@ function SBMLRule = Rule_setFormula(SBMLRule, formula)
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_Rule(SBMLRule, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLRule))
+  error(sprintf('%s', ...
+    'first argument must be an SBML Rule structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLRule);
 
-if (~isSBML_Rule(SBMLRule, sbmlLevel))
+if (~isSBML_Rule(SBMLRule, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'Rule_setFormula(SBMLRule, formula)', 'first argument must be an SBML rule structure'));
 elseif (~ischar(formula))
     error(sprintf('Rule_setFormula(SBMLRule, formula)\n%s', 'second argument must be a string representing the formula of the rule'));

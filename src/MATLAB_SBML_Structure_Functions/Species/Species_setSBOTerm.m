@@ -62,9 +62,8 @@ function SBMLSpecies = Species_setSBOTerm(SBMLSpecies, sboTerm)
 
 % check that input is correct
 if (~isstruct(SBMLSpecies))
-  error(sprintf('%s\n%s', ...
-    'Species_setSBOTerm(SBMLSpecies, sboTerm)', ...
-    'first argument must be an SBML Species structure'));
+    error(sprintf('%s', ...
+      'argument must be an SBML Species structure'));
 end;
  
 [sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);

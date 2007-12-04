@@ -60,12 +60,15 @@ function id = Parameter_getId(SBMLParameter)
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_Parameter(SBMLParameter, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLParameter))
+  error(sprintf('%s\n%s', ...
+    'Parameter_getId(SBMLParameter)', ...
+    'first argument must be an SBML Parameter structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLParameter);
 
-if (~isSBML_Parameter(SBMLParameter, sbmlLevel))
+if (~isSBML_Parameter(SBMLParameter, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'Parameter_getId(SBMLParameter)', 'argument must be an SBML parameter structure'));
 elseif (sbmlLevel ~= 2)
     error(sprintf('%s\n%s', 'Parameter_getId(SBMLParameter)', 'no id field in a level 1 model'));    

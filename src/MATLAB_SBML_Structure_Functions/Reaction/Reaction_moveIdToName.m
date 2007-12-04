@@ -61,12 +61,14 @@ function SBMLReaction = Reaction_moveIdToName(SBMLReaction)
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLReaction))
+  error(sprintf('%s', ...
+    'first argument must be an SBML Reaction structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
 
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel))
+if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'Reaction_moveIdToName(SBMLReaction)', 'argument must be an SBML reaction structure'));
 elseif (sbmlLevel ~= 2)
     error(sprintf('%s\n%s', 'Reaction_moveIdToName(SBMLReaction)', 'no id field in a level 1 model'));    

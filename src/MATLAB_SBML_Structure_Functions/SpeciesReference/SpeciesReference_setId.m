@@ -62,8 +62,7 @@ function SBMLSpeciesReference = SpeciesReference_setId(SBMLSpeciesReference, id)
 
 % check that input is correct
 if (~isstruct(SBMLSpeciesReference))
-    error(sprintf('%s\n%s', ...
-      'SpeciesReference_getId(SBMLSpeciesReference)', ...
+    error(sprintf('%s', ...
       'argument must be an SBML SpeciesReference structure'));
 end;
  

@@ -61,12 +61,14 @@ function SBMLSpecies = Species_setSubstanceUnits(SBMLSpecies, substanceUnits)
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_Species(SBMLSpecies, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLSpecies))
+    error(sprintf('%s', ...
+      'argument must be an SBML Species structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel))
+if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'Species_setSubstanceUnits(SBMLSpecies, substanceUnits)', 'first argument must be an SBML species structure'));
 elseif (~ischar(substanceUnits))
     error(sprintf('Species_setSubstanceUnits(SBMLSpecies, substanceUnits)\n%s', 'second argument must be a string representing the substanceUnits of the species'));

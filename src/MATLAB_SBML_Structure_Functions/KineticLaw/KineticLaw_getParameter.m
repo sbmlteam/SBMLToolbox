@@ -60,16 +60,16 @@ function parameter = KineticLaw_getParameter(SBMLKineticLaw, number)
 %  Contributor(s):
 
 
-% get level
-sbmlLevel = 2;
-if (~isSBML_KineticLaw(SBMLKineticLaw, sbmlLevel))
-    sbmlLevel = 1;
-end;
-
 % check that input is correct
+if (~isstruct(SBMLKineticLaw))
+  error(sprintf('%s\n%s', ...
+    'KineticLaw_getParameter(SBMLKineticLaw, number)', ...
+    'first argument must be an SBML KineticLaw structure'));
+end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLKineticLaw);
 
-
-if (~isSBML_KineticLaw(SBMLKineticLaw, sbmlLevel))
+if (~isSBML_KineticLaw(SBMLKineticLaw, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'KineticLaw_getParameter(SBMLKineticLaw, number)', 'first argument must be an SBML kineticLaw structure'));
 elseif ((number < 1) || (~isIntegralNumber(number)))
     error(sprintf('%s\n%s', 'KineticLaw_getParameter(SBMLKineticLaw, number)', 'second argument must be a positive integer'));

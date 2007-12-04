@@ -62,11 +62,10 @@ function SBMLSpeciesReference = SpeciesReference_setSBOTerm(SBMLSpeciesReference
 
 % check that input is correct
 if (~isstruct(SBMLSpeciesReference))
-  error(sprintf('%s\n%s', ...
-    'SpeciesReference_setSBOTerm(SBMLSpeciesReference, sboTerm)', ...
-    'first argument must be an SBML SpeciesReference structure'));
+    error(sprintf('%s', ...
+      'argument must be an SBML SpeciesReference structure'));
 end;
-
+ 
 [sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpeciesReference);
 
 if (~isSBML_SpeciesReference(SBMLSpeciesReference, sbmlLevel, sbmlVersion))

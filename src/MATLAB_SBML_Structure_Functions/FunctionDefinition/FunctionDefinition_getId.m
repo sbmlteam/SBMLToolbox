@@ -60,9 +60,15 @@ function id = FunctionDefinition_getId(SBMLFunctionDefinition)
 
 
 % check that input is correct
-sbmlLevel = 2;
+if (~isstruct(SBMLFunctionDefinition))
+  error(sprintf('%s\n%s', ...
+    'FunctionDefinition_getId(SBMLFunctionDefinition)', ...
+    'first argument must be an SBML functionDefinition structure'));
+end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLFunctionDefinition);
 
-if (~isSBML_FunctionDefinition(SBMLFunctionDefinition, sbmlLevel))
+if (~isSBML_FunctionDefinition(SBMLFunctionDefinition, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'FunctionDefinition_getId(SBMLFunctionDefinition)', 'argument must be an SBML functionDefinition structure'));
 end;
 

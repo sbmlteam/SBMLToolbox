@@ -61,12 +61,14 @@ function SBMLUnit = Unit_setOffset(SBMLUnit, offset)
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_Unit(SBMLUnit, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLUnit))
+    error(sprintf('%s', ...
+      'argument must be an SBML Unit structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLUnit);
 
-if (~isSBML_Unit(SBMLUnit, sbmlLevel))
+if (~isSBML_Unit(SBMLUnit, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'Unit_setOffset(SBMLUnit, offset)', 'first argument must be an SBML unit structure'));
 elseif (sbmlLevel ~= 2)
     error(sprintf('%s\n%s', 'Unit_setOffset(SBMLUnit, offset)', 'no offset field in a level 1 model'));    

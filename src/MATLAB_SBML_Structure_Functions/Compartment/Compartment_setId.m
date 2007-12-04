@@ -61,12 +61,15 @@ function SBMLCompartment = Compartment_setId(SBMLCompartment, id)
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_Compartment(SBMLCompartment, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLCompartment))
+    error(sprintf('%s\n%s', ...
+      'Compartment_setId(SBMLCompartment)', ...
+      'argument must be an SBML compartment structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLCompartment);
 
-if (~isSBML_Compartment(SBMLCompartment, sbmlLevel))
+if (~isSBML_Compartment(SBMLCompartment, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'Compartment_setId(SBMLCompartment, id)', 'first argument must be an SBML compartment structure'));
 elseif (~ischar(id))
     error(sprintf('Compartment_setId(SBMLCompartment, id)\n%s', 'second argument must be a string representing the id of the compartment'));

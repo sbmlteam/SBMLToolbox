@@ -61,12 +61,14 @@ function SBMLSpecies = Species_setConstant(SBMLSpecies, constant)
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_Species(SBMLSpecies, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLSpecies))
+    error(sprintf('%s', ...
+      'argument must be an SBML Species structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel))
+if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'Species_setConstant(SBMLSpecies, constant)', 'first argument must be an SBML model structure'));
 elseif ((~isIntegralNumber(constant)) || (constant < 0) || (constant > 1))
     error(sprintf('Species_setConstant(SBMLSpecies, constant)\n%s', 'second argument must be either true (=1) or false (=0) representing whether the species is constant'));

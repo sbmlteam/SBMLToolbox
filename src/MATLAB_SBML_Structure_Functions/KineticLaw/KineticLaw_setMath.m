@@ -61,12 +61,15 @@ function SBMLKineticLaw = KineticLaw_setMath(SBMLKineticLaw, math)
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_KineticLaw(SBMLKineticLaw, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLKineticLaw))
+  error(sprintf('%s\n%s', ...
+    'KineticLaw_setMath(SBMLKineticLaw, ..)', ...
+    'first argument must be an SBML KineticLaw structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLKineticLaw);
 
-if (~isSBML_KineticLaw(SBMLKineticLaw, sbmlLevel))
+if (~isSBML_KineticLaw(SBMLKineticLaw, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'KineticLaw_setMath(SBMLKineticLaw, math)', 'first argument must be an SBML kineticLaw structure'));
 elseif (~ischar(math))
     error(sprintf('KineticLaw_setMath(SBMLKineticLaw, math)\n%s', 'second argument must be a string representing the math of the kineticLaw'));

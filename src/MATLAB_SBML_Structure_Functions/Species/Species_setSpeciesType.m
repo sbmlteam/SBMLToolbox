@@ -62,8 +62,7 @@ function SBMLSpecies = Species_setSpeciesType(SBMLSpecies, speciesType)
 
 % check that input is correct
 if (~isstruct(SBMLSpecies))
-    error(sprintf('%s\n%s', ...
-      'Species_getSpeciesType(SBMLSpecies)', ...
+    error(sprintf('%s', ...
       'argument must be an SBML Species structure'));
 end;
  
