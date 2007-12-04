@@ -60,12 +60,15 @@ function name = ParameterRule_getName(SBMLParameterRule)
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_ParameterRule(SBMLParameterRule, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLParameterRule))
+  error(sprintf('%s\n%s', ...
+    'ParameterRule_getName(SBMLParameterRule)', ...
+    'first argument must be an SBML ParameterRule structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLParameterRule);
 
-if (~isSBML_ParameterRule(SBMLParameterRule, sbmlLevel))
+if (~isSBML_ParameterRule(SBMLParameterRule, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'ParameterRule_getName(SBMLParameterRule)', 'argument must be an SBML parameterRule structure'));
 end;
 

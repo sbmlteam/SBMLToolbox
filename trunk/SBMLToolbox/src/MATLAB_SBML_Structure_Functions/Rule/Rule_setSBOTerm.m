@@ -62,11 +62,10 @@ function SBMLRule = Rule_setSBOTerm(SBMLRule, sboTerm)
 
 % check that input is correct
 if (~isstruct(SBMLRule))
-  error(sprintf('%s\n%s', ...
-    'Rule_setSBOTerm(SBMLRule, sboTerm)', ...
+  error(sprintf('%s', ...
     'first argument must be an SBML Rule structure'));
 end;
-
+ 
 [sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLRule);
 
 if (~isSBML_Rule(SBMLRule, sbmlLevel, sbmlVersion))

@@ -61,12 +61,14 @@ function value = UnitDefinition_isSetName(SBMLUnitDefinition)
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_UnitDefinition(SBMLUnitDefinition, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLUnitDefinition))
+    error(sprintf('%s', ...
+      'argument must be an SBML UnitDefinition structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLUnitDefinition);
 
-if (~isSBML_UnitDefinition(SBMLUnitDefinition, sbmlLevel))
+if (~isSBML_UnitDefinition(SBMLUnitDefinition, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'UnitDefinition_isSetName(SBMLUnitDefinition)', 'argument must be an SBML unitDefinition structure'));
 end;
 

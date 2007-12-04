@@ -61,8 +61,7 @@ function sboTerm = Rule_getSBOTerm(SBMLRule)
 
 % check that input is correct
 if (~isstruct(SBMLRule))
-  error(sprintf('%s\n%s', ...
-    'Rule_setSBOTerm(SBMLRule, sboTerm)', ...
+  error(sprintf('%s', ...
     'first argument must be an SBML Rule structure'));
 end;
  

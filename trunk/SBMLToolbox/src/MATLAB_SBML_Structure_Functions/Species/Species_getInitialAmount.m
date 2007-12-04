@@ -60,12 +60,14 @@ function initialAmount = Species_getInitialAmount(SBMLSpecies)
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_Species(SBMLSpecies, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLSpecies))
+    error(sprintf('%s', ...
+      'argument must be an SBML Species structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel))
+if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'Species_getInitialAmount(SBMLSpecies)', 'argument must be an SBML species structure'));
 end;
 

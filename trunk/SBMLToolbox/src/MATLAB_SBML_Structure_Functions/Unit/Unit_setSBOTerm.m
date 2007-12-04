@@ -62,8 +62,7 @@ function SBMLUnit = Unit_setSBOTerm(SBMLUnit, sboTerm)
 
 % check that input is correct
 if (~isstruct(SBMLUnit))
-    error(sprintf('%s\n%s', ...
-      'Unit_setSBOTerm(SBMLUnit, sboTerm)', ...
+    error(sprintf('%s', ...
       'argument must be an SBML Unit structure'));
 end;
  

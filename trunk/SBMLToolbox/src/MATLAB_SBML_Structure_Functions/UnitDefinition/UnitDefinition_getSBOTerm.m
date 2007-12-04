@@ -61,8 +61,7 @@ function sboTerm = UnitDefinition_getSBOTerm(SBMLUnitDefinition)
 
 % check that input is correct
 if (~isstruct(SBMLUnitDefinition))
-    error(sprintf('%s\n%s', ...
-      'UnitDefinition_getSBOTerm(SBMLUnitDefinition)', ...
+    error(sprintf('%s', ...
       'argument must be an SBML UnitDefinition structure'));
 end;
  

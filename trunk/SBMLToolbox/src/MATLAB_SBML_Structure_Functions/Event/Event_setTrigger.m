@@ -61,9 +61,15 @@ function SBMLEvent = Event_setTrigger(SBMLEvent, trigger)
 
 
 % check that input is correct
-sbmlLevel = 2;
+if (~isstruct(SBMLEvent))
+    error(sprintf('%s\n%s', ...
+      'Event_setTrigger(SBMLEvent, trigger)', ...
+      'argument must be an SBML Constraint structure'));
+end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEvent);
 
-if (~isSBML_Event(SBMLEvent, sbmlLevel))
+if (~isSBML_Event(SBMLEvent, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'Event_setTrigger(SBMLEvent, trigger)', 'first argument must be an SBML event structure'));
 elseif (~ischar(trigger))
     error(sprintf('Event_setTrigger(SBMLEvent, trigger)\n%s', 'second argument must be a string representing the trigger of the event'));

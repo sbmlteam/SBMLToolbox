@@ -61,12 +61,14 @@ function value = Species_isSetUnits(SBMLSpecies)
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_Species(SBMLSpecies, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLSpecies))
+    error(sprintf('%s', ...
+      'argument must be an SBML Species structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel))
+if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'Species_isSetUnits(SBMLSpecies)', 'argument must be an SBML species structure'));
 elseif (sbmlLevel ~= 1)
     error(sprintf('%s\n%s', 'Species_isSetUnits(SBMLSpecies)', 'no units field in a level 2 model'));    

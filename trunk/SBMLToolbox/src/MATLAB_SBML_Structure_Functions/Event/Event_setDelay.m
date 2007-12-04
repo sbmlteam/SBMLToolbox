@@ -61,9 +61,15 @@ function SBMLEvent = Event_setDelay(SBMLEvent, delay)
 
 
 % check that input is correct
-sbmlLevel = 2;
+if (~isstruct(SBMLEvent))
+    error(sprintf('%s\n%s', ...
+      'Event_setDelay(SBMLEvent, delay)', ...
+      'argument must be an SBML Constraint structure'));
+end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEvent);
 
-if (~isSBML_Event(SBMLEvent, sbmlLevel))
+if (~isSBML_Event(SBMLEvent, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'Event_setDelay(SBMLEvent, delay)', 'first argument must be an SBML event structure'));
 elseif (~ischar(delay))
     error(sprintf('Event_setDelay(SBMLEvent, delay)\n%s', 'second argument must be a string representing the delay of the event'));

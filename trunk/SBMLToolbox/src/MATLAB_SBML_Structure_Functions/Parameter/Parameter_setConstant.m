@@ -61,12 +61,15 @@ function SBMLParameter = Parameter_setConstant(SBMLParameter, constant)
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_Parameter(SBMLParameter, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLParameter))
+  error(sprintf('%s\n%s', ...
+    'Parameter_setConstant(SBMLParameter)', ...
+    'first argument must be an SBML Parameter structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLParameter);
 
-if (~isSBML_Parameter(SBMLParameter, sbmlLevel))
+if (~isSBML_Parameter(SBMLParameter, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'Parameter_setConstant(SBMLParameter, constant)', 'first argument must be an SBML model structure'));
 elseif ((~isIntegralNumber(constant)) || (constant < 0) || (constant > 1))
     error(sprintf('Parameter_setConstant(SBMLParameter, constant)\n%s', 'second argument must be either true (=1) or false (=0) representing whether the parameter is constant'));

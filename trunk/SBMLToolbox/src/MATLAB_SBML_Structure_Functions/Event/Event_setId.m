@@ -61,9 +61,15 @@ function SBMLEvent = Event_setId(SBMLEvent, id)
 
 
 % check that input is correct
-sbmlLevel = 2;
+if (~isstruct(SBMLEvent))
+    error(sprintf('%s\n%s', ...
+      'Event_setId(SBMLEvent, id)', ...
+      'argument must be an SBML Constraint structure'));
+end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEvent);
 
-if (~isSBML_Event(SBMLEvent, sbmlLevel))
+if (~isSBML_Event(SBMLEvent, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'Event_setId(SBMLEvent, id)', 'first argument must be an SBML event structure'));
 elseif (~ischar(id))
     error(sprintf('Event_setId(SBMLEvent, id)\n%s', 'second argument must be a string representing the id of the event'));

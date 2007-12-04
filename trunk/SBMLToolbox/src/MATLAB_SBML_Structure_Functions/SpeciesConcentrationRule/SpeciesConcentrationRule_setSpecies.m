@@ -61,12 +61,14 @@ function SBMLSpeciesConcentrationRule = SpeciesConcentrationRule_setSpecies(SBML
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_SpeciesConcentrationRule(SBMLSpeciesConcentrationRule, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLSpeciesConcentrationRule))
+    error(sprintf('%s', ...
+      'argument must be an SBML SpeciesConcentrationRule structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpeciesConcentrationRule);
 
-if (~isSBML_SpeciesConcentrationRule(SBMLSpeciesConcentrationRule, sbmlLevel))
+if (~isSBML_SpeciesConcentrationRule(SBMLSpeciesConcentrationRule, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'SpeciesConcentrationRule_setSpecies(SBMLSpeciesConcentrationRule, species)', 'first argument must be an SBML speciesConcentrationRule structure'));
 elseif (~ischar(species))
     error(sprintf('SpeciesConcentrationRule_setSpecies(SBMLSpeciesConcentrationRule, species)\n%s', 'second argument must be a string representing the species of the speciesConcentrationRule'));

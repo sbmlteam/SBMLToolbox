@@ -60,12 +60,14 @@ function name = Reaction_getName(SBMLReaction)
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLReaction))
+  error(sprintf('%s', ...
+    'first argument must be an SBML Reaction structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
 
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel))
+if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'Reaction_getName(SBMLReaction)', 'argument must be an SBML reaction structure'));
 end;
 

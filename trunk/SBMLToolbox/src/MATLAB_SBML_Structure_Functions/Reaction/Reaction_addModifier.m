@@ -60,18 +60,20 @@ function reaction = Reaction_addModifier(SBMLReaction, SBMLModifier)
 %  Contributor(s):
 
 
-% get level
-sbmlLevel = 2;
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel))
-    sbmlLevel = 1;
-end;
-
 % check that input is correct
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel))
+if (~isstruct(SBMLReaction))
+  error(sprintf('%s\n%s', ...
+    'Reaction_addModifier(SBMLReaction, SBMLModifier)', ...
+    'first argument must be an SBML Reaction structure'));
+end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
+
+if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'Reaction_addModifier(SBMLReaction, SBMLModifier)', 'first argument must be an SBML reaction structure'));
 elseif (sbmlLevel ~= 2)
     error(sprintf('%s\n%s', 'Reaction_addModifier(SBMLReaction, SBMLModifier)', 'no modifiers in level 1 model'));
-elseif (~isSBML_ModifierSpeciesReference(SBMLModifier, sbmlLevel))
+elseif (~isSBML_ModifierSpeciesReference(SBMLModifier, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s\n of the same SBML level, namely level %u', 'Reaction_addModifier(SBMLReaction, SBMLModifier)', 'second argument must be an SBML modifier structure', sbmlLevel));
 end;
 

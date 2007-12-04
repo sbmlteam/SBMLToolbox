@@ -61,9 +61,15 @@ function SBMLFunctionDefinition = FunctionDefinition_setMath(SBMLFunctionDefinit
 
 
 % check that input is correct
-sbmlLevel = 2;
+if (~isstruct(SBMLFunctionDefinition))
+  error(sprintf('%s\n%s', ...
+    'FunctionDefinition_setMath(SBMLFunctionDefinition, math)', ...
+    'first argument must be an SBML functionDefinition structure'));
+end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLFunctionDefinition);
 
-if (~isSBML_FunctionDefinition(SBMLFunctionDefinition, sbmlLevel))
+if (~isSBML_FunctionDefinition(SBMLFunctionDefinition, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'FunctionDefinition_setMath(SBMLFunctionDefinition, math)', 'first argument must be an SBML functionDefinition structure'));
 elseif (~ischar(math))
     error(sprintf('FunctionDefinition_setMath(SBMLFunctionDefinition, math)\n%s', 'second argument must be a string representing the math of the functionDefinition'));

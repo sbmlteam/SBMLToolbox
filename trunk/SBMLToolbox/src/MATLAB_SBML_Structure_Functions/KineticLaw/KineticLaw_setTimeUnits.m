@@ -61,12 +61,15 @@ function SBMLKineticLaw = KineticLaw_setTimeUnits(SBMLKineticLaw, timeUnits)
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_KineticLaw(SBMLKineticLaw, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLKineticLaw))
+  error(sprintf('%s\n%s', ...
+    'KineticLaw_setTimeUnits(SBMLKineticLaw, ..)', ...
+    'first argument must be an SBML KineticLaw structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLKineticLaw);
 
-if (~isSBML_KineticLaw(SBMLKineticLaw, sbmlLevel))
+if (~isSBML_KineticLaw(SBMLKineticLaw, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'KineticLaw_setTimeUnits(SBMLKineticLaw, timeUnits)', 'first argument must be an SBML kineticLaw structure'));
 elseif (~ischar(timeUnits))
     error(sprintf('KineticLaw_setTimeUnits(SBMLKineticLaw, timeUnits)\n%s', 'second argument must be a string representing the timeUnits of the kineticLaw'));

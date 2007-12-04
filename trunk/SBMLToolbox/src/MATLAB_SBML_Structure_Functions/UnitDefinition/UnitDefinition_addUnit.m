@@ -60,16 +60,17 @@ function unitDefinition = UnitDefinition_addUnit(SBMLUnitDefinition, SBMLUnit)
 %  Contributor(s):
 
 
-% get level
-sbmlLevel = 2;
-if (~isSBML_UnitDefinition(SBMLUnitDefinition, sbmlLevel))
-    sbmlLevel = 1;
-end;
-
 % check that input is correct
-if (~isSBML_UnitDefinition(SBMLUnitDefinition, sbmlLevel))
+if (~isstruct(SBMLUnitDefinition))
+    error(sprintf('%s', ...
+      'argument must be an SBML UnitDefinition structure'));
+end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLUnitDefinition);
+
+if (~isSBML_UnitDefinition(SBMLUnitDefinition, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'UnitDefinition_addUnit(SBMLUnitDefinition, SBMLUnit)', 'first argument must be an SBML unitDefinition structure'));
-elseif (~isSBML_Unit(SBMLUnit, sbmlLevel))
+elseif (~isSBML_Unit(SBMLUnit, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s\n of the same SBML level, namely level %u', 'UnitDefinition_addUnit(SBMLUnitDefinition, SBMLUnit)', 'second argument must be an SBML unit structure', sbmlLevel));
 end;
 

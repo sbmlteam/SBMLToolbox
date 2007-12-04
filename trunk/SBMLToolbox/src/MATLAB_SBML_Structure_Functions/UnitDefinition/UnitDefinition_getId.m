@@ -60,12 +60,14 @@ function id = UnitDefinition_getId(SBMLUnitDefinition)
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_UnitDefinition(SBMLUnitDefinition, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLUnitDefinition))
+    error(sprintf('%s', ...
+      'argument must be an SBML UnitDefinition structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLUnitDefinition);
 
-if (~isSBML_UnitDefinition(SBMLUnitDefinition, sbmlLevel))
+if (~isSBML_UnitDefinition(SBMLUnitDefinition, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'UnitDefinition_getId(SBMLUnitDefinition)', 'argument must be an SBML unitDefinition structure'));
 elseif (sbmlLevel ~= 2)
     error(sprintf('%s\n%s', 'UnitDefinition_getId(SBMLUnitDefinition)', 'no id field in a level 1 model'));    

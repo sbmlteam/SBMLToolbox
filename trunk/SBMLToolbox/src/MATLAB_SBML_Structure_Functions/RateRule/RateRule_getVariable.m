@@ -60,12 +60,15 @@ function variable = RateRule_getVariable(SBMLRateRule)
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_RateRule(SBMLRateRule, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLRateRule))
+  error(sprintf('%s\n%s', ...
+    'RateRule_getVariable(SBMLRateRule)', ...
+    'first argument must be an SBML RateRule structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLRateRule);
 
-if (~isSBML_RateRule(SBMLRateRule, sbmlLevel))
+if (~isSBML_RateRule(SBMLRateRule, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'RateRule_getVariable(SBMLRateRule)', 'argument must be an SBML rateRule structure'));
 end;
 

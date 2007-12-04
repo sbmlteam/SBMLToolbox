@@ -61,12 +61,14 @@ function SBMLSpeciesReference = SpeciesReference_setDenominator(SBMLSpeciesRefer
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_SpeciesReference(SBMLSpeciesReference, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLSpeciesReference))
+    error(sprintf('%s', ...
+      'argument must be an SBML SpeciesReference structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpeciesReference);
 
-if (~isSBML_SpeciesReference(SBMLSpeciesReference, sbmlLevel))
+if (~isSBML_SpeciesReference(SBMLSpeciesReference, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'SpeciesReference_setDenominator(SBMLSpeciesReference, denominator)', 'first argument must be an SBML model structure'));
 elseif (~isIntegralNumber(denominator))
     error(sprintf('SpeciesReference_setDenominator(SBMLSpeciesReference, denominator)\n%s', 'second argument must be an integer representing the denominator of the speciesreference'));

@@ -61,12 +61,15 @@ function SBMLKineticLaw = KineticLaw_unsetSubstanceUnits(SBMLKineticLaw)
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_KineticLaw(SBMLKineticLaw, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLKineticLaw))
+  error(sprintf('%s\n%s', ...
+    'KineticLaw_unsetSubstanceUnits(SBMLKineticLaw)', ...
+    'first argument must be an SBML KineticLaw structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLKineticLaw);
 
-if (~isSBML_KineticLaw(SBMLKineticLaw, sbmlLevel))
+if (~isSBML_KineticLaw(SBMLKineticLaw, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'KineticLaw_unsetSubstanceUnits(SBMLKineticLaw)', 'argument must be an SBML kineticLaw structure'));
 end;
 

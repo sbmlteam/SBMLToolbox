@@ -61,12 +61,14 @@ function SBMLReaction = Reaction_setFast(SBMLReaction, fast)
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLReaction))
+  error(sprintf('%s', ...
+    'first argument must be an SBML Reaction structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
 
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel))
+if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'Reaction_setFast(SBMLReaction, fast)', 'first argument must be an SBML reaction structure'));
 elseif ((~isIntegralNumber(fast)) || (fast < 0) || (fast > 1))
     error(sprintf('Reaction_setFast(SBMLReaction, fast)\n%s', 'second argument must be either true (=1) or false (=0) representing whether the reaction is fast'));

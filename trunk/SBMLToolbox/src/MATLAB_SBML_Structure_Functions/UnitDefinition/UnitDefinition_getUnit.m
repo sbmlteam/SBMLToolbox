@@ -60,16 +60,15 @@ function unit = UnitDefinition_getUnit(SBMLUnitDefinition, number)
 %  Contributor(s):
 
 
-% get level
-sbmlLevel = 2;
-if (~isSBML_UnitDefinition(SBMLUnitDefinition, sbmlLevel))
-    sbmlLevel = 1;
-end;
-
 % check that input is correct
+if (~isstruct(SBMLUnitDefinition))
+    error(sprintf('%s', ...
+      'argument must be an SBML UnitDefinition structure'));
+end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLUnitDefinition);
 
-
-if (~isSBML_UnitDefinition(SBMLUnitDefinition, sbmlLevel))
+if (~isSBML_UnitDefinition(SBMLUnitDefinition, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'UnitDefinition_getUnit(SBMLUnitDefinition, number)', 'first argument must be an SBML unitDefinition structure'));
 elseif ((number < 1) || (~isIntegralNumber(number)))
     error(sprintf('%s\n%s', 'UnitDefinition_getUnit(SBMLUnitDefinition, number)', 'second argument must be a positive integer'));

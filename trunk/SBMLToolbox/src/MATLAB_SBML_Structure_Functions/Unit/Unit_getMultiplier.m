@@ -60,12 +60,14 @@ function multiplier = Unit_getMultiplier(SBMLUnit)
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_Unit(SBMLUnit, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLUnit))
+    error(sprintf('%s', ...
+      'argument must be an SBML Unit structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLUnit);
 
-if (~isSBML_Unit(SBMLUnit, sbmlLevel))
+if (~isSBML_Unit(SBMLUnit, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'Unit_getMultiplier(SBMLUnit)', 'argument must be an SBML unit structure'));
 elseif (sbmlLevel ~= 2)
     error(sprintf('%s\n%s', 'Unit_getMultiplier(SBMLUnit)', 'no multiplier field in a level 1 model'));    

@@ -61,12 +61,14 @@ function SBMLUnitDefinition = UnitDefinition_setId(SBMLUnitDefinition, id)
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_UnitDefinition(SBMLUnitDefinition, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLUnitDefinition))
+    error(sprintf('%s', ...
+      'argument must be an SBML UnitDefinition structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLUnitDefinition);
 
-if (~isSBML_UnitDefinition(SBMLUnitDefinition, sbmlLevel))
+if (~isSBML_UnitDefinition(SBMLUnitDefinition, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'UnitDefinition_setId(SBMLUnitDefinition, id)', 'first argument must be an SBML unitDefinition structure'));
 elseif (~ischar(id))
     error(sprintf('UnitDefinition_setId(SBMLUnitDefinition, id)\n%s', 'second argument must be a string representing the id of the unitDefinition'));

@@ -61,12 +61,14 @@ function SBMLSpecies = Species_setHasOnlySubstanceUnits(SBMLSpecies, hasOnlySubs
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_Species(SBMLSpecies, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLSpecies))
+    error(sprintf('%s', ...
+      'argument must be an SBML Species structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel))
+if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'Species_setHasOnlySubstanceUnits(SBMLSpecies, hasOnlySubstanceUnits)', 'first argument must be an SBML model structure'));
 elseif ((~isIntegralNumber(hasOnlySubstanceUnits)) || (hasOnlySubstanceUnits < 0) || (hasOnlySubstanceUnits > 1))
     error(sprintf('Species_setHasOnlySubstanceUnits(SBMLSpecies, hasOnlySubstanceUnits)\n%s', 'second argument must be either true (=1) or false (=0) representing whether the species is hasOnlySubstanceUnits'));

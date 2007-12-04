@@ -61,12 +61,15 @@ function value = CompartmentVolumeRule_isSetCompartment(SBMLCompartmentVolumeRul
 
 
 % check that input is correct
-sbmlLevel = 1;
-if (~isSBML_CompartmentVolumeRule(SBMLCompartmentVolumeRule, sbmlLevel))
-    sbmlLevel = 2;
+if (~isstruct(SBMLCompartmentVolumeRule))
+    error(sprintf('%s\n%s', ...
+      'CompartmentVolumeRule_isSetCompartment(SBMLCompartmentVolumeRule)', ...
+      'argument must be an SBML compartmentVolumeRule structure'));
 end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLCompartmentVolumeRule);
 
-if (~isSBML_CompartmentVolumeRule(SBMLCompartmentVolumeRule, sbmlLevel))
+if (~isSBML_CompartmentVolumeRule(SBMLCompartmentVolumeRule, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'CompartmentVolumeRule_isSetCompartment(SBMLCompartmentVolumeRule)', 'argument must be an SBML compartmentVolumeRule structure'));
 end;
 

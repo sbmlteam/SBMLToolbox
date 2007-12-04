@@ -60,16 +60,18 @@ function kineticLaw = KineticLaw_addParameter(SBMLKineticLaw, SBMLParameter)
 %  Contributor(s):
 
 
-% get level
-sbmlLevel = 2;
-if (~isSBML_KineticLaw(SBMLKineticLaw, sbmlLevel))
-    sbmlLevel = 1;
-end;
-
 % check that input is correct
-if (~isSBML_KineticLaw(SBMLKineticLaw, sbmlLevel))
+if (~isstruct(SBMLKineticLaw))
+  error(sprintf('%s\n%s', ...
+    'KineticLaw_addParameter(SBMLKineticLaw, SBMLParameter)', ...
+    'first argument must be an SBML KineticLaw structure'));
+end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLKineticLaw);
+
+if (~isSBML_KineticLaw(SBMLKineticLaw, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'KineticLaw_addParameter(SBMLKineticLaw, SBMLParameter)', 'first argument must be an SBML kineticLaw structure'));
-elseif (~isSBML_Parameter(SBMLParameter, sbmlLevel))
+elseif (~isSBML_Parameter(SBMLParameter, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s\nof the same SBML level, namely level %u', 'KineticLaw_addParameter(SBMLKineticLaw, SBMLParameter)', 'second argument must be an SBML parameter structure', sbmlLevel));
 end;
 

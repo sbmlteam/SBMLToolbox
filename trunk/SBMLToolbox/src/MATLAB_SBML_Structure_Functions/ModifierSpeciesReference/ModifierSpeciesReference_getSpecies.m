@@ -60,9 +60,15 @@ function species = ModifierSpeciesReference_getSpecies(SBMLModifierSpeciesRefere
 
 
 % check that input is correct
-sbmlLevel = 2;
+if (~isstruct(SBMLModifierSpeciesReference))
+    error(sprintf('%s\n%s', ...
+      'ModifierSpeciesReference_getSpecies(SBMLModifierSpeciesReference)', ...
+      'argument must be an SBML modifierSpeciesReference structure'));
+end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLModifierSpeciesReference);
 
-if (~isSBML_ModifierSpeciesReference(SBMLModifierSpeciesReference, sbmlLevel))
+if (~isSBML_ModifierSpeciesReference(SBMLModifierSpeciesReference, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'ModifierSpeciesReference_getSpecies(SBMLModifierSpeciesReference)', 'argument must be an SBML modifierSpeciesReference structure'));
 end;
 
