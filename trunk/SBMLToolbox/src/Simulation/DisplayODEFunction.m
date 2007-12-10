@@ -326,20 +326,22 @@ if (~(ismember(1, isnan(SpeciesCourse))))
 
     %plot the output
     plotCount = 1;
+    Plot = 0;
     for i = 1:length(Species)
         % check whether to plot
-        Plot = 0;
+        Plot_this = 0;
         for k = 1:length(PlotSpecies)
             if (strcmp(PlotSpecies{k}, Species{i}))
-                Plot = 1;
+                Plot_this = 1;
             end;
         end;
 
-        if (Plot == 1)
+        if (Plot_this == 1)
             if (j > 14)
                 j = 1;
             end;
             plot(TimeCourse,SpeciesCourse(:,i),Types{j});
+            Plot = 1;
             hold on;
             j = j+1;
             PlottedSpecies{plotCount} = Species{i};
