@@ -6,9 +6,9 @@ function y = isSBML_InitialAssignment(varargin)
 % if SBMLStructure represents a InitialAssignment within an SBML model
 % it has the appropriate fields (ONLY IN LEVEL 2 VERSION 2)
 % eg    Typecode (L2V2)
+%       Metaid (L2V2)
 %       Notes (L2V2)
 %       Annotations (L2V2)
-%       Symbol(L2V2)
 %       SBOTerm (L2V2)
 %       Math (L2V2)
 %
@@ -69,11 +69,11 @@ else
         y = 0;
         return;
     elseif (Version == 2)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'symbol', 'sboTerm', 'math'};
-        nNumberFields = 6;
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'symbol', 'math'};
+        nNumberFields = 7;
     elseif (Version == 3)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'symbol', 'math'};
-        nNumberFields = 6;
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'symbol', 'math'};
+        nNumberFields = 7;
     end;
 end;
     

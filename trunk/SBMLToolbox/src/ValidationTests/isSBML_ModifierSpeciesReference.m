@@ -6,6 +6,7 @@ function y = isSBML_ModifierSpeciesReference(varargin)
 % if SBMLStructure represents a modifier species reference within an SBML model
 % it has the appropriate fields (ONLY IN LEVEL 2)
 % eg    Typecode (L2V1)
+%       Metaid (L2V1)
 %       Notes (L2V1)
 %       Annotations (L2V1)
 %       SBOTerm (L2V2)
@@ -94,14 +95,14 @@ if (Level == 1)
     return;
 else
     if (Version == 1)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation','species'};
-        nNumberFields = 4;
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','species'};
+        nNumberFields = 5;
     elseif (Version == 2)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation','species', 'id', 'name', 'sboTerm'};
-        nNumberFields = 7;
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','species', 'id', 'name', 'sboTerm'};
+        nNumberFields = 8;
     elseif (Version == 3)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'species', 'id', 'name'};
-        nNumberFields = 7;
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'species', 'id', 'name'};
+        nNumberFields = 8;
     end;
 end;
 typecode = 'SBML_MODIFIER_SPECIES_REFERENCE';

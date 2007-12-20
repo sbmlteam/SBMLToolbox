@@ -23,7 +23,7 @@ function fail = TestIsSBML_Constraint
 %  * Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.
 %  */
 
-ct_l2v2 = struct('typecode', {'SBML_CONSTRAINT'}, 'notes', {''}, 'annotation', {''},'sboTerm', ...
+ct_l2v2 = struct('typecode', {'SBML_CONSTRAINT'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''},'sboTerm', ...
     {''}, 'math', {''}, 'message', {''});
 
 

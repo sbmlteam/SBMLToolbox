@@ -6,6 +6,7 @@ function y = isSBML_Parameter(varargin)
 % if SBMLStructure represents a parameter within an SBML model
 % it has the appropriate fields 
 % eg    Typecode
+%       Metaid (L2V1)
 %       Notes
 %       Annotations
 %       SBOTerm (L2V2)
@@ -97,16 +98,16 @@ if (Level == 1)
     nNumberFields = 7;
 else
     if (Version == 1)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'value', 'units', 'constant', 'isSetValue'};
-        nNumberFields = 9;
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','name', 'id', 'value', 'units', 'constant', 'isSetValue'};
+        nNumberFields = 10;
     elseif (Version == 2)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'value', 'units', ...
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','name', 'id', 'value', 'units', ...
             'constant', 'sboTerm', 'isSetValue'};
-        nNumberFields = 10;
+        nNumberFields = 11;
     elseif (Version == 3)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'name', 'id', 'value', 'units', ...
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id', 'value', 'units', ...
             'constant', 'isSetValue'};
-        nNumberFields = 10;
+        nNumberFields = 11;
     end;
 end;
     

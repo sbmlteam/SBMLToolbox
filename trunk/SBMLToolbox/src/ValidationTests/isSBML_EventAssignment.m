@@ -6,6 +6,7 @@ function y = isSBML_EventAssignment(varargin)
 % if SBMLStructure represents a EventAssignment within an SBML model
 % it has the appropriate fields (ONLY IN LEVEL 2)
 % eg    Typecode (L2V1)
+%       Metaid (L2V1)
 %       Notes (L2V1)
 %       Annotations (L2V1)
 %       SBOTerm (L2V2)
@@ -93,14 +94,14 @@ if (Level == 1)
     return;
 else
     if (Version == 1)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation','variable', 'math'};
-        nNumberFields = 5;
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','variable', 'math'};
+        nNumberFields = 6;
     elseif (Version == 2)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation','variable', 'sboTerm', 'math'};
-        nNumberFields = 6;
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','variable', 'sboTerm', 'math'};
+        nNumberFields = 7;
     elseif (Version == 3)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'variable', 'math'};
-        nNumberFields = 6;
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'variable', 'math'};
+        nNumberFields = 7;
     end;
 end;
     

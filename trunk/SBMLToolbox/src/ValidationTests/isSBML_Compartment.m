@@ -6,6 +6,7 @@ function y = isSBML_Compartment(varargin)
 % if SBMLStructure represents a compartment within an SBML model
 % it has the following fields 
 % eg    Typecode
+%       Metaid (L2V1)
 %       Notes
 %       Annotations
 %       Name
@@ -106,17 +107,17 @@ if (Level == 1)
     nNumberFields = 8;
 else 
     if (Version == 1)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'spatialDimensions', ...
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','name', 'id', 'spatialDimensions', ...
             'size', 'units', 'outside', 'constant', 'isSetSize','isSetVolume'};
-        nNumberFields = 12;
-    elseif (Version == 2)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'compartmentType', ...
-            'spatialDimensions', 'size', 'units', 'outside', 'constant', 'isSetSize','isSetVolume'};
         nNumberFields = 13;
-    elseif (Version == 3)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'name', 'id', 'compartmentType', ...
+    elseif (Version == 2)
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','name', 'id', 'compartmentType', ...
             'spatialDimensions', 'size', 'units', 'outside', 'constant', 'isSetSize','isSetVolume'};
         nNumberFields = 14;
+    elseif (Version == 3)
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id', 'compartmentType', ...
+            'spatialDimensions', 'size', 'units', 'outside', 'constant', 'isSetSize','isSetVolume'};
+        nNumberFields = 15;
     end;
 end;
 typecode = 'SBML_COMPARTMENT';

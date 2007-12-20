@@ -23,9 +23,9 @@ function fail = TestIsSBML_ModifierSpeciesReference
 %  * Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.
 %  */
 
-msr_l2 = struct('typecode', {'SBML_MODIFIER_SPECIES_REFERENCE'}, 'notes', {''}, 'annotation', {''}, 'species', {''});
+msr_l2 = struct('typecode', {'SBML_MODIFIER_SPECIES_REFERENCE'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''}, 'species', {''});
 
-msr_l2v2 = struct('typecode', {'SBML_MODIFIER_SPECIES_REFERENCE'}, 'notes', {''}, 'annotation', {''}, 'species', {''}, ...
+msr_l2v2 = struct('typecode', {'SBML_MODIFIER_SPECIES_REFERENCE'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''}, 'species', {''}, ...
     'id', {''}, 'name', {''}, 'sboTerm', {''});
 
 fail = TestFunction('isSBML_ModifierSpeciesReference', 2, 1, msr_l2, 1, 0);

@@ -6,6 +6,7 @@ function y = isSBML_Reaction(varargin)
 % if SBMLStructure represents a reaction within an SBML model
 % it has the appropriate fields 
 % eg    Typecode
+%       Metaid (L2V1)
 %       Notes
 %       Annotations
 %       SBOTerm (L2V2)
@@ -101,17 +102,17 @@ if (Level == 1)
     nNumberFields = 9;
 else
     if (Version == 1)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'reactant', 'product', ...
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','name', 'id', 'reactant', 'product', ...
             'modifier', 'kineticLaw', 'reversible', 'fast', 'isSetFast'};
-        nNumberFields = 12;
+        nNumberFields = 13;
     elseif (Version == 2)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'reactant', 'product', ...
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','name', 'id', 'reactant', 'product', ...
             'modifier', 'kineticLaw', 'reversible', 'fast', 'sboTerm', 'isSetFast'};
-        nNumberFields = 13;
+        nNumberFields = 14;
     elseif (Version == 3)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation','sboTerm', 'name', 'id', 'reactant', 'product', ...
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','sboTerm', 'name', 'id', 'reactant', 'product', ...
             'modifier', 'kineticLaw', 'reversible', 'fast', 'isSetFast'};
-        nNumberFields = 13;
+        nNumberFields = 14;
     end;
 end;
     

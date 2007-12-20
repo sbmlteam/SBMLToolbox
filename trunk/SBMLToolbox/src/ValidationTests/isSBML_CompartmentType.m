@@ -6,6 +6,7 @@ function y = isSBML_CompartmentType(varargin)
 % if SBMLStructure represents a CompartmentType within an SBML model
 % it has the appropriate fields (ONLY IN LEVEL 2 VERSION 2 onwards)
 % eg    Typecode (L2V2)
+%       Metaid (L2V2)
 %       Notes (L2V2)
 %       Annotations (L2V2)
 %       SBOTerm (L2V3)
@@ -69,11 +70,11 @@ else
         y = 0;
         return;
     elseif (Version == 2)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name', 'id'};
-        nNumberFields = 5;
-    elseif (Version == 3)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'name', 'id'};
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'name', 'id'};
         nNumberFields = 6;
+    elseif (Version == 3)
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id'};
+        nNumberFields = 7;
     end;
 end;
     

@@ -1,17 +1,16 @@
-function y = isSBML_Constraint(varargin)
-% isSBML_Constraint(SBMLStructure, Level, Version(optional)) 
-% checks that SBMLStructure represents a Constraint
+function y = isSBML_Delay(varargin)
+% isSBML_Delay(SBMLStructure, Level, Version(optional)) 
+% checks that SBMLStructure represents a Delay
 % within an sbml model of specified level
 % 
-% if SBMLStructure represents a Constraint within an SBML model
-% it has the appropriate fields (ONLY IN LEVEL 2 VERSION 2)
-% eg    Typecode (L2V2)
-%       Metaid (L2V2)
-%       Notes (L2V2)
-%       Annotations (L2V2)
-%       sboTerm (L2V2)
-%       Math (L2V2)
-%       Message (L2V2)
+% if SBMLStructure represents a Delay within an SBML model
+% it has the appropriate fields (ONLY IN LEVEL 2 VERSION 3)
+% eg    Typecode (L2V3)
+%       Metaid (L2V3)
+%       Notes (L2V3)
+%       Annotations (L2V3)
+%       SBOTerm (L2V3)
+%       Math (L2V3)
 %
 %
 % NOTE: content of brackets indicates the level and version of sbml from which the given field
@@ -19,15 +18,15 @@ function y = isSBML_Constraint(varargin)
 %
 % Returns 1 if SBMLStructure is a structure containing each of the above
 % fields (appropriate with the given level and version) 
-% and the typecode is "SBML_CONSTRAINT"
+% and the typecode is "SBML_DELAY"
 % 
 % Returns 0 if SBMLStructure is not a structure 
 % or does not contain one of the appropriate fields
-% or the typecode is not "SBML_CONSTRAINT"
+% or the typecode is not "SBML_DELAY"
 
 % /**
-%  * \file    isSBML_Constraint.m
-%  * \brief   check structure is Constraint
+%  * \file    isSBML_Delay.m
+%  * \brief   check structure is Delay
 %  * \author  Sarah Keating
 %  *
 %  * $Id$
@@ -70,15 +69,15 @@ else
         y = 0;
         return;
     elseif (Version == 2)
-        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'math', 'message'};
-        nNumberFields = 7;
+        y = 0;
+        return;
     elseif (Version == 3)
-        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'math', 'message'};
-        nNumberFields = 7;
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'math'};
+        nNumberFields = 6;
     end;
 end;
     
- typecode = 'SBML_CONSTRAINT';
+ typecode = 'SBML_DELAY';
 
 bSBML = 0;
 

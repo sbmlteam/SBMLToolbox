@@ -6,6 +6,7 @@ function y = isSBML_KineticLaw(varargin)
 % if SBMLStructure represents a kinetic law within an SBML model
 % it has the appropriate fields 
 % eg    Typecode
+%       Metaid (L2V1)
 %       Notes
 %       Annotations
 %       SBOTerm (L2V2)
@@ -96,15 +97,15 @@ if (Level == 1)
     nNumberFields = 7;
 else
     if (Version == 1)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation','formula', 'math','parameter', ...
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','formula', 'math','parameter', ...
             'timeUnits','substanceUnits'};
-        nNumberFields = 8;
+        nNumberFields = 9;
     elseif (Version == 2)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation','formula', 'math','parameter', 'sboTerm'};
-        nNumberFields = 7;
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','formula', 'math','parameter', 'sboTerm'};
+        nNumberFields = 8;
     elseif (Version == 3)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'formula', 'math','parameter'};
-        nNumberFields = 7;
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'formula', 'math','parameter'};
+        nNumberFields = 8;
     end;
 end;
 typecode = 'SBML_KINETIC_LAW';

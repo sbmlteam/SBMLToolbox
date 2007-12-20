@@ -1,8 +1,8 @@
-function fail = TestIsSBML_InitialAssignment
+function fail = TestIsSBML_Trigger
 
 % /**
-%  * \file    TestIsSBML_InitialAssignment.m
-%  * \brief   InitialAssignment
+%  * \file    TestIsSBML_Trigger.m
+%  * \brief   Trigger
 %  * \author  Sarah Keating
 %  *
 %  * $Id$
@@ -23,16 +23,17 @@ function fail = TestIsSBML_InitialAssignment
 %  * Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.
 %  */
 
-ct_l2v2 = struct('typecode', {'SBML_INITIAL_ASSIGNMENT'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''},'symbol', ...
-    {''}, 'sboTerm', {''}, 'math', {''});
+ct_l2v3 = struct('typecode', {'SBML_TRIGGER'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''},...
+  'sboTerm', {''}, 'math', {''});
 
 
-fail = TestFunction('isSBML_InitialAssignment', 2, 1, ct_l2v2, 1, 0);
-fail = fail + TestFunction('isSBML_InitialAssignment', 3, 1, ct_l2v2, 1, 1, 0);
-fail = fail + TestFunction('isSBML_InitialAssignment', 3, 1, ct_l2v2, 1, 2, 0);
-fail = fail + TestFunction('isSBML_InitialAssignment', 2, 1, ct_l2v2, 2, 0);
-fail = fail + TestFunction('isSBML_InitialAssignment', 3, 1, ct_l2v2, 2, 1, 0);
-fail = fail + TestFunction('isSBML_InitialAssignment', 3, 1, ct_l2v2, 2, 2, 1);
+fail = TestFunction('isSBML_Trigger', 2, 1, ct_l2v3, 1, 0);
+fail = fail + TestFunction('isSBML_Trigger', 3, 1, ct_l2v3, 1, 1, 0);
+fail = fail + TestFunction('isSBML_Trigger', 3, 1, ct_l2v3, 1, 2, 0);
+fail = fail + TestFunction('isSBML_Trigger', 2, 1, ct_l2v3, 2, 0);
+fail = fail + TestFunction('isSBML_Trigger', 3, 1, ct_l2v3, 2, 1, 0);
+fail = fail + TestFunction('isSBML_Trigger', 3, 1, ct_l2v3, 2, 2, 0);
+fail = fail + TestFunction('isSBML_Trigger', 3, 1, ct_l2v3, 2, 3, 1);
 
 
 

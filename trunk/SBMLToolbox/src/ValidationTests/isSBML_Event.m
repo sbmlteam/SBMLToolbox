@@ -6,6 +6,7 @@ function y = isSBML_Event(varargin)
 % if SBMLStructure represents a Event within an SBML model
 % it has the appropriate fields (ONLY IN LEVEL 2)
 % eg    Typecode (L2V1)
+%       Metaid (L2V1)
 %       Notes (L2V1)
 %       Annotations (L2V1)
 %       Name (L2V1)
@@ -98,17 +99,17 @@ if (Level == 1)
     return;
 else
     if (Version == 1)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name', 'id', 'trigger', 'delay', ...
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'name', 'id', 'trigger', 'delay', ...
             'timeUnits', 'eventAssignment'};
-        nNumberFields = 9;
-    elseif (Version == 2)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name', 'id', 'trigger', 'delay', ...
-            'timeUnits', 'sboTerm', 'eventAssignment'};
         nNumberFields = 10;
+    elseif (Version == 2)
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'name', 'id', 'trigger', 'delay', ...
+            'timeUnits', 'sboTerm', 'eventAssignment'};
+        nNumberFields = 11;
     elseif (Version == 3)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'name', 'id', 'trigger', 'delay', ...
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id', 'trigger', 'delay', ...
             'eventAssignment'};
-        nNumberFields = 9;
+        nNumberFields = 10;
     end;
 end;
     
@@ -152,6 +153,18 @@ if(bSBML == 1)
         bSBML = isSBML_EventAssignment(SBMLStructure.eventAssignment(index), Level, Version);
         index = index + 1;
     end;
+end;
+if (Level == 2 && Version > 2)
+  if (length(SBMLStructure.trigger) > 1 || length(SBMLStructure.delay) > 1)
+    bSBML = 0;
+  end;
+
+  if(bSBML == 1 && ~isempty(SBMLStructure.trigger))
+    bSBML = isSBML_Trigger(SBMLStructure.trigger, Level, Version);
+  end;
+  if(bSBML == 1 && ~isempty(SBMLStructure.delay))
+    bSBML = isSBML_Delay(SBMLStructure.delay, Level, Version);
+  end;
 end;
 
 y = bSBML;
