@@ -23,7 +23,7 @@
       <species id="S2" compartment="compartment" initialAmount="6"/>
       <species id="S3" compartment="compartment" initialAmount="0"/>
       <species id="X" compartment="compartment"/>
-     <species id="S4" compartment="compartment" initialAmount="0"/>
+      <species id="S4" compartment="compartment" initialAmount="0"/>
     </listOfSpecies>
     <listOfParameters>
       <parameter id="k" value="1" units="vol_per_time"/>
@@ -35,54 +35,54 @@
       <parameter id="c1" value="2" units="dimensionless"/>
     </listOfParameters>
     <listOfInitialAssignments>
-        <initialAssignment symbol="k">
-            <math xmlns="http://www.w3.org/1998/Math/MathML">
-                <apply>
-                   <divide/>
-                   <apply>
-                      <times/>
-                      <ci> s1 </ci>
-                      <ci> k1 </ci>
-                   </apply>
-                   <ci> s3 </ci>
-               </apply>
-            </math>
-        </initialAssignment>
-        <initialAssignment symbol="compartment">
-            <math xmlns="http://www.w3.org/1998/Math/MathML">
-                <apply>
-                    <divide/>
-                    <ci> c </ci>
-                    <ci> c1 </ci>
-                </apply>
-            </math>
-        </initialAssignment>
-        <initialAssignment symbol="X">
-            <math xmlns="http://www.w3.org/1998/Math/MathML">
-                <apply>
-                    <plus/>
-                    <ci> s1 </ci>
-                    <ci> s2 </ci>
-                    <ci> s3 </ci>
-                    <ci> s3 </ci>
-                </apply>
-            </math>
-        </initialAssignment>
-     </listOfInitialAssignments>        
-  <listOfRules>
-    <algebraicRule>
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <apply>
-          <minus/>
+      <initialAssignment symbol="k">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <times/>
+              <ci> s1 </ci>
+              <ci> k1 </ci>
+            </apply>
+            <ci> s3 </ci>
+          </apply>
+        </math>
+      </initialAssignment>
+      <initialAssignment symbol="compartment">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> c </ci>
+            <ci> c1 </ci>
+          </apply>
+        </math>
+      </initialAssignment>
+      <initialAssignment symbol="X">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <plus/>
-            <ci> X </ci>
-            <ci> S1 </ci>
+            <ci> s1 </ci>
+            <ci> s2 </ci>
+            <ci> s3 </ci>
+            <ci> s3 </ci>
           </apply>
-          <ci> S3 </ci>
-        </apply>
-      </math>
-    </algebraicRule>
+        </math>
+      </initialAssignment>
+    </listOfInitialAssignments>
+    <listOfRules>
+      <algebraicRule>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <apply>
+              <plus/>
+              <ci> X </ci>
+              <ci> S1 </ci>
+            </apply>
+            <ci> S3 </ci>
+          </apply>
+        </math>
+      </algebraicRule>
       <assignmentRule variable="S3">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
@@ -92,7 +92,7 @@
           </apply>
         </math>
       </assignmentRule>
-  </listOfRules> 
+    </listOfRules>
     <listOfReactions>
       <reaction id="R1" reversible="false">
         <listOfReactants>
@@ -110,7 +110,7 @@
             </apply>
           </math>
         </kineticLaw>
-      </reaction> 
+      </reaction>
       <reaction id="R2" reversible="false">
         <listOfReactants>
           <speciesReference species="S2"/>
@@ -130,7 +130,7 @@
             <parameter id="k" value="0.1" units="vol_per_time"/>
           </listOfParameters>
         </kineticLaw>
-      </reaction> 
-    </listOfReactions> 
+      </reaction>
+    </listOfReactions>
   </model>
 </sbml>
