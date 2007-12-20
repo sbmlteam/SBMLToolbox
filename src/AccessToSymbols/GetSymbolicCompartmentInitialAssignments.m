@@ -63,6 +63,11 @@ if (~isSBML_Model(SBMLModel))
     error('GetSymbolicCompartmentInitialAssignment(SBMLModel)\n%s', 'input must be an SBMLModel structure');
 end;
 
+if (SBMLModel.SBML_level < 2 || SBMLModel.SBML_version < 2)
+    error('GetSymbolicCompartmentInitialAssignment(SBMLModel)\n%s', ...
+    'no initialAssignments before SBML L2V2');
+end;
+
 %--------------------------------------------------------------
             
 % get information from the model
@@ -71,7 +76,7 @@ NumberCompartment = length(SBMLModel.compartment);
 InitialAssign = Model_getListOfInitialAssignments(SBMLModel);
 NumInitialAssign = Model_getNumInitialAssignments(SBMLModel);
 
-% for each compartment loop through each reaction and determine whether the compartment
+% for each compartment loop through each initial assignment and determine whether the compartment
 % takes part and in what capacity
 
 for i = 1:NumberCompartment
@@ -79,7 +84,13 @@ for i = 1:NumberCompartment
     symOut = sym(output);
  
     if (NumInitialAssign > 0)
-        IA = Model_getInitialAssignmentBySymbol(SBMLModel, SBMLModel.compartment(i).id);
+       IA = Model_getInitialAssignmentBySymbol(SBMLModel, SBMLModel.compartment(i).id);
+       for fd = 1:Model_getNumFunctionDefinitions(SBMLModel)
+         newFormula = SubstituteFunction(IA, Model_getFunctionDefinition(SBMLModel, fd));
+         if (~isempty(newFormula))
+           IA = newFormula;
+         end;
+       end;
        if (~isempty(IA))
         symOut = charFormula2sym(IA.math);
        else

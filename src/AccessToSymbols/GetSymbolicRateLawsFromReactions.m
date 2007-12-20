@@ -138,7 +138,15 @@ for i = 1:NumSpecies
                 % get names in order to make the parameter symbols unique
                 Params = GetParameterSymbolsFromReaction(SBMLModel.reaction(j));
                 ParamsUnique = GetParameterSymbolsFromReactionUnique(SBMLModel.reaction(j));
-                
+                Formula = LoseWhiteSpace(SBMLModel.reaction(j).kineticLaw.formula);
+                if (SBMLModel.SBML_level > 1)
+                  for fd = 1:Model_getNumFunctionDefinitions(SBMLModel)
+                    newFormula = SubstituteFunction(Formula, Model_getFunctionDefinition(SBMLModel, fd));
+                    if (~isempty(newFormula))
+                      Formula = newFormula;
+                    end;
+                  end;
+                end;
                 % add the kinetic law to the output for this species
                 if (isempty(symOut))
                     
@@ -152,9 +160,9 @@ for i = 1:NumSpecies
                             stoichiometry = charFormula2sym(SBMLModel.reaction(j).product(SpeciesRole(4)).stoichiometryMath);
                         end;
                         if (~isempty(Params))
-                            symOut = sym(stoichiometry) * subs(charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula), Params, ParamsUnique);
+                            symOut = sym(stoichiometry) * subs(charFormula2sym(Formula), Params, ParamsUnique);
                         else
-                            symOut = sym(stoichiometry) * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
+                            symOut = sym(stoichiometry) * charFormula2sym(Formula);
                         end;
                         NoProducts = NoProducts - 1;
                     elseif (NoReactants > 0)
@@ -167,9 +175,9 @@ for i = 1:NumSpecies
                             stoichiometry = charFormula2sym(SBMLModel.reaction(j).reactant(SpeciesRole(5)).stoichiometryMath);
                         end;
                         if (~isempty(Params))
-                            symOut = - sym(stoichiometry) * subs(charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula), Params, ParamsUnique);
+                            symOut = - sym(stoichiometry) * subs(charFormula2sym(Formula), Params, ParamsUnique);
                         else
-                            symOut = - sym(stoichiometry) * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
+                            symOut = - sym(stoichiometry) * charFormula2sym(Formula);
                         end;
                         NoReactants = NoReactants - 1;
                     end;
@@ -186,9 +194,9 @@ for i = 1:NumSpecies
                             stoichiometry = charFormula2sym(SBMLModel.reaction(j).product(SpeciesRole(4)).stoichiometryMath);
                         end;
                         if (~isempty(Params))
-                            symOut = symOut + sym(stoichiometry) * subs(charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula), Params, ParamsUnique);
+                            symOut = symOut + sym(stoichiometry) * subs(charFormula2sym(Formula), Params, ParamsUnique);
                         else
-                            symOut = symOut + sym(stoichiometry) * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
+                            symOut = symOut + sym(stoichiometry) * charFormula2sym(Formula);
                         end;
                         NoProducts = NoProducts - 1;
                     elseif (NoReactants > 0) 
@@ -201,9 +209,9 @@ for i = 1:NumSpecies
                             stoichiometry = charFormula2sym(SBMLModel.reaction(j).reactant(SpeciesRole(5)).stoichiometryMath);
                         end;
                         if (~isempty(Params))
-                            symOut = symOut - sym(stoichiometry) * subs(charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula), Params, ParamsUnique);
+                            symOut = symOut - sym(stoichiometry) * subs(charFormula2sym(Formula), Params, ParamsUnique);
                         else
-                            symOut = symOut - sym(stoichiometry) * charFormula2sym(SBMLModel.reaction(j).kineticLaw.formula);
+                            symOut = symOut - sym(stoichiometry) * charFormula2sym(Formula);
                         end;
                         NoReactants = NoReactants - 1;
                     end; 

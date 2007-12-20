@@ -94,7 +94,17 @@ for i = 1:NumberSpecies
         while (j <NumRateRules)
          
             if ((strcmp(Species(i), RateRules(j+1).variable)) | (strcmp(Species(i), RateRules(j+1).species)))
-                symOut = charFormula2sym(RateRules(j+1).formula);
+                Formula = RateRules(j+1).formula;
+                if (SBMLModel.SBML_level > 1)
+                  for fd = 1:Model_getNumFunctionDefinitions(SBMLModel)
+                    newFormula = SubstituteFunction(Formula, Model_getFunctionDefinition(SBMLModel, fd));
+                    if (~isempty(newFormula))
+                      Formula = newFormula;
+                    end;
+                  end;
+                end;
+                
+                symOut = charFormula2sym(Formula);
                 break;
             else
                 j = j + 1;

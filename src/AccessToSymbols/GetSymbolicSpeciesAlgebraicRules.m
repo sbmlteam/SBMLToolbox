@@ -80,7 +80,16 @@ for i = 1:NumberSpecies
 
         for j = 1:length(RuleNo)
             if (RuleNo(j) > 0)
-                symOut(j) = charFormula2sym(Rules(RuleNo(j)).formula);
+                Formula = Rules(RuleNo(j)).formula;
+                if (SBMLModel.SBML_level > 1)
+                  for fd = 1:Model_getNumFunctionDefinitions(SBMLModel)
+                    newFormula = SubstituteFunction(Formula, Model_getFunctionDefinition(SBMLModel, fd));
+                    if (~isempty(newFormula))
+                      Formula = newFormula;
+                    end;
+                  end;
+                end;
+                symOut(j) = charFormula2sym(Formula);
             end;
         end;
     end;

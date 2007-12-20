@@ -94,7 +94,16 @@ for i = 1:NumberSpecies
         %determine which rules it occurs within
         RuleNo = Species_isAssignedByRule(SBMLModel.species(i), AssignRules);
         if (RuleNo > 0)
-            symOut = charFormula2sym(AssignRules(RuleNo).formula);
+           Formula = AssignRules(RuleNo).formula;
+           if (SBMLModel.SBML_level > 1)
+            for fd = 1:Model_getNumFunctionDefinitions(SBMLModel)
+                newFormula = SubstituteFunction(Formula, Model_getFunctionDefinition(SBMLModel, fd));
+                if (~isempty(newFormula))
+                  Formula = newFormula;
+                end;
+            end;
+           end;
+           symOut = charFormula2sym(Formula);
 
         end;
         end;
