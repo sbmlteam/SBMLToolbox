@@ -78,6 +78,8 @@ void  GetInitialAssignment  ( mxArray *, unsigned int, unsigned int, Model_t * )
 void  GetConstraint         ( mxArray *, unsigned int, unsigned int, Model_t * );
 
 void  GetEventAssignment ( mxArray *, unsigned int, unsigned int, Event_t * );
+void  GetTrigger ( mxArray *, unsigned int, unsigned int, Event_t * );
+void  GetDelay ( mxArray *, unsigned int, unsigned int, Event_t * );
 
 
 void GetUnit ( mxArray *, unsigned int, unsigned int, UnitDefinition_t * );
@@ -86,6 +88,8 @@ void GetSpeciesReference	( mxArray *, unsigned int, unsigned int, Reaction_t *, 
 void GetProduct				( mxArray *, unsigned int, unsigned int, Reaction_t * );
 void GetKineticLaw			( mxArray *, unsigned int, unsigned int, Reaction_t * );
 void GetModifier			( mxArray *, unsigned int, unsigned int, Reaction_t * );
+
+void GetStoichiometryMath			( mxArray *, unsigned int, unsigned int, SpeciesReference_t * );
 
 void GetParameterFromKineticLaw ( mxArray *, unsigned int, unsigned int, KineticLaw_t * );
 
@@ -127,10 +131,10 @@ mexFunction (int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 
 
 	mxArray * mxLevel, * mxVersion, * mxNotes, * mxAnnotations;
-  mxArray * mxName, * mxId, *mxNamespaces;
+  mxArray * mxName, * mxId, *mxNamespaces, *mxMetaid;
 	unsigned int nLevel, nVersion;
 	char * pacNotes, * pacAnnotations;
-  char * pacName, * pacId;
+  char * pacName, * pacId, *pacMetaid;
   int nSBOTerm;
 	
 	mxArray * mxParameters, * mxCompartments, * mxFunctionDefinitions;
@@ -302,6 +306,19 @@ mexFunction (int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 		}
 
 		Model_setId(sbmlModel, pacId);
+
+		/* get metaid */
+		mxMetaid = mxGetField(mxModel[0], 0, "metaid");
+		nBuflen = (mxGetM(mxMetaid)*mxGetN(mxMetaid)+1);
+		pacMetaid = (char *)mxCalloc(nBuflen, sizeof(char));
+		nStatus = mxGetString(mxMetaid, pacMetaid, nBuflen);
+    
+		if (nStatus != 0)
+		{
+			mexErrMsgTxt("Cannot copy metaid");
+		}
+
+		SBase_setMetaId(sbmlModel, pacMetaid);
 
 		mxFunctionDefinitions = mxGetField(mxModel[0], 0, "functionDefinition");
 		GetFunctionDefinition(mxFunctionDefinitions, nLevel, nVersion, sbmlModel);
@@ -588,7 +605,9 @@ GetCompartment (mxArray * mxCompartments,
 	unsigned int unIsSetVolume;
 	unsigned int unIsSetSize;
   int nSBOTerm;
+	char * pacMetaid;
 
+  mxArray *mxMetaid;
 	mxArray * mxNotes, * mxAnnotations, * mxName, * mxId, * mxUnits;
 	mxArray * mxOutside, * mxVolume, * mxIsSetVolume, * mxSpatialDimensions;
   mxArray * mxSize, * mxConstant, * mxIsSetSize, * mxCompartmentType, * mxSBOTerm;
@@ -693,7 +712,20 @@ GetCompartment (mxArray * mxCompartments,
 		/* level 2 only */
 		if (unSBMLLevel == 2)
 		{
-			/* get id */
+		  /* get metaid */
+		  mxMetaid = mxGetField(mxCompartments, i, "metaid");
+		  nBuflen = (mxGetM(mxMetaid)*mxGetN(mxMetaid)+1);
+		  pacMetaid = (char *)mxCalloc(nBuflen, sizeof(char));
+		  nStatus = mxGetString(mxMetaid, pacMetaid, nBuflen);
+      
+		  if (nStatus != 0)
+		  {
+			  mexErrMsgTxt("Cannot copy metaid");
+		  }
+
+		  SBase_setMetaId(pCompartment, pacMetaid);
+
+      /* get id */
 			mxId = mxGetField(mxCompartments, i, "id");
 			nBuflen = (mxGetM(mxId)*mxGetN(mxId)+1);
 			pacId = (char *)mxCalloc(nBuflen, sizeof(char));
@@ -770,6 +802,7 @@ GetCompartment (mxArray * mxCompartments,
 		if (unSBMLLevel == 2)
 		{
   	  mxFree(pacId);
+  	  mxFree(pacMetaid);
       if (unSBMLVersion > 1)
       {
         mxFree(pacCompartmentType);
@@ -808,7 +841,9 @@ GetUnitDefinition ( mxArray * mxUnitDefinitions,
 	char * pacName;
 	char * pacId = NULL;
   int nSBOTerm;
+	char * pacMetaid;
 
+  mxArray *mxMetaid;
 	mxArray * mxNotes, * mxAnnotations, * mxName, * mxId, * mxUnits, * mxSBOTerm;
 
 	UnitDefinition_t *pUnitDefinition;
@@ -869,6 +904,19 @@ GetUnitDefinition ( mxArray * mxUnitDefinitions,
 		/* level 2 only */
 		if (unSBMLLevel == 2)
 		{
+		  /* get metaid */
+		  mxMetaid = mxGetField(mxUnitDefinitions, i, "metaid");
+		  nBuflen = (mxGetM(mxMetaid)*mxGetN(mxMetaid)+1);
+		  pacMetaid = (char *)mxCalloc(nBuflen, sizeof(char));
+		  nStatus = mxGetString(mxMetaid, pacMetaid, nBuflen);
+      
+		  if (nStatus != 0)
+		  {
+			  mexErrMsgTxt("Cannot copy metaid");
+		  }
+
+		  SBase_setMetaId(pUnitDefinition, pacMetaid);
+
 			/* get id */
 			mxId = mxGetField(mxUnitDefinitions, i, "id");
 			nBuflen = (mxGetM(mxId)*mxGetN(mxId)+1);
@@ -901,6 +949,7 @@ GetUnitDefinition ( mxArray * mxUnitDefinitions,
 		if (unSBMLLevel == 2)
 		{
   	  mxFree(pacId);
+  	  mxFree(pacMetaid);
     }
 
 	}
@@ -939,7 +988,9 @@ GetUnit ( mxArray * mxUnits,
 	double dMultiplier;
 	double dOffset;
   int nSBOTerm;
+	char * pacMetaid;
 
+  mxArray *mxMetaid;
 	mxArray * mxNotes, * mxAnnotations, * mxKind, *mxExponent;
 	mxArray * mxScale, * mxMultiplier, * mxOffset, * mxSBOTerm;
 
@@ -1010,6 +1061,19 @@ GetUnit ( mxArray * mxUnits,
 		/* level 2 only */
 		if (unSBMLLevel == 2)
 		{
+		  /* get metaid */
+		  mxMetaid = mxGetField(mxUnits, i, "metaid");
+		  nBuflen = (mxGetM(mxMetaid)*mxGetN(mxMetaid)+1);
+		  pacMetaid = (char *)mxCalloc(nBuflen, sizeof(char));
+		  nStatus = mxGetString(mxMetaid, pacMetaid, nBuflen);
+      
+		  if (nStatus != 0)
+		  {
+			  mexErrMsgTxt("Cannot copy metaid");
+		  }
+
+		  SBase_setMetaId(pUnit, pacMetaid);
+
 			/* get multiplier */
 			mxMultiplier = mxGetField(mxUnits, i, "multiplier");
 			dMultiplier = mxGetScalar(mxMultiplier);
@@ -1041,6 +1105,10 @@ GetUnit ( mxArray * mxUnits,
 	  mxFree(pacNotes);
 	  mxFree(pacAnnotations);
 	  mxFree(pacKind);
+      if (unSBMLLevel == 2)
+      {
+        mxFree(pacMetaid);
+      }
 	}
 }
 /**
@@ -1087,7 +1155,9 @@ GetUnit ( mxArray * mxUnits,
 	unsigned int unIsSetInit;
 	unsigned int unIsSetInitConc;
 	unsigned int unIsSetCharge;
+	char * pacMetaid;
 
+  mxArray *mxMetaid;
 	mxArray * mxNotes, * mxAnnotations, * mxName, * mxId, * mxCompartment;
   mxArray * mxInitialAmount, * mxUnits, * mxSpeciesType;
 	mxArray * mxInitialConcentration, * mxSpatialSizeUnits, * mxHasOnlySubstance;
@@ -1215,6 +1285,19 @@ GetUnit ( mxArray * mxUnits,
 		/* level 2 */
 		if (unSBMLLevel == 2)
 		{
+		  /* get metaid */
+		  mxMetaid = mxGetField(mxSpecies, i, "metaid");
+		  nBuflen = (mxGetM(mxMetaid)*mxGetN(mxMetaid)+1);
+		  pacMetaid = (char *)mxCalloc(nBuflen, sizeof(char));
+		  nStatus = mxGetString(mxMetaid, pacMetaid, nBuflen);
+      
+		  if (nStatus != 0)
+		  {
+			  mexErrMsgTxt("Cannot copy metaid");
+		  }
+
+		  SBase_setMetaId(pSpecies, pacMetaid);
+
 			/* get id */
 			mxId = mxGetField(mxSpecies, i, "id");
 			nBuflen = (mxGetM(mxId)*mxGetN(mxId)+1);
@@ -1326,6 +1409,7 @@ GetUnit ( mxArray * mxUnits,
 		/* level 2 only */
 		if (unSBMLLevel == 2)
 		{
+  	  mxFree(pacMetaid);
   	  mxFree(pacId);
   	  mxFree(pacSubstanceUnits);
       if (unSBMLVersion < 3)
@@ -1374,7 +1458,9 @@ GetUnit ( mxArray * mxUnits,
 	unsigned int unIsSetValue;
   int nSBOTerm;
 	int nConstant;
+	char * pacMetaid;
 
+  mxArray *mxMetaid;
 	mxArray * mxNotes, * mxAnnotations, * mxName, * mxId, * mxUnits;
 	mxArray * mxValue, * mxIsSetValue, * mxConstant, * mxSBOTerm;
 
@@ -1460,6 +1546,19 @@ GetUnit ( mxArray * mxUnits,
 		/* level 2 */
 		if (unSBMLLevel == 2)
 		{
+		  /* get metaid */
+		  mxMetaid = mxGetField(mxParameters, i, "metaid");
+		  nBuflen = (mxGetM(mxMetaid)*mxGetN(mxMetaid)+1);
+		  pacMetaid = (char *)mxCalloc(nBuflen, sizeof(char));
+		  nStatus = mxGetString(mxMetaid, pacMetaid, nBuflen);
+      
+		  if (nStatus != 0)
+		  {
+			  mexErrMsgTxt("Cannot copy metaid");
+		  }
+
+		  SBase_setMetaId(pParameter, pacMetaid);
+
 			/* get id */
 			mxId = mxGetField(mxParameters, i, "id");
 			nBuflen = (mxGetM(mxId)*mxGetN(mxId)+1);
@@ -1499,6 +1598,7 @@ GetUnit ( mxArray * mxUnits,
 		/* level 2 only */
 		if (unSBMLLevel == 2)
 		{
+  	  mxFree(pacMetaid);
   	  mxFree(pacId);
     }
 	}
@@ -1541,7 +1641,9 @@ GetUnit ( mxArray * mxUnits,
 	char * pacName;
 	char * pacUnits;
   int nSBOTerm;
-    
+	char * pacMetaid;
+
+  mxArray *mxMetaid;
 	mxArray * mxNotes, * mxAnnotations, * mxFormula, * mxVariable, * mxCompartment;
   mxArray * mxSpecies, * mxName, * mxUnits, * mxType, * mxSBOTerm, *mxTypecode;
 
@@ -1679,6 +1781,17 @@ GetUnit ( mxArray * mxUnits,
     }
     else
     {
+		  /* get metaid */
+		  mxMetaid = mxGetField(mxRule, i, "metaid");
+		  nBuflen = (mxGetM(mxMetaid)*mxGetN(mxMetaid)+1);
+		  pacMetaid = (char *)mxCalloc(nBuflen, sizeof(char));
+		  nStatus = mxGetString(mxMetaid, pacMetaid, nBuflen);
+      
+		  if (nStatus != 0)
+		  {
+			  mexErrMsgTxt("Cannot copy metaid");
+		  }
+
       /* level 2 version 2 onwards */
       if (unSBMLVersion > 1)
       {
@@ -1696,6 +1809,10 @@ GetUnit ( mxArray * mxUnits,
         SBase_setAnnotationString(pAssignRule, pacAnnotations); 
 
         Rule_setMath((Rule_t *)pAssignRule, SBML_parseFormula(pacFormula));
+        if (unSBMLLevel == 2)
+        {
+          SBase_setMetaId(pAssignRule, pacMetaid);
+        }
         if (unSBMLVersion > 1)
         {
           SBase_setSBOTerm(pAssignRule, nSBOTerm);
@@ -1714,6 +1831,7 @@ GetUnit ( mxArray * mxUnits,
         }
         else if (unSBMLLevel == 2)
         {
+          SBase_setMetaId(pAlgRule, pacMetaid);
           Rule_setMath((Rule_t *)pAlgRule, SBML_parseFormula(pacFormula));
           if (unSBMLVersion > 1)
           {
@@ -1732,6 +1850,10 @@ GetUnit ( mxArray * mxUnits,
 
         Rule_setMath((Rule_t *)pRateRule, SBML_parseFormula(pacFormula));
 
+        if (unSBMLLevel == 2)
+        {
+          SBase_setMetaId(pRateRule, pacMetaid);
+        }
         if (unSBMLVersion > 1)
         {
           SBase_setSBOTerm(pRateRule, nSBOTerm);
@@ -1816,6 +1938,10 @@ GetUnit ( mxArray * mxUnits,
 		{
   	  mxFree(pacType);
     }
+      if (unSBMLLevel == 2)
+      {
+        mxFree(pacMetaid);
+      }
 	}
 
 }
@@ -1857,7 +1983,9 @@ GetUnit ( mxArray * mxUnits,
 
 	int i;
       
+	char * pacMetaid;
 
+  mxArray *mxMetaid;
 	mxArray * mxNotes, * mxAnnotations, * mxName, * mxId, * mxModifiers;
 	mxArray * mxReversible, * mxFast, * mxIsSetFast, *mxReactants, * mxProducts;
   mxArray * mxSBOTerm, * mxKineticLaw;
@@ -1949,6 +2077,19 @@ GetUnit ( mxArray * mxUnits,
 		/* level 2 */
 		if (unSBMLLevel == 2)
 		{
+		  /* get metaid */
+		  mxMetaid = mxGetField(mxReaction, i, "metaid");
+		  nBuflen = (mxGetM(mxMetaid)*mxGetN(mxMetaid)+1);
+		  pacMetaid = (char *)mxCalloc(nBuflen, sizeof(char));
+		  nStatus = mxGetString(mxMetaid, pacMetaid, nBuflen);
+      
+		  if (nStatus != 0)
+		  {
+			  mexErrMsgTxt("Cannot copy metaid");
+		  }
+
+		  SBase_setMetaId(pReaction, pacMetaid);
+
 			/* get id */
 			mxId = mxGetField(mxReaction, i, "id");
 			nBuflen = (mxGetM(mxId)*mxGetN(mxId)+1);
@@ -2005,6 +2146,7 @@ GetUnit ( mxArray * mxUnits,
 		if (unSBMLLevel == 2)
 		{
   	  mxFree(pacId);
+  	  mxFree(pacMetaid);
     }
 	}
 }
@@ -2047,7 +2189,9 @@ GetUnit ( mxArray * mxUnits,
   double dStoichiometry;
   char * pacStoichiometryMath;
   int nSBOTerm;
+	char * pacMetaid;
 
+  mxArray *mxMetaid;
   SpeciesReference_t *pSpeciesReference;
   StoichiometryMath_t *pStoichiometryMath;
  
@@ -2132,6 +2276,18 @@ GetUnit ( mxArray * mxUnits,
 		/* level 2 */
 		if (unSBMLLevel == 2)
 		{
+		  /* get metaid */
+		  mxMetaid = mxGetField(mxReactant, i, "metaid");
+		  nBuflen = (mxGetM(mxMetaid)*mxGetN(mxMetaid)+1);
+		  pacMetaid = (char *)mxCalloc(nBuflen, sizeof(char));
+		  nStatus = mxGetString(mxMetaid, pacMetaid, nBuflen);
+      
+		  if (nStatus != 0)
+		  {
+			  mexErrMsgTxt("Cannot copy metaid");
+		  }
+
+		  SBase_setMetaId(pSpeciesReference, pacMetaid);
 			/* get Stoichiometry */
 			mxStoichiometry = mxGetField(mxReactant, i, "stoichiometry");
 			dStoichiometry = mxGetScalar(mxStoichiometry);
@@ -2140,22 +2296,28 @@ GetUnit ( mxArray * mxUnits,
 
 			/* get StoichiometryMath */
 			mxStoichiometryMath = mxGetField(mxReactant, i, "stoichiometryMath");
-			nBuflen = (mxGetM(mxStoichiometryMath)*mxGetN(mxStoichiometryMath)+1);
-			pacStoichiometryMath = (char *)mxCalloc(nBuflen, sizeof(char));
-			nStatus = mxGetString(mxStoichiometryMath, pacStoichiometryMath, nBuflen);
-
-			if (nStatus != 0)
-			{
-				mexErrMsgTxt("Cannot copy StoichiometryMath");
-			}
-      
-      if (strcmp(pacStoichiometryMath, ""))
+      if (unSBMLVersion < 3)
       {
-        pStoichiometryMath = 
-          StoichiometryMath_createWithMath(SBML_parseFormula(pacStoichiometryMath));
-			  SpeciesReference_setStoichiometryMath(pSpeciesReference, pStoichiometryMath);
-      }
+        nBuflen = (mxGetM(mxStoichiometryMath)*mxGetN(mxStoichiometryMath)+1);
+        pacStoichiometryMath = (char *)mxCalloc(nBuflen, sizeof(char));
+        nStatus = mxGetString(mxStoichiometryMath, pacStoichiometryMath, nBuflen);
 
+        if (nStatus != 0)
+        {
+          mexErrMsgTxt("Cannot copy StoichiometryMath");
+        }
+
+        if (strcmp(pacStoichiometryMath, ""))
+        {
+          pStoichiometryMath = 
+            StoichiometryMath_createWithMath(SBML_parseFormula(pacStoichiometryMath));
+          SpeciesReference_setStoichiometryMath(pSpeciesReference, pStoichiometryMath);
+        }
+      }
+      else
+      {
+        GetStoichiometryMath(mxStoichiometryMath, unSBMLLevel, unSBMLVersion, pSpeciesReference);
+      }
       /* level 2 version 2 onwards */
       if (unSBMLVersion > 1)
       {
@@ -2202,7 +2364,11 @@ GetUnit ( mxArray * mxUnits,
 		/* level 2 only */
 		if (unSBMLLevel == 2)
 		{
-  	  mxFree(pacStoichiometryMath);
+  	  mxFree(pacMetaid);
+      if (unSBMLVersion < 3)
+      {
+        mxFree(pacStoichiometryMath);
+      }
 
       if (unSBMLVersion > 1)
       {
@@ -2244,7 +2410,9 @@ GetUnit ( mxArray * mxUnits,
   char * pacId;
   char * pacName;
   int nSBOTerm;
+	char * pacMetaid;
 
+  mxArray *mxMetaid;
   SpeciesReference_t *pSpeciesReference;
  
 	mxArray * mxNotes, * mxAnnotations, * mxSpecies;
@@ -2282,7 +2450,7 @@ GetUnit ( mxArray * mxUnits,
 			mexErrMsgTxt("Cannot copy annotations");
 		}
         
-		SBase_setAnnotation(pSpeciesReference, pacAnnotations);
+		SBase_setAnnotationString(pSpeciesReference, pacAnnotations);
 
 
 		/* get Species */
@@ -2298,6 +2466,19 @@ GetUnit ( mxArray * mxUnits,
 
 		SpeciesReference_setSpecies(pSpeciesReference, pacSpecies);
 
+
+		/* get metaid */
+		mxMetaid = mxGetField(mxModifier, i, "metaid");
+		nBuflen = (mxGetM(mxMetaid)*mxGetN(mxMetaid)+1);
+		pacMetaid = (char *)mxCalloc(nBuflen, sizeof(char));
+		nStatus = mxGetString(mxMetaid, pacMetaid, nBuflen);
+    
+		if (nStatus != 0)
+		{
+			mexErrMsgTxt("Cannot copy metaid");
+		}
+
+		SBase_setMetaId(pSpeciesReference, pacMetaid);
 
     /* level 2 version 2 onwards */
     if (unSBMLVersion > 1)
@@ -2340,6 +2521,7 @@ GetUnit ( mxArray * mxUnits,
 	  mxFree(pacNotes);
 	  mxFree(pacAnnotations);
   	mxFree(pacSpecies);
+  	mxFree(pacMetaid);
     if (unSBMLVersion > 1)
     {
       mxFree(pacId);
@@ -2379,7 +2561,9 @@ GetUnit ( mxArray * mxUnits,
   char * pacSubstanceUnits;
   char * pacMath;
   int nSBOTerm;
+	char * pacMetaid;
 
+  mxArray *mxMetaid;
  	mxArray * mxNotes, * mxAnnotations, * mxFormula, * mxTimeUnits;
 	mxArray * mxMath, * mxParameter, * mxSubstanceUnits, *mxSBOTerm;
 
@@ -2463,6 +2647,19 @@ GetUnit ( mxArray * mxUnits,
   
   if (unSBMLLevel == 2)
   {
+		  /* get metaid */
+		  mxMetaid = mxGetField(mxKineticLaw, 0, "metaid");
+		  nBuflen = (mxGetM(mxMetaid)*mxGetN(mxMetaid)+1);
+		  pacMetaid = (char *)mxCalloc(nBuflen, sizeof(char));
+		  nStatus = mxGetString(mxMetaid, pacMetaid, nBuflen);
+      
+		  if (nStatus != 0)
+		  {
+			  mexErrMsgTxt("Cannot copy metaid");
+		  }
+
+		  SBase_setMetaId(pKineticLaw, pacMetaid);
+
     /* get Math */
     mxMath = mxGetField(mxKineticLaw, 0, "math");
     nBuflen = (mxGetM(mxMath)*mxGetN(mxMath)+1);
@@ -2502,6 +2699,7 @@ GetUnit ( mxArray * mxUnits,
 	if (unSBMLLevel == 2)
 	{
   	mxFree(pacMath);
+        mxFree(pacMetaid);
   }
 }
 /**
@@ -2538,7 +2736,9 @@ GetUnit ( mxArray * mxUnits,
 	unsigned int unIsSetValue;
   int nSBOTerm;
 	int nConstant;
+	char * pacMetaid;
 
+  mxArray *mxMetaid;
 	mxArray * mxNotes, * mxAnnotations, * mxName, * mxId, * mxUnits;
 	mxArray * mxValue, * mxIsSetValue, * mxConstant, * mxSBOTerm;
 
@@ -2624,6 +2824,19 @@ GetUnit ( mxArray * mxUnits,
 		/* level 2 */
 		if (unSBMLLevel == 2)
 		{
+		  /* get metaid */
+		  mxMetaid = mxGetField(mxParameters, i, "metaid");
+		  nBuflen = (mxGetM(mxMetaid)*mxGetN(mxMetaid)+1);
+		  pacMetaid = (char *)mxCalloc(nBuflen, sizeof(char));
+		  nStatus = mxGetString(mxMetaid, pacMetaid, nBuflen);
+      
+		  if (nStatus != 0)
+		  {
+			  mexErrMsgTxt("Cannot copy metaid");
+		  }
+
+		  SBase_setMetaId(pParameter, pacMetaid);
+
 			/* get id */
 			mxId = mxGetField(mxParameters, i, "id");
 			nBuflen = (mxGetM(mxId)*mxGetN(mxId)+1);
@@ -2663,6 +2876,7 @@ GetUnit ( mxArray * mxUnits,
 		/* level 2 only */
 		if (unSBMLLevel == 2)
 		{
+  	  mxFree(pacMetaid);
   	  mxFree(pacId);
     }
 	}
@@ -2700,7 +2914,9 @@ GetFunctionDefinition ( mxArray * mxFunctionDefinitions,
 	char * pacId;
 	char * pacFormula;
   int nSBOTerm; 
+	char * pacMetaid;
 
+  mxArray *mxMetaid;
 	mxArray * mxNotes, * mxAnnotations, * mxName, * mxId;
   mxArray * mxMath, * mxSBOTerm;
 
@@ -2754,6 +2970,19 @@ GetFunctionDefinition ( mxArray * mxFunctionDefinitions,
 		FunctionDefinition_setName(pFuncDefinition, pacName);
 
 
+		/* get metaid */
+		mxMetaid = mxGetField(mxFunctionDefinitions, i, "metaid");
+		nBuflen = (mxGetM(mxMetaid)*mxGetN(mxMetaid)+1);
+		pacMetaid = (char *)mxCalloc(nBuflen, sizeof(char));
+		nStatus = mxGetString(mxMetaid, pacMetaid, nBuflen);
+    
+		if (nStatus != 0)
+		{
+			mexErrMsgTxt("Cannot copy metaid");
+		}
+
+		SBase_setMetaId(pFuncDefinition, pacMetaid);
+
 		/* get id */
 		mxId = mxGetField(mxFunctionDefinitions, i, "id");
 		nBuflen = (mxGetM(mxId)*mxGetN(mxId)+1);
@@ -2796,6 +3025,7 @@ GetFunctionDefinition ( mxArray * mxFunctionDefinitions,
 	  mxFree(pacName);
 	  mxFree(pacFormula);
  	  mxFree(pacId);
+  	mxFree(pacMetaid);
 	}
 }
 
@@ -2832,7 +3062,9 @@ GetEvent ( mxArray * mxEvents,
 	char * pacDelay;
 	char * pacTimeUnits;
   int nSBOTerm;
+	char * pacMetaid;
 
+  mxArray *mxMetaid;
 	mxArray * mxNotes, * mxAnnotations, * mxName, * mxId, * mxTimeUnits;
   mxArray * mxTrigger, * mxDelay, * mxEventAssignments, *mxSBOTerm;
 
@@ -2886,8 +3118,23 @@ GetEvent ( mxArray * mxEvents,
 		Event_setName(pEvent, pacName);
 
 		
+		/* get metaid */
+		mxMetaid = mxGetField(mxEvents, i, "metaid");
+		nBuflen = (mxGetM(mxMetaid)*mxGetN(mxMetaid)+1);
+		pacMetaid = (char *)mxCalloc(nBuflen, sizeof(char));
+		nStatus = mxGetString(mxMetaid, pacMetaid, nBuflen);
+    
+		if (nStatus != 0)
+		{
+			mexErrMsgTxt("Cannot copy metaid");
+		}
+
+		SBase_setMetaId(pEvent, pacMetaid);
+
 		/* get Trigger */
 		mxTrigger = mxGetField(mxEvents, i, "trigger");
+    if (unSBMLVersion < 3)
+    {
 		nBuflen = (mxGetM(mxTrigger)*mxGetN(mxTrigger)+1);
 		pacTrigger = (char *)mxCalloc(nBuflen, sizeof(char));
 		nStatus = mxGetString(mxTrigger, pacTrigger, nBuflen);
@@ -2902,9 +3149,15 @@ GetEvent ( mxArray * mxEvents,
       Trigger_t * trigger = Trigger_createWithMath(SBML_parseFormula(pacTrigger));
       Event_setTrigger(pEvent, trigger);
     }
-		
+    }
+    else
+    {
+      GetTrigger(mxTrigger, unSBMLLevel, unSBMLVersion, pEvent);
+    }
 		/* get Delay */
 		mxDelay = mxGetField(mxEvents, i, "delay");
+    if (unSBMLVersion < 3)
+    {
 		nBuflen = (mxGetM(mxDelay)*mxGetN(mxDelay)+1);
 		pacDelay = (char *)mxCalloc(nBuflen, sizeof(char));
 		nStatus = mxGetString(mxDelay, pacDelay, nBuflen);
@@ -2919,7 +3172,11 @@ GetEvent ( mxArray * mxEvents,
       Delay_t * delay = Delay_createWithMath(SBML_parseFormula(pacDelay));
       Event_setDelay(pEvent, delay);
     }
-        
+    }
+    else
+    {
+      GetDelay(mxDelay, unSBMLLevel, unSBMLVersion, pEvent);
+    }
     if (unSBMLVersion < 3)
     {
 		  /* get TimeUnits */
@@ -2967,13 +3224,14 @@ GetEvent ( mxArray * mxEvents,
 	  mxFree(pacNotes);
 	  mxFree(pacAnnotations);
 	  mxFree(pacName);
+    if (unSBMLVersion < 3)
+    {
   	mxFree(pacTrigger);
 	  mxFree(pacDelay);
-    if (unSBMLVersion > 3)
-    {
       mxFree(pacTimeUnits);
     }
     mxFree(pacId);
+  	mxFree(pacMetaid);
 	}
 }
 /**
@@ -3006,7 +3264,9 @@ GetEventAssignment ( mxArray * mxEventAssignment,
 	char * pacVariable;
   char * pacMath;
   int nSBOTerm;
+	char * pacMetaid;
 
+  mxArray *mxMetaid;
 	mxArray * mxNotes, * mxAnnotations, * mxVariable, * mxMath, *mxSBOTerm;
 
 	EventAssignment_t *pEventAssignment;
@@ -3044,6 +3304,19 @@ GetEventAssignment ( mxArray * mxEventAssignment,
         
 		SBase_setAnnotationString(pEventAssignment, pacAnnotations); 
 
+
+		/* get metaid */
+		mxMetaid = mxGetField(mxEventAssignment, i, "metaid");
+		nBuflen = (mxGetM(mxMetaid)*mxGetN(mxMetaid)+1);
+		pacMetaid = (char *)mxCalloc(nBuflen, sizeof(char));
+		nStatus = mxGetString(mxMetaid, pacMetaid, nBuflen);
+    
+		if (nStatus != 0)
+		{
+			mexErrMsgTxt("Cannot copy metaid");
+		}
+
+		SBase_setMetaId(pEventAssignment, pacMetaid);
 
 		/* get Variable */
 		mxVariable = mxGetField(mxEventAssignment, i, "variable");
@@ -3089,6 +3362,7 @@ GetEventAssignment ( mxArray * mxEventAssignment,
 	  mxFree(pacAnnotations);
    	mxFree(pacVariable);
 	  mxFree(pacMath);
+        mxFree(pacMetaid);
 	}
 }
 /**
@@ -3121,7 +3395,9 @@ GetCompartmentType ( mxArray * mxCompartmentType,
 	char * pacName;
   char * pacId;
   int nSBOTerm;
+	char * pacMetaid;
 
+  mxArray *mxMetaid;
 	mxArray * mxNotes, * mxAnnotations, * mxName, * mxId, *mxSBOTerm;
 
 	CompartmentType_t *pCompartmentType;
@@ -3173,6 +3449,19 @@ GetCompartmentType ( mxArray * mxCompartmentType,
 
 		CompartmentType_setName(pCompartmentType, pacName);
 
+		/* get metaid */
+		mxMetaid = mxGetField(mxCompartmentType, i, "metaid");
+		nBuflen = (mxGetM(mxMetaid)*mxGetN(mxMetaid)+1);
+		pacMetaid = (char *)mxCalloc(nBuflen, sizeof(char));
+		nStatus = mxGetString(mxMetaid, pacMetaid, nBuflen);
+    
+		if (nStatus != 0)
+		{
+			mexErrMsgTxt("Cannot copy metaid");
+		}
+
+		SBase_setMetaId(pCompartmentType, pacMetaid);
+
 		/* get Id */
 		mxId = mxGetField(mxCompartmentType, i, "id");
 		nBuflen = (mxGetM(mxId)*mxGetN(mxId)+1);
@@ -3200,6 +3489,7 @@ GetCompartmentType ( mxArray * mxCompartmentType,
 	  mxFree(pacAnnotations);
    	mxFree(pacName);
 	  mxFree(pacId);
+  	mxFree(pacMetaid);
 	}
 }
 /**
@@ -3232,7 +3522,9 @@ GetSpeciesType ( mxArray * mxSpeciesType,
 	char * pacName;
   char * pacId;
   int nSBOTerm;
+	char * pacMetaid;
 
+  mxArray *mxMetaid;
 	mxArray * mxNotes, * mxAnnotations, * mxName, * mxId, *mxSBOTerm;
 
 	SpeciesType_t *pSpeciesType;
@@ -3284,6 +3576,19 @@ GetSpeciesType ( mxArray * mxSpeciesType,
 
 		SpeciesType_setName(pSpeciesType, pacName);
 
+		/* get metaid */
+		mxMetaid = mxGetField(mxSpeciesType, i, "metaid");
+		nBuflen = (mxGetM(mxMetaid)*mxGetN(mxMetaid)+1);
+		pacMetaid = (char *)mxCalloc(nBuflen, sizeof(char));
+		nStatus = mxGetString(mxMetaid, pacMetaid, nBuflen);
+    
+		if (nStatus != 0)
+		{
+			mexErrMsgTxt("Cannot copy metaid");
+		}
+
+		SBase_setMetaId(pSpeciesType, pacMetaid);
+
 		/* get Id */
 		mxId = mxGetField(mxSpeciesType, i, "id");
 		nBuflen = (mxGetM(mxId)*mxGetN(mxId)+1);
@@ -3311,6 +3616,7 @@ GetSpeciesType ( mxArray * mxSpeciesType,
 	  mxFree(pacAnnotations);
    	mxFree(pacName);
 	  mxFree(pacId);
+  	mxFree(pacMetaid);
 	}
 }
 /**
@@ -3343,7 +3649,9 @@ GetInitialAssignment ( mxArray * mxInitialAssignment,
 	char * pacSymbol;
   char * pacMath;
   int nSBOTerm;
+	char * pacMetaid;
 
+  mxArray *mxMetaid;
 	mxArray * mxNotes, * mxAnnotations, * mxSymbol, * mxMath, *mxSBOTerm;
 
 	InitialAssignment_t *pInitialAssignment;
@@ -3381,6 +3689,19 @@ GetInitialAssignment ( mxArray * mxInitialAssignment,
         
 		SBase_setAnnotationString(pInitialAssignment, pacAnnotations); 
 
+
+		/* get metaid */
+		mxMetaid = mxGetField(mxInitialAssignment, i, "metaid");
+		nBuflen = (mxGetM(mxMetaid)*mxGetN(mxMetaid)+1);
+		pacMetaid = (char *)mxCalloc(nBuflen, sizeof(char));
+		nStatus = mxGetString(mxMetaid, pacMetaid, nBuflen);
+    
+		if (nStatus != 0)
+		{
+			mexErrMsgTxt("Cannot copy metaid");
+		}
+
+		SBase_setMetaId(pInitialAssignment, pacMetaid);
 
 		/* get symbol */
 		mxSymbol = mxGetField(mxInitialAssignment, i, "symbol");
@@ -3422,6 +3743,7 @@ GetInitialAssignment ( mxArray * mxInitialAssignment,
 	  mxFree(pacAnnotations);
    	mxFree(pacSymbol);
 	  mxFree(pacMath);
+        mxFree(pacMetaid);
 	}
 }
 /**
@@ -3454,7 +3776,9 @@ GetConstraint ( mxArray * mxConstraint,
 	char * pacMessage;
   char * pacMath;
   int nSBOTerm;
+	char * pacMetaid;
 
+  mxArray *mxMetaid;
 	mxArray * mxNotes, * mxAnnotations, * mxMessage, * mxMath, *mxSBOTerm;
 
 	Constraint_t *pConstraint;
@@ -3492,6 +3816,19 @@ GetConstraint ( mxArray * mxConstraint,
         
 		SBase_setAnnotationString(pConstraint, pacAnnotations); 
 
+
+		/* get metaid */
+		mxMetaid = mxGetField(mxConstraint, i, "metaid");
+		nBuflen = (mxGetM(mxMetaid)*mxGetN(mxMetaid)+1);
+		pacMetaid = (char *)mxCalloc(nBuflen, sizeof(char));
+		nStatus = mxGetString(mxMetaid, pacMetaid, nBuflen);
+    
+		if (nStatus != 0)
+		{
+			mexErrMsgTxt("Cannot copy metaid");
+		}
+
+		SBase_setMetaId(pConstraint, pacMetaid);
 
 		/* get message */
 		mxMessage = mxGetField(mxConstraint, i, "message");
@@ -3534,5 +3871,332 @@ GetConstraint ( mxArray * mxConstraint,
 	  mxFree(pacAnnotations);
    	mxFree(pacMessage);
 	  mxFree(pacMath);
+        mxFree(pacMetaid);
 	}
+}
+
+
+/**
+ * NAME:    GetStoichiometryMath
+ *
+ * PARAMETERS:  mxArray of initialAssignment structures
+ *              unSBMLLevel
+ *              unSBMLVersion - included for possible expansion needs
+ *				      Pointer to the speciesReference
+ *
+ * RETURNS:    void
+ *
+ * FUNCTION:  gets data from the stoichiometryMath mxArray structure
+ *        and adds each initialAssignment to the model
+ */
+void
+GetStoichiometryMath ( mxArray * mxStoichiometryMath,
+               unsigned int unSBMLLevel,
+               unsigned int unSBMLVersion, 
+			         SpeciesReference_t * sbmlSpeciesReference )
+{
+	int nStatus;
+	int nBuflen;
+
+	/* values */
+	char * pacNotes;
+	char * pacAnnotations;
+  char * pacMath;
+  int nSBOTerm;
+	char * pacMetaid;
+
+  mxArray *mxMetaid;
+	mxArray * mxNotes, * mxAnnotations, * mxMath, *mxSBOTerm;
+
+	StoichiometryMath_t *pStoichiometryMath;
+  if (mxStoichiometryMath == NULL) return;
+  pStoichiometryMath = StoichiometryMath_create();
+
+  /* get notes */
+  mxNotes = mxGetField(mxStoichiometryMath, 0, "notes");
+  nBuflen = (mxGetM(mxNotes)*mxGetN(mxNotes)+1);
+  pacNotes = (char *)mxCalloc(nBuflen, sizeof(char));
+  nStatus = mxGetString(mxNotes, pacNotes, nBuflen);
+
+  if (nStatus != 0)
+  {
+    mexErrMsgTxt("Cannot copy notes");
+  }
+
+  SBase_setNotesString(pStoichiometryMath, pacNotes);
+
+
+  /* get annotations */
+  mxAnnotations = mxGetField(mxStoichiometryMath, 0, "annotation");
+  nBuflen = (mxGetM(mxAnnotations)*mxGetN(mxAnnotations)+1);
+  pacAnnotations = (char *)mxCalloc(nBuflen, sizeof(char));
+  nStatus = mxGetString(mxAnnotations, pacAnnotations, nBuflen);
+
+  if (nStatus != 0)
+  {
+    mexErrMsgTxt("Cannot copy annotations");
+  }
+
+  SBase_setAnnotationString(pStoichiometryMath, pacAnnotations); 
+
+
+	/* get metaid */
+	mxMetaid = mxGetField(mxStoichiometryMath, 0, "metaid");
+	nBuflen = (mxGetM(mxMetaid)*mxGetN(mxMetaid)+1);
+	pacMetaid = (char *)mxCalloc(nBuflen, sizeof(char));
+	nStatus = mxGetString(mxMetaid, pacMetaid, nBuflen);
+  
+	if (nStatus != 0)
+	{
+		mexErrMsgTxt("Cannot copy metaid");
+	}
+
+	SBase_setMetaId(pStoichiometryMath, pacMetaid);
+
+  /* get Math */
+  mxMath = mxGetField(mxStoichiometryMath, 0, "math");
+  nBuflen = (mxGetM(mxMath)*mxGetN(mxMath)+1);
+  pacMath = (char *)mxCalloc(nBuflen, sizeof(char));
+  nStatus = mxGetString(mxMath, pacMath, nBuflen);
+
+  if (nStatus != 0)
+  {
+    mexErrMsgTxt("Cannot copy Math");
+  }
+
+  if (strcmp(pacMath, ""))
+  {
+    StoichiometryMath_setMath(pStoichiometryMath, SBML_parseFormula(pacMath));
+  }
+
+  /* get sboTerm */
+  mxSBOTerm = mxGetField(mxStoichiometryMath, 0, "sboTerm");
+  nSBOTerm = (int)mxGetScalar(mxSBOTerm);
+
+  SBase_setSBOTerm(pStoichiometryMath, nSBOTerm);
+
+  SpeciesReference_setStoichiometryMath(sbmlSpeciesReference, pStoichiometryMath);
+  
+  /* free any memory allocated */
+  mxFree(pacNotes);
+  mxFree(pacAnnotations);
+  mxFree(pacMath);
+        mxFree(pacMetaid);
+}
+
+
+/**
+ * NAME:    GetTrigger
+ *
+ * PARAMETERS:  mxArray of initialAssignment structures
+ *              unSBMLLevel
+ *              unSBMLVersion - included for possible expansion needs
+ *				      Pointer to the speciesReference
+ *
+ * RETURNS:    void
+ *
+ * FUNCTION:  gets data from the Trigger mxArray structure
+ *        and adds each initialAssignment to the model
+ */
+void
+GetTrigger ( mxArray * mxTrigger,
+               unsigned int unSBMLLevel,
+               unsigned int unSBMLVersion, 
+			         Event_t * sbmlEvent )
+{
+	int nStatus;
+	int nBuflen;
+
+	/* values */
+	char * pacNotes;
+	char * pacAnnotations;
+  char * pacMath;
+  int nSBOTerm;
+	char * pacMetaid;
+
+  mxArray *mxMetaid;
+	mxArray * mxNotes, * mxAnnotations, * mxMath, *mxSBOTerm;
+
+	Trigger_t *pTrigger;
+  if (mxTrigger == NULL) return;
+  pTrigger = Trigger_create();
+
+  /* get notes */
+  mxNotes = mxGetField(mxTrigger, 0, "notes");
+  nBuflen = (mxGetM(mxNotes)*mxGetN(mxNotes)+1);
+  pacNotes = (char *)mxCalloc(nBuflen, sizeof(char));
+  nStatus = mxGetString(mxNotes, pacNotes, nBuflen);
+
+  if (nStatus != 0)
+  {
+    mexErrMsgTxt("Cannot copy notes");
+  }
+
+  SBase_setNotesString(pTrigger, pacNotes);
+
+
+  /* get annotations */
+  mxAnnotations = mxGetField(mxTrigger, 0, "annotation");
+  nBuflen = (mxGetM(mxAnnotations)*mxGetN(mxAnnotations)+1);
+  pacAnnotations = (char *)mxCalloc(nBuflen, sizeof(char));
+  nStatus = mxGetString(mxAnnotations, pacAnnotations, nBuflen);
+
+  if (nStatus != 0)
+  {
+    mexErrMsgTxt("Cannot copy annotations");
+  }
+
+  SBase_setAnnotationString(pTrigger, pacAnnotations); 
+
+
+	/* get metaid */
+	mxMetaid = mxGetField(mxTrigger, 0, "metaid");
+	nBuflen = (mxGetM(mxMetaid)*mxGetN(mxMetaid)+1);
+	pacMetaid = (char *)mxCalloc(nBuflen, sizeof(char));
+	nStatus = mxGetString(mxMetaid, pacMetaid, nBuflen);
+  
+	if (nStatus != 0)
+	{
+		mexErrMsgTxt("Cannot copy metaid");
+	}
+
+	SBase_setMetaId(pTrigger, pacMetaid);
+
+  /* get Math */
+  mxMath = mxGetField(mxTrigger, 0, "math");
+  nBuflen = (mxGetM(mxMath)*mxGetN(mxMath)+1);
+  pacMath = (char *)mxCalloc(nBuflen, sizeof(char));
+  nStatus = mxGetString(mxMath, pacMath, nBuflen);
+
+  if (nStatus != 0)
+  {
+    mexErrMsgTxt("Cannot copy Math");
+  }
+
+  if (strcmp(pacMath, ""))
+  {
+    Trigger_setMath(pTrigger, SBML_parseFormula(pacMath));
+  }
+
+  /* get sboTerm */
+  mxSBOTerm = mxGetField(mxTrigger, 0, "sboTerm");
+  nSBOTerm = (int)mxGetScalar(mxSBOTerm);
+
+  SBase_setSBOTerm(pTrigger, nSBOTerm);
+
+  Event_setTrigger(sbmlEvent, pTrigger);
+  
+  /* free any memory allocated */
+  mxFree(pacNotes);
+  mxFree(pacAnnotations);
+  mxFree(pacMath);
+  mxFree(pacMetaid);
+}
+
+/**
+ * NAME:    GetDelay
+ *
+ * PARAMETERS:  mxArray of initialAssignment structures
+ *              unSBMLLevel
+ *              unSBMLVersion - included for possible expansion needs
+ *				      Pointer to the speciesReference
+ *
+ * RETURNS:    void
+ *
+ * FUNCTION:  gets data from the Delay mxArray structure
+ *        and adds each initialAssignment to the model
+ */
+void
+GetDelay ( mxArray * mxDelay,
+               unsigned int unSBMLLevel,
+               unsigned int unSBMLVersion, 
+			         Event_t * sbmlEvent )
+{
+	int nStatus;
+	int nBuflen;
+
+	/* values */
+	char * pacNotes;
+	char * pacAnnotations;
+  char * pacMath;
+  int nSBOTerm;
+	char * pacMetaid;
+
+  mxArray *mxMetaid;
+	mxArray * mxNotes, * mxAnnotations, * mxMath, *mxSBOTerm;
+
+	Delay_t *pDelay;
+  if (mxDelay == NULL) return;
+  pDelay = Delay_create();
+
+  /* get notes */
+  mxNotes = mxGetField(mxDelay, 0, "notes");
+  nBuflen = (mxGetM(mxNotes)*mxGetN(mxNotes)+1);
+  pacNotes = (char *)mxCalloc(nBuflen, sizeof(char));
+  nStatus = mxGetString(mxNotes, pacNotes, nBuflen);
+
+  if (nStatus != 0)
+  {
+    mexErrMsgTxt("Cannot copy notes");
+  }
+
+  SBase_setNotesString(pDelay, pacNotes);
+
+
+  /* get annotations */
+  mxAnnotations = mxGetField(mxDelay, 0, "annotation");
+  nBuflen = (mxGetM(mxAnnotations)*mxGetN(mxAnnotations)+1);
+  pacAnnotations = (char *)mxCalloc(nBuflen, sizeof(char));
+  nStatus = mxGetString(mxAnnotations, pacAnnotations, nBuflen);
+
+  if (nStatus != 0)
+  {
+    mexErrMsgTxt("Cannot copy annotations");
+  }
+
+  SBase_setAnnotationString(pDelay, pacAnnotations); 
+
+
+	/* get metaid */
+	mxMetaid = mxGetField(mxDelay, 0, "metaid");
+	nBuflen = (mxGetM(mxMetaid)*mxGetN(mxMetaid)+1);
+	pacMetaid = (char *)mxCalloc(nBuflen, sizeof(char));
+	nStatus = mxGetString(mxMetaid, pacMetaid, nBuflen);
+  
+	if (nStatus != 0)
+	{
+		mexErrMsgTxt("Cannot copy metaid");
+	}
+
+	SBase_setMetaId(pDelay, pacMetaid);
+
+  /* get Math */
+  mxMath = mxGetField(mxDelay, 0, "math");
+  nBuflen = (mxGetM(mxMath)*mxGetN(mxMath)+1);
+  pacMath = (char *)mxCalloc(nBuflen, sizeof(char));
+  nStatus = mxGetString(mxMath, pacMath, nBuflen);
+
+  if (nStatus != 0)
+  {
+    mexErrMsgTxt("Cannot copy Math");
+  }
+
+  if (strcmp(pacMath, ""))
+  {
+    Delay_setMath(pDelay, SBML_parseFormula(pacMath));
+  }
+
+  /* get sboTerm */
+  mxSBOTerm = mxGetField(mxDelay, 0, "sboTerm");
+  nSBOTerm = (int)mxGetScalar(mxSBOTerm);
+
+  SBase_setSBOTerm(pDelay, nSBOTerm);
+
+  Event_setDelay(sbmlEvent, pDelay);
+  
+  /* free any memory allocated */
+  mxFree(pacNotes);
+  mxFree(pacAnnotations);
+  mxFree(pacMath);
+  mxFree(pacMetaid);
 }
