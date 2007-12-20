@@ -30,8 +30,8 @@
       </unitDefinition>
       <unitDefinition id="perTime">
         <listOfUnits>
-           <unit kind="litre" exponent="1"/>
-         <unit kind="second" exponent="-1"/>
+          <unit kind="litre"/>
+          <unit kind="second" exponent="-1"/>
         </listOfUnits>
       </unitDefinition>
     </listOfUnitDefinitions>

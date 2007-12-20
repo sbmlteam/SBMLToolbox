@@ -23,41 +23,41 @@
       <species id="S2" compartment="compartment" initialAmount="0"/>
       <species id="S3" compartment="compartment" initialAmount="0"/>
       <species id="X" compartment="compartment" initialAmount="0"/>
-     <species id="S4" compartment="compartment" initialAmount="0"/>
+      <species id="S4" compartment="compartment" initialAmount="0"/>
     </listOfSpecies>
     <listOfParameters>
       <parameter id="k" value="1" units="vol_per_time"/>
       <parameter id="s1" value="3" units="speciesUnits"/>
       <parameter id="s2" value="4" units="speciesUnits" constant="false"/>
     </listOfParameters>
-  <listOfRules>
-    <algebraicRule>
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <apply>
-          <minus/>
+    <listOfRules>
+      <algebraicRule>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
-            <plus/>
-            <ci> X </ci>
-            <ci> S1 </ci>
-          </apply>
-          <ci> S3 </ci>
-        </apply>
-      </math>
-    </algebraicRule>
-    <algebraicRule>
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <apply>
-          <minus/>
-          <apply>
-            <plus/>
-            <ci> S2 </ci>
+            <minus/>
+            <apply>
+              <plus/>
+              <ci> X </ci>
+              <ci> S1 </ci>
+            </apply>
             <ci> S3 </ci>
           </apply>
-          <ci> s2 </ci>
-        </apply>
-      </math>
-    </algebraicRule>
-    <assignmentRule variable="S3">
+        </math>
+      </algebraicRule>
+      <algebraicRule>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <apply>
+              <plus/>
+              <ci> S2 </ci>
+              <ci> S3 </ci>
+            </apply>
+            <ci> s2 </ci>
+          </apply>
+        </math>
+      </algebraicRule>
+      <assignmentRule variable="S3">
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <plus/>
@@ -66,7 +66,7 @@
           </apply>
         </math>
       </assignmentRule>
-  </listOfRules>
+    </listOfRules>
     <listOfReactions>
       <reaction id="R1" reversible="false">
         <listOfReactants>
