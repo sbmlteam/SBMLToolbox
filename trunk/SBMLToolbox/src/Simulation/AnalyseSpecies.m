@@ -88,7 +88,7 @@ end;
 for i = 1:length(SBMLModel.species)
     Species(i).Name = name(i);
 
-    if (SBMLModel.SBML_level == 2 && SBMLModel.SBML_version == 2)
+    if (SBMLModel.SBML_level == 2 && SBMLModel.SBML_version  > 1)
       Species(i).speciesType = SBMLModel.species(i).speciesType;
     end;
     
@@ -160,7 +160,7 @@ for i = 1:length(SBMLModel.species)
             end;
             
             SubsRule = SubsAssignmentRules(SBMLModel, char(Rule));
-            Species(i).ConvertedRule = Arrange(SubsRule, name{i}, name);
+            Species(i).ConvertedRule = Rearrange(SubsRule, name{i});
         else
             Species(i).ConvertedToAssignRule = 0;
             Species(i).ConvertedRule = '';
@@ -181,6 +181,15 @@ function form = SubsAssignmentRules(SBMLModel, rule)
 
 [species, AssignRule] = GetSpeciesAssignmentRules(SBMLModel);
 form = rule;
+% bracket the species to be replaced
+for i = 1:length(species)
+    if (strfind(rule, species{i}))
+        if (~strcmp(AssignRule{i}, '0'))
+            form = strrep(form, species{i}, strcat('(', species{i}, ')'));
+        end;
+    end;
+end;
+
 for i = 1:length(species)
     if (strfind(rule, species{i}))
         if (~strcmp(AssignRule{i}, '0'))
@@ -189,6 +198,7 @@ for i = 1:length(species)
     end;
 end;
 function output = Arrange(formula, x, vars)
+
 
 ops = '+-';
 f = LoseWhiteSpace(formula);

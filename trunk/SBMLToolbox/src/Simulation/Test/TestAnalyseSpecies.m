@@ -128,6 +128,7 @@ output_1(3).ConvertedRule = '';
 fail = TestFunction('AnalyseSpecies', 1, 1, m, output_1);
 
 
+
 m = TranslateSBML('../../Test/test-data/algebraicRules.xml');
 
 output_2(1).Name = {'S1'};
@@ -196,7 +197,7 @@ output_2(4).AssignmentRule = '';
 output_2(4).InAlgebraicRule = 1;
 output_2(4).AlgebraicRule = {{'X+S1-S3'}};
 output_2(4).ConvertedToAssignRule = 1;
-output_2(4).ConvertedRule = '-S1+s1-s2';
+output_2(4).ConvertedRule = '-S1+(s1+s2)';
 
 output_2(5).Name = {'S4'};
 output_2(5).constant = 0;
@@ -296,3 +297,25 @@ output_3(2).ConvertedToAssignRule = 0;
 output_3(2).ConvertedRule = '';
 
 fail = fail + TestFunction('AnalyseSpecies', 1, 1, m, output_3);
+
+m = TranslateSBML('../../Test/test-data/functionDefinition.xml');
+
+output_4(1).Name = {'s'};
+output_4(1).speciesType='';
+output_4(1).constant = 0;
+output_4(1).boundaryCondition = 0;
+output_4(1).initialValue = 0;
+output_4(1).isConcentration = 0;
+output_4(1).compartment = 'a';
+output_4(1).ChangedByReaction = 1;
+output_4(1).KineticLaw = {' - (s*fd(k_r,x)/t)'};
+output_4(1).ChangedByRateRule = 0;
+output_4(1).RateRule = '';
+output_4(1).ChangedByAssignmentRule = 0;
+output_4(1).AssignmentRule = '';
+output_4(1).InAlgebraicRule = 0;
+output_4(1).AlgebraicRule = '';
+output_4(1).ConvertedToAssignRule = 0;
+output_4(1).ConvertedRule = '';
+
+fail = fail + TestFunction('AnalyseSpecies', 1, 1, m, output_4);
