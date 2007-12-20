@@ -103,6 +103,13 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
+test = test + 22;
+fail = TestRearrange;
+if (fail > 0)
+    disp('Rearrange failed');
+end;
+Totalfail = Totalfail + fail;
+
 disp(sprintf('Number tests: %d', test));
 disp(sprintf('Number fails: %d', Totalfail));
 disp(sprintf('Pass rate: %d%%', ((test-Totalfail)/test)*100));
