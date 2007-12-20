@@ -63,6 +63,11 @@ if (~isSBML_Model(SBMLModel))
     error('GetSymbolicParameterInitialAssignment(SBMLModel)\n%s', 'input must be an SBMLModel structure');
 end;
 
+if (SBMLModel.SBML_level < 2 || SBMLModel.SBML_version < 2)
+    error('GetSymbolicParameterInitialAssignment(SBMLModel)\n%s', ...
+    'no initialAssignments before SBML L2V2');
+end;
+
 %--------------------------------------------------------------
             
 % get information from the model
@@ -80,6 +85,12 @@ for i = 1:NumberParameter
  
     if (NumInitialAssign > 0)
         IA = Model_getInitialAssignmentBySymbol(SBMLModel, SBMLModel.parameter(i).id);
+       for fd = 1:Model_getNumFunctionDefinitions(SBMLModel)
+         newFormula = SubstituteFunction(IA, Model_getFunctionDefinition(SBMLModel, fd));
+         if (~isempty(newFormula))
+           IA = newFormula;
+         end;
+       end;
        if (~isempty(IA))
         symOut = charFormula2sym(IA.math);
        else

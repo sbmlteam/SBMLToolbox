@@ -6,9 +6,12 @@ function Species = AnalyseSpeciesSymbolic(SBMLModel)
 % 
 % the structure fields are
 %     Name
+%     SpeciesType (L2V2)
 %     constant
 %     boundaryCondition
 %     initialValue
+%     hasInitialAssignment (L2V2)
+%     initialAssisgnment (L2V2)
 %     isConcentration
 %     compartment
 %     ChangedByReaction
@@ -78,15 +81,15 @@ if (~isSBML_Model(SBMLModel))
 end;
 
 % look for functions and warn user that these are not dealt with yet
-if (SBMLModel.SBML_level == 2)
-    Funcs = length(SBMLModel.functionDefinition);
-else
-    Funcs = 0;
-end;
-
-if (Funcs ~= 0)
-    error('Note this procedure does not yet deal with functions');
-end;
+% if (SBMLModel.SBML_level == 2)
+%     Funcs = length(SBMLModel.functionDefinition);
+% else
+%     Funcs = 0;
+% end;
+% 
+% if (Funcs ~= 0)
+%     error('Note this procedure does not yet deal with functions');
+% end;
 
 [name, KineticLaw] = GetSymbolicRateLawsFromReactions(SBMLModel);
 [n, RateRule] = GetSymbolicRateLawsFromRules(SBMLModel);
@@ -100,6 +103,10 @@ end;
 % create the output structure
 for i = 1:length(SBMLModel.species)
     Species(i).Name = name(i);
+
+    if (SBMLModel.SBML_level == 2 && SBMLModel.SBML_version  > 1)
+      Species(i).speciesType = SBMLModel.species(i).speciesType;
+    end;
     
     bc = SBMLModel.species(i).boundaryCondition;
     if (SBMLModel.SBML_level == 2)
@@ -121,8 +128,11 @@ for i = 1:length(SBMLModel.species)
       if (InitialAss{i} == sym('0'))
         Species(i).hasInitialAssignment = 0;
         Species(i).initialAssignment = '';
+      elseif (isempty(InitialAss{i}))
+        Species(i).hasInitialAssignment = 0;
+        Species(i).initialAssignment = '';
       else
-        Species(i).hasInitialAssignment = i;
+        Species(i).hasInitialAssignment = 1;
         Species(i).initialAssignment = InitialAss{i};
       end;
         
