@@ -48,3 +48,5 @@ cd ..;
 
 cd ..;
 cd Test;
+
+TestOutput;
