@@ -5,9 +5,9 @@ function Formula = SubstituteFunction(OriginalFormula, SBMLFunctionDefinition)
 %           2) the SBMLFunctionDefinition structure defining the formula
 %       and returns 
 %           the formula with the function substituted
+%       or  an empty string if the id of the functionDefinition is not in the
+%       originalFormula
 %
-%       NOTE: the formula must contain the id of the
-%       functionDefinition
 %
 %   EXAMPLE:
 %           fD = SBMLFunmctionDefinition 
@@ -16,6 +16,10 @@ function Formula = SubstituteFunction(OriginalFormula, SBMLFunctionDefinition)
 %           formula = SubstituteFormula('g(y)', fD)
 %           
 %                   = 'y+0.5'
+%
+%           formula = SubstituteFormula('h(y)', fD)
+%           
+%                   = ''
 
 
 %  Filename    :   SubstituteFunction.m
@@ -72,13 +76,25 @@ function Formula = SubstituteFunction(OriginalFormula, SBMLFunctionDefinition)
 
 
 %check arguments are appropriate
+if (~isstruct(SBMLFunctionDefinition))
+  error(sprintf('%s', ...
+    'first argument must be an SBML functionDefinition structure'));
+end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLFunctionDefinition);
 
-if (~ischar(OriginalFormula) || isempty(strfind(OriginalFormula, SBMLFunctionDefinition.id)))
+if (~ischar(OriginalFormula))
     error('SubstituteFunction(OriginalFormula, SBMLFunctionDefinition)\n%s', 'first argument must be a character array containing the id of the function definition');
-elseif (~isSBML_FunctionDefinition(SBMLFunctionDefinition, 2))
+elseif (~isSBML_FunctionDefinition(SBMLFunctionDefinition, sbmlLevel, sbmlVersion))
     error('SubstituteFunction(OriginalFormula, SBMLFunctionDefinition)\n%s', 'second argument must be an SBML function definition structure');
 end;
 
+if (isempty(strfind(OriginalFormula, SBMLFunctionDefinition.id)))
+  Formula = '';
+  return;
+end;
+
+OriginalFormula = LoseWhiteSpace(OriginalFormula);
 ElementsOfFuncDef = GetArgumentsFromLambdaFunction(SBMLFunctionDefinition.math);
 
 % get the arguments of the application of the formula
@@ -112,8 +128,21 @@ if (NoElements ~= length(ElementsOfFuncDef) - 1)
     error('SubstituteFunction(OriginalFormula, SBMLFunctionDefinition)\n%s', 'mismatch in number of arguments between formula and function');
 end;
 
+% check that same arguments have not been used
+
+for i = 1:NoElements
+  for j = 1:NoElements
+    if (strcmp(ElementsInFormula{i}, ElementsOfFuncDef{j}))
+      newElem = strcat(ElementsInFormula{i}, '_new');
+      ElementsOfFuncDef{j} = newElem;
+      ElementsOfFuncDef{end} = strrep(ElementsOfFuncDef{end}, ElementsInFormula{i}, newElem);
+    end;
+  end;
+end;
 % replace the arguments in function definition with those in the formula
-FuncFormula = ElementsOfFuncDef{end};
+FuncFormula = '(';
+FuncFormula = strcat(FuncFormula, ElementsOfFuncDef{end});
+FuncFormula = strcat(FuncFormula, ')');
 for i = 1:NoElements
     FuncFormula = strrep(FuncFormula, ElementsOfFuncDef{i}, ElementsInFormula{i});
 end;
