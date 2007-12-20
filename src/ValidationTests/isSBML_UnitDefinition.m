@@ -6,6 +6,7 @@ function y = isSBML_UnitDefinition(varargin)
 % if SBMLStructure represents a unit definition within an SBML model
 % it has the appropriate fields 
 % eg    Typecode
+%       Metaid (L2V1)
 %       Notes
 %       Annotations
 %       SBOTerm (L2V3)
@@ -94,14 +95,14 @@ if (Level == 1)
     nNumberFields = 5;
 else
     if (Version == 1)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'unit'};
-        nNumberFields = 6;
-    elseif (Version == 2)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'unit'};
-        nNumberFields = 6;
-    elseif (Version == 3)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'name', 'id', 'unit'};
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','name', 'id', 'unit'};
         nNumberFields = 7;
+    elseif (Version == 2)
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','name', 'id', 'unit'};
+        nNumberFields = 7;
+    elseif (Version == 3)
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id', 'unit'};
+        nNumberFields = 8;
     end;
 end;
     

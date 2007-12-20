@@ -208,6 +208,27 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
+test = test + 7;
+fail = TestIsSBML_Trigger;
+if (fail > 0)
+    disp('isSBML_Trigger failed');
+end;
+Totalfail = Totalfail + fail;
+
+test = test + 7;
+fail = TestIsSBML_Delay;
+if (fail > 0)
+    disp('isSBML_Delay failed');
+end;
+Totalfail = Totalfail + fail;
+
+test = test + 7;
+fail = TestIsSBML_StoichiometryMath;
+if (fail > 0)
+    disp('isSBML_StoichiometryMath failed');
+end;
+Totalfail = Totalfail + fail;
+
 m = TranslateSBML('../../Test/test-data/l1v1.xml');
 
 ud  = m.unitDefinition(1);

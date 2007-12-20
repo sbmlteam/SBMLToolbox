@@ -6,6 +6,7 @@ function y = isSBML_SpeciesReference(varargin)
 % if SBMLStructure represents a species reference within an SBML model
 % it has the appropriate fields
 % eg    Typecode
+%       Metaid (L2V1)
 %       Notes
 %       Annotations
 %       SBOTerm (L2V2)
@@ -97,17 +98,17 @@ if (Level == 1)
     nNumberFields = 6;
 else
     if (Version == 1)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation','species', 'stoichiometry', ...
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','species', 'stoichiometry', ...
             'denominator', 'stoichiometryMath'};
-        nNumberFields = 7;
+        nNumberFields = 8;
     elseif (Version == 2)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation','species', 'id', 'name', ...
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','species', 'id', 'name', ...
             'sboTerm', 'stoichiometry', 'stoichiometryMath'};
-        nNumberFields = 9;
+        nNumberFields = 10;
     elseif (Version == 3)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'species', 'id', 'name', ...
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'species', 'id', 'name', ...
             'stoichiometry', 'stoichiometryMath'};
-        nNumberFields = 9;
+        nNumberFields = 10;
     end;
 end;
 typecode = 'SBML_SPECIES_REFERENCE';
@@ -131,6 +132,17 @@ if (bSBML == 1)
     if (m ~= nNumberFields)
         bSBML = 0;
     end;
+end;
+
+% check that any nested structures are appropriate
+if (Level == 2 && Version > 2)
+  if (length(SBMLStructure.stoichiometryMath) > 1)
+    bSBML = 0;
+  end;
+
+  if(bSBML == 1 && ~isempty(SBMLStructure.stoichiometryMath))
+    bSBML = isSBML_StoichiometryMath(SBMLStructure.stoichiometryMath, Level, Version);
+  end;
 end;
 
 % check that the typecode is correct

@@ -6,6 +6,7 @@ function y = isSBML_FunctionDefinition(varargin)
 % if SBMLStructure represents a function definition within an SBML model
 % it has the appropriate fields (ONLY IN LEVEL 2)
 % eg    Typecode (L2V1)
+%       Metaid (L2V1)
 %       Notes (L2V1)
 %       Annotations (L2V1)
 %       SBOTerm (L2V2)
@@ -93,14 +94,14 @@ if (Level == 1)
     return;
 else
     if (Version == 1)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'math'};
-        nNumberFields = 6;
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','name', 'id', 'math'};
+        nNumberFields = 7;
     elseif (Version == 2)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'name', 'id', 'math'};
-        nNumberFields = 7;
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id', 'math'};
+        nNumberFields = 8;
     elseif (Version == 3)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'name', 'id', 'math'};
-        nNumberFields = 7;
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id', 'math'};
+        nNumberFields = 8;
     end;
 end;
     

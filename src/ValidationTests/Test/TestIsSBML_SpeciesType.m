@@ -23,7 +23,7 @@ function fail = TestIsSBML_SpeciesType
 %  * Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.
 %  */
 
-st_l2v2 = struct('typecode', {'SBML_SPECIES_TYPE'}, 'notes', {''}, 'annotation', {''},'name', ...
+st_l2v2 = struct('typecode', {'SBML_SPECIES_TYPE'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''},'name', ...
     {''}, 'id', {''});
 
 

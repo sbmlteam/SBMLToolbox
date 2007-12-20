@@ -6,6 +6,7 @@ function y = isSBML_Rule(varargin)
 % if SBMLStructure represents a rule within an SBML model
 % it has the appropriate fields 
 % eg    Typecode
+%       Metaid (L2V1)
 %       Notes
 %       Annotations
 %       SBOTerm (L2V2)
@@ -105,17 +106,17 @@ if (Level == 1)
     nNumberFields = 10;
 else
     if (Version == 1)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation','formula', ...
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','formula', ...
           'variable', 'species', 'compartment', 'name', 'units'};
-        nNumberFields = 9;
+        nNumberFields = 10;
     elseif (Version == 2)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', ...
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', ...
           'formula', 'variable', 'species', 'compartment', 'name', 'units'};
-        nNumberFields = 10;
+        nNumberFields = 11;
     elseif (Version == 3)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', ...
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', ...
           'formula', 'variable', 'species', 'compartment', 'name', 'units'};
-        nNumberFields = 10;
+        nNumberFields = 11;
     end;
 end;
 typecodel1 = {'SBML_ALGEBRAIC_RULE', 'SBML_SPECIES_CONCENTRATION_RULE', ...

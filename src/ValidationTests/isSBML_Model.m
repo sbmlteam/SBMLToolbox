@@ -4,6 +4,7 @@ function y = isSBML_Model(SBMLStructure)
 % if SBMLStructure represents an SBML model
 % it has the appropriate fields 
 % eg    Typecode
+%       Metaid (L2V1)
 %       Notes
 %       Annotations
 %       Level
@@ -112,20 +113,20 @@ if (Level == 1)
     nNumberFields = 12;
 else
     if (Version == 1)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'SBML_level', 'SBML_version', 'name', 'id', ...
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'SBML_level', 'SBML_version', 'name', 'id', ...
             'functionDefinition', 'unitDefinition', 'compartment', 'species', 'parameter', 'rule', 'reaction',...
             'event'};
-        nNumberFields = 15;
+        nNumberFields = 16;
     elseif (Version == 2)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'SBML_level', 'SBML_version', 'name', 'id', ...
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'SBML_level', 'SBML_version', 'name', 'id', ...
             'sboTerm', 'functionDefinition', 'unitDefinition', 'compartmentType', 'speciesType', 'compartment', ...
             'species', 'parameter', 'initialAssignment', 'rule', 'constraint', 'reaction', 'event'};
-        nNumberFields = 20;
+        nNumberFields = 21;
     elseif (Version == 3)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'SBML_level', 'SBML_version', 'name', 'id', ...
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'SBML_level', 'SBML_version', 'name', 'id', ...
             'sboTerm', 'functionDefinition', 'unitDefinition', 'compartmentType', 'speciesType', 'compartment', ...
             'species', 'parameter', 'initialAssignment', 'rule', 'constraint', 'reaction', 'event'};
-        nNumberFields = 20;
+        nNumberFields = 21;
     end;
 end;
 typecode = 'SBML_MODEL';
