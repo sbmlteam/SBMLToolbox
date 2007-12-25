@@ -92,16 +92,16 @@ elseif (nargin == 1)
 end;
 
 if (sbmlVersion == 1)
-  SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name', 'id', 'math'};
-  Values = {'SBML_FUNCTION_DEFINITION', '', '', '', '', ''};
+  SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'name', 'id', 'math'};
+  Values = {'SBML_FUNCTION_DEFINITION','', '', '', '', '', ''};
 elseif (sbmlVersion == 2)
-  SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'name', ...
+  SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', ...
     'id', 'math'};
-  Values = {'SBML_FUNCTION_DEFINITION', '', '', int32(-1), '', '', ''};
+  Values = {'SBML_FUNCTION_DEFINITION', '', '', '', int32(-1), '', '', ''};
 elseif (sbmlVersion == 3)
-  SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'name', ...
+  SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', ...
     'id', 'math'};
-  Values = {'SBML_FUNCTION_DEFINITION', '', '', int32(-1), '', '', ''};
+  Values = {'SBML_FUNCTION_DEFINITION', '', '', '', int32(-1), '', '', ''};
 end;
 
 FunctionDefinition = cell2struct(Values, SBMLfieldnames, 2);

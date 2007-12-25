@@ -98,17 +98,17 @@ if (sbmlLevel == 1)
     Values = {'SBML_COMPARTMENT', '', '', '', 1, '', '', int32(1)};
 else
     if (sbmlVersion == 1)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'spatialDimensions', ...
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','name', 'id', 'spatialDimensions', ...
             'size', 'units', 'outside', 'constant', 'isSetSize','isSetVolume'};
-        Values = {'SBML_COMPARTMENT', '', '', '', '',int32(3), 0/0, '', '', int32(1), int32(0), int32(0)};
+        Values = {'SBML_COMPARTMENT','','', '', '', '',int32(3), 0/0, '', '', int32(1), int32(0), int32(0)};
     elseif (sbmlVersion == 2)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'compartmentType', ...
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','name', 'id', 'compartmentType', ...
             'spatialDimensions', 'size', 'units', 'outside', 'constant', 'isSetSize','isSetVolume'};
-        Values = {'SBML_COMPARTMENT', '', '', '', '', '', int32(3), 0/0, '', '', int32(1), int32(0), int32(0)};
+        Values = {'SBML_COMPARTMENT','', '', '', '', '', '', int32(3), 0/0, '', '', int32(1), int32(0), int32(0)};
     elseif (sbmlVersion == 3)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'name', 'id', 'compartmentType', ...
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id', 'compartmentType', ...
             'spatialDimensions', 'size', 'units', 'outside', 'constant', 'isSetSize','isSetVolume'};
-        Values = {'SBML_COMPARTMENT', '', '', int32(-1), '', '', '', int32(3), 0/0, '', '', int32(1), int32(0), int32(0)};
+        Values = {'SBML_COMPARTMENT','', '', '', int32(-1), '', '', '', int32(3), 0/0, '', '', int32(1), int32(0), int32(0)};
     end;
 end;
 

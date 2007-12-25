@@ -94,11 +94,11 @@ end;
 
 warning off all;
 if (sbmlVersion == 2)
-  SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'math', 'message'};
-  Values = {'SBML_CONSTRAINT', '', '', int32(-1), '', ''};
+  SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'math', 'message'};
+  Values = {'SBML_CONSTRAINT', '','', '', int32(-1), '', ''};
 elseif (sbmlVersion == 3)
-  SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'math', 'message'};
-  Values = {'SBML_CONSTRAINT', '', '', int32(-1), '', ''};
+  SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'math', 'message'};
+  Values = {'SBML_CONSTRAINT', '','', '', int32(-1), '', ''};
 end;
 
 Constraint = cell2struct(Values, SBMLfieldnames, 2);

@@ -94,11 +94,11 @@ end;
 
 warning off all;
 if (sbmlVersion == 2)
-  SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name', 'id'};
-  Values = {'SBML_SPECIES_TYPE', '', '', '', ''};
+  SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'name', 'id'};
+  Values = {'SBML_SPECIES_TYPE', '', '', '', '', ''};
 elseif (sbmlVersion == 3)
-  SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'name', 'id'};
-  Values = {'SBML_SPECIES_TYPE', '', '', int32(-1), '', ''};
+  SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id'};
+  Values = {'SBML_SPECIES_TYPE', '', '', '', int32(-1), '', ''};
 end;
 
 SpeciesType = cell2struct(Values, SBMLfieldnames, 2);

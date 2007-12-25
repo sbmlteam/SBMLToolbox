@@ -98,17 +98,17 @@ if (sbmlLevel == 1)
     parameter = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'name', {}, 'value', {}, 'units', {}, 'isSetValue', {});
 else
     if (sbmlVersion == 1)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'formula', 'math', 'parameter', 'timeUnits', 'substanceUnits'};
-        Values = {'SBML_KINETIC_LAW', '', '', '', '', [], '', ''};
-        parameter = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'name', {}, 'id', {}, 'value', {}, 'units', {}, 'constant', {}, 'isSetValue', {});
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'formula', 'math', 'parameter', 'timeUnits', 'substanceUnits'};
+        Values = {'SBML_KINETIC_LAW', '', '', '', '', '', [], '', ''};
+        parameter = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'name', {}, 'id', {}, 'value', {}, 'units', {}, 'constant', {}, 'isSetValue', {});
     elseif (sbmlVersion == 2)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation','formula', 'math','parameter', 'sboTerm'};
-        Values = {'SBML_KINETIC_LAW', '', '', '', '', [], int32(-1)};
-        parameter = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'name', {}, 'id', {}, 'value', {}, 'units', {}, 'constant', {}, 'sboTerm', {}, 'isSetValue', {});
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','formula', 'math','parameter', 'sboTerm'};
+        Values = {'SBML_KINETIC_LAW', '', '', '', '', '', [], int32(-1)};
+        parameter = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'name', {}, 'id', {}, 'value', {}, 'units', {}, 'constant', {}, 'sboTerm', {}, 'isSetValue', {});
     elseif (sbmlVersion == 3)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'formula', 'math','parameter'};
-        Values = {'SBML_KINETIC_LAW', '', '', int32(-1), '', '', []};
-        parameter = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'sboTerm', {}, 'name', {}, 'id', {}, 'value', {}, 'units', {}, 'constant', {}, 'isSetValue', {});
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'formula', 'math','parameter'};
+        Values = {'SBML_KINETIC_LAW', '', '', '', int32(-1), '', '', []};
+        parameter = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'sboTerm', {}, 'name', {}, 'id', {}, 'value', {}, 'units', {}, 'constant', {}, 'isSetValue', {});
     end;
 end;
 

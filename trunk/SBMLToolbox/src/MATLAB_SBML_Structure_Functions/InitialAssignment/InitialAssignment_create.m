@@ -94,11 +94,11 @@ end;
 
 warning off all;
 if (sbmlVersion == 2)
-  SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'symbol', 'math'};
-  Values = {'SBML_INITIAL_ASSIGNMENT', '', '', int32(-1), '', ''};
+  SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'symbol', 'math'};
+  Values = {'SBML_INITIAL_ASSIGNMENT', '', '', '', int32(-1), '', ''};
 elseif (sbmlVersion == 3)
-  SBMLfieldnames = {'typecode', 'notes', 'annotation', 'symbol', 'sboTerm', 'math'};
-  Values = {'SBML_INITIAL_ASSIGNMENT', '', '', '', int32(-1), ''};
+  SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'symbol', 'sboTerm', 'math'};
+  Values = {'SBML_INITIAL_ASSIGNMENT', '', '', '', '', int32(-1), ''};
 end;
 
 InitialAssignment = cell2struct(Values, SBMLfieldnames, 2);

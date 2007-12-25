@@ -114,119 +114,121 @@ if (sbmlLevel == 1)
 
 else
   if (sbmlVersion == 1)
-    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'SBML_level', 'SBML_version', 'name', 'id', 'functionDefinition', 'unitDefinition', 'compartment', 'species', 'parameter', 'rule', 'reaction', 'event'};
-    Values = {'SBML_MODEL', '', '', int32(2), int32(1), '', '', [], [], [], [], [], [], [], []};
+    SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'SBML_level', 'SBML_version', 'name', 'id', 'functionDefinition', 'unitDefinition', 'compartment', 'species', 'parameter', 'rule', 'reaction', 'event'};
+    Values = {'SBML_MODEL', '', '', '', int32(2), int32(1), '', '', [], [], [], [], [], [], [], []};
 
-    unit = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'kind', {}, 'exponent',{},  'scale', {}, 'multiplier', {}, 'offset',{});
-    unitDefinition = struct('typecode', {},  'notes', {},  'annotation', {},  'name', {},  'id', {},  'unit', unit);
+    unit = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'kind', {}, 'exponent',{},  'scale', {}, 'multiplier', {}, 'offset',{});
+    unitDefinition = struct('typecode', {},  'metaid', {}, 'notes', {},  'annotation', {},  'name', {},  'id', {},  'unit', unit);
 
-    functionDefinition = struct('typecode', {},  'notes', {},  'annotation', {},  'name', {},  'id', {},  'math', {});
+    functionDefinition = struct('typecode', {},  'metaid', {}, 'notes', {},  'annotation', {},  'name', {},  'id', {},  'math', {});
 
-    compartment = struct('typecode', {},  'notes', {},  'annotation', {},  'name', {},  'id', {},  'spatialDimensions', {},  'size', {},  'units', {},  'outside', {},  'constant', {},  'isSetSize', {},  'isSetVolume', {});
+    compartment = struct('typecode', {},  'metaid', {}, 'notes', {},  'annotation', {},  'name', {},  'id', {},  'spatialDimensions', {},  'size', {},  'units', {},  'outside', {},  'constant', {},  'isSetSize', {},  'isSetVolume', {});
 
-    species = struct('typecode', {},  'notes', {},  'annotation', {},  'name', {},  'id', {},  'compartment', {},  'initialAmount', {},  'initialConcentration', {},  'substanceUnits', {},  'spatialSizeUnits', {},  'hasOnlySubstanceUnits', {},   'boundaryCondition', {},  'charge', {},  'constant', {},  'isSetInitialAmount', {},  'isSetInitialConcentration', {},  'isSetCharge', {});
+    species = struct('typecode', {},  'metaid', {}, 'notes', {},  'annotation', {},  'name', {},  'id', {},  'compartment', {},  'initialAmount', {},  'initialConcentration', {},  'substanceUnits', {},  'spatialSizeUnits', {},  'hasOnlySubstanceUnits', {},   'boundaryCondition', {},  'charge', {},  'constant', {},  'isSetInitialAmount', {},  'isSetInitialConcentration', {},  'isSetCharge', {});
 
-    parameter = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'name', {}, 'id', {}, 'value', {}, 'units', {}, 'constant', {}, 'isSetValue', {});
+    parameter = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'name', {}, 'id', {}, 'value', {}, 'units', {}, 'constant', {}, 'isSetValue', {});
      
-    rule = struct('typecode', {},  'notes', {},  'annotation', {},  'formula', {},  'variable', {},  'species', {},  'compartment', {},  'name', {},  'units', {});
+    rule = struct('typecode', {},  'metaid', {}, 'notes', {},  'annotation', {},  'formula', {},  'variable', {},  'species', {},  'compartment', {},  'name', {},  'units', {});
 
-    reactant = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'species', {}, 'stoichiometry', {}, 'denominator', {}, 'stoichiometryMath', {});
-    product = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'species', {}, 'stoichiometry', {}, 'denominator', {}, 'stoichiometryMath', {});
-    modifier = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'species', {});
-    kineticLaw = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'formula', {}, 'math', {}, 'parameter', parameter, 'timeUnits', {}, 'substanceUnits', {});
-    reaction = struct('typecode', {},  'notes', {},  'annotation', {},  'name', {},  'id', {},  'reactant', reactant,  'product', product,  'modifier', modifier,  'kineticLaw', kineticLaw,  'reversible', {},  'fast', {},  'isSetFast', {});
+    reactant = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'species', {}, 'stoichiometry', {}, 'denominator', {}, 'stoichiometryMath', {});
+    product = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'species', {}, 'stoichiometry', {}, 'denominator', {}, 'stoichiometryMath', {});
+    modifier = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'species', {});
+    kineticLaw = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'formula', {}, 'math', {}, 'parameter', parameter, 'timeUnits', {}, 'substanceUnits', {});
+    reaction = struct('typecode', {},  'metaid', {}, 'notes', {},  'annotation', {},  'name', {},  'id', {},  'reactant', reactant,  'product', product,  'modifier', modifier,  'kineticLaw', kineticLaw,  'reversible', {},  'fast', {},  'isSetFast', {});
 
-    eventAssignment = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'variable', {}, 'math', {});
-    event = struct('typecode', {},  'notes', {},  'annotation', {},  'name', {},  'id', {},  'trigger', {},  'delay', {},  'timeUnits', {},  'eventAssignment', eventAssignment);
+    eventAssignment = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'variable', {}, 'math', {});
+    event = struct('typecode', {},  'metaid', {}, 'notes', {},  'annotation', {},  'name', {},  'id', {},  'trigger', {},  'delay', {},  'timeUnits', {},  'eventAssignment', eventAssignment);
 
   elseif (sbmlVersion == 2)
-    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'SBML_level', 'SBML_version', 'name', 'id', 'functionDefinition', ...
+    SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'SBML_level', 'SBML_version', 'name', 'id', 'functionDefinition', ...
       'unitDefinition', 'compartmentType', 'speciesType', 'compartment', 'species', 'parameter', 'initialAssignment', 'rule', ...
       'constraint', 'reaction', 'event'};
-    Values = {'SBML_MODEL', '', '', int32(2), int32(1), '', '', [], [], [], [], [], [], [], [], [], [], [], []};
+    Values = {'SBML_MODEL', '', '', '', int32(2), int32(1), '', '', [], [], [], [], [], [], [], [], [], [], [], []};
     
-    unit = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'kind', {}, 'exponent',{},  'scale', {}, 'multiplier', {});
-    unitDefinition = struct('typecode', {},  'notes', {},  'annotation', {},  'name', {},  'id', {},  'unit', unit);
+    unit = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'kind', {}, 'exponent',{},  'scale', {}, 'multiplier', {});
+    unitDefinition = struct('typecode', {},  'metaid', {}, 'notes', {},  'annotation', {},  'name', {},  'id', {},  'unit', unit);
 
-    functionDefinition = struct('typecode', {},  'notes', {},  'annotation', {}, 'sboTerm', int32(-1),  'name', {},  'id', {},  'math', {});
+    functionDefinition = struct('typecode', {},  'metaid', {}, 'notes', {},  'annotation', {}, 'sboTerm', int32(-1),  'name', {},  'id', {},  'math', {});
 
-    compartmentType = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'name', {}, 'id', {});
+    compartmentType = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'name', {}, 'id', {});
     
-    speciesType = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'name', {}, 'id', {});
+    speciesType = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'name', {}, 'id', {});
     
-    compartment = struct('typecode', {},  'notes', {},  'annotation', {},  'name', {},  'id', {},  ...
+    compartment = struct('typecode', {},  'metaid', {}, 'notes', {},  'annotation', {},  'name', {},  'id', {},  ...
       'compartmentType', {}, 'spatialDimensions', {},  'size', {},  'units', {},  'outside', {},  'constant', {},  'isSetSize', {},  'isSetVolume', {});
 
-    species = struct('typecode', {},  'notes', {},  'annotation', {},  'name', {},  'id', {},  ...
+    species = struct('typecode', {},  'metaid', {}, 'notes', {},  'annotation', {},  'name', {},  'id', {},  ...
       'speciesType', {}, 'compartment', {},  'initialAmount', {},  'initialConcentration', {},  'substanceUnits', {},  'spatialSizeUnits', {},  'hasOnlySubstanceUnits', {},   'boundaryCondition', {},  'charge', {},  'constant', {},  'isSetInitialAmount', {},  'isSetInitialConcentration', {},  'isSetCharge', {});
 
-    parameter = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'name', {}, 'id', {}, 'value', {}, 'units', {}, ...
+    parameter = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'name', {}, 'id', {}, 'value', {}, 'units', {}, ...
       'constant', {}, 'sboTerm', int32(-1), 'isSetValue', {});
     
-    initialAssignment = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'symbol', {}, 'sboTerm', int32(-1), 'math', {});
+    initialAssignment = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'symbol', {}, 'sboTerm', int32(-1), 'math', {});
      
-    rule = struct('typecode', {},  'notes', {},  'annotation', {},  'sboTerm', int32(-1), 'formula', {},  'variable', {},  'species', {},  'compartment', {},  'name', {},  'units', {});
+    rule = struct('typecode', {},  'metaid', {}, 'notes', {},  'annotation', {},  'sboTerm', int32(-1), 'formula', {},  'variable', {},  'species', {},  'compartment', {},  'name', {},  'units', {});
 
-    constraint = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'sboTerm', int32(-1), 'math', {}, 'message', {});
+    constraint = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'sboTerm', int32(-1), 'math', {}, 'message', {});
     
-    reactant = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'species', {}, 'id', {}, 'name', {}, ...
+    reactant = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'species', {}, 'id', {}, 'name', {}, ...
       'sboTerm', int32(-1), 'stoichiometry', {}, 'stoichiometryMath', {});
-    product = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'species', {}, 'id', {}, 'name', {}, ...
+    product = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'species', {}, 'id', {}, 'name', {}, ...
       'sboTerm', int32(-1), 'stoichiometry', {}, 'stoichiometryMath', {});
-    modifier = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'species', {}, 'id', {}, 'name', {}, 'sboTerm', int32(-1));
-    kineticLaw = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'formula', {}, 'math', {}, 'parameter', parameter, ...
+    modifier = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'species', {}, 'id', {}, 'name', {}, 'sboTerm', int32(-1));
+    kineticLaw = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'formula', {}, 'math', {}, 'parameter', parameter, ...
       'sboTerm', int32(-1));
-    reaction = struct('typecode', {},  'notes', {},  'annotation', {},  'name', {},  'id', {},  'reactant', reactant,  ...
+    reaction = struct('typecode', {},  'metaid', {}, 'notes', {},  'annotation', {},  'name', {},  'id', {},  'reactant', reactant,  ...
       'product', product,  'modifier', modifier,  'kineticLaw', kineticLaw,  'reversible', {},  'fast', {},  'sboTerm', int32(-1), 'isSetFast', {});
 
-    eventAssignment = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'variable', {}, 'sboTerm', int32(-1), 'math', {});
-    event = struct('typecode', {},  'notes', {},  'annotation', {},  'name', {},  'id', {},  'trigger', {},  'delay', {}, ...
+    eventAssignment = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'variable', {}, 'sboTerm', int32(-1), 'math', {});
+    event = struct('typecode', {},  'metaid', {}, 'notes', {},  'annotation', {},  'name', {},  'id', {},  'trigger', {},  'delay', {}, ...
       'timeUnits', {},  'sboTerm', int32(-1), 'eventAssignment', eventAssignment);
     
   elseif (sbmlVersion == 3)
-    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'SBML_level', 'SBML_version', 'name', 'id', 'functionDefinition', ...
+    SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'SBML_level', 'SBML_version', 'name', 'id', 'functionDefinition', ...
       'unitDefinition', 'compartmentType', 'speciesType', 'compartment', 'species', 'parameter', 'initialAssignment', 'rule', ...
       'constraint', 'reaction', 'event'};
-    Values = {'SBML_MODEL', '', '', int32(2), int32(1), '', '', [], [], [], [], [], [], [], [], [], [], [], []};
+    Values = {'SBML_MODEL', '', '', '', int32(2), int32(1), '', '', [], [], [], [], [], [], [], [], [], [], [], []};
     
-    unit = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'sboTerm', int32(-1), 'kind', {}, 'exponent',{},  'scale', {}, 'multiplier', {});
-    unitDefinition = struct('typecode', {},  'notes', {},  'annotation', {}, 'sboTerm', int32(-1),  'name', {},  'id', {},  'unit', unit);
+    unit = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'sboTerm', int32(-1), 'kind', {}, 'exponent',{},  'scale', {}, 'multiplier', {});
+    unitDefinition = struct('typecode', {},  'metaid', {}, 'notes', {},  'annotation', {}, 'sboTerm', int32(-1),  'name', {},  'id', {},  'unit', unit);
 
-    functionDefinition = struct('typecode', {},  'notes', {},  'annotation', {}, 'sboTerm', int32(-1),  'name', {},  'id', {},  'math', {});
+    functionDefinition = struct('typecode', {},  'metaid', {}, 'notes', {},  'annotation', {}, 'sboTerm', int32(-1),  'name', {},  'id', {},  'math', {});
 
-    compartmentType = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'sboTerm', int32(-1), 'name', {}, 'id', {});
+    compartmentType = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'sboTerm', int32(-1), 'name', {}, 'id', {});
     
-    speciesType = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'sboTerm', int32(-1), 'name', {}, 'id', {});
+    speciesType = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'sboTerm', int32(-1), 'name', {}, 'id', {});
     
-    compartment = struct('typecode', {},  'notes', {},  'annotation', {},  'sboTerm', int32(-1), 'name', {},  'id', {},  ...
+    compartment = struct('typecode', {},  'metaid', {}, 'notes', {},  'annotation', {},  'sboTerm', int32(-1), 'name', {},  'id', {},  ...
       'compartmentType', {}, 'spatialDimensions', {},  'size', {},  'units', {},  'outside', {},  'constant', {},  'isSetSize', {},  'isSetVolume', {});
 
-    species = struct('typecode', {},  'notes', {},  'annotation', {},  'sboTerm', int32(-1), 'name', {},  'id', {},  ...
+    species = struct('typecode', {},  'metaid', {}, 'notes', {},  'annotation', {},  'sboTerm', int32(-1), 'name', {},  'id', {},  ...
       'speciesType', {}, 'compartment', {},  'initialAmount', {},  'initialConcentration', {},  'substanceUnits', {},  ...
       'hasOnlySubstanceUnits', {},   'boundaryCondition', {},  'charge', {},  'constant', {},  'isSetInitialAmount', {},  'isSetInitialConcentration', {},  'isSetCharge', {});
 
-    parameter = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'sboTerm', int32(-1), 'name', {}, 'id', {}, 'value', {}, 'units', {}, ...
+    parameter = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'sboTerm', int32(-1), 'name', {}, 'id', {}, 'value', {}, 'units', {}, ...
       'constant', {}, 'isSetValue', {});
 
-    initialAssignment = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'sboTerm', int32(-1), 'symbol', {}, 'math', {});
+    initialAssignment = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'sboTerm', int32(-1), 'symbol', {}, 'math', {});
      
-    rule = struct('typecode', {},  'notes', {},  'annotation', {},  'sboTerm', int32(-1), 'formula', {},  'variable', {},  'species', {},  'compartment', {},  'name', {},  'units', {});
+    rule = struct('typecode', {},  'metaid', {}, 'notes', {},  'annotation', {},  'sboTerm', int32(-1), 'formula', {},  'variable', {},  'species', {},  'compartment', {},  'name', {},  'units', {});
 
-    constraint = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'sboTerm', int32(-1), 'math', {}, 'message', {});
+    constraint = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'sboTerm', int32(-1), 'math', {}, 'message', {});
     
-    reactant = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'sboTerm', int32(-1), 'species', {}, 'id', {}, 'name', {}, ...
+    reactant = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'sboTerm', int32(-1), 'species', {}, 'id', {}, 'name', {}, ...
       'stoichiometry', {}, 'stoichiometryMath', {});
-    product = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'sboTerm', int32(-1), 'species', {}, 'id', {}, 'name', {}, ...
+    product = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'sboTerm', int32(-1), 'species', {}, 'id', {}, 'name', {}, ...
       'stoichiometry', {}, 'stoichiometryMath', {});
-    modifier = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'sboTerm', int32(-1), 'species', {}, 'id', {}, 'name', {});
-    kineticLaw = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'sboTerm', int32(-1), 'formula', {}, 'math', {}, ...
+    modifier = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'sboTerm', int32(-1), 'species', {}, 'id', {}, 'name', {});
+    kineticLaw = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'sboTerm', int32(-1), 'formula', {}, 'math', {}, ...
       'parameter', parameter);
-    reaction = struct('typecode', {},  'notes', {},  'annotation', {},  'sboTerm', int32(-1), 'name', {},  'id', {},  'reactant', reactant,  ...
+    reaction = struct('typecode', {},  'metaid', {}, 'notes', {},  'annotation', {},  'sboTerm', int32(-1), 'name', {},  'id', {},  'reactant', reactant,  ...
       'product', product,  'modifier', modifier,  'kineticLaw', kineticLaw,  'reversible', {},  'fast', {},  'isSetFast', {});
 
-    eventAssignment = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'sboTerm', int32(-1), 'variable', {}, 'math', {});
-    event = struct('typecode', {},  'notes', {},  'annotation', {},  'sboTerm', int32(-1), 'name', {},  'id', {},  'trigger', {},  'delay', {}, ...
-      'eventAssignment', eventAssignment);
+    trigger = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'sboTerm', int32(-1), 'math', {});
+    delay = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'sboTerm', int32(-1), 'math', {});
+    eventAssignment = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'sboTerm', int32(-1), 'variable', {}, 'math', {});
+    event = struct('typecode', {},  'metaid', {}, 'notes', {},  'annotation', {},  'sboTerm', int32(-1), 'name', {},  'id', {},  ...
+      'trigger', trigger,  'delay', delay, 'eventAssignment', eventAssignment);
   end;
 end;
 

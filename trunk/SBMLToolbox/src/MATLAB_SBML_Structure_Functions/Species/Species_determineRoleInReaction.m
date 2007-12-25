@@ -79,25 +79,26 @@ if (Number == 0)
 end;
 
 % check that input is valid
-SBMLLevel = 1;
-if (~isSBML_Species(SBMLSpecies, 1))
-    SBMLLevel = 2;
-    if(~isSBML_Species(SBMLSpecies, 2))
-        SBMLVersion = 2;
-        if(~isSBML_Species(SBMLSpecies, 2, 2))
-            SBMLVersion = 3;
-            if (~isSBML_Species(SBMLSpecies, 2, 3))
-                error('Species_determineRoleInReaction(SBMLSpecies, SBMLReaction)\n%s', 'first input must be an SBML Species structure');
-            end;
-        end;
-    end;
+if (~isstruct(SBMLSpecies))
+    error(sprintf('%s', ...
+      'argument must be an SBML Species structure'));
+end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
+
+if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
+    error(sprintf('%s\n%s', 'Species_determineRoleInReaction(SBMLSpecies, SBMLReaction)', ...
+     ' first argument must be an SBML species structure'));
+elseif (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
+    error(sprintf('%s\n%s', 'Species_determineRoleInReaction(SBMLSpecies, SBMLReaction)', ...
+     ' second argument must be an SBML reaction structure'));
 end;
 
 %--------------------------------------------------------------------------
 % determine the name of the species
 % this will match to the speciesreference within the reaction
 
-if (SBMLLevel == 1)
+if (sbmlLevel == 1)
     name = SBMLSpecies.name;
     reactionName = SBMLReaction.name;
 else
@@ -119,7 +120,7 @@ end;
 
 NumProducts = length(SBMLReaction.product);
 NumReactants = length(SBMLReaction.reactant);
-if (SBMLLevel == 2)
+if (sbmlLevel == 2)
     NumModifiers = length(SBMLReaction.modifier);
 else
     NumModifiers = 0;

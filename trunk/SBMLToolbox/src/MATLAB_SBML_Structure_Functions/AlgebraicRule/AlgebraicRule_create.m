@@ -103,17 +103,17 @@ if (sbmlLevel == 1)
     Values = {'SBML_ALGEBRAIC_RULE', '', '', 'rate', '', '', '', '', '', ''};
 else
   if (sbmlVersion == 1)
-    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'formula', ...
+    SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'formula', ...
       'variable', 'species', 'compartment', 'name', 'units'};
-    Values = {'SBML_ALGEBRAIC_RULE', '', '', '', '', '', '', '', ''};
+    Values = {'SBML_ALGEBRAIC_RULE','', '', '', '', '', '', '', '', ''};
   elseif (sbmlVersion == 2)
-    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', ...
+    SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', ...
       'formula', 'variable', 'species', 'compartment', 'name', 'units'};
-    Values = {'SBML_ALGEBRAIC_RULE', '', '', int32(-1), '', '', '', '', '', ''};
+    Values = {'SBML_ALGEBRAIC_RULE','', '', '', int32(-1), '', '', '', '', '', ''};
   elseif (sbmlVersion == 3)
-    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', ...
+    SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', ...
       'formula', 'variable', 'species', 'compartment', 'name', 'units'};
-    Values = {'SBML_ALGEBRAIC_RULE', '', '', int32(-1), '', '', '', '', '', ''};
+    Values = {'SBML_ALGEBRAIC_RULE','', '', '', int32(-1), '', '', '', '', '', ''};
   end;
 end;
 

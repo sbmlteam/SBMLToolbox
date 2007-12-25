@@ -98,16 +98,16 @@ if (sbmlLevel == 1)
     Values = {'SBML_PARAMETER', '', '', '', 0/0, '',  int32(0)};
 else
     if (sbmlVersion == 1)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'value', 'units', 'constant', 'isSetValue'};
-        Values = {'SBML_PARAMETER', '', '', '', '',0/0, '', int32(1), int32(0)};
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','name', 'id', 'value', 'units', 'constant', 'isSetValue'};
+        Values = {'SBML_PARAMETER', '', '', '', '', '',0/0, '', int32(1), int32(0)};
     elseif (sbmlVersion == 2)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'value', 'units', ...
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','name', 'id', 'value', 'units', ...
             'constant', 'sboTerm', 'isSetValue'};
-        Values = {'SBML_PARAMETER', '', '', '', '',0/0, '', int32(1), int32(-1), int32(0)};
+        Values = {'SBML_PARAMETER', '', '', '', '', '',0/0, '', int32(1), int32(-1), int32(0)};
     elseif (sbmlVersion == 3)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'name', 'id', 'value', 'units', ...
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id', 'value', 'units', ...
             'constant', 'isSetValue'};
-        Values = {'SBML_PARAMETER', '', '', int32(-1) '', '',0/0, '', int32(1), int32(0)};
+        Values = {'SBML_PARAMETER', '', '', '', int32(-1) '', '',0/0, '', int32(1), int32(0)};
     end;
 end;
 

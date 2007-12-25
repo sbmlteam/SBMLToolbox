@@ -111,20 +111,20 @@ if (sbmlLevel == 1)
       'exponent',{},  'scale', {});
 else
   if (sbmlVersion == 1)
-    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name', 'id', 'unit'};
-    Values = {'SBML_UNIT_DEFINITION', '', '', '', '', []};
-    unit = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'kind', {}, ...
+    SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'name', 'id', 'unit'};
+    Values = {'SBML_UNIT_DEFINITION', '', '', '', '', '', []};
+    unit = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'kind', {}, ...
       'exponent',{},  'scale', {}, 'multiplier', {}, 'offset',{});
   elseif (sbmlVersion == 2)
-    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name', 'id', 'unit'};
-    Values = {'SBML_UNIT_DEFINITION', '', '', '', '', []};
-    unit = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'kind', {}, ...
+    SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'name', 'id', 'unit'};
+    Values = {'SBML_UNIT_DEFINITION', '', '', '', '', '', []};
+    unit = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'kind', {}, ...
       'exponent',{},  'scale', {}, 'multiplier', {});
   elseif (sbmlVersion == 3)
-    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'name', ...
+    SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', ...
       'id', 'unit'};
-    Values = {'SBML_UNIT_DEFINITION', '', '', int32(-1), '', '', []};
-    unit = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'sboTerm', ...
+    Values = {'SBML_UNIT_DEFINITION', '', '', '', int32(-1), '', '', []};
+    unit = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'sboTerm', ...
       {}, 'kind', {}, 'exponent',{},  'scale', {}, 'multiplier', {});
   end;
 end;
