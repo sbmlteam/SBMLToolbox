@@ -93,3 +93,13 @@ result = '(y*z)';
 
 fail = fail + TestFunction('SubstituteFunction', 2, 1, formula, fd, result);
 
+formula = 'f1(a, b)';
+result = '';
+
+fail = fail + TestFunction('SubstituteFunction', 2, 1, formula, fd, result);
+
+formula = 's+f(a, b)';
+result = 's+(a*b)';
+
+fail = fail + TestFunction('SubstituteFunction', 2, 1, formula, fd, result);
+

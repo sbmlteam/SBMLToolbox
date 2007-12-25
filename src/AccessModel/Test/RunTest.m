@@ -75,7 +75,7 @@ if (fail == 1)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 2;
+test = test + 3;
 fail = TestGetGlobalParameters;
 if (fail > 0)
     disp('GetGlobalParameters failed');
@@ -110,7 +110,7 @@ if (fail == 1)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 2;
+test = test + 3;
 fail = TestGetSpecies;
 if (fail == 1)
     disp('GetSpecies failed');
@@ -145,7 +145,7 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 4;
+test = test + 5;
 fail = TestGetCompartments;
 if (fail > 0)
     disp('GetCompartments failed');

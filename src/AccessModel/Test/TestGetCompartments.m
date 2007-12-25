@@ -77,4 +77,11 @@ values = [3];
 
 fail = fail + TestFunction('GetCompartments', 1, 2, m, names, values);
 
+m = TranslateSBML('../../Test/test-data/funcDefsWithInitialAssignments.xml');
+
+names = {'compartment'};
+values = [3];
+
+fail = fail + TestFunction('GetCompartments', 1, 2, m, names, values);
+
 
