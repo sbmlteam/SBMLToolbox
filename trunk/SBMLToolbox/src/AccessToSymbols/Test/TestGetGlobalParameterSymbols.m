@@ -75,3 +75,11 @@ values = [6, 2, 3, 4, 1, 6, 2];
 
 fail = fail + TestFunction('GetGlobalParameterSymbols', 1, 3, m, symbols, values, names);
 
+m = TranslateSBML('../../Test/test-data/funcDefsWithInitialAssignments.xml');
+
+symbols = [k, k1, s1, s2, s3, c, c1];
+names = {'k', 'k1', 's1', 's2', 's3', 'c', 'c1'};
+values = [6, 2, 3, 4, 1, 6, 2];
+
+fail = fail + TestFunction('GetGlobalParameterSymbols', 1, 3, m, symbols, values, names);
+

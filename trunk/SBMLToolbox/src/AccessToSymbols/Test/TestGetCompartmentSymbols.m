@@ -80,3 +80,11 @@ values = [3];
 
 fail = fail + TestFunction('GetCompartmentSymbols', 1, 3, m, symbols, values, names);
 
+m = TranslateSBML('../../Test/test-data/funcDefsWithInitialAssignments.xml');
+
+symbols = [compartment];
+names = {'compartment'};
+values = [3];
+
+fail = fail + TestFunction('GetCompartmentSymbols', 1, 3, m, symbols, values, names);
+

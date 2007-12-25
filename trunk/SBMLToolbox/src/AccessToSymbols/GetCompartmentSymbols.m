@@ -98,15 +98,19 @@ for i = 1:NumCompartments
     end;
     % might be an initial assignment in l2v2
     if (SBMLModel.SBML_level == 2 && SBMLModel.SBML_version > 1)
-
+      IA = Model_getInitialAssignmentBySymbol(SBMLModel, SBMLModel.compartment(i).id);
+      if (~isempty(IA))
         % remove this from the substtution
         newSBMLModel = SBMLModel;
         newSBMLModel.compartment(i) = [];
-        for ia = 1:length(SBMLModel.initialAssignment)
-            if (strcmp(SBMLModel.initialAssignment(ia).symbol, name))
-                Values(i) = Substitute(SBMLModel.initialAssignment(ia).math, newSBMLModel);
-            end;
+        for fd = 1:Model_getNumFunctionDefinitions(SBMLModel)
+          newFormula = SubstituteFunction(IA.math, Model_getFunctionDefinition(SBMLModel, fd));
+          if (~isempty(newFormula))
+           IA.math = newFormula;
+          end;
         end;
+        Values(i) = Substitute(IA.math, newSBMLModel);  
+      end;
     end;
 end;
 

@@ -89,7 +89,7 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 2;
+test = test + 3;
 fail = TestGetGlobalParameterSymbols;
 if (fail > 0)
     disp('GetGlobalParameterSymbols failed');
@@ -124,7 +124,7 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 2;
+test = test + 3;
 fail = TestGetSpeciesSymbols;
 if (fail > 0)
     disp('GetSpeciesSymbols failed');
@@ -159,7 +159,7 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 3;
+test = test + 4;
 fail = TestGetCompartmentSymbols;
 if (fail > 0)
     disp('TestGetCompartmentSymbols failed');

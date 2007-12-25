@@ -69,3 +69,10 @@ names = {'k', 'k1', 's1', 's2', 's3', 'c', 'c1'};
 values = [6, 2, 3, 4, 1, 6, 2];
 
 fail = fail + TestFunction('GetGlobalParameters', 1, 2, m, names, values);
+
+m = TranslateSBML('../../Test/test-data/funcDefsWithInitialAssignments.xml');
+
+names = {'k', 'k1', 's1', 's2', 's3', 'c', 'c1'};
+values = [6, 2, 3, 4, 1, 6, 2];
+
+fail = fail + TestFunction('GetGlobalParameters', 1, 2, m, names, values);

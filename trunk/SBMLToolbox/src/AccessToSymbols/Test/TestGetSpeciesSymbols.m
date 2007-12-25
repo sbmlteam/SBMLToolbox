@@ -65,7 +65,16 @@ names = {'S1', 'S2', 'x0'};
 values = [1.5e-15, 1.45, 1];
 
 fail = TestFunction('GetSpeciesSymbols', 1, 3, m, symbols, values, names);
+
 m = TranslateSBML('../../Test/test-data/initialAssignments.xml');
+
+symbols = [S1, S2, S3, X, S4];
+names = {'S1', 'S2', 'S3', 'X', 'S4'};
+values = [3, 6, 0, 9, 0];
+
+fail = fail + TestFunction('GetSpeciesSymbols', 1, 3, m, symbols, values, names);
+
+m = TranslateSBML('../../Test/test-data/funcDefsWithInitialAssignments.xml');
 
 symbols = [S1, S2, S3, X, S4];
 names = {'S1', 'S2', 'S3', 'X', 'S4'};

@@ -71,7 +71,6 @@ end;
 %--------------------------------------------------------------
             
 % get information from the model
-Species = GetSpeciesSymbols(SBMLModel);
 NumberSpecies = length(SBMLModel.species);
 InitialAssign = Model_getListOfInitialAssignments(SBMLModel);
 NumInitialAssign = Model_getNumInitialAssignments(SBMLModel);
@@ -80,18 +79,34 @@ NumInitialAssign = Model_getNumInitialAssignments(SBMLModel);
 % takes part and in what capacity
 
 for i = 1:NumberSpecies
+    %determine the name or id of the species
+    if (SBMLModel.SBML_level == 1)
+        name = SBMLModel.species(i).name;
+    else
+        if (isempty(SBMLModel.species(i).id))
+            name = SBMLModel.species(i).name;
+        else
+            name = SBMLModel.species(i).id;
+        end;
+    end;
+    
+    % create a symbol from the name
+    % save into an array of symbols
+    % and array of the character names
+    Species(i) = sym(name);
+
     output = '';
     symOut = sym(output);
  
     if (NumInitialAssign > 0)
         IA = Model_getInitialAssignmentBySymbol(SBMLModel, SBMLModel.species(i).id);
+      if (~isempty(IA))
        for fd = 1:Model_getNumFunctionDefinitions(SBMLModel)
-         newFormula = SubstituteFunction(IA, Model_getFunctionDefinition(SBMLModel, fd));
+          newFormula = SubstituteFunction(IA.math, Model_getFunctionDefinition(SBMLModel, fd));
          if (~isempty(newFormula))
-           IA = newFormula;
+           IA.math = newFormula;
          end;
        end;
-       if (~isempty(IA))
         symOut = charFormula2sym(IA.math);
        else
         symOut = sym('0');

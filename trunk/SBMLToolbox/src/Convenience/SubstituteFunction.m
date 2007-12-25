@@ -89,12 +89,28 @@ elseif (~isSBML_FunctionDefinition(SBMLFunctionDefinition, sbmlLevel, sbmlVersio
     error('SubstituteFunction(OriginalFormula, SBMLFunctionDefinition)\n%s', 'second argument must be an SBML function definition structure');
 end;
 
-if (isempty(strfind(OriginalFormula, SBMLFunctionDefinition.id)))
+OriginalFormula = LoseWhiteSpace(OriginalFormula);
+
+startPoint = strfind(OriginalFormula, SBMLFunctionDefinition.id);
+if (isempty(startPoint))
   Formula = '';
   return;
+else
+  funcName = '';
+  j = startPoint;
+  c = OriginalFormula(j);
+  while (~strcmp(c, '('))
+    funcName = strcat(funcName, c);
+    j = j + 1;
+    c = OriginalFormula(j);
+  end;
+  
+  if (~isequal(funcName, SBMLFunctionDefinition.id))
+    Formula = '';
+    return;
+  end;
 end;
 
-OriginalFormula = LoseWhiteSpace(OriginalFormula);
 ElementsOfFuncDef = GetArgumentsFromLambdaFunction(SBMLFunctionDefinition.math);
 
 % get the arguments of the application of the formula
