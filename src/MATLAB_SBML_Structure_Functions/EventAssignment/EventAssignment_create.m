@@ -92,16 +92,16 @@ elseif (nargin == 1)
 end;
 
 if (sbmlVersion == 1)
-  SBMLfieldnames = {'typecode', 'notes', 'annotation', 'variable', 'math'};
-  Values = {'SBML_EVENT_ASSIGNMENT', '', '', '', ''};
+  SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'variable', 'math'};
+  Values = {'SBML_EVENT_ASSIGNMENT', '','', '', '', ''};
 elseif (sbmlVersion == 2)
-  SBMLfieldnames = {'typecode', 'notes', 'annotation', 'variable', ...
+  SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'variable', ...
     'sboTerm', 'math'};
-  Values = {'SBML_EVENT_ASSIGNMENT', '', '', '', int32(-1), ''};
+  Values = {'SBML_EVENT_ASSIGNMENT', '','', '', '', int32(-1), ''};
 elseif (sbmlVersion == 3)
-  SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', ...
+  SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', ...
     'variable', 'math'};
-  Values = {'SBML_EVENT_ASSIGNMENT', '', '', int32(-1), '', ''};
+  Values = {'SBML_EVENT_ASSIGNMENT', '', '','', int32(-1), '', ''};
 end;
 
 EventAssignment = cell2struct(Values, SBMLfieldnames, 2);

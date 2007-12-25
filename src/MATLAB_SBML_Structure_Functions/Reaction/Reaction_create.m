@@ -100,30 +100,30 @@ if (sbmlLevel == 1)
     product = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'species', {}, 'stoichiometry', {}, 'denominator', {});
 else
     if (sbmlVersion == 1)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name', 'id', 'reactant', 'product', 'modifier', 'kineticLaw', 'reversible', 'fast', 'isSetFast' };
-        Values = {'SBML_REACTION', '', '', '', '', [], [], [], [], int32(0),  int32(-1), int32(0)};
-        reactant = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'species', {}, 'stoichiometry', {}, 'denominator', {}, 'stoichiometryMath', {});
-        product = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'species', {}, 'stoichiometry', {}, 'denominator', {}, 'stoichiometryMath', {});
-        modifier = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'species', {});
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'name', 'id', 'reactant', 'product', 'modifier', 'kineticLaw', 'reversible', 'fast', 'isSetFast' };
+        Values = {'SBML_REACTION', '', '', '', '', '', [], [], [], [], int32(0),  int32(-1), int32(0)};
+        reactant = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'species', {}, 'stoichiometry', {}, 'denominator', {}, 'stoichiometryMath', {});
+        product = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'species', {}, 'stoichiometry', {}, 'denominator', {}, 'stoichiometryMath', {});
+        modifier = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'species', {});
     elseif (sbmlVersion == 2)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'id', 'reactant', 'product', ...
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','name', 'id', 'reactant', 'product', ...
             'modifier', 'kineticLaw', 'reversible', 'fast', 'sboTerm', 'isSetFast'};
-        Values = {'SBML_REACTION', '', '', '', '', [], [], [], [], int32(0),  int32(-1), int32(-1), int32(0)};
-        reactant = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'species', {}, 'id', {}, 'name', {}, ...
+        Values = {'SBML_REACTION', '', '', '', '', '', [], [], [], [], int32(0),  int32(-1), int32(-1), int32(0)};
+        reactant = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'species', {}, 'id', {}, 'name', {}, ...
             'sboTerm', {}, 'stoichiometry', {}, 'stoichiometryMath', {});
-        product = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'species', {}, 'id', {}, 'name', {}, ...
+        product = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'species', {}, 'id', {}, 'name', {}, ...
             'sboTerm', {}, 'stoichiometry', {}, 'stoichiometryMath', {});
-        modifier = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'species', {}, 'id', {}, 'name', {}, 'sboTerm', {});
+        modifier = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'species', {}, 'id', {}, 'name', {}, 'sboTerm', {});
     elseif (sbmlVersion == 3)
-        SBMLfieldnames = {'typecode', 'notes', 'annotation','sboTerm', 'name', 'id', 'reactant', 'product', ...
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','sboTerm', 'name', 'id', 'reactant', 'product', ...
             'modifier', 'kineticLaw', 'reversible', 'fast', 'isSetFast'};
-        Values = {'SBML_REACTION', '', '', int32(-1), '', '', [], [], [], [], int32(0),  int32(-1), int32(0)};
-        reactant = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'sboTerm', {}, 'species', {}, 'id', {}, 'name', {}, ...
+        Values = {'SBML_REACTION', '', '', '', int32(-1), '', '', [], [], [], [], int32(0),  int32(-1), int32(0)};
+        reactant = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'sboTerm', {}, 'species', {}, 'id', {}, 'name', {}, ...
             'stoichiometry', {}, 'stoichiometryMath', {});
 
-        product = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'sboTerm', {}, 'species', {}, 'id', {}, 'name', {}, ...
+        product = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'sboTerm', {}, 'species', {}, 'id', {}, 'name', {}, ...
             'stoichiometry', {}, 'stoichiometryMath', {});
-        modifier = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'sboTerm', {}, 'species', {}, 'id', {}, 'name', {});
+        modifier = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'sboTerm', {}, 'species', {}, 'id', {}, 'name', {});
     end;
 end;
 
@@ -138,14 +138,14 @@ if (sbmlLevel == 1)
     kineticLaw = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'formula', {}, 'parameter', parameter, 'timeUnits', {}, 'substanceUnits', {});
 else
     if (sbmlVersion == 1)
-        parameter = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'name', {}, 'id', {}, 'value', {}, 'units', {}, 'constant', {}, 'isSetValue', {});
-        kineticLaw = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'formula', {}, 'math', {}, 'parameter', parameter, 'timeUnits', {}, 'substanceUnits', {});
+        parameter = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'name', {}, 'id', {}, 'value', {}, 'units', {}, 'constant', {}, 'isSetValue', {});
+        kineticLaw = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'formula', {}, 'math', {}, 'parameter', parameter, 'timeUnits', {}, 'substanceUnits', {});
     elseif (sbmlVersion == 2)
-        parameter = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'name', {}, 'id', {}, 'value', {}, 'units', {}, 'constant', {}, 'sboTerm', {}, 'isSetValue', {});
-        kineticLaw = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'formula', {}, 'math', {}, 'parameter', parameter, 'sboTerm', {});
+        parameter = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'name', {}, 'id', {}, 'value', {}, 'units', {}, 'constant', {}, 'sboTerm', {}, 'isSetValue', {});
+        kineticLaw = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'formula', {}, 'math', {}, 'parameter', parameter, 'sboTerm', {});
     elseif (sbmlVersion == 3)
-        parameter = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'sboTerm', {}, 'name', {}, 'id', {}, 'value', {}, 'units', {}, 'constant', {}, 'isSetValue', {});
-        kineticLaw = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'sboTerm', {}, 'formula', {}, 'math', {}, 'parameter', parameter);
+        parameter = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'sboTerm', {}, 'name', {}, 'id', {}, 'value', {}, 'units', {}, 'constant', {}, 'isSetValue', {});
+        kineticLaw = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'sboTerm', {}, 'formula', {}, 'math', {}, 'parameter', parameter);
     end;
 end;
 

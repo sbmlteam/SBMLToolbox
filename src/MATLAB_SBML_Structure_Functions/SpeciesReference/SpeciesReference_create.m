@@ -106,17 +106,17 @@ if (sbmlLevel == 1)
     Values = {'SBML_SPECIES_REFERENCE', '', '', '', int32(1), int32(1)};
 else
   if (sbmlVersion == 1)
-    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'species', ...
+    SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'species', ...
       'stoichiometry', 'denominator', 'stoichiometryMath' };
-    Values = {'SBML_SPECIES_REFERENCE', '', '', '', 1, int32(1), ''};
+    Values = {'SBML_SPECIES_REFERENCE', '', '', '', '', 1, int32(1), ''};
   elseif (sbmlVersion == 2)
-    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'species', 'id', ...
+    SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'species', 'id', ...
       'name', 'sboTerm', 'stoichiometry', 'stoichiometryMath'};
-    Values = {'SBML_SPECIES_REFERENCE', '', '', '', '', '', int32(-1), 1, ''};
+    Values = {'SBML_SPECIES_REFERENCE', '', '', '', '', '', '', int32(-1), 1, ''};
   elseif (sbmlVersion == 3)
-    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', ...
+    SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', ...
       'species', 'id', 'name', 'stoichiometry', 'stoichiometryMath'};
-    Values = {'SBML_SPECIES_REFERENCE', '', '', int32(-1), '', '', '', 1, ''};
+    Values = {'SBML_SPECIES_REFERENCE', '', '', '', int32(-1), '', '', '', 1, ''};
   end;
 end;
 

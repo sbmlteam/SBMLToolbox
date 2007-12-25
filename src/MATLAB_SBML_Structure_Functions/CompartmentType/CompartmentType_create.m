@@ -94,11 +94,11 @@ end;
 
 warning off all;
 if (sbmlVersion == 2)
-  SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name', 'id'};
-  Values = {'SBML_COMPARTMENT_TYPE', '', '', '', ''};
+  SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'name', 'id'};
+  Values = {'SBML_COMPARTMENT_TYPE','', '', '', '', ''};
 elseif (sbmlVersion == 3)
-  SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'name', 'id'};
-  Values = {'SBML_COMPARTMENT_TYPE', '', '', int32(-1), '', ''};
+  SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id'};
+  Values = {'SBML_COMPARTMENT_TYPE', '','', '', int32(-1), '', ''};
 end;
 
 CompartmentType = cell2struct(Values, SBMLfieldnames, 2);

@@ -92,16 +92,16 @@ elseif (nargin == 1)
 end;
 
 if (sbmlVersion == 1)
-  SBMLfieldnames = {'typecode', 'notes', 'annotation', 'species'};
-  Values = {'SBML_MODIFIER_SPECIES_REFERENCE', '', '', ''};
+  SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'species'};
+  Values = {'SBML_MODIFIER_SPECIES_REFERENCE', '', '', '', ''};
 elseif (sbmlVersion == 2)
-  SBMLfieldnames = {'typecode', 'notes', 'annotation','species', 'id', ...
+  SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','species', 'id', ...
     'name', 'sboTerm'};
-  Values = {'SBML_MODIFIER_SPECIES_REFERENCE', '', '', '', '', '', int32(-1)};
+  Values = {'SBML_MODIFIER_SPECIES_REFERENCE', '', '', '', '', '', '', int32(-1)};
 elseif (sbmlVersion == 3)
-  SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', 'species', ...
+  SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'species', ...
     'id', 'name'};
-  Values = {'SBML_MODIFIER_SPECIES_REFERENCE', '', '', int32(-1), '', '', ''};
+  Values = {'SBML_MODIFIER_SPECIES_REFERENCE', '', '', '', int32(-1), '', '', ''};
 end;
 
 ModifierSpeciesReference = cell2struct(Values, SBMLfieldnames, 2);

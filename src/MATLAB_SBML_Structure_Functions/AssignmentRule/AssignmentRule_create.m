@@ -97,17 +97,17 @@ if (sbmlLevel == 1)
     Values = {'SBML_ASSIGNMENT_RULE', '', '', '', '', '', '', '', '', ''};
 else
   if (sbmlVersion == 1)
-    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'formula', ...
+    SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'formula', ...
       'variable', 'species', 'compartment', 'name', 'units'};
-    Values = {'SBML_ASSIGNMENT_RULE', '', '', '', '', '', '', '', ''};
+    Values = {'SBML_ASSIGNMENT_RULE','', '', '', '', '', '', '', '', ''};
   elseif (sbmlVersion == 2)
-    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', ...
+    SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', ...
       'formula', 'variable', 'species', 'compartment', 'name', 'units'};
-    Values = {'SBML_ASSIGNMENT_RULE', '', '', int32(-1), '', '', '', '', '', ''};
+    Values = {'SBML_ASSIGNMENT_RULE', '', '', '', int32(-1), '', '', '', '', '', ''};
   elseif (sbmlVersion == 3)
-    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'sboTerm', ...
+    SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', ...
       'formula', 'variable', 'species', 'compartment', 'name', 'units'};
-    Values = {'SBML_ASSIGNMENT_RULE', '', '', int32(-1), '', '', '', '', '', ''};
+    Values = {'SBML_ASSIGNMENT_RULE','','', '', int32(-1), '', '', '', '', '', ''};
   end;
 end;
 

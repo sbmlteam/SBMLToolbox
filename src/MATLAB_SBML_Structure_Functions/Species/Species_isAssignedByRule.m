@@ -62,13 +62,15 @@ y = 0;
 
 %-------------------------------------------------------------------
 % check input arguments are as expected
+if (~isstruct(SBMLSpecies))
+    error(sprintf('%s', ...
+      'argument must be an SBML Species structure'));
+end;
+ 
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
 
-SBMLLevel = 1;
-if (~isSBML_Species(SBMLSpecies, SBMLLevel))
-    SBMLLevel = 2;
-    if (~isSBML_Species(SBMLSpecies, SBMLLevel))
-        error('Species_isAssignedByRule(SBMLSpecies, SBMLRules)\n%s', 'first argument must be an SBMLSpecies structure');
-    end;
+if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
+  error('Species_isAssignedByRule(SBMLSpecies, SBMLRules)\n%s', 'first argument must be an SBMLSpecies structure');
 end;
 
 
@@ -78,7 +80,7 @@ if (NumRules < 1)
     error('Species_isAssignedByRule(SBMLSpecies, SBMLRules)\n%s', 'SBMLRule structure is empty');
 else
     for i = 1:NumRules
-        if (~isSBML_Rule(SBMLRules(i), SBMLLevel))
+        if (~isSBML_Rule(SBMLRules(i), sbmlLevel, sbmlVersion))
             error('Species_isAssignedByRule(SBMLSpecies, SBMLRules)\n%s', 'second argument must be an array of SBMLRule structures');
         end;
     end;
@@ -88,7 +90,7 @@ end;
 
 % loop through each rule and check whether the species is assigned by it
 %determine the name or id of the species
-if (SBMLLevel == 1)
+if (sbmlLevel == 1)
     name = SBMLSpecies.name;
 else
     if (isempty(SBMLSpecies.id))
