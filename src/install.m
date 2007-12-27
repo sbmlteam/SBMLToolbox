@@ -78,48 +78,35 @@ end;
 % if it doesnt work the library files are not on the system path and need
 % to be placed there
 M = struct([]);
+fail = 1;
 try
      M = TranslateSBML('test.xml');
 catch
-    % determine the matlabroot for windows executable
-    % this directory is saved to the environmental variable PATH
-    Path_to_libs = matlabroot;
-    Path_to_libs = strcat(Path_to_libs, '\bin\win32');
-
-    % determine the location of the library files
-    if (exist('..\extern') == 7)
-        lib{1} = '..\extern\bin\libsbml.lib';
-        lib{2} = '..\extern\bin\xerces-c_2.lib';
-        lib{3} = '..\extern\bin\libsbml.dll';
-        lib{4} = '..\extern\bin\xerces-c_2_5_0.dll';
-        lib{5} = '..\extern\bin\libsbmlD.lib';
-        lib{6} = '..\extern\bin\xerces-c_2D.lib';
-        lib{7} = '..\extern\bin\libsbmlD.dll';
-        lib{8} = '..\extern\bin\xerces-c_2_5_0D.dll';
-    else
-        lib{1} = '..\win32\bin\libsbml.lib';
-        lib{2} = '..\win32\bin\xerces-c_2.lib';
-        lib{3} = '..\win32\bin\libsbml.dll';
-        lib{4} = '..\win32\bin\xerces-c_2_5_0.dll';
-        lib{5} = '..\win32\bin\libsbmlD.lib';
-        lib{6} = '..\win32\bin\xerces-c_2D.lib';
-        lib{7} = '..\win32\bin\libsbmlD.dll';
-        lib{8} = '..\win32\bin\xerces-c_2_5_0D.dll';
-    end;
-
-    for i = 1:8
-       copyfile(lib{i}, Path_to_libs);
-    end;
+  % BINDING NOT INSTALLED
+  disp('Binding not installed.');
+  disp('SBMLToolbox requires that the MATLAB binding of libSBML is installed.');
+  return;
 end;
 
 if (isempty(M))
-    M = TranslateSBML('test.xml');
+  error('Unknown error encountered');
+else
+  disp('libSBML MATLAB binding detected');
 end;
 
-if (isSBML_Model(M))
-    disp('Install successful');
+try
+  OutputSBML(M, 'test_out.xml');
+catch
+  disp('The OutputSBML executable cannot be found.');
+  disp('Please build it as appropriate for your system.');
+  return;
+end;
+
+fail = CompareFiles('test.xml', 'test_out.xml');
+if (fail == 1)
+  disp('Install successful');
 else
-    error('Installation was unsuccessful.');
+  error('Installation was unsuccessful.');
 end;
 
 %prompt user for close
