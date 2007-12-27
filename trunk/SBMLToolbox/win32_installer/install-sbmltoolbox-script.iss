@@ -1,62 +1,14 @@
-;  Filename    : install_libsbml_script.iss
-;  Description : file to create windows installation of sbmltoolbox
-;  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
-;  Organization: University of Hertfordshire STRC
-;  Created     : 2004-03-15
-;  Revision    : $Id$
-;  Source      : $Source$
-;
-;  Copyright 2003 California Institute of Technology, the Japan Science
-;  and Technology Corporation, and the University of Hertfordshire
-;
-;  This library is free software; you can redistribute it and/or modify it
-;  under the terms of the GNU Lesser General Public License as published
-;  by the Free Software Foundation; either version 2.1 of the License, or
-;  any later version.
-;
-;  This library is distributed in the hope that it will be useful, but
-;  WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF
-;  MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.  The software and
-;  documentation provided hereunder is on an "as is" basis, and the
-;  California Institute of Technology, the Japan Science and Technology
-;  Corporation, and the University of Hertfordshire have no obligations to
-;  provide maintenance, support, updates, enhancements or modifications.  In
-;  no event shall the California Institute of Technology, the Japan Science
-;  and Technology Corporation or the University of Hertfordshire be liable
-;  to any party for direct, indirect, special, incidental or consequential
-;  damages, including lost profits, arising out of the use of this software
-;  and its documentation, even if the California Institute of Technology
-;  and/or Japan Science and Technology Corporation and/or University of
-;  Hertfordshire have been advised of the possibility of such damage.  See
-;  the GNU Lesser General Public License for more details.
-;
-;  You should have received a copy of the GNU Lesser General Public License
-;  along with this library; if not, write to the Free Software Foundation,
-;  Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.
-;
-;  The original code contained here was initially developed by:
-;
-;      Sarah Keating
-;      Science and Technology Research Centre
-;      University of Hertfordshire
-;      Hatfield, AL10 9AB
-;      United Kingdom
-;
-;      http://www.sbml.org
-;      mailto:sbml-team@caltech.edu
-;
-;  Contributor(s):
 
 [Setup]
 AppName=SBMLToolbox
-AppVerName=SBMLToolbox 2.0.2
+AppVerName=SBMLToolbox 3.0.0
 AppPublisher=SBMLTeam
 AppPublisherURL=http://www.sbml.org
 AppSupportURL=http://www.sbml.org
 AppUpdatesURL=http://www.sbml.org
 
 
-DefaultDirName={pf}\SBML\SBMLToolbox-2.0.2
+DefaultDirName={pf}\SBML\SBMLToolbox-3.0.0
 DefaultGroupName=SBMLToolbox
 DisableProgramGroupPage=yes
 WizardSmallImageFile=sbmltoolbox-installer-mini-logo.bmp
@@ -65,31 +17,31 @@ UsePreviousAppDir=no
 
 
 [Files]
-Source: "C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox\*"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox\toolbox\*"; DestDir: "{app}\toolbox"; Flags: ignoreversion recursesubdirs
-Source: "C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox\docs\*"; DestDir: "{app}\docs"; Flags: ignoreversion recursesubdirs
-Source: "C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox\extern\*"; DestDir: "{app}\extern"; Flags: ignoreversion recursesubdirs
-Source: "C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox\extern\bin\*"; DestDir: "{sys}"; Check: GetSys;
-Source: "C:\SBMLToolbox_cvs\win32_installer\SBMLToolbox\extern\bin\*"; DestDir: "{code:GetLibDir}"; Flags: ignoreversion; Check: GetOverwrite;
+Source: "C:\SBMLToolbox\win32_installer\SBMLToolbox\*"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\SBMLToolbox\win32_installer\SBMLToolbox\toolbox\*"; DestDir: "{app}\toolbox"; Flags: ignoreversion recursesubdirs
+Source: "C:\SBMLToolbox\win32_installer\SBMLToolbox\docs\*"; DestDir: "{app}\docs"; Flags: ignoreversion recursesubdirs
+Source: "C:\libsbml_3\win32\installer\Output\libsbml-3.0.3-win-xerces.exe"; DestDir: "{app}\temp"; Flags: ignoreversion; Check: GetLibSBML;
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
-Root: HKCU; Subkey: "Software\SBML"; Flags: uninsdeletekeyifempty
-Root: HKCU; Subkey: "Software\SBML\SBMLToolbox"; Flags: uninsdeletekey
-Root: HKLM; Subkey: "Software\SBML"; Flags: uninsdeletekeyifempty
-Root: HKLM; Subkey: "Software\SBML\SBMLToolbox"; Flags: uninsdeletekey
-Root: HKLM; Subkey: "Software\SBML\SBMLToolbox"; ValueType: string; ValueName: "Version"; ValueData: "2.0.2"
-Root: HKLM; Subkey: "Software\SBML\SBMLToolbox"; ValueType: string; ValueName: "InstallPath"; ValueData: "{app}"
+Root: HKCU; Subkey: Software\SBML; Flags: uninsdeletekeyifempty
+Root: HKCU; Subkey: Software\SBML\SBMLToolbox; Flags: uninsdeletekey
+Root: HKLM; Subkey: Software\SBML; Flags: uninsdeletekeyifempty
+Root: HKLM; Subkey: Software\SBML\SBMLToolbox; Flags: uninsdeletekey
+Root: HKLM; Subkey: Software\SBML\SBMLToolbox; ValueType: string; ValueName: Version; ValueData: 3.0.0
+Root: HKLM; Subkey: Software\SBML\SBMLToolbox; ValueType: string; ValueName: InstallPath; ValueData: {app}
 
 [Code]
 {global variables}
 var
   MatlabExists : Boolean;
+  MLRoot : String;
+  URLLabel: TNewStaticText;
+  AboutButton, CancelButton: TButton;
+  libsbmlPage: TInputOptionWizardPage;
   ToolboxExists, LibsbmlNotFound : Boolean;
-  LibsbmlPath, BindingExists: Boolean;
-  LibsbmlVersion, LibsbmlPathDir, ToolboxVersion, ToolboxPath: String;
+  LibsbmlVersion, ToolboxVersion: String;
   LaterLibsbmlVers, LaterToolboxVers : Integer;
-  LibsbmlOverwrite, BindingDelete, LibsbmlSystem : String;
 
 
 {functions to activate buttons and url on screen}
@@ -103,47 +55,17 @@ begin
 
   Note: it includes a version number
 **********************************************************************************************************}
-  MsgBox('This setup installs the Windows release of SBMLToolbox 2.0.2 using libSBML 2.3.4. All the necessary libraries are included.', mbInformation, mb_Ok);
+  MsgBox('This setup installs the Windows release of SBMLToolbox 3.0.0 using libSBML 3.1.0. All the necessary libraries are included.', mbInformation, mb_Ok);
 end;
 
 procedure URLLabelOnClick(Sender: TObject);
 var
   Dummy: Integer;
 begin
-  InstShellExec('http://www.sbml.org', '', '', SW_SHOWNORMAL, Dummy);
+  ShellExec('open', 'http://www.sbml.org', '', '', SW_SHOW, ewNoWait, Dummy);
 end;
 
 
-{function to initialise the wizard form
-i.e. add an about button and the url to all sheets}
-procedure InitializeWizard();
-var
-  AboutButton, CancelButton: TButton;
-  URLLabel: TNewStaticText;
-begin
- CancelButton := WizardForm.CancelButton;
-
-
-  AboutButton := TButton.Create(WizardForm);
-  AboutButton.Left := WizardForm.ClientWidth - CancelButton.Left - CancelButton.Width;
-  AboutButton.Top := CancelButton.Top;
-  AboutButton.Width := CancelButton.Width;
-  AboutButton.Height := CancelButton.Height;
-  AboutButton.Caption := '&About...';
-  AboutButton.OnClick := @AboutButtonOnClick;
-  AboutButton.Parent := WizardForm;
-
-  URLLabel := TNewStaticText.Create(WizardForm);
-  URLLabel.Top := AboutButton.Top + AboutButton.Height - URLLabel.Height - 2;
-  URLLabel.Left := AboutButton.Left + AboutButton.Width + 20;
-  URLLabel.Caption := 'www.sbml.org';
-  URLLabel.Font.Style := URLLabel.Font.Style + [fsUnderLine];
-  URLLabel.Font.Color := clBlue;
-  URLLabel.Cursor := crHand;
-  URLLabel.OnClick := @URLLabelOnClick;
-  URLLabel.Parent := WizardForm;
-
- end;
 
 {function to return matlab root directory}
 function GetMatlabRoot(S : String): String;
@@ -266,20 +188,10 @@ begin
 
 end;
 
-
 function InitializeSetup(): Boolean;
-var
-  MLRoot : String;
-  Temp, Temp1: String;
-  TempBool : Boolean;
-  
 begin
   { set flags}
-  
-  LibsbmlOverwrite := '0';
-  BindingDelete := '0';
-  LibsbmlSystem := '0';
-  
+
   {look for matlab on the system}
   MLRoot := GetMatlabRoot('');
   if (MLRoot = '') then
@@ -287,215 +199,94 @@ begin
   else
     MatlabExists := True;
 
-  {look for libsbml in environmental PATH }
-  Temp := GetEnv('PATH');
-  Temp1 := FileSearch('libsbml.lib', Temp);
-  
-  if not (Temp1 = '') then begin
-    LibsbmlPath := True;
-    LibsbmlPathDir := RemoveBackslash(ExtractFilePath(Temp1));
-  end else begin
-    LibsbmlPath := False;
-    LibsbmlPathDir := '';
-  end;
-
   {look for a version no and check whether it is later than this}
   LibsbmlVersion := GetLibsbmlVersion();
-  LaterLibsbmlVers := LaterVersion(LibsbmlVersion, '2.3.4');
+  LaterLibsbmlVers := LaterVersion(LibsbmlVersion, '3.1.0');
 
-  if ((LibsbmlVersion = '') and (not LibsbmlPath))  then
-    LibsbmlNotFound := True;
-    
-  {look for SBMLbinding in matlab toolbox directory
-   this is where it will be if installed using the
-   libsbml installation package}
-  Temp := Format1('%s\SBMLBinding', MLRoot);
+  if LibsbmlVersion = '' then
+    LibsbmlNotFound := True
+  else
+    LibsbmlNotFound := False;
 
-  TempBool := DirExists(Temp);
 
-  if (TempBool) then
-    BindingExists := True
- else
-    BindingExists := False;
-
-  
-  {look for prvious version of SBMLToolbox}
+  {look for previous version of SBMLToolbox}
   ToolboxExists := DoesToolboxExist();
 
-    {look for a version no and check whether it is later than this}
+  {look for a version no and check whether it is later than this}
   ToolboxVersion := GetToolboxVersion();
-  LaterToolboxVers := LaterVersion(ToolboxVersion, '2.0.2');
+  LaterToolboxVers := LaterVersion(ToolboxVersion, '3.0.0');
 
   if not MatlabExists then begin
     Result := MsgBox('MATLAB cannot be located on this system.' #13 'The SBMLToolbox requires MATLAB.' #13#13 'Do you want to continue?', mbConfirmation, MB_YESNO) = idYes;
   end else begin
-    { Let Setup run }
     Result := True;
   end;
 end;
 
-
-function ScriptDlgPages(CurPage: Integer; BackClicked: Boolean): Boolean;
-var
-
-  Next: Boolean;
-
+procedure InitializeWizard;
 begin
-  if ((not BackClicked and (CurPage = wpWelcome)) or (BackClicked and (CurPage = wpSelectDir))) then begin
 
-    { insert a page after the welcome page that only displays
-      if the toolbox or the binding already exist}
-   if ToolboxExists then begin
+  CancelButton := WizardForm.CancelButton;
 
-      ScriptDlgPageOpen();
+  AboutButton := TButton.Create(WizardForm);
+  AboutButton.Left := WizardForm.ClientWidth - CancelButton.Left - CancelButton.Width;
+  AboutButton.Top := CancelButton.Top;
+  AboutButton.Width := CancelButton.Width;
+  AboutButton.Height := CancelButton.Height;
+  AboutButton.Caption := '&About...';
+  AboutButton.OnClick := @AboutButtonOnClick;
+  AboutButton.Parent := WizardForm;
 
-      { Set some captions  }
-      ScriptDlgPageSetCaption('Previously installed versions');
-      ScriptDlgPageSetSubCaption1('');
+  URLLabel := TNewStaticText.Create(WizardForm);
+  URLLabel.Top := AboutButton.Top + AboutButton.Height - URLLabel.Height - 2;
+  URLLabel.Left := AboutButton.Left + AboutButton.Width + 20;
+  URLLabel.Caption := 'www.sbml.org';
+  URLLabel.Font.Style := URLLabel.Font.Style + [fsUnderLine];
+  URLLabel.Font.Color := clBlue;
+  URLLabel.Cursor := crHand;
+  URLLabel.OnClick := @URLLabelOnClick;
+  URLLabel.Parent := WizardForm;
 
-      if (ToolboxVersion = '') then begin
-        Next := OutputMsg('An unidentified version of SBMLToolbox has been found'#13#13'Press Next to continue with the installation or Cancel to exit', True);
-      end else if (LaterToolboxVers = 0) then begin
-        Next := OutputMsg('This version of SBMLToolbox has already been installed on the system'#13#13'Press Next to continue with the installation or Cancel to exit', True);
-      end else if (LaterToolboxVers = 1) then begin
-        Next := OutputMsg('A later version of SBMLToolbox has already been installed on the system'#13#13'Press Next to continue with the installation or Cancel to exit', True);
-      end else begin
-        Next := OutputMsg('An earlier version of SBMLToolbox has already been installed on the system. Files may be overwritten.'#13#13'Press Next to continue with the installation or Cancel to exit', True);
-      end;
-      
+  {libsbml :  install }
+  libsbmlPage := CreateInputOptionPage(wpSelectDir,
+    'SBMLToolbox requires libsbml-3.1.0', '', '', True, False);
+  libsbmlPage.Add('Install libSBML-3.1.0');
+end;
 
-
-    {toolbox doesnt exist
-     check for binding}
-    end else if BindingExists then begin
-
-      ScriptDlgPageOpen();
-
-      { Set some captions  }
-      ScriptDlgPageSetCaption('Previously installed versions');
-      ScriptDlgPageSetSubCaption1('');
-
-      ScriptDlgPageSetSubCaption2('The libsbml matlab binding functions have been found'#13'These will create conflict with the SBMLToolbox function and should be deleted');
-
-      Next := InputOption('Delete the libsbml matlab binding functions' , BindingDelete);
-
-    end else begin
-
-      if not BackClicked then
-        Next := True
-      else
-        Next := False;
-
-    end;
-
-    if not BackClicked then
-      Result := Next
+function ShouldSkipPage(PageID: Integer): Boolean;
+begin
+  { Skip pages that shouldn't be shown }
+  if PageID = libsbmlPage.ID then begin
+    if LibsbmlNotFound then
+       Result := False
+    else if LaterLibsbmlVers < 0 then
+      Result := False
     else
-      Result := not Next;
-
-    { Close the wizard page. Do a FullRestore only if the click (see above) is not allowed }
-    ScriptDlgPageClose(not Result);
-
-
-  end else if ((not BackClicked and (CurPage = wpSelectDir)) or (BackClicked and (CurPage = wpReady))) then begin
-
-    if (LibsbmlVersion = '') then begin
-        ScriptDlgPageOpen();
-
-        ScriptDlgPageSetCaption('libsbml library files');
-        ScriptDlgPageSetSubCaption1('SBMLToolbox 2.0.2 uses libsbml 2.3.4');
-        ScriptDlgPageClearCustom();
-
-        if LibsbmlPath then begin
-
-          ScriptDlgPageSetSubCaption2('An unidentified version of libsbml has already been installed on the system');
-
-          Next := InputOption('Overwrite libsbml libraries in ''' + LibsbmlPathDir + '''' , LibsbmlOverwrite);
-
-        end else begin
-
-          ScriptDlgPageSetSubCaption2('SBMLToolbox requires the libsbml library files to be on the PATH'#13#13'Setup can copy these to the system directory ''' + GetSystemDir()+ ''''#13'Or you can use install.m within the SBMLToolbox');
-
-          Next := InputOption('Write libsbml libraries to ''' + GetSystemDir() + '''' , LibsbmlSystem);
-
-        end;
-
-    end else if ((not LaterLibsbmlVers = 0) or (not LibsbmlPath)) then begin
-      ScriptDlgPageOpen();
-
-      ScriptDlgPageSetCaption('libsbml library files');
-      ScriptDlgPageSetSubCaption1('SBMLToolbox uses libsbml 2.3.4');
-      ScriptDlgPageClearCustom();
-      if LibsbmlPath then begin
-
-        if (LaterLibsbmlVers = 1) then begin
-          ScriptDlgPageSetSubCaption2('A later version of libsbml has already been installed on the system');
-        end else begin
-          ScriptDlgPageSetSubCaption2('An earlier version of libsbml has already been installed on the system');
-        end;
-
-        Next := InputOption('Overwrite libsbml libraries in ''' + LibsbmlPathDir + '''' , LibsbmlOverwrite);
-
-      end else begin
-
-        ScriptDlgPageSetSubCaption2('SBMLToolbox requires the libsbml library files to be on the PATH'#13#13'Setup can copy these to the system directory ''' + GetSystemDir()+ ''''#13'Or you can use install.m within the SBMLToolbox');
-
-        Next := InputOption('Write libsbml libraries to ''' + GetSystemDir() + '''' , LibsbmlSystem);
-
-      end;
-
-    end else begin
-        if not BackClicked then
-          Next := True
-        else
-          Next := False;
-    end;
-
-    if not BackClicked then
-      Result := Next
-    else
-      Result := not Next;
-
-    { Close the wizard page. Do a FullRestore only if the click (see above) is not allowed }
-
-    ScriptDlgPageClose(not Result);
+      Result := True;
 
   end else begin
-
-    Result := True;
-
+    Result := False;
   end;
-
 end;
 
-function NextButtonClick(CurPage: Integer): Boolean;
-var
-  Deleted : Boolean;
-  DirName : String;
+function NextButtonClick(CurPageID: Integer): Boolean;
+
 begin
-  case CurPage of
-    wpSelectDir:
-    if ToolboxExists and (WizardDirValue = ToolboxPath) then begin
-      MsgBox('Setup will overwrite files in ''' + WizardDirValue + '''.', mbInformation, MB_OK);
-    end;
-    wpReady:
-    if (BindingDelete = '1') then begin
-      DirName := GetMatlabroot('') + '\SBMLbinding';
-      Deleted := DelTree(DirName, True, True, True);
-      if not Deleted then begin
-        MsgBox('Setup could not delete directory ''' + DirName + '''.', mbInformation, MB_OK);
+  { Validate certain pages before allowing the user to proceed }
+  if CurPageID = wpWelcome then begin
+    if (ToolboxExists) then begin
+      if (LaterToolboxVers = 0) then begin
+        MsgBox('This version of SBMLToolbox has already been installed on the system', mbInformation, mb_Ok);
+      end else if (LaterToolboxVers = 1) then begin
+        MsgBox('A later version of SBMLToolbox has already been installed on the system', mbInformation, mb_Ok);
+      end else begin
+        MsgBox('An earlier version of SBMLToolbox has already been installed on the system. Files may be overwritten.', mbInformation, mb_Ok);
       end;
-    
     end;
-
- end;
-
-  Result := ScriptDlgPages(CurPage, False);
-end;
-
-function BackButtonClick(CurPage: Integer): Boolean;
-begin
-  Result := ScriptDlgPages(CurPage, True);
+    Result := True;
+  end else begin
+    Result := True;
+  end;
 end;
 
 function UpdateReadyMemo(Space, NewLine, MemoUserInfoInfo, MemoDirInfo, MemoTypeInfo, MemoComponentsInfo, MemoGroupInfo, MemoTasksInfo: String): String;
@@ -508,62 +299,18 @@ begin
   S := S + NewLine;
 
 
-  if ((not LibsbmlNotFound) and LibsbmlPath) then begin
-     if (LibsbmlOverwrite = '1') then begin
-        S := S + 'Overwriting libsbml library files to' + NewLine;
-        S := S + '      ' + LibsbmlPathDir;
-        S := S + NewLine;
-      end else begin
-        S := S + 'Not overwriting libsbml library files' + NewLine;
-        S := S + NewLine;
-      end;
-  end else begin
-      if (LibsbmlSystem = '1') then begin
-        S := S + 'Writing libsbml library files to system directory' + NewLine;
-        S := S + '      ' + GetSystemDir();
-        S := S + NewLine;
-      end else begin
-        S := S + 'Not writing libsbml library files to system directory' + NewLine;
-        S := S + 'You will need to run install.m to use the SBMLToolbox';
-        S := S + NewLine;
-      end;
-  end;
-
-  S := S + NewLine;
-
-  if BindingExists then begin
-    if (BindingDelete = '1') then begin
-      S := S + 'Deleting libsbml matlab binding files from' + NewLine;
-      S := S + '      ' + GetMatlabroot('') + '\SBMLbinding';
-      S := S + NewLine;
-    end else begin
-      S := S + 'Not deleting libsbml matlab binding files' + NewLine;
-      S := S + NewLine;
-    end;
-  end;
 
   Result := S;
 end;
 
-{ function to return flag as to whether to write libraries to system directory}
-function GetSys() : Boolean;
+
+{ function to return flag as to whether to install libsbml}
+function GetLibSBML() : Boolean;
 begin
-  if LibsbmlSystem = '1' then
-    Result := True
-  else
-    Result := False;
-end;
-{ function to return flag as to whether to write libraries to system directory}
-function GetOverwrite() : Boolean;
-begin
-  if LibsbmlOverwrite = '1' then
-    Result := True
-  else
-    Result := False;
+  Result := libSBMLPage.Values[0]
 end;
 
-function GetLibDir(S : String) : String;
-begin
-  Result := LibsbmlPathDir;
-end;
+[Run]
+
+Filename: "{app}\temp\libSBML-3.0.3-win-xerces.exe"; flags: nowait; Check: GetLibSBML;
 
