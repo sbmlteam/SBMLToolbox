@@ -1,5 +1,7 @@
 mkdir SBMLToolbox_src
 cd SBMLToolbox_src
+mkdir docs
+mkdir toolbox
 copy C:\SBMLToolbox\AUTHORS.txt AUTHORS.txt
 copy C:\SBMLToolbox\COPYING.txt COPYING.txt
 copy C:\SBMLToolbox\FUNDING.txt FUNDING.txt
@@ -7,64 +9,23 @@ copy C:\SBMLToolbox\NEWS.txt NEWS.txt
 copy C:\SBMLToolbox\README.txt README.txt
 copy C:\SBMLToolbox\VERSION.txt VERSION.txt
 copy C:\SBMLToolbox\COPYING.html COPYING.html
-mkdir docs
-mkdir toolbox
-mkdir win32
 cd docs
 copy C:\SBMLToolbox\docs\Manual_SBMLToolbox.pdf Manual_SBMLToolbox.pdf
 copy C:\SBMLToolbox\docs\MATLAB_SBML_Structure.pdf MATLAB_SBML_Structure.pdf
 cd ..
-cd win32
-mkdir bin
-mkdir include
-cd bin
-copy C:\libsbml-2.3.4-xerces\win32\bin\libsbml.dll libsbml.dll
-copy C:\libsbml-2.3.4-xerces\win32\bin\libsbmlD.dll libsbmlD.dll
-copy C:\libsbml-2.3.4-xerces\win32\bin\libsbml.lib libsbml.lib
-copy C:\libsbml-2.3.4-xerces\win32\bin\libsbmlD.lib libsbmlD.lib
-copy C:\libsbml-2.3.4-xerces\win32\bin\xerces-c_2_5_0.dll xerces-c_2_5_0.dll
-copy C:\libsbml-2.3.4-xerces\win32\bin\xerces-c_2_5_0D.dll xerces-c_2_5_0D.dll
-copy C:\libsbml-2.3.4-xerces\win32\bin\xerces-c_2.lib xerces-c_2.lib
-copy C:\libsbml-2.3.4-xerces\win32\bin\xerces-c_2D.lib xerces-c_2D.lib
-cd ..
-cd include
-mkdir sbml
-cd sbml
-mkdir common
-mkdir math
-mkdir util
-mkdir validator
-mkdir xml
-cd C:\libsbml-2.3.4-xerces\win32\include\sbml
-copy * C:\SBMLToolbox\win32_installer\SBMLToolbox_src\win32\include\sbml
-cd common
-copy * C:\SBMLToolbox\win32_installer\SBMLToolbox_src\win32\include\sbml\common
-cd ..
-cd math
-copy * C:\SBMLToolbox\win32_installer\SBMLToolbox_src\win32\include\sbml\math
-cd ..
-cd util
-copy * C:\SBMLToolbox\win32_installer\SBMLToolbox_src\win32\include\sbml\util
-cd ..
-cd validator
-copy * C:\SBMLToolbox\win32_installer\SBMLToolbox_src\win32\include\sbml\validator
-cd ..
-cd xml
-copy * C:\SBMLToolbox\win32_installer\SBMLToolbox_src\win32\include\sbml\xml
-cd C:\SBMLToolbox\win32_installer\SBMLToolbox_src
 cd toolbox
 mkdir AccessModel
 cd AccessModel
 mkdir Test
-cd..
+cd ..
 mkdir AccessToSymbols
 cd AccessToSymbols
 mkdir Test
-cd..
+cd ..
 mkdir Convenience
 cd Convenience
 mkdir Test
-cd..
+cd ..
 mkdir MATLAB_SBML_Structure_Functions
 cd MATLAB_SBML_Structure_Functions
 mkdir AlgebraicRule
@@ -73,6 +34,7 @@ mkdir Compartment
 mkdir CompartmentType
 mkdir CompartmentVolumeRule
 mkdir Constraint
+mkdir Delay
 mkdir Event
 mkdir EventAssignment
 mkdir FunctionDefinition
@@ -89,31 +51,29 @@ mkdir Species
 mkdir SpeciesConcentrationRule
 mkdir SpeciesReference
 mkdir SpeciesType
+mkdir StoichiometryMath
 mkdir Test
+mkdir Trigger
 mkdir Unit
 mkdir UnitDefinition
 cd ..
 mkdir Simulation
 cd Simulation
 mkdir Test
-cd..
+cd ..
 mkdir StoreModels
 mkdir Test
+cd Test
+mkdir test-data
+cd ..
 mkdir Validate_MATLAB_SBML_Structures
 cd Validate_MATLAB_SBML_Structures
 mkdir Test
 cd ..
 mkdir ViewModelComponents
-copy C:\libsbml\src\bindings\matlab\TranslateSBML.m TranslateSBML.m
-copy C:\libsbml\src\bindings\matlab\TranslateSBML.c TranslateSBML.c
-copy C:\libsbml\src\bindings\matlab\CheckAndConvert.m CheckAndConvert.m
 copy C:\SBMLToolbox\src\BuildOutput_Win32_src.m BuildOutput_Win32.m
-copy C:\SBMLToolbox\src\BuildTranslate_Win32_src.m BuildTranslate_Win32.m
-copy C:\SBMLToolbox\src\BuildRead_Win32_src.m BuildRead_Win32.m
 copy C:\SBMLToolbox\src\OutputSBML.m OutputSBML.m
 copy C:\SBMLToolbox\src\OutputSBML.c OutputSBML.c
-copy C:\SBMLToolbox\src\ReadAndValidateSBML.m ReadAndValidateSBML.m
-copy C:\SBMLToolbox\src\ReadAndValidateSBML.c ReadAndValidateSBML.c
 copy C:\SBMLToolbox\src\Makefile Makefile
 copy C:\SBMLToolbox\src\Contents.m Contents.m
 copy C:\SBMLToolbox\src\install.m install.m
@@ -157,6 +117,9 @@ cd ..
 cd Test
 copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Test
 copy *.xml C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Test
+cd test-data
+copy *.xml C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Test\test-data
+cd ..
 cd ..
 cd ValidationTests
 copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Validate_MATLAB_SBML_Structures
@@ -188,6 +151,9 @@ copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Stru
 cd ..
 cd Constraint
 copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\Constraint
+cd ..
+cd Delay
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\Delay
 cd ..
 cd Event
 copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\Event
@@ -237,8 +203,14 @@ cd ..
 cd SpeciesType
 copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\SpeciesType
 cd ..
+cd StoichiometryMath
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\StoichiometryMath
+cd ..
 cd Test
 copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\Test
+cd ..
+cd Trigger
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\Trigger
 cd ..
 cd Unit
 copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\Unit
