@@ -292,6 +292,7 @@ if (DivIndex < MultIndex)
   MultIndex = 1;
 end;
 
+% if we have b/x
 if (VarIndex > DivIndex)
   [element, noinvert] = Invert(element, x);
   multiplier = ParseElement(element, x);
@@ -304,6 +305,12 @@ if (VarIndex > DivIndex)
   return;
 end;
   
+% if we have x*c
+if (VarIndex < MultIndex)
+    element = SwapMultiplier(element, x);
+    [multiplier, invert] = ParseElement(element, x);
+    return;
+end;
 
 if ((DivIndex < MultIndex) ||(VarIndex < MultIndex) || (VarIndex > DivIndex)) 
     error('Cannot deal with formula in this form');
@@ -459,3 +466,49 @@ if (Close ~= len)
 end;
 
 y = 1;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function y = SwapMultiplier(formula, x)
+
+% formula will have only * and /
+% x will occur before both
+% * will occur before /
+
+index = strfind(formula, x);
+start = index(1);
+
+index = strfind(formula, '*');
+multiplier = index(1);
+nextop = 0;
+if (length(index) > 1)
+    nextop = index(2);
+end;
+
+index = strfind(formula, '/');
+
+if (length(index) > 0)
+    end_after = index(1)-1;
+else
+    if (nextop > 0)
+        end_after = nextop-1;
+    else
+        end_after = length(formula);
+    end;
+end;
+
+replace = '';
+for i = multiplier+1:end_after
+    replace = strcat(replace, formula(i));
+end;
+
+newformula = replace;
+newformula = strcat(newformula, '*');
+newformula = strcat(newformula, x);
+
+for i = end_after+1:length(formula)
+    newformula = strcat(newformula, formula(i));
+end;
+
+y = newformula;
+
+
