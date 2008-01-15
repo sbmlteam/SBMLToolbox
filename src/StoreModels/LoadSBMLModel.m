@@ -174,7 +174,7 @@ else
     if (Level == 1)
         while (nNumber <= n_level1)
             % find the index of the model with the input name
-            k = strcmp(Models_l1(nNumber).Name, Name);
+            k = strcmp(Models_l1(nNumber).name, Name);
             if (k == 1)
                 Model = Models_l1(nNumber);
                 break;
@@ -185,8 +185,8 @@ else
     else
         if (Version == 1)
             while (nNumber <= n_level2)
-                k = strcmp(Models_l2(nNumber).Name, Name);
-                l = strcmp(Models_l2(nNumber).Id, Id);
+                k = strcmp(Models_l2(nNumber).name, Name);
+                l = strcmp(Models_l2(nNumber).id, Id);
                 if (k == 1)
                     Model = Models_l2(nNumber);
                     break;
@@ -199,8 +199,8 @@ else
             end;
         elseif (Version == 2)
             while (nNumber <= n_level2v2)
-                k = strcmp(Models_l2v2(nNumber).Name, Name);
-                l = strcmp(Models_l2v2(nNumber).Id, Id);
+                k = strcmp(Models_l2v2(nNumber).name, Name);
+                l = strcmp(Models_l2v2(nNumber).id, Id);
                 if (k == 1)
                     Model = Models_l2v2(nNumber);
                     break;
@@ -213,8 +213,8 @@ else
             end;
         elseif (Version == 3)
             while (nNumber <= n_level2v3)
-                k = strcmp(Models_l2v3(nNumber).Name, Name);
-                l = strcmp(Models_l2v3(nNumber).Id, Id);
+                k = strcmp(Models_l2v3(nNumber).name, Name);
+                l = strcmp(Models_l2v3(nNumber).id, Id);
                 if (k == 1)
                     Model = Models_l2v3(nNumber);
                     break;
