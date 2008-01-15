@@ -57,14 +57,10 @@ XCPPFLAGS = $(CPPFLAGS) -I/usr/local/include
 LIBS      = -lsbml
 
 programs = \
-		TranslateSBML.mexglx			\
 	   	OutputSBML.mexglx				
 
 all: $(programs)
 
-
-TranslateSBML.mexglx: TranslateSBML.c
-	$(MEX) $(XCFLAGS) $(XCPPFLAGS) $(XLDFLAGS) $^ $(LIBS)
 
 OutputSBML.mexglx: OutputSBML.c
 	$(MEX) $(XCFLAGS) $(XCPPFLAGS) $(XLDFLAGS) $^ $(LIBS)
