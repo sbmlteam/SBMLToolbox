@@ -1,13 +1,16 @@
 The original code contained here was initially developed by:
 
       Sarah Keating
-      Science and Technology Research Institute
-      University of Hertfordshire
-      Hatfield, AL10 9AB
-      United Kingdom
 
-      http://www.sbml.org
-      mailto:sbml-team@caltech.edu
+	   with contributions from (in alphabetical order)
+       Arsen Batagov, Ben Bornstein, Will Bryant, Bill Denney, 
+       Andrew Finney, Thomas Grotkjær, Mike Hucka, Sumant Turlapati,
+                   and others in the SBML community.
 
+         For more information about SBML or SBMLToolbox, contact:
+
+                            The SBML Team
+                         http://www.sbml.org/
+                     mailto:sbml-team@caltech.edu
 
 
