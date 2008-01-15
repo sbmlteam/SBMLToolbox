@@ -2,10 +2,6 @@
 
 
       Sarah Keating
-      Science and Technology Research Institute
-      University of Hertfordshire
-      Hatfield, AL10 9AB
-      United Kingdom
 
       http://www.sbml.org
       mailto:sbml-team@caltech.edu
@@ -25,6 +21,10 @@ model into a MATLAB structure.
 2.  Installation
 ----------------
 
+**************************************************************
+IMPORTANT: You must have installed libSBML-3.1 with the MATLAB 
+binding prior to installation of SBMLToolbox.
+**************************************************************
 
 Windows
 -------
@@ -33,7 +33,7 @@ At the command prompt change to directory 'SBMLToolbox/toolbox'
 
 Run make.bat
 
-This will start MATLAB and run a script that performs the following
+This will start MATLAB and run a script that performs the following:
 
   1) adds this folder and all its subdirectories to the MATLAB path
 
@@ -43,20 +43,16 @@ This will start MATLAB and run a script that performs the following
 
   3) prompts user to close MATLAB
 
-The TranslateSBML executable is provided with the download and 
+The OutputSBML executable is provided with the download and 
 it is not necessary to build it in order to use it. However the 
-script BuildTranslate_Win32 can be used within MATLAB to build 
-TranslateSBML.dll provided the C compiler that MATLAB uses is 
+script BuildOutput_Win32 can be used within MATLAB to build 
+OutputSBML.mexw32 provided the C compiler that MATLAB uses is 
 compatible. (MSVC proves most effective)
 
  (Use mex -setup in MATLAB to chose a default compiler)
 
 
 Linux
-
-
-Prior to installing SBMLToolbox, libsbml must be installed.
-
 -----
 
 To build:
@@ -75,22 +71,22 @@ To build:
 
         In sh or Bash:
 
-          export CFLAGS=-I/usr/local/include
-          export LDLAGS=-L/usr/local/lib
+          export CPPFLAGS=-I/usr/local/include
+          export LDFLAGS=-L/usr/local/lib
 
         In csh or tcsh:
 
-          setenv CFLAGS -I/usr/local/include
-          setenv LDLAGS -L/usr/local/lib
+          setenv CPPFLAGS -I/usr/local/include
+          setenv LDFLAGS -L/usr/local/lib
 
   4.  Type 'make'
 
-      This should build TranslateSBML.mexglx.
+      This should build OutputSBML.mexglx.
 
 
 To run:
 
-  Ensure the directory containing TranslateSBML.mexglx and the
+  Ensure the directory containing OutputSBML.mexglx and the
   all subdirectories are in your MATLAB path.  
   For example, at the MATLAB prompt:
 
@@ -104,7 +100,8 @@ To run:
   ${HOME}/matlab/startup.m
 
 
-NOTE: There are some unresolved issues with installing SBMLToolbox on certain linux configurations. Please contact us if you encounter these.
+NOTE: There are some unresolved issues with installing SBMLToolbox on 
+certain linux configurations. Please contact us if you encounter these.
 
 
 
@@ -115,23 +112,15 @@ NOTE: There are some unresolved issues with installing SBMLToolbox on certain li
 
 toolbox
 
-This is the top level directory for the functions to translate 
-sbml models into a MATLAB structure which can then be saved.
+This is the top level directory for the functions to output 
+sbml models from a MATLAB structure imported using libSBML's
+MATLAB binding function TranslateSBML.
 
 FUNCTIONS include:
-BuildTranslate_Win32 
-	which builds the TranslateSBML executable
-TranslateSBML 
-	which translates a sbml file into a matlab structure
-BuildRead_Win32 
-	which builds the ReadAndValidateSBML executable
-ReadAndValidateSBML
-        which reads an sbml file and validates it
-        before translating it into a matlab structure
 BuildOutput_Win32 
-	which builds the TranslateSBML executable
+	which builds the OutputSBML executable
 OutputSBML('SBML_MATLAB structure') 
-	which translates a MATLAB_SBML structure and outputs an sbml file
+	which takes a MATLAB_SBML structure and outputs an sbml file.                
 
 toolbox\AccessModel
 
@@ -140,16 +129,18 @@ toolbox\AccessModel
 
 toolbox\AccessToSymbols
 
- This directory provides functions that allow access to the Symbolic Math Toolbox
+ This directory provides functions that allow access to MATLAB's
+ Symbolic Math Toolbox
 
 toolbox\Convenience
 
- This directory contains functions useful to the simulation of an SBML mod
+ This directory contains functions useful to the simulation of an 
+ SBML model.
 
 toolbox\MATLAB_SBML_Structure_Functions
 
   This directory contains functions that allow the user to
-               manipulate a MATLAB_SBML Model structure
+               manipulate a MATLAB_SBML structures.
 
   Each subfolder contains functions relating to that component of the
   model
@@ -198,5 +189,5 @@ COPYING.txt.
 
 -------------------------------------------
   File author: S. Keating
-Last Modified: 2005/12/12 
+Last Modified: 2008/01/15 
 -------------------------------------------

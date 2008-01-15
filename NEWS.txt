@@ -3,7 +3,7 @@
 
 Version 3.0.0
 
- - uses libSBML-3.0.2
+ - uses libSBML-3.1.0
  
  - added the GetStoichiometrySparse function contributed by
    Arsen Batagov. This returns the stoichiometry matrix as a 
