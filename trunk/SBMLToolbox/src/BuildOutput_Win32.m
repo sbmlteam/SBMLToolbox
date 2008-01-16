@@ -2,16 +2,27 @@ function y = BuildOutput_Win32(varargin)
 % BuildOutput_Win32 builds the OutputSBML executable in windows
 % environment
 
+%  @file       : BuildOutput_Win32.m
+%  @brief      : builds the OutputSBML executable
+%  @author     : Sarah Keating
 %
+%  $Id$
+%  $Source$
 %
-%  Filename    : BuildOutput_Win32.m
-%  Description : builds the OutputSBML executable
-%  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
-%  Organization: University of Hertfordshire STRI
-%  Created     : 2004-08-23
-%  Revision    : $Id$
-%  Source      : $Source$
+%<!---------------------------------------------------------------------------
+% This file is part of SBMLToolbox.  Please visit http://sbml.org for more
+% information about SBML, and the latest version of SBMLToolbox.
 %
+% Copyright 2005-2007 California Institute of Technology.
+% Copyright 2002-2005 California Institute of Technology and
+%                     Japan Science and Technology Corporation.
+% 
+% This library is free software; you can redistribute it and/or modify it
+% under the terms of the GNU Lesser General Public License as published by
+% the Free Software Foundation.  A copy of the license agreement is provided
+% in the file named "LICENSE.txt" included with this software distribution.
+% and also available online as http://sbml.org/software/sbmltoolbox/license.html
+%----------------------------------------------------------------------- -->
 
 if (nargin ~= 2)
   text = sprintf('%s\n%s\n%s', 'BuildOutput_Win32 requires 2 arguments.', ...
