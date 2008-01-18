@@ -88,7 +88,7 @@ for i = 1:NumberSpecies
                 %--------------------------------------------------------------
                 % check that reaction has a kinetic law formula
                 if (isempty(SBMLModel.reaction(j).kineticLaw))
-                    error('GetRateLawsFromReactions(SBMLModel)\n%s', 'NO KINETC LAW SUPPLIED');
+                    error('GetRateLawsFromReactions(SBMLModel)\n%s', 'NO KINETIC LAW SUPPLIED');
                 end;
                 %--------------------------------------------------------------
 
@@ -124,8 +124,11 @@ for i = 1:NumberSpecies
                         stoichiometry = SBMLModel.reaction(j).product(SpeciesRole(4)).stoichiometry/double(SBMLModel.reaction(j).product(SpeciesRole(4)).denominator);
                     end;
                     if ((SBMLModel.SBML_level == 2) && (~isempty(SBMLModel.reaction(j).product(SpeciesRole(4)).stoichiometryMath)))
+                      if (SBMLModel.SBML_version < 3)   
                          output = sprintf('%s + (%s) * (%s)', output, SBMLModel.reaction(j).product(SpeciesRole(4)).stoichiometryMath, formula);
-                   
+                      else
+                         output = sprintf('%s + (%s) * (%s)', output, SBMLModel.reaction(j).product(SpeciesRole(4)).stoichiometryMath.math, formula);
+                      end;
                     else
                     % if stoichiometry = 1 no need to include it in formula
                     if (stoichiometry == 1)
@@ -161,8 +164,11 @@ for i = 1:NumberSpecies
                         stoichiometry = SBMLModel.reaction(j).reactant(SpeciesRole(5)).stoichiometry/double(SBMLModel.reaction(j).reactant(SpeciesRole(5)).denominator);
                     end;
                     if ((SBMLModel.SBML_level == 2) && (~isempty(SBMLModel.reaction(j).reactant(SpeciesRole(5)).stoichiometryMath)))
+                       if (SBMLModel.SBML_version < 3)
                          output = sprintf('%s - (%s) * (%s)', output, SBMLModel.reaction(j).reactant(SpeciesRole(5)).stoichiometryMath, formula);
-                   
+                       else
+                         output = sprintf('%s - (%s) * (%s)', output, SBMLModel.reaction(j).reactant(SpeciesRole(5)).stoichiometryMath.math, formula);
+                       end;
                     else
                     % if stoichiometry = 1 no need to include it in formula
                     if (stoichiometry == 1)
