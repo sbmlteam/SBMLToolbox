@@ -9,9 +9,12 @@ copy C:\SBMLToolbox\NEWS.txt NEWS.txt
 copy C:\SBMLToolbox\README.txt README.txt
 copy C:\SBMLToolbox\VERSION.txt VERSION.txt
 copy C:\SBMLToolbox\COPYING.html COPYING.html
+copy C:\SBMLToolbox\LICENSE.txt LICENSE.txt
+copy C:\SBMLToolbox\LICENSE.html LICENSE.html
 cd docs
-copy C:\SBMLToolbox\docs\Manual_SBMLToolbox.pdf Manual_SBMLToolbox.pdf
+copy C:\SBMLToolbox\docs\ManualV3.pdf Manual_SBMLToolbox_V3.pdf
 copy C:\SBMLToolbox\docs\MATLAB_SBML_Structure.pdf MATLAB_SBML_Structure.pdf
+copy C:\SBMLToolbox\docs\Testing.pdf Testing.pdf
 cd ..
 cd toolbox
 mkdir AccessModel
@@ -71,7 +74,7 @@ cd Validate_MATLAB_SBML_Structures
 mkdir Test
 cd ..
 mkdir ViewModelComponents
-copy C:\SBMLToolbox\src\BuildOutput_Win32_src.m BuildOutput_Win32.m
+copy C:\SBMLToolbox\src\BuildOutput_Win32.m BuildOutput_Win32.m
 copy C:\SBMLToolbox\src\OutputSBML.m OutputSBML.m
 copy C:\SBMLToolbox\src\OutputSBML.c OutputSBML.c
 copy C:\SBMLToolbox\src\Makefile Makefile
@@ -119,6 +122,7 @@ copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Test
 copy *.xml C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Test
 cd test-data
 copy *.xml C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Test\test-data
+copy *.mat C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Test\test-data
 cd ..
 cd ..
 cd ValidationTests
