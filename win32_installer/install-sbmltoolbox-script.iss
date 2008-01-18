@@ -20,7 +20,7 @@ UsePreviousAppDir=no
 Source: "C:\SBMLToolbox\win32_installer\SBMLToolbox\*"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\SBMLToolbox\win32_installer\SBMLToolbox\toolbox\*"; DestDir: "{app}\toolbox"; Flags: ignoreversion recursesubdirs
 Source: "C:\SBMLToolbox\win32_installer\SBMLToolbox\docs\*"; DestDir: "{app}\docs"; Flags: ignoreversion recursesubdirs
-Source: "C:\libsbml_3\win32\installer\Output\libsbml-3.0.3-win-xerces.exe"; DestDir: "{app}\temp"; Flags: ignoreversion; Check: GetLibSBML;
+Source: "C:\libsbml_3\win32\installer\Output\libsbml-3.1.0-win-expat.exe"; DestDir: "{app}\temp"; Flags: ignoreversion; Check: GetLibSBML;
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
@@ -55,7 +55,7 @@ begin
 
   Note: it includes a version number
 **********************************************************************************************************}
-  MsgBox('This setup installs the Windows release of SBMLToolbox 3.0.0 using libSBML 3.1.0. All the necessary libraries are included.', mbInformation, mb_Ok);
+  MsgBox('This setup installs the Windows release of SBMLToolbox 3.0.0. This requires libSBML 3.1.0. This installer will allow you to install libSBML if it is not already present.', mbInformation, mb_Ok);
 end;
 
 procedure URLLabelOnClick(Sender: TObject);
@@ -312,5 +312,5 @@ end;
 
 [Run]
 
-Filename: "{app}\temp\libSBML-3.0.3-win-xerces.exe"; flags: nowait; Check: GetLibSBML;
+Filename: "{app}\temp\libSBML-3.1.0-win-expat.exe"; flags: nowait; Check: GetLibSBML;
 
