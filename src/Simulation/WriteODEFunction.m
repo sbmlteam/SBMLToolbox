@@ -7,56 +7,27 @@ function WriteODEFunction(varargin)
 %
 %  NOTE: if no filename is supplied the model id is used
 
+%  Filename    :   WriteODEFunction.m
+%  Description :
+%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
+%  $Id$
+%  $Source v $
 %
-%  Filename    : WriteODEFunction.m
-%  Description : takes a SBMLModel and outputs a file
-%                   defining a function for use with matlabs ode solvers
-%  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
-%  Organization: University of Hertfordshire STRC
-%  Created     : 2004-02-02
-%  Revision    : $Id$
-%  Source      : $Source $
+%<!---------------------------------------------------------------------------
+% This file is part of SBMLToolbox.  Please visit http://sbml.org for more
+% information about SBML, and the latest version of SBMLToolbox.
 %
-%  Copyright 2003 California Institute of Technology, the Japan Science
-%  and Technology Corporation, and the University of Hertfordshire
-%
-%  This library is free software; you can redistribute it and/or modify it
-%  under the terms of the GNU Lesser General Public License as published
-%  by the Free Software Foundation; either version 2.1 of the License, or
-%  any later version.
-%
-%  This library is distributed in the hope that it will be useful, but
-%  WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF
-%  MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.  The software and
-%  documentation provided hereunder is on an "as is" basis, and the
-%  California Institute of Technology, the Japan Science and Technology
-%  Corporation, and the University of Hertfordshire have no obligations to
-%  provide maintenance, support, updates, enhancements or modifications.  In
-%  no event shall the California Institute of Technology, the Japan Science
-%  and Technology Corporation or the University of Hertfordshire be liable
-%  to any party for direct, indirect, special, incidental or consequential
-%  damages, including lost profits, arising out of the use of this software
-%  and its documentation, even if the California Institute of Technology
-%  and/or Japan Science and Technology Corporation and/or University of
-%  Hertfordshire have been advised of the possibility of such damage.  See
-%  the GNU Lesser General Public License for more details.
-%
-%  You should have received a copy of the GNU Lesser General Public License
-%  along with this library; if not, write to the Free Software Foundation,
-%  Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.
-%
-%  The original code contained here was initially developed by:
-%
-%      Sarah Keating
-%      Science and Technology Research Centre
-%      University of Hertfordshire
-%      Hatfield, AL10 9AB
-%      United Kingdom
-%
-%      http://www.sbml.org
-%      mailto:sbml-team@caltech.edu
-%
-%  Contributor(s):
+% Copyright 2005-2007 California Institute of Technology.
+% Copyright 2002-2005 California Institute of Technology and
+%                     Japan Science and Technology Corporation.
+% 
+% This library is free software; you can redistribute it and/or modify it
+% under the terms of the GNU Lesser General Public License as published by
+% the Free Software Foundation.  A copy of the license agreement is provided
+% in the file named "LICENSE.txt" included with this software distribution.
+% and also available online as http://sbml.org/software/sbmltoolbox/license.html
+%----------------------------------------------------------------------- -->
+
 
 switch (nargin)
     case 0
@@ -99,6 +70,11 @@ if (SBMLModel.SBML_level == 2)
         end;
     else
         timeVariable = 'time';
+    end;
+    if (SBMLModel.SBML_version > 1)
+      if (length(SBMLModel.constraint) > 0)
+        error('Cannot deal with constraints.');
+      end;
     end;
 
 else
@@ -146,7 +122,7 @@ fprintf(fileID, '%% or    \t2) time - the elapsed time since the beginning of th
 fprintf(fileID, '%%       \t   x_values    - vector of the current concentrations of the species\n');
 fprintf(fileID, '%%       \t    and returns a vector of the rate of change of concentration of each of the species\n');
 fprintf(fileID, '%%\n');
-fprintf(fileID, '%% %s can be used with matlabs odeN functions as \n', Name);
+fprintf(fileID, '%% %s can be used with MATLABs odeN functions as \n', Name);
 fprintf(fileID, '%%\n');
 fprintf(fileID, '%%\t[t,x] = ode23(@%s, [0, t_end], %s)\n', Name, Name);
 fprintf(fileID, '%%\n');
@@ -184,7 +160,8 @@ end;
 
 % write the initial concentration values for the species
 fprintf(fileID, '\n%%--------------------------------------------------------\n');
-fprintf(fileID, '%% initial species values - these may be overridden by assignment rules\n\n');
+fprintf(fileID, '%% initial species values - these may be overridden by assignment rules\n');
+fprintf(fileID, '%% NOTE: any use of initialAssignments has been considered in calculating the initial values\n\n');
 
 fprintf(fileID, 'if (nargin == 0)\n');
 fprintf(fileID, '\n\t%% initial concentrations\n');
@@ -269,14 +246,8 @@ for i = 1:NumberSpecies
             end;
 
         else
-            %%TODO deal with nested piecewise
             var = sprintf('xdot(%u)', i);
             Array{i} = WriteOutPiecewise(var, char(Species(i).KineticLaw));
-%             
-%             Arguments = DealWithPiecewise(char(Species(i).KineticLaw));
-% 
-%             Array{i} = sprintf('\tif (%s) \n\t\txdot(%u) = %s;\n\telse\n\t\txdot(%u) = %s;\n\tend;\n', Arguments{2}, i, Arguments{1}, i, Arguments{3});
-% 
         end;
 
     elseif (Species(i).ChangedByRateRule == 1)
@@ -295,15 +266,17 @@ for i = 1:NumberSpecies
             Array{i} = sprintf('\txdot(%u) = %s;\n', i, char(DifferentiatedRule));
             NeedToOrderArray = 1;
         else
-%                 error('WriteODEFunction(SBMLModel)\n%s', 'cannot yet deal with a piecewise function within an assignment rule');
-            %char(Species(i).AssignmentRule)
-            %% taken out as this did not fully handle piecewise in an
-            %% assignment rule
+          
+          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+          
+          %%%% TO DO NESTED PIECEWISE
+          
             Args = DealWithPiecewise(char(Species(i).AssignmentRule));
 
             DiffRule1 = DifferentiateRule(char(Args{1}), Speciesnames);
             DiffRule2 = DifferentiateRule(char(Args{3}), Speciesnames);
-            Array{i} = sprintf('\tif (%s) \n\t\txdot(%d) = %s;\n\telse\n\t\txdot(%u) = %s;\n\tend;\n', Args{2}, i, char(DiffRule1), i, char(DiffRule2));
+            Array{i} = sprintf('\tif (%s) \n\t\txdot(%d) = %s;\n\telse\n\t\txdot(%u) = %s;\n\tend;\n', ...
+              Args{2}, i, char(DiffRule1), i, char(DiffRule2));
        %     NeedToOrderArray = 1;
         end;
         %DifferentiatedRule = DifferentiateRule(char(Species(i).AssignmentRule), Speciesnames);
@@ -385,20 +358,18 @@ y = '';
 
 switch (SBMLRule.typecode)
     case 'SBML_ASSIGNMENT_RULE'
-    %%% Checking for a piecewise in the assignment rule and
-        %%% handling it
-        %%% Change made by Sumant Turlapati, Entelos, Inc. on June 8th, 2005
         if (isempty(strfind(char(SBMLRule.formula), 'piecewise')))
             y = sprintf('%s = %s;', SBMLRule.variable, SBMLRule.formula);
         else
-            Arguments = DealWithPiecewise(char(SBMLRule.formula));
-            y = sprintf('\tif (%s) \n\t\t%s = %s;\n\telse\n\t\t%s = %s;\n\tend;\n', Arguments{2}, SBMLRule.variable, Arguments{1}, SBMLRule.variable, Arguments{3});
+            var = sprintf('%s', SBMLRule.variable);
+            y = WriteOutPiecewise(var, char(SBMLRule.formula));
         end;
-%         y = sprintf('%s = %s;', SBMLRule.variable, SBMLRule.formula);
     case 'SBML_SPECIES_CONCENTRATION_RULE'
         y = sprintf('%s = %s;', SBMLRule.species, SBMLRule.formula);
     case 'SBML_PARAMETER_RULE'
         y = sprintf('%s = %s;', SBMLRule.name, SBMLRule.formula);
+    case 'SBML_COMPARTMENT_VOLUME_RULE'
+        y = sprintf('%s = %s;', SBMLRule.compartment, SBMLRule.formula);
 
     otherwise
         error('No assignment rules');
@@ -407,6 +378,10 @@ end;
 %--------------------------------------------------------------------------
 function formula = DifferentiateRule(f, SpeciesNames)
 
+
+if (~isempty(strfind(f, 'piecewise')))
+  error('Cannot deal with nested piecewise in an assignment rule');
+end;
 Brackets = PairBrackets(f);
 
 Dividers = '+-';
@@ -449,18 +424,42 @@ for i = 1:NoElements
     % check whether element contains a species name
     % need to catch case where element is number and
     % species names use numbers eg s3 element '3'
+    found = 0;
     for j = 1:length(SpeciesNames)
         %     j = 1;
         A = strfind(Elements{i}, SpeciesNames{j});
-        if (length(Elements{i}) ~= length(SpeciesNames{j}))
-            continue;
-        end;
         if (~isempty(A))
-            break;
+          if (length(Elements{i}) == length(SpeciesNames{j}))
+            found = 1; % exact match
+          else
+            % need to check what has been found
+            poscharAfter = A(1) + length(SpeciesNames{j});
+            poscharBefore = A(1) - 1;
+            
+            if (poscharBefore > 0)
+              charBefore = Elements{i}(poscharBefore);
+            else
+              charBefore = '*';
+            end;
+            
+            if (poscharAfter <= length(Elements{i}))
+              charAfter = Elements{i}(poscharAfter);
+            else
+              charAfter = '*';
+            end;
+
+            if ((charBefore == '*' || charBefore == '/') && ...
+              (charAfter == '*' || charAfter == '/'))
+              found = 1;
+            end;
+          end;
+          if (found == 1)
+              break;
+          end;
         end;
     end;
 
-    if (isempty(A))
+    if (found == 0)
         % this element does not contain a species
         Elements{i} = strrep(Elements{i}, Elements{i}, '0');
     else

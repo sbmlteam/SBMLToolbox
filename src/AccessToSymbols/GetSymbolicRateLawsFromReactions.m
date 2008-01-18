@@ -125,7 +125,11 @@ for i = 1:NumSpecies
                         stoichiometry = sym(SBMLModel.reaction(j).product(SpeciesRole(4)).stoichiometry/double(SBMLModel.reaction(j).product(SpeciesRole(4)).denominator));
                       end;
                         if ((SBMLModel.SBML_level == 2) && (~isempty(SBMLModel.reaction(j).product(SpeciesRole(4)).stoichiometryMath)))
+                          if (SBMLModel.SBML_version < 3)  
                             stoichiometry = charFormula2sym(SBMLModel.reaction(j).product(SpeciesRole(4)).stoichiometryMath);
+                          else
+                            stoichiometry = charFormula2sym(SBMLModel.reaction(j).product(SpeciesRole(4)).stoichiometryMath.math);
+                          end;
                         end;
                         if (~isempty(Params))
                             symOut = sym(stoichiometry) * subs(charFormula2sym(Formula), Params, ParamsUnique);
@@ -140,7 +144,11 @@ for i = 1:NumSpecies
                         stoichiometry = sym(SBMLModel.reaction(j).reactant(SpeciesRole(5)).stoichiometry/double(SBMLModel.reaction(j).reactant(SpeciesRole(5)).denominator));
                       end;
                         if ((SBMLModel.SBML_level == 2) && (~isempty(SBMLModel.reaction(j).reactant(SpeciesRole(5)).stoichiometryMath)))
+                          if (SBMLModel.SBML_version < 3)
                             stoichiometry = charFormula2sym(SBMLModel.reaction(j).reactant(SpeciesRole(5)).stoichiometryMath);
+                          else
+                            stoichiometry = charFormula2sym(SBMLModel.reaction(j).reactant(SpeciesRole(5)).stoichiometryMath.math);
+                          end;
                         end;
                         if (~isempty(Params))
                             symOut = - sym(stoichiometry) * subs(charFormula2sym(Formula), Params, ParamsUnique);
@@ -159,7 +167,11 @@ for i = 1:NumSpecies
                         stoichiometry = sym(SBMLModel.reaction(j).product(SpeciesRole(4)).stoichiometry/double(SBMLModel.reaction(j).product(SpeciesRole(4)).denominator));
                       end;
                         if ((SBMLModel.SBML_level == 2) && (~isempty(SBMLModel.reaction(j).product(SpeciesRole(4)).stoichiometryMath)))
-                            stoichiometry = charFormula2sym(SBMLModel.reaction(j).product(SpeciesRole(4)).stoichiometryMath);
+                         if (SBMLModel.SBML_version < 3)
+                           stoichiometry = charFormula2sym(SBMLModel.reaction(j).product(SpeciesRole(4)).stoichiometryMath);
+                         else
+                            stoichiometry = charFormula2sym(SBMLModel.reaction(j).product(SpeciesRole(4)).stoichiometryMath.math);
+                         end;
                         end;
                         if (~isempty(Params))
                             symOut = symOut + sym(stoichiometry) * subs(charFormula2sym(Formula), Params, ParamsUnique);
@@ -174,7 +186,11 @@ for i = 1:NumSpecies
                         stoichiometry = sym(SBMLModel.reaction(j).reactant(SpeciesRole(5)).stoichiometry/double(SBMLModel.reaction(j).reactant(SpeciesRole(5)).denominator));
                       end;
                         if ((SBMLModel.SBML_level == 2) && (~isempty(SBMLModel.reaction(j).reactant(SpeciesRole(5)).stoichiometryMath)))
+                         if (SBMLModel.SBML_version < 3)
                             stoichiometry = charFormula2sym(SBMLModel.reaction(j).reactant(SpeciesRole(5)).stoichiometryMath);
+                         else
+                            stoichiometry = charFormula2sym(SBMLModel.reaction(j).reactant(SpeciesRole(5)).stoichiometryMath.math);
+                         end;
                         end;
                         if (~isempty(Params))
                             symOut = symOut - sym(stoichiometry) * subs(charFormula2sym(Formula), Params, ParamsUnique);
