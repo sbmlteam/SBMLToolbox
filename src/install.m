@@ -75,7 +75,7 @@ catch
 end;
 
 fail = CompareFiles('test.xml', 'test_out.xml');
-if (fail == 1)
+if (fail == 0)
   disp('Install successful');
 else
   error('Installation was unsuccessful.');
