@@ -262,7 +262,7 @@ for i = 1:NumberSpecies
         %%% handling it
         %%% Change made by Sumant Turlapati, Entelos, Inc. on June 8th, 2005
         if (isempty(strfind(char(Species(i).AssignmentRule), 'piecewise')))
-            DifferentiatedRule = DifferentiateRule(char(Species(i).AssignmentRule), Speciesnames);
+            DifferentiatedRule = DifferentiateRule(char(Species(i).AssignmentRule), Speciesnames, SBMLModel);
             Array{i} = sprintf('\txdot(%u) = %s;\n', i, char(DifferentiatedRule));
             NeedToOrderArray = 1;
         else
@@ -273,8 +273,8 @@ for i = 1:NumberSpecies
           
             Args = DealWithPiecewise(char(Species(i).AssignmentRule));
 
-            DiffRule1 = DifferentiateRule(char(Args{1}), Speciesnames);
-            DiffRule2 = DifferentiateRule(char(Args{3}), Speciesnames);
+            DiffRule1 = DifferentiateRule(char(Args{1}), Speciesnames, SBMLModel);
+            DiffRule2 = DifferentiateRule(char(Args{3}), Speciesnames, SBMLModel);
             Array{i} = sprintf('\tif (%s) \n\t\txdot(%d) = %s;\n\telse\n\t\txdot(%u) = %s;\n\tend;\n', ...
               Args{2}, i, char(DiffRule1), i, char(DiffRule2));
        %     NeedToOrderArray = 1;
@@ -287,7 +287,7 @@ for i = 1:NumberSpecies
         % here no rate law has been provided by either kinetic law or rate
         % rule - need to check whether the species is in an
         % algebraic rule which may impact on the rate
-        DifferentiatedRule = DifferentiateRule(char(Species(i).ConvertedRule), Speciesnames);
+        DifferentiatedRule = DifferentiateRule(char(Species(i).ConvertedRule), Speciesnames, SBMLModel);
         Array{i} = sprintf('\txdot(%u) = %s;\n', i, char(DifferentiatedRule));
         NeedToOrderArray = 1;
     else
@@ -376,12 +376,30 @@ switch (SBMLRule.typecode)
 end;
 
 %--------------------------------------------------------------------------
-function formula = DifferentiateRule(f, SpeciesNames)
+function formula = DifferentiateRule(f, SpeciesNames, model)
 
 
 if (~isempty(strfind(f, 'piecewise')))
   error('Cannot deal with nested piecewise in an assignment rule');
 end;
+
+% if the formula contains a functionDefinition
+% need to get rid of it first
+for i=1:length(model.functionDefinition)
+  id = model.functionDefinition(i).id;
+  if (~isempty(strfind(f, id)))
+    f = SubstituteFunction(f, model.functionDefinition(i));
+    % remove surrounding  brackets
+    if (strcmp(f(1), '(') && strcmp(f(end), ')'))
+      f = f(2:end-1);
+    end;
+  end;
+end;
+
+
+
+
+
 Brackets = PairBrackets(f);
 
 Dividers = '+-';
