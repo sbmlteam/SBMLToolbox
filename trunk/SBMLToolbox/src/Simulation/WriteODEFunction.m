@@ -330,7 +330,12 @@ if (NumFuncs > 0)
                 fprintf(fileID, '%s, ', Elements{j});
             end;
         end;
-        fprintf(fileID, ')\n\nreturnValue = %s;\n\n\n', Elements{end});
+        if (isempty(strfind(Elements{end}, 'piecewise')))
+          fprintf(fileID, ')\n\nreturnValue = %s;\n\n\n', Elements{end});
+        else
+          pw = WriteOutPiecewise('returnValue', Elements{end});
+           fprintf(fileID, ')\n\n%s\n\n', pw); 
+        end;
     end;
 
 end;
