@@ -113,7 +113,11 @@ fprintf(fileID, '%% event assignments\n\n');
 
 for i = 1:length(SBMLModel.event)
     % need to determine which events have been triggered
-    fprintf(fileID, 'if (%s)\n', SBMLModel.event(i).trigger);
+    if (SBMLModel.SBML_version < 3)
+      fprintf(fileID, 'if (%s)\n', SBMLModel.event(i).trigger);
+    else
+      fprintf(fileID, 'if (%s)\n', SBMLModel.event(i).trigger.math);
+    end;
     for j = 1:length(SBMLModel.event(i).eventAssignment)
         fprintf(fileID, '\t%s = %s;\n', SBMLModel.event(i).eventAssignment(j).variable, SBMLModel.event(i).eventAssignment(j).math);
     end;
