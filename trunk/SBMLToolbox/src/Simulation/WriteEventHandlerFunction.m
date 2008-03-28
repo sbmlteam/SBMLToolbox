@@ -156,8 +156,11 @@ fclose(fileID);
 function [FunctionStrings, Trigger] = ParseTriggerFunction(Trigger, FunctionStrings)
 
 %fprintf(1,'parsing: %s\n', Trigger);
-
-Trigger = LoseLeadingWhiteSpace(Trigger);
+if (isstruct(Trigger))
+  Trigger = LoseLeadingWhiteSpace(Trigger.math);
+else
+  Trigger = LoseLeadingWhiteSpace(Trigger);
+end;
 
 % trigger has the form function(function(variable,constant), function(v,c))
 % need to isolate each
