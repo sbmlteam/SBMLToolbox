@@ -34,7 +34,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with this library in the file named "LICENSE.txt"
 included with the software distribution.  A copy is also
 available online at the Internet address
-http://sbml.org/Software/SBMLToolbox/license.html for your
+http://sbml.org/Software/SBMLToolbox/LICENSE.html for your
 convenience.  You may also write to obtain a copy from the Free
 Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 MA 02111-1307 USA.
