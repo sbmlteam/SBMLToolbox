@@ -287,7 +287,7 @@ if (~(ismember(1, isnan(SpeciesCourse))))
     PlotSpecies = SelectSpecies(SBMLModel);
 
     % line styles - will look at these
-    Types = {'-oc', '-om', '-oy', '-ok', '-or', '-og', '-ob', '--c', '--m', '--y', '--k', '--r', '--g', '--b'};
+    Types = {'-c', '-m', '-y', '-k', '-r', '-g', '-b', '--c', '--m', '--y', '--k', '--r', '--g', '--b'};
     j = 1;
 
     %plot the output
