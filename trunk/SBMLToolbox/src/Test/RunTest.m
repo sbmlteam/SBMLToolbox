@@ -61,7 +61,7 @@ RunTest;
 cd ..;
 
 cd ..;
-cd cd Validate_MATLAB_SBML_Structures;
+cd Validate_MATLAB_SBML_Structures;
 cd Test;
 disp('Performing tests in cd Validate_MATLAB_SBML_Structures directory');
 RunTest;
