@@ -64,6 +64,9 @@ else
     timeVariable = 'time';
 end;
 
+degree = round(log10(min(SpeciesValues)));
+tol = 1e-10 * power(10, degree);
+
 Name = strcat(Name, '_events');
 
 fileName = strcat(Name, '.m');
@@ -94,7 +97,7 @@ fprintf(fileID, '%%\n');
 fprintf(fileID, '\n');
 
 fprintf(fileID, '\n%%--------------------------------------------------------\n');
-fprintf(fileID, '%% constant for use with < or >\neps = 1e-10;\n\n');
+fprintf(fileID, '%% constant for use with < or >\neps = %g;\n\n', tol);
 
 % write the parameter values
 fprintf(fileID, '\n%%--------------------------------------------------------\n');
@@ -220,7 +223,7 @@ openBracket = strfind(Trigger, '(');
 comma = strfind(Trigger, ',');
 closeBracket = strfind(Trigger, ')');
 
-if (isempty(openBracket) || (length(comma)~=0 && comma(1) < openBracket(1)) || (length(closeBracket)~=0 && closeBracket(1) < openBracket1))
+if (isempty(openBracket) || (length(comma)~=0 && comma(1) < openBracket(1)) || (length(closeBracket)~=0 && closeBracket(1) < openBracket(1)))
     % simple case where no nesting 
     if (length(comma)~=0 && comma(1) < closeBracket(1))
         % terminated by comma
@@ -238,8 +241,8 @@ if (isempty(openBracket) || (length(comma)~=0 && comma(1) < openBracket(1)) || (
     end;
 else
     % nested case
-    Func = Trigger(1:OpenBracket-1);
-    Trigger = Trigger(OpenBracket+1:length(Trigger));
+    Func = Trigger(1:openBracket-1);
+    Trigger = Trigger(openBracket+1:length(Trigger));
     [subfunc, Trigger] = ParseNumericFunction(Trigger);
     Func = sprintf('%s(%s', Func, subfunc);
     Trigger = LoseLeadingWhiteSpace(Trigger);
@@ -252,7 +255,7 @@ else
         comma = strfind(Trigger, ',');
     end
     Func=sprintf('%s)',Func);
-    closeBracket=strFind(Trigger, ')');
+    closeBracket=strfind(Trigger, ')');
     Trigger = Trigger(closeBracket(1)+1:length(Trigger));
 end;    
 %fprintf(1,'at end of ParseNumericFunction function: %s\n', func);
