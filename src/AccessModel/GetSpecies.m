@@ -69,6 +69,21 @@ for i = 1:NumSpecies
             Values(i) = SBMLModel.species(i).initialConcentration;
         end;
     end;
+    % might be set by assignment rule
+    AR = Model_getAssignmentRuleByVariable(SBMLModel, name);
+    if (~isempty(AR))
+        newSBMLModel = SBMLModel;
+        newSBMLModel.species(i) = [];
+        for fd = 1:Model_getNumFunctionDefinitions(SBMLModel)
+          newFormula = SubstituteFunction(AR.formula, Model_getFunctionDefinition(SBMLModel, fd));
+          if (~isempty(newFormula))
+           AR.formula = newFormula;
+          end;
+        end;
+        Values(i) = Substitute(AR.formula, newSBMLModel);  
+    end;
+      
+    
     % might be an initial assignment in l2v2
     if (SBMLModel.SBML_level == 2 && SBMLModel.SBML_version > 1)
       IA = Model_getInitialAssignmentBySymbol(SBMLModel, name);
