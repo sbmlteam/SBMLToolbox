@@ -163,15 +163,16 @@ if ((SBMLModel.SBML_level == 2) && (length(SBMLModel.event) ~= 0))
 
         % keep copy of event time
         eventTime = TimeCourseA(end);
+        [len, wid] = size(SpeciesCourseA);
         for i = 1:length(SBMLModel.species)
-            SpeciesValues(i) = SpeciesCourseA(length(SpeciesCourseA), i);
+            SpeciesValues(i) = SpeciesCourseA(len, i);
         end;
 
         if (TimeCourseA(end) ~= Time_span(end))
 
             TimeCourseA = TimeCourseA(1:length(TimeCourseA)-1);
             for i = 1:length(SBMLModel.species)
-                SpeciesCourseB(:,i) = SpeciesCourseA(1:length(SpeciesCourseA)-1, i);
+                SpeciesCourseB(:,i) = SpeciesCourseA(1:len-1, i);
             end;
         else
             SpeciesCourseB = SpeciesCourseA;
