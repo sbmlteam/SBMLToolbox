@@ -72,6 +72,7 @@ end;
 
 [Parameters] = GetAllParameterSymbolsUnique(SBMLModel);
 
+[Compartments, CompartmentValues] = GetCompartmentSymbols(SBMLModel);
 %------------------------------------------------------------
 
 % get the character strings for each species name
@@ -111,6 +112,7 @@ end;
 
 % substitute fixed values into the NewSpecies symbolic form
 NewSpecies = subs(NewSpecies, Parameters, ParameterValues);
+NewSpecies = subs(NewSpecies, Compartments, CompartmentValues);
 NewSpecies = subs(NewSpecies, t, delta_t);
 
 %-----------------------------------------------------------------------
