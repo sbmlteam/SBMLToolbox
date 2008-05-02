@@ -2289,7 +2289,9 @@ GetUnit ( mxArray * mxUnits,
       }
       else
       {
-        GetStoichiometryMath(mxStoichiometryMath, unSBMLLevel, unSBMLVersion, pSpeciesReference);
+		    if ((mxStoichiometryMath != NULL) && (mxIsEmpty(mxStoichiometryMath) != 1)) {
+          GetStoichiometryMath(mxStoichiometryMath, unSBMLLevel, unSBMLVersion, pSpeciesReference);
+        }
       }
       /* level 2 version 2 onwards */
       if (unSBMLVersion > 1)
