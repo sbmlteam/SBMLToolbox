@@ -1,6 +1,39 @@
     SBMLToolbox NEWS -- History of user-visible changes
 
+Current cvs version
 
+* New features:
+
+  - Simulation of models that use functionDefinitions within rules
+    has been implemented.
+
+* Bug fixes:
+
+  - Tracker issue #1912965.
+    The functions that generate the code to simulate events
+    failed to take into account the fact that the structure of
+    the 'trigger' had changed. This has been fixed.
+    
+  - More rigorous testing revealed several small bugs in the 
+    event handling functions; which have now been corrected.
+  
+  - Tracker issue #1912971.
+    There was a typo in the RunTest function that caused it
+    not to run. This is fixed.
+
+  - Tracker issue #1912974.
+    The validation of a model with a large number of errors caused
+    MATLAB to crash. This was due to an error in the calculation
+    of the memory needed to store and report the errors. 
+
+  - Tracker issue #1928173.
+    The OutputSBML function was failing to correctly output an empty
+    stoichiometryMath structure in an L2V3 model. This was due to the
+    fact that for L2V3 models the stoichiometryMath element was correctly
+    derived from an SBase object and thus became a structure rather
+    than just a field in a MATLAB_SBML structure. This has been 
+    corrected. 
+    
 Version 3.0.0
 
  - uses libSBML-3.1.0
