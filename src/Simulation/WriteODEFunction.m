@@ -251,7 +251,12 @@ for i = 1:NumberSpecies
         end;
 
     elseif (Species(i).ChangedByRateRule == 1)
-        Array{i} = sprintf('\txdot(%u) = %s;\n', i, char(Species(i).RateRule));
+         if (Species(i).isConcentration == 1)
+                Array{i} = sprintf('\txdot(%u) = (%s)*%s;\n', i, char(Species(i).RateRule), Species(i).compartment);
+         else
+           Array{i} = sprintf('\txdot(%u) = %s;\n', i, char(Species(i).RateRule));
+         end;
+%         Array{i} = sprintf('\txdot(%u) = %s;\n', i, char(Species(i).RateRule));
 
     elseif (Species(i).ChangedByAssignmentRule == 1)
         % here no rate law has been provided by either kinetic law or rate
