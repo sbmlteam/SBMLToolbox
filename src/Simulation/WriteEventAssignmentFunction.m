@@ -123,6 +123,16 @@ for i = 1:length(SBMLModel.event)
     end;
     fprintf(fileID, 'end;\n');
 end;
+% write assignment rules
+fprintf(fileID, '\n%%--------------------------------------------------------\n');
+fprintf(fileID, '%% assignment rules\n');
+
+
+AssignRules = Model_getListOfAssignmentRules(SBMLModel);
+for i = 1:length(AssignRules)
+     rule = WriteRule(AssignRules(i));
+     fprintf(fileID, '%s\n', rule);
+end;
 
 % output values
 fprintf(fileID, '\n%%--------------------------------------------------------\n');
@@ -157,3 +167,57 @@ end;
 
 fclose(fileID);
 
+%--------------------------------------------------------------------------
+
+function y = WriteRule(SBMLRule)
+
+y = '';
+
+
+switch (SBMLRule.typecode)
+    case 'SBML_ASSIGNMENT_RULE'
+        if (isempty(strfind(char(SBMLRule.formula), 'piecewise')))
+            y = sprintf('%s = %s;', SBMLRule.variable, SBMLRule.formula);
+        else
+            var = sprintf('%s', SBMLRule.variable);
+            y = WriteOutPiecewise(var, char(SBMLRule.formula));
+        end;
+    case 'SBML_SPECIES_CONCENTRATION_RULE'
+        y = sprintf('%s = %s;', SBMLRule.species, SBMLRule.formula);
+    case 'SBML_PARAMETER_RULE'
+        y = sprintf('%s = %s;', SBMLRule.name, SBMLRule.formula);
+    case 'SBML_COMPARTMENT_VOLUME_RULE'
+        y = sprintf('%s = %s;', SBMLRule.compartment, SBMLRule.formula);
+
+    otherwise
+        error('No assignment rules');
+end;
+
+%------------------------------------------------------------------------------
+function output = WriteOutPiecewise(var, formula)
+            
+Arguments = DealWithPiecewise(formula);
+
+if (strfind('piecewise', Arguments{2}))
+    error('Cant do this yet!');
+end;
+
+Text1{1} = sprintf('\n\tif (%s)', Arguments{2});
+
+if (strfind(Arguments{1}, 'piecewise'))
+    Text1{2} = WriteOutPiecewise(var, Arguments{1});
+else
+    Text1{2} = sprintf('\n\t\t%s = %s;', var, Arguments{1});
+end;
+Text1{3} = sprintf('\n\telse');
+
+if (strfind('piecewise', Arguments{3}))
+    Text1{4} = WriteOutPiecewise(var, Arguments{3});
+else
+    Text1{4} = sprintf('\n\t\t%s = %s;\n\tend;\n', var, Arguments{3});
+end;
+
+output = Text1{1};
+for (i = 2:4)
+    output = strcat(output, Text1{i});
+end;
