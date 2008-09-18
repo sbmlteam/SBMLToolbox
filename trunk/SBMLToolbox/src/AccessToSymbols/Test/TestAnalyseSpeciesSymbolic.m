@@ -48,7 +48,7 @@ function fail = TestAnalyseSpeciesSymbolic
 fail = 0;
 m = TranslateSBML('../../Test/test-data/l1v1.xml');
 
-syms S1 compartment k_1_R1 k_2_R2 S2 x0;
+ syms S1 compartment k_1_R1 k_2_R2 S2 x0;
 
 output_1(1).Name = [S1];
 output_1(1).constant = 0;
@@ -144,7 +144,7 @@ output_2(2).ConvertedRule = '';
 output_2(3).Name = [S3];
 output_2(3).constant = 0;
 output_2(3).boundaryCondition = 0;
-output_2(3).initialValue = 0;
+output_2(3).initialValue = 7;
 output_2(3).isConcentration = 0;
 output_2(3).compartment = compartment;
 output_2(3).ChangedByReaction = 0;
