@@ -75,14 +75,16 @@ fileName = strcat(Name, '.m');
 fileID = fopen(fileName, 'w');
 
 % write the function declaration
-fprintf(fileID,  'function Values = %s(%s, SpeciesValues)\n', Name, timeVariable);
+fprintf(fileID,  'function Values = %s(%s, SpeciesValues, eventNo)\n', Name, timeVariable);
 
 % need to add comments to output file
 fprintf(fileID, '%% function %s takes\n', Name);
 fprintf(fileID, '%%\n');
-fprintf(fileID, '%% current simulation time and\n');
+fprintf(fileID, '%% current simulation time\n');
 fprintf(fileID, '%%\n');
 fprintf(fileID, '%% vector of current species values\n');
+fprintf(fileID, '%%\n');
+fprintf(fileID, '%% the number of the event that has triggered\n');
 fprintf(fileID, '%%\n');
 fprintf(fileID, '%% and returns the values assigned by an event assignment\n');
 fprintf(fileID, '%%\n');
@@ -111,18 +113,15 @@ end;
 fprintf(fileID, '\n%%--------------------------------------------------------\n');
 fprintf(fileID, '%% event assignments\n\n');
 
+fprintf(fileID, 'switch(eventNo)\n');
 for i = 1:length(SBMLModel.event)
-    % need to determine which events have been triggered
-    if (SBMLModel.SBML_version < 3)
-      fprintf(fileID, 'if (%s)\n', SBMLModel.event(i).trigger);
-    else
-      fprintf(fileID, 'if (%s)\n', SBMLModel.event(i).trigger.math);
-    end;
-    for j = 1:length(SBMLModel.event(i).eventAssignment)
-        fprintf(fileID, '\t%s = %s;\n', SBMLModel.event(i).eventAssignment(j).variable, SBMLModel.event(i).eventAssignment(j).math);
-    end;
-    fprintf(fileID, 'end;\n');
+  fprintf(fileID, '\tcase %u\n', i);
+  for j = 1:length(SBMLModel.event(i).eventAssignment)
+    fprintf(fileID, '\t\t%s = %s;\n', SBMLModel.event(i).eventAssignment(j).variable, SBMLModel.event(i).eventAssignment(j).math);
+  end;
 end;
+fprintf(fileID, '\totherwise\nend;\n');
+
 % write assignment rules
 fprintf(fileID, '\n%%--------------------------------------------------------\n');
 fprintf(fileID, '%% assignment rules\n');
