@@ -40,7 +40,7 @@ fail = TestFunction('GetSpecies', 1, 2, m, names, values);
 m = TranslateSBML('../../Test/test-data/initialAssignments.xml');
 
 names = {'S1', 'S2', 'S3', 'X', 'S4'};
-values = [3, 6, 0, 9, 0];
+values = [3, 6, 7, 9, 0];
 
 fail = fail + TestFunction('GetSpecies', 1, 2, m, names, values);
 
