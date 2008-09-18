@@ -56,10 +56,14 @@ OperatorLookup = '+-*/^';
 % table of digits
 Digits = '0123456789.-';
 
+%-----------------------------------------------------------
+% strip first last bracket ie if (formula) remove brackets
+OriginalFormula = StripFirstLastBrackets(OriginalFormula);
+
 %------------------------------------------------------------
 % check appropriate input
 % i.e.  array of chars
-%       No nested brackets
+%       No nested brackets 
 
 if (isempty(OriginalFormula))
     z = [];
@@ -718,3 +722,37 @@ else
     Formula = (ArraySyms(1));
 end;   
 
+%--------------------------------------
+% strip brackets if they are the first and last things
+
+function newFormula = StripFirstLastBrackets(formula)
+
+openBrackets = strfind(formula, '(');
+
+if (isempty(openBrackets))
+  newFormula = formula;
+  return;
+elseif (openBrackets(1) ~= 1)
+  newFormula = formula;
+  return;
+end;
+
+closeBrackets = strfind(formula, ')');
+
+if (isempty(closeBrackets))
+  newFormula = formula;
+  return;
+elseif (closeBrackets(end) ~= length(formula))
+  newFormula = formula;
+  return;
+end;
+
+% check that the first and last brackets are a pair
+% ie (formula) NOT (f1) + (f2)
+pairs = PairBrackets(formula);
+
+if (pairs(1, 1) == 1 && pairs(1, 2) == length(formula))
+  newFormula = formula(2:end-1);
+else
+  newFormula = formula;
+end;
