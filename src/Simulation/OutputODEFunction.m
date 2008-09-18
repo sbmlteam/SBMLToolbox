@@ -142,7 +142,7 @@ if ((SBMLModel.SBML_level == 2) && (length(SBMLModel.event) ~= 0))
 
     while ((~isempty(Time_span)) && (Time_span(1) < Time_span(end)))
 
-        [TimeCourseA, SpeciesCourseA] = ode45(fhandle, Time_span, InitConds, options);
+        [TimeCourseA, SpeciesCourseA, eventTime, ab, eventNo] = ode45(fhandle, Time_span, InitConds, options);
 
         % need to catch case where the time span entered was two sequential
         % times from the original time-span
@@ -161,8 +161,7 @@ if ((SBMLModel.SBML_level == 2) && (length(SBMLModel.event) ~= 0))
 
         end;
 
-        % keep copy of event time
-        eventTime = TimeCourseA(end);
+
         [len, wid] = size(SpeciesCourseA);
         for i = 1:length(SBMLModel.species)
             SpeciesValues(i) = SpeciesCourseA(len, i);
@@ -185,8 +184,8 @@ if ((SBMLModel.SBML_level == 2) && (length(SBMLModel.event) ~= 0))
 
         % get new initial conditions
         if (~isempty(Time_span))
-            SpeciesValues = feval(AfterEventHandle, eventTime, SpeciesValues);
-            [t,NewValues] = ode45(fhandle, [eventTime, Time_span(1)], SpeciesValues, options);
+            SpeciesValues = feval(AfterEventHandle, eventTime, SpeciesValues, eventNo);
+            [t,NewValues, eventTime, ab, eventNo] = ode45(fhandle, [eventTime, Time_span(1)], SpeciesValues, options);
             for i = 1:length(SBMLModel.species)
                 InitConds(i) = NewValues(length(NewValues), i);
             end;
