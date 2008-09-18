@@ -64,7 +64,11 @@ else
     timeVariable = 'time';
 end;
 
-degree = round(log10(min(SpeciesValues)));
+if (min(SpeciesValues) == 0)
+  degree = 1;
+else
+  degree = round(log10(min(SpeciesValues)));
+end;
 tol = 1e-10 * power(10, degree);
 
 Name = strcat(Name, '_events');
