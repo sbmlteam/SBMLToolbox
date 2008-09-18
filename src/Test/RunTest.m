@@ -63,7 +63,7 @@ cd ..;
 cd ..;
 cd Validate_MATLAB_SBML_Structures;
 cd Test;
-disp('Performing tests in cd Validate_MATLAB_SBML_Structures directory');
+disp('Performing tests in Validate_MATLAB_SBML_Structures directory');
 RunTest;
 cd ..;
 
