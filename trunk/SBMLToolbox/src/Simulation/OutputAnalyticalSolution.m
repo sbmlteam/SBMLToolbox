@@ -79,19 +79,40 @@ csvOutput = 0;
 if (nargin > 4)
   csvOutput = varargin{5};
 end;
+% get the name/id of the model
+
+Name = '';
+if (SBMLModel.SBML_level == 1)
+    Name = SBMLModel.name;
+else
+    if (isempty(SBMLModel.id))
+        Name = SBMLModel.name;
+    else
+        Name = SBMLModel.id;
+    end;
+end;
+
+if (length(Name) > 63)
+    Name = Name(1:60);
+end;
+fileName = strcat(Name, '.csv');
+
+%--------------------------------------------------------------------
 
 ff = fieldnames(soln);
 number = length(ff);
 
 index = 1;
+finished = 1;
 for i=0:delta_t:Time_limit
   TimeCourse(index) = i;  
   v = subs(soln.(ff{1}), 't', i);
   if (isnumeric(v))
     SpeciesCourse(1, index) = v;
   else
-    disp(strcat(filename, ' encountered a symbolic expression'));
-    i=time;
+    disp(strcat(fileName, ' encountered a symbolic expression'));
+    i=Time_limit;
+    finished = 0;
     break;
   end;
   for j=2:number
@@ -100,8 +121,9 @@ for i=0:delta_t:Time_limit
       SpeciesCourse(j, index) = v;
     else
       disp('Encountered a symbolic expression');
-      i=time;
+      i=Time_limit;
       j=number;
+      finished = 0;
       break;
     end;
   end;
@@ -111,7 +133,7 @@ end;
 Species = GetSpecies(SBMLModel);
 
 %--------------------------------------------------------------
-if (plotOutput == 1)
+if (finished == 1 && plotOutput == 1)
     if (~(ismember(1, isnan(SpeciesCourse))))
 
         PlotSpecies = SelectSpecies(SBMLModel);
@@ -153,29 +175,10 @@ end;
 %-------------------------------------------------------------------------
 % write output file
 % if simulation has failed do not
-if (~(ismember(1, isnan(SpeciesCourse))))
-    if (csvOutput == 1)
+if (finished == 1 && csvOutput == 1)
+    if (~(ismember(1, isnan(SpeciesCourse))))
         %------------------------------------------------------------
 
-        % get the name/id of the model
-
-        Name = '';
-        if (SBMLModel.SBML_level == 1)
-            Name = SBMLModel.name;
-        else
-            if (isempty(SBMLModel.id))
-                Name = SBMLModel.name;
-            else
-                Name = SBMLModel.id;
-            end;
-        end;
-
-        if (length(Name) > 63)
-            Name = Name(1:60);
-        end;
-        fileName = strcat(Name, '.csv');
-      
-        %--------------------------------------------------------------------
         % open the file for writing
 
         fileID = fopen(fileName, 'w');
