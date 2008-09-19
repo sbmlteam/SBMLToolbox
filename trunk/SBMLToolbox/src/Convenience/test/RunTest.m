@@ -77,6 +77,13 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
+test = test + 4;
+fail = TestSubstituteConstants;
+if (fail > 0)
+    disp('Substitute failed');
+end;
+Totalfail = Totalfail + fail;
+
 test = test + 22;
 fail = TestRearrange;
 if (fail > 0)
