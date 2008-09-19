@@ -65,6 +65,23 @@ for i = 1:NumCompartments
     else
         Values(i) = SBMLModel.compartment(i).size;
     end;
+
+    % might be set by assignment rule if not constant
+    if (SBMLModel.compartment(i).constant == 0)
+      AR = Model_getAssignmentRuleByVariable(SBMLModel, name);
+      if (~isempty(AR))
+          newSBMLModel = SBMLModel;
+          newSBMLModel.compartment(i) = [];
+          for fd = 1:Model_getNumFunctionDefinitions(SBMLModel)
+            newFormula = SubstituteFunction(AR.formula, Model_getFunctionDefinition(SBMLModel, fd));
+            if (~isempty(newFormula))
+             AR.formula = newFormula;
+            end;
+          end;
+          Values(i) = Substitute(AR.formula, newSBMLModel);  
+      end;
+    end;
+      
     % might be an initial assignment in l2v2
     if (SBMLModel.SBML_level == 2 && SBMLModel.SBML_version > 1)
       IA = Model_getInitialAssignmentBySymbol(SBMLModel, name);
