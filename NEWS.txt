@@ -1,8 +1,15 @@
     SBMLToolbox NEWS -- History of user-visible changes
 
-Current cvs version
+Current svn version
 
 * New features:
+
+  - SBML Level 2 Version 4 support is now implemented.
+
+  - The functions that validate the MATLAB_SBML structures return
+    a message indicating which elements within the structure have
+    caused the failure.  This message is an optional second return 
+    argument.
 
   - Simulation of models that use functionDefinitions within rules
     has been implemented.
