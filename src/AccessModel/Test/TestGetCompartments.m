@@ -40,7 +40,7 @@ fail = TestFunction('GetCompartments', 1, 2, m, names, values);
 m = TranslateSBML('../../Test/test-data/l2v1-all.xml');
 
 names = {'a', 'c', 'c1'};
-values = [1, 1, 1];
+values = [1, 2, 1];
 
 fail = fail + TestFunction('GetCompartments', 1, 2, m, names, values);
 
