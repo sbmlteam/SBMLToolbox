@@ -40,7 +40,7 @@
       <parameter id="kp" value="2" units="dimensionless" constant="false"/>
       <parameter id="kx" units="litre"/>
       <parameter id="p1" value="2" units="dimensionless"/>
-      <parameter id="x1" units="litre"/>
+      <parameter id="x1" value="1" units="litre"/>
     </listOfParameters>
     <listOfRules>
       <algebraicRule>
