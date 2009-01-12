@@ -754,8 +754,8 @@ GetCompartment (mxArray * mxCompartments,
 			  Compartment_setCompartmentType(pCompartment, pacCompartmentType);
   		
       }
-      /* level 2 version 3 */
-      if (unSBMLVersion == 3)
+      /* level 2 version 3 + */
+      if (unSBMLVersion > 2)
       {
 			  /* get sboTerm */
 			  mxSBOTerm = mxGetField(mxCompartments, i, "sboTerm");
@@ -1357,8 +1357,8 @@ GetUnit ( mxArray * mxUnits,
 
 			  Species_setSpeciesType(pSpecies, pacSpeciesType);
       }
-      /* level 2 version 3 only */
-      if (unSBMLVersion == 3)
+      /* level 2 version 3 on */
+      if (unSBMLVersion > 2)
       {
 			  /* get sboTerm */
 			  mxSBOTerm = mxGetField(mxSpecies, i, "sboTerm");
@@ -3038,8 +3038,9 @@ GetEvent ( mxArray * mxEvents,
 	char * pacTimeUnits;
   int nSBOTerm;
 	char * pacMetaid;
+	int nUseValuesFromTrigger;
 
-  mxArray *mxMetaid;
+  mxArray *mxMetaid, * mxUseValuesfromTrigger;
 	mxArray * mxNotes, * mxAnnotations, * mxName, * mxId, * mxTimeUnits;
   mxArray * mxTrigger, * mxDelay, * mxEventAssignments, *mxSBOTerm;
 
@@ -3191,6 +3192,14 @@ GetEvent ( mxArray * mxEvents,
 			SBase_setSBOTerm(pEvent, nSBOTerm);
     }
 
+    if (unSBMLVersion > 3)
+    {
+ 			/* get useValuesFromTriggerTime */
+			mxUseValuesfromTrigger = mxGetField(mxEvents, i, "useValuesFromTriggerTime");
+			nUseValuesFromTrigger = (int)mxGetScalar(mxUseValuesfromTrigger);
+
+			Event_setUseValuesFromTriggerTime(pEvent, nUseValuesFromTrigger);
+    }
     /* get list of event assignments */
 		mxEventAssignments = mxGetField(mxEvents, i, "eventAssignment");
 		GetEventAssignment(mxEventAssignments, unSBMLLevel, unSBMLVersion, pEvent);
