@@ -1,4 +1,4 @@
-function y = isSBML_Reaction(varargin)
+function [y, message] = isSBML_Reaction(varargin)
 % isSBML_Reaction(SBMLStructure, Level, Version(optional)) 
 % checks that SBMLStructure represents a reaction 
 % within an sbml model of the specified level
@@ -30,6 +30,8 @@ function y = isSBML_Reaction(varargin)
 % Returns 0 if SBMLStructure is not a structure 
 % or does not contain one of the appropriate fields
 % or the typecode is not "SBML_REACTION"
+%
+% Returns message indicating the structure that is invalid.
 
 %  Filename    :   isSBML_Reaction.m
 %  Description :
@@ -56,6 +58,8 @@ if (nargin < 2 || nargin > 3)
     error('wrong number of input arguments');
 end;
 
+message = '';
+
 SBMLStructure = varargin{1};
 Level = varargin{2};
 
@@ -79,6 +83,10 @@ else
             'modifier', 'kineticLaw', 'reversible', 'fast', 'sboTerm', 'isSetFast'};
         nNumberFields = 14;
     elseif (Version == 3)
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','sboTerm', 'name', 'id', 'reactant', 'product', ...
+            'modifier', 'kineticLaw', 'reversible', 'fast', 'isSetFast'};
+        nNumberFields = 14;
+    elseif (Version == 4)
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','sboTerm', 'name', 'id', 'reactant', 'product', ...
             'modifier', 'kineticLaw', 'reversible', 'fast', 'isSetFast'};
         nNumberFields = 14;
@@ -131,14 +139,14 @@ if(bSBML == 1)
     index = 1;
     [x, nNumberReactants] = size(SBMLStructure.reactant);
     while (bSBML == 1 && index <= nNumberReactants)
-        bSBML = isSBML_SpeciesReference(SBMLStructure.reactant(index), Level, Version);
+        [bSBML, message] = isSBML_SpeciesReference(SBMLStructure.reactant(index), Level, Version);
         index = index + 1;
     end;
 
     index = 1;
     [x, nNumberProducts] = size(SBMLStructure.product);
     while (bSBML == 1 && index <= nNumberProducts)
-        bSBML = isSBML_SpeciesReference(SBMLStructure.product(index), Level, Version);
+        [bSBML, message] = isSBML_SpeciesReference(SBMLStructure.product(index), Level, Version);
         index = index + 1;
     end;
 
@@ -146,14 +154,23 @@ if(bSBML == 1)
         index = 1;
         [x, nNumberModifiers] = size(SBMLStructure.modifier);
         while (bSBML == 1 && index <= nNumberModifiers)
-            bSBML = isSBML_ModifierSpeciesReference(SBMLStructure.modifier(index), Level, Version);
+            [bSBML, message] = isSBML_ModifierSpeciesReference(SBMLStructure.modifier(index), Level, Version);
             index = index + 1;
         end;
     end;
 
     % if a kinetic law is present check that it is valid
     if (bSBML == 1 && ~isempty(SBMLStructure.kineticLaw))
-        bSBML = isSBML_KineticLaw(SBMLStructure.kineticLaw, Level, Version);
+        [bSBML, message] = isSBML_KineticLaw(SBMLStructure.kineticLaw, Level, Version);
     end;
 end;
+
+if (bSBML == 0)
+  if (isempty(message))
+    message = 'Invalid Reaction structure';
+  else
+    message = sprintf('%s\n%s', message, 'Invalid Reaction structure');
+  end;
+end;
+
 y = bSBML;

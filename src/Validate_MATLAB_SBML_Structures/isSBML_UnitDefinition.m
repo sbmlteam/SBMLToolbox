@@ -1,4 +1,4 @@
-function y = isSBML_UnitDefinition(varargin)
+function [y, message] = isSBML_UnitDefinition(varargin)
 % isSBML_UnitDefinition(SBMLStructure, Level, Version(optional)) 
 % checks that SBMLStructure represents a unit definition 
 % within an sbml model of specified level
@@ -24,6 +24,8 @@ function y = isSBML_UnitDefinition(varargin)
 % Returns 0 if SBMLStructure is not a structure 
 % or does not contain one of the appropriate fields
 % or the typecode is not "SBML_UNIT_DEFINITION"
+%
+% Returns message indicating the structure that is invalid.
 
 %  Filename    :   isSBML_UnitDefinition.m
 %  Description :
@@ -50,6 +52,8 @@ if (nargin < 2 || nargin > 3)
     error('wrong number of input arguments');
 end;
 
+message = '';
+
 SBMLStructure = varargin{1};
 Level = varargin{2};
 
@@ -70,6 +74,9 @@ else
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','name', 'id', 'unit'};
         nNumberFields = 7;
     elseif (Version == 3)
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id', 'unit'};
+        nNumberFields = 8;
+    elseif (Version == 4)
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id', 'unit'};
         nNumberFields = 8;
     end;
@@ -112,8 +119,17 @@ if(bSBML == 1)
     index = 1;
     [x, nNumber] = size(SBMLStructure.unit); 
     while (bSBML == 1 && index <= nNumber)
-        bSBML = isSBML_Unit(SBMLStructure.unit(index), Level, Version);
+        [bSBML, message] = isSBML_Unit(SBMLStructure.unit(index), Level, Version);
         index = index + 1;
     end;
 end;
+
+if (bSBML == 0)
+  if (isempty(message))
+    message = 'Invalid UnitDefinition structure';
+  else
+    message = sprintf('%s\n%s', message, 'Invalid UnitDefinition structure');
+  end;
+end;
+
 y = bSBML;

@@ -1,4 +1,4 @@
-function y = isSBML_SpeciesType(varargin)
+function [y, message] = isSBML_SpeciesType(varargin)
 % isSBML_SpeciesType(SBMLStructure, Level, Version(optional)) 
 % checks that SBMLStructure represents a SpeciesType
 % within an sbml model of specified level
@@ -24,6 +24,8 @@ function y = isSBML_SpeciesType(varargin)
 % Returns 0 if SBMLStructure is not a structure 
 % or does not contain one of the appropriate fields
 % or the typecode is not "SBML_SPECIES_TYPE"
+%
+% Returns message indicating the structure that is invalid.
 
 %  Filename    :   isSBML_SpeciesType.m
 %  Description :
@@ -52,6 +54,8 @@ if (nargin < 2 || nargin > 3)
     error('wrong number of input arguments');
 end;
 
+message = '';
+
 SBMLStructure = varargin{1};
 Level = varargin{2};
 
@@ -72,6 +76,9 @@ else
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'name', 'id'};
         nNumberFields = 6;
     elseif (Version == 3)
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id'};
+        nNumberFields = 7;
+    elseif (Version == 4)
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id'};
         nNumberFields = 7;
     end;
@@ -109,4 +116,8 @@ if (bSBML == 1)
     end;
 end;
  
+if (bSBML == 0)
+  message = 'Invalid SpeciesType structure';
+end;
+
 y = bSBML;

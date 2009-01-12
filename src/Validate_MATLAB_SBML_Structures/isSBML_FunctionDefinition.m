@@ -1,4 +1,4 @@
-function y = isSBML_FunctionDefinition(varargin)
+function [y, message] = isSBML_FunctionDefinition(varargin)
 % isSBML_FunctionDefinition(SBMLStructure, Level, Version(optional)) 
 % checks that SBMLStructure represents a function definition 
 % within an sbml model of specified level
@@ -23,6 +23,8 @@ function y = isSBML_FunctionDefinition(varargin)
 % Returns 0 if SBMLStructure is not a structure 
 % or does not contain one of the appropriate fields
 % or the typecode is not "SBML_FUNCTION_DEFINITION"
+%
+% Returns message indicating the structure that is invalid.
 
 %  Filename    :   isSBML_FunctionDefinition.m
 %  Description :
@@ -49,6 +51,8 @@ if (nargin < 2 || nargin > 3)
     error('wrong number of input arguments');
 end;
 
+message = '';
+
 SBMLStructure = varargin{1};
 Level = varargin{2};
 
@@ -69,6 +73,9 @@ else
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id', 'math'};
         nNumberFields = 8;
     elseif (Version == 3)
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id', 'math'};
+        nNumberFields = 8;
+    elseif (Version == 4)
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id', 'math'};
         nNumberFields = 8;
     end;
@@ -105,5 +112,9 @@ if (bSBML == 1)
         bSBML = 0;
     end;
 end;
-    
+
+if (bSBML == 0)
+  message = 'Invalid FunctionDefinition structure';
+end;
+
 y = bSBML;

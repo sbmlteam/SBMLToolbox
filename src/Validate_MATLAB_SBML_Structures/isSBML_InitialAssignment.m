@@ -1,4 +1,4 @@
-function y = isSBML_InitialAssignment(varargin)
+function [y, message] = isSBML_InitialAssignment(varargin)
 % isSBML_InitialAssignment(SBMLStructure, Level, Version(optional)) 
 % checks that SBMLStructure represents a InitialAssignment
 % within an sbml model of specified level
@@ -23,6 +23,8 @@ function y = isSBML_InitialAssignment(varargin)
 % Returns 0 if SBMLStructure is not a structure 
 % or does not contain one of the appropriate fields
 % or the typecode is not "SBML_INITIAL_ASSIGNMENT"
+%
+% Returns message indicating the structure that is invalid.
 
 %  Filename    :   isSBML_InitialAssignment.m
 %  Description :
@@ -51,6 +53,8 @@ if (nargin < 2 || nargin > 3)
     error('wrong number of input arguments');
 end;
 
+message = '';
+
 SBMLStructure = varargin{1};
 Level = varargin{2};
 
@@ -71,6 +75,9 @@ else
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'symbol', 'math'};
         nNumberFields = 7;
     elseif (Version == 3)
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'symbol', 'math'};
+        nNumberFields = 7;
+    elseif (Version == 4)
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'symbol', 'math'};
         nNumberFields = 7;
     end;
@@ -108,4 +115,8 @@ if (bSBML == 1)
     end;
 end;
  
+if (bSBML == 0)
+  message = 'Invalid InitialAssignment structure';
+end;
+
 y = bSBML;

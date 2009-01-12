@@ -1,4 +1,4 @@
-function y = isSBML_KineticLaw(varargin)
+function [y, message] = isSBML_KineticLaw(varargin)
 % isSBML_KineticLaw(SBMLStructure, Level, Version(optional)) 
 % checks that SBMLStructure represents a kinetic law 
 % within an sbml model of the specified level
@@ -26,6 +26,8 @@ function y = isSBML_KineticLaw(varargin)
 % Returns 0 if SBMLStructure is not a structure 
 % or does not contain one of the appropriate fields
 % or the typecode is not "SBML_KINETIC_LAW"
+%
+% Returns message indicating the structure that is invalid.
 
 %  Filename    :   isSBML_KineticLaw.m
 %  Description :
@@ -52,6 +54,8 @@ if (nargin < 2 || nargin > 3)
     error('wrong number of input arguments');
 end;
 
+message = '';
+
 SBMLStructure = varargin{1};
 Level = varargin{2};
 
@@ -73,6 +77,9 @@ else
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','formula', 'math','parameter', 'sboTerm'};
         nNumberFields = 8;
     elseif (Version == 3)
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'formula', 'math','parameter'};
+        nNumberFields = 8;
+    elseif (Version == 4)
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'formula', 'math','parameter'};
         nNumberFields = 8;
     end;
@@ -114,8 +121,17 @@ if(bSBML == 1)
     index = 1;
     [x, nNumberParameters] = size(SBMLStructure.parameter); 
     while (bSBML == 1 && index <= nNumberParameters)
-        bSBML = isSBML_Parameter(SBMLStructure.parameter(index), Level, Version);
+        [bSBML, message] = isSBML_Parameter(SBMLStructure.parameter(index), Level, Version);
         index = index + 1;
     end;
 end;
+
+if (bSBML == 0)
+  if (isempty(message))
+    message = 'Invalid KineticLaw structure';
+  else
+    message = sprintf('%s\n%s', message, 'Invalid KineticLaw structure');
+  end;
+end;
+
 y = bSBML;

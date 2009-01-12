@@ -1,4 +1,4 @@
-function y = isSBML_ParameterRule(varargin)
+function [y, message] = isSBML_ParameterRule(varargin)
 % isSBML_ParameterRule(SBMLStructure, Level, Version(optional)) 
 % checks that SBMLStructure represents a parameter rule 
 % within an sbml model of the specified level
@@ -27,6 +27,8 @@ function y = isSBML_ParameterRule(varargin)
 % Returns 0 if SBMLStructure is not a structure 
 % or does not contain one of the appropriate fields
 % or the typecode is not  "SBML_PARAMETER_RULE"
+%
+% Returns message indicating the structure that is invalid.
 
 %  Filename    :   isSBML_ParameterRule.m
 %  Description :
@@ -53,6 +55,8 @@ if (nargin < 2 || nargin > 3)
     error('wrong number of input arguments');
 end;
 
+message = '';
+
 SBMLStructure = varargin{1};
 Level = varargin{2};
 
@@ -76,5 +80,8 @@ if (bSBML == 1)
     end;
 end;
     
+if (bSBML == 0)
+  message = 'Invalid ParameterRule structure';
+end;
 
 y = bSBML;

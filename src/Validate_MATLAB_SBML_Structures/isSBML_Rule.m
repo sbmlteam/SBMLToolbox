@@ -1,4 +1,4 @@
-function y = isSBML_Rule(varargin)
+function [y, message] = isSBML_Rule(varargin)
 % isSBML_Rule(SBMLStructure, Level, Version(optional)) 
 % checks that SBMLStructure represents a rule 
 % within an sbml model of the specified level
@@ -34,6 +34,8 @@ function y = isSBML_Rule(varargin)
 %   "SBML_ALGEBRAIC_RULE", "SBML_SPECIES_CONCENTRATION_RULE",
 %   "SBML_COMPARTMENT_VOLUME_RULE", "SBML_PARAMETER_RULE", 
 %   "SBML_ASSIGNMENT_RULE", "SBML_RATE_RULE"
+%
+% Returns message indicating the structure that is invalid.
 
 %  Filename    :   isSBML_Rule.m
 %  Description :
@@ -60,6 +62,8 @@ if (nargin < 2 || nargin > 3)
     error('wrong number of input arguments');
 end;
 
+message = '';
+
 SBMLStructure = varargin{1};
 Level = varargin{2};
 
@@ -83,6 +87,10 @@ else
           'formula', 'variable', 'species', 'compartment', 'name', 'units'};
         nNumberFields = 11;
     elseif (Version == 3)
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', ...
+          'formula', 'variable', 'species', 'compartment', 'name', 'units'};
+        nNumberFields = 11;
+    elseif (Version == 4)
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', ...
           'formula', 'variable', 'species', 'compartment', 'name', 'units'};
         nNumberFields = 11;
@@ -146,5 +154,8 @@ type = SBMLStructure.typecode;
   end;
 end;
     
+if (bSBML == 0)
+  message = 'Invalid Rule structure';
+end;
 
 y = bSBML;
