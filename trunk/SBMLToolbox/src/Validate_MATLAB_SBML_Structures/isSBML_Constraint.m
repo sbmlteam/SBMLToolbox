@@ -1,4 +1,4 @@
-function y = isSBML_Constraint(varargin)
+function [y, message] = isSBML_Constraint(varargin)
 % isSBML_Constraint(SBMLStructure, Level, Version(optional)) 
 % checks that SBMLStructure represents a Constraint
 % within an sbml model of specified level
@@ -24,6 +24,8 @@ function y = isSBML_Constraint(varargin)
 % Returns 0 if SBMLStructure is not a structure 
 % or does not contain one of the appropriate fields
 % or the typecode is not "SBML_CONSTRAINT"
+%
+% Returns message indicating the structure that is invalid.
 
 %  Filename    :   isSBML_Constraint.m
 %  Description :
@@ -52,6 +54,8 @@ if (nargin < 2 || nargin > 3)
     error('wrong number of input arguments');
 end;
 
+message = '';
+
 SBMLStructure = varargin{1};
 Level = varargin{2};
 
@@ -72,6 +76,9 @@ else
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'math', 'message'};
         nNumberFields = 7;
     elseif (Version == 3)
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'math', 'message'};
+        nNumberFields = 7;
+    elseif (Version == 4)
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'math', 'message'};
         nNumberFields = 7;
     end;
@@ -108,5 +115,9 @@ if (bSBML == 1)
         bSBML = 0;
     end;
 end;
- 
+
+if (bSBML == 0)
+  message = 'Invalid Constraint structure';
+end;
+
 y = bSBML;

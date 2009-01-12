@@ -1,4 +1,4 @@
-function y = isSBML_ModifierSpeciesReference(varargin)
+function [y, message] = isSBML_ModifierSpeciesReference(varargin)
 % isSBML_ModifierSpeciesReference(SBMLStructure, Level, Version(optional)) 
 % checks that SBMLStructure represents a modifier species reference 
 % within an sbml model of the specified level
@@ -24,6 +24,8 @@ function y = isSBML_ModifierSpeciesReference(varargin)
 % Returns 0 if SBMLStructure is not a structure 
 % or does not contain one of the appropriate fields
 % or the typecode is not "SBML_MODIFIER_SPECIES_REFERENCE"
+%
+% Returns message indicating the structure that is invalid.
 
 %  Filename    :   isSBML_ModifierSpeciesReference.m
 %  Description :
@@ -52,6 +54,8 @@ if (nargin < 2 || nargin > 3)
     error('wrong number of input arguments');
 end;
 
+message = '';
+
 SBMLStructure = varargin{1};
 Level = varargin{2};
 
@@ -72,6 +76,9 @@ else
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','species', 'id', 'name', 'sboTerm'};
         nNumberFields = 8;
     elseif (Version == 3)
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'species', 'id', 'name'};
+        nNumberFields = 8;
+    elseif (Version == 4)
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'species', 'id', 'name'};
         nNumberFields = 8;
     end;
@@ -107,5 +114,10 @@ if (bSBML == 1)
         bSBML = 0;
     end;
 end;
-      
+ 
+if (bSBML == 0)
+  message = 'Invalid ModifierSpeciesReference structure';
+end;
+
+
 y = bSBML;

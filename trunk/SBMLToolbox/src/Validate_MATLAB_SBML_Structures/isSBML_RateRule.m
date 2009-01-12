@@ -1,4 +1,4 @@
-function y = isSBML_RateRule(varargin)
+function [y, message] = isSBML_RateRule(varargin)
 % isSBML_RateRule(SBMLStructure, Level, Version(optional)) 
 % checks that SBMLStructure represents a rate rule 
 % within an sbml model of the specified level
@@ -31,6 +31,8 @@ function y = isSBML_RateRule(varargin)
 %   "SBML_COMPARTMENT_VOLUME_RULE", "SBML_PARAMETER_RULE",
 %
 % NOTE: where typecode is a Level 1 Rule the type must be set to "rate"
+%
+% Returns message indicating the structure that is invalid.
 
 %  Filename    :   isSBML_RateRule.m
 %  Description :
@@ -56,6 +58,8 @@ function y = isSBML_RateRule(varargin)
 if (nargin < 2 || nargin > 3)
     error('wrong number of input arguments');
 end;
+
+message = '';
 
 SBMLStructure = varargin{1};
 Level = varargin{2};
@@ -94,5 +98,8 @@ if (bSBML == 1)
   end;
 end;
     
+if (bSBML == 0)
+  message = 'Invalid RateRule structure';
+end;
 
 y = bSBML;

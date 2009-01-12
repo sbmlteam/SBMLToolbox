@@ -1,4 +1,4 @@
-function y = isSBML_Species(varargin)
+function [y, message] = isSBML_Species(varargin)
 % isSBML_Species(SBMLStructure, Level, Version(optional)) 
 % checks that SBMLStructure represents a species 
 % within an sbml model of specified level
@@ -37,6 +37,8 @@ function y = isSBML_Species(varargin)
 % Returns 0 if SBMLStructure is not a structure 
 % or does not contain one of the appropriate fields
 % or the typecode is not "SBML_SPECIES"
+%
+% Returns message indicating the structure that is invalid.
 
 %  Filename    :   isSBML_Species.m
 %  Description :
@@ -62,6 +64,8 @@ function y = isSBML_Species(varargin)
 if (nargin < 2 || nargin > 3)
     error('wrong number of input arguments');
 end;
+
+message = '';
 
 SBMLStructure = varargin{1};
 Level = varargin{2};
@@ -90,6 +94,12 @@ else
             'isSetInitialConcentration','isSetCharge'};
         nNumberFields = 19;
     elseif (Version == 3)
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','sboTerm', 'name', 'id', 'speciesType', 'compartment', ...
+            'initialAmount', 'initialConcentration', 'substanceUnits',  ...
+            'hasOnlySubstanceUnits', 'boundaryCondition', 'charge', 'constant', 'isSetInitialAmount', ...
+            'isSetInitialConcentration','isSetCharge'};
+        nNumberFields = 19;
+    elseif (Version == 4)
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','sboTerm', 'name', 'id', 'speciesType', 'compartment', ...
             'initialAmount', 'initialConcentration', 'substanceUnits',  ...
             'hasOnlySubstanceUnits', 'boundaryCondition', 'charge', 'constant', 'isSetInitialAmount', ...
@@ -129,5 +139,8 @@ if (bSBML == 1)
     end;
 end;
     
+if (bSBML == 0)
+  message = 'Invalid Species structure';
+end;
 
 y = bSBML;

@@ -1,4 +1,4 @@
-function y = isSBML_Compartment(varargin)
+function [y, message] = isSBML_Compartment(varargin)
 % isSBML_Compartment(SBMLStructure, Level, Version(optional)) 
 % checks that SBMLStructure represents a compartment 
 % within an sbml model of the specified level
@@ -32,6 +32,8 @@ function y = isSBML_Compartment(varargin)
 % Returns 0 if SBMLStructure is not a structure 
 % or does not contain one of the appropriate fields
 % or the typecode is not "SBML_COMPARTMENT"
+%
+% Returns message indicating the structure that is invalid.
 
 %  Filename    :   isSBML_Compartment.m
 %  Description :
@@ -59,6 +61,8 @@ if (nargin < 2 || nargin > 3)
     error('wrong number of input arguments');
 end;
 
+message = '';
+
 SBMLStructure = varargin{1};
 Level = varargin{2};
 
@@ -85,6 +89,10 @@ else
             'spatialDimensions', 'size', 'units', 'outside', 'constant', 'isSetSize','isSetVolume'};
         nNumberFields = 14;
     elseif (Version == 3)
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id', 'compartmentType', ...
+            'spatialDimensions', 'size', 'units', 'outside', 'constant', 'isSetSize','isSetVolume'};
+        nNumberFields = 15;
+    elseif (Version == 4)
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id', 'compartmentType', ...
             'spatialDimensions', 'size', 'units', 'outside', 'constant', 'isSetSize','isSetVolume'};
         nNumberFields = 15;
@@ -122,5 +130,8 @@ if (bSBML == 1)
     end;
 end;
     
+if (bSBML == 0)
+  message = 'Invalid Compartment structure';
+end;
 
 y = bSBML;

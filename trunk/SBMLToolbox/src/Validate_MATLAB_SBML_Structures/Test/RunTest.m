@@ -54,7 +54,7 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 7;
+test = test + 9;
 fail = TestIsSBML_Event;
 if (fail > 0)
     disp('isSBML_Event failed');

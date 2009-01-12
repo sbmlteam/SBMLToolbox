@@ -1,4 +1,4 @@
-function y = isSBML_SpeciesReference(varargin)
+function [y, message] = isSBML_SpeciesReference(varargin)
 % isSBML_SpeciesRefernce(SBMLStructure, Level, Version(optional)) 
 % checks that SBMLStructure represents a species reference 
 % within an sbml model of the specified level
@@ -27,6 +27,8 @@ function y = isSBML_SpeciesReference(varargin)
 % Returns 0 if SBMLStructure is not a structure 
 % or does not contain one of the appropriate fields
 % or the typecode is not "SBML_SPECIES_REFERENCE"
+%
+% Returns message indicating the structure that is invalid.
 
 %  Filename    :   isSBML_SpeciesReference.m
 %  Description :
@@ -55,6 +57,8 @@ if (nargin < 2 || nargin > 3)
     error('wrong number of input arguments');
 end;
 
+message = '';
+
 SBMLStructure = varargin{1};
 Level = varargin{2};
 
@@ -77,6 +81,10 @@ else
             'sboTerm', 'stoichiometry', 'stoichiometryMath'};
         nNumberFields = 10;
     elseif (Version == 3)
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'species', 'id', 'name', ...
+            'stoichiometry', 'stoichiometryMath'};
+        nNumberFields = 10;
+    elseif (Version == 4)
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'species', 'id', 'name', ...
             'stoichiometry', 'stoichiometryMath'};
         nNumberFields = 10;
@@ -112,7 +120,7 @@ if (Level == 2 && Version > 2)
   end;
 
   if(bSBML == 1 && ~isempty(SBMLStructure.stoichiometryMath))
-    bSBML = isSBML_StoichiometryMath(SBMLStructure.stoichiometryMath, Level, Version);
+    [bSBML, message] = isSBML_StoichiometryMath(SBMLStructure.stoichiometryMath, Level, Version);
   end;
 end;
 
@@ -124,5 +132,13 @@ if (bSBML == 1)
         bSBML = 0;
     end;
 end;
-      
+
+if (bSBML == 0)
+  if (isempty(message))
+    message = 'Invalid SpeciesReference structure';
+  else
+    message = sprintf('%s\n%s', message, 'Invalid SpeciesReference structure');
+  end;
+end;
+
 y = bSBML;

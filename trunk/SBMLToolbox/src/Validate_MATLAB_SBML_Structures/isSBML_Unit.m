@@ -1,4 +1,4 @@
-function y = isSBML_Unit(varargin)
+function [y, message] = isSBML_Unit(varargin)
 % isSBML_Unit(SBMLStructure, Level, Version(optional)) 
 % checks that SBMLStructure represents a unit 
 % within an sbml model of specified level
@@ -26,6 +26,8 @@ function y = isSBML_Unit(varargin)
 % Returns 0 if SBMLStructure is not a structure 
 % or does not contain one of the appropriate fields
 % or the typecode is not "SBML_UNIT"
+%
+% Returns message indicating the structure that is invalid.
 
 %  Filename    :   isSBML_Unit.m
 %  Description :
@@ -54,6 +56,8 @@ if (nargin < 2 || nargin > 3)
     error('wrong number of input arguments');
 end;
 
+message = '';
+
 SBMLStructure = varargin{1};
 Level = varargin{2};
 
@@ -77,6 +81,10 @@ else
       'exponent', 'scale', 'multiplier'};
     nNumberFields = 8;
   elseif (Version == 3)
+    SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', ...
+      'kind', 'exponent', 'scale', 'multiplier'};
+    nNumberFields = 9;
+  elseif (Version == 4)
     SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', ...
       'kind', 'exponent', 'scale', 'multiplier'};
     nNumberFields = 9;
@@ -114,6 +122,10 @@ if (bSBML == 1)
     bSBML = 0;
   end;
 end;
-    
+ 
+if (bSBML == 0)
+  message = 'Invalid Unit structure';
+end;
+
 
 y = bSBML;

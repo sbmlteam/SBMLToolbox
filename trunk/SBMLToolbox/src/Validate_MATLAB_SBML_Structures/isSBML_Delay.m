@@ -1,4 +1,4 @@
-function y = isSBML_Delay(varargin)
+function [y, message] = isSBML_Delay(varargin)
 % isSBML_Delay(SBMLStructure, Level, Version(optional)) 
 % checks that SBMLStructure represents a Delay
 % within an sbml model of specified level
@@ -23,6 +23,8 @@ function y = isSBML_Delay(varargin)
 % Returns 0 if SBMLStructure is not a structure 
 % or does not contain one of the appropriate fields
 % or the typecode is not "SBML_DELAY"
+%
+% Returns message indicating the structure that is invalid.
 
 %  Filename    :   isSBML_Delay.m
 %  Description :
@@ -51,6 +53,8 @@ if (nargin < 2 || nargin > 3)
     error('wrong number of input arguments');
 end;
 
+message = '';
+
 SBMLStructure = varargin{1};
 Level = varargin{2};
 
@@ -71,6 +75,9 @@ else
         y = 0;
         return;
     elseif (Version == 3)
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'math'};
+        nNumberFields = 6;
+    elseif (Version == 4)
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'math'};
         nNumberFields = 6;
     end;
@@ -107,5 +114,9 @@ if (bSBML == 1)
         bSBML = 0;
     end;
 end;
- 
+
+if (bSBML == 0)
+  message = 'Invalid Delay structure';
+end;
+
 y = bSBML;

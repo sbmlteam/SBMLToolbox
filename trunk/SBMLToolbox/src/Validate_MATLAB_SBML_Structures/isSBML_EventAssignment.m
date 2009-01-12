@@ -1,4 +1,4 @@
-function y = isSBML_EventAssignment(varargin)
+function [y, message] = isSBML_EventAssignment(varargin)
 % isSBML_EventAssignment(SBMLStructure, Level, Version(optional)) 
 % checks that SBMLStructure represents a EventAssignment
 % within an sbml model of specified level
@@ -23,6 +23,8 @@ function y = isSBML_EventAssignment(varargin)
 % Returns 0 if SBMLStructure is not a structure 
 % or does not contain one of the appropriate fields
 % or the typecode is not "SBML_EVENT_ASSIGNMENT"
+%
+% Returns message indicating the structure that is invalid.
 
 %  Filename    :   isSBML_EventAssignment.m
 %  Description :
@@ -49,6 +51,8 @@ if (nargin < 2 || nargin > 3)
     error('wrong number of input arguments');
 end;
 
+message = '';
+
 SBMLStructure = varargin{1};
 Level = varargin{2};
 
@@ -69,6 +73,9 @@ else
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','variable', 'sboTerm', 'math'};
         nNumberFields = 7;
     elseif (Version == 3)
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'variable', 'math'};
+        nNumberFields = 7;
+    elseif (Version == 4)
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'variable', 'math'};
         nNumberFields = 7;
     end;
@@ -105,5 +112,9 @@ if (bSBML == 1)
         bSBML = 0;
     end;
 end;
-    
+
+if (bSBML == 0)
+  message = 'Invalid EventAssignment structure';
+end;
+
 y = bSBML;

@@ -1,4 +1,4 @@
-function y = isSBML_AssignmentRule(varargin)
+function [y, message] = isSBML_AssignmentRule(varargin)
 % isSBML_AssignmentRule(SBMLStructure, Level, Version(optional)) 
 % checks that SBMLStructure represents an assignment rule 
 % within an sbml model of the specified level
@@ -31,6 +31,8 @@ function y = isSBML_AssignmentRule(varargin)
 % or the typecode is not one of 
 %           "SBML_ASSIGNMENT_RULE""SBML_SPECIES_CONCENTRATION_RULE",
 %   "SBML_COMPARTMENT_VOLUME_RULE", "SBML_PARAMETER_RULE",
+%
+% Returns message indicating the structure that is invalid.
 
 %  Filename    :   isSBML_AssignmentRule.m
 %  Description :
@@ -56,6 +58,8 @@ function y = isSBML_AssignmentRule(varargin)
 if (nargin < 2 || nargin > 3)
     error('wrong number of input arguments');
 end;
+
+message = '';
 
 SBMLStructure = varargin{1};
 Level = varargin{2};
@@ -89,5 +93,8 @@ if (bSBML == 1)
     end;
 end;
     
+if (bSBML == 0)
+  message = 'Invalid AssignmentRule structure';
+end;
 
 y = bSBML;
