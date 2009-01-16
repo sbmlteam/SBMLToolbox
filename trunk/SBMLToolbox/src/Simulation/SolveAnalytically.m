@@ -47,7 +47,6 @@ if (~isSBML_Model(SBMLModel))
     error('SolveAnalytically(SBMLModel)\n%s', 'first argument must be an SBMLModel structure');
 end;
 
-
 Species = AnalyseSpecies(SBMLModel);
 
 % write out species changes
@@ -59,7 +58,11 @@ for i=1:length(Species)
         Species(i).KineticLaw{1} = newFormula;
       end;
     end;
-    eqn{i} = sprintf('D%s = %s', Species(i).Name{1}, Species(i).KineticLaw{1});
+    if (Species(i).isConcentration == 1)
+      eqn{i} = sprintf('D%s = %s/%s', Species(i).Name{1}, Species(i).KineticLaw{1}, Species(i).compartment);
+    else
+      eqn{i} = sprintf('D%s = %s', Species(i).Name{1}, Species(i).KineticLaw{1});
+    end;
   elseif (Species(i).ChangedByRateRule == 1)
     for fd = 1:Model_getNumFunctionDefinitions(SBMLModel)
       newFormula = SubstituteFunction(Species(i).RateRule{1}, Model_getFunctionDefinition(SBMLModel, fd));
@@ -90,8 +93,11 @@ for i=1:length(Species)
   eqn{i} = SubstituteConstants(eqn{i}, SBMLModel);
   val{i} = sprintf('%s(0) = %g', Species(i).Name{1}, Species(i).initialValue);
 end;
-
-y = dsolve(eqn{1:end}, val{1:end});
+if (~isempty(SBMLModel.time_symbol))
+  y = dsolve(eqn{1:end}, val{1:end}, SBMLModel.time_symbol);
+else
+  y = dsolve(eqn{1:end}, val{1:end});
+end;
 
 
 function newRule = Differentiate(m, rule)
