@@ -76,6 +76,9 @@ end;
 %lose white space in the character array
 OriginalFormula = LoseWhiteSpace(OriginalFormula);
 
+% replace power with ^
+OriginalFormula = ReplacePower(OriginalFormula);
+
 %-------------------------------------------------------------
 % get the length of the array
 NoChars = length(OriginalFormula);
@@ -755,4 +758,44 @@ if (pairs(1, 1) == 1 && pairs(1, 2) == length(formula))
   newFormula = formula(2:end-1);
 else
   newFormula = formula;
+end;
+
+function output = ReplacePower(formula)
+
+% replace the word power with an expression using ^
+
+output = LoseWhiteSpace(formula);
+
+powerIndex = strfind(output, 'power');
+if (isempty(powerIndex))
+  return;
+end;
+
+formula = output;
+pairs = PairBrackets(formula);
+
+for i=1:length(powerIndex)
+  powerExp = formula(pairs(i, 1)-5:pairs(i, 2));
+  replacement = ReWrite(powerExp);
+  output = strrep(output, powerExp, replacement);
+end;
+
+function out = ReWrite(formula)
+
+% the string formula is of form: power(x,y)
+
+comma = strfind(formula, ',');
+close = strfind(formula, ')');
+
+x = formula(7:comma-1);
+y = formula(comma+1:close-1);
+
+if (strcmp(y, '-1'))
+  out = sprintf('1/%s', x);
+elseif (strcmp(y, '1'))
+  out = sprintf('%s', x);
+elseif (strcmp(y(1), '-'))
+  out = sprintf('1/%s^%s', x, y);
+else
+  out = sprintf('%s^%s', x, y);
 end;
