@@ -77,7 +77,11 @@ for i = 1:length(SBMLModel.species)
     
     if (SBMLModel.SBML_level == 2 && SBMLModel.species(i).isSetInitialConcentration == 1)
         Species(i).isConcentration = 1;
-    else
+    elseif (SBMLModel.SBML_level == 2 ...
+        && SBMLModel.species(i).isSetInitialConcentration == 0 ...
+        && SBMLModel.species(i).isSetInitialAmount == 0)
+        Species(i).isConcentration = 1;
+    else 
         Species(i).isConcentration = 0;
     end;
     Species(i).compartment = SBMLModel.species(i).compartment;
