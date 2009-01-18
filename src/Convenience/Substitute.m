@@ -444,7 +444,7 @@ end;
 [Parameters, paramValues] = GetAllParameters(SBMLModel);
 [Compartments, compValues] = GetCompartments(SBMLModel);
 for i = 1:NoSymbols
-    if (ismember(ArrayDigitIndex, i))
+    if (sum(ismember(ArrayDigitIndex, i)) == 1)
         ArraySyms(i) = eval(newCharArray{i});
     else
         found = 0;
