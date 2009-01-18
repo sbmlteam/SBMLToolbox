@@ -448,7 +448,7 @@ for i = 1:NoSymbols
         ArraySyms(i) = eval(newCharArray{i});
     else
         found = 0;
-        while (found ~= 1)
+        if (found ~= 1)
             for n = 1:length(Species)
                 if (strcmp(Species{n}, newCharArray{i}))
                     ArraySyms(i) = speciesValues(n);
