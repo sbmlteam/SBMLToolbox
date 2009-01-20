@@ -122,6 +122,9 @@ for i = 1:NoChars
     
     if (c == '(')
         %opening bracket
+        if (~isempty(output))
+          error('Substitute(OriginalFormula, SBMLModel)\nCannot deal with %s', output);
+        end;
         % clear output and set insideFlag
         output = '';
         insideFlag = 1;
