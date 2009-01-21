@@ -281,9 +281,11 @@ function y = Subs(charArray, SBMLModel)
 %------------------------------------------------------------
 
 % if the symbol is the symbol for time then it should substitute as 0
-if (strcmp(charArray, SBMLModel.time_symbol))
-  y = 0;
-  return;
+if (SBMLModel.SBML_level > 1)
+  if (strcmp(charArray, SBMLModel.time_symbol))
+    y = 0;
+    return;
+  end;
 end;
 
 % allowed operators
@@ -434,8 +436,10 @@ else
         
         % put the output into an array as a cell
         % if it is a number keep a note of the symbol No
-       if (strcmp(output, SBMLModel.time_symbol))
-         output = '0';
+       if (SBMLModel.SBML_level > 1)
+         if (strcmp(output, SBMLModel.time_symbol))
+           output = '0';
+         end;
        end;
        newCharArray{NoSymbols} = output;
         if (sum(ismember(output, Digits)) == length(output))
