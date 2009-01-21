@@ -280,10 +280,11 @@ for i = 1:NumberSpecies
         end;
 
     elseif (Species(i).ChangedByRateRule == 1)
+      % a rule will be in concentration by default
          if (Species(i).isConcentration == 1)
-                Array{i} = sprintf('\txdot(%u) = (%s)*%s;\n', i, char(Species(i).RateRule), Species(i).compartment);
-         else
            Array{i} = sprintf('\txdot(%u) = %s;\n', i, char(Species(i).RateRule));
+         else
+           Array{i} = sprintf('\txdot(%u) = (%s)*%s;\n', i, char(Species(i).RateRule), Species(i).compartment);
          end;
 %         Array{i} = sprintf('\txdot(%u) = %s;\n', i, char(Species(i).RateRule));
 
