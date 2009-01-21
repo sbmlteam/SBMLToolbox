@@ -80,7 +80,14 @@ for i = 1:length(SBMLModel.species)
     elseif (SBMLModel.SBML_level == 2 ...
         && SBMLModel.species(i).isSetInitialConcentration == 0 ...
         && SBMLModel.species(i).isSetInitialAmount == 0)
+      % value is set by rule/assignment thus will be concentration
+      % unless the compartment is 0D
+      comp = Model_getCompartmentById(SBMLModel, SBMLModel.species(i).compartment);
+      if (comp.spatialDimensions == 0)
+        Species(i).isConcentration = 0;
+      else
         Species(i).isConcentration = 1;
+      end;
     else 
         Species(i).isConcentration = 0;
     end;
