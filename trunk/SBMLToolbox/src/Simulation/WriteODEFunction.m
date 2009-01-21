@@ -48,11 +48,33 @@ if (~isSBML_Model(SBMLModel))
 end;
 
 % -------------------------------------------------------------
+% check that we can deal with the model
+for i=1:length(SBMLModel.parameter)
+  if (SBMLModel.parameter(i).constant == 0)
+    error('WriteODEFunction(SBMLModel, (optional) filename)\n%s', 'Cannot deal with varying parameters');
+  end;
+end;
+for i=1:length(SBMLModel.compartment)
+  if (SBMLModel.compartment(i).constant == 0)
+    error('WriteODEFunction(SBMLModel, (optional) filename)\n%s', 'Cannot deal with varying compartments');
+  end;
+end;
+if (length(SBMLModel.species) == 0)
+    error('WriteODEFunction(SBMLModel, (optional) filename)\n%s', 'Cannot deal with models with no species');
+end;  
+for i=1:length(SBMLModel.event)
+  if (~isempty(SBMLModel.event(i).delay))
+    error('WriteODEFunction(SBMLModel, (optional) filename)\n%s', 'Cannot deal with delayed events');
+  end;
+end;
+
+
+%--------------------------------------------------------------
 % get information from the model
 
 [ParameterNames, ParameterValues] = GetAllParametersUnique(SBMLModel);
-Species = AnalyseSpecies(SBMLModel);
 NumberSpecies = length(SBMLModel.species);
+Species = AnalyseSpecies(SBMLModel);
 Speciesnames = GetSpecies(SBMLModel);
 [CompartmentNames, CompartmentValues] = GetCompartments(SBMLModel);
 
@@ -164,6 +186,13 @@ fprintf(fileID, '%% initial species values - these may be overridden by assignme
 fprintf(fileID, '%% NOTE: any use of initialAssignments has been considered in calculating the initial values\n\n');
 
 fprintf(fileID, 'if (nargin == 0)\n');
+
+% if time symbol is used in any subsequent formula it is undeclared
+% for the initial execution of the function 
+% which would only happen when time = 0
+fprintf(fileID, '\n\t%% initial time\n');
+fprintf(fileID, '\t%s = 0;\n', timeVariable);
+
 fprintf(fileID, '\n\t%% initial concentrations\n');
 
 for i = 1:NumberSpecies
@@ -644,7 +673,7 @@ Output = NewArray;
 
 
 function output = WriteOutPiecewise(var, formula)
-            
+
 Arguments = DealWithPiecewise(formula);
 
 if (strfind('piecewise', Arguments{2}))
