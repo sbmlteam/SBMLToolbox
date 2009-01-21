@@ -136,13 +136,27 @@ Elements{ElementNumber} = element;
 
 
 % check for a sign in front of leading brackets
-if (Pairs (1,1) ~= 1)
-    if strcmp(OriginalFormula(1), '-')
-        Elements{1} = strcat('-',Elements{1});
-        Elements{3} = strcat('-',Elements{3});
-    end;
-end;
-       
+% if (Pairs (1,1) ~= 1)
+%     if strcmp(OriginalFormula(1), '-')
+%         Elements{1} = strcat('-',Elements{1});
+%         Elements{3} = strcat('-',Elements{3});
+%     end;
+% end;
+%        
     
+% what if there is smething before or after the piecewise bit 
+before = '';
+after = '';
+pw = strfind(OriginalFormula, 'piecewise');
+if (pw(1) ~= 1)
+  before = OriginalFormula(1:pw(1)-1);
+end;
+  
+if (Pairs(piecewiseBrackets, 2) ~= length(OriginalFormula))
+  after = OriginalFormula(Pairs(piecewiseBrackets, 2)+1:end);
+end;
+
+Elements{1} = strcat(before ,Elements{1}, after);
+Elements{3} = strcat(before ,Elements{3}, after);
 
 
