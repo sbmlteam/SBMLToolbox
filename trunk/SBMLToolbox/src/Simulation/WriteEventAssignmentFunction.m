@@ -117,7 +117,17 @@ fprintf(fileID, 'switch(eventNo)\n');
 for i = 1:length(SBMLModel.event)
   fprintf(fileID, '\tcase %u\n', i);
   for j = 1:length(SBMLModel.event(i).eventAssignment)
-    fprintf(fileID, '\t\t%s = %s;\n', SBMLModel.event(i).eventAssignment(j).variable, SBMLModel.event(i).eventAssignment(j).math);
+    % if a variable being assigned occurs in the math of a subsequent event
+    % assignment the value should be the original
+    % at present only species are dealt with !
+    assignment = SBMLModel.event(i).eventAssignment(j).math;
+    for s=1:NumberSpecies
+      if (~isempty(strfind(SBMLModel.event(i).eventAssignment(j).math, SpeciesNames{s})))
+        speciesV = sprintf('SpeciesValues(%u)', s);
+        assignment = strrep(assignment, SpeciesNames{s}, speciesV);
+      end;
+    end;
+    fprintf(fileID, '\t\t%s = %s;\n', SBMLModel.event(i).eventAssignment(j).variable, assignment);
   end;
 end;
 fprintf(fileID, '\totherwise\nend;\n');
