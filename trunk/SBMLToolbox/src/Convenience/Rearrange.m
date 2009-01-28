@@ -35,6 +35,13 @@ function output = Rearrange(formula, x)
 
 f = LoseWhiteSpace(formula);
 
+if (~isempty(strfind(f, '+-')))
+  f = strrep(f, '+-', '-');
+end;
+if (~isempty(strfind(f, '-+')))
+  f = strrep(f, '-+', '-');
+end;
+
 % if x is not in the formula just return the formula
 if (~ismember(f, x))
   output = f;
