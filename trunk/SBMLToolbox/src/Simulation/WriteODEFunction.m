@@ -67,6 +67,11 @@ for i=1:length(SBMLModel.event)
     error('WriteODEFunction(SBMLModel, (optional) filename)\n%s', 'Cannot deal with delayed events');
   end;
 end;
+for i=1:length(SBMLModel.reaction)
+  if (SBMLModel.reaction(i).fast == 1)
+    error('WriteODEFunction(SBMLModel, (optional) filename)\n%s', 'Cannot deal with fast reactions');
+  end;
+end;
 
 
 %--------------------------------------------------------------
@@ -418,6 +423,11 @@ end;
 %--------------------------------------------------------------------------
 function formula = DifferentiateRule(f, SpeciesNames, model)
 
+if (model.SBML_level > 1 && ~isempty(model.time_symbol))
+  if (~isempty(strfind(f, model.time_symbol)))
+    error('Cannot deal with time in an assignment rule');
+  end;
+end;
 
 if (~isempty(strfind(f, 'piecewise')))
   error('Cannot deal with nested piecewise in an assignment rule');
