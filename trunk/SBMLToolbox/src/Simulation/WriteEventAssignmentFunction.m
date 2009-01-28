@@ -39,6 +39,7 @@ end;
 [SpeciesNames, SpeciesValues] = GetSpecies(SBMLModel);
 NumberSpecies = length(SBMLModel.species);
 NumFuncs = length(SBMLModel.functionDefinition);
+Species = AnalyseSpecies(SBMLModel);
 
 %---------------------------------------------------------------
 % get the name/id of the model
@@ -142,6 +143,17 @@ for i = 1:length(AssignRules)
      rule = WriteRule(AssignRules(i));
      fprintf(fileID, '%s\n', rule);
 end;
+
+% write algebraic rules        
+fprintf(fileID, '\n%%--------------------------------------------------------\n');
+fprintf(fileID, '%% algebraic rules\n');
+
+for i = 1:NumberSpecies
+    if (Species(i).ConvertedToAssignRule == 1)
+        fprintf(fileID, '%s = %s;\n', char(Species(i).Name), Species(i).ConvertedRule);
+    end;
+end;
+
 
 % output values
 fprintf(fileID, '\n%%--------------------------------------------------------\n');
