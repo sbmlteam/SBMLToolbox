@@ -33,7 +33,7 @@ function fail = TestGetSpecies
 m = TranslateSBML('../../Test/test-data/l1v1.xml');
 
 names = {'S1', 'S2', 'x0'};
-values = [1.5e-15, 1.45, 1];
+values = [1.5, 1.45, 1];
 
 fail = TestFunction('GetSpecies', 1, 2, m, names, values);
 

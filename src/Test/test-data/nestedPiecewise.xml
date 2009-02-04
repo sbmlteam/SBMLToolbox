@@ -13,7 +13,7 @@
       <compartment id="c" size="1"/>
     </listOfCompartments>
     <listOfSpecies>
-      <species id="S1" compartment="c" initialAmount="1e-015"/>
+      <species id="S1" compartment="c" initialAmount="1"/>
     </listOfSpecies>
     <listOfParameters>
       <parameter id="p1" value="1.5" units="mol_per_time"/>
