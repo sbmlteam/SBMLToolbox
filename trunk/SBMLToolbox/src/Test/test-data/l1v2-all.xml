@@ -20,10 +20,10 @@
       <compartment name="c" volume="1"/>
     </listOfCompartments>
     <listOfSpecies>
-      <species name="S1" compartment="c" initialAmount="1e-015"/>
-      <species name="S2" compartment="c" initialAmount="2e-015"/>
-      <species name="S3" compartment="c" initialAmount="1e-015"/>
-      <species name="S4" compartment="c" initialAmount="1e-015"/>
+      <species name="S1" compartment="c" initialAmount="1"/>
+      <species name="S2" compartment="c" initialAmount="2"/>
+      <species name="S3" compartment="c" initialAmount="1"/>
+      <species name="S4" compartment="c" initialAmount="1"/>
       <species name="s" compartment="c" initialAmount="0"/>
     </listOfSpecies>
     <listOfParameters>

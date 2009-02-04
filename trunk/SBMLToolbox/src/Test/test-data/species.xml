@@ -39,10 +39,10 @@
       <compartment id="c" size="1"/>
     </listOfCompartments>
     <listOfSpecies>
-      <species id="S1" compartment="c" initialAmount="1e-015"/>
-      <species id="S2" compartment="c" initialAmount="2e-015"/>
-      <species id="S3" compartment="c" initialAmount="1e-015"/>
-      <species id="S4" compartment="c" initialAmount="1e-015"/>
+      <species id="S1" compartment="c" initialAmount="1"/>
+      <species id="S2" compartment="c" initialAmount="2"/>
+      <species id="S3" compartment="c" initialAmount="1"/>
+      <species id="S4" compartment="c" initialAmount="1"/>
       <species id="s1" compartment="c" initialAmount="0"/>
       <species id="s2" compartment="c" initialAmount="0"/>
     </listOfSpecies>

@@ -31,7 +31,7 @@
 #include <sbml/xml/XMLNode.h>
 #include <sbml/math/ASTNode.h>
 
-static const char * timeSymbol = "";
+static char * timeSymbol = "";
 
 /* function declarations */
 void LookForCSymbolTime(ASTNode_t *);
