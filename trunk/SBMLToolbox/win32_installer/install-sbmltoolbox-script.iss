@@ -1,14 +1,14 @@
 
 [Setup]
 AppName=SBMLToolbox
-AppVerName=SBMLToolbox 3.0.0
+AppVerName=SBMLToolbox 3.1.0
 AppPublisher=SBMLTeam
 AppPublisherURL=http://www.sbml.org
 AppSupportURL=http://www.sbml.org
 AppUpdatesURL=http://www.sbml.org
 
 
-DefaultDirName={pf}\SBML\SBMLToolbox-3.0.0
+DefaultDirName={pf}\SBML\SBMLToolbox-3.1.0
 DefaultGroupName=SBMLToolbox
 DisableProgramGroupPage=yes
 WizardSmallImageFile=sbmltoolbox-installer-mini-logo.bmp
@@ -20,7 +20,7 @@ UsePreviousAppDir=no
 Source: "C:\SBMLToolbox\win32_installer\SBMLToolbox\*"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\SBMLToolbox\win32_installer\SBMLToolbox\toolbox\*"; DestDir: "{app}\toolbox"; Flags: ignoreversion recursesubdirs
 Source: "C:\SBMLToolbox\win32_installer\SBMLToolbox\docs\*"; DestDir: "{app}\docs"; Flags: ignoreversion recursesubdirs
-Source: "C:\libsbml_3\win32\installer\Output\libsbml-3.1.0-win-expat.exe"; DestDir: "{app}\temp"; Flags: ignoreversion; Check: GetLibSBML;
+Source: "C:\libsbml\win32\installer\Output\libsbml-3.3.1-win-expat.exe"; DestDir: "{app}\temp"; Flags: ignoreversion; Check: GetLibSBML;
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
@@ -28,7 +28,7 @@ Root: HKCU; Subkey: Software\SBML; Flags: uninsdeletekeyifempty
 Root: HKCU; Subkey: Software\SBML\SBMLToolbox; Flags: uninsdeletekey
 Root: HKLM; Subkey: Software\SBML; Flags: uninsdeletekeyifempty
 Root: HKLM; Subkey: Software\SBML\SBMLToolbox; Flags: uninsdeletekey
-Root: HKLM; Subkey: Software\SBML\SBMLToolbox; ValueType: string; ValueName: Version; ValueData: 3.0.0
+Root: HKLM; Subkey: Software\SBML\SBMLToolbox; ValueType: string; ValueName: Version; ValueData: 3.1.0
 Root: HKLM; Subkey: Software\SBML\SBMLToolbox; ValueType: string; ValueName: InstallPath; ValueData: {app}
 
 [Code]
@@ -55,7 +55,7 @@ begin
 
   Note: it includes a version number
 **********************************************************************************************************}
-  MsgBox('This setup installs the Windows release of SBMLToolbox 3.0.0. This requires libSBML 3.1.0. This installer will allow you to install libSBML if it is not already present.', mbInformation, mb_Ok);
+  MsgBox('This setup installs the Windows release of SBMLToolbox 3.1.0. This requires libSBML 3.3.1. This installer will allow you to install libSBML if it is not already present.', mbInformation, mb_Ok);
 end;
 
 procedure URLLabelOnClick(Sender: TObject);
@@ -201,7 +201,7 @@ begin
 
   {look for a version no and check whether it is later than this}
   LibsbmlVersion := GetLibsbmlVersion();
-  LaterLibsbmlVers := LaterVersion(LibsbmlVersion, '3.1.0');
+  LaterLibsbmlVers := LaterVersion(LibsbmlVersion, '3.3.1');
 
   if LibsbmlVersion = '' then
     LibsbmlNotFound := True
@@ -214,7 +214,7 @@ begin
 
   {look for a version no and check whether it is later than this}
   ToolboxVersion := GetToolboxVersion();
-  LaterToolboxVers := LaterVersion(ToolboxVersion, '3.0.0');
+  LaterToolboxVers := LaterVersion(ToolboxVersion, '3.1.0');
 
   if not MatlabExists then begin
     Result := MsgBox('MATLAB cannot be located on this system.' #13 'The SBMLToolbox requires MATLAB.' #13#13 'Do you want to continue?', mbConfirmation, MB_YESNO) = idYes;
@@ -249,8 +249,8 @@ begin
 
   {libsbml :  install }
   libsbmlPage := CreateInputOptionPage(wpSelectDir,
-    'SBMLToolbox requires libsbml-3.1.0', '', '', True, False);
-  libsbmlPage.Add('Install libSBML-3.1.0');
+    'SBMLToolbox requires libsbml-3.3.1', '', '', True, False);
+  libsbmlPage.Add('Install libSBML-3.3.1');
 end;
 
 function ShouldSkipPage(PageID: Integer): Boolean;
@@ -312,5 +312,5 @@ end;
 
 [Run]
 
-Filename: "{app}\temp\libSBML-3.1.0-win-expat.exe"; flags: nowait; Check: GetLibSBML;
+Filename: "{app}\temp\libSBML-3.3.1-win-expat.exe"; flags: nowait; Check: GetLibSBML;
 
