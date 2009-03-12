@@ -7,6 +7,8 @@ function OutputODEFunction(varargin)
 %       5) a flag to indicate whther to output the simulation data as 
 %           a comma separated variable (csv) file
 %       6) a filename
+%       7) a flag to indicate whether to output species values in amount/concentration
+%           1 amount, 0 concentration (default)
 %          
 %  and plots the results of the ode45 solver 
 %
@@ -39,8 +41,8 @@ function OutputODEFunction(varargin)
 % get inputs
 if (nargin < 1)
     error('OutputODEFunction(SBMLModel, ...)\n%s', 'must have at least one argument');
-elseif (nargin > 6)
-    error('OutputODEFunction(SBMLModel, ...)\n%s', 'cannot have more than six arguments');
+elseif (nargin > 7)
+    error('OutputODEFunction(SBMLModel, ...)\n%s', 'cannot have more than seven arguments');
 end;
 
 
@@ -66,6 +68,12 @@ else
     Time_span = [0, Time_limit];
 end;
 
+outAmt = 0;
+if (nargin > 6)
+  if (varargin{7} == 1)
+    outAmt = 1;
+  end;
+end;
 % check third argument
 if ((length(Time_limit) ~= 1) || (~isnumeric(Time_limit)))
     error('OutputODEFunction(SBMLModel, time)\n%s', 'third argument must be a single real number indicating a time limit');
@@ -96,7 +104,7 @@ fileName = strcat(Name, '.m');
 % check whether file exists
 fId = fopen(fileName);
 if (fId == -1)
-    if (nargin == 6)
+    if (nargin > 5)
         Name = varargin{6};
         fileName = strcat(Name, '.m');
         fId = fopen(fileName);
@@ -358,7 +366,20 @@ if (~(ismember(1, isnan(SpeciesCourse))))
             fprintf(fileID, '%0.5g', TimeCourse(i));
 
             for j = 1:length(Species)
+              if (outAmt == 1)
+                % not necessarily the size given
+                [compartments, comp_values] = GetCompartments(SBMLModel);
+                if (length(compartments) == 1)
+                  comp_size = comp_values(1);
+                else
+                  % need to deal with mutliple compartments
+                  comp = Model_getCompartmentById(SBMLModel, SBMLModel.species(j).compartment);
+                  com_size = comp.size;
+                end;
+                fprintf(fileID, ',%1.16g', SpeciesCourse(i,j)*comp_size);
+              else
                 fprintf(fileID, ',%1.16g', SpeciesCourse(i,j));
+              end;
             end;
             fprintf(fileID, '\n');
 
