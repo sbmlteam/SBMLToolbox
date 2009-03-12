@@ -72,7 +72,9 @@ for i=1:length(SBMLModel.reaction)
     error('WriteODEFunction(SBMLModel, (optional) filename)\n%s', 'Cannot deal with fast reactions');
   end;
 end;
-
+if (length(SBMLModel.compartment) > 1)
+  error('WriteODEFunction(SBMLModel, (optional) filename)\n%s', 'Cannot deal with multiple compartments');
+end;
 
 %--------------------------------------------------------------
 % get information from the model
@@ -201,7 +203,11 @@ fprintf(fileID, '\t%s = 0;\n', timeVariable);
 fprintf(fileID, '\n\t%% initial concentrations\n');
 
 for i = 1:NumberSpecies
+  if (Species(i).isConcentration == 1)
     fprintf(fileID, '\t%s = %i;\n', char(Species(i).Name), Species(i).initialValue);
+  else
+    fprintf(fileID, '\t%s = %i/%s;\n', char(Species(i).Name), Species(i).initialValue, Species(i).compartment);
+  end;
 end;
 
 fprintf(fileID, '\nelse\n');
@@ -253,7 +259,12 @@ for i = 1:NumberSpecies
         if (isnan(Species(i).initialValue))                      
             error('WriteODEFunction(SBMLModel)\n%s', 'species concentration not provided or assigned by rule');
          else
+          if (Species(i).isConcentration == 1)
             fprintf(fileID, '\txdot(%u) = %i;\n', i, Species(i).initialValue);
+          else
+            fprintf(fileID, '\txdot(%u) = %i/%s;\n', i, Species(i).initialValue, Species(i).compartment);
+          end;
+%            fprintf(fileID, '\txdot(%u) = %i;\n', i, Species(i).initialValue);
         end;
 
     else
@@ -273,11 +284,11 @@ for i = 1:NumberSpecies
     if (Species(i).ChangedByReaction == 1)
         % need to look for piecewise functions
         if (isempty(strfind(char(Species(i).KineticLaw), 'piecewise')))
-            if (Species(i).isConcentration == 1)
+%             if (Species(i).isConcentration == 1)
                 Array{i} = sprintf('\txdot(%u) = (%s)/%s;\n', i, char(Species(i).KineticLaw), Species(i).compartment);
-            else
-                Array{i} = sprintf('\txdot(%u) = %s;\n', i, char(Species(i).KineticLaw));
-            end;
+%             else
+%                 Array{i} = sprintf('\txdot(%u) = %s;\n', i, char(Species(i).KineticLaw));
+%             end;
 
         else
             var = sprintf('xdot(%u)', i);
@@ -286,11 +297,11 @@ for i = 1:NumberSpecies
 
     elseif (Species(i).ChangedByRateRule == 1)
       % a rule will be in concentration by default
-         if (Species(i).isConcentration == 1)
+%          if (Species(i).isConcentration == 1)
            Array{i} = sprintf('\txdot(%u) = %s;\n', i, char(Species(i).RateRule));
-         else
-           Array{i} = sprintf('\txdot(%u) = (%s)*%s;\n', i, char(Species(i).RateRule), Species(i).compartment);
-         end;
+%          else
+%            Array{i} = sprintf('\txdot(%u) = (%s)*%s;\n', i, char(Species(i).RateRule), Species(i).compartment);
+%          end;
 %         Array{i} = sprintf('\txdot(%u) = %s;\n', i, char(Species(i).RateRule));
 
     elseif (Species(i).ChangedByAssignmentRule == 1)
