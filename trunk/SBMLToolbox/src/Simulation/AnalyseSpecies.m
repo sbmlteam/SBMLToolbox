@@ -75,16 +75,25 @@ for i = 1:length(SBMLModel.species)
 
     Species(i).initialValue = Values(i);
     
-    if (SBMLModel.SBML_level == 2 && SBMLModel.species(i).isSetInitialConcentration == 1)
-        Species(i).isConcentration = 1;
-    elseif (SBMLModel.SBML_level == 2 ...
-        && SBMLModel.species(i).isSetInitialConcentration == 0 ...
+    if (SBMLModel.SBML_level == 2)
+      if (SBMLModel.species(i).isSetInitialConcentration == 0 ...
         && SBMLModel.species(i).isSetInitialAmount == 0)
-      % value is set by rule/assignment thus will be concentration
-      % unless the compartment is 0D
-      comp = Model_getCompartmentById(SBMLModel, SBMLModel.species(i).compartment);
-      if (comp.spatialDimensions == 0)
-        Species(i).isConcentration = 0;
+        % value is set by rule/assignment thus will be concentration
+        % unless the compartment is 0D
+        comp = Model_getCompartmentById(SBMLModel, SBMLModel.species(i).compartment);
+        if (comp.spatialDimensions == 0)
+          Species(i).isConcentration = 0;
+        else
+          Species(i).isConcentration = 1;
+        end;
+      elseif (SBMLModel.species(i).isSetInitialAmount == 1)
+        % initial value given as amount
+        % but if overridden by assignment it will be in conc
+        if (abs(SBMLModel.species(i).initialAmount - Values(i)) > 1e-16)
+          Species(i).isConcentration = 1;
+        else
+          Species(i).isConcentration = 0;
+        end;
       else
         Species(i).isConcentration = 1;
       end;
