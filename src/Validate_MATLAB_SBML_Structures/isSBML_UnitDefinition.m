@@ -86,13 +86,13 @@ end;
 
 bSBML = 0;
 
-% check that Model is a structure
+% check that argument is a structure
 bSBML = isstruct(SBMLStructure);
 
 % check it contains each of the fields listed
 index = 1;
 while (bSBML == 1 && index <= nNumberFields)
-    bSBML = isfield(SBMLStructure, SBMLfieldnames(index));
+    bSBML = isfield(SBMLStructure, char(SBMLfieldnames(index)));
     index = index + 1;
 end;
 
