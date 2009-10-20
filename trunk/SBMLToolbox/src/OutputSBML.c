@@ -258,7 +258,7 @@ mexFunction (int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
       mexErrMsgTxt("Cannot copy name");
   }
 
-	SBase_setName((SBase_t *) (sbmlModel), pacName);
+	Model_setName(sbmlModel, pacName);
 
   mxUnitDefinitions = mxGetField(mxModel[0], 0, "unitDefinition");
   GetUnitDefinition(mxUnitDefinitions, nLevel, nVersion, sbmlModel);
@@ -2331,7 +2331,8 @@ GetUnit ( mxArray * mxUnits,
         if (strcmp(pacStoichiometryMath, ""))
         {
           pStoichiometryMath = 
-            StoichiometryMath_createWithMath(SBML_parseFormula(pacStoichiometryMath));
+            StoichiometryMath_create(unSBMLLevel, unSBMLVersion);
+          StoichiometryMath_setMath(pStoichiometryMath, SBML_parseFormula(pacStoichiometryMath));
           SpeciesReference_setStoichiometryMath(pSpeciesReference, pStoichiometryMath);
         }
       }
@@ -3180,7 +3181,8 @@ GetEvent ( mxArray * mxEvents,
 
     if (strcmp(pacTrigger, ""))
     {
-      Trigger_t * trigger = Trigger_createWithMath(SBML_parseFormula(pacTrigger));
+      Trigger_t * trigger = Trigger_create(unSBMLLevel, unSBMLVersion);
+      Trigger_setMath(trigger, SBML_parseFormula(pacTrigger));
       Event_setTrigger(pEvent, trigger);
     }
     }
@@ -3203,7 +3205,8 @@ GetEvent ( mxArray * mxEvents,
 
     if (strcmp(pacDelay, ""))
     {
-      Delay_t * delay = Delay_createWithMath(SBML_parseFormula(pacDelay));
+      Delay_t * delay = Delay_create(unSBMLLevel, unSBMLVersion);
+      Delay_setMath(delay, SBML_parseFormula(pacDelay));
       Event_setDelay(pEvent, delay);
     }
     }
@@ -3957,7 +3960,7 @@ GetStoichiometryMath ( mxArray * mxStoichiometryMath,
   ASTNode_t *ast;
 
   if (mxStoichiometryMath == NULL) return;
-  pStoichiometryMath = StoichiometryMath_create();
+  pStoichiometryMath = StoichiometryMath_create(unSBMLLevel, unSBMLVersion);
 
   /* get notes */
   mxNotes = mxGetField(mxStoichiometryMath, 0, "notes");
@@ -4068,7 +4071,7 @@ GetTrigger ( mxArray * mxTrigger,
   ASTNode_t * ast;
 
   if (mxTrigger == NULL) return;
-  pTrigger = Trigger_create();
+  pTrigger = Trigger_create(unSBMLLevel, unSBMLVersion);
 
   /* get notes */
   mxNotes = mxGetField(mxTrigger, 0, "notes");
@@ -4178,7 +4181,7 @@ GetDelay ( mxArray * mxDelay,
 	Delay_t *pDelay;
   ASTNode_t * ast;
   if (mxDelay == NULL) return;
-  pDelay = Delay_create();
+  pDelay = Delay_create(unSBMLLevel, unSBMLVersion);
 
   /* get notes */
   mxNotes = mxGetField(mxDelay, 0, "notes");
