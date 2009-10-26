@@ -205,6 +205,8 @@ fprintf(fileID, '\n\t%% initial concentrations\n');
 for i = 1:NumberSpecies
   if (Species(i).isConcentration == 1)
     fprintf(fileID, '\t%s = %i;\n', char(Species(i).Name), Species(i).initialValue);
+  elseif (Species(i).is0Dcompartment == 1)
+    fprintf(fileID, '\t%s = %i;\n', char(Species(i).Name), Species(i).initialValue);
   else
     fprintf(fileID, '\t%s = %i/%s;\n', char(Species(i).Name), Species(i).initialValue, Species(i).compartment);
   end;
@@ -261,6 +263,8 @@ for i = 1:NumberSpecies
          else
           if (Species(i).isConcentration == 1)
             fprintf(fileID, '\txdot(%u) = %i;\n', i, Species(i).initialValue);
+          elseif (Species(i).is0Dcompartment == 1)
+            fprintf(fileID, '\txdot(%u) = %i;\n', i, Species(i).initialValue);
           else
             fprintf(fileID, '\txdot(%u) = %i/%s;\n', i, Species(i).initialValue, Species(i).compartment);
           end;
@@ -284,11 +288,11 @@ for i = 1:NumberSpecies
     if (Species(i).ChangedByReaction == 1)
         % need to look for piecewise functions
         if (isempty(strfind(char(Species(i).KineticLaw), 'piecewise')))
-%             if (Species(i).isConcentration == 1)
+             if (Species(i).is0Dcompartment == 0)
                 Array{i} = sprintf('\txdot(%u) = (%s)/%s;\n', i, char(Species(i).KineticLaw), Species(i).compartment);
-%             else
-%                 Array{i} = sprintf('\txdot(%u) = %s;\n', i, char(Species(i).KineticLaw));
-%             end;
+            else
+                Array{i} = sprintf('\txdot(%u) = %s;\n', i, char(Species(i).KineticLaw));
+            end;
 
         else
             var = sprintf('xdot(%u)', i);
