@@ -22,8 +22,9 @@
  *----------------------------------------------------------------------- -->*/
 
 #include <mex.h>
+#ifndef USE_OCTAVE
 #include <matrix.h>
-
+#endif
 #include <string.h>
 
 #include <sbml/SBMLReader.h>
