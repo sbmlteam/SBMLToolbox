@@ -37,14 +37,14 @@ Totalfail = Totalfail + fail;
 
 test = test + 2;
 fail = TestGetAllParameters;
-if (fail == 1)
+if (fail > 0)
     disp('GetAllParameters failed');
 end;
 Totalfail = Totalfail + fail;
 
 test = test + 2;
 fail = TestGetAllParametersUnique;
-if (fail == 1)
+if (fail > 0)
     disp('GetAllParametersUnique failed');
 end;
 Totalfail = Totalfail + fail;
@@ -58,56 +58,56 @@ Totalfail = Totalfail + fail;
 
 test = test + 1;
 fail = TestGetParameterFromReaction;
-if (fail == 1)
+if (fail > 0)
     disp('GetParameterFromReaction failed');
 end;
 Totalfail = Totalfail + fail;
 
 test = test + 1;
 fail = TestGetParameterFromReactionUnique;
-if (fail == 1)
+if (fail > 0)
     disp('GetParameterFromReactionUnique failed');
 end;
 Totalfail = Totalfail + fail;
 
 test = test + 2;
 fail = TestGetRateLawsFromReactions;
-if (fail == 1)
+if (fail > 0)
     disp('GetRateLawsFromReactions failed');
 end;
 Totalfail = Totalfail + fail;
 
 test = test + 1;
 fail = TestGetRateLawsFromRules;
-if (fail == 1)
+if (fail > 0)
     disp('GetRateLawsFromRules failed');
 end;
 Totalfail = Totalfail + fail;
 
 test = test + 3;
 fail = TestGetSpecies;
-if (fail == 1)
+if (fail > 0)
     disp('GetSpecies failed');
 end;
 Totalfail = Totalfail + fail;
 
 test = test + 1;
 fail = TestGetSpeciesAlgebraicRules;
-if (fail == 1)
+if (fail > 0)
     disp('GetSpeciesAlgebraicRules failed');
 end;
 Totalfail = Totalfail + fail;
 
 test = test + 1;
 fail = TestGetSpeciesAssignmentRules;
-if (fail == 1)
+if (fail > 0)
     disp('GetSpeciesAssignmentRules failed');
 end;
 Totalfail = Totalfail + fail;
 
 test = test + 2;
 fail = TestGetStoichiometryMatrix;
-if (fail == 1)
+if (fail > 0)
     disp('GetStoichiometryMatrix failed');
 end;
 Totalfail = Totalfail + fail;
@@ -142,7 +142,7 @@ Totalfail = Totalfail + fail;
 
 test = test + 3;
 fail = TestGetStoichiometrySparse;
-if (fail == 1)
+if (fail > 0)
     disp('GetStoichiometrySparse failed');
 end;
 Totalfail = Totalfail + fail;
