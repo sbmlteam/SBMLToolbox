@@ -29,17 +29,18 @@ function fail = TestGetRateLawsFromReactions
 % and also available online as http://sbml.org/software/sbmltoolbox/license.html
 %----------------------------------------------------------------------- -->
 
+fail = 0;
 
 m = TranslateSBML('../../Test/test-data/algebraicRules.xml');
 
-species = {'S1', 'S2', 'S3', 'X'};
-rateLaws = {' - (k*S1)', ' + (k*S1) - (k_R2*S2)', ' + (k_R2*S2)', '0'};
+species = {'S1', 'S2', 'S3', 'X', 'S4'};
+rateLaws = {' - (k*S1)', ' + (k*S1) - (k_R2*S2)', '0', '0', ' + (k_R2*S2)'};
 
-fail = TestFunction('GetRateLawsFromReactions', 1, 2, m, species, rateLaws);
+fail = fail + TestFunction('GetRateLawsFromReactions', 1, 2, m, species, rateLaws);
 
 m = TranslateSBML('../../Test/test-data/l2v2-newComponents.xml');
 
 species = {'X0', 'X1'};
 rateLaws = {' - (v_in*X0/t_in)', '0'};
 
-fail = TestFunction('GetRateLawsFromReactions', 1, 2, m, species, rateLaws);
+fail = fail + TestFunction('GetRateLawsFromReactions', 1, 2, m, species, rateLaws);
