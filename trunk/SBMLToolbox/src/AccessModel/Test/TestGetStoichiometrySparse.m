@@ -1,4 +1,4 @@
-function fail = TestGetStoichiometryMatrix
+function fail = TestGetStoichiometrySparse
 % GetStoichiometryMatrix(SBMLModel) takes an SBML model 
 % returns 
 %       1) stoichiometry matrix
