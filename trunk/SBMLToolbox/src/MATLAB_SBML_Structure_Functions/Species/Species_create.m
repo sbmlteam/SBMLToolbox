@@ -64,7 +64,12 @@ elseif (nargin == 1)
     
 end;
 
-warning off all;
+if exist('OCTAVE_VERSION')
+  warning off Octave:divide-by-zero;
+else
+  warning off MATLAB:divideByZero;
+end;
+
 if (sbmlLevel == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name', 'compartment', 'initialAmount', 'units', 'boundaryCondition', 'charge', 'isSetInitialAmount', 'isSetCharge' };
     Values = {'SBML_SPECIES', '', '', '', '', 0/0, '', int32(0), int32(0), int32(0), int32(0)};
@@ -94,7 +99,12 @@ else
 end;
 
 Species = cell2struct(Values, SBMLfieldnames, 2);
-warning on all;
+
+if exist('OCTAVE_VERSION')
+  warning off Octave:divide-by-zero;
+else
+  warning off MATLAB:divideByZero;
+end;
 
 %check created structure is appropriate
 if (~isSBML_Species(Species, sbmlLevel, sbmlVersion))

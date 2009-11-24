@@ -64,7 +64,12 @@ elseif (nargin == 1)
   end;
 end;
 
-warning off all;
+if exist('OCTAVE_VERSION')
+  warning off Octave:divide-by-zero;
+else
+  warning off MATLAB:divideByZero;
+end;
+
 if (sbmlVersion == 2)
   SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'symbol', 'math'};
   Values = {'SBML_INITIAL_ASSIGNMENT', '', '', '', int32(-1), '', ''};
@@ -74,7 +79,12 @@ elseif (sbmlVersion == 3)
 end;
 
 InitialAssignment = cell2struct(Values, SBMLfieldnames, 2);
-warning on all;
+
+if exist('OCTAVE_VERSION')
+  warning off Octave:divide-by-zero;
+else
+  warning off MATLAB:divideByZero;
+end;
 
 %check created structure is appropriate
 if (~isSBML_InitialAssignment(InitialAssignment, sbmlLevel, sbmlVersion))

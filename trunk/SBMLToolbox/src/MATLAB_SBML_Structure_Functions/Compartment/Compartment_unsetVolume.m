@@ -47,7 +47,17 @@ elseif (sbmlLevel ~= 1)
     error(sprintf('%s\n%s', 'Compartment_unsetVolume(SBMLCompartment)', 'no volume field in a level 2 model'));    
 end;
 
-warning off all;
+if exist('OCTAVE_VERSION')
+  warning off Octave:divide-by-zero;
+else
+  warning off MATLAB:divideByZero;
+end;
+
 SBMLCompartment.volume = 0/0;
 SBMLCompartment.isSetVolume = 0;
-warning on all;
+
+if exist('OCTAVE_VERSION')
+  warning off Octave:divide-by-zero;
+else
+  warning off MATLAB:divideByZero;
+end;

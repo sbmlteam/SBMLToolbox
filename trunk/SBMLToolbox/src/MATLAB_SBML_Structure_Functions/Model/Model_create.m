@@ -63,7 +63,12 @@ elseif (nargin == 1)
     
 end;
 
-warning off all;
+if exist('OCTAVE_VERSION')
+  warning off Octave:divide-by-zero;
+else
+  warning off MATLAB:divideByZero;
+end;
+
 if (sbmlLevel == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation', 'SBML_level', 'SBML_version', 'name', 'unitDefinition', 'compartment', 'species', 'parameter', 'rule', 'reaction'};
     Values = {'SBML_MODEL', '', '', int32(1), int32(2), '', [], [], [], [], [], []};
@@ -217,7 +222,11 @@ if (sbmlLevel == 2)
     Model = setfield(Model, 'event', event);
 end;
 
-warning on all;
+if exist('OCTAVE_VERSION')
+  warning off Octave:divide-by-zero;
+else
+  warning off MATLAB:divideByZero;
+end;
 
 %check created structure is appropriate
 if (~isSBML_Model(Model))

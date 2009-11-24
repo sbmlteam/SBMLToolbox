@@ -47,7 +47,17 @@ elseif (sbmlLevel ~= 2)
     error(sprintf('%s\n%s', 'Compartment_unsetSize(SBMLCompartment)', 'no size field in a level 1 model'));    
 end;
 
-warning off all;
+if exist('OCTAVE_VERSION')
+  warning off Octave:divide-by-zero;
+else
+  warning off MATLAB:divideByZero;
+end;
+
 SBMLCompartment.size = 0/0;
 SBMLCompartment.isSetSize = 0;
-warning on all;
+
+if exist('OCTAVE_VERSION')
+  warning off Octave:divide-by-zero;
+else
+  warning off MATLAB:divideByZero;
+end;
