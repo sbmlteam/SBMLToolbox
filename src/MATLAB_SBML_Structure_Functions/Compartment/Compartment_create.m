@@ -64,7 +64,11 @@ elseif (nargin == 1)
     
 end;
 
-warning off all;
+if exist('OCTAVE_VERSION')
+  warning off Octave:divide-by-zero;
+else
+  warning off MATLAB:divideByZero;
+end;
 if (sbmlLevel == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name', 'volume', 'units', 'outside', 'isSetVolume' };
     Values = {'SBML_COMPARTMENT', '', '', '', 1, '', '', int32(1)};
@@ -84,8 +88,13 @@ else
     end;
 end;
 
+if exist('OCTAVE_VERSION')
+  warning off Octave:divide-by-zero;
+else
+  warning off MATLAB:divideByZero;
+end;
+
 Compartment = cell2struct(Values, SBMLfieldnames, 2);
-warning on all;
 
 %check created structure is appropriate
 if (~isSBML_Compartment(Compartment, sbmlLevel, sbmlVersion))

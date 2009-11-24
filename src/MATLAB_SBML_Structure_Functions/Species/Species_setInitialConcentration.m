@@ -51,7 +51,17 @@ end;
 SBMLSpecies.initialConcentration = initialConcentration;
 SBMLSpecies.isSetInitialConcentration = int32(1);
 
-warning off all;
+if exist('OCTAVE_VERSION')
+  warning off Octave:divide-by-zero;
+else
+  warning off MATLAB:divideByZero;
+end;
+
 SBMLSpecies.initialAmount = 0/0;
 SBMLSpecies.isSetInitialAmount = int32(0);
-warning on all;
+
+if exist('OCTAVE_VERSION')
+  warning off Octave:divide-by-zero;
+else
+  warning off MATLAB:divideByZero;
+end;

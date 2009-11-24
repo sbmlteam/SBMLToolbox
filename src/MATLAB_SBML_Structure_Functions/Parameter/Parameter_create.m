@@ -64,7 +64,12 @@ elseif (nargin == 1)
     
 end;
 
-warning off all;
+if exist('OCTAVE_VERSION')
+  warning off Octave:divide-by-zero;
+else
+  warning off MATLAB:divideByZero;
+end;
+
 if (sbmlLevel == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name', 'value', 'units', 'isSetValue' };
     Values = {'SBML_PARAMETER', '', '', '', 0/0, '',  int32(0)};
@@ -84,7 +89,12 @@ else
 end;
 
 Parameter = cell2struct(Values, SBMLfieldnames, 2);
-warning on all;
+
+if exist('OCTAVE_VERSION')
+  warning off Octave:divide-by-zero;
+else
+  warning off MATLAB:divideByZero;
+end;
 
 %check created structure is appropriate
 if (~isSBML_Parameter(Parameter, sbmlLevel, sbmlVersion))

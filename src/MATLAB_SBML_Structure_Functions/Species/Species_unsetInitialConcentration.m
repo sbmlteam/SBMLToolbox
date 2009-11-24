@@ -46,7 +46,17 @@ elseif (sbmlLevel ~= 2)
     error(sprintf('%s\n%s', 'Species_unsetInitialConcentration(SBMLSpecies)', 'no initialConcentration field in a level 1 model'));    
 end;
 
-warning off all;
+if exist('OCTAVE_VERSION')
+  warning off Octave:divide-by-zero;
+else
+  warning off MATLAB:divideByZero;
+end;
+
 SBMLSpecies.initialConcentration = 0/0;
 SBMLSpecies.isSetInitialConcentration = int32(0);
-warning on all;
+
+if exist('OCTAVE_VERSION')
+  warning off Octave:divide-by-zero;
+else
+  warning off MATLAB:divideByZero;
+end;

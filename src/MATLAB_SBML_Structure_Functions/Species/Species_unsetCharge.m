@@ -44,7 +44,17 @@ if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
     error(sprintf('%s\n%s', 'Species_unsetCharge(SBMLSpecies)', 'argument must be an SBML species structure'));
 end;
 
-warning off all;
+if exist('OCTAVE_VERSION')
+  warning off Octave:divide-by-zero;
+else
+  warning off MATLAB:divideByZero;
+end;
+
 SBMLSpecies.charge = int32(0);
 SBMLSpecies.isSetCharge = int32(0);
-warning on all;
+
+if exist('OCTAVE_VERSION')
+  warning off Octave:divide-by-zero;
+else
+  warning off MATLAB:divideByZero;
+end;

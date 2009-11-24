@@ -75,7 +75,12 @@ elseif (nargin == 1)
 
 end;
 
-warning off all;
+if exist('OCTAVE_VERSION')
+  warning off Octave:divide-by-zero;
+else
+  warning off MATLAB:divideByZero;
+end;
+
 if (sbmlLevel == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name', 'unit'};
     Values = {'SBML_UNIT_DEFINITION', '', '', '', []};
@@ -104,7 +109,11 @@ end;
 UnitDefinition = cell2struct(Values, SBMLfieldnames, 2);
 UnitDefinition = setfield(UnitDefinition, 'unit', unit);
 
-warning on all;
+if exist('OCTAVE_VERSION')
+  warning on Octave:divide-by-zero;
+else
+  warning on MATLAB:divideByZero;
+end;
 
 %check created structure is appropriate
 if (~isSBML_UnitDefinition(UnitDefinition, sbmlLevel, sbmlVersion))

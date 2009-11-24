@@ -64,14 +64,24 @@ elseif (nargin == 1)
   end;
 end;
 
-warning off all;
+if exist('OCTAVE_VERSION')
+  warning off Octave:divide-by-zero;
+else
+  warning off MATLAB:divideByZero;
+end;
+
 if (sbmlVersion == 3)
   SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'math'};
   Values = {'SBML_INITIAL_ASSIGNMENT', '', '', '', int32(-1), ''};
 end;
 
 Trigger = cell2struct(Values, SBMLfieldnames, 2);
-warning on all;
+
+if exist('OCTAVE_VERSION')
+  warning off Octave:divide-by-zero;
+else
+  warning off MATLAB:divideByZero;
+end;
 
 %check created structure is appropriate
 if (~isSBML_Trigger(Trigger, sbmlLevel, sbmlVersion))
