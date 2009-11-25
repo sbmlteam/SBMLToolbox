@@ -59,7 +59,15 @@ for i = 1:length(SBMLModel.species)
     Species(i).Name = name(i);
 
     if (SBMLModel.SBML_level == 2 && SBMLModel.SBML_version  > 1)
-      Species(i).speciesType = SBMLModel.species(i).speciesType;
+      if exist('OCTAVE_VERSION')
+        if isempty(SBMLModel.species(i).speciesType)
+          Species(i).speciesType = '';
+        else
+          Species(i).speciesType = SBMLModel.species(i).speciesType;
+        end;
+      else
+        mSpecies(i).speciesType = SBMLModel.species(i).speciesType;
+      end;
     end;
     
     bc = SBMLModel.species(i).boundaryCondition;
