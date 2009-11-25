@@ -6,7 +6,7 @@ function Unit = Unit_create(varargin)
 %
 %             and returns 
 %               a unit structure of the required level and version
-%               (default level = 2 version = 3)
+%               (default level = 2 version = 4)
 %
 %       Unit = Unit_create
 %    OR Unit = Unit_create(sbmlLevel)
@@ -36,9 +36,9 @@ function Unit = Unit_create(varargin)
 
 
 %default level = 2
-%default version = 3
+%default version = 4
 sbmlLevel = 2;
-sbmlVersion = 3;
+sbmlVersion = 4;
 
 if (nargin > 2)
   error(sprintf('%s\n%s\n%s', 'Unit_create(sbmlLevel, sbmlVersion)', ...
@@ -50,14 +50,14 @@ elseif (nargin == 2)
     error(sprintf('%s\n%s', 'Unit_create(sbmlLevel, sbmlVersion)', ...
       'first argument must be a valid SBML level i.e. either 1 or 2'));
   elseif ((~isIntegralNumber(varargin{2})) ...
-      || (varargin{2} < 1) || (varargin{2} > 3))
+      || (varargin{2} < 1) || (varargin{2} > 4))
     error(sprintf('%s\n%s', 'Unit_create(sbmlLevel, sbmlVersion)', ...
-      'second argument must be a valid SBML version i.e. either 1, 2 or 3'));
+      'second argument must be a valid SBML version i.e. either 1, 2, 3 or 4'));
   end;
   sbmlLevel = varargin{1};
-  if (sbmlLevel == 1 && varargin{2} == 3)
+  if (sbmlLevel == 1 && varargin{2} > 2)
     error(sprintf('%s\n%s', 'Level - version mismatch.', ...
-      'Allowed combinations are L1V1 L1V2 L2V1 L2V2 or L2V3'));
+      'Allowed combinations are L1V1 L1V2 L2V1 L2V2 L2V3 or L2V4'));
   else
     sbmlVersion = varargin{2};
   end;
@@ -88,7 +88,7 @@ else
       'exponent', 'scale', 'multiplier'};
     Values = {'SBML_UNIT', '', '', '', '', ...
       int32(1), int32(0), 1.0};
-  elseif (sbmlVersion == 3)
+  elseif (sbmlVersion > 2)
     SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', ...
       'kind', 'exponent', 'scale', 'multiplier'};
     Values = {'SBML_UNIT', '', '', '', int32(-1), ...

@@ -6,7 +6,7 @@ function KineticLaw = KineticLaw_create(varargin)
 %
 %             and returns 
 %               a kineticLaw structure of the required level and version
-%               (default level = 2 version = 3)
+%               (default level = 2 version = 4)
 %
 %       KineticLaw = KineticLaw_create
 %    OR KineticLaw = KineticLaw_create(sbmlLevel)
@@ -36,51 +36,67 @@ function KineticLaw = KineticLaw_create(varargin)
 
 
 %default level = 2
-%default version = 3
+%default version = 4
 sbmlLevel = 2;
-sbmlVersion = 3;
+sbmlVersion = 4;
 
 if (nargin > 2)
-    error(sprintf('%s\n%s\n%s', 'KineticLaw_create(sbmlLevel, sbmlVersion)', 'requires either zero, one or two arguments', 'SEE help KineticLaw_create'));
+    error(sprintf('%s\n%s\n%s', 'KineticLaw_create(sbmlLevel, sbmlVersion)', ...
+      'requires either zero, one or two arguments', 'SEE help KineticLaw_create'));
 
 elseif (nargin == 2)
     if ((~isIntegralNumber(varargin{1})) || (varargin{1} < 1) || (varargin{1} > 2))
-        error(sprintf('%s\n%s', 'KineticLaw_create(sbmlLevel, sbmlVersion)', 'first argument must be a valid SBML level i.e. either 1 or 2'));
-    elseif ((~isIntegralNumber(varargin{2})) || (varargin{2} < 1) || (varargin{2} > 3))
-        error(sprintf('%s\n%s', 'KineticLaw_create(sbmlLevel, sbmlVersion)', 'second argument must be a valid SBML version i.e. either 1, 2 or 3'));
+        error(sprintf('%s\n%s', 'KineticLaw_create(sbmlLevel, sbmlVersion)', ...
+          'first argument must be a valid SBML level i.e. either 1 or 2'));
+    elseif ((~isIntegralNumber(varargin{2})) || (varargin{2} < 1) || (varargin{2} > 4))
+        error(sprintf('%s\n%s', 'KineticLaw_create(sbmlLevel, sbmlVersion)', ...
+          'second argument must be a valid SBML version i.e. either 1, 2, 3 or 4'));
     end;
     sbmlLevel = varargin{1};
-    if (sbmlLevel == 1 && varargin{2} == 3)
-        error(sprintf('Level - version mismatch\nAllowed combinations are L1V1 L1V2 L2V1 L2V2 or L2V3'));
+    if (sbmlLevel == 1 && varargin{2} > 2)
+        error(sprintf('%s\n%s', 'Level - version mismatch', ...
+          'Allowed combinations are L1V1 L1V2 L2V1 L2V2 L2V3 or L2V4'));
     else
         sbmlVersion = varargin{2};
     end;
     
 elseif (nargin == 1)
     if ((~isIntegralNumber(varargin{1})) || (varargin{1} < 1) || (varargin{1} > 2))
-        error(sprintf('%s\n%s', 'KineticLaw_create(sbmlLevel)', 'argument must be a valid SBML level i.e. either 1 or 2'));
+        error(sprintf('%s\n%s', 'KineticLaw_create(sbmlLevel)', ...
+          'argument must be a valid SBML level i.e. either 1 or 2'));
     end;
     sbmlLevel = varargin{1};
     
 end;
 
 if (sbmlLevel == 1)
-    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'formula', 'parameter', 'timeUnits', 'substanceUnits'};
+    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'formula', ...
+      'parameter', 'timeUnits', 'substanceUnits'};
     Values = {'SBML_KINETIC_LAW', '', '', '', [], '', ''};
-    parameter = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'name', {}, 'value', {}, 'units', {}, 'isSetValue', {});
+    parameter = struct('typecode', {}, 'notes', {}, 'annotation', {}, ...
+      'name', {}, 'value', {}, 'units', {}, 'isSetValue', {});
 else
     if (sbmlVersion == 1)
-        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'formula', 'math', 'parameter', 'timeUnits', 'substanceUnits'};
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', ...
+          'formula', 'math', 'parameter', 'timeUnits', 'substanceUnits'};
         Values = {'SBML_KINETIC_LAW', '', '', '', '', '', [], '', ''};
-        parameter = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'name', {}, 'id', {}, 'value', {}, 'units', {}, 'constant', {}, 'isSetValue', {});
+        parameter = struct('typecode', {}, 'metaid', {}, 'notes', {}, ...
+          'annotation', {}, 'name', {}, 'id', {}, 'value', {}, 'units', {}, ...
+          'constant', {}, 'isSetValue', {});
     elseif (sbmlVersion == 2)
-        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','formula', 'math','parameter', 'sboTerm'};
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', ...
+          'formula', 'math','parameter', 'sboTerm'};
         Values = {'SBML_KINETIC_LAW', '', '', '', '', '', [], int32(-1)};
-        parameter = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'name', {}, 'id', {}, 'value', {}, 'units', {}, 'constant', {}, 'sboTerm', {}, 'isSetValue', {});
-    elseif (sbmlVersion == 3)
-        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'formula', 'math','parameter'};
+        parameter = struct('typecode', {}, 'metaid', {}, 'notes', {}, ...
+          'annotation', {}, 'name', {}, 'id', {}, 'value', {}, 'units', {}, ...
+          'constant', {}, 'sboTerm', {}, 'isSetValue', {});
+    elseif (sbmlVersion > 2)
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', ...
+          'sboTerm', 'formula', 'math','parameter'};
         Values = {'SBML_KINETIC_LAW', '', '', '', int32(-1), '', '', []};
-        parameter = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'sboTerm', {}, 'name', {}, 'id', {}, 'value', {}, 'units', {}, 'constant', {}, 'isSetValue', {});
+        parameter = struct('typecode', {}, 'metaid', {}, 'notes', {}, ...
+          'annotation', {}, 'sboTerm', {}, 'name', {}, 'id', {}, 'value', ...
+          {}, 'units', {}, 'constant', {}, 'isSetValue', {});
     end;
 end;
 

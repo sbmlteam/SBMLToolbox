@@ -6,7 +6,7 @@ function SpeciesReference = SpeciesReference_create(varargin)
 %
 %             and returns 
 %               a speciesReference structure of the required level and version
-%               (default level = 2 version = 3)
+%               (default level = 2 version = 4)
 %
 %       SpeciesReference = SpeciesReference_create
 %    OR SpeciesReference = SpeciesReference_create(sbmlLevel)
@@ -36,9 +36,9 @@ function SpeciesReference = SpeciesReference_create(varargin)
 
 
 %default level = 2
-%default version = 3
+%default version = 4
 sbmlLevel = 2;
-sbmlVersion = 3;
+sbmlVersion = 4;
 
 if (nargin > 2)
     error(sprintf('%s\n%s\n%s', ...
@@ -51,14 +51,14 @@ elseif (nargin == 2)
         error(sprintf('%s\n%s', ...
           'SpeciesReference_create(sbmlLevel, sbmlVersion)', ...
           'first argument must be a valid SBML level i.e. either 1 or 2'));
-    elseif ((~isIntegralNumber(varargin{2})) || (varargin{2} < 1) || (varargin{2} > 3))
+    elseif ((~isIntegralNumber(varargin{2})) || (varargin{2} < 1) || (varargin{2} > 4))
         error(sprintf('%s\n%s', ...
           'SpeciesReference_create(sbmlLevel, sbmlVersion)', ...
-          'second argument must be a valid SBML version i.e. either 1, 2 or 3'));
+          'second argument must be a valid SBML version i.e. either 1, 2, 3 or 4'));
     end;
     sbmlLevel = varargin{1};
-    if (sbmlLevel == 1 && varargin{2} == 3)
-        error(sprintf('Level - version mismatch\nAllowed combinations are L1V1 L1V2 L2V1 L2V2 or L2V3'));
+    if (sbmlLevel == 1 && varargin{2} > 2)
+        error(sprintf('Level - version mismatch\nAllowed combinations are L1V1 L1V2 L2V1 L2V2 L2V3 or L2V4'));
     else
         sbmlVersion = varargin{2};
     end;
@@ -85,14 +85,22 @@ else
     SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'species', 'id', ...
       'name', 'sboTerm', 'stoichiometry', 'stoichiometryMath'};
     Values = {'SBML_SPECIES_REFERENCE', '', '', '', '', '', '', int32(-1), 1, ''};
-  elseif (sbmlVersion == 3)
+  elseif (sbmlVersion > 2)
     SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', ...
       'species', 'id', 'name', 'stoichiometry', 'stoichiometryMath'};
     Values = {'SBML_SPECIES_REFERENCE', '', '', '', int32(-1), '', '', '', 1, ''};
+        
+    stoichiometryMath = struct('typecode', {}, 'metaid', {}, 'notes', {}, ...
+          'annotation', {}, 'sboTerm', {}, 'math', {});
   end;
 end;
 
 SpeciesReference = cell2struct(Values, SBMLfieldnames, 2);
+
+if (sbmlLevel == 2 && sbmlVersion > 2)
+  SpeciesReference = setfield(SpeciesReference, 'stoichiometryMath', ...
+    stoichiometryMath);
+end;
 
 %check created structure is appropriate
 if (~isSBML_SpeciesReference(SpeciesReference, sbmlLevel, sbmlVersion))
