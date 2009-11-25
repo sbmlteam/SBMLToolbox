@@ -3213,7 +3213,10 @@ GetEvent ( mxArray * mxEvents,
     }
     else
     {
-      GetDelay(mxDelay, unSBMLLevel, unSBMLVersion, pEvent);
+		    if ((mxDelay != NULL) && (mxIsEmpty(mxDelay) != 1)) 
+        {
+          GetDelay(mxDelay, unSBMLLevel, unSBMLVersion, pEvent);
+        }
     }
     if (unSBMLVersion < 3)
     {
