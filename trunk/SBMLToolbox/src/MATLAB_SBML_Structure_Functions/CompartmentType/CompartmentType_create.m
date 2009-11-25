@@ -6,7 +6,7 @@ function CompartmentType = CompartmentType_create(varargin)
 %
 %             and returns 
 %               a CompartmentType structure of the required level and version
-%               (default level = 2 version = 3)
+%               (default level = 2 version = 4)
 %
 %       CompartmentType = CompartmentType_create
 %    OR CompartmentType = CompartmentType_create(sbmlLevel)
@@ -38,9 +38,9 @@ function CompartmentType = CompartmentType_create(varargin)
 
 
 %default level = 2
-%default version = 3
+%default version = 4
 sbmlLevel = 2;
-sbmlVersion = 3;
+sbmlVersion = 4;
 
 if (nargin > 2)
   error(sprintf('%s\n%s\n%s', ...
@@ -52,7 +52,7 @@ elseif (nargin == 2)
   if ((~isIntegralNumber(varargin{1})) || (varargin{1} ~= 2))
     error(sprintf('%s\n%s', 'CompartmentType_create(sbmlLevel, sbmlVersion)', ...
       'first argument must be SBML level 2'));
-  elseif ((~isIntegralNumber(varargin{2})) || (varargin{2} < 2) || (varargin{2} > 3))
+  elseif ((~isIntegralNumber(varargin{2})) || (varargin{2} < 2) || (varargin{2} > 4))
     error(sprintf('%s\n%s', 'CompartmentType_create(sbmlLevel, sbmlVersion)', ...
       'second argument must be a valid SBML version i.e. either 2 or 3'));
   end;
@@ -75,7 +75,7 @@ end;
 if (sbmlVersion == 2)
   SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'name', 'id'};
   Values = {'SBML_COMPARTMENT_TYPE','', '', '', '', ''};
-elseif (sbmlVersion == 3)
+elseif (sbmlVersion > 2)
   SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id'};
   Values = {'SBML_COMPARTMENT_TYPE', '','', '', int32(-1), '', ''};
 end;

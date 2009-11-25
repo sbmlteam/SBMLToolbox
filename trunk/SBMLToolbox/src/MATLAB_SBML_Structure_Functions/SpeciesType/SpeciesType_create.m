@@ -6,7 +6,7 @@ function SpeciesType = SpeciesType_create(varargin)
 %
 %             and returns 
 %               a SpeciesType structure of the required level and version
-%               (default level = 2 version = 3)
+%               (default level = 2 version = 4)
 %
 %       SpeciesType = SpeciesType_create
 %    OR SpeciesType = SpeciesType_create(sbmlLevel)
@@ -36,9 +36,9 @@ function SpeciesType = SpeciesType_create(varargin)
 
 
 %default level = 2
-%default version = 3
+%default version = 4
 sbmlLevel = 2;
-sbmlVersion = 3;
+sbmlVersion = 4;
 
 if (nargin > 2)
   error(sprintf('%s\n%s\n%s', ...
@@ -50,7 +50,7 @@ elseif (nargin == 2)
   if ((~isIntegralNumber(varargin{1})) || (varargin{1} ~= 2))
     error(sprintf('%s\n%s', 'SpeciesType_create(sbmlLevel, sbmlVersion)', ...
       'first argument must be SBML level 2'));
-  elseif ((~isIntegralNumber(varargin{2})) || (varargin{2} < 2) || (varargin{2} > 3))
+  elseif ((~isIntegralNumber(varargin{2})) || (varargin{2} < 2) || (varargin{2} > 4))
     error(sprintf('%s\n%s', 'SpeciesType_create(sbmlLevel, sbmlVersion)', ...
       'second argument must be a valid SBML version i.e. either 2 or 3'));
   end;
@@ -73,7 +73,7 @@ end;
 if (sbmlVersion == 2)
   SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'name', 'id'};
   Values = {'SBML_SPECIES_TYPE', '', '', '', '', ''};
-elseif (sbmlVersion == 3)
+elseif (sbmlVersion > 2)
   SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id'};
   Values = {'SBML_SPECIES_TYPE', '', '', '', int32(-1), '', ''};
 end;
