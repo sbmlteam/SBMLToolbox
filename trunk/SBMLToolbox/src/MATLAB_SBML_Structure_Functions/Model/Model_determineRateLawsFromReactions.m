@@ -208,54 +208,88 @@ end; % for NumSpecies
 
 
 function y = Substitute(InitialCharArray, ReplacementParams, Formula)
-
-Allowed = {'(',')','*','/','+','-','^', ' ', ','};
-% get the number of parameters to be replced
-NumberParams = length(InitialCharArray);
-
-
-% want these in order of shortest to longest
-% since shorter may be subsets of longer 
-% ie.  'alpha'  is a subset of 'alpha1'
-
-% determine length of each parameter
-for i = 1:NumberParams
-    NoCharsInParam(i) = length(InitialCharArray{i});
+% Allowed = {'(',')','*','/','+','-','^', ' ', ','};
+if exist('OCTAVE_VERSION')
+  [g,b,c,e] = regexp(Formula, '[,+-/*\^()]');
+  len = length(Formula);
+  a{1} = Formula(1:b(1)-1);
+  for i=2:length(b)
+    a{i} = Formula(b(i-1)+1:b(i)-1);
+  end;
+  i = length(b)+1;
+  a{i} = Formula(b(i-1)+1:len);
+else
+  [a,b,c,d,e] = regexp(Formula, '[,+-*/()]', 'split');
 end;
 
-% create an array of the index of the shortest to longest
-[NoCharsInParam, Index] = sort(NoCharsInParam);
-
-% rewrite the arrays of parameters from shortest to longest
-for i = 1:NumberParams
-    OrderedCharArray{i} = InitialCharArray{Index(i)};
-    OrderedReplacements{i} = ReplacementParams{Index(i)};
-end;
-
-RevisedFormula = Formula;
-
-for i = NumberParams:-1:1
-    % before replacing a character need to check that it is not part of a
-    % word etc 
-    NumOccurences = length(findstr(OrderedCharArray{i}, RevisedFormula));
-    for j = 1:NumOccurences
-        k = findstr(OrderedCharArray{i}, RevisedFormula);
-        if (k(j) == 1)
-            before = ' ';
-        else
-            before = RevisedFormula(k(j)-1);
-        end;
-        if ((k(j)+length(OrderedCharArray{i})) < length(RevisedFormula))
-            after = RevisedFormula(k(j)+length(OrderedCharArray{i}));
-        else
-            after = ' ';
-        end;
-        if (ismember(after, Allowed) && ismember(before, Allowed))
-            RevisedFormula = regexprep(RevisedFormula, OrderedCharArray{i}, OrderedReplacements{i}, j);
-        end;
+num = length(a);
+for i=1:length(InitialCharArray)
+  for j=1:num
+    if strcmp(a(j), InitialCharArray{i})
+      a(j) = regexprep(a(j), a(j), ReplacementParams{i});
     end;
+  end;
 end;
 
-y = RevisedFormula;
+Formula = '';
+for i=1:num-1
+  Formula = strcat(Formula, char(a(i)), char(e(i)));
+end;
+Formula = strcat(Formula, char(a(num)));
 
+y = Formula;
+
+
+
+% % get the number of parameters to be replced
+% NumberParams = length(InitialCharArray);
+% 
+% 
+% % want these in order of shortest to longest
+% % since shorter may be subsets of longer 
+% % ie.  'alpha'  is a subset of 'alpha1'
+% 
+% % determine length of each parameter
+% for i = 1:NumberParams
+%     NoCharsInParam(i) = length(InitialCharArray{i});
+% end;
+% 
+% % create an array of the index of the shortest to longest
+% [NoCharsInParam, Index] = sort(NoCharsInParam);
+% 
+% % rewrite the arrays of parameters from shortest to longest
+% for i = 1:NumberParams
+%     OrderedCharArray{i} = InitialCharArray{Index(i)};
+%     OrderedReplacements{i} = ReplacementParams{Index(i)};
+% end;
+% 
+% RevisedFormula = Formula;
+% 
+% for i = NumberParams:-1:1
+%     % before replacing a character need to check that it is not part of a
+%     % word etc 
+%     NumOccurences = length(findstr(OrderedCharArray{i}, RevisedFormula));
+%     for j = 1:NumOccurences
+%         k = findstr(OrderedCharArray{i}, RevisedFormula);
+%         if (k(j) == 1)
+%             before = ' ';
+%         else
+%             before = RevisedFormula(k(j)-1);
+%         end;
+%         if ((k(j)+length(OrderedCharArray{i})) < length(RevisedFormula))
+%             after = RevisedFormula(k(j)+length(OrderedCharArray{i}));
+%         else
+%             after = ' ';
+%         end;
+%         % octave does not match ' ' using ismember
+%         if ((ismember(after, Allowed) || (after == Allowed{8})) ...
+%                && (ismember(before, Allowed) || (before == Allowed{8})))
+%           RevisedFormula = regexprep(RevisedFormula, OrderedCharArray{i}, ...
+%                                                   OrderedReplacements{i}, j);
+%         end;
+%     end;
+% end;
+% 
+% y = RevisedFormula;
+% 
 
