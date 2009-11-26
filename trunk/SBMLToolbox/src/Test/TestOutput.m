@@ -24,7 +24,20 @@ function fail = TestOutput
 if (~isdir('Out-test'))
 mkdir ('Out-test');
 end;
-files = dir('test-data/*.xml');
+
+if exist('OCTAVE_VERSION')
+  ff = dir('test-data');
+  j = 1;
+  for i=1:length(ff)
+    if (ff(i).isdir == 0 && ~isempty(strfind(ff(i).name, '.xml')))
+      files(j) = ff(i);
+      j = j+1;
+    end;
+  end;
+else
+  files = dir('test-data/*.xml');
+end;
+
 fail = 0;
 
 for i=1:length(files)
