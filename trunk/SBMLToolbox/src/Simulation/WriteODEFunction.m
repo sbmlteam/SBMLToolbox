@@ -204,11 +204,11 @@ fprintf(fileID, '\n\t%% initial concentrations\n');
 
 for i = 1:NumberSpecies
   if (Species(i).isConcentration == 1)
-    fprintf(fileID, '\t%s = %i;\n', char(Species(i).Name), Species(i).initialValue);
+    fprintf(fileID, '\t%s = %g;\n', char(Species(i).Name), Species(i).initialValue);
   elseif (Species(i).is0Dcompartment == 1)
-    fprintf(fileID, '\t%s = %i;\n', char(Species(i).Name), Species(i).initialValue);
+    fprintf(fileID, '\t%s = %g;\n', char(Species(i).Name), Species(i).initialValue);
   else
-    fprintf(fileID, '\t%s = %i/%s;\n', char(Species(i).Name), Species(i).initialValue, Species(i).compartment);
+    fprintf(fileID, '\t%s = %g/%s;\n', char(Species(i).Name), Species(i).initialValue, Species(i).compartment);
   end;
 end;
 
@@ -262,11 +262,11 @@ for i = 1:NumberSpecies
             error('WriteODEFunction(SBMLModel)\n%s', 'species concentration not provided or assigned by rule');
          else
           if (Species(i).isConcentration == 1)
-            fprintf(fileID, '\txdot(%u) = %i;\n', i, Species(i).initialValue);
+            fprintf(fileID, '\txdot(%u) = %g;\n', i, Species(i).initialValue);
           elseif (Species(i).is0Dcompartment == 1)
-            fprintf(fileID, '\txdot(%u) = %i;\n', i, Species(i).initialValue);
+            fprintf(fileID, '\txdot(%u) = %g;\n', i, Species(i).initialValue);
           else
-            fprintf(fileID, '\txdot(%u) = %i/%s;\n', i, Species(i).initialValue, Species(i).compartment);
+            fprintf(fileID, '\txdot(%u) = %g/%s;\n', i, Species(i).initialValue, Species(i).compartment);
           end;
 %            fprintf(fileID, '\txdot(%u) = %i;\n', i, Species(i).initialValue);
         end;
