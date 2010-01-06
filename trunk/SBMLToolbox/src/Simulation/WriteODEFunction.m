@@ -139,7 +139,12 @@ fileName = strcat(Name, '.m');
 fileID = fopen(fileName, 'w');
 
 % write the function declaration
-fprintf(fileID,  'function xdot = %s(%s, x_values)\n', Name, timeVariable);
+% if no events and using octave
+% if (exist('OCTAVE_VERSION') && NumEvents == 0)
+%   fprintf(fileID,  'function xdot = %s(x_values, %s)\n', Name, timeVariable);
+% else
+  fprintf(fileID,  'function xdot = %s(%s, x_values)\n', Name, timeVariable);
+% end;
 
 % need to add comments to output file
 fprintf(fileID, '%% function %s takes\n', Name);
@@ -176,7 +181,7 @@ fprintf(fileID, '\n%%--------------------------------------------------------\n'
 fprintf(fileID, '%% compartment values\n\n');
 
 for i = 1:length(CompartmentNames)
-    fprintf(fileID, '%s = %i;\n', CompartmentNames{i}, CompartmentValues(i));
+    fprintf(fileID, '%s = %g;\n', CompartmentNames{i}, CompartmentValues(i));
 end;
 
 % write the parameter values
@@ -184,7 +189,7 @@ fprintf(fileID, '\n%%--------------------------------------------------------\n'
 fprintf(fileID, '%% parameter values\n\n');
 
 for i = 1:length(ParameterNames)
-    fprintf(fileID, '%s = %i;\n', ParameterNames{i}, ParameterValues(i));
+    fprintf(fileID, '%s = %g;\n', ParameterNames{i}, ParameterValues(i));
 end;
 
 % write the initial concentration values for the species
@@ -268,7 +273,7 @@ for i = 1:NumberSpecies
           else
             fprintf(fileID, '\txdot(%u) = %g/%s;\n', i, Species(i).initialValue, Species(i).compartment);
           end;
-%            fprintf(fileID, '\txdot(%u) = %i;\n', i, Species(i).initialValue);
+%            fprintf(fileID, '\txdot(%u) = %g;\n', i, Species(i).initialValue);
         end;
 
     else
