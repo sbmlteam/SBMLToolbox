@@ -208,12 +208,24 @@ if ((SBMLModel.SBML_level == 2) && (length(SBMLModel.event) ~= 0))
         SpeciesCourseB = [];
     end;
 else
-    % if no events
+%     % if no events
+%   if exist('OCTAVE_VERSION')
+%     SpeciesCourse = lsode(fhandle, InitConds, Time_span);
+%     TimeCourse = Time_span;
+%   else
     [TimeCourse, SpeciesCourse] = ode45(fhandle, Time_span, InitConds, options);
+%   end;
 end;
 
 %check whether solution is feasible and if not use a stiff equation solver
-if (ismember(1, isnan(SpeciesCourse)))
+fail = 0;
+if exist('OCTAVE_VERSION')
+  fail = testmember(1, isnan(SpeciesCourse));
+else
+  fail = ismember(1, isnan(SpeciesCourse));
+end;
+
+if (fail && ~exist('OCTAVE_VERSION'))
     disp('Equations appear to be stiff - solution being recalculated with ode23s/n');
     if (nargin > 3)
         delta_t = Time_limit/varargin{4};
@@ -296,8 +308,18 @@ end;
 Species = GetSpecies(SBMLModel);
 
 %--------------------------------------------------------------
+% dont even try and plot from octave
+if (~exist('OCTAVE_VERSION'))
+
 if ((nargin > 1) && (varargin{2} == 1))
-    if (~(ismember(1, isnan(SpeciesCourse))))
+  fail = 0;
+  if exist('OCTAVE_VERSION')
+    fail = testmember(1, isnan(SpeciesCourse));
+  else
+    fail = ismember(1, isnan(SpeciesCourse));
+  end;
+
+    if (~fail)
 
         PlotSpecies = SelectSpecies(SBMLModel);
 
@@ -335,16 +357,23 @@ if ((nargin > 1) && (varargin{2} == 1))
         end;
     end;
 end;
+
+end;
 %-------------------------------------------------------------------------
 % write output file
 % if simulation has failed do not
-if (~(ismember(1, isnan(SpeciesCourse))))
-    if ((nargin > 4) && (varargin{5} == 1))
+fail = 0;
+if exist('OCTAVE_VERSION')
+  fail = testmember(1, isnan(SpeciesCourse));
+else
+  fail = ismember(1, isnan(SpeciesCourse));
+end;
+
+if (~fail)
+     if ((nargin > 4) && (varargin{5} == 1))
         %------------------------------------------------------------
-
         % get the character strings for each species name
-        [x, y, Speciesnames] = GetSpeciesSymbols(SBMLModel);
-
+         [Speciesnames] = GetSpecies(SBMLModel);
 
         %---------------------------------------------------------------
         fileName = strcat(Name, '.csv');
@@ -376,6 +405,10 @@ if (~(ismember(1, isnan(SpeciesCourse))))
                   comp = Model_getCompartmentById(SBMLModel, SBMLModel.species(j).compartment);
                   com_size = comp.size;
                 end;
+                % catch any anomalies
+                if (isnan(comp_size))
+                  comp_size = 1;
+                end;
                 fprintf(fileID, ',%1.16g', SpeciesCourse(i,j)*comp_size);
               else
                 fprintf(fileID, ',%1.16g', SpeciesCourse(i,j));
@@ -388,8 +421,8 @@ if (~(ismember(1, isnan(SpeciesCourse))))
         fclose(fileID);
 
 
-    end;
-end;
+     end;
+ end;
 
 
 

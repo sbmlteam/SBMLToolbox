@@ -108,7 +108,7 @@ fprintf(fileID, '\n%%--------------------------------------------------------\n'
 fprintf(fileID, '%% parameter values\n\n');
 
 for i = 1:length(ParameterNames)
-    fprintf(fileID, '%s = %i;\n', ParameterNames{i}, ParameterValues(i));
+    fprintf(fileID, '%s = %g;\n', ParameterNames{i}, ParameterValues(i));
 end;
 
 % write the current species concentrations
