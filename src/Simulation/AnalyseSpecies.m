@@ -66,7 +66,7 @@ for i = 1:length(SBMLModel.species)
           Species(i).speciesType = SBMLModel.species(i).speciesType;
         end;
       else
-        mSpecies(i).speciesType = SBMLModel.species(i).speciesType;
+         Species(i).speciesType = SBMLModel.species(i).speciesType;
       end;
     end;
     
