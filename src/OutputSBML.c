@@ -102,7 +102,7 @@ mexFunction (int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 	mxArray * mxCheckStructure[1];
 	mxArray * mxFilename[2], * mxExt[1];
 	int nStatus;
-	char *pacFilename, *pacTempString1, *pacTempString2;
+	char *pacFilename = NULL, *pacTempString1 = NULL, *pacTempString2 = NULL;
   size_t nBuflen, nBufferLen;
 	
 	SBMLDocument_t *sbmlDocument;
@@ -391,10 +391,9 @@ mexFunction (int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 	else
 	{
 	  /* 
-	   * user has specified a filename
-	   * /
-	  
-	  /* check that the extension has been used  */
+	   * user has specified a filename	  
+	   * check that the extension has been used  
+     */
 	  if (strstr(pacFilename, ".xml") == NULL)
 	  {
 		  strcat(pacFilename, ".xml");
@@ -470,7 +469,7 @@ LookForCSymbolTime(ASTNode_t * math)
 SBMLTypeCode_t
 CharToTypecode (char * pacTypecode)
 {
-	SBMLTypeCode_t typecode;
+	SBMLTypeCode_t typecode = SBML_UNKNOWN;
 	unsigned int nIndex;
 
 	const char * Typecodes[] =
@@ -1159,12 +1158,12 @@ GetUnit ( mxArray * mxUnits,
 	char * pacName;
 	char * pacId;
 	char * pacCompartment;
-	char * pacSpeciesType;
+	char * pacSpeciesType = NULL;
 	double dInitialAmount;
 	double dInitialConcentration;
 	char * pacUnits;
 	char * pacSubstanceUnits;
-	char * pacSpatialSizeUnits;
+	char * pacSpatialSizeUnits = NULL;
 	int nHasOnlySubsUnits;
 	int nBoundaryCondition;
 	int nCharge;
@@ -1651,15 +1650,15 @@ GetUnit ( mxArray * mxUnits,
   char * pacTypecode;
 	char * pacNotes;
 	char * pacAnnotations;
-  char * pacType;
+  char * pacType = NULL;
   char * pacFormula;
 	char * pacVariable;
 	char * pacSpecies;
 	char * pacCompartment;
 	char * pacName;
 	char * pacUnits;
-  int nSBOTerm;
-	char * pacMetaid;
+  int nSBOTerm = -1;
+	char * pacMetaid = NULL;
 
   mxArray *mxMetaid;
 	mxArray * mxNotes, * mxAnnotations, * mxFormula, * mxVariable, * mxCompartment;
@@ -1727,7 +1726,7 @@ GetUnit ( mxArray * mxUnits,
     ast = SBML_parseFormula(pacFormula);
     LookForCSymbolTime(ast);
 
-		/* get each of the fields regardless of whether appropriate type
+		/* get each of the fields regardless of whether appropriate type */
 
 		/* get Variable */
 		mxVariable = mxGetField(mxRule, i, "variable");
@@ -2204,12 +2203,12 @@ GetUnit ( mxArray * mxUnits,
   char * pacNotes;
   char * pacAnnotations;
   char * pacSpecies;
-  char * pacId;
-  char * pacName;
+  char * pacId = NULL;
+  char * pacName = NULL;
   int nStoichiometry;
   int nDenominator;
   double dStoichiometry;
-  char * pacStoichiometryMath;
+  char * pacStoichiometryMath = NULL;
   int nSBOTerm;
 	char * pacMetaid;
 
@@ -2582,11 +2581,11 @@ GetUnit ( mxArray * mxUnits,
   char * pacNotes;
   char * pacAnnotations;
   char * pacFormula;
-  char * pacTimeUnits;
-  char * pacSubstanceUnits;
-  char * pacMath;
+  char * pacTimeUnits = NULL;
+  char * pacSubstanceUnits = NULL;
+  char * pacMath = NULL;
   int nSBOTerm;
-	char * pacMetaid;
+	char * pacMetaid = NULL;
 
   mxArray *mxMetaid;
  	mxArray * mxNotes, * mxAnnotations, * mxFormula, * mxTimeUnits;
@@ -3093,9 +3092,9 @@ GetEvent ( mxArray * mxEvents,
 	char * pacAnnotations;
 	char * pacName;
 	char * pacId;
-  char * pacTrigger;
-	char * pacDelay;
-	char * pacTimeUnits;
+  char * pacTrigger = NULL;
+	char * pacDelay = NULL;
+	char * pacTimeUnits = NULL;
   int nSBOTerm;
 	char * pacMetaid;
 	int nUseValuesFromTrigger;
