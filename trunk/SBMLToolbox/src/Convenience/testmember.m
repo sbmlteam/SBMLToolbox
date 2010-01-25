@@ -1,4 +1,4 @@
-function value = testmember (num, array)
+function y = testmember (num, array)
 % testmember takes a value and an array of values 
 %       and returns 
 %           1 if value is a member of the array 
@@ -32,14 +32,14 @@ function value = testmember (num, array)
 %----------------------------------------------------------------------- -->
 
 
-value = 0;
+y = 0;
 
 [m, n] = size(array);
 
 for i=1:m
   for j=1:n
     if (num == array(m,n))
-	    value = 1;
+	    y = 1;
 	    return;
 	  end;
   end;
