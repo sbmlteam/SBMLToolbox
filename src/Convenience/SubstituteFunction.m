@@ -11,7 +11,7 @@ function Formula = SubstituteFunction(OriginalFormula, SBMLFunctionDefinition)
 %
 %   EXAMPLE:
 %           fD = SBMLFunmctionDefinition 
-%               with id = 'g' and math = 'lambda(x,X+0.5)' 
+%               with id = 'g' and math = 'lambda(x,x+0.5)' 
 %
 %           formula = SubstituteFormula('g(y)', fD)
 %           
