@@ -13,7 +13,7 @@ function y = testmember (num, array)
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
 %  Organization:  
 %  Created     :   
-%  Revision    :   $Id: $
+%  Revision    :   $Id$
 %  Source      :   $Source v $
 %
 %<!---------------------------------------------------------------------------
