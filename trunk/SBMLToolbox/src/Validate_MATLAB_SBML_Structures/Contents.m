@@ -1,36 +1,37 @@
 % toolbox\Validate_MATLAB_SBML_Structures
 % 
-% isSBML_XXX(SBMLStructure, Level)
-% Functions that return TRUE(1) if SBMLStructure is a structure of type XXX
-% FALSE (0) if SBMLStructure is 
-%                           NOT a structure
+% [y, message] = isSBML_XXX(SBMLStructure, Level, Version (optional))
+% Functions that return 
+%              1)   y = 1 if SBMLStructure is correct
+%                   y = 0 if SBMLStructure is NOT a structure
 %                    OR     does not contain the appropriate fields to be of
-%                           type XXX and Level of SBML
+%                           type XXX and Level and Version of SBML
 %                    OR     does not have the correct Typecode string
+%              2)  a message indicating where the invalidity appears
 %
 % Functions include
 %
 % isSBML_Model(SBMLStructure) 
 %   identifies the level from the model structure
 %
-% isSBML_AlgebraicRule(SBMLStructure, Level)
-% isSBML_AssignmentRule(SBMLStructure, Level)
-% isSBML_Compartment(SBMLStructure, Level) 
-% isSBML_CompartmentVolumeRule(SBMLStructure, Level)
-% isSBML_Event(SBMLStructure, Level) 
-% isSBML_EventAssignment(SBMLStructure, Level) 
-% isSBML_FunctionDefinition(SBMLStructure, Level) 
-% isSBML_KineticLaw(SBMLStructure, Level) 
-% isSBML_ModifierSpeciesReference(SBMLStructure, Level) 
-% isSBML_Parameter(SBMLStructure, Level) 
-% isSBML_ParameterRule(SBMLStructure, Level)
-% isSBML_Reaction(SBMLStructure, Level) 
-% isSBML_Rule(SBMLStructure, Level) 
-% isSBML_Species(SBMLStructure, Level) 
-% isSBML_SpeciesConcentrationRule(SBMLStructure, Level) 
-% isSBML_SpeciesReference(SBMLStructure, Level) 
-% isSBML_Unit(SBMLStructure, Level) 
-% isSBML_UnitDefinition(SBMLStructure, Level) 
+% isSBML_AlgebraicRule(SBMLStructure,Level, (optional) Version)
+% isSBML_AssignmentRule(SBMLStructure,Level, (optional) Version)
+% isSBML_Compartment(SBMLStructure,Level, (optional) Version) 
+% isSBML_CompartmentVolumeRule(SBMLStructure,Level, (optional) Version)
+% isSBML_Event(SBMLStructure,Level, (optional) Version) 
+% isSBML_EventAssignment(SBMLStructure,Level, (optional) Version) 
+% isSBML_FunctionDefinition(SBMLStructure,Level, (optional) Version) 
+% isSBML_KineticLaw(SBMLStructure,Level, (optional) Version) 
+% isSBML_ModifierSpeciesReference(SBMLStructure,Level, (optional) Version) 
+% isSBML_Parameter(SBMLStructure,Level, (optional) Version) 
+% isSBML_ParameterRule(SBMLStructure,Level, (optional) Version)
+% isSBML_Reaction(SBMLStructure,Level, (optional) Version) 
+% isSBML_Rule(SBMLStructure,Level, (optional) Version) 
+% isSBML_Species(SBMLStructure,Level, (optional) Version) 
+% isSBML_SpeciesConcentrationRule(SBMLStructure,Level, (optional) Version) 
+% isSBML_SpeciesReference(SBMLStructure,Level, (optional) Version) 
+% isSBML_Unit(SBMLStructure,Level, (optional) Version) 
+% isSBML_UnitDefinition(SBMLStructure,Level, (optional) Version) 
 
 %  Filename    :   Contents.m
 %  Description :

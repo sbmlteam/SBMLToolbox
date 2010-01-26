@@ -30,13 +30,37 @@
 %       and returns 
 %           the array with any duplicates removed
 %
+% Substitute 
+%       takes 
+%           1) a string representation of a formula 
+%           2) the SBMLModel structure
+%       and returns 
+%           the value calculated when all variables are substituted
+%
+% SubstituteConstants 
+%       takes 
+%           1) a string representation of a formula 
+%           2) the SBMLModel structure
+%       and returns 
+%           a string representing the formula with the ids of any constants
+%           within the model substituted
+%
 % SubstituteFunction 
 %       takes 
 %           1) a string representation of a formula 
 %           2) the SBMLFunctionDefinition structure defining the formula
 %       and returns 
 %           the formula with the function substituted
-
+% testmember 
+%       takes 
+%           1) a value 
+%           2) an array of values 
+%       and returns 
+%           1 if value is a member of the array 
+%           0 otherwise
+% 
+% NOTE: this function is necessary for octave to emulate the MATLAB
+%       functionality of the 'ismember' function
 
 %  Filename    :   Contents.m
 %  Description : 

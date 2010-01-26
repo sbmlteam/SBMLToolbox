@@ -36,6 +36,10 @@
 %           1) an array of character names of all compartments within the model 
 %           2) an array of the size/volume values of each compartment
 %
+% GetCompartmentTypes 
+%       takes a SBMLModel 
+%       and returns 
+%           1) an array of character names of all compartmentTypes within the model 
 %
 % GetGlobalParameters 
 %       takes an SBMLModel 
@@ -92,11 +96,21 @@
 %             2) an array of the character representation of the
 %             concentration for each species assigned by rules
 %
+% GetSpeciesTypes 
+%       takes a SBMLModel 
+%       and returns 
+%           1) an array of character names of all speciesTypes within the model 
+%
 % GetStoichiometryMatrix 
 %       takes an SBML model 
 %       and returns 
 %           1) stoichiometry matrix
 %           2) an array of character names of all species within the model 
+%
+% GetStoichiometrySparse 
+%       takes an SBML model 
+%       and returns 
+%           1) the sparse stoichiometry matrix
 %
 % IsSpeciesInReaction
 %       takes an SBML species and an SBML reaction
