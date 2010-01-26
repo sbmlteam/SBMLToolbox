@@ -73,7 +73,16 @@ if (bSBML == 1)
             n_level2v3 = 0;
         else
              [m, n_level2v3] = size(Models_l2v3);
-        end;    end;
+        end;   
+ 
+        if (~exist('Models_l2v4'))
+            n_level2v4 = 0;
+        else
+             [m, n_level2v4] = size(Models_l2v4);
+        end;   
+    
+    
+    end;
     
     fclose(fId);
     
@@ -131,6 +140,19 @@ if (bSBML == 1)
                     end;
                 end;
             end;
+        elseif (SBMLModel.SBML_version == 4)
+            for index = 1:n_level2v4
+                k = strcmp(Models_l2v4(index).name, SBMLModel.name);
+                l = strcmp(Models_l2v4(index).id, SBMLModel.id);
+                if (k ==1 && l ==1)
+                    Answer = AlreadyExists;  %error('Model with this name and id already exists');
+                    if (strcmp(Answer, 'No'))
+                        return;
+                    else
+                        NewIndex = index;
+                    end;
+                end;
+            end;
         end;
     end;
 
@@ -160,13 +182,19 @@ if (bSBML == 1)
                 n_level2v3 = NewIndex;
             end;
             Models_l2v3(NewIndex) = SBMLModel;
+        elseif (SBMLModel.SBML_version == 4)
+            if (NewIndex == 0)
+                NewIndex = n_level2v4+1;
+                n_level2v4 = NewIndex;
+            end;
+            Models_l2v4(NewIndex) = SBMLModel;
         end;
     end;
     
     
     % save appropriate structures
     index = 1;
-    Nums = [n_level1, n_level2, n_level2v2, n_level2v3];
+    Nums = [n_level1, n_level2, n_level2v2, n_level2v3, n_level2v4];
     Present = find(Nums ~= 0);
 
     for i = 1:length(Present)
@@ -179,6 +207,8 @@ if (bSBML == 1)
                 output{index} = 'Models_l2v2';
             case 4
                 output{index} = 'Models_l2v3';
+            case 5
+                output{index} = 'Models_l2v4';
         end;
         index = index + 1;
     end;
@@ -192,6 +222,8 @@ if (bSBML == 1)
             save (Path, output{1}, output{2}, output{3});
         case 4
             save (Path, output{1}, output{2}, output{3}, output{4});
+        case 5
+            save (Path, output{1}, output{2}, output{3}, output{4}, output{5});
     end;
 
         
