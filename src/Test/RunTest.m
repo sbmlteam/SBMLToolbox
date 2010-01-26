@@ -29,16 +29,16 @@ test_am;
 cd ..;
 
 % NEED work to get these to pass in octave
-% v = ver('symbolic');
-% % only run if symbolic toolbox is intalled
-% if (~isempty(v))
-%   cd ..;
-%   cd AccessToSymbols;
-%   cd Test;
-%   disp('Performing tests in AccessToSymbols directory');
-%   RunTest;
-%   cd ..;
-% end;
+v = ver('symbolic');
+% only run if symbolic toolbox is intalled
+if (~isempty(v) && isoctave == '0')
+  cd ..;
+  cd AccessToSymbols;
+  cd Test;
+  disp('Performing tests in AccessToSymbols directory');
+  RunTest;
+  cd ..;
+end;
 
 cd ..;
 cd Convenience;
