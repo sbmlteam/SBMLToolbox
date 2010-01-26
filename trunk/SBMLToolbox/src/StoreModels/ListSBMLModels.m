@@ -58,6 +58,12 @@ else
     [m, n_level2v3] = size(Models_l2v3);
 end;
 
+if (~exist('Models_l2v4'))
+    n_level2v4 = 0;
+else
+    [m, n_level2v4] = size(Models_l2v4);
+end;
+
 j = 'NUMBER  LEVEL   VERSION   NAME';
 disp(j)
 for nNumber = 1:n_level1
@@ -101,5 +107,17 @@ for nNumber =1:n_level2v3
     i = int2str(nNumber);
     f = int2str(2);
     g = int2str(Models_l2v3(nNumber).SBML_version);
+    j = fprintf(1,'  %s       %s        %s      %s\n', i, f, g, name);
+end;
+
+for nNumber =1:n_level2v4
+    name = Models_l2v4(nNumber).id;
+    k = isempty(name);
+    if (k == 1)
+        name = Models_l2v4(nNumber).name;
+    end;
+    i = int2str(nNumber);
+    f = int2str(2);
+    g = int2str(Models_l2v4(nNumber).SBML_version);
     j = fprintf(1,'  %s       %s        %s      %s\n', i, f, g, name);
 end;

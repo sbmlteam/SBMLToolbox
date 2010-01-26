@@ -105,6 +105,12 @@ else
     [m, n_level2v3] = size(Models_l2v3);
 end;
 
+if (~exist('Models_l2v4'))
+    n_level2v4 = 0;
+else
+    [m, n_level2v4] = size(Models_l2v4);
+end;
+
 if (Level == 1)
     n = n_level1;
 else
@@ -112,8 +118,10 @@ else
         n = n_level2;
     elseif (Version == 2)
         n = n_level2v2;
-    else
+    elseif (Version == 3)
         n = n_level2v3;
+    else
+        n = n_level2v4;
     end;
 end;
 
@@ -164,6 +172,16 @@ else
             else
                 nNumber = nNumber + 1;
             end;
+        elseif (Level == 2 && Version == 4)
+            k = strcmp(Models_l2v4(nNumber).Name, Name);
+            l = strcmp(Models_l2v4(nNumber).Id, Id);
+            if (k == 1)
+                break;
+            elseif (l == 1)
+                break;
+            else
+                nNumber = nNumber + 1;
+            end;
         end;
     end;
     
@@ -175,6 +193,8 @@ else
     elseif (Level == 2 && Version == 2 && nNumber == n_level2v2+1 && k ~= 1 && l ~=1)
         error('No model saved with matching name or id');
     elseif (Level == 2 && Version == 3 && nNumber == n_level2v3+1 && k ~= 1 && l ~=1)
+        error('No model saved with matching name or id');
+    elseif (Level == 2 && Version == 4 && nNumber == n_level2v4+1 && k ~= 1 && l ~=1)
         error('No model saved with matching name or id');
     end;
 end;
@@ -230,6 +250,18 @@ else
             Models_l2v3(i) = TempModels(i);
         end;
         n_level2v3 = n-1;
+    elseif (Version == 4)
+        for i = 1:nNumber-1
+            TempModels(i) = Models_l2v4(i);
+        end;
+        for i = nNumber:n-1
+            TempModels(i) = Models_l2v4(i + 1);
+        end;
+        clear Models_l2v4;
+        for i = 1:n-1
+            Models_l2v4(i) = TempModels(i);
+        end;
+        n_level2v4 = n-1;
     end;
 end;
 
@@ -237,7 +269,7 @@ end;
 % save each strcuture
 
 index = 1;
-Nums = [n_level1, n_level2, n_level2v2, n_level2v3];
+Nums = [n_level1, n_level2, n_level2v2, n_level2v3, n_level2v4];
 Present = find(Nums ~= 0);
 
 for i = 1:length(Present)
@@ -250,6 +282,8 @@ for i = 1:length(Present)
             output{index} = 'Models_l2v2';
         case 4
             output{index} = 'Models_l2v3';
+        case 5
+            output{index} = 'Models_l2v4';
     end;
     index = index + 1;
 end;
@@ -263,5 +297,7 @@ switch (n)
         save (Path, output{1}, output{2}, output{3});
     case 4
         save (Path, output{1}, output{2}, output{3}, output{4});
+    case 5
+        save (Path, output{1}, output{2}, output{3}, output{4}, output{5});
 end;
 

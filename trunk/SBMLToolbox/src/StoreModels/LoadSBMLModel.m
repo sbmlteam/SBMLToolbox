@@ -106,6 +106,13 @@ else
     [m, n_level2v3] = size(Models_l2v3);
 end;
 
+if (~exist('Models_l2v4'))
+    n_level2v4 = 0;
+else
+    [m, n_level2v4] = size(Models_l2v4);
+end;
+
+
 if (Level == 1)
     n = n_level1;
 else
@@ -113,8 +120,10 @@ else
         n = n_level2;
     elseif (Version == 2)
         n = n_level2v2;
-    else
+    elseif (Version == 3)
         n = n_level2v3;
+    else
+        n = n_level2v4;
     end;
 end;
 
@@ -132,6 +141,8 @@ if (bInt == 1)
                 Model = Models_l2v2(nNumber);
             elseif (Version == 3)
                 Model = Models_l2v3(nNumber);
+            elseif (Version == 4)
+                Model = Models_l2v4(nNumber);
             end;
         end;
         
@@ -196,6 +207,20 @@ else
                     nNumber = nNumber + 1;
                 end;
             end;
+        elseif (Version == 4)
+            while (nNumber <= n_level2v4)
+                k = strcmp(Models_l2v4(nNumber).name, Name);
+                l = strcmp(Models_l2v4(nNumber).id, Id);
+                if (k == 1)
+                    Model = Models_l2v4(nNumber);
+                    break;
+                elseif (l == 1)
+                    Model = Models_l2v4(nNumber);
+                    break;
+                else
+                    nNumber = nNumber + 1;
+                end;
+            end;
         end;
     end;
            
@@ -208,7 +233,9 @@ else
         error('No model saved with matching name or id');
     elseif (Level == 2 && Version == 3 && nNumber == n_level2v3+1 && k ~= 1 && l ~=1)
         error('No model saved with matching name or id');
-    end;
+    elseif (Level == 2 && Version == 4 && nNumber == n_level2v4+1 && k ~= 1 && l ~=1)
+        error('No model saved with matching name or id');
+   end;
     
     % check that model returned is an sbml model
     if (~isSBML_Model(Model))
