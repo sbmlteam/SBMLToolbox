@@ -121,7 +121,24 @@ mexFunction (int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
   mxArray * mxUnitDefinitions, *mxSBOTerm;
 	mxArray * mxSpecies, * mxRules, * mxReactions, * mxEvents, * mxConstraints;
 	mxArray * mxSpeciesTypes, * mxCompartmentTypes, * mxInitialAssignments;
+  unsigned int usingOctave = 0;
+  mxArray * mxOctave[1];
 
+  /* determine whether we are in octave or matlab */
+
+  mexCallMATLAB(1, mxOctave, 0, NULL, "isoctave");
+  
+  nBuflen = (mxGetM(mxOctave[0])*mxGetN(mxOctave[0])+1);
+  pacTempString1 = (char *) mxCalloc(nBuflen, sizeof(char));
+  nStatus = mxGetString(mxOctave[0], pacTempString1, nBuflen);
+
+  if (nStatus != 0)
+  {
+      mexErrMsgTxt("Could not determine platform");
+  }
+
+  if (!(strcmp_insensitive(pacTempString1, "0") == 0))
+    usingOctave = 1;
 
 /*************************************************************************************
 	* validate inputs and outputs
@@ -130,6 +147,11 @@ mexFunction (int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
   {
       mexErrMsgTxt("Must supply at least the model as an output argument\n"
                    "USAGE: OutputSBML(SBMLModel, (filename))");
+  }
+  if (usingOctave == 1 && nrhs < 2)
+  {
+      mexErrMsgTxt("Octave requires the filename to be specified\n"
+                   "USAGE: OutputSBML(SBMLModel, filename)");
   }
 
 /**
