@@ -24,6 +24,12 @@
 %       and returns 
 %           an array of the components of the lambda function
 %
+%   OutputAnalyticalSolution             
+%       takes an SBMLModel and a number of optional arguments 
+%       and according to flags 
+%       plots the results of the analytical solution
+%       outputs the data as a csv file 
+%
 %   OutputODEFunction             
 %       takes an SBMLModel and a number of optional arguments 
 %       and according to flags 
@@ -34,6 +40,14 @@
 %       displays a GUI that allows the user to add/remove species from a list
 %       and returns 
 %           an array of species selected by the user
+%
+%   SolveAnalytically 
+%       takes an SBML Model 
+%       and returns 
+%           a structure detailing each species and the resulting anaytical 
+%           solution 
+%
+%    NOTE: This function requires the MATLAB Symbolic Toolbox
 %
 %   WriteEventAssignmentFunction   
 %       takes an SBMLModel

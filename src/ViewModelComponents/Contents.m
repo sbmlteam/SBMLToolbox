@@ -19,6 +19,10 @@
 %   ViewUnit               
 %   ViewUnitDefinition    
 % 
+%  ----------------------------------------------------------------
+%  |   NOTE: These functions have not been extended to support     |
+%  |         versions beyond SBML L2V1                             |
+%  ----------------------------------------------------------------
 
 %  Filename    :   Contents.m
 %  Description :

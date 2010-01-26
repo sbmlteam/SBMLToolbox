@@ -42,6 +42,12 @@
 %           2) an array of the volume/size values of each compartment
 %           3) an array of character names of the symbols
 %
+% GetCompartmentTypeSymbols 
+%       takes an SBMLModel 
+%       and returns 
+%           1) an array of symbols representing all compartmentTypes within the model 
+%           2) an array of character names of the symbols
+%
 % GetDegree
 %       takes a symbolic polynomial and a single symbol
 %       and returns 
@@ -83,12 +89,34 @@
 %           2) an array of the initial concentration/amount values of each species
 %           3) an array of character names of the symbols
 % 
+% GetSpeciesTypeSymbols 
+%       takes an SBMLModel 
+%       and returns 
+%           1) an array of symbols representing all speciesTypes within the model 
+%           2) an array of character names of the symbols
+%
 % GetStoichiometryMatrixSyms 
 %       takes an SBML model 
 %       and returns 
 %           1) stoichiometry matrix
 %           2) an array of symbols respresenting each species in same order
 %               as the stoichiometry matrix treats them
+%
+% GetSymbolicCompartmentInitialAssignment 
+%       takes an SBMLModel 
+%       and returns
+%             1) an array of compartment symbols
+%             2) an array of the symbolic representation of the
+%             initial assignment for each compartment assigned by an
+%             initialAssignment
+%
+% GetSymbolicParameterInitialAssignment 
+%       takes an SBMLModel 
+%       and returns
+%             1) an array of parameter symbols
+%             2) an array of the symbolic representation of the
+%             initial assignment for each parameter assigned by an
+%             initialAssignment
 %
 % GetSymbolicRateLawsFromReactions 
 %       takes an SBML model 
@@ -116,6 +144,14 @@
 %             1) an array of species symbols
 %             2) an array of the symbolic representation of the
 %             assignment for each species assigned by rules
+%
+% GetSymbolicSpeciesInitialAssignment 
+%       takes an SBMLModel 
+%       and returns
+%             1) an array of species symbols
+%             2) an array of the symbolic representation of the
+%             initial assignment for each species assigned by an
+%             initialAssignment
 %
 % PlotSelectedTimeCourse takes
 %       1) an SBMLModel

@@ -7,7 +7,7 @@
 % It works on Windows, Linux, and MacOS systems. 
 % 
 % The SBMLToolbox supports reading and writing of all levels
-% and versions of SBML.
+% and versions of SBML up to L2V4.
 %
 %
 % FUNCTIONS include:
@@ -61,7 +61,7 @@
 % toolbox\ViewModelComponents
 %
 %       This directory contains functions to drive GUIs to view 
-% MATLAB_SBML structures
+%       MATLAB_SBML structures
 
 
 %
