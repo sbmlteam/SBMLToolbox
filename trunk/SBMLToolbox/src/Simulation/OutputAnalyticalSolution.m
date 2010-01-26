@@ -1,5 +1,5 @@
 function OutputAnalyticalSolution(varargin)
-% OutputODEFunction takes 
+% OutputAnalyticalSolution takes 
 %       1) a MATLAB_SBML model structure 
 %       2) a flag to indicate whether to plot the output (optional)
 %       3) time limit (optional)
