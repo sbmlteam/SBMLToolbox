@@ -24,6 +24,14 @@ function y = RunTest()
 % and also available online as http://sbml.org/software/sbmltoolbox/license.html
 %----------------------------------------------------------------------- -->
 
+v = ver('symbolic');
+
+% this leaves out some tests for later versions as the syntax changed
+if (str2num(v.Version) > 4)
+    exclude = 1;
+else
+    exclude = 0;
+end;
 
 test = 0;
 Totalfail = 0;
@@ -112,26 +120,28 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 2;
-fail = TestGetSymbolicSpeciesAlgebraicRules;
-if (fail > 0)
-    disp('TestGetSymbolicSpeciesAlgebraicRules failed');
-end;
-Totalfail = Totalfail + fail;
+if (exclude == 0)
+    test = test + 2;
+    fail = TestGetSymbolicSpeciesAlgebraicRules;
+    if (fail > 0)
+        disp('TestGetSymbolicSpeciesAlgebraicRules failed');
+    end;
+    Totalfail = Totalfail + fail;
 
-test = test + 1;
-fail = TestGetSymbolicSpeciesAssignmentRules;
-if (fail > 0)
-    disp('TestGetSymbolicSpeciesAssignmentRules failed');
-end;
-Totalfail = Totalfail + fail;
+    test = test + 1;
+    fail = TestGetSymbolicSpeciesAssignmentRules;
+    if (fail > 0)
+        disp('TestGetSymbolicSpeciesAssignmentRules failed');
+    end;
+    Totalfail = Totalfail + fail;
 
-test = test + 5;
-fail = TestAnalyseSpeciesSymbolic;
-if (fail > 0)
-    disp('TestAnalyseSpeciesSymbolic failed');
+    test = test + 5;
+    fail = TestAnalyseSpeciesSymbolic;
+    if (fail > 0)
+        disp('TestAnalyseSpeciesSymbolic failed');
+    end;
+    Totalfail = Totalfail + fail;
 end;
-Totalfail = Totalfail + fail;
 
 test = test + 4;
 fail = TestGetCompartmentSymbols;
@@ -154,26 +164,28 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 1;
-fail = TestGetSymbolicSpeciesInitialAssignments;
-if (fail > 0)
-    disp('TestGetSymbolicSpeciesInitialAssignments failed');
-end;
-Totalfail = Totalfail + fail;
+if (exclude == 0)
+    test = test + 1;
+    fail = TestGetSymbolicSpeciesInitialAssignments;
+    if (fail > 0)
+        disp('TestGetSymbolicSpeciesInitialAssignments failed');
+    end;
+    Totalfail = Totalfail + fail;
 
-test = test + 1;
-fail = TestGetSymbolicCompartmentInitialAssignments;
-if (fail > 0)
-    disp('TestGetSymbolicCompartmentInitialAssignments failed');
-end;
-Totalfail = Totalfail + fail;
+    test = test + 1;
+    fail = TestGetSymbolicCompartmentInitialAssignments;
+    if (fail > 0)
+        disp('TestGetSymbolicCompartmentInitialAssignments failed');
+    end;
+    Totalfail = Totalfail + fail;
 
-test = test + 1;
-fail = TestGetSymbolicParameterInitialAssignments;
-if (fail > 0)
-    disp('TestGetSymbolicParameterInitialAssignments failed');
+    test = test + 1;
+    fail = TestGetSymbolicParameterInitialAssignments;
+    if (fail > 0)
+        disp('TestGetSymbolicParameterInitialAssignments failed');
+    end;
+    Totalfail = Totalfail + fail;
 end;
-Totalfail = Totalfail + fail;
 
 disp(sprintf('Number tests: %d', test));
 disp(sprintf('Number fails: %d', Totalfail));
