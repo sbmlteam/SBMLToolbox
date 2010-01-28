@@ -1,6 +1,12 @@
     SBMLToolbox NEWS -- History of user-visible changes
 
-Current svn version
+---------------------------------------------------
+Version 3.1.0 Released 2010-01-28
+---------------------------------------------------
+
+* New Dependencies
+
+  - libSBML-4.0.1
 
 * New features:
 
@@ -13,8 +19,36 @@ Current svn version
 
   - Simulation of models that use functionDefinitions within rules
     has been implemented.
+    
+  - A function to produce an analytical solution of a model has
+    been implemented.
+    
+  - All functions are completely Octave compatible with the 
+    exception of functions using the Symbolic Toolbox.
 
 * Bug fixes:
+
+  - Tracker issue #2780454.
+    The Model_create function was not correctly specifying level
+    and version.  This has been fixed.  Thanks to Kieran Smallbone
+    for reporting it.
+
+  - Tracker issue #1928173.
+    The OutputSBML function was failing to correctly output an empty
+    stoichiometryMath structure in an L2V3 model. This was due to the
+    fact that for L2V3 models the stoichiometryMath element was correctly
+    derived from an SBase object and thus became a structure rather
+    than just a field in a MATLAB_SBML structure. This has been 
+    corrected. 
+    
+  - Tracker issue #1912974.
+    The validation of a model with a large number of errors caused
+    MATLAB to crash. This was due to an error in the calculation
+    of the memory needed to store and report the errors. 
+
+  - Tracker issue #1912971.
+    There was a typo in the RunTest function that caused it
+    not to run. This is fixed.
 
   - Tracker issue #1912965.
     The functions that generate the code to simulate events
@@ -24,22 +58,6 @@ Current svn version
   - More rigorous testing revealed several small bugs in the 
     event handling functions; which have now been corrected.
   
-  - Tracker issue #1912971.
-    There was a typo in the RunTest function that caused it
-    not to run. This is fixed.
-
-  - Tracker issue #1912974.
-    The validation of a model with a large number of errors caused
-    MATLAB to crash. This was due to an error in the calculation
-    of the memory needed to store and report the errors. 
-
-  - Tracker issue #1928173.
-    The OutputSBML function was failing to correctly output an empty
-    stoichiometryMath structure in an L2V3 model. This was due to the
-    fact that for L2V3 models the stoichiometryMath element was correctly
-    derived from an SBase object and thus became a structure rather
-    than just a field in a MATLAB_SBML structure. This has been 
-    corrected. 
     
 Version 3.0.0
 
