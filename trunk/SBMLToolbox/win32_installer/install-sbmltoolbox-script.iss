@@ -11,6 +11,8 @@ AppUpdatesURL=http://www.sbml.org
 DefaultDirName={pf}\SBML\SBMLToolbox-3.1.0
 DefaultGroupName=SBMLToolbox
 DisableProgramGroupPage=yes
+OutputDir=..\win32_installer\Output
+OutputBaseFilename=SBMLToolbox-3.1.0-setup-win32
 WizardSmallImageFile=sbmltoolbox-installer-mini-logo.bmp
 WizardImageFile=sbmltoolbox-installer-graphic.bmp
 UsePreviousAppDir=no
@@ -20,7 +22,7 @@ UsePreviousAppDir=no
 Source: "C:\SBMLToolbox\win32_installer\SBMLToolbox\*"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\SBMLToolbox\win32_installer\SBMLToolbox\toolbox\*"; DestDir: "{app}\toolbox"; Flags: ignoreversion recursesubdirs
 Source: "C:\SBMLToolbox\win32_installer\SBMLToolbox\docs\*"; DestDir: "{app}\docs"; Flags: ignoreversion recursesubdirs
-Source: "C:\libsbml\win32\installer\Output\libsbml-3.3.1-win-expat.exe"; DestDir: "{app}\temp"; Flags: ignoreversion; Check: GetLibSBML;
+Source: "C:\rel-4-0-0\win32\installer\Output\libsbml-4.0.1-win-libxml2-vc80.exe"; DestDir: "{app}\temp"; Flags: ignoreversion; Check: GetLibSBML;
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
@@ -55,7 +57,7 @@ begin
 
   Note: it includes a version number
 **********************************************************************************************************}
-  MsgBox('This setup installs the Windows release of SBMLToolbox 3.1.0. This requires libSBML 3.3.1. This installer will allow you to install libSBML if it is not already present.', mbInformation, mb_Ok);
+  MsgBox('This setup installs the Windows release of SBMLToolbox 3.1.0. This requires libSBML 4.0.1. This installer will allow you to install libSBML if it is not already present.', mbInformation, mb_Ok);
 end;
 
 procedure URLLabelOnClick(Sender: TObject);
@@ -201,7 +203,7 @@ begin
 
   {look for a version no and check whether it is later than this}
   LibsbmlVersion := GetLibsbmlVersion();
-  LaterLibsbmlVers := LaterVersion(LibsbmlVersion, '3.3.1');
+  LaterLibsbmlVers := LaterVersion(LibsbmlVersion, '4.0.1');
 
   if LibsbmlVersion = '' then
     LibsbmlNotFound := True
@@ -249,8 +251,8 @@ begin
 
   {libsbml :  install }
   libsbmlPage := CreateInputOptionPage(wpSelectDir,
-    'SBMLToolbox requires libsbml-3.3.1', '', '', True, False);
-  libsbmlPage.Add('Install libSBML-3.3.1');
+    'SBMLToolbox requires libsbml-4.0.1', '', '', True, False);
+  libsbmlPage.Add('Install libSBML-4.0.1');
 end;
 
 function ShouldSkipPage(PageID: Integer): Boolean;
@@ -312,5 +314,5 @@ end;
 
 [Run]
 
-Filename: "{app}\temp\libSBML-3.3.1-win-expat.exe"; flags: nowait; Check: GetLibSBML;
+Filename: "{app}\temp\libSBML-4.0.1-win-libxml2-vc80.exe"; flags: nowait; Check: GetLibSBML;
 

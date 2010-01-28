@@ -1,7 +1,8 @@
+rmdir /S SBMLToolbox_src
+
 mkdir SBMLToolbox_src
 cd SBMLToolbox_src
-mkdir docs
-mkdir toolbox
+
 copy C:\SBMLToolbox\AUTHORS.txt AUTHORS.txt
 copy C:\SBMLToolbox\COPYING.txt COPYING.txt
 copy C:\SBMLToolbox\FUNDING.txt FUNDING.txt
@@ -11,11 +12,18 @@ copy C:\SBMLToolbox\VERSION.txt VERSION.txt
 copy C:\SBMLToolbox\COPYING.html COPYING.html
 copy C:\SBMLToolbox\LICENSE.txt LICENSE.txt
 copy C:\SBMLToolbox\LICENSE.html LICENSE.html
+
+mkdir docs
+mkdir toolbox
+
+
 cd docs
 copy C:\SBMLToolbox\docs\ManualV3.pdf Manual_SBMLToolbox_V3.pdf
 copy C:\SBMLToolbox\docs\MATLAB_SBML_Structure.pdf MATLAB_SBML_Structure.pdf
 copy C:\SBMLToolbox\docs\Testing.pdf Testing.pdf
+
 cd ..
+
 cd toolbox
 mkdir AccessModel
 cd AccessModel
@@ -74,7 +82,11 @@ cd Validate_MATLAB_SBML_Structures
 mkdir Test
 cd ..
 mkdir ViewModelComponents
-copy C:\SBMLToolbox\src\BuildOutput_Win32.m BuildOutput_Win32.m
+
+rem top level files
+
+copy C:\SBMLToolbox\src\buildOutput.m buildOutput.m
+copy C:\SBMLToolbox\src\buildOutput_Octave.m buildOutput_Octave.m
 copy C:\SBMLToolbox\src\OutputSBML.m OutputSBML.m
 copy C:\SBMLToolbox\src\OutputSBML.c OutputSBML.c
 copy C:\SBMLToolbox\src\Makefile Makefile
@@ -83,12 +95,14 @@ copy C:\SBMLToolbox\src\install.m install.m
 copy C:\SBMLToolbox\src\SBMLToolbox.m SBMLToolbox.m
 copy C:\SBMLToolbox\src\make.bat make.bat
 copy C:\SBMLToolbox\src\test.xml test.xml
+
 cd C:\SBMLToolbox\src\AccessModel
 copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\AccessModel
 copy *.fig C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\AccessModel
 cd Test
 copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\AccessModel\Test
 copy *.xml C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\AccessModel\Test
+
 cd ..
 cd ..
 cd AccessToSymbols
@@ -96,6 +110,7 @@ copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\AccessToSymbols
 cd Test
 copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\AccessToSymbols\Test
 copy *.xml C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\AccessToSymbols\Test
+
 cd ..
 cd ..
 cd Convenience
@@ -103,6 +118,7 @@ copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Convenience
 cd Test
 copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Convenience\Test
 copy *.xml C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Convenience\Test
+
 cd ..
 cd ..
 cd Simulation
@@ -111,11 +127,13 @@ copy *.fig C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Simulation
 cd Test
 copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Simulation\Test
 copy *.xml C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Simulation\Test
+
 cd ..
 cd ..
 cd StoreModels
 copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\StoreModels
 copy *.fig C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\StoreModels
+
 cd ..
 cd Test
 copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Test
@@ -123,21 +141,25 @@ copy *.xml C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Test
 cd test-data
 copy *.xml C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Test\test-data
 copy *.mat C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Test\test-data
+
 cd ..
 cd ..
-cd ValidationTests
+cd Validate_MATLAB_SBML_Structures
 copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Validate_MATLAB_SBML_Structures
 cd Test
 copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Validate_MATLAB_SBML_Structures\Test
 copy *.xml C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Validate_MATLAB_SBML_Structures\Test
+
 cd ..
 cd ..
 cd ViewModelComponents
 copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\ViewModelComponents
 copy *.fig C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\ViewModelComponents
+
 cd ..
 cd MATLAB_SBML_Structure_Functions
 copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions
+
 cd AlgebraicRule
 copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\AlgebraicRule
 cd ..
