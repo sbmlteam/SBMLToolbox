@@ -1,12 +1,15 @@
 % SBMLToolbox
 %
-% This is the top level directory for the functions to translate 
-% sbml models into a MATLAB structure which can then be saved.
+% This is the top level directory for the functions of the SBMLToolbox.
 %
 %
 % FUNCTIONS include:
-%  BuildOutput_Win32 
-%		which builds the TranslateSBML executable
+%  buildOutput 
+%		which builds the OutputSBML executable
+%  buildOutput_Octave 
+%		which builds the OutputSBML executable in Octave
+%  install 
+%		which adds files to the Path
 %  OutputSBML('MATLAB_SBML structure') 
 %		which translates a MATLAB_SBML structure and ouputs an sbml file
 %
