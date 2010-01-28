@@ -29,18 +29,7 @@ clc;
 ToolboxPath = genpath(pwd);
 addpath(ToolboxPath);
 
-% path2rc is deprecated by version 7.0.4 
-% replaced by savepath
-% but savepath doesnt exist in version 6.5.1 or lower
-
-v = version;
-v_num = str2num(v(1));
-
-if (v_num < 7)
-    s = path2rc;
-else
-    s = savepath;
-end;
+s = savepath;
 
 if (s ~= 0)
     error('Directory NOT added to the path');
