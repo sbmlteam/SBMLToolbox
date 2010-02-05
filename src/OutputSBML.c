@@ -465,6 +465,11 @@ LookForCSymbolTime(ASTNode_t * math)
   /*const char * time = "my_time";*/
   unsigned int i;
 
+  if (math == NULL)
+  {
+    return;
+  }
+
   if (ASTNode_getType(math) == AST_NAME)
   {
     if (!strcmp(ASTNode_getName(math), timeSymbol))
@@ -2651,12 +2656,12 @@ GetUnit ( mxArray * mxUnits,
   nBuflen = (mxGetM(mxFormula)*mxGetN(mxFormula)+1);
   pacFormula = (char *)mxCalloc(nBuflen, sizeof(char));
   nStatus = mxGetString(mxFormula, pacFormula, nBuflen);
-  
+
   if (nStatus != 0)
   {
       mexErrMsgTxt("Cannot copy formula");
   }
-  
+
   KineticLaw_setFormula(pKineticLaw, pacFormula);
 
   /* level 1 and level 2 version 1 ONLY */
@@ -2710,7 +2715,7 @@ GetUnit ( mxArray * mxUnits,
 
     /* get Math */
     mxMath = mxGetField(mxKineticLaw, 0, "math");
-    nBuflen = (mxGetM(mxMath)*mxGetN(mxMath)+1);
+    nBuflen = (mxGetM(mxMath)*mxGetN(mxMath)+1);   
     pacMath = (char *)mxCalloc(nBuflen, sizeof(char));
     nStatus = mxGetString(mxMath, pacMath, nBuflen);
     
@@ -2718,7 +2723,7 @@ GetUnit ( mxArray * mxUnits,
     {
         mexErrMsgTxt("Cannot copy Math");
     }
-    
+
     ast = SBML_parseFormula(pacMath);
     LookForCSymbolTime(ast);
 
