@@ -1,5 +1,17 @@
     SBMLToolbox NEWS -- History of user-visible changes
 
+
+---------------------------------------------------
+Currnt development
+---------------------------------------------------
+
+* Bug fixes:
+
+  - Tracker issue #2945261.
+    OutputSBML crashed if there was no KineticLaw math.  This
+    has been fixed.  Thanks to Kieran Smallbone for reporting
+    this.
+
 ---------------------------------------------------
 Version 3.1.0 Released 2010-01-28
 ---------------------------------------------------
