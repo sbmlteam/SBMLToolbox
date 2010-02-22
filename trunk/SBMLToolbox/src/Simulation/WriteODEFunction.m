@@ -408,8 +408,8 @@ fclose(fileID);
 if (NumEvents > 0)
 % write two additional files for events
 
-    WriteEventHandlerFunction(SBMLModel);
-    WriteEventAssignmentFunction(SBMLModel);
+    WriteEventHandlerFunction(SBMLModel, Name);
+    WriteEventAssignmentFunction(SBMLModel, Name);
 
 end;
 
