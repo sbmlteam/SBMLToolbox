@@ -1,4 +1,4 @@
-function WriteEventHandlerFunction(SBMLModel)
+function WriteEventHandlerFunction(SBMLModel, Name)
 % WriteEventHandlerFunction takes an SBMLModel
 % and outputs 
 %       a file defining a function that handles an avent
@@ -41,16 +41,16 @@ NumberSpecies = length(SBMLModel.species);
 %---------------------------------------------------------------
 % get the name/id of the model
 
-Name = '';
-if (SBMLModel.SBML_level == 1)
-    Name = SBMLModel.name;
-else
-    if (isempty(SBMLModel.id))
-        Name = SBMLModel.name;
-    else
-        Name = SBMLModel.id;
-    end;
-end;
+% Name = '';
+% if (SBMLModel.SBML_level == 1)
+%     Name = SBMLModel.name;
+% else
+%     if (isempty(SBMLModel.id))
+%         Name = SBMLModel.name;
+%     else
+%         Name = SBMLModel.id;
+%     end;
+% end;
 
 % version 2.0.2 adds the time_symbol field to the model structure
 % need to check that it exists
