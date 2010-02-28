@@ -1691,6 +1691,8 @@ GetUnit ( mxArray * mxUnits,
 	mxArray * mxNotes, * mxAnnotations, * mxFormula, * mxVariable, * mxCompartment;
   mxArray * mxSpecies, * mxName, * mxUnits, * mxType, * mxSBOTerm, *mxTypecode;
 
+  mxArray *mxInput[1];
+  mxArray *mxOutput[1];
 	Rule_t *pAssignRule;
 	Rule_t *pAlgRule;
 	Rule_t *pRateRule;
@@ -1749,6 +1751,28 @@ GetUnit ( mxArray * mxUnits,
 		{
 			mexErrMsgTxt("Cannot copy Formula");
 		}
+    
+     /* temporary hack to convert MATLAB formula to MathML infix */
+
+    mxInput[0] = mxCreateString(pacFormula);
+    nStatus = mexCallMATLAB(1, mxOutput, 1, mxInput, "ConvertFormulaToMathML");
+
+    if (nStatus != 0)
+    {
+        mexErrMsgTxt("Failed to convert formula");
+    }
+
+    /* get the formula returned */
+    nBuflen = (mxGetM(mxOutput[0])*mxGetN(mxOutput[0])+1);
+    pacFormula = (char *) mxCalloc(nBuflen, sizeof(char));
+    nStatus = mxGetString(mxOutput[0], (char *) pacFormula, nBuflen);
+
+    if (nStatus != 0)
+    {
+        mexErrMsgTxt("Cannot copy formula");
+    }
+
+    /* END OF HACK */
     
     ast = SBML_parseFormula(pacFormula);
     LookForCSymbolTime(ast);
@@ -2240,6 +2264,9 @@ GetUnit ( mxArray * mxUnits,
 	char * pacMetaid;
 
   mxArray *mxMetaid;
+  mxArray * mxInput[1];
+  mxArray * mxOutput[1];
+  
   SpeciesReference_t *pSpeciesReference;
   StoichiometryMath_t *pStoichiometryMath;
  
@@ -2355,6 +2382,27 @@ GetUnit ( mxArray * mxUnits,
           mexErrMsgTxt("Cannot copy StoichiometryMath");
         }
 
+         /* temporary hack to convert MATLAB formula to MathML infix */
+
+        mxInput[0] = mxCreateString(pacStoichiometryMath);
+        nStatus = mexCallMATLAB(1, mxOutput, 1, mxInput, "ConvertFormulaToMathML");
+
+        if (nStatus != 0)
+        {
+            mexErrMsgTxt("Failed to convert formula");
+        }
+
+        /* get the formula returned */
+        nBuflen = (mxGetM(mxOutput[0])*mxGetN(mxOutput[0])+1);
+        pacStoichiometryMath = (char *) mxCalloc(nBuflen, sizeof(char));
+        nStatus = mxGetString(mxOutput[0], (char *) pacStoichiometryMath, nBuflen);
+
+        if (nStatus != 0)
+        {
+            mexErrMsgTxt("Cannot copy formula");
+        }
+
+        /* END OF HACK */
         if (strcmp(pacStoichiometryMath, ""))
         {
           pStoichiometryMath = 
@@ -2617,6 +2665,8 @@ GetUnit ( mxArray * mxUnits,
   mxArray *mxMetaid;
  	mxArray * mxNotes, * mxAnnotations, * mxFormula, * mxTimeUnits;
 	mxArray * mxMath, * mxParameter, * mxSubstanceUnits, *mxSBOTerm;
+  mxArray *mxInput[1];
+  mxArray *mxOutput[1];
 
   KineticLaw_t *pKineticLaw;
 
@@ -2661,6 +2711,28 @@ GetUnit ( mxArray * mxUnits,
   {
       mexErrMsgTxt("Cannot copy formula");
   }
+
+     /* temporary hack to convert MATLAB formula to MathML infix */
+
+    mxInput[0] = mxCreateString(pacFormula);
+    nStatus = mexCallMATLAB(1, mxOutput, 1, mxInput, "ConvertFormulaToMathML");
+
+    if (nStatus != 0)
+    {
+        mexErrMsgTxt("Failed to convert formula");
+    }
+
+    /* get the formula returned */
+    nBuflen = (mxGetM(mxOutput[0])*mxGetN(mxOutput[0])+1);
+    pacFormula = (char *) mxCalloc(nBuflen, sizeof(char));
+    nStatus = mxGetString(mxOutput[0], (char *) pacFormula, nBuflen);
+
+    if (nStatus != 0)
+    {
+        mexErrMsgTxt("Cannot copy formula");
+    }
+
+    /* END OF HACK */
 
   KineticLaw_setFormula(pKineticLaw, pacFormula);
 
@@ -2714,7 +2786,7 @@ GetUnit ( mxArray * mxUnits,
 		  SBase_setMetaId((SBase_t *) (pKineticLaw), pacMetaid);
 
     /* get Math */
-    mxMath = mxGetField(mxKineticLaw, 0, "math");
+    mxMath = mxGetField(mxKineticLaw, 0, "formula");
     nBuflen = (mxGetM(mxMath)*mxGetN(mxMath)+1);   
     pacMath = (char *)mxCalloc(nBuflen, sizeof(char));
     nStatus = mxGetString(mxMath, pacMath, nBuflen);
@@ -2724,6 +2796,27 @@ GetUnit ( mxArray * mxUnits,
         mexErrMsgTxt("Cannot copy Math");
     }
 
+     /* temporary hack to convert MATLAB formula to MathML infix */
+
+    mxInput[0] = mxCreateString(pacMath);
+    nStatus = mexCallMATLAB(1, mxOutput, 1, mxInput, "ConvertFormulaToMathML");
+
+    if (nStatus != 0)
+    {
+        mexErrMsgTxt("Failed to convert formula");
+    }
+
+    /* get the formula returned */
+    nBuflen = (mxGetM(mxOutput[0])*mxGetN(mxOutput[0])+1);
+    pacMath = (char *) mxCalloc(nBuflen, sizeof(char));
+    nStatus = mxGetString(mxOutput[0], (char *) pacMath, nBuflen);
+
+    if (nStatus != 0)
+    {
+        mexErrMsgTxt("Cannot copy formula");
+    }
+
+    /* END OF HACK */
     ast = SBML_parseFormula(pacMath);
     LookForCSymbolTime(ast);
 
@@ -2975,6 +3068,8 @@ GetFunctionDefinition ( mxArray * mxFunctionDefinitions,
   mxArray *mxMetaid;
 	mxArray * mxNotes, * mxAnnotations, * mxName, * mxId;
   mxArray * mxMath, * mxSBOTerm;
+  mxArray *mxInput[1];
+  mxArray *mxOutput[1];
 
 	FunctionDefinition_t *pFuncDefinition;
   ASTNode_t *ast;
@@ -3066,6 +3161,27 @@ GetFunctionDefinition ( mxArray * mxFunctionDefinitions,
 			mexErrMsgTxt("Cannot copy math");
 		}
 
+     /* temporary hack to convert MATLAB formula to MathML infix */
+
+    mxInput[0] = mxCreateString(pacFormula);
+    nStatus = mexCallMATLAB(1, mxOutput, 1, mxInput, "ConvertFormulaToMathML");
+
+    if (nStatus != 0)
+    {
+        mexErrMsgTxt("Failed to convert formula");
+    }
+
+    /* get the formula returned */
+    nBuflen = (mxGetM(mxOutput[0])*mxGetN(mxOutput[0])+1);
+    pacFormula = (char *) mxCalloc(nBuflen, sizeof(char));
+    nStatus = mxGetString(mxOutput[0], (char *) pacFormula, nBuflen);
+
+    if (nStatus != 0)
+    {
+        mexErrMsgTxt("Cannot copy formula");
+    }
+
+    /* END OF HACK */
     ast = SBML_parseFormula(pacFormula);
     LookForCSymbolTime(ast);
 
@@ -3129,6 +3245,9 @@ GetEvent ( mxArray * mxEvents,
   mxArray *mxMetaid, * mxUseValuesfromTrigger;
 	mxArray * mxNotes, * mxAnnotations, * mxName, * mxId, * mxTimeUnits;
   mxArray * mxTrigger, * mxDelay, * mxEventAssignments, *mxSBOTerm;
+  
+  mxArray *mxInput[1];
+  mxArray * mxOutput[1];
 
 	Event_t *pEvent;
 	int i;
@@ -3197,7 +3316,8 @@ GetEvent ( mxArray * mxEvents,
 		mxTrigger = mxGetField(mxEvents, i, "trigger");
     if (unSBMLVersion < 3)
     {
-		nBuflen = (mxGetM(mxTrigger)*mxGetN(mxTrigger)+1);
+
+      nBuflen = (mxGetM(mxTrigger)*mxGetN(mxTrigger)+1);
 		pacTrigger = (char *)mxCalloc(nBuflen, sizeof(char));
 		nStatus = mxGetString(mxTrigger, pacTrigger, nBuflen);
 
@@ -3205,6 +3325,27 @@ GetEvent ( mxArray * mxEvents,
 		{
 			mexErrMsgTxt("Cannot copy Trigger");
 		}
+     /* temporary hack to convert MATLAB formula to MathML infix */
+
+    mxInput[0] = mxCreateString(pacTrigger);
+    nStatus = mexCallMATLAB(1, mxOutput, 1, mxInput, "ConvertFormulaToMathML");
+
+    if (nStatus != 0)
+    {
+        mexErrMsgTxt("Failed to convert formula");
+    }
+
+    /* get the formula returned */
+    nBuflen = (mxGetM(mxOutput[0])*mxGetN(mxOutput[0])+1);
+    pacTrigger = (char *) mxCalloc(nBuflen, sizeof(char));
+    nStatus = mxGetString(mxOutput[0], (char *) pacTrigger, nBuflen);
+
+    if (nStatus != 0)
+    {
+        mexErrMsgTxt("Cannot copy formula");
+    }
+
+    /* END OF HACK */
 
     if (strcmp(pacTrigger, ""))
     {
@@ -3229,6 +3370,27 @@ GetEvent ( mxArray * mxEvents,
 		{
 			mexErrMsgTxt("Cannot copy Delay");
 		}
+     /* temporary hack to convert MATLAB formula to MathML infix */
+
+    mxInput[0] = mxCreateString(pacDelay);
+    nStatus = mexCallMATLAB(1, mxOutput, 1, mxInput, "ConvertFormulaToMathML");
+
+    if (nStatus != 0)
+    {
+        mexErrMsgTxt("Failed to convert formula");
+    }
+
+    /* get the formula returned */
+    nBuflen = (mxGetM(mxOutput[0])*mxGetN(mxOutput[0])+1);
+    pacDelay = (char *) mxCalloc(nBuflen, sizeof(char));
+    nStatus = mxGetString(mxOutput[0], (char *) pacDelay, nBuflen);
+
+    if (nStatus != 0)
+    {
+        mexErrMsgTxt("Cannot copy formula");
+    }
+
+    /* END OF HACK */
 
     if (strcmp(pacDelay, ""))
     {
@@ -3343,6 +3505,8 @@ GetEventAssignment ( mxArray * mxEventAssignment,
 
   mxArray *mxMetaid;
 	mxArray * mxNotes, * mxAnnotations, * mxVariable, * mxMath, *mxSBOTerm;
+  mxArray *mxInput[1];
+  mxArray *mxOutput[1];
 
 	EventAssignment_t *pEventAssignment;
   ASTNode_t *ast;
@@ -3418,6 +3582,27 @@ GetEventAssignment ( mxArray * mxEventAssignment,
 			mexErrMsgTxt("Cannot copy Math");
 		}
 
+     /* temporary hack to convert MATLAB formula to MathML infix */
+
+    mxInput[0] = mxCreateString(pacMath);
+    nStatus = mexCallMATLAB(1, mxOutput, 1, mxInput, "ConvertFormulaToMathML");
+
+    if (nStatus != 0)
+    {
+        mexErrMsgTxt("Failed to convert formula");
+    }
+
+    /* get the formula returned */
+    nBuflen = (mxGetM(mxOutput[0])*mxGetN(mxOutput[0])+1);
+    pacMath = (char *) mxCalloc(nBuflen, sizeof(char));
+    nStatus = mxGetString(mxOutput[0], (char *) pacMath, nBuflen);
+
+    if (nStatus != 0)
+    {
+        mexErrMsgTxt("Cannot copy formula");
+    }
+
+    /* END OF HACK */
     ast = SBML_parseFormula(pacMath);
     LookForCSymbolTime(ast);
 
@@ -3728,6 +3913,8 @@ GetInitialAssignment ( mxArray * mxInitialAssignment,
 
   mxArray *mxMetaid;
 	mxArray * mxNotes, * mxAnnotations, * mxSymbol, * mxMath, *mxSBOTerm;
+  mxArray *mxInput[1];
+  mxArray *mxOutput[1];
 
 	InitialAssignment_t *pInitialAssignment;
   ASTNode_t *ast;
@@ -3803,6 +3990,27 @@ GetInitialAssignment ( mxArray * mxInitialAssignment,
 			mexErrMsgTxt("Cannot copy Math");
 		}
 
+     /* temporary hack to convert MATLAB formula to MathML infix */
+
+    mxInput[0] = mxCreateString(pacMath);
+    nStatus = mexCallMATLAB(1, mxOutput, 1, mxInput, "ConvertFormulaToMathML");
+
+    if (nStatus != 0)
+    {
+        mexErrMsgTxt("Failed to convert formula");
+    }
+
+    /* get the formula returned */
+    nBuflen = (mxGetM(mxOutput[0])*mxGetN(mxOutput[0])+1);
+    pacMath = (char *) mxCalloc(nBuflen, sizeof(char));
+    nStatus = mxGetString(mxOutput[0], (char *) pacMath, nBuflen);
+
+    if (nStatus != 0)
+    {
+        mexErrMsgTxt("Cannot copy formula");
+    }
+
+    /* END OF HACK */
     ast = SBML_parseFormula(pacMath);
     LookForCSymbolTime(ast);
 
@@ -3857,6 +4065,8 @@ GetConstraint ( mxArray * mxConstraint,
 
   mxArray *mxMetaid;
 	mxArray * mxNotes, * mxAnnotations, * mxMessage, * mxMath, *mxSBOTerm;
+  mxArray *mxInput[1];
+  mxArray *mxOutput[1];
 
 	Constraint_t *pConstraint;
   ASTNode_t * ast;
@@ -3933,6 +4143,27 @@ GetConstraint ( mxArray * mxConstraint,
 			mexErrMsgTxt("Cannot copy Math");
 		}
 
+     /* temporary hack to convert MATLAB formula to MathML infix */
+
+    mxInput[0] = mxCreateString(pacMath);
+    nStatus = mexCallMATLAB(1, mxOutput, 1, mxInput, "ConvertFormulaToMathML");
+
+    if (nStatus != 0)
+    {
+        mexErrMsgTxt("Failed to convert formula");
+    }
+
+    /* get the formula returned */
+    nBuflen = (mxGetM(mxOutput[0])*mxGetN(mxOutput[0])+1);
+    pacMath = (char *) mxCalloc(nBuflen, sizeof(char));
+    nStatus = mxGetString(mxOutput[0], (char *) pacMath, nBuflen);
+
+    if (nStatus != 0)
+    {
+        mexErrMsgTxt("Cannot copy formula");
+    }
+
+    /* END OF HACK */
     ast = SBML_parseFormula(pacMath);
     LookForCSymbolTime(ast);
 
@@ -3985,6 +4216,8 @@ GetStoichiometryMath ( mxArray * mxStoichiometryMath,
 
   mxArray *mxMetaid;
 	mxArray * mxNotes, * mxAnnotations, * mxMath, *mxSBOTerm;
+  mxArray *mxInput[1];
+  mxArray *mxOutput[1];
 
 	StoichiometryMath_t *pStoichiometryMath;
   ASTNode_t *ast;
@@ -4044,6 +4277,27 @@ GetStoichiometryMath ( mxArray * mxStoichiometryMath,
     mexErrMsgTxt("Cannot copy Math");
   }
 
+     /* temporary hack to convert MATLAB formula to MathML infix */
+
+    mxInput[0] = mxCreateString(pacMath);
+    nStatus = mexCallMATLAB(1, mxOutput, 1, mxInput, "ConvertFormulaToMathML");
+
+    if (nStatus != 0)
+    {
+        mexErrMsgTxt("Failed to convert formula");
+    }
+
+    /* get the formula returned */
+    nBuflen = (mxGetM(mxOutput[0])*mxGetN(mxOutput[0])+1);
+    pacMath = (char *) mxCalloc(nBuflen, sizeof(char));
+    nStatus = mxGetString(mxOutput[0], (char *) pacMath, nBuflen);
+
+    if (nStatus != 0)
+    {
+        mexErrMsgTxt("Cannot copy formula");
+    }
+
+    /* END OF HACK */
   ast = SBML_parseFormula(pacMath);
   LookForCSymbolTime(ast);
 
@@ -4096,6 +4350,8 @@ GetTrigger ( mxArray * mxTrigger,
 
   mxArray *mxMetaid;
 	mxArray * mxNotes, * mxAnnotations, * mxMath, *mxSBOTerm;
+  mxArray *mxInput[1];
+  mxArray *mxOutput[1];
 
 	Trigger_t *pTrigger;
   ASTNode_t * ast;
@@ -4155,6 +4411,27 @@ GetTrigger ( mxArray * mxTrigger,
     mexErrMsgTxt("Cannot copy Math");
   }
 
+     /* temporary hack to convert MATLAB formula to MathML infix */
+
+    mxInput[0] = mxCreateString(pacMath);
+    nStatus = mexCallMATLAB(1, mxOutput, 1, mxInput, "ConvertFormulaToMathML");
+
+    if (nStatus != 0)
+    {
+        mexErrMsgTxt("Failed to convert formula");
+    }
+
+    /* get the formula returned */
+    nBuflen = (mxGetM(mxOutput[0])*mxGetN(mxOutput[0])+1);
+    pacMath = (char *) mxCalloc(nBuflen, sizeof(char));
+    nStatus = mxGetString(mxOutput[0], (char *) pacMath, nBuflen);
+
+    if (nStatus != 0)
+    {
+        mexErrMsgTxt("Cannot copy formula");
+    }
+
+    /* END OF HACK */
   ast = SBML_parseFormula(pacMath);
   LookForCSymbolTime(ast);
 
@@ -4207,6 +4484,8 @@ GetDelay ( mxArray * mxDelay,
 
   mxArray *mxMetaid;
 	mxArray * mxNotes, * mxAnnotations, * mxMath, *mxSBOTerm;
+  mxArray *mxInput[1];
+  mxArray *mxOutput[1];
 
 	Delay_t *pDelay;
   ASTNode_t * ast;
@@ -4265,6 +4544,27 @@ GetDelay ( mxArray * mxDelay,
     mexErrMsgTxt("Cannot copy Math");
   }
 
+     /* temporary hack to convert MATLAB formula to MathML infix */
+
+    mxInput[0] = mxCreateString(pacMath);
+    nStatus = mexCallMATLAB(1, mxOutput, 1, mxInput, "ConvertFormulaToMathML");
+
+    if (nStatus != 0)
+    {
+        mexErrMsgTxt("Failed to convert formula");
+    }
+
+    /* get the formula returned */
+    nBuflen = (mxGetM(mxOutput[0])*mxGetN(mxOutput[0])+1);
+    pacMath = (char *) mxCalloc(nBuflen, sizeof(char));
+    nStatus = mxGetString(mxOutput[0], (char *) pacMath, nBuflen);
+
+    if (nStatus != 0)
+    {
+        mexErrMsgTxt("Cannot copy formula");
+    }
+
+    /* END OF HACK */
   if (strcmp(pacMath, ""))
   {
     ast = SBML_parseFormula(pacMath);
