@@ -2,15 +2,26 @@
 
 
 ---------------------------------------------------
-Currnt development
+Current development
 ---------------------------------------------------
 
 * Bug fixes:
+
+  - Tracker issue #2954118.
+    When an output filename is specified for the ode function
+    it needs to be communicated to the event handling functions.
+    This is now fixed.
+
 
   - Tracker issue #2945261.
     OutputSBML crashed if there was no KineticLaw math.  This
     has been fixed.  Thanks to Kieran Smallbone for reporting
     this.
+    
+  - The Model_create function was failing to add more recent
+    fields that the OutputSBML function expects; namely
+    time_symbol; delay_symbol and namespaces.  Thanks to
+    Wolfram Liebermeister for reporting this.
 
 ---------------------------------------------------
 Version 3.1.0 Released 2010-01-28
