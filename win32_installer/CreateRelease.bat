@@ -95,6 +95,7 @@ copy C:\SBMLToolbox\src\install.m install.m
 copy C:\SBMLToolbox\src\SBMLToolbox.m SBMLToolbox.m
 copy C:\SBMLToolbox\src\make.bat make.bat
 copy C:\SBMLToolbox\src\test.xml test.xml
+copy C:\SBMLToolbox\src\ConvertFormulaToMathML.m ConvertFormulaToMathML.m
 
 cd C:\SBMLToolbox\src\AccessModel
 copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox\toolbox\AccessModel
