@@ -1,5 +1,15 @@
     SBMLToolbox NEWS -- History of user-visible changes
 
+---------------------------------------------------
+Version 3.1.2 Released 2010-04-27
+---------------------------------------------------
+
+This release adds a missing file to the windows installer
+for libSBML-4.0.1 that is embedded in the windows
+installer for SBMLToolbox.
+
+There are no functional changes. 
+
 
 ---------------------------------------------------
 Version 3.1.1 Released 2010-04-12
