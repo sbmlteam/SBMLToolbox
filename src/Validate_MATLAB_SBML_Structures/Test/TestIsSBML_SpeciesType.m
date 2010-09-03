@@ -25,6 +25,8 @@ function fail = TestIsSBML_SpeciesType
 st_l2v2 = struct('typecode', {'SBML_SPECIES_TYPE'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''},'name', ...
     {''}, 'id', {''});
 
+st_l2v3 = struct('typecode', {'SBML_SPECIES_TYPE'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''},'name', ...
+    {''}, 'id', {''}, 'sboTerm', {''});
 
 fail = TestFunction('isSBML_SpeciesType', 2, 1, st_l2v2, 1, 0);
 fail = fail + TestFunction('isSBML_SpeciesType', 3, 1, st_l2v2, 1, 1, 0);
@@ -32,6 +34,10 @@ fail = fail + TestFunction('isSBML_SpeciesType', 3, 1, st_l2v2, 1, 2, 0);
 fail = fail + TestFunction('isSBML_SpeciesType', 2, 1, st_l2v2, 2, 0);
 fail = fail + TestFunction('isSBML_SpeciesType', 3, 1, st_l2v2, 2, 1, 0);
 fail = fail + TestFunction('isSBML_SpeciesType', 3, 1, st_l2v2, 2, 2, 1);
+fail = fail + TestFunction('isSBML_SpeciesType', 3, 1, st_l2v3, 2, 3, 1);
+fail = fail + TestFunction('isSBML_SpeciesType', 3, 1, st_l2v3, 2, 4, 1);
+fail = fail + TestFunction('isSBML_SpeciesType', 3, 1, st_l2v3, 3, 1, 0);
+fail = fail + TestFunction('isSBML_SpeciesType', 2, 1, st_l2v3, 3, 0);
 
 
 

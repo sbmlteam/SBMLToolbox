@@ -33,12 +33,19 @@ r_l2v2 = struct('typecode', {'SBML_REACTION'}, 'metaid', {''}, 'notes', {''}, 'a
     'id', {''}, 'reactant', {''}, 'product', {''}, 'modifier', {''}, 'kineticLaw', {''}, 'reversible', ...
     {''}, 'fast', {''}, 'sboTerm', {''}, 'isSetFast', {''});
 
+r_l3v1 = struct('typecode', {'SBML_REACTION'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''},'name', {''}, ...
+    'id', {''}, 'reactant', {''}, 'product', {''}, 'modifier', {''}, 'kineticLaw', {''}, 'reversible', ...
+    {''}, 'fast', {''}, 'sboTerm', {''}, 'compartment', {''}, 'isSetFast', {''});
+
 fail = TestFunction('isSBML_Reaction', 2, 1, r_l1, 1, 1);
 fail = fail + TestFunction('isSBML_Reaction', 3, 1, r_l1, 1, 1, 1);
 fail = fail + TestFunction('isSBML_Reaction', 3, 1, r_l1, 1, 2, 1);
 fail = fail + TestFunction('isSBML_Reaction', 2, 1, r_l2, 2, 1);
 fail = fail + TestFunction('isSBML_Reaction', 3, 1, r_l2, 2, 1, 1);
 fail = fail + TestFunction('isSBML_Reaction', 3, 1, r_l2v2, 2, 2, 1);
+fail = fail + TestFunction('isSBML_Reaction', 3, 1, r_l2v2, 2, 3, 1);
+fail = fail + TestFunction('isSBML_Reaction', 3, 1, r_l2v2, 2, 4, 1);
+fail = fail + TestFunction('isSBML_Reaction', 3, 1, r_l3v1, 3, 1, 1);
 
 
 

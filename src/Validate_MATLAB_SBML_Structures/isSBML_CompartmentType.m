@@ -68,8 +68,8 @@ end;
 if (Level == 1)
     y = 0;
     return;
-else
-    if (Version == 1)
+elseif (Level == 2)
+  if (Version == 1)
         y = 0;
         return;
     elseif (Version == 2)
@@ -81,6 +81,11 @@ else
     elseif (Version == 4)
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id'};
         nNumberFields = 7;
+    end;
+elseif (Level == 3)
+    if (Version == 1)
+    y = 0;
+    return;
     end;
 end;
     

@@ -73,7 +73,7 @@ if (Level == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'reactant', 'product', 'kineticLaw', ...
         'reversible', 'fast'};
     nNumberFields = 9;
-else
+elseif (Level == 2)
     if (Version == 1)
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','name', 'id', 'reactant', 'product', ...
             'modifier', 'kineticLaw', 'reversible', 'fast', 'isSetFast'};
@@ -90,6 +90,12 @@ else
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','sboTerm', 'name', 'id', 'reactant', 'product', ...
             'modifier', 'kineticLaw', 'reversible', 'fast', 'isSetFast'};
         nNumberFields = 14;
+    end;
+elseif (Level == 3)
+    if (Version == 1)
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','sboTerm', 'name', 'id', 'reactant', 'product', ...
+            'modifier', 'kineticLaw', 'reversible', 'fast', 'isSetFast', 'compartment'};
+        nNumberFields = 15;
     end;
 end;
     
@@ -150,7 +156,7 @@ if(bSBML == 1)
         index = index + 1;
     end;
 
-    if (Level == 2)
+    if (Level > 1)
         index = 1;
         [x, nNumberModifiers] = size(SBMLStructure.modifier);
         while (bSBML == 1 && index <= nNumberModifiers)

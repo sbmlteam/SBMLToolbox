@@ -65,7 +65,7 @@ end;
 message = '';
 % get level
 Level = SBMLStructure.SBML_level;
-if (Level < 1 || Level > 2)
+if (Level < 1 || Level > 3)
     y = 0;
     message = 'Invalid SBML level';
     return;
@@ -84,7 +84,7 @@ if (Level == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation', 'SBML_level', 'SBML_version', 'name', 'unitDefinition',...
         'compartment', 'species', 'parameter', 'rule', 'reaction'};
     nNumberFields = 12;
-else
+elseif (Level == 2)
     if (Version == 1)
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'SBML_level', 'SBML_version', 'name', 'id', ...
             'functionDefinition', 'unitDefinition', 'compartment', 'species', 'parameter', 'rule', 'reaction',...
@@ -105,6 +105,14 @@ else
             'sboTerm', 'functionDefinition', 'unitDefinition', 'compartmentType', 'speciesType', 'compartment', ...
             'species', 'parameter', 'initialAssignment', 'rule', 'constraint', 'reaction', 'event'};
         nNumberFields = 21;
+    end;
+elseif (Level == 3)
+    if (Version == 1)
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'SBML_level', 'SBML_version', 'name', 'id', ...
+            'sboTerm', 'functionDefinition', 'unitDefinition', 'compartment', ...
+            'species', 'parameter', 'initialAssignment', 'rule', 'constraint', 'reaction', 'event', ...
+            'substanceUnits', 'timeUnits', 'lengthUnits', 'areaUnits', 'volumeUnits', 'extentUnits', 'conversionFactor'};
+        nNumberFields = 26;
     end;
 end;
 typecode = 'SBML_MODEL';

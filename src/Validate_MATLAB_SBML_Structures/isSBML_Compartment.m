@@ -79,7 +79,7 @@ end;
 if (Level == 1) 
     SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'volume', 'units', 'outside', 'isSetVolume'};
     nNumberFields = 8;
-else 
+elseif (Level == 2)
     if (Version == 1)
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','name', 'id', 'spatialDimensions', ...
             'size', 'units', 'outside', 'constant', 'isSetSize','isSetVolume'};
@@ -96,6 +96,12 @@ else
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id', 'compartmentType', ...
             'spatialDimensions', 'size', 'units', 'outside', 'constant', 'isSetSize','isSetVolume'};
         nNumberFields = 15;
+    end;
+elseif (Level == 3)
+    if (Version == 1)
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id',  ...
+            'spatialDimensions', 'size', 'units', 'constant', 'isSetSize','isSetVolume'};
+        nNumberFields = 13;
     end;
 end;
 typecode = 'SBML_COMPARTMENT';

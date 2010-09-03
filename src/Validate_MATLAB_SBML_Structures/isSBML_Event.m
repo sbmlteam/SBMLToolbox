@@ -72,7 +72,7 @@ if (Level == 1)
     y = 0;
     message = 'Event is invalid for SBML L1';
     return;
-else
+elseif (Level == 2)
     if (Version == 1)
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'name', 'id', 'trigger', 'delay', ...
             'timeUnits', 'eventAssignment'};
@@ -86,6 +86,12 @@ else
             'eventAssignment'};
         nNumberFields = 10;
     elseif (Version == 4)
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id', ...
+          'useValuesFromTriggerTime', 'trigger', 'delay', 'eventAssignment'};
+        nNumberFields = 11;
+    end;
+elseif (Level == 3)
+    if (Version == 1)
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id', ...
           'useValuesFromTriggerTime', 'trigger', 'delay', 'eventAssignment'};
         nNumberFields = 11;

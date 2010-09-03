@@ -42,6 +42,7 @@ fail = fail + TestFunction('isSBML_Event', 3, 1, e_l2, 2, 1, 1);
 fail = fail + TestFunction('isSBML_Event', 3, 1, e_l2v3, 2, 3, 1);
 fail = fail + TestFunction('isSBML_Event', 3, 1, e_l2v4, 2, 3, 0);
 fail = fail + TestFunction('isSBML_Event', 3, 1, e_l2v4, 2, 4, 1);
+fail = fail + TestFunction('isSBML_Event', 3, 1, e_l2v4, 3, 1, 1);
 
 
 

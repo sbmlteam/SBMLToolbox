@@ -68,7 +68,7 @@ end;
 if (Level == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation','formula', 'parameter', 'timeUnits', 'substanceUnits'};
     nNumberFields = 7;
-else
+elseif (Level == 2)
     if (Version == 1)
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','formula', 'math','parameter', ...
             'timeUnits','substanceUnits'};
@@ -82,6 +82,11 @@ else
     elseif (Version == 4)
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'formula', 'math','parameter'};
         nNumberFields = 8;
+    end;
+elseif (Level == 3)
+    if (Version == 1)
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'math','localParameter'};
+        nNumberFields = 7;
     end;
 end;
 typecode = 'SBML_KINETIC_LAW';
@@ -119,10 +124,18 @@ end;
 % check that any nested structures are appropriate
 if(bSBML == 1)
     index = 1;
-    [x, nNumberParameters] = size(SBMLStructure.parameter); 
-    while (bSBML == 1 && index <= nNumberParameters)
-        [bSBML, message] = isSBML_Parameter(SBMLStructure.parameter(index), Level, Version);
-        index = index + 1;
+    if (Level < 3)
+      [x, nNumberParameters] = size(SBMLStructure.parameter); 
+      while (bSBML == 1 && index <= nNumberParameters)
+          [bSBML, message] = isSBML_Parameter(SBMLStructure.parameter(index), Level, Version);
+          index = index + 1;
+      end;
+    else
+      [x, nNumberParameters] = size(SBMLStructure.localParameter); 
+      while (bSBML == 1 && index <= nNumberParameters)
+          [bSBML, message] = isSBML_LocalParameter(SBMLStructure.localParameter(index), Level, Version);
+          index = index + 1;
+      end;
     end;
 end;
 
