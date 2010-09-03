@@ -71,7 +71,7 @@ end;
 if (Level == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation','species', 'stoichiometry', 'denominator'};
     nNumberFields = 6;
-else
+elseif (Level == 2)
     if (Version == 1)
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','species', 'stoichiometry', ...
             'denominator', 'stoichiometryMath'};
@@ -87,6 +87,12 @@ else
     elseif (Version == 4)
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'species', 'id', 'name', ...
             'stoichiometry', 'stoichiometryMath'};
+        nNumberFields = 10;
+    end;
+elseif (Level == 3)
+    if (Version == 1)
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'species', 'id', 'name', ...
+            'stoichiometry', 'constant'};
         nNumberFields = 10;
     end;
 end;

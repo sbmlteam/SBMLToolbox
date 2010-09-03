@@ -36,6 +36,8 @@ fail = fail + TestFunction('isSBML_CompartmentType', 3, 1, ct_l2v2, 2, 1, 0);
 fail = fail + TestFunction('isSBML_CompartmentType', 3, 1, ct_l2v2, 2, 2, 1);
 fail = fail + TestFunction('isSBML_CompartmentType', 3, 1, ct_l2v3, 2, 2, 0);
 fail = fail + TestFunction('isSBML_CompartmentType', 3, 1, ct_l2v3, 2, 3, 1);
+fail = fail + TestFunction('isSBML_CompartmentType', 3, 1, ct_l2v3, 2, 4, 1);
+fail = fail + TestFunction('isSBML_CompartmentType', 3, 1, ct_l2v3, 3, 1, 0);
 
 
 

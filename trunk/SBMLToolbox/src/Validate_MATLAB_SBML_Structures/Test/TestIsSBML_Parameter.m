@@ -37,6 +37,9 @@ fail = fail + TestFunction('isSBML_Parameter', 3, 1, p_l1, 1, 2, 1);
 fail = fail + TestFunction('isSBML_Parameter', 2, 1, p_l2, 2, 1);
 fail = fail + TestFunction('isSBML_Parameter', 3, 1, p_l2, 2, 1, 1);
 fail = fail + TestFunction('isSBML_Parameter', 3, 1, p_l2v2, 2, 2, 1);
+fail = fail + TestFunction('isSBML_Parameter', 3, 1, p_l2v2, 2, 3, 1);
+fail = fail + TestFunction('isSBML_Parameter', 3, 1, p_l2v2, 2, 4, 1);
+fail = fail + TestFunction('isSBML_Parameter', 3, 1, p_l2v2, 3, 1, 1);
 
 
 

@@ -37,6 +37,9 @@ fail = fail + TestFunction('isSBML_AlgebraicRule', 3, 1, ar_l1, 1, 2, 1);
 fail = fail + TestFunction('isSBML_AlgebraicRule', 2, 1, ar_l2, 2, 1);
 fail = fail + TestFunction('isSBML_AlgebraicRule', 3, 1, ar_l2, 2, 1, 1);
 fail = fail + TestFunction('isSBML_AlgebraicRule', 3, 1, ar_l2v2, 2, 2, 1);
+fail = fail + TestFunction('isSBML_AlgebraicRule', 3, 1, ar_l2v2, 2, 3, 1);
+fail = fail + TestFunction('isSBML_AlgebraicRule', 3, 1, ar_l2v2, 2, 4, 1);
+fail = fail + TestFunction('isSBML_AlgebraicRule', 3, 1, ar_l2v2, 3, 1, 1);
 
 
 

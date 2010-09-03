@@ -31,12 +31,19 @@ u_l2 = struct('typecode', {'SBML_UNIT'}, 'metaid', {''}, 'notes', {''}, 'annotat
 u_l2v2 = struct('typecode', {'SBML_UNIT'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''},'kind', ...
     {''}, 'exponent', {''}, 'scale', {''}, 'multiplier', {''});
 
+u_l2v3 = struct('typecode', {'SBML_UNIT'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''}, ...
+  'sboTerm', {''}, 'kind', ...
+    {''}, 'exponent', {''}, 'scale', {''}, 'multiplier', {''});
+
 fail = TestFunction('isSBML_Unit', 2, 1, u_l1, 1, 1);
 fail = fail + TestFunction('isSBML_Unit', 3, 1, u_l1, 1, 1, 1);
 fail = fail + TestFunction('isSBML_Unit', 3, 1, u_l1, 1, 2, 1);
 fail = fail + TestFunction('isSBML_Unit', 2, 1, u_l2, 2, 1);
 fail = fail + TestFunction('isSBML_Unit', 3, 1, u_l2, 2, 1, 1);
 fail = fail + TestFunction('isSBML_Unit', 3, 1, u_l2v2, 2, 2, 1);
+fail = fail + TestFunction('isSBML_Unit', 3, 1, u_l2v3, 2, 3, 1);
+fail = fail + TestFunction('isSBML_Unit', 3, 1, u_l2v3, 2, 4, 1);
+fail = fail + TestFunction('isSBML_Unit', 3, 1, u_l2v3, 3, 1, 1);
 
 
 

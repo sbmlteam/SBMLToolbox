@@ -80,7 +80,7 @@ if (Level == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'compartment', 'initialAmount', ...
         'units', 'boundaryCondition', 'charge', 'isSetInitialAmount', 'isSetCharge'};
     nNumberFields = 11;
-else
+elseif (Level == 2)
     if (Version == 1)
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','name', 'id', 'compartment', 'initialAmount', ...
             'initialConcentration', 'substanceUnits', 'spatialSizeUnits',  'hasOnlySubstanceUnits', ...
@@ -105,6 +105,14 @@ else
             'hasOnlySubstanceUnits', 'boundaryCondition', 'charge', 'constant', 'isSetInitialAmount', ...
             'isSetInitialConcentration','isSetCharge'};
         nNumberFields = 19;
+    end;
+elseif (Level == 3)
+    if (Version == 1)
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','sboTerm', 'name', 'id', 'compartment', ...
+            'initialAmount', 'initialConcentration', 'substanceUnits',  ...
+            'hasOnlySubstanceUnits', 'boundaryCondition', 'constant', 'isSetInitialAmount', ...
+            'isSetInitialConcentration','conversionFactor'};
+        nNumberFields = 17;
     end;
 end;
 typecode = 'SBML_SPECIES';

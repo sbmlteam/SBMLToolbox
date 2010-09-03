@@ -31,12 +31,18 @@ sr_l2 = struct('typecode', {'SBML_SPECIES_REFERENCE'}, 'metaid', {''}, 'notes', 
 sr_l2v2 = struct('typecode', {'SBML_SPECIES_REFERENCE'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''},'species', ...
     {''}, 'id', {''}, 'name', {''}, 'sboTerm', {''}, 'stoichiometry', {''}, 'stoichiometryMath', {''});
 
+sr_l3v1 = struct('typecode', {'SBML_SPECIES_REFERENCE'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''},'species', ...
+    {''}, 'id', {''}, 'name', {''}, 'sboTerm', {''}, 'stoichiometry', {''}, 'constant', {''});
+
 fail = TestFunction('isSBML_SpeciesReference', 2, 1, sr_l1, 1, 1);
 fail = fail + TestFunction('isSBML_SpeciesReference', 3, 1, sr_l1, 1, 1, 1);
 fail = fail + TestFunction('isSBML_SpeciesReference', 3, 1, sr_l1, 1, 2, 1);
 fail = fail + TestFunction('isSBML_SpeciesReference', 2, 1, sr_l2, 2, 1);
 fail = fail + TestFunction('isSBML_SpeciesReference', 3, 1, sr_l2, 2, 1, 1);
 fail = fail + TestFunction('isSBML_SpeciesReference', 3, 1, sr_l2v2, 2, 2, 1);
+fail = fail + TestFunction('isSBML_SpeciesReference', 3, 1, sr_l2v2, 2, 3, 1);
+fail = fail + TestFunction('isSBML_SpeciesReference', 3, 1, sr_l2v2, 2, 4, 1);
+fail = fail + TestFunction('isSBML_SpeciesReference', 3, 1, sr_l3v1, 3, 1, 1);
 
 
 

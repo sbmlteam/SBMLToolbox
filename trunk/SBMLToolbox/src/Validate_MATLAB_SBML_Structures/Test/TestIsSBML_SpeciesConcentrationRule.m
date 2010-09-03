@@ -29,6 +29,12 @@ fail = TestFunction('isSBML_SpeciesConcentrationRule', 2, 1, scr_l1, 1, 1);
 fail = fail + TestFunction('isSBML_SpeciesConcentrationRule', 3, 1, scr_l1, 1, 1, 1);
 fail = fail + TestFunction('isSBML_SpeciesConcentrationRule', 3, 1, scr_l1, 1, 2, 1);
 fail = fail + TestFunction('isSBML_SpeciesConcentrationRule', 2, 1, scr_l1, 2, 0);
+fail = fail + TestFunction('isSBML_SpeciesConcentrationRule', 2, 1, scr_l1, 3, 0);
+fail = fail + TestFunction('isSBML_SpeciesConcentrationRule', 3, 1, scr_l1, 2, 1, 0);
+fail = fail + TestFunction('isSBML_SpeciesConcentrationRule', 3, 1, scr_l1, 2, 2, 0);
+fail = fail + TestFunction('isSBML_SpeciesConcentrationRule', 3, 1, scr_l1, 2, 3, 0);
+fail = fail + TestFunction('isSBML_SpeciesConcentrationRule', 3, 1, scr_l1, 2, 4, 0);
+fail = fail + TestFunction('isSBML_SpeciesConcentrationRule', 3, 1, scr_l1, 3, 1, 0);
 
 
 

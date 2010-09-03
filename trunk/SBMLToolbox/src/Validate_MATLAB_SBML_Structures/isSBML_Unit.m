@@ -71,7 +71,7 @@ if (Level == 1)
   SBMLfieldnames = {'typecode', 'notes', 'annotation','kind', ...
     'exponent', 'scale'};
   nNumberFields = 6;
-else
+elseif (Level == 2)
   if (Version == 1)
     SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'kind', ...
       'exponent', 'scale', 'multiplier', 'offset'};
@@ -89,6 +89,12 @@ else
       'kind', 'exponent', 'scale', 'multiplier'};
     nNumberFields = 9;
   end;
+elseif (Level == 3)
+    if (Version == 1)
+    SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', ...
+      'kind', 'exponent', 'scale', 'multiplier'};
+    nNumberFields = 9;
+    end;
 end;
 
 typecode = 'SBML_UNIT';

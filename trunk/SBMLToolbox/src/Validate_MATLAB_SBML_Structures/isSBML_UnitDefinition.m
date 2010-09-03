@@ -66,7 +66,7 @@ end;
 if (Level == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'unit'};
     nNumberFields = 5;
-else
+elseif (Level == 2)
     if (Version == 1)
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','name', 'id', 'unit'};
         nNumberFields = 7;
@@ -77,6 +77,11 @@ else
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id', 'unit'};
         nNumberFields = 8;
     elseif (Version == 4)
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id', 'unit'};
+        nNumberFields = 8;
+    end;
+elseif (Level == 3)
+    if (Version == 1)
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id', 'unit'};
         nNumberFields = 8;
     end;

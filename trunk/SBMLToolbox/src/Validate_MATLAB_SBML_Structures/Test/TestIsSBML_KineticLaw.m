@@ -34,6 +34,9 @@ kl_l2v2 = struct('typecode', {'SBML_KINETIC_LAW'}, 'metaid', {''}, 'notes', {''}
 kl_l2v3 = struct('typecode', {'SBML_KINETIC_LAW'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''},'formula', {''}, ...
     'math', {''},'parameter', {''}, 'sboTerm', {''});
 
+kl_l3v1 = struct('typecode', {'SBML_KINETIC_LAW'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''}, ...
+    'math', {''},'localParameter', {''}, 'sboTerm', {''});
+
 fail = TestFunction('isSBML_KineticLaw', 2, 1, kl_l1, 1, 1);
 fail = fail + TestFunction('isSBML_KineticLaw', 3, 1, kl_l1, 1, 1, 1);
 fail = fail + TestFunction('isSBML_KineticLaw', 3, 1, kl_l1, 1, 2, 1);
@@ -41,6 +44,8 @@ fail = fail + TestFunction('isSBML_KineticLaw', 2, 1, kl_l2, 2, 1);
 fail = fail + TestFunction('isSBML_KineticLaw', 3, 1, kl_l2, 2, 1, 1);
 fail = fail + TestFunction('isSBML_KineticLaw', 3, 1, kl_l2v2, 2, 2, 1);
 fail = fail + TestFunction('isSBML_KineticLaw', 3, 1, kl_l2v3, 2, 3, 1);
+fail = fail + TestFunction('isSBML_KineticLaw', 3, 1, kl_l2v3, 2, 4, 1);
+fail = fail + TestFunction('isSBML_KineticLaw', 3, 1, kl_l3v1, 3, 1, 1);
 
 
 

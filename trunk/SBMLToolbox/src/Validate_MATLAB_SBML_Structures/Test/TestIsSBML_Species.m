@@ -36,12 +36,25 @@ s_l2v2 = struct('typecode', {'SBML_SPECIES'}, 'metaid', {''}, 'notes', {''}, 'an
     'substanceUnits', {''}, 'spatialSizeUnits', {''}, 'hasOnlySubstanceUnits', {''}, 'boundaryCondition', {''}, ...
     'charge', {''}, 'constant', {''}, 'isSetInitialAmount', {''}, 'isSetInitialConcentration', {''}, 'isSetCharge', {''});
 
+s_l2v3 = struct('typecode', {'SBML_SPECIES'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''}, 'sboTerm', {''}, 'name', {''}, ...
+    'id', {''}, 'speciesType', {''}, 'compartment', {''}, 'initialAmount', {''}, 'initialConcentration', {''}, ...
+    'substanceUnits', {''}, 'hasOnlySubstanceUnits', {''}, 'boundaryCondition', {''}, ...
+    'charge', {''}, 'constant', {''}, 'isSetInitialAmount', {''}, 'isSetInitialConcentration', {''}, 'isSetCharge', {''});
+
+s_l3v1 = struct('typecode', {'SBML_SPECIES'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''}, 'sboTerm', {''}, 'name', {''}, ...
+    'id', {''}, 'compartment', {''}, 'initialAmount', {''}, 'initialConcentration', {''}, ...
+    'substanceUnits', {''}, 'hasOnlySubstanceUnits', {''}, 'boundaryCondition', {''}, ...
+    'constant', {''}, 'isSetInitialAmount', {''}, 'isSetInitialConcentration', {''}, 'conversionFactor', {''});
+
 fail = TestFunction('isSBML_Species', 2, 1, s_l1, 1, 1);
 fail = fail + TestFunction('isSBML_Species', 3, 1, s_l1, 1, 1, 1);
 fail = fail + TestFunction('isSBML_Species', 3, 1, s_l1, 1, 2, 1);
 fail = fail + TestFunction('isSBML_Species', 2, 1, s_l2, 2, 1);
 fail = fail + TestFunction('isSBML_Species', 3, 1, s_l2, 2, 1, 1);
 fail = fail + TestFunction('isSBML_Species', 3, 1, s_l2v2, 2, 2, 1);
+fail = fail + TestFunction('isSBML_Species', 3, 1, s_l2v3, 2, 3, 1);
+fail = fail + TestFunction('isSBML_Species', 3, 1, s_l2v3, 2, 4, 1);
+fail = fail + TestFunction('isSBML_Species', 3, 1, s_l3v1, 3, 1, 1);
 
 
 
