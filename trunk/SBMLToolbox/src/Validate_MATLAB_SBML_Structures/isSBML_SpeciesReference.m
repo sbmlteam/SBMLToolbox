@@ -92,8 +92,8 @@ elseif (Level == 2)
 elseif (Level == 3)
     if (Version == 1)
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'species', 'id', 'name', ...
-            'stoichiometry', 'constant'};
-        nNumberFields = 10;
+            'stoichiometry', 'constant', 'isSetStoichiometry'};
+        nNumberFields = 11;
     end;
 end;
 typecode = 'SBML_SPECIES_REFERENCE';

@@ -43,7 +43,7 @@ c_l2v4 = struct('typecode', {'SBML_COMPARTMENT'}, 'metaid', {''}, 'notes', {''},
 
 c_l3v1 = struct('typecode', {'SBML_COMPARTMENT'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''},'name', {''}, 'id', {''}, ...
     'spatialDimensions', {''}, 'size', {''}, 'units', {''}, ...
-    'constant', {''}, 'isSetSize', {''},'isSetVolume', {''}, 'sboTerm', {''});
+    'constant', {''}, 'isSetSize', {''},'isSetSpatialDimensions', {''}, 'sboTerm', {''});
 
 
 fail = TestFunction('isSBML_Compartment', 2, 1, c_l1, 1, 1);

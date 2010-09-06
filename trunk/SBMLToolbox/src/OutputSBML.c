@@ -112,9 +112,13 @@ mexFunction (int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 
 	mxArray * mxLevel, * mxVersion, * mxNotes, * mxAnnotations;
   mxArray * mxName, * mxId, *mxNamespaces, *mxMetaid, *mxTimeSymbol;
+  mxArray * mxSubstanceUnits, * mxTimeUnits, *mxLengthUnits, *mxAreaUnits;
+  mxArray * mxVolumeUnits, * mxExtentUnits, *mxConversionFactor;
 	unsigned int nLevel, nVersion;
 	char * pacNotes, * pacAnnotations;
   char * pacName, * pacId, *pacMetaid;
+  char * pacSubstanceUnits, * pacTimeUnits, *pacLengthUnits, *pacAreaUnits;
+  char * pacVolumeUnits, * pacExtentUnits, *pacConversionFactor;
   int nSBOTerm;
 	
 	mxArray * mxParameters, * mxCompartments, * mxFunctionDefinitions;
@@ -283,17 +287,17 @@ mexFunction (int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 
 	Model_setName(sbmlModel, pacName);
 
-  mxUnitDefinitions = mxGetField(mxModel[0], 0, "unitDefinition");
-  GetUnitDefinition(mxUnitDefinitions, nLevel, nVersion, sbmlModel);
+   mxUnitDefinitions = mxGetField(mxModel[0], 0, "unitDefinition");
+   GetUnitDefinition(mxUnitDefinitions, nLevel, nVersion, sbmlModel);
 
 	mxCompartments = mxGetField(mxModel[0], 0, "compartment");
 	GetCompartment(mxCompartments, nLevel, nVersion, sbmlModel);
 
   mxSpecies = mxGetField(mxModel[0], 0, "species");
-	GetSpecies(mxSpecies, nLevel, nVersion, sbmlModel);
-	
-  mxParameters = mxGetField(mxModel[0], 0, "parameter");
-	GetParameter(mxParameters, nLevel, nVersion, sbmlModel);
+ 	GetSpecies(mxSpecies, nLevel, nVersion, sbmlModel);
+ 	
+   mxParameters = mxGetField(mxModel[0], 0, "parameter");
+ 	GetParameter(mxParameters, nLevel, nVersion, sbmlModel);
     
   mxRules = mxGetField(mxModel[0], 0, "rule");
 	GetRule(mxRules, nLevel, nVersion, sbmlModel);
@@ -301,8 +305,8 @@ mexFunction (int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
   mxReactions = mxGetField(mxModel[0], 0, "reaction");
 	GetReaction(mxReactions, nLevel, nVersion, sbmlModel);
 
-	/* level 2 only */
-	if (nLevel == 2)
+	/* level 2 and 3 only */
+	if (nLevel > 1)
 	{
 		/* get id */
 		mxId = mxGetField(mxModel[0], 0, "id");
@@ -330,12 +334,17 @@ mexFunction (int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 
 		SBase_setMetaId((SBase_t *) (sbmlModel), pacMetaid);
 
-		mxFunctionDefinitions = mxGetField(mxModel[0], 0, "functionDefinition");
-		GetFunctionDefinition(mxFunctionDefinitions, nLevel, nVersion, sbmlModel);
+ 		mxFunctionDefinitions = mxGetField(mxModel[0], 0, "functionDefinition");
+ 		GetFunctionDefinition(mxFunctionDefinitions, nLevel, nVersion, sbmlModel);
 
     mxEvents = mxGetField(mxModel[0], 0, "event");
 		GetEvent(mxEvents, nLevel, nVersion, sbmlModel);
 
+	}
+
+	/* level 2 version 2-4 */
+	if (nLevel == 2)
+	{
     if (nVersion > 1)
     {
 			/* get sboTerm */
@@ -358,6 +367,112 @@ mexFunction (int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     }
 	}
 
+  	/* level 3 */
+	if (nLevel == 3)
+	{
+    /* get sboTerm */
+    mxSBOTerm = mxGetField(mxModel[0], 0, "sboTerm");
+		nSBOTerm = (int)mxGetScalar(mxSBOTerm);
+
+		SBase_setSBOTerm((SBase_t *) (sbmlModel), nSBOTerm);
+
+    mxInitialAssignments = mxGetField(mxModel[0], 0, "initialAssignment");
+    GetInitialAssignment(mxInitialAssignments, nLevel, nVersion, sbmlModel);
+ 
+    mxConstraints = mxGetField(mxModel[0], 0, "constraint");
+    GetConstraint(mxConstraints, nLevel, nVersion, sbmlModel);
+
+    /* get substanceUnits */
+		mxSubstanceUnits = mxGetField(mxModel[0], 0, "substanceUnits");
+		nBuflen = (mxGetM(mxSubstanceUnits)*mxGetN(mxSubstanceUnits)+1);
+		pacSubstanceUnits = (char *)mxCalloc(nBuflen, sizeof(char));
+		nStatus = mxGetString(mxSubstanceUnits, pacSubstanceUnits, nBuflen);
+    
+		if (nStatus != 0)
+		{
+			mexErrMsgTxt("Cannot copy substanceUnits");
+		}
+
+		Model_setSubstanceUnits(sbmlModel, pacSubstanceUnits);
+
+    /* get timeUnits */
+		mxTimeUnits = mxGetField(mxModel[0], 0, "timeUnits");
+		nBuflen = (mxGetM(mxTimeUnits)*mxGetN(mxTimeUnits)+1);
+		pacTimeUnits = (char *)mxCalloc(nBuflen, sizeof(char));
+		nStatus = mxGetString(mxTimeUnits, pacTimeUnits, nBuflen);
+    
+		if (nStatus != 0)
+		{
+			mexErrMsgTxt("Cannot copy timeUnits");
+		}
+
+		Model_setTimeUnits(sbmlModel, pacTimeUnits);
+
+    /* get lengthUnits */
+		mxLengthUnits = mxGetField(mxModel[0], 0, "lengthUnits");
+		nBuflen = (mxGetM(mxLengthUnits)*mxGetN(mxLengthUnits)+1);
+		pacLengthUnits = (char *)mxCalloc(nBuflen, sizeof(char));
+		nStatus = mxGetString(mxLengthUnits, pacLengthUnits, nBuflen);
+    
+		if (nStatus != 0)
+		{
+			mexErrMsgTxt("Cannot copy lengthUnits");
+		}
+
+		Model_setLengthUnits(sbmlModel, pacLengthUnits);
+
+    /* get areaUnits */
+		mxAreaUnits = mxGetField(mxModel[0], 0, "areaUnits");
+		nBuflen = (mxGetM(mxAreaUnits)*mxGetN(mxAreaUnits)+1);
+		pacAreaUnits = (char *)mxCalloc(nBuflen, sizeof(char));
+		nStatus = mxGetString(mxAreaUnits, pacAreaUnits, nBuflen);
+    
+		if (nStatus != 0)
+		{
+			mexErrMsgTxt("Cannot copy areaUnits");
+		}
+
+		Model_setAreaUnits(sbmlModel, pacAreaUnits);
+
+    /* get volumeUnits */
+		mxVolumeUnits = mxGetField(mxModel[0], 0, "volumeUnits");
+		nBuflen = (mxGetM(mxVolumeUnits)*mxGetN(mxVolumeUnits)+1);
+		pacVolumeUnits = (char *)mxCalloc(nBuflen, sizeof(char));
+		nStatus = mxGetString(mxVolumeUnits, pacVolumeUnits, nBuflen);
+    
+		if (nStatus != 0)
+		{
+			mexErrMsgTxt("Cannot copy volumeUnits");
+		}
+
+		Model_setVolumeUnits(sbmlModel, pacVolumeUnits);
+
+    /* get extentUnits */
+		mxExtentUnits = mxGetField(mxModel[0], 0, "extentUnits");
+		nBuflen = (mxGetM(mxExtentUnits)*mxGetN(mxExtentUnits)+1);
+		pacExtentUnits = (char *)mxCalloc(nBuflen, sizeof(char));
+		nStatus = mxGetString(mxExtentUnits, pacExtentUnits, nBuflen);
+    
+		if (nStatus != 0)
+		{
+			mexErrMsgTxt("Cannot copy extentUnits");
+		}
+
+		Model_setExtentUnits(sbmlModel, pacExtentUnits);
+
+    /* get conversionFactor */
+		mxConversionFactor = mxGetField(mxModel[0], 0, "conversionFactor");
+		nBuflen = (mxGetM(mxConversionFactor)*mxGetN(mxConversionFactor)+1);
+		pacConversionFactor = (char *)mxCalloc(nBuflen, sizeof(char));
+		nStatus = mxGetString(mxConversionFactor, pacConversionFactor, nBuflen);
+    
+		if (nStatus != 0)
+		{
+			mexErrMsgTxt("Cannot copy conversionFactor");
+		}
+
+		Model_setConversionFactor(sbmlModel, pacConversionFactor);
+	}
 
 /************************************************************************************************************
 	* output the resulting model to specified file
@@ -435,12 +550,27 @@ mexFunction (int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 	mxFree(pacNotes);
 	mxFree(pacAnnotations);
 	mxFree(pacName);
-	mxFree(pacFilename);
+  if (nLevel > 1)
+  {
+    mxFree(pacMetaid);
+    mxFree(pacId);
+  }
+  if (nLevel == 3)
+  {
+    mxFree(pacSubstanceUnits);
+    mxFree(pacTimeUnits);
+    mxFree(pacLengthUnits);
+    mxFree(pacAreaUnits);
+    mxFree(pacVolumeUnits);
+    mxFree(pacExtentUnits);
+    mxFree(pacConversionFactor);
+  }
 
   if (nrhs == 1)
   {
     mxFree(pacTempString1);
     mxFree(pacTempString2);
+	  mxFree(pacFilename);
     mxDestroyArray(mxFilename[0]);
     mxDestroyArray(mxFilename[1]);
     mxDestroyArray(mxExt[0]);
@@ -642,16 +772,18 @@ GetCompartment (mxArray * mxCompartments,
   char * pacCompartmentType;
 	double dVolume;
 	unsigned int unSpatialDimensions;
+  double dSpatialDimensions;
 	double dSize;
 	char * pacUnits;
 	char * pacOutside;
 	int nConstant;
 	unsigned int unIsSetVolume;
 	unsigned int unIsSetSize;
+	unsigned int unIsSetSpatialDimensions;
   int nSBOTerm;
 	char * pacMetaid;
 
-  mxArray *mxMetaid;
+  mxArray *mxMetaid, *mxIsSetSpatialDimensions;
 	mxArray * mxNotes, * mxAnnotations, * mxName, * mxId, * mxUnits;
 	mxArray * mxOutside, * mxVolume, * mxIsSetVolume, * mxSpatialDimensions;
   mxArray * mxSize, * mxConstant, * mxIsSetSize, * mxCompartmentType, * mxSBOTerm;
@@ -720,25 +852,29 @@ GetCompartment (mxArray * mxCompartments,
 
 		Compartment_setUnits(pCompartment, pacUnits);
 
+    /* out of L3 */
+    
+    if (unSBMLLevel < 3)
+    {
+      /* get outside */
+      mxOutside = mxGetField(mxCompartments, i, "outside");
+      nBuflen = (mxGetM(mxOutside)*mxGetN(mxOutside)+1);
+      pacOutside = (char *)mxCalloc(nBuflen, sizeof(char));
+      nStatus = mxGetString(mxOutside, pacOutside, nBuflen);
 
-		/* get outside */
-		mxOutside = mxGetField(mxCompartments, i, "outside");
-		nBuflen = (mxGetM(mxOutside)*mxGetN(mxOutside)+1);
-		pacOutside = (char *)mxCalloc(nBuflen, sizeof(char));
-		nStatus = mxGetString(mxOutside, pacOutside, nBuflen);
+      if (nStatus != 0)
+      {
+        mexErrMsgTxt("Cannot copy outside");
+      }
 
-		if (nStatus != 0)
-		{
-			mexErrMsgTxt("Cannot copy outside");
-		}
+      Compartment_setOutside(pCompartment, pacOutside);
+    
 
-		Compartment_setOutside(pCompartment, pacOutside);
+      /* get isSetVolume */
+      mxIsSetVolume = mxGetField(mxCompartments, i, "isSetVolume");
+      unIsSetVolume = (unsigned int)mxGetScalar(mxIsSetVolume);
 
-
-		/* get isSetVolume */
-		mxIsSetVolume = mxGetField(mxCompartments, i, "isSetVolume");
-		unIsSetVolume = (unsigned int)mxGetScalar(mxIsSetVolume);
-
+    }
 
 		/* level 1 only */
 		if (unSBMLLevel == 1)
@@ -835,22 +971,99 @@ GetCompartment (mxArray * mxCompartments,
 			  SBase_setSBOTerm((SBase_t *) (pCompartment), nSBOTerm);
       }
 		}
+		/* level 3 only */
+		else if (unSBMLLevel == 3)
+		{
+		  /* get metaid */
+		  mxMetaid = mxGetField(mxCompartments, i, "metaid");
+		  nBuflen = (mxGetM(mxMetaid)*mxGetN(mxMetaid)+1);
+		  pacMetaid = (char *)mxCalloc(nBuflen, sizeof(char));
+		  nStatus = mxGetString(mxMetaid, pacMetaid, nBuflen);
+      
+		  if (nStatus != 0)
+		  {
+			  mexErrMsgTxt("Cannot copy metaid");
+		  }
+
+		  SBase_setMetaId((SBase_t *) (pCompartment), pacMetaid);
+
+      /* get id */
+			mxId = mxGetField(mxCompartments, i, "id");
+			nBuflen = (mxGetM(mxId)*mxGetN(mxId)+1);
+			pacId = (char *)mxCalloc(nBuflen, sizeof(char));
+			nStatus = mxGetString(mxId, pacId, nBuflen);
+
+			if (nStatus != 0)
+			{
+				mexErrMsgTxt("Cannot copy id");
+			}
+
+			Compartment_setId(pCompartment, pacId);
+		
+			
+			/* get constant */
+			mxConstant = mxGetField(mxCompartments, i, "constant");
+			nConstant = (int)mxGetScalar(mxConstant);
+
+			Compartment_setConstant(pCompartment, nConstant);
+
+			/* get isSetSpatialDimensions */
+			mxIsSetSpatialDimensions = mxGetField(mxCompartments, i, "isSetSpatialDimensions");
+			unIsSetSpatialDimensions = (unsigned int)mxGetScalar(mxIsSetSpatialDimensions);
+
+      /* get spatialdimensions */
+			mxSpatialDimensions = mxGetField(mxCompartments, i, "spatialDimensions");
+			dSpatialDimensions = mxGetScalar(mxSpatialDimensions);
+
+      if (unIsSetSpatialDimensions == 1)
+      {
+        Compartment_setSpatialDimensionsAsDouble(pCompartment, dSpatialDimensions);
+      }
+
+			/* get isSetSize */
+			mxIsSetSize = mxGetField(mxCompartments, i, "isSetSize");
+			unIsSetSize = (unsigned int)mxGetScalar(mxIsSetSize);
+
+			
+			/* get size */
+			mxSize = mxGetField(mxCompartments, i, "size");
+			dSize = mxGetScalar(mxSize);
+
+			if (unIsSetSize == 1) {
+				Compartment_setSize(pCompartment, dSize);
+			}
+
+	    /* get sboTerm */
+			mxSBOTerm = mxGetField(mxCompartments, i, "sboTerm");
+			nSBOTerm = (int)mxGetScalar(mxSBOTerm);
+
+			SBase_setSBOTerm((SBase_t *) (pCompartment), nSBOTerm);
+		}
 
     /* free any memory allocated */
 	  mxFree(pacNotes);
 	  mxFree(pacAnnotations);
 	  mxFree(pacName);
   	mxFree(pacUnits);
-  	mxFree(pacOutside);
+    if (unSBMLLevel == 1)
+    {
+  	  mxFree(pacOutside);
+    }
 		/* level 2 only */
-		if (unSBMLLevel == 2)
+		else if (unSBMLLevel == 2)
 		{
+  	  mxFree(pacOutside);
   	  mxFree(pacId);
   	  mxFree(pacMetaid);
       if (unSBMLVersion > 1)
       {
         mxFree(pacCompartmentType);
       }
+    }
+		else if (unSBMLLevel == 3)
+		{
+  	  mxFree(pacId);
+  	  mxFree(pacMetaid);
     }
 	}
 }
@@ -946,7 +1159,7 @@ GetUnitDefinition ( mxArray * mxUnitDefinitions,
 
 
 		/* level 2 only */
-		if (unSBMLLevel == 2)
+		if (unSBMLLevel > 1)
 		{
 		  /* get metaid */
 		  mxMetaid = mxGetField(mxUnitDefinitions, i, "metaid");
@@ -975,7 +1188,7 @@ GetUnitDefinition ( mxArray * mxUnitDefinitions,
 			UnitDefinition_setId(pUnitDefinition, pacId);
 
       /* level 2 version 3 only */
-      if (unSBMLVersion == 3)
+      if ((unSBMLLevel == 2 && unSBMLVersion > 2) || unSBMLLevel > 2)
       {
 			  /* get sboTerm */
 			  mxSBOTerm = mxGetField(mxUnitDefinitions, i, "sboTerm");
@@ -990,7 +1203,7 @@ GetUnitDefinition ( mxArray * mxUnitDefinitions,
 	  mxFree(pacAnnotations);
 	  mxFree(pacName);
 		/* level 2 only */
-		if (unSBMLLevel == 2)
+		if (unSBMLLevel > 1)
 		{
   	  mxFree(pacId);
   	  mxFree(pacMetaid);
@@ -1031,6 +1244,7 @@ GetUnit ( mxArray * mxUnits,
 	int nScale;
 	double dMultiplier;
 	double dOffset;
+  double dExponent;
   int nSBOTerm;
 	char * pacMetaid;
 
@@ -1088,13 +1302,6 @@ GetUnit ( mxArray * mxUnits,
 		Unit_setKind(pUnit, UnitKind_forName(pacKind));
 
 
-		/* get exponent */
-		mxExponent = mxGetField(mxUnits, i, "exponent");
-		nExponent = (int)mxGetScalar(mxExponent);
-
-		Unit_setExponent(pUnit, nExponent);
-
-
 		/* get scale */
 		mxScale = mxGetField(mxUnits, i, "scale");
 		nScale = (int)mxGetScalar(mxScale);
@@ -1144,15 +1351,60 @@ GetUnit ( mxArray * mxUnits,
 			  SBase_setSBOTerm((SBase_t *) (pUnit), nSBOTerm);
       }
 		}
+		else if (unSBMLLevel == 3)
+		{
+		  /* get metaid */
+		  mxMetaid = mxGetField(mxUnits, i, "metaid");
+		  nBuflen = (mxGetM(mxMetaid)*mxGetN(mxMetaid)+1);
+		  pacMetaid = (char *)mxCalloc(nBuflen, sizeof(char));
+		  nStatus = mxGetString(mxMetaid, pacMetaid, nBuflen);
+      
+		  if (nStatus != 0)
+		  {
+			  mexErrMsgTxt("Cannot copy metaid");
+		  }
+
+		  SBase_setMetaId((SBase_t *) (pUnit), pacMetaid);
+
+			/* get multiplier */
+			mxMultiplier = mxGetField(mxUnits, i, "multiplier");
+			dMultiplier = mxGetScalar(mxMultiplier);
+
+			Unit_setMultiplier(pUnit, dMultiplier);
+		
+		  /* get sboTerm */
+		  mxSBOTerm = mxGetField(mxUnits, i, "sboTerm");
+		  nSBOTerm = (int)mxGetScalar(mxSBOTerm);
+
+		  SBase_setSBOTerm((SBase_t *) (pUnit), nSBOTerm);
+		}
+    
+    if (unSBMLLevel < 3)
+    {
+      /* get exponent */
+      mxExponent = mxGetField(mxUnits, i, "exponent");
+      nExponent = (int)mxGetScalar(mxExponent);
+
+      Unit_setExponent(pUnit, nExponent);
+    }
+    else
+    {
+      /* get exponent */
+      mxExponent = mxGetField(mxUnits, i, "exponent");
+      dExponent = mxGetScalar(mxExponent);
+
+      Unit_setExponentAsDouble(pUnit, dExponent);
+    }
+
 
     /* free any memory allocated */
 	  mxFree(pacNotes);
 	  mxFree(pacAnnotations);
 	  mxFree(pacKind);
-      if (unSBMLLevel == 2)
-      {
-        mxFree(pacMetaid);
-      }
+    if (unSBMLLevel > 1)
+    {
+      mxFree(pacMetaid);
+    }
 	}
 }
 /**
@@ -1200,8 +1452,9 @@ GetUnit ( mxArray * mxUnits,
 	unsigned int unIsSetInitConc;
 	unsigned int unIsSetCharge;
 	char * pacMetaid;
+  char * pacConversionFactor;
 
-  mxArray *mxMetaid;
+  mxArray *mxMetaid, *mxConversionFactor;
 	mxArray * mxNotes, * mxAnnotations, * mxName, * mxId, * mxCompartment;
   mxArray * mxInitialAmount, * mxUnits, * mxSpeciesType;
 	mxArray * mxInitialConcentration, * mxSpatialSizeUnits, * mxHasOnlySubstance;
@@ -1292,20 +1545,21 @@ GetUnit ( mxArray * mxUnits,
 
 		Species_setBoundaryCondition(pSpecies, nBoundaryCondition);
 
-		
-		/* get isSetCharge */
-		mxIsSetCharge = mxGetField(mxSpecies, i, "isSetCharge");
-		unIsSetCharge = (unsigned int)mxGetScalar(mxIsSetCharge);
+		if (unSBMLLevel < 3)
+    {
+      /* get isSetCharge */
+      mxIsSetCharge = mxGetField(mxSpecies, i, "isSetCharge");
+      unIsSetCharge = (unsigned int)mxGetScalar(mxIsSetCharge);
 
 
-		/* get charge */
-		mxCharge = mxGetField(mxSpecies, i, "charge");
-		nCharge = (int)mxGetScalar(mxCharge);
+      /* get charge */
+      mxCharge = mxGetField(mxSpecies, i, "charge");
+      nCharge = (int)mxGetScalar(mxCharge);
 
-		if (unIsSetCharge == 1) {
-			Species_setCharge(pSpecies, nCharge);
-		}
-
+      if (unIsSetCharge == 1) {
+        Species_setCharge(pSpecies, nCharge);
+      }
+    }
 		
 		/* level 1 only */
 		if (unSBMLLevel == 1)
@@ -1438,6 +1692,93 @@ GetUnit ( mxArray * mxUnits,
 			  SBase_setSBOTerm((SBase_t *) (pSpecies), nSBOTerm);
       }	
 		}
+		else if (unSBMLLevel == 3)
+		{
+		  /* get metaid */
+		  mxMetaid = mxGetField(mxSpecies, i, "metaid");
+		  nBuflen = (mxGetM(mxMetaid)*mxGetN(mxMetaid)+1);
+		  pacMetaid = (char *)mxCalloc(nBuflen, sizeof(char));
+		  nStatus = mxGetString(mxMetaid, pacMetaid, nBuflen);
+      
+		  if (nStatus != 0)
+		  {
+			  mexErrMsgTxt("Cannot copy metaid");
+		  }
+
+		  SBase_setMetaId((SBase_t *) (pSpecies), pacMetaid);
+
+			/* get id */
+			mxId = mxGetField(mxSpecies, i, "id");
+			nBuflen = (mxGetM(mxId)*mxGetN(mxId)+1);
+			pacId = (char *)mxCalloc(nBuflen, sizeof(char));
+			nStatus = mxGetString(mxId, pacId, nBuflen);
+
+			if (nStatus != 0)
+			{
+				mexErrMsgTxt("Cannot copy id");
+			}
+
+			Species_setId(pSpecies, pacId);
+		
+			/* get isSetInitialConcentration */
+			mxIsSetInitialConc = mxGetField(mxSpecies, i, "isSetInitialConcentration");
+			unIsSetInitConc = (unsigned int)mxGetScalar(mxIsSetInitialConc);
+
+			
+			/* get initial concentration */
+			mxInitialConcentration = mxGetField(mxSpecies, i, "initialConcentration");
+			dInitialConcentration = mxGetScalar(mxInitialConcentration);
+
+			if (unIsSetInitConc == 1) {
+				Species_setInitialConcentration(pSpecies, dInitialConcentration);
+			}
+
+			/* get substance units */
+			mxSubstanceUnits = mxGetField(mxSpecies, i, "substanceUnits");
+			nBuflen = (mxGetM(mxSubstanceUnits)*mxGetN(mxSubstanceUnits)+1);
+			pacSubstanceUnits = (char *)mxCalloc(nBuflen, sizeof(char));
+			nStatus = mxGetString(mxSubstanceUnits, pacSubstanceUnits, nBuflen);
+
+			if (nStatus != 0)
+			{
+				mexErrMsgTxt("Cannot copy substance units");
+			}
+
+			Species_setSubstanceUnits(pSpecies, pacSubstanceUnits);
+
+			
+			/* get HasOnlySubstanceUnits */
+			mxHasOnlySubstance = mxGetField(mxSpecies, i, "hasOnlySubstanceUnits");
+			nHasOnlySubsUnits = (int)mxGetScalar(mxHasOnlySubstance);
+
+			Species_setHasOnlySubstanceUnits(pSpecies, nHasOnlySubsUnits);
+
+			
+			/* get constant */
+			mxConstant = mxGetField(mxSpecies, i, "constant");
+			nConstant = (int)mxGetScalar(mxConstant);
+
+			Species_setConstant(pSpecies, nConstant);
+
+      /* get sboTerm */
+      mxSBOTerm = mxGetField(mxSpecies, i, "sboTerm");
+      nSBOTerm = (int)mxGetScalar(mxSBOTerm);
+
+      SBase_setSBOTerm((SBase_t *) (pSpecies), nSBOTerm);
+      
+      /* getConversionFactor */
+		  mxConversionFactor = mxGetField(mxSpecies, i, "conversionFactor");
+		  nBuflen = (mxGetM(mxConversionFactor)*mxGetN(mxConversionFactor)+1);
+		  pacConversionFactor = (char *)mxCalloc(nBuflen, sizeof(char));
+		  nStatus = mxGetString(mxConversionFactor, pacConversionFactor, nBuflen);
+      
+		  if (nStatus != 0)
+		  {
+			  mexErrMsgTxt("Cannot copy conversionFactor");
+		  }
+
+		  Species_setConversionFactor(pSpecies, pacConversionFactor);
+		}
 
 
     /* free any memory allocated */
@@ -1451,7 +1792,7 @@ GetUnit ( mxArray * mxUnits,
   	  mxFree(pacUnits);
     }
 		/* level 2 only */
-		if (unSBMLLevel == 2)
+		else if (unSBMLLevel == 2)
 		{
   	  mxFree(pacMetaid);
   	  mxFree(pacId);
@@ -1464,6 +1805,13 @@ GetUnit ( mxArray * mxUnits,
       {
         mxFree(pacSpeciesType);
       }
+    }
+		else if (unSBMLLevel == 3)
+		{
+  	  mxFree(pacMetaid);
+  	  mxFree(pacId);
+  	  mxFree(pacSubstanceUnits);
+      mxFree(pacConversionFactor);
     }
 	}
 
@@ -1624,7 +1972,7 @@ GetUnit ( mxArray * mxUnits,
 			Parameter_setConstant(pParameter, nConstant);
 
       /* level 2 version 2 onwards */
-      if (unSBMLVersion > 1)
+      if (unSBMLVersion > 1) 
       {
 			  /* get sboTerm */
 			  mxSBOTerm = mxGetField(mxParameters, i, "sboTerm");
@@ -1633,18 +1981,58 @@ GetUnit ( mxArray * mxUnits,
 			  SBase_setSBOTerm((SBase_t *) (pParameter), nSBOTerm);
       }	
 		}
-
-    /* free any memory allocated */
-	  mxFree(pacNotes);
-	  mxFree(pacAnnotations);
-	  mxFree(pacName);
-  	mxFree(pacUnits);
-		/* level 2 only */
-		if (unSBMLLevel == 2)
+		else if (unSBMLLevel == 3)
 		{
-  	  mxFree(pacMetaid);
-  	  mxFree(pacId);
-    }
+		  /* get metaid */
+ 		  mxMetaid = mxGetField(mxParameters, i, "metaid");
+ 		  nBuflen = (mxGetM(mxMetaid)*mxGetN(mxMetaid)+1);
+		  pacMetaid = (char *)mxCalloc(nBuflen, sizeof(char));
+		  nStatus = mxGetString(mxMetaid, pacMetaid, nBuflen);
+      
+		  if (nStatus != 0)
+		  {
+			  mexErrMsgTxt("Cannot copy metaid");
+		  }
+
+		  SBase_setMetaId((SBase_t *) (pParameter), pacMetaid);
+
+			/* get id */
+			mxId = mxGetField(mxParameters, i, "id");
+			nBuflen = (mxGetM(mxId)*mxGetN(mxId)+1);
+			pacId = (char *)mxCalloc(nBuflen, sizeof(char));
+			nStatus = mxGetString(mxId, pacId, nBuflen);
+
+			if (nStatus != 0)
+			{
+				mexErrMsgTxt("Cannot copy id");
+			}
+
+			Parameter_setId(pParameter, pacId);
+		
+			
+			/* get constant */
+			mxConstant = mxGetField(mxParameters, i, "constant");
+			nConstant = (int)mxGetScalar(mxConstant);
+
+			Parameter_setConstant(pParameter, nConstant);
+
+  	  /* get sboTerm */
+			  mxSBOTerm = mxGetField(mxParameters, i, "sboTerm");
+			  nSBOTerm = (int)mxGetScalar(mxSBOTerm);
+
+			  SBase_setSBOTerm((SBase_t *) (pParameter), nSBOTerm);
+		}
+    /* free any memory allocated */
+ 	  mxFree(pacNotes);
+ 	  mxFree(pacAnnotations);
+ 	  mxFree(pacName);
+   	mxFree(pacUnits);
+ 		/* level 2 only */
+ 		if (unSBMLLevel > 1)
+ 		{
+   	  mxFree(pacMetaid);
+   	  mxFree(pacId);
+     }
 	}
 
 }
@@ -1850,7 +2238,7 @@ GetUnit ( mxArray * mxUnits,
           mexErrMsgTxt("Cannot copy Type");
       }
     }
-    else
+    else if (unSBMLLevel == 2)
     {
 		  /* get metaid */
 		  mxMetaid = mxGetField(mxRule, i, "metaid");
@@ -1871,6 +2259,23 @@ GetUnit ( mxArray * mxUnits,
 			  nSBOTerm = (int)mxGetScalar(mxSBOTerm);
       }	
     }
+    else if (unSBMLLevel == 3)
+    {
+		  /* get metaid */
+		  mxMetaid = mxGetField(mxRule, i, "metaid");
+		  nBuflen = (mxGetM(mxMetaid)*mxGetN(mxMetaid)+1);
+		  pacMetaid = (char *)mxCalloc(nBuflen, sizeof(char));
+		  nStatus = mxGetString(mxMetaid, pacMetaid, nBuflen);
+      
+		  if (nStatus != 0)
+		  {
+			  mexErrMsgTxt("Cannot copy metaid");
+		  }
+
+      /* get sboTerm */
+      mxSBOTerm = mxGetField(mxRule, i, "sboTerm");
+      nSBOTerm = (int)mxGetScalar(mxSBOTerm);
+    }
 		/* assign values for different types of rules */
 		switch(CharToTypecode(pacTypecode)) {
       case SBML_ASSIGNMENT_RULE:
@@ -1883,12 +2288,18 @@ GetUnit ( mxArray * mxUnits,
         if (unSBMLLevel == 2)
         {
           SBase_setMetaId((SBase_t *) (pAssignRule), pacMetaid);
+        
+          if (unSBMLVersion > 1)
+          {
+            SBase_setSBOTerm((SBase_t *) (pAssignRule), nSBOTerm);
+          }
+
         }
-        if (unSBMLVersion > 1)
+        else if (unSBMLLevel == 3)
         {
+          SBase_setMetaId((SBase_t *) (pAssignRule), pacMetaid);     
           SBase_setSBOTerm((SBase_t *) (pAssignRule), nSBOTerm);
         }
-
         break;
 
       case SBML_ALGEBRAIC_RULE:
@@ -1910,6 +2321,12 @@ GetUnit ( mxArray * mxUnits,
             SBase_setSBOTerm((SBase_t *) (pAlgRule), nSBOTerm);
           }
         }
+        else if (unSBMLLevel == 3)
+        {
+          SBase_setMetaId((SBase_t *) (pAlgRule), pacMetaid);     
+          Rule_setMath((Rule_t *)pAlgRule, ast);
+          SBase_setSBOTerm((SBase_t *) (pAlgRule), nSBOTerm);
+        }
 
         break;
 
@@ -1925,9 +2342,15 @@ GetUnit ( mxArray * mxUnits,
         if (unSBMLLevel == 2)
         {
           SBase_setMetaId((SBase_t *) (pRateRule), pacMetaid);
+        
+          if (unSBMLVersion > 1)
+          {
+            SBase_setSBOTerm((SBase_t *) (pRateRule), nSBOTerm);
+          }
         }
-        if (unSBMLVersion > 1)
+        else if (unSBMLLevel == 3)
         {
+          SBase_setMetaId((SBase_t *) (pRateRule), pacMetaid);     
           SBase_setSBOTerm((SBase_t *) (pRateRule), nSBOTerm);
         }
 
@@ -2010,10 +2433,10 @@ GetUnit ( mxArray * mxUnits,
 		{
   	  mxFree(pacType);
     }
-      if (unSBMLLevel == 2)
-      {
-        mxFree(pacMetaid);
-      }
+    if (unSBMLLevel > 1)
+    {
+      mxFree(pacMetaid);
+    }
 	}
 
 }
@@ -2046,6 +2469,7 @@ GetUnit ( mxArray * mxUnits,
 	char * pacNotes;
 	char * pacAnnotations;
 	char * pacName;
+  char * pacCompartment;
 	int nReversible;
 	int nFast;
 	char * pacId;
@@ -2057,7 +2481,7 @@ GetUnit ( mxArray * mxUnits,
       
 	char * pacMetaid;
 
-  mxArray *mxMetaid;
+  mxArray *mxMetaid, *mxCompartment;
 	mxArray * mxNotes, * mxAnnotations, * mxName, * mxId, * mxModifiers;
 	mxArray * mxReversible, * mxFast, * mxIsSetFast, *mxReactants, * mxProducts;
   mxArray * mxSBOTerm, * mxKineticLaw;
@@ -2209,6 +2633,78 @@ GetUnit ( mxArray * mxUnits,
 			  SBase_setSBOTerm((SBase_t *) (pReaction), nSBOTerm);
       }	
     }
+		else if (unSBMLLevel == 3)
+		{
+		  /* get metaid */
+		  mxMetaid = mxGetField(mxReaction, i, "metaid");
+		  nBuflen = (mxGetM(mxMetaid)*mxGetN(mxMetaid)+1);
+		  pacMetaid = (char *)mxCalloc(nBuflen, sizeof(char));
+		  nStatus = mxGetString(mxMetaid, pacMetaid, nBuflen);
+      
+		  if (nStatus != 0)
+		  {
+			  mexErrMsgTxt("Cannot copy metaid");
+		  }
+
+		  SBase_setMetaId((SBase_t *) (pReaction), pacMetaid);
+
+			/* get id */
+			mxId = mxGetField(mxReaction, i, "id");
+			nBuflen = (mxGetM(mxId)*mxGetN(mxId)+1);
+			pacId = (char *)mxCalloc(nBuflen, sizeof(char));
+			nStatus = mxGetString(mxId, pacId, nBuflen);
+
+			if (nStatus != 0)
+			{
+				mexErrMsgTxt("Cannot copy id");
+			}
+
+			Reaction_setId(pReaction, pacId);
+		
+			/* get isSetFast */
+			mxIsSetFast = mxGetField(mxReaction, i, "isSetFast");
+            
+      /* hack to catch bug in version 1.0.2 where field name was set as IsSetFast */
+      if (mxIsSetFast == NULL)
+      {
+          mxIsSetFast = mxGetField(mxReaction, i, "IsSetFast");
+      }
+
+      unIsSetFast = (unsigned int)mxGetScalar(mxIsSetFast);
+
+
+			/* get fast */
+			mxFast = mxGetField(mxReaction, i, "fast");
+			nFast = (int)mxGetScalar(mxFast);
+
+			if (unIsSetFast == 1) {
+				Reaction_setFast(pReaction, nFast);
+			}
+
+ 			/* get modifiers */
+			mxModifiers = mxGetField(mxReaction, i, "modifier");
+  		GetModifier(mxModifiers, unSBMLLevel, unSBMLVersion, pReaction);
+ 
+    /* get sboTerm */
+      mxSBOTerm = mxGetField(mxReaction, i, "sboTerm");
+      nSBOTerm = (int)mxGetScalar(mxSBOTerm);
+
+      SBase_setSBOTerm((SBase_t *) (pReaction), nSBOTerm);
+
+      /* get Compartment */
+		  mxCompartment = mxGetField(mxReaction, i, "compartment");
+		  nBuflen = (mxGetM(mxCompartment)*mxGetN(mxCompartment)+1);
+		  pacCompartment = (char *)mxCalloc(nBuflen, sizeof(char));
+		  nStatus = mxGetString(mxCompartment, pacCompartment, nBuflen);
+      
+		  if (nStatus != 0)
+		  {
+			  mexErrMsgTxt("Cannot copy compartment");
+		  }
+
+		  Reaction_setCompartment(pReaction, pacCompartment);
+
+    }
 
     /* free any memory allocated */
 	  mxFree(pacNotes);
@@ -2219,6 +2715,12 @@ GetUnit ( mxArray * mxUnits,
 		{
   	  mxFree(pacId);
   	  mxFree(pacMetaid);
+    }
+		else if (unSBMLLevel == 3)
+		{
+  	  mxFree(pacId);
+  	  mxFree(pacMetaid);
+      mxFree(pacCompartment);
     }
 	}
 }
@@ -2262,6 +2764,8 @@ GetUnit ( mxArray * mxUnits,
   char * pacStoichiometryMath = NULL;
   int nSBOTerm;
 	char * pacMetaid;
+  int nConstant;
+  unsigned int unIsSetStoichiometry;
 
   mxArray *mxMetaid;
   mxArray * mxInput[1];
@@ -2270,8 +2774,9 @@ GetUnit ( mxArray * mxUnits,
   SpeciesReference_t *pSpeciesReference;
   StoichiometryMath_t *pStoichiometryMath;
  
-	mxArray * mxNotes, * mxAnnotations, * mxSpecies, * mxStoichiometry;
+	mxArray * mxNotes, * mxAnnotations, * mxSpecies, * mxStoichiometry, *mxConstant;
   mxArray * mxDenominator, * mxStoichiometryMath, * mxId, * mxName, * mxSBOTerm;
+  mxArray * mxIsSetStoichiometry;
 
 	int i;
 
@@ -2328,7 +2833,7 @@ GetUnit ( mxArray * mxUnits,
 
 		SpeciesReference_setSpecies(pSpeciesReference, pacSpecies);
 
-    if (unSBMLLevel == 1 || unSBMLVersion == 1)
+    if (unSBMLLevel == 1 || (unSBMLLevel == 2 && unSBMLVersion == 1))
     {
 		  /* get Denominator */
 		  mxDenominator = mxGetField(mxReactant, i, "denominator");
@@ -2453,6 +2958,71 @@ GetUnit ( mxArray * mxUnits,
 			  SpeciesReference_setId(pSpeciesReference, pacId);
   		
       }	
+    }
+    else if (unSBMLLevel == 3)
+		{
+		  /* get metaid */
+		  mxMetaid = mxGetField(mxReactant, i, "metaid");
+		  nBuflen = (mxGetM(mxMetaid)*mxGetN(mxMetaid)+1);
+		  pacMetaid = (char *)mxCalloc(nBuflen, sizeof(char));
+		  nStatus = mxGetString(mxMetaid, pacMetaid, nBuflen);
+      
+		  if (nStatus != 0)
+		  {
+			  mexErrMsgTxt("Cannot copy metaid");
+		  }
+
+		  SBase_setMetaId((SBase_t *) (pSpeciesReference), pacMetaid);
+			
+			/* get isSetStoichiometry */
+			mxIsSetStoichiometry = mxGetField(mxReactant, i, "isSetStoichiometry");
+			unIsSetStoichiometry = (unsigned int)mxGetScalar(mxIsSetStoichiometry);
+
+			/* get Stoichiometry */
+			mxStoichiometry = mxGetField(mxReactant, i, "stoichiometry");
+			dStoichiometry = mxGetScalar(mxStoichiometry);
+
+      if (unIsSetStoichiometry == 1)
+      {
+        SpeciesReference_setStoichiometry(pSpeciesReference, dStoichiometry);
+      }
+      /* get sboTerm */
+      mxSBOTerm = mxGetField(mxReactant, i, "sboTerm");
+      nSBOTerm = (int)mxGetScalar(mxSBOTerm);
+
+      SBase_setSBOTerm((SBase_t *) (pSpeciesReference), nSBOTerm);
+
+      /* get name */
+      mxName = mxGetField(mxReactant, i, "name");
+      nBuflen = (mxGetM(mxName)*mxGetN(mxName)+1);
+      pacName = (char *)mxCalloc(nBuflen, sizeof(char));
+      nStatus = mxGetString(mxName, pacName, nBuflen);
+
+      if (nStatus != 0)
+      {
+        mexErrMsgTxt("Cannot copy name");
+      }
+
+      SpeciesReference_setName(pSpeciesReference, pacName);
+
+      /* get id */
+      mxId = mxGetField(mxReactant, i, "id");
+      nBuflen = (mxGetM(mxId)*mxGetN(mxId)+1);
+      pacId = (char *)mxCalloc(nBuflen, sizeof(char));
+      nStatus = mxGetString(mxId, pacId, nBuflen);
+
+      if (nStatus != 0)
+      {
+        mexErrMsgTxt("Cannot copy id");
+      }
+
+  	  SpeciesReference_setId(pSpeciesReference, pacId);
+  		
+			/* get constant */
+			mxConstant = mxGetField(mxReactant, i, "constant");
+			nConstant = (int)mxGetScalar(mxConstant);
+
+			SpeciesReference_setConstant(pSpeciesReference, nConstant);
 
 		}
 
@@ -2474,6 +3044,12 @@ GetUnit ( mxArray * mxUnits,
 	      mxFree(pacName);
 	      mxFree(pacId);
       }
+    }
+    else if (unSBMLLevel == 3)
+    {
+  	  mxFree(pacMetaid);
+      mxFree(pacName);
+      mxFree(pacId);
     }
 	}
 }
@@ -2580,7 +3156,42 @@ GetUnit ( mxArray * mxUnits,
 		SBase_setMetaId((SBase_t *) (pSpeciesReference), pacMetaid);
 
     /* level 2 version 2 onwards */
-    if (unSBMLVersion > 1)
+    if (unSBMLLevel == 2 && unSBMLVersion > 1)
+    {
+			/* get sboTerm */
+			mxSBOTerm = mxGetField(mxModifier, i, "sboTerm");
+			nSBOTerm = (int)mxGetScalar(mxSBOTerm);
+
+			SBase_setSBOTerm((SBase_t *) (pSpeciesReference), nSBOTerm);
+
+      /* get name */
+		  mxName = mxGetField(mxModifier, i, "name");
+		  nBuflen = (mxGetM(mxName)*mxGetN(mxName)+1);
+		  pacName = (char *)mxCalloc(nBuflen, sizeof(char));
+		  nStatus = mxGetString(mxName, pacName, nBuflen);
+
+		  if (nStatus != 0)
+		  {
+			  mexErrMsgTxt("Cannot copy name");
+		  }
+
+		  SpeciesReference_setName(pSpeciesReference, pacName);
+
+			/* get id */
+			mxId = mxGetField(mxModifier, i, "id");
+			nBuflen = (mxGetM(mxId)*mxGetN(mxId)+1);
+			pacId = (char *)mxCalloc(nBuflen, sizeof(char));
+			nStatus = mxGetString(mxId, pacId, nBuflen);
+
+			if (nStatus != 0)
+			{
+				mexErrMsgTxt("Cannot copy id");
+			}
+
+			SpeciesReference_setId(pSpeciesReference, pacId);
+  	
+    }	
+    else if (unSBMLLevel == 3)
     {
 			/* get sboTerm */
 			mxSBOTerm = mxGetField(mxModifier, i, "sboTerm");
@@ -2621,7 +3232,7 @@ GetUnit ( mxArray * mxUnits,
 	  mxFree(pacAnnotations);
   	mxFree(pacSpecies);
   	mxFree(pacMetaid);
-    if (unSBMLVersion > 1)
+    if ((unSBMLLevel == 2 && unSBMLVersion > 1) || unSBMLLevel == 3)
     {
       mxFree(pacId);
       mxFree(pacName);
@@ -2701,6 +3312,8 @@ GetUnit ( mxArray * mxUnits,
          
   SBase_setAnnotationString((SBase_t *) (pKineticLaw), pacAnnotations); 
 
+  if (unSBMLLevel < 3)
+  {
   /* get formula */
   mxFormula = mxGetField(mxKineticLaw, 0, "formula");
   nBuflen = (mxGetM(mxFormula)*mxGetN(mxFormula)+1);
@@ -2735,9 +3348,9 @@ GetUnit ( mxArray * mxUnits,
     /* END OF HACK */
 
   KineticLaw_setFormula(pKineticLaw, pacFormula);
-
+  }
   /* level 1 and level 2 version 1 ONLY */
-  if (unSBMLLevel == 1 || unSBMLVersion == 1)
+  if (unSBMLLevel == 1 || (unSBMLLevel == 2 && unSBMLVersion == 1))
   {
     /* get timeUnits */
     mxTimeUnits = mxGetField(mxKineticLaw, 0, "timeUnits");
@@ -2766,9 +3379,18 @@ GetUnit ( mxArray * mxUnits,
     
     KineticLaw_setSubstanceUnits(pKineticLaw, pacSubstanceUnits);
   }
-  /* get list of parameters */
-  mxParameter = mxGetField(mxKineticLaw, 0, "parameter");
-  GetParameterFromKineticLaw(mxParameter, unSBMLLevel, unSBMLVersion, pKineticLaw);
+  if (unSBMLLevel < 3)
+  {
+    /* get list of parameters */
+    mxParameter = mxGetField(mxKineticLaw, 0, "parameter");
+    GetParameterFromKineticLaw(mxParameter, unSBMLLevel, unSBMLVersion, pKineticLaw);
+  }
+  else
+  {
+    /* get list of parameters */
+    mxParameter = mxGetField(mxKineticLaw, 0, "localParameter");
+    GetParameterFromKineticLaw(mxParameter, unSBMLLevel, unSBMLVersion, pKineticLaw);
+  }
   
   if (unSBMLLevel == 2)
   {
@@ -2834,21 +3456,83 @@ GetUnit ( mxArray * mxUnits,
 
     
   }
+  else if (unSBMLLevel == 3)
+  {
+		  /* get metaid */
+		  mxMetaid = mxGetField(mxKineticLaw, 0, "metaid");
+		  nBuflen = (mxGetM(mxMetaid)*mxGetN(mxMetaid)+1);
+		  pacMetaid = (char *)mxCalloc(nBuflen, sizeof(char));
+		  nStatus = mxGetString(mxMetaid, pacMetaid, nBuflen);
+      
+		  if (nStatus != 0)
+		  {
+			  mexErrMsgTxt("Cannot copy metaid");
+		  }
+
+		  SBase_setMetaId((SBase_t *) (pKineticLaw), pacMetaid);
+
+    /* get Math */
+    mxMath = mxGetField(mxKineticLaw, 0, "math");
+    nBuflen = (mxGetM(mxMath)*mxGetN(mxMath)+1);   
+    pacMath = (char *)mxCalloc(nBuflen, sizeof(char));
+    nStatus = mxGetString(mxMath, pacMath, nBuflen);
+    
+    if (nStatus != 0)
+    {
+        mexErrMsgTxt("Cannot copy Math");
+    }
+
+     /* temporary hack to convert MATLAB formula to MathML infix */
+
+    mxInput[0] = mxCreateString(pacMath);
+    nStatus = mexCallMATLAB(1, mxOutput, 1, mxInput, "ConvertFormulaToMathML");
+
+    if (nStatus != 0)
+    {
+        mexErrMsgTxt("Failed to convert math");
+    }
+
+    /* get the formula returned */
+    nBuflen = (mxGetM(mxOutput[0])*mxGetN(mxOutput[0])+1);
+    pacMath = (char *) mxCalloc(nBuflen, sizeof(char));
+    nStatus = mxGetString(mxOutput[0], (char *) pacMath, nBuflen);
+
+    if (nStatus != 0)
+    {
+        mexErrMsgTxt("Cannot copy math");
+    }
+
+    /* END OF HACK */
+    ast = SBML_parseFormula(pacMath);
+    LookForCSymbolTime(ast);
+
+    KineticLaw_setMath(pKineticLaw, ast);
+
+			/* get sboTerm */
+			mxSBOTerm = mxGetField(mxKineticLaw, 0, "sboTerm");
+			nSBOTerm = (int)mxGetScalar(mxSBOTerm);
+
+			SBase_setSBOTerm((SBase_t *) (pKineticLaw), nSBOTerm);
+   
+  }
 
   /* free any memory allocated */
 	mxFree(pacNotes);
 	mxFree(pacAnnotations);
-  if (unSBMLLevel == 1 || unSBMLVersion == 1)
+  if (unSBMLLevel == 1 || (unSBMLLevel == 2 && unSBMLVersion == 1))
   {
 	  mxFree(pacTimeUnits);
     mxFree(pacSubstanceUnits);
   }
-  mxFree(pacFormula);
-	/* level 2 only */
-	if (unSBMLLevel == 2)
+  if (unSBMLLevel < 3)
+  {
+    mxFree(pacFormula);
+  }
+	/* level 2/3 only */
+	if (unSBMLLevel > 1)
 	{
   	mxFree(pacMath);
-        mxFree(pacMetaid);
+    mxFree(pacMetaid);
   }
 }
 /**
@@ -2892,14 +3576,22 @@ GetUnit ( mxArray * mxUnits,
 	mxArray * mxValue, * mxIsSetValue, * mxConstant, * mxSBOTerm;
 
 	Parameter_t *pParameter;
+  LocalParameter_t *pLocalParameter;
 
 	int i;
 
 	for (i = 0; i < nNoParameters; i++) 
 	{
 
-		pParameter = KineticLaw_createParameter(sbmlKineticLaw);
-
+    if (unSBMLLevel < 3)
+    {
+      pParameter = KineticLaw_createParameter(sbmlKineticLaw);
+    }
+    else
+    {
+      pLocalParameter = KineticLaw_createLocalParameter(sbmlKineticLaw);
+    }
+    
     /* get notes */
 		mxNotes = mxGetField(mxParameters, i, "notes");
 		nBuflen = (mxGetM(mxNotes)*mxGetN(mxNotes)+1);
@@ -2911,7 +3603,14 @@ GetUnit ( mxArray * mxUnits,
 			mexErrMsgTxt("Cannot copy notes");
 		}
 
-		SBase_setNotesString((SBase_t *) (pParameter), pacNotes); 
+    if (unSBMLLevel < 3)
+    {
+      SBase_setNotesString((SBase_t *) (pParameter), pacNotes); 
+    }
+    else
+    {
+      SBase_setNotesString((SBase_t *) (pLocalParameter), pacNotes); 
+    }
 
 
 		/* get annotations */
@@ -2925,7 +3624,15 @@ GetUnit ( mxArray * mxUnits,
 			mexErrMsgTxt("Cannot copy annotations");
 		}
    
-		SBase_setAnnotationString((SBase_t *) (pParameter), pacAnnotations);
+    if (unSBMLLevel < 3)
+    {
+      SBase_setAnnotationString((SBase_t *) (pParameter), pacAnnotations); 
+    }
+    else
+    {
+      SBase_setAnnotationString((SBase_t *) (pLocalParameter), pacAnnotations); 
+    }
+
 
 
 		/* get name */
@@ -2939,7 +3646,15 @@ GetUnit ( mxArray * mxUnits,
 			mexErrMsgTxt("Cannot copy name");
 		}
 
-		Parameter_setName(pParameter, pacName);
+    if (unSBMLLevel < 3)
+    {
+      Parameter_setName(pParameter, pacName); 
+    }
+    else
+    {
+      LocalParameter_setName(pLocalParameter, pacName); 
+    }
+
 
 
 		/* get units */
@@ -2953,7 +3668,15 @@ GetUnit ( mxArray * mxUnits,
 			mexErrMsgTxt("Cannot copy units");
 		}
 
-		Parameter_setUnits(pParameter, pacUnits);
+    if (unSBMLLevel < 3)
+    {
+      Parameter_setUnits(pParameter, pacUnits); 
+    }
+    else
+    {
+      LocalParameter_setUnits(pLocalParameter, pacUnits); 
+    }
+
 
 
 		/* get isSetValue */
@@ -2966,7 +3689,15 @@ GetUnit ( mxArray * mxUnits,
 		dValue = mxGetScalar(mxValue);
 
 		if (unIsSetValue == 1) {
-			Parameter_setValue(pParameter, dValue);
+      if (unSBMLLevel < 3)
+      {
+        Parameter_setValue(pParameter, dValue); 
+      }
+      else
+      {
+        LocalParameter_setValue(pLocalParameter, dValue); 
+      }
+
 		}
 
 
@@ -3016,14 +3747,51 @@ GetUnit ( mxArray * mxUnits,
 			  SBase_setSBOTerm((SBase_t *) (pParameter), nSBOTerm);
       }	
 		}
+		/* level 2 */
+		else if (unSBMLLevel == 3)
+		{
+		  /* get metaid */
+		  mxMetaid = mxGetField(mxParameters, i, "metaid");
+		  nBuflen = (mxGetM(mxMetaid)*mxGetN(mxMetaid)+1);
+		  pacMetaid = (char *)mxCalloc(nBuflen, sizeof(char));
+		  nStatus = mxGetString(mxMetaid, pacMetaid, nBuflen);
+      
+		  if (nStatus != 0)
+		  {
+			  mexErrMsgTxt("Cannot copy metaid");
+		  }
+
+		  SBase_setMetaId((SBase_t *) (pLocalParameter), pacMetaid);
+
+			/* get id */
+			mxId = mxGetField(mxParameters, i, "id");
+			nBuflen = (mxGetM(mxId)*mxGetN(mxId)+1);
+			pacId = (char *)mxCalloc(nBuflen, sizeof(char));
+			nStatus = mxGetString(mxId, pacId, nBuflen);
+
+			if (nStatus != 0)
+			{
+				mexErrMsgTxt("Cannot copy id");
+			}
+
+			LocalParameter_setId(pLocalParameter, pacId);
+		
+			
+			  /* get sboTerm */
+			  mxSBOTerm = mxGetField(mxParameters, i, "sboTerm");
+			  nSBOTerm = (int)mxGetScalar(mxSBOTerm);
+
+			  SBase_setSBOTerm((SBase_t *) (pLocalParameter), nSBOTerm);
+		}
+
 
     /* free any memory allocated */
 	  mxFree(pacNotes);
 	  mxFree(pacAnnotations);
 	  mxFree(pacName);
 	  mxFree(pacUnits);
-		/* level 2 only */
-		if (unSBMLLevel == 2)
+		/* level 2/3 only */
+		if (unSBMLLevel > 1)
 		{
   	  mxFree(pacMetaid);
   	  mxFree(pacId);
@@ -3187,7 +3955,7 @@ GetFunctionDefinition ( mxArray * mxFunctionDefinitions,
 
 		FunctionDefinition_setMath(pFuncDefinition, ast);
 
-    if (unSBMLVersion > 1)
+    if (unSBMLVersion > 1 || unSBMLLevel > 2)
     {
 			/* get sboTerm */
 			mxSBOTerm = mxGetField(mxFunctionDefinitions, i, "sboTerm");
@@ -3314,7 +4082,7 @@ GetEvent ( mxArray * mxEvents,
 
 		/* get Trigger */
 		mxTrigger = mxGetField(mxEvents, i, "trigger");
-    if (unSBMLVersion < 3)
+    if (unSBMLLevel == 2 && unSBMLVersion < 3)
     {
 
       nBuflen = (mxGetM(mxTrigger)*mxGetN(mxTrigger)+1);
@@ -3360,7 +4128,7 @@ GetEvent ( mxArray * mxEvents,
     }
 		/* get Delay */
 		mxDelay = mxGetField(mxEvents, i, "delay");
-    if (unSBMLVersion < 3)
+    if (unSBMLLevel == 2 && unSBMLVersion < 3)
     {
 		nBuflen = (mxGetM(mxDelay)*mxGetN(mxDelay)+1);
 		pacDelay = (char *)mxCalloc(nBuflen, sizeof(char));
@@ -3406,7 +4174,7 @@ GetEvent ( mxArray * mxEvents,
           GetDelay(mxDelay, unSBMLLevel, unSBMLVersion, pEvent);
         }
     }
-    if (unSBMLVersion < 3)
+    if (unSBMLLevel == 2 && unSBMLVersion < 3)
     {
 		  /* get TimeUnits */
 		  mxTimeUnits = mxGetField(mxEvents, i, "timeUnits");
@@ -3436,22 +4204,39 @@ GetEvent ( mxArray * mxEvents,
     Event_setId(pEvent, pacId);
 
 
-    if (unSBMLVersion > 1)
+    if (unSBMLLevel == 2 )
     {
-			/* get sboTerm */
-			mxSBOTerm = mxGetField(mxEvents, i, "sboTerm");
-			nSBOTerm = (int)mxGetScalar(mxSBOTerm);
+      if (unSBMLVersion > 1)
+      {
+        /* get sboTerm */
+        mxSBOTerm = mxGetField(mxEvents, i, "sboTerm");
+        nSBOTerm = (int)mxGetScalar(mxSBOTerm);
 
-			SBase_setSBOTerm((SBase_t *) (pEvent), nSBOTerm);
+        SBase_setSBOTerm((SBase_t *) (pEvent), nSBOTerm);
+      }
+
+      if (unSBMLVersion > 3)
+      {
+        /* get useValuesFromTriggerTime */
+        mxUseValuesfromTrigger = mxGetField(mxEvents, i, "useValuesFromTriggerTime");
+        nUseValuesFromTrigger = (int)mxGetScalar(mxUseValuesfromTrigger);
+
+        Event_setUseValuesFromTriggerTime(pEvent, nUseValuesFromTrigger);
+      }
     }
-
-    if (unSBMLVersion > 3)
+    else if (unSBMLLevel == 3)
     {
- 			/* get useValuesFromTriggerTime */
-			mxUseValuesfromTrigger = mxGetField(mxEvents, i, "useValuesFromTriggerTime");
-			nUseValuesFromTrigger = (int)mxGetScalar(mxUseValuesfromTrigger);
+      /* get sboTerm */
+      mxSBOTerm = mxGetField(mxEvents, i, "sboTerm");
+      nSBOTerm = (int)mxGetScalar(mxSBOTerm);
 
-			Event_setUseValuesFromTriggerTime(pEvent, nUseValuesFromTrigger);
+      SBase_setSBOTerm((SBase_t *) (pEvent), nSBOTerm);
+
+      /* get useValuesFromTriggerTime */
+      mxUseValuesfromTrigger = mxGetField(mxEvents, i, "useValuesFromTriggerTime");
+      nUseValuesFromTrigger = (int)mxGetScalar(mxUseValuesfromTrigger);
+
+      Event_setUseValuesFromTriggerTime(pEvent, nUseValuesFromTrigger);
     }
     /* get list of event assignments */
 		mxEventAssignments = mxGetField(mxEvents, i, "eventAssignment");
@@ -3461,14 +4246,14 @@ GetEvent ( mxArray * mxEvents,
 	  mxFree(pacNotes);
 	  mxFree(pacAnnotations);
 	  mxFree(pacName);
-    if (unSBMLVersion < 3)
-    {
-  	mxFree(pacTrigger);
-	  mxFree(pacDelay);
-      mxFree(pacTimeUnits);
-    }
     mxFree(pacId);
   	mxFree(pacMetaid);
+    if (unSBMLLevel == 2 && unSBMLVersion < 3)
+    {
+  	  mxFree(pacTrigger);
+	    mxFree(pacDelay);
+      mxFree(pacTimeUnits);
+    }
 	}
 }
 /**
@@ -3608,7 +4393,15 @@ GetEventAssignment ( mxArray * mxEventAssignment,
 
     EventAssignment_setMath(pEventAssignment, ast);
 
-    if (unSBMLVersion > 1)
+    if (unSBMLLevel == 2 && unSBMLVersion > 1)
+    {
+			/* get sboTerm */
+			mxSBOTerm = mxGetField(mxEventAssignment, i, "sboTerm");
+			nSBOTerm = (int)mxGetScalar(mxSBOTerm);
+
+			SBase_setSBOTerm((SBase_t *) (pEventAssignment), nSBOTerm);
+    }
+    else if (unSBMLLevel == 3)
     {
 			/* get sboTerm */
 			mxSBOTerm = mxGetField(mxEventAssignment, i, "sboTerm");
@@ -3622,7 +4415,7 @@ GetEventAssignment ( mxArray * mxEventAssignment,
 	  mxFree(pacAnnotations);
    	mxFree(pacVariable);
 	  mxFree(pacMath);
-        mxFree(pacMetaid);
+    mxFree(pacMetaid);
 	}
 }
 /**
@@ -4028,7 +4821,7 @@ GetInitialAssignment ( mxArray * mxInitialAssignment,
 	  mxFree(pacAnnotations);
    	mxFree(pacSymbol);
 	  mxFree(pacMath);
-        mxFree(pacMetaid);
+    mxFree(pacMetaid);
 	}
 }
 /**
@@ -4180,7 +4973,7 @@ GetConstraint ( mxArray * mxConstraint,
 	  mxFree(pacAnnotations);
    	mxFree(pacMessage);
 	  mxFree(pacMath);
-        mxFree(pacMetaid);
+    mxFree(pacMetaid);
 	}
 }
 
@@ -4315,7 +5108,7 @@ GetStoichiometryMath ( mxArray * mxStoichiometryMath,
   mxFree(pacNotes);
   mxFree(pacAnnotations);
   mxFree(pacMath);
-        mxFree(pacMetaid);
+  mxFree(pacMetaid);
 }
 
 

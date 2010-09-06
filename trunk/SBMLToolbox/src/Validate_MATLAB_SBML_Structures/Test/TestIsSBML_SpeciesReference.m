@@ -32,7 +32,7 @@ sr_l2v2 = struct('typecode', {'SBML_SPECIES_REFERENCE'}, 'metaid', {''}, 'notes'
     {''}, 'id', {''}, 'name', {''}, 'sboTerm', {''}, 'stoichiometry', {''}, 'stoichiometryMath', {''});
 
 sr_l3v1 = struct('typecode', {'SBML_SPECIES_REFERENCE'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''},'species', ...
-    {''}, 'id', {''}, 'name', {''}, 'sboTerm', {''}, 'stoichiometry', {''}, 'constant', {''});
+    {''}, 'id', {''}, 'name', {''}, 'sboTerm', {''}, 'stoichiometry', {''}, 'constant', {''}, 'isSetStoichiometry', {''});
 
 fail = TestFunction('isSBML_SpeciesReference', 2, 1, sr_l1, 1, 1);
 fail = fail + TestFunction('isSBML_SpeciesReference', 3, 1, sr_l1, 1, 1, 1);

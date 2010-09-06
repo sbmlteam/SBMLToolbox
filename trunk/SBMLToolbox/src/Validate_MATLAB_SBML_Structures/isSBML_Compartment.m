@@ -100,7 +100,7 @@ elseif (Level == 2)
 elseif (Level == 3)
     if (Version == 1)
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id',  ...
-            'spatialDimensions', 'size', 'units', 'constant', 'isSetSize','isSetVolume'};
+            'spatialDimensions', 'size', 'units', 'constant', 'isSetSize','isSetSpatialDimensions'};
         nNumberFields = 13;
     end;
 end;
