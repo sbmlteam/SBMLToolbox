@@ -1,4 +1,4 @@
-function [y, message] = isSBML_localParameter(varargin)
+function [y, message] = isSBML_LocalParameter(varargin)
 % isSBML_LocalParameter(SBMLStructure, Level, Version(optional)) 
 % checks that SBMLStructure represents a localParameter 
 % within an sbml model of the specified level
