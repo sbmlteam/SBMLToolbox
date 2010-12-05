@@ -25,6 +25,9 @@ function fail = TestIsSBML_Trigger
 ct_l2v3 = struct('typecode', {'SBML_TRIGGER'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''},...
   'sboTerm', {''}, 'math', {''});
 
+ct_l3v1 = struct('typecode', {'SBML_TRIGGER'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''},...
+  'sboTerm', {''}, 'persistent', {''}, 'initialValue', {''}, 'math', {''});
+
 
 fail = TestFunction('isSBML_Trigger', 2, 1, ct_l2v3, 1, 0);
 fail = fail + TestFunction('isSBML_Trigger', 3, 1, ct_l2v3, 1, 1, 0);
@@ -34,7 +37,9 @@ fail = fail + TestFunction('isSBML_Trigger', 3, 1, ct_l2v3, 2, 1, 0);
 fail = fail + TestFunction('isSBML_Trigger', 3, 1, ct_l2v3, 2, 2, 0);
 fail = fail + TestFunction('isSBML_Trigger', 3, 1, ct_l2v3, 2, 3, 1);
 fail = fail + TestFunction('isSBML_Trigger', 3, 1, ct_l2v3, 2, 4, 1);
-fail = fail + TestFunction('isSBML_Trigger', 3, 1, ct_l2v3, 3, 1, 1);
+fail = fail + TestFunction('isSBML_Trigger', 3, 1, ct_l2v3, 3, 1, 0);
+fail = fail + TestFunction('isSBML_Trigger', 3, 1, ct_l3v1, 2, 4, 0);
+fail = fail + TestFunction('isSBML_Trigger', 3, 1, ct_l3v1, 3, 1, 1);
 
 
 

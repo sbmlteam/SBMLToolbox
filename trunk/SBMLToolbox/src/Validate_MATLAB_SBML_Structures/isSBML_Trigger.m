@@ -83,8 +83,9 @@ elseif (Level == 2)
     end;
 elseif (Level == 3)
     if (Version == 1)
-        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'math'};
-        nNumberFields = 6;
+        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', ...
+          'persistent', 'initialValue' 'math'};
+        nNumberFields = 8;
     end;
 end;
     

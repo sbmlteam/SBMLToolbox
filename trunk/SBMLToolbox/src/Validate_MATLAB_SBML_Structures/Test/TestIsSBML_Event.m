@@ -34,6 +34,9 @@ e_l2v3 = struct('typecode', {'SBML_EVENT'}, 'metaid', {''}, 'notes', {''}, 'anno
 e_l2v4 = struct('typecode', {'SBML_EVENT'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''}, 'name', {''}, 'id', {''}, ...
     'useValuesFromTriggerTime', {''}, 'trigger', {''}, 'delay', {''},  'sboTerm', {''}, 'eventAssignment', {''});
 
+e_l3v1 = struct('typecode', {'SBML_EVENT'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''}, 'name', {''}, 'id', {''}, ...
+    'useValuesFromTriggerTime', {''}, 'trigger', {''}, 'delay', {''},  'priority', {''}, 'sboTerm', {''}, 'eventAssignment', {''});
+
 fail = TestFunction('isSBML_Event', 2, 1, e_l2, 1, 0);
 fail = fail + TestFunction('isSBML_Event', 3, 1, e_l2, 1, 1, 0);
 fail = fail + TestFunction('isSBML_Event', 3, 1, e_l2, 1, 2, 0);
@@ -42,7 +45,8 @@ fail = fail + TestFunction('isSBML_Event', 3, 1, e_l2, 2, 1, 1);
 fail = fail + TestFunction('isSBML_Event', 3, 1, e_l2v3, 2, 3, 1);
 fail = fail + TestFunction('isSBML_Event', 3, 1, e_l2v4, 2, 3, 0);
 fail = fail + TestFunction('isSBML_Event', 3, 1, e_l2v4, 2, 4, 1);
-fail = fail + TestFunction('isSBML_Event', 3, 1, e_l2v4, 3, 1, 1);
+fail = fail + TestFunction('isSBML_Event', 3, 1, e_l2v4, 3, 1, 0);
+fail = fail + TestFunction('isSBML_Event', 3, 1, e_l3v1, 3, 1, 1);
 
 
 

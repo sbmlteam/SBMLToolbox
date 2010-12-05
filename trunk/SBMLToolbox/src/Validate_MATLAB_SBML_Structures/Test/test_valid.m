@@ -54,7 +54,7 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 9;
+test = test + 10;
 fail = TestIsSBML_Event;
 if (fail > 0)
     disp('isSBML_Event failed');
@@ -107,6 +107,13 @@ test = test + 4;
 fail = TestIsSBML_ParameterRule;
 if (fail > 0)
     disp('isSBML_ParameterRule failed');
+end;
+Totalfail = Totalfail + fail;
+
+test = test + 9;
+fail = TestIsSBML_Priority;
+if (fail > 0)
+    disp('isSBML_Priority failed');
 end;
 Totalfail = Totalfail + fail;
 
@@ -187,7 +194,7 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 7;
+test = test + 11;
 fail = TestIsSBML_Trigger;
 if (fail > 0)
     disp('isSBML_Trigger failed');
