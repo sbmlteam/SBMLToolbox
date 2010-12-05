@@ -93,8 +93,8 @@ elseif (Level == 2)
 elseif (Level == 3)
     if (Version == 1)
         SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id', ...
-          'useValuesFromTriggerTime', 'trigger', 'delay', 'eventAssignment'};
-        nNumberFields = 11;
+          'useValuesFromTriggerTime', 'trigger', 'delay', 'priority', 'eventAssignment'};
+        nNumberFields = 12;
     end;
 end;
     
@@ -139,7 +139,7 @@ if(bSBML == 1)
         index = index + 1;
     end;
 end;
-if (Level == 2 && Version > 2)
+if ((Level == 2 && Version > 2) || (Level > 2))
   if (length(SBMLStructure.trigger) > 1 || length(SBMLStructure.delay) > 1)
     bSBML = 0;
   end;
@@ -156,6 +156,18 @@ if (Level == 2 && Version > 2)
   end;
   if(bSBML == 1 && ~isempty(SBMLStructure.delay))
     [bSBML, mess1] = isSBML_Delay(SBMLStructure.delay, Level, Version);
+    if (bSBML == 0)
+      if (isempty(message))
+        message = mess1;
+      else
+        message = sprintf('%s\n%s', message, mess1);
+      end;
+    end;
+  end;
+end;
+if (Level > 2)
+  if(bSBML == 1 && ~isempty(SBMLStructure.priority))
+    [bSBML, mess1] = isSBML_Priority(SBMLStructure.priority, Level, Version);
     if (bSBML == 0)
       if (isempty(message))
         message = mess1;
