@@ -4,15 +4,10 @@
 %
 %
 % FUNCTIONS include:
-%  buildOutput 
-%		which builds the OutputSBML executable
-%  buildOutput_Octave 
-%		which builds the OutputSBML executable in Octave
 %  install 
 %		which adds files to the Path
-%  OutputSBML('MATLAB_SBML structure') 
-%		which translates a MATLAB_SBML structure and ouputs an sbml file
 %
+% NOTE: TranslateSBML and OutputSBML are part of libsbml.
 
 %
 %  Description : This is the top level directory for the functions to translate 
