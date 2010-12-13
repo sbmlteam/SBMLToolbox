@@ -1,6 +1,7 @@
 function testToolbox
 
 disp ('Start ...');
+pwd
 success = 1;
 m = [];
 try
