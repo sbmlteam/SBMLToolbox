@@ -132,7 +132,7 @@ if (bSBML == 1)
 end;
 
 % check that the typecode is correct
-if (bSBML == 1)
+if (bSBML == 1 && length(SBMLStructure) == 1)
     type = SBMLStructure.typecode;
     k = strcmp(type, typecode);
     if (k ~= 1)
@@ -141,8 +141,9 @@ if (bSBML == 1)
 end;
     
 % check that any nested structures are appropriate
-if(bSBML == 1)
+if(bSBML == 1 && length(SBMLStructure) == 1)
     index = 1;
+    [bSBML, message] = isSBML_SpeciesReference(SBMLStructure.reactant, Level, Version);
     [x, nNumberReactants] = size(SBMLStructure.reactant);
     while (bSBML == 1 && index <= nNumberReactants)
         [bSBML, message] = isSBML_SpeciesReference(SBMLStructure.reactant(index), Level, Version);
@@ -150,6 +151,7 @@ if(bSBML == 1)
     end;
 
     index = 1;
+    [bSBML, message] = isSBML_SpeciesReference(SBMLStructure.product, Level, Version);
     [x, nNumberProducts] = size(SBMLStructure.product);
     while (bSBML == 1 && index <= nNumberProducts)
         [bSBML, message] = isSBML_SpeciesReference(SBMLStructure.product(index), Level, Version);
@@ -158,6 +160,7 @@ if(bSBML == 1)
 
     if (Level > 1)
         index = 1;
+        [bSBML, message] = isSBML_ModifierSpeciesReference(SBMLStructure.modifier, Level, Version);
         [x, nNumberModifiers] = size(SBMLStructure.modifier);
         while (bSBML == 1 && index <= nNumberModifiers)
             [bSBML, message] = isSBML_ModifierSpeciesReference(SBMLStructure.modifier(index), Level, Version);
@@ -166,7 +169,7 @@ if(bSBML == 1)
     end;
 
     % if a kinetic law is present check that it is valid
-    if (bSBML == 1 && ~isempty(SBMLStructure.kineticLaw))
+    if (bSBML == 1)% && ~isempty(SBMLStructure.kineticLaw))
         [bSBML, message] = isSBML_KineticLaw(SBMLStructure.kineticLaw, Level, Version);
     end;
 end;

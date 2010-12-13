@@ -122,7 +122,7 @@ if (bSBML == 1)
 end;
 
 % check that the typecode is correct
-if (bSBML == 1)
+if (bSBML == 1 && length(SBMLStructure) == 1)
     type = SBMLStructure.typecode;
     k = strcmp(type, typecode);
     if (k ~= 1)
@@ -131,20 +131,25 @@ if (bSBML == 1)
 end;
  
 % check that any nested structures are appropriate
-if(bSBML == 1)
+if(bSBML == 1 && length(SBMLStructure) == 1)
     index = 1;
+    [bSBML, message] = isSBML_EventAssignment(SBMLStructure.eventAssignment, Level, Version);
     [x, nNumber] = size(SBMLStructure.eventAssignment); 
     while (bSBML == 1 && index <= nNumber)
         [bSBML, message] = isSBML_EventAssignment(SBMLStructure.eventAssignment(index), Level, Version);
         index = index + 1;
     end;
 end;
-if ((Level == 2 && Version > 2) || (Level > 2))
+
+if (bSBML == 1 && length(SBMLStructure) == 1)
+% nested structures that are empty should have the structure but with no
+% elements e.g. [1x0 struct]
+if ((Level == 2 && Version > 2))
   if (length(SBMLStructure.trigger) > 1 || length(SBMLStructure.delay) > 1)
     bSBML = 0;
   end;
 
-  if(bSBML == 1 && ~isempty(SBMLStructure.trigger))
+  if(bSBML == 1) % && ~isempty(SBMLStructure.trigger))
     [bSBML, mess1] = isSBML_Trigger(SBMLStructure.trigger, Level, Version);
     if (bSBML == 0)
       if (isempty(message))
@@ -154,7 +159,7 @@ if ((Level == 2 && Version > 2) || (Level > 2))
       end;
     end;
   end;
-  if(bSBML == 1 && ~isempty(SBMLStructure.delay))
+  if(bSBML == 1) % && ~isempty(SBMLStructure.delay))
     [bSBML, mess1] = isSBML_Delay(SBMLStructure.delay, Level, Version);
     if (bSBML == 0)
       if (isempty(message))
@@ -166,7 +171,33 @@ if ((Level == 2 && Version > 2) || (Level > 2))
   end;
 end;
 if (Level > 2)
-  if(bSBML == 1 && ~isempty(SBMLStructure.priority))
+  if (length(SBMLStructure.trigger) > 1  ...
+      || length(SBMLStructure.delay) > 1 ...
+      || length(SBMLStructure.priority) > 1)
+    bSBML = 0;
+  end;
+
+  if(bSBML == 1) % && ~isempty(SBMLStructure.trigger))
+    [bSBML, mess1] = isSBML_Trigger(SBMLStructure.trigger, Level, Version);
+    if (bSBML == 0)
+      if (isempty(message))
+        message = mess1;
+      else
+        message = sprintf('%s\n%s', message, mess1);
+      end;
+    end;
+  end;
+  if(bSBML == 1) % && ~isempty(SBMLStructure.delay))
+    [bSBML, mess1] = isSBML_Delay(SBMLStructure.delay, Level, Version);
+    if (bSBML == 0)
+      if (isempty(message))
+        message = mess1;
+      else
+        message = sprintf('%s\n%s', message, mess1);
+      end;
+    end;
+  end;
+  if(bSBML == 1) % && ~isempty(SBMLStructure.priority))
     [bSBML, mess1] = isSBML_Priority(SBMLStructure.priority, Level, Version);
     if (bSBML == 0)
       if (isempty(message))
@@ -177,7 +208,7 @@ if (Level > 2)
     end;
   end;
 end;
-
+end;
 if (bSBML == 0)
   if (isempty(message))
     message = 'Invalid Event structure';

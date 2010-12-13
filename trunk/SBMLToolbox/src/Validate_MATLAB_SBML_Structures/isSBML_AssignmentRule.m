@@ -79,7 +79,7 @@ bSBML = isSBML_Rule(SBMLStructure, Level, Version);
 % check that the typecode is correct
 index = 1;
 nMatch = 0;
-if (bSBML == 1)
+if (bSBML == 1 && length(SBMLStructure) == 1)
     type = SBMLStructure.typecode;
     while (index <= nNumberTypecodes)
         k = strcmp(type, typecode(index));

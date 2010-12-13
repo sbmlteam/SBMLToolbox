@@ -113,7 +113,7 @@ if (bSBML == 1)
 end;
 
 % check that the typecode is correct
-if (bSBML == 1)
+if (bSBML == 1 && length(SBMLStructure) == 1)
     type = SBMLStructure.typecode;
     k = strcmp(type, typecode);
     if (k ~= 1)
@@ -122,16 +122,18 @@ if (bSBML == 1)
 end;
   
 % check that any nested structures are appropriate
-if(bSBML == 1)
+if(bSBML == 1 && length(SBMLStructure) == 1)
     index = 1;
     if (Level < 3)
       [x, nNumberParameters] = size(SBMLStructure.parameter); 
+      [bSBML, message] = isSBML_Parameter(SBMLStructure.parameter, Level, Version);
       while (bSBML == 1 && index <= nNumberParameters)
           [bSBML, message] = isSBML_Parameter(SBMLStructure.parameter(index), Level, Version);
           index = index + 1;
       end;
     else
       [x, nNumberParameters] = size(SBMLStructure.localParameter); 
+      [bSBML, message] = isSBML_LocalParameter(SBMLStructure.localParameter, Level, Version);
       while (bSBML == 1 && index <= nNumberParameters)
           [bSBML, message] = isSBML_LocalParameter(SBMLStructure.localParameter(index), Level, Version);
           index = index + 1;

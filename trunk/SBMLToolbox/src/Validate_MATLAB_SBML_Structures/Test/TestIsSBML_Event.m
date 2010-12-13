@@ -21,21 +21,38 @@ function fail = TestIsSBML_Event
 % and also available online as http://sbml.org/software/sbmltoolbox/license.html
 %----------------------------------------------------------------------- -->
 
+pr_l3v1 = struct('typecode', {'SBML_PRIORITY'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''},...
+  'sboTerm', {''}, 'math', {''});
+
+t_l2v3 = struct('typecode', {'SBML_TRIGGER'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''},...
+  'sboTerm', {''}, 'math', {''});
+
+t_l3v1 = struct('typecode', {'SBML_TRIGGER'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''},...
+  'sboTerm', {''}, 'persistent', {''}, 'initialValue', {''}, 'math', {''});
+
+del_l2v3 = struct('typecode', {'SBML_DELAY'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''},...
+  'sboTerm', {''}, 'math', {''});
+
+ea_l2 = struct('typecode', {'SBML_EVENT_ASSIGNMENT'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''}, 'variable', {''}, ...
+    'math', {''});
+
+ea_l2v2 = struct('typecode', {'SBML_EVENT_ASSIGNMENT'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''}, 'variable', {''}, ...
+    'sboTerm', {''}, 'math', {''});
 
 e_l2 = struct('typecode', {'SBML_EVENT'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''}, 'name', {''}, 'id', {''}, ...
-    'trigger', {''}, 'delay', {''}, 'timeUnits', {''}, 'eventAssignment', {''});
+    'trigger', {''}, 'delay', {''}, 'timeUnits', {''}, 'eventAssignment', ea_l2);
 
 e_l2v2 = struct('typecode', {'SBML_EVENT'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''}, 'name', {''}, 'id', {''}, ...
-    'trigger', {''}, 'delay', {''}, 'timeUnits', {''}, 'sboTerm', {''}, 'eventAssignment', {''});
+    'trigger', {''}, 'delay', {''}, 'timeUnits', {''}, 'sboTerm', {''}, 'eventAssignment', ea_l2v2);
 
 e_l2v3 = struct('typecode', {'SBML_EVENT'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''}, 'name', {''}, 'id', {''}, ...
-    'trigger', {''}, 'delay', {''},  'sboTerm', {''}, 'eventAssignment', {''});
+    'trigger',t_l2v3, 'delay', del_l2v3,  'sboTerm', {''}, 'eventAssignment', ea_l2v2);
 
 e_l2v4 = struct('typecode', {'SBML_EVENT'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''}, 'name', {''}, 'id', {''}, ...
-    'useValuesFromTriggerTime', {''}, 'trigger', {''}, 'delay', {''},  'sboTerm', {''}, 'eventAssignment', {''});
+    'useValuesFromTriggerTime', {''}, 'trigger', t_l2v3, 'delay', del_l2v3,  'sboTerm', {''}, 'eventAssignment', ea_l2v2);
 
 e_l3v1 = struct('typecode', {'SBML_EVENT'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''}, 'name', {''}, 'id', {''}, ...
-    'useValuesFromTriggerTime', {''}, 'trigger', {''}, 'delay', {''},  'priority', {''}, 'sboTerm', {''}, 'eventAssignment', {''});
+    'useValuesFromTriggerTime', {''}, 'trigger', t_l3v1, 'delay', del_l2v3,  'priority',pr_l3v1, 'sboTerm', {''}, 'eventAssignment', ea_l2v2);
 
 fail = TestFunction('isSBML_Event', 2, 1, e_l2, 1, 0);
 fail = fail + TestFunction('isSBML_Event', 3, 1, e_l2, 1, 1, 0);
