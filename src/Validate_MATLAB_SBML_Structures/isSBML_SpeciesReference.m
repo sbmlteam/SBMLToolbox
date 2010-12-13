@@ -120,18 +120,19 @@ if (bSBML == 1)
 end;
 
 % check that any nested structures are appropriate
-if (Level == 2 && Version > 2)
-  if (length(SBMLStructure.stoichiometryMath) > 1)
-    bSBML = 0;
-  end;
+if(bSBML == 1 && length(SBMLStructure) == 1)
+  if (Level == 2 && Version > 2)
+    if (length(SBMLStructure.stoichiometryMath) > 1)
+      bSBML = 0;
+    end;
 
-  if(bSBML == 1 && ~isempty(SBMLStructure.stoichiometryMath))
-    [bSBML, message] = isSBML_StoichiometryMath(SBMLStructure.stoichiometryMath, Level, Version);
+    if(bSBML == 1 && ~isempty(SBMLStructure.stoichiometryMath))
+      [bSBML, message] = isSBML_StoichiometryMath(SBMLStructure.stoichiometryMath, Level, Version);
+    end;
   end;
 end;
-
 % check that the typecode is correct
-if (bSBML == 1)
+if (bSBML == 1 && length(SBMLStructure) == 1)
     type = SBMLStructure.typecode;
     k = strcmp(type, typecode);
     if (k ~= 1)

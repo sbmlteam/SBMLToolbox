@@ -141,7 +141,7 @@ end;
 % end;
 % 
 % check that the typecode is correct
-if (bSBML == 1)
+if (bSBML == 1 && length(SBMLStructure) == 1)
     type = SBMLStructure.typecode;
     k = strcmp(type, typecode);
     if (k ~= 1)
@@ -151,8 +151,9 @@ end;
   
 % check that any nested structures are appropriate
 if (bSBML == 1)
-    if (Level == 2)
+    if (Level > 1)
         index = 1;
+        [bSBML, message] = isSBML_FunctionDefinition(SBMLStructure.functionDefinition, Level, Version);
         [x, nNumber] = size(SBMLStructure.functionDefinition);
         while (bSBML == 1 && index <= nNumber)
             [bSBML, message] = isSBML_FunctionDefinition(SBMLStructure.functionDefinition(index), Level, Version);
@@ -161,6 +162,7 @@ if (bSBML == 1)
     end;
 
     index = 1;
+    [bSBML, message] = isSBML_UnitDefinition(SBMLStructure.unitDefinition, Level, Version);
     [x, nNumber] = size(SBMLStructure.unitDefinition);
     while (bSBML == 1 && index <= nNumber)
         [bSBML, message] = isSBML_UnitDefinition(SBMLStructure.unitDefinition(index), Level, Version);
@@ -168,6 +170,7 @@ if (bSBML == 1)
     end;
 
     index = 1;
+    [bSBML, message] = isSBML_Compartment(SBMLStructure.compartment, Level, Version);
     [x, nNumber] = size(SBMLStructure.compartment);
     while (bSBML == 1 && index <= nNumber)
         [bSBML, message] = isSBML_Compartment(SBMLStructure.compartment(index), Level, Version);
@@ -175,6 +178,7 @@ if (bSBML == 1)
     end;
 
     index = 1;
+    [bSBML, message] = isSBML_Species(SBMLStructure.species, Level, Version);
     [x, nNumber] = size(SBMLStructure.species);
     while (bSBML == 1 && index <= nNumber)
         [bSBML, message] = isSBML_Species(SBMLStructure.species(index), Level, Version);
@@ -182,6 +186,7 @@ if (bSBML == 1)
     end;
 
     index = 1;
+    [bSBML, message] = isSBML_Parameter(SBMLStructure.parameter, Level, Version);
     [x, nNumber] = size(SBMLStructure.parameter);
     while (bSBML == 1 && index <= nNumber)
         [bSBML, message] = isSBML_Parameter(SBMLStructure.parameter(index), Level, Version);
@@ -189,6 +194,7 @@ if (bSBML == 1)
     end;
 
     index = 1;
+    [bSBML, message] = isSBML_Rule(SBMLStructure.rule, Level, Version);
     [x, nNumber] = size(SBMLStructure.rule);
     while (bSBML == 1 && index <= nNumber)
         [bSBML, message] = isSBML_Rule(SBMLStructure.rule(index), Level, Version);
@@ -196,14 +202,16 @@ if (bSBML == 1)
     end;
 
     index = 1;
+    [bSBML, message] = isSBML_Reaction(SBMLStructure.reaction, Level, Version);
     [x, nNumber] = size(SBMLStructure.reaction);
     while (bSBML == 1 && index <= nNumber)
         [bSBML, message] = isSBML_Reaction(SBMLStructure.reaction(index), Level, Version);
         index = index + 1;
     end;
 
-    if (Level == 2)
+    if (Level > 1)
         index = 1;
+        [bSBML, message] = isSBML_Event(SBMLStructure.event, Level, Version);
         [x, nNumber] = size(SBMLStructure.event);
         while (bSBML == 1 && index <= nNumber)
             [bSBML, message] = isSBML_Event(SBMLStructure.event(index), Level, Version);
@@ -213,6 +221,7 @@ if (bSBML == 1)
     
     if (Level == 2 && Version > 1)
         index = 1;
+        [bSBML, message] = isSBML_CompartmentType(SBMLStructure.compartmentType, Level, Version);
         [x, nNumber] = size(SBMLStructure.compartmentType);
         while (bSBML == 1 && index <= nNumber)
             [bSBML, message] = isSBML_CompartmentType(SBMLStructure.compartmentType(index), Level, Version);
@@ -220,6 +229,7 @@ if (bSBML == 1)
         end;
     
         index = 1;
+        [bSBML, message] = isSBML_SpeciesType(SBMLStructure.speciesType, Level, Version);
         [x, nNumber] = size(SBMLStructure.speciesType);
         while (bSBML == 1 && index <= nNumber)
             [bSBML, message] = isSBML_SpeciesType(SBMLStructure.speciesType(index), Level, Version);
@@ -227,6 +237,7 @@ if (bSBML == 1)
         end;
 
         index = 1;
+        [bSBML, message] = isSBML_InitialAssignment(SBMLStructure.initialAssignment, Level, Version);
         [x, nNumber] = size(SBMLStructure.initialAssignment);
         while (bSBML == 1 && index <= nNumber)
             [bSBML, message] = isSBML_InitialAssignment(SBMLStructure.initialAssignment(index), Level, Version);
@@ -234,12 +245,30 @@ if (bSBML == 1)
         end;
  
         index = 1;
+        [bSBML, message] = isSBML_Constraint(SBMLStructure.constraint, Level, Version);
         [x, nNumber] = size(SBMLStructure.constraint);
         while (bSBML == 1 && index <= nNumber)
             [bSBML, message] = isSBML_Constraint(SBMLStructure.constraint(index), Level, Version);
             index = index + 1;
         end;
     
+    elseif (Level > 2)
+
+        index = 1;
+        [bSBML, message] = isSBML_InitialAssignment(SBMLStructure.initialAssignment, Level, Version);
+        [x, nNumber] = size(SBMLStructure.initialAssignment);
+        while (bSBML == 1 && index <= nNumber)
+            [bSBML, message] = isSBML_InitialAssignment(SBMLStructure.initialAssignment(index), Level, Version);
+            index = index + 1;
+        end;
+ 
+        index = 1;
+        [bSBML, message] = isSBML_Constraint(SBMLStructure.constraint, Level, Version);
+        [x, nNumber] = size(SBMLStructure.constraint);
+        while (bSBML == 1 && index <= nNumber)
+            [bSBML, message] = isSBML_Constraint(SBMLStructure.constraint(index), Level, Version);
+            index = index + 1;
+        end;
     end;
     
 end;

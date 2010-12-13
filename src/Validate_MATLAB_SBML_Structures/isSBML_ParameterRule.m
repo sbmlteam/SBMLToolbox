@@ -72,7 +72,7 @@ bSBML = isSBML_Rule(SBMLStructure, Level, Version);
 
 
 % check that the typecode is correct
-if (bSBML == 1)
+if (bSBML == 1 && length(SBMLStructure) == 1)
     type = SBMLStructure.typecode;
     k = strcmp(type, typecode);
     if (k ~= 1)

@@ -866,6 +866,19 @@ end;
 
 Totalfail = Totalfail + fail;
 
+try
+  m = Model_create();
+catch
+  Totalfail = Totalfail + 1;
+  disp('creating model failed');
+end;
+
+if (isempty(m))
+  Totalfail = Totalfail + 1;
+  disp('creating model failed');
+end;
+
+
 disp(sprintf('Number tests: %d', test));
 disp(sprintf('Number fails: %d', Totalfail));
 disp(sprintf('Pass rate: %d%%', ((test-Totalfail)/test)*100));

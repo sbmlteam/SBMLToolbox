@@ -111,7 +111,7 @@ if (bSBML == 1)
 end;
 
 % check that the typecode is correct
-if (bSBML == 1)
+if (bSBML == 1 && length(SBMLStructure) == 1)
     type = SBMLStructure.typecode;
     k = strcmp(type, typecode);
     if (k ~= 1)
@@ -120,7 +120,7 @@ if (bSBML == 1)
 end;
     
 % check that any nested structures are appropriate
-if(bSBML == 1)
+if(bSBML == 1 && length(SBMLStructure) == 1)
     index = 1;
     [x, nNumber] = size(SBMLStructure.unit); 
     while (bSBML == 1 && index <= nNumber)
