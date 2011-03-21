@@ -1,6 +1,5 @@
       SBMLToolbox
 
-
       Sarah Keating
 
       http://www.sbml.org
@@ -16,13 +15,12 @@ model into a MATLAB structure.
 
 
 
-
 ----------------
 2.  Installation
 ----------------
 
 **************************************************************
-IMPORTANT: You must have installed libSBML-3.1 with the MATLAB 
+IMPORTANT: You must have installed libSBML with the MATLAB 
 binding prior to installation of SBMLToolbox.
 **************************************************************
 
@@ -189,5 +187,5 @@ COPYING.txt.
 
 -------------------------------------------
   File author: S. Keating
-Last Modified: 2008/01/15 
+Last Modified: 2011-03-21
 -------------------------------------------
