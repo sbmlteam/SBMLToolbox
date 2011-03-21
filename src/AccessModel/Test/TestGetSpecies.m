@@ -15,7 +15,7 @@ function fail = TestGetSpecies
 %  Source      :   $Source v $
 %
 %<!---------------------------------------------------------------------------
-e% This file is part of SBMLToolbox.  Please visit http://sbml.org for more
+% This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
 %
 % Copyright (C) 2009-2011 jointly by the following organizations: 
