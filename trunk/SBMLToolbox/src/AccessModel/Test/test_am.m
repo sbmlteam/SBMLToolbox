@@ -155,6 +155,37 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
+test = test + 3;
+fail = TestGetVaryingParameters;
+if (fail > 0)
+    disp('GetVaryingParameters failed');
+end;
+Totalfail = Totalfail + fail;
+
+test = test + 1;
+fail = TestGetParameterAssignmentRules;
+if (fail > 0)
+    disp('GetParametersAssignmentRules failed');
+end;
+Totalfail = Totalfail + fail;
+
+
+test = test + 1;
+fail = TestGetParameterRateRules;
+if (fail > 0)
+    disp('GetParametersRateRules failed');
+end;
+Totalfail = Totalfail + fail;
+
+
+test = test + 1;
+fail = TestGetParameterAlgebraicRules;
+if (fail > 0)
+    disp('GetParametersAlgebraicRules failed');
+end;
+Totalfail = Totalfail + fail;
+
+
 
 disp(sprintf('Number tests: %d', test));
 disp(sprintf('Number fails: %d', Totalfail));
