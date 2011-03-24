@@ -54,7 +54,7 @@ function subsFormula = SubstituteConstants(OriginalFormula, SBMLModel)
 %check arguments are appropriate
 
 if (~ischar(OriginalFormula))
-    error('SubstituteConstants(OriginalFormula, SBMLModel)\n%s', 'first argument must be a character array representinmg a formula');
+    error('SubstituteConstants(OriginalFormula, SBMLModel)\n%s', 'first argument must be a character array representing a formula');
 elseif (~isSBML_Model(SBMLModel))
     error('SubstituteConstants(OriginalFormula, SBMLModel)\n%s', 'second argument must be an SBML model structure');
 end;

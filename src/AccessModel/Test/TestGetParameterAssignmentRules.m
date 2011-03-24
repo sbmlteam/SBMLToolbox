@@ -1,10 +1,18 @@
-function y = test_sim()
+function fail = TestGetParameterAssignmentRules
+% GetParameterAssignmentRules takes an SBMLModel 
+% and returns
+%             1) an array of Parameter names
+%             2) an array of the character representation of the
+%             concentration for each Parameter assigned by rules
 
-%  Filename    :   test_sim.m
-%  Description :
+
+%  Filename    :   TestGetParameterAssignmentRules.m
+%  Description : 
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: RunTest.m 7155 2008-06-26 20:24:00Z mhucka $
-%  $Source v $
+%  Organization:   University of Hertfordshire STRI
+%  Created     :   04-Oct-2005
+%  Revision    :   $Id: TestGetParameterAssignmentRules.m 13259 2011-03-21 05:40:36Z mhucka $
+%  Source      :   $Source v $
 %
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
@@ -30,39 +38,9 @@ function y = test_sim()
 %----------------------------------------------------------------------- -->
 
 
+m = TranslateSBML('../../Test/test-data/varyingParameters.xml');
 
-test = 0;
-Totalfail = 0;
+Parameter = {'t', 'k', 'k1', 'v1', 'v2', 'v3'};
+rules = {'0', '0', '0', 'k1+k', '0', '0'};
 
-test = test + 5;
-fail = TestAnalyseSpecies;
-if (fail > 0)
-    disp('AnalyseSpecies failed');
-end;
-Totalfail = Totalfail + fail;
-
-test = test + 4;
-fail = TestDealWithPiecewise;
-if (fail > 0)
-    disp('DealWithPiecewise failed');
-end;
-Totalfail = Totalfail + fail;
-
-test = test + 3;
-fail = TestGetArgumentsFromLambdaFunction;
-if (fail > 0)
-    disp('GetArgumentsFromLambdaFunction failed');
-end;
-Totalfail = Totalfail + fail;
-
-test = test + 1;
-fail = TestAnalyseVaryingParameters;
-if (fail > 0)
-    disp('AnalyseSVaryingParameters failed');
-end;
-Totalfail = Totalfail + fail;
-
-
-disp(sprintf('Number tests: %d', test));
-disp(sprintf('Number fails: %d', Totalfail));
-disp(sprintf('Pass rate: %d%%', ((test-Totalfail)/test)*100));
+fail = TestFunction('GetParameterAssignmentRules', 1, 2, m, Parameter, rules);

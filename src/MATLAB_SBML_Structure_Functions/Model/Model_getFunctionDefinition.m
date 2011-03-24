@@ -43,7 +43,7 @@ function functionDefinition = Model_getFunctionDefinition(SBMLModel, number)
 % check that input is correct
 if (~isSBML_Model(SBMLModel))
     error(sprintf('%s\n%s', 'Model_getFunctionDefinition(SBMLModel, number)', 'first argument must be an SBML model structure'));
-elseif (SBMLModel.SBML_level ~= 2)
+elseif (SBMLModel.SBML_level < 2)
     error(sprintf('%s\n%s', 'Model_getFunctionDefinition(SBMLModel, number)', 'no function definitions in a level 1 model'));   
 elseif ((number < 1) || (~isIntegralNumber(number)))
     error(sprintf('%s\n%s', 'Model_getFunctionDefinition(SBMLModel, number)', 'second argument must be a positive integer'));
