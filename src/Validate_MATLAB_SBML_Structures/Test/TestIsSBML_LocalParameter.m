@@ -42,6 +42,7 @@ fail = fail + TestFunction('isSBML_LocalParameter', 3, 1, p_l3, 2, 2, 0);
 fail = fail + TestFunction('isSBML_LocalParameter', 3, 1, p_l3, 2, 3, 0);
 fail = fail + TestFunction('isSBML_LocalParameter', 3, 1, p_l3, 2, 4, 0);
 fail = fail + TestFunction('isSBML_LocalParameter', 3, 1, p_l3, 3, 1, 1);
+fail = fail + TestFunction('isValid', 1, 1, p_l3, 1);
 
 
 

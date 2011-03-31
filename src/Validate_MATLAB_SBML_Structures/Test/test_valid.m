@@ -34,189 +34,189 @@ function y = test_valid()
 test = 0;
 Totalfail = 0;
 
-test = test + 6;
+test = test + 9;
 fail = TestIsSBML_AlgebraicRule;
 if (fail > 0)
     disp('isSBML_AlgebraicRule failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 6;
+test = test + 9;
 fail = TestIsSBML_AssignmentRule;
 if (fail > 0)
     disp('isSBML_AssignmentRule failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 7;
+test = test + 13;
 fail = TestIsSBML_Compartment;
 if (fail > 0)
     disp('isSBML_Compartment failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 4;
+test = test + 5;
 fail = TestIsSBML_CompartmentVolumeRule;
 if (fail > 0)
     disp('isSBML_CompartmentVolumeRule failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 10;
+test = test + 14;
 fail = TestIsSBML_Event;
 if (fail > 0)
     disp('isSBML_Event failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 6;
+test = test + 8;
 fail = TestIsSBML_EventAssignment;
 if (fail > 0)
     disp('isSBML_EventAssignment failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 6;
+test = test + 8;
 fail = TestIsSBML_FunctionDefinition;
 if (fail > 0)
     disp('isSBML_FunctionDefinition failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 7;
+test = test + 12;
 fail = TestIsSBML_KineticLaw;
 if (fail > 0)
     disp('isSBML_KineticLaw failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 6;
+test = test + 7;
 fail = TestIsSBML_LocalParameter;
 if (fail > 0)
     disp('isSBML_LocalParameter failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 6;
+test = test + 8;
 fail = TestIsSBML_ModifierSpeciesReference;
 if (fail > 0)
     disp('isSBML_ModifierSpeciesReference failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 6;
+test = test + 9;
 fail = TestIsSBML_Parameter;
 if (fail > 0)
     disp('isSBML_Parameter failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 4;
+test = test + 5;
 fail = TestIsSBML_ParameterRule;
 if (fail > 0)
     disp('isSBML_ParameterRule failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 9;
+test = test + 10;
 fail = TestIsSBML_Priority;
 if (fail > 0)
     disp('isSBML_Priority failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 6;
+test = test + 9;
 fail = TestIsSBML_RateRule;
 if (fail > 0)
     disp('isSBML_RateRule failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 6;
+test = test + 10;
 fail = TestIsSBML_Reaction;
 if (fail > 0)
     disp('isSBML_Reaction failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 6;
+test = test + 11;
 fail = TestIsSBML_Species;
 if (fail > 0)
     disp('isSBML_Species failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 4;
+test = test + 5;
 fail = TestIsSBML_SpeciesConcentrationRule;
 if (fail > 0)
     disp('isSBML_SpeciesConcentrationRule failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 6;
+test = test + 10;
 fail = TestIsSBML_SpeciesReference;
 if (fail > 0)
     disp('isSBML_SpeciesReference failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 6;
+test = test + 10;
 fail = TestIsSBML_UnitDefinition;
 if (fail > 0)
     disp('isSBML_UnitDefinition failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 6;
+test = test + 10;
 fail = TestIsSBML_Unit;
 if (fail > 0)
     disp('isSBML_Unit failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 8;
+test = test + 10;
 fail = TestIsSBML_CompartmentType;
 if (fail > 0)
     disp('isSBML_CompartmentType failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 6;
+test = test + 8;
 fail = TestIsSBML_SpeciesType;
 if (fail > 0)
     disp('isSBML_SpeciesType failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 6;
+test = test + 7;
 fail = TestIsSBML_InitialAssignment;
 if (fail > 0)
     disp('isSBML_InitialAssignment failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 6;
+test = test + 7;
 fail = TestIsSBML_Constraint;
 if (fail > 0)
     disp('isSBML_Constraint failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 11;
+test = test + 13;
 fail = TestIsSBML_Trigger;
 if (fail > 0)
     disp('isSBML_Trigger failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 7;
+test = test + 8;
 fail = TestIsSBML_Delay;
 if (fail > 0)
     disp('isSBML_Delay failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 7;
+test = test + 8;
 fail = TestIsSBML_StoichiometryMath;
 if (fail > 0)
     disp('isSBML_StoichiometryMath failed');

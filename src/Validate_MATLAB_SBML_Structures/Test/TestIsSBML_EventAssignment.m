@@ -45,6 +45,9 @@ fail = fail + TestFunction('isSBML_EventAssignment', 3, 1, ea_l2v2, 2, 2, 1);
 fail = fail + TestFunction('isSBML_EventAssignment', 3, 1, ea_l2v2, 2, 3, 1);
 fail = fail + TestFunction('isSBML_EventAssignment', 3, 1, ea_l2v2, 2, 4, 1);
 fail = fail + TestFunction('isSBML_EventAssignment', 3, 1, ea_l2v2, 3, 1, 1);
+fail = fail + TestFunction('isValid', 1, 1, ea_l2, 1);
+fail = fail + TestFunction('isValid', 1, 1, ea_l2v2, 1);
+
 
 
 

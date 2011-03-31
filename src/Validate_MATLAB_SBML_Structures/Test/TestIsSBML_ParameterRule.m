@@ -43,6 +43,7 @@ fail = fail + TestFunction('isSBML_ParameterRule', 3, 1, pr_l1, 2, 2, 0);
 fail = fail + TestFunction('isSBML_ParameterRule', 3, 1, pr_l1, 2, 3, 0);
 fail = fail + TestFunction('isSBML_ParameterRule', 3, 1, pr_l1, 2, 4, 0);
 fail = fail + TestFunction('isSBML_ParameterRule', 3, 1, pr_l1, 3, 1, 0);
+fail = fail + TestFunction('isValid', 1, 1, pr_l1, 1);
 
 
 

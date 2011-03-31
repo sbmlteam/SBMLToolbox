@@ -100,6 +100,10 @@ fail = fail + TestFunction('isSBML_Reaction', 3, 1, r_l2v2, 2, 2, 1);
 fail = fail + TestFunction('isSBML_Reaction', 3, 1, r_l2v2, 2, 3, 1);
 fail = fail + TestFunction('isSBML_Reaction', 3, 1, r_l2v2, 2, 4, 1);
 fail = fail + TestFunction('isSBML_Reaction', 3, 1, r_l3v1, 3, 1, 1);
+fail = fail + TestFunction('isValid', 1, 1, r_l1, 1);
+fail = fail + TestFunction('isValid', 1, 1, r_l2, 1);
+fail = fail + TestFunction('isValid', 1, 1, r_l2v2, 1);
+fail = fail + TestFunction('isValid', 1, 1, r_l3v1, 1);
 
 
 

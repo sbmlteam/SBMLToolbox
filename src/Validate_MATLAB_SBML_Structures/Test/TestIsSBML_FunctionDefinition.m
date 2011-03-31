@@ -45,6 +45,8 @@ fail = fail + TestFunction('isSBML_FunctionDefinition', 3, 1, fd_l2v2, 2, 2, 1);
 fail = fail + TestFunction('isSBML_FunctionDefinition', 3, 1, fd_l2v2, 2, 3, 1);
 fail = fail + TestFunction('isSBML_FunctionDefinition', 3, 1, fd_l2v2, 2, 4, 1);
 fail = fail + TestFunction('isSBML_FunctionDefinition', 3, 1, fd_l2v2, 3, 1, 1);
+fail = fail + TestFunction('isValid', 1, 1, fd_l2, 1);
+fail = fail + TestFunction('isValid', 1, 1, fd_l2v2, 1);
 
 
 

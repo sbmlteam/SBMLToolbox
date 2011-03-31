@@ -44,6 +44,8 @@ fail = fail + TestFunction('isSBML_ModifierSpeciesReference', 3, 1, msr_l2v2, 2,
 fail = fail + TestFunction('isSBML_ModifierSpeciesReference', 3, 1, msr_l2v2, 2, 3, 1);
 fail = fail + TestFunction('isSBML_ModifierSpeciesReference', 3, 1, msr_l2v2, 2, 4, 1);
 fail = fail + TestFunction('isSBML_ModifierSpeciesReference', 3, 1, msr_l2v2, 3, 1, 1);
+fail = fail + TestFunction('isValid', 1, 1, msr_l2, 1);
+fail = fail + TestFunction('isValid', 1, 1, msr_l2v2, 1);
 
 
 

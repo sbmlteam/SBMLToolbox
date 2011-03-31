@@ -51,6 +51,10 @@ fail = fail + TestFunction('isSBML_SpeciesReference', 3, 1, sr_l2v2, 2, 2, 1);
 fail = fail + TestFunction('isSBML_SpeciesReference', 3, 1, sr_l2v2, 2, 3, 1);
 fail = fail + TestFunction('isSBML_SpeciesReference', 3, 1, sr_l2v2, 2, 4, 1);
 fail = fail + TestFunction('isSBML_SpeciesReference', 3, 1, sr_l3v1, 3, 1, 1);
+fail = fail + TestFunction('isValid', 1, 1, sr_l1, 1);
+fail = fail + TestFunction('isValid', 1, 1, sr_l2, 1);
+fail = fail + TestFunction('isValid', 1, 1, sr_l2v2, 1);
+fail = fail + TestFunction('isValid', 1, 1, sr_l3v1, 1);
 
 
 
