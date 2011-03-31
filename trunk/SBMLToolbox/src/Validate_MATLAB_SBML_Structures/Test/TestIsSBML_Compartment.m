@@ -63,6 +63,12 @@ fail = fail + TestFunction('isSBML_Compartment', 3, 1, c_l2v2, 2, 2, 1);
 fail = fail + TestFunction('isSBML_Compartment', 3, 1, c_l2v3, 2, 3, 1);
 fail = fail + TestFunction('isSBML_Compartment', 3, 1, c_l2v4, 2, 4, 1);
 fail = fail + TestFunction('isSBML_Compartment', 3, 1, c_l3v1, 3, 1, 1);
+fail = fail + TestFunction('isValid', 1, 1, c_l1, 1);
+fail = fail + TestFunction('isValid', 1, 1, c_l2, 1);
+fail = fail + TestFunction('isValid', 1, 1, c_l2v2, 1);
+fail = fail + TestFunction('isValid', 1, 1, c_l2v3, 1);
+fail = fail + TestFunction('isValid', 1, 1, c_l2v4, 1);
+fail = fail + TestFunction('isValid', 1, 1, c_l3v1, 1);
 
 
 

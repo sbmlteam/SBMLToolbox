@@ -72,6 +72,10 @@ fail = fail + TestFunction('isSBML_Event', 3, 1, e_l2v4, 2, 3, 0);
 fail = fail + TestFunction('isSBML_Event', 3, 1, e_l2v4, 2, 4, 1);
 fail = fail + TestFunction('isSBML_Event', 3, 1, e_l2v4, 3, 1, 0);
 fail = fail + TestFunction('isSBML_Event', 3, 1, e_l3v1, 3, 1, 1);
+fail = fail + TestFunction('isValid', 1, 1, e_l2, 1);
+fail = fail + TestFunction('isValid', 1, 1, e_l2v3, 1);
+fail = fail + TestFunction('isValid', 1, 1, e_l2v4, 1);
+fail = fail + TestFunction('isValid', 1, 1, e_l3v1, 1);
 
 
 

@@ -51,6 +51,10 @@ fail = fail + TestFunction('isSBML_UnitDefinition', 3, 1, ud_l2v2, 2, 2, 1);
 fail = fail + TestFunction('isSBML_UnitDefinition', 3, 1, ud_l2v3, 2, 3, 1);
 fail = fail + TestFunction('isSBML_UnitDefinition', 3, 1, ud_l2v3, 2, 4, 1);
 fail = fail + TestFunction('isSBML_UnitDefinition', 3, 1, ud_l2v3, 3, 1, 1);
+fail = fail + TestFunction('isValid', 1, 1, ud_l1, 1);
+fail = fail + TestFunction('isValid', 1, 1, ud_l2, 1);
+fail = fail + TestFunction('isValid', 1, 1, ud_l2v2, 1);
+fail = fail + TestFunction('isValid', 1, 1, ud_l2v3, 1);
 
 
 

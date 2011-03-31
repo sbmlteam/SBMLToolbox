@@ -65,6 +65,11 @@ fail = fail + TestFunction('isSBML_KineticLaw', 3, 1, kl_l2v2, 2, 2, 1);
 fail = fail + TestFunction('isSBML_KineticLaw', 3, 1, kl_l2v3, 2, 3, 1);
 fail = fail + TestFunction('isSBML_KineticLaw', 3, 1, kl_l2v3, 2, 4, 1);
 fail = fail + TestFunction('isSBML_KineticLaw', 3, 1, kl_l3v1, 3, 1, 1);
+fail = fail + TestFunction('isValid', 1, 1, kl_l1, 1);
+fail = fail + TestFunction('isValid', 1, 1, kl_l2, 1);
+fail = fail + TestFunction('isValid', 1, 1, kl_l2v2, 1);
+fail = fail + TestFunction('isValid', 1, 1, kl_l2v3, 1);
+fail = fail + TestFunction('isValid', 1, 1, kl_l3v1, 1);
 
 
 
