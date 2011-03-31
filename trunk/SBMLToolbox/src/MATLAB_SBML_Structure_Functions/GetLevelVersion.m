@@ -135,7 +135,7 @@ if (~feval(fhandle, SBMLStructure, level))
   version = 1;
 end;
 
-while (version < 4)
+while (version < 5)
   if (feval(fhandle, SBMLStructure, level, version))
     break;
   else
@@ -143,9 +143,9 @@ while (version < 4)
   end;
 end;
 
-if (version == 4)
-  level = 0;
-  version = 0;
+if (version == 5)
+  level = 3;
+  version = 1;
 end;
 
 
