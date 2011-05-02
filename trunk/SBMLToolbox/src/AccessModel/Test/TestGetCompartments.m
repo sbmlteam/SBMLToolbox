@@ -66,4 +66,10 @@ values = [3];
 
 fail = fail + TestFunction('GetCompartments', 1, 2, m, names, values);
 
+m = TranslateSBML('../../Test/test-data/l3v1core.xml');
+
+names = {'a', 'a1'};
+values = [1, 3];
+
+fail = fail + TestFunction('GetCompartments', 1, 2, m, names, values);
 

@@ -91,7 +91,8 @@ for i = 1:NumSpecies
                 if ((SBMLModel.SBML_level == 2) && (~isempty(SBMLModel.reaction(j).product(SpeciesRole(4)).stoichiometryMath)))
                     error('GetStoichiometryMatrix(SBMLModel)\n%s', 'stoichiometry has been entered as a formula');
                 end;
-                if (SBMLModel.SBML_level == 2 && SBMLModel.SBML_version > 1)
+                if ((SBMLModel.SBML_level == 2 && SBMLModel.SBML_version > 1) ...
+                    || SBMLModel.SBML_version == 3)
                   denominator = 1.0;
                 else
                   denominator = double(SBMLModel.reaction(j).product(SpeciesRole(4)).denominator);
@@ -103,7 +104,8 @@ for i = 1:NumSpecies
                 if ((SBMLModel.SBML_level == 2) && (~isempty(SBMLModel.reaction(j).reactant(SpeciesRole(5)).stoichiometryMath)))
                     error('GetStoichiometryMatrix(SBMLModel)\n%s', 'stoichiometry has been entered as a formula');
                 end;
-                if (SBMLModel.SBML_level == 2 && SBMLModel.SBML_version > 1)
+                if ((SBMLModel.SBML_level == 2 && SBMLModel.SBML_version > 1) ...
+                    || SBMLModel.SBML_level == 3)
                   denominator = 1.0;
                 else
                   denominator = double(SBMLModel.reaction(j).reactant(SpeciesRole(5)).denominator);

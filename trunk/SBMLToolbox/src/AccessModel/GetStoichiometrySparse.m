@@ -11,7 +11,7 @@ if (~isSBML_Model(model))
     error('GetStoichiometrySparse(model)\n%s', 'input must be an SBMLModel structure');
 end;
 
-if (model.SBML_level == 2)
+if (model.SBML_level > 1)
   SpeciesID={model.species.id};
   ReactionID={model.reaction.id};
 else
@@ -40,7 +40,8 @@ for i=1:NR
     if ((model.SBML_level == 2) && (~isempty(model.reaction(i).reactant.stoichiometryMath)))
       error('GetStoichiometrySparse(SBMLModel)\n%s', 'stoichiometry has been entered as a formula');
     end;
-    if (model.SBML_level == 2 && model.SBML_version > 1)
+    if ((model.SBML_level == 2 && model.SBML_version > 1) ...
+        || model.SBML_level == 3)
       denominator = 1.0;
     else
       denominator = [model.reaction(i).reactant.denominator];
@@ -71,7 +72,8 @@ for i=1:NR
     if ((model.SBML_level == 2) && (~isempty(model.reaction(i).product.stoichiometryMath)))
       error('GetStoichiometrySparse(SBMLModel)\n%s', 'stoichiometry has been entered as a formula');
     end;
-    if (model.SBML_level == 2 && model.SBML_version > 1)
+    if ((model.SBML_level == 2 && model.SBML_version > 1) ...
+        || model.SBML_level == 3)
       denominator = 1.0;
     else
       denominator = [model.reaction(i).product.denominator];

@@ -72,7 +72,7 @@ for i = 1:NumSpecies
 
     Values(i) = SBMLModel.species(i).initialAmount;
 
-    if (SBMLModel.SBML_level == 2)
+    if (SBMLModel.SBML_level > 1)
         if (SBMLModel.species(i).isSetInitialConcentration)
             Values(i) = SBMLModel.species(i).initialConcentration;
         end;
@@ -93,7 +93,8 @@ for i = 1:NumSpecies
       
     
     % might be an initial assignment in l2v2
-    if (SBMLModel.SBML_level == 2 && SBMLModel.SBML_version > 1)
+    if ((SBMLModel.SBML_level == 2 && SBMLModel.SBML_version > 1) ...
+       || SBMLModel.SBML_level == 3)
       IA = Model_getInitialAssignmentBySymbol(SBMLModel, name);
       if (~isempty(IA))
         % remove this from the substtution

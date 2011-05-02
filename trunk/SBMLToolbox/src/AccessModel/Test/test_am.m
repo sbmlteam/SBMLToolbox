@@ -36,7 +36,7 @@ function y = test_am()
 test = 0;
 Totalfail = 0;
 
-test = test + 8;
+test = test + 11;
 fail = TestDetermineSpeciesRoleInReaction;
 if (fail > 0)
     disp('DetermineSpeciesRoleInReaction failed');
@@ -64,7 +64,7 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 1;
+test = test + 2;
 fail = TestGetParameterFromReaction;
 if (fail > 0)
     disp('GetParameterFromReaction failed');
@@ -78,14 +78,14 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 2;
+test = test + 3;
 fail = TestGetRateLawsFromReactions;
 if (fail > 0)
     disp('GetRateLawsFromReactions failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 1;
+test = test + 2;
 fail = TestGetRateLawsFromRules;
 if (fail > 0)
     disp('GetRateLawsFromRules failed');
@@ -99,14 +99,14 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 1;
+test = test + 2;
 fail = TestGetSpeciesAlgebraicRules;
 if (fail > 0)
     disp('GetSpeciesAlgebraicRules failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 1;
+test = test + 2;
 fail = TestGetSpeciesAssignmentRules;
 if (fail > 0)
     disp('GetSpeciesAssignmentRules failed');
@@ -120,7 +120,7 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 2;
+test = test + 5;
 fail = TestIsSpeciesInReaction;
 if (fail > 0)
     disp('IsSpeciesInReaction failed');

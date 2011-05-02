@@ -44,3 +44,12 @@ species = {'s1', 's2'};
 rules = {'k', '0'};
 
 fail = TestFunction('GetRateLawsFromRules', 1, 2, m, species, rules);
+
+m = TranslateSBML('../../Test/test-data/l3v1core.xml');
+
+species = {'s', 's1', 's2'};
+rules = {'0', '0', '0'};
+
+fail = fail + TestFunction('GetRateLawsFromRules', 1, 2, m, species, rules);
+
+

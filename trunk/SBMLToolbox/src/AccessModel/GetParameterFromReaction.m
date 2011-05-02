@@ -41,19 +41,10 @@ function varargout = GetParameterFromReaction(SBMLReaction)
 %----------------------------------------------------------------------- -->
 
 % check input is an SBML reaction and determine level
-Level = 1;
-if (~isSBML_Reaction(SBMLReaction, 1))
-    Level = 2;
-    if(~isSBML_Reaction(SBMLReaction, 2))
-        Version = 2;
-        if (~isSBML_Reaction(SBMLReaction, 2, 2))
-            SBMLVersion = 3;
-            if (~isSBML_Reaction(SBMLReaction, 2, 3))
-                error('GetParameterFromReaction(SBMLReaction)\n%s', 'input must be an SBMLReaction structure');
-            end;
-        end;
-    end;
-end;
+if (~isValid(SBMLReaction))
+  error('GetParameterFromReaction(SBMLReaction)\n%s', 'input must be an SBMLReaction structure');
+end;  
+Level = GetLevel(SBMLReaction);
 
 %------------------------------------------------------------
 % determine the number of parameters within the reaction
@@ -62,7 +53,11 @@ end;
 if (isempty(SBMLReaction.kineticLaw))
     NumParams = 0;
 else
+  if (Level < 3)
     NumParams = length(SBMLReaction.kineticLaw.parameter);
+  else
+    NumParams = length(SBMLReaction.kineticLaw.localParameter);
+  end;
 end;
 
 %------------------------------------------------------------
@@ -72,19 +67,25 @@ for i = 1:NumParams
     %determine the name or id of the parameter
     if (Level == 1)
         name = SBMLReaction.kineticLaw.parameter(i).name;
-    else
+    elseif (Level == 2)
         if (isempty(SBMLReaction.kineticLaw.parameter(i).id))
             name = SBMLReaction.kineticLaw.parameter(i).name;
         else
             name = SBMLReaction.kineticLaw.parameter(i).id;
         end;
+    else
+      name = SBMLReaction.kineticLaw.localParameter(i).id;
     end;
     
     % save into an array of character names
     CharArray{i} = name;
     
     % put the value into the array
-    Values(i) = SBMLReaction.kineticLaw.parameter(i).value;
+    if (Level < 3)
+      Values(i) = SBMLReaction.kineticLaw.parameter(i).value;
+    else
+      Values(i) = SBMLReaction.kineticLaw.localParameter(i).value;
+    end;      
     
 end;
 

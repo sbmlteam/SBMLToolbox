@@ -46,3 +46,11 @@ names = {'k'};
 values = 0.1;
 
 fail = TestFunction('GetParameterFromReaction', 1, 2, r, names, values);
+
+m = TranslateSBML('../../Test/test-data/l3v1core.xml');
+r = m.reaction(1);
+
+names = {'k'};
+values = 9;
+
+fail = fail + TestFunction('GetParameterFromReaction', 1, 2, r, names, values);

@@ -60,7 +60,7 @@ for i = 1:NumberSpecies
     % if species is a boundary condition (or constant in level 2
     % no rate law is required
     boundary = SBMLModel.species(i).boundaryCondition;
-    if (SBMLModel.SBML_level == 2)
+    if (SBMLModel.SBML_level > 1)
         constant = SBMLModel.species(i).constant;
     else
         constant = -1;
@@ -76,6 +76,13 @@ for i = 1:NumberSpecies
         for j = 1:NumReactions
 
             SpeciesRole = Species_determineRoleInReaction(SBMLModel.species(i), SBMLModel.reaction(j));
+            
+            if (SBMLModel.SBML_level < 3)
+               kineticLawMath = SBMLModel.reaction(j).kineticLaw.formula;
+            else
+               kineticLawMath = SBMLModel.reaction(j).kineticLaw.math;
+            end;
+              
 
             TotalOccurences = 0;
             % record numbers of occurences of species as reactant/product
@@ -118,15 +125,17 @@ for i = 1:NumberSpecies
 
                     if (~isempty(Param_Name))
                         ReviseParam_Name = GetParameterFromReactionUnique(SBMLModel.reaction(j));
-                        formula = Substitute(Param_Name, ReviseParam_Name, SBMLModel.reaction(j).kineticLaw.formula);
+                        formula = Substitute(Param_Name, ReviseParam_Name, kineticLawMath);
                     else
-                        formula = SBMLModel.reaction(j).kineticLaw.formula;
+                        formula = kineticLawMath;
   
                     end;
 
 
                     % put in stoichiometry
-                    if (SBMLModel.SBML_level == 2 && SBMLModel.SBML_version > 1)
+                    
+                    if ((SBMLModel.SBML_level == 2 && SBMLModel.SBML_version > 1) ...
+                        || SBMLModel.SBML_level == 3)
                         stoichiometry = SBMLModel.reaction(j).product(SpeciesRole(4)).stoichiometry;
                     else
                         stoichiometry = SBMLModel.reaction(j).product(SpeciesRole(4)).stoichiometry/double(SBMLModel.reaction(j).product(SpeciesRole(4)).denominator);
@@ -137,6 +146,13 @@ for i = 1:NumberSpecies
                       else
                          output = sprintf('%s + (%s) * (%s)', output, SBMLModel.reaction(j).product(SpeciesRole(4)).stoichiometryMath.math, formula);
                       end;
+                    elseif ((SBMLModel.SBML_level == 3) && (isnan(stoichiometry)))
+                        if (~isempty(SBMLModel.reaction(j).product(SpeciesRole(4)).id))
+                          rule = Model_getAssignmentRuleByVariable(SBMLModel, SBMLModel.reaction(j).product(SpeciesRole(4)).id);
+                          output = sprintf('%s - (%s) * (%s)', output, rule.formula, formula);
+                        else
+                          error ('Cannot determine stoichiometry');
+                        end;
                     else
                     % if stoichiometry = 1 no need to include it in formula
                     if (stoichiometry == 1)
@@ -157,15 +173,16 @@ for i = 1:NumberSpecies
 
                     if (~isempty(Param_Name))
                        ReviseParam_Name = GetParameterFromReactionUnique(SBMLModel.reaction(j));
-                        formula = Substitute(Param_Name, ReviseParam_Name, SBMLModel.reaction(j).kineticLaw.formula);
+                        formula = Substitute(Param_Name, ReviseParam_Name, kineticLawMath);
                      else
-                        formula = SBMLModel.reaction(j).kineticLaw.formula;
+                        formula = kineticLawMath;
   
                     end;
 
 
                     % put in stoichiometry
-                    if (SBMLModel.SBML_level == 2 && SBMLModel.SBML_version > 1)
+                    if ((SBMLModel.SBML_level == 2 && SBMLModel.SBML_version > 1) ...
+                        || SBMLModel.SBML_level == 3)
                         stoichiometry = SBMLModel.reaction(j).reactant(SpeciesRole(5)).stoichiometry;
                     else
                         stoichiometry = SBMLModel.reaction(j).reactant(SpeciesRole(5)).stoichiometry/double(SBMLModel.reaction(j).reactant(SpeciesRole(5)).denominator);
@@ -176,6 +193,13 @@ for i = 1:NumberSpecies
                        else
                          output = sprintf('%s - (%s) * (%s)', output, SBMLModel.reaction(j).reactant(SpeciesRole(5)).stoichiometryMath.math, formula);
                        end;
+                    elseif ((SBMLModel.SBML_level == 3) && (isnan(stoichiometry)))
+                        if (~isempty(SBMLModel.reaction(j).reactant(SpeciesRole(5)).id))
+                          rule = Model_getAssignmentRuleByVariable(SBMLModel, SBMLModel.reaction(j).reactant(SpeciesRole(5)).id);
+                          output = sprintf('%s - (%s) * (%s)', output, rule.formula, formula);
+                        else
+                          error ('Cannot determine stoichiometry');
+                        end;
                     else
                     % if stoichiometry = 1 no need to include it in formula
                     if (stoichiometry == 1)

@@ -51,3 +51,11 @@ names = {'k', 'k1', 's1', 's2', 's3', 'c', 'c1', 'k'};
 values = [6, 2, 3, 4, 1, 6, 2, 0.1];
 
 fail = fail + TestFunction('GetAllParameters', 1, 2, m, names, values);
+
+% m = TranslateSBML('../../Test/test-data/l3v1core.xml');
+% 
+% names = {'p', 'p1', 'p2', 'p3', 'x', 'd', 'k'};
+% values = [2, 2, 2, 2, 2, NaN, 9];
+% 
+% fail = fail + TestFunction('GetAllParameters', 1, 2, m, names, values);
+% 
