@@ -2,7 +2,7 @@ function value = isIntegralNumber(number)
 % isIntegralNumber takes a number n 
 %       and returns 
 %           1 if it is an integer 
-%           0 otherwise (may of MATLAB type double)
+%           0 otherwise (maybe of MATLAB type double)
 %
 %       NOTE: MATLAB's 'isinteger' function only returns true if the number 
 %       has been declared as an int; whereas the default type for numbers 
