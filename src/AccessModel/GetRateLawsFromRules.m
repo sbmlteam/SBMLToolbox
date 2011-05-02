@@ -61,7 +61,7 @@ for i = 1:NumberSpecies
     % if species is constant in level 2
     % concentration cannot be changed by a rate rule
     boundary = SBMLModel.species(i).boundaryCondition;
-    if (SBMLModel.SBML_level == 2)
+    if (SBMLModel.SBML_level > 1)
         constant = SBMLModel.species(i).constant;
     else
         constant = -1;

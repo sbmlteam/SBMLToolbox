@@ -46,8 +46,10 @@ if (~isSBML_Model(SBMLModel))
     error(sprintf('%s\n%s', 'Model_getInitialAssignmentBySymbol(SBMLModel, symbol)', 'first argument must be an SBML model structure'));
 elseif (~ischar(symbol))
     error(sprintf('%s\n%s', 'Model_getInitialAssignmentBySymbol(SBMLModel, symbol)', 'second argument must be a string'));
-elseif (SBMLModel.SBML_level ~= 2)
-    error(sprintf('%s\n%s', 'Model_getInitialAssignmentBySymbol(SBMLModel, symbol)', 'no symbol field in a level 1 model'));   
+elseif ((SBMLModel.SBML_level == 2 && SBMLModel.SBML_version == 1) ...
+    || SBMLModel.SBML_level == 1)
+    error(sprintf('%s\n%s', 'Model_getInitialAssignmentBySymbol(SBMLModel, symbol)', ...
+      'no symbol field in a level 1 or l2v1 model'));   
 end;
 
 initialAssignment = [];

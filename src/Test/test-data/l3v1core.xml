@@ -46,7 +46,7 @@
     </listOfUnitDefinitions>
     <listOfCompartments>
       <compartment id="a" spatialDimensions="4.5" size="1" units="volume" constant="false"/>
-      <compartment metaid="smk" id="a1" constant="true"/>
+      <compartment metaid="smk" id="a1" constant="true" size="3"/>
     </listOfCompartments>
     <listOfSpecies>
       <species id="s" compartment="a" initialAmount="0" substanceUnits="substance" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" conversionFactor="d"/>
@@ -58,7 +58,7 @@
       <parameter id="p1" value="2" units="litre" constant="false"/>
       <parameter id="p2" value="2" units="litre" constant="false"/>
       <parameter id="p3" value="2" units="litre" constant="false"/>
-      <parameter id="x" value="2" units="dimensionless" constant="false"/>
+      <parameter id="x" value="2" units="dimensionless" constant="true"/>
       <parameter id="d" units="dimensionless" constant="true"/>
     </listOfParameters>
     <listOfInitialAssignments>
@@ -76,9 +76,9 @@
       <algebraicRule>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
-            <power/>
+            <minus/>
             <ci> x </ci>
-            <cn type="integer"> 3 </cn>
+            <cn type="integer"> 2 </cn>
           </apply>
         </math>
       </algebraicRule>

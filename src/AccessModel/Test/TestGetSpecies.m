@@ -58,3 +58,10 @@ names = {'S1', 'S2', 'S3', 'X', 'S4'};
 values = [3, 6, 0, 9, 0];
 
 fail = fail + TestFunction('GetSpecies', 1, 2, m, names, values);
+
+% m = TranslateSBML('../../Test/test-data/l3v1core.xml');
+% 
+% names = {'s', 's1', 's2'};
+% values = [0, 2.2, NaN];
+% 
+% fail = fail + TestFunction('GetSpecies', 1, 2, m, names, values);

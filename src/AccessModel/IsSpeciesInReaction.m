@@ -37,25 +37,16 @@ function y = IsSpeciesInReaction(SBMLSpecies, SBMLReaction)
 %----------------------------------------------------------------------- -->
 
 % check that input is valid
-SBMLLevel = 1;
-SBMLVersion = 1;
 
-if (~isSBML_Species(SBMLSpecies, 1))
-    SBMLLevel = 2;
-    if(~isSBML_Species(SBMLSpecies, 2))
-        SBMLVersion = 2;
-        if(~isSBML_Species(SBMLSpecies, 2, 2))
-            SBMLVersion = 3;
-            if(~isSBML_Species(SBMLSpecies, 2, 3))
-                error('IsSpeciesInReaction(SBMLSpecies, SBMLReaction)\n%s', 'first input must be an SBML Species structure');
-            end;
-        end;
-    end;
+if (~isValid(SBMLSpecies))
+  error('IsSpeciesInReaction(SBMLSpecies, SBMLReaction)\n%s', 'first input must be an SBML Species structure');
 end;
 
-if(~isSBML_Reaction(SBMLReaction, SBMLLevel, SBMLVersion))
+if(~isValid(SBMLReaction))
     error('IsSpeciesInReaction(SBMLSpecies, SBMLReaction)\n%s', 'second input must be an SBML Reaction structure');
 end;
+
+SBMLLevel = GetLevel(SBMLSpecies);
 
 %--------------------------------------------------------------------------
 % determine the name of the species
@@ -76,7 +67,7 @@ end;
 
 NumProducts = length(SBMLReaction.product);
 NumReactants = length(SBMLReaction.reactant);
-if (SBMLLevel == 2)
+if (SBMLLevel > 1)
     NumModifiers = length(SBMLReaction.modifier);
 else
     NumModifiers = 0;

@@ -51,7 +51,14 @@ function y = DetermineSpeciesRoleInReaction(SBMLSpecies, SBMLReaction)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
-
+if ~isValid(SBMLSpecies)
+  error('DetermineSpeciesRoleInReaction(SBMLSpecies, SBMLReaction)\n%s', ...
+    'first input must be an SBML Species structure');
+elseif ~isValid(SBMLReaction)
+  error('DetermineSpeciesRoleInReaction(SBMLSpecies, SBMLReaction)\n%s', ...
+    'second input must be an SBML Reaction structure');
+end;
+  
 Number = IsSpeciesInReaction(SBMLSpecies, SBMLReaction);
 
 if (Number == 0)
@@ -59,20 +66,8 @@ if (Number == 0)
     return;
 end;
 
-% check that input is valid
-SBMLLevel = 1;
-if (~isSBML_Species(SBMLSpecies, 1))
-    SBMLLevel = 2;
-    if(~isSBML_Species(SBMLSpecies, 2))
-        SBMLVersion = 2;
-        if(~isSBML_Species(SBMLSpecies, 2, 2))
-            SBMLVersion = 3;
-            if (~isSBML_Species(SBMLSpecies, 2, 3))
-                error('DetermineSpeciesRoleInReaction(SBMLSpecies, SBMLReaction)\n%s', 'first input must be an SBML Species structure');
-            end;
-        end;
-    end;
-end;
+
+SBMLLevel = GetLevel(SBMLSpecies);
 
 %--------------------------------------------------------------------------
 % determine the name of the species
@@ -100,7 +95,7 @@ end;
 
 NumProducts = length(SBMLReaction.product);
 NumReactants = length(SBMLReaction.reactant);
-if (SBMLLevel == 2)
+if (SBMLLevel > 1)
     NumModifiers = length(SBMLReaction.modifier);
 else
     NumModifiers = 0;

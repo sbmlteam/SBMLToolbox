@@ -44,3 +44,11 @@ Parameter = {'t', 'k', 'k1', 'v1', 'v2', 'v3'};
 rules = {'0', '0', {'v3+k1-v2'}, '0', {'v3+k1-v2'}, {'v3+k1-v2'}};
 
 fail = TestFunction('GetParameterAlgebraicRules', 1, 2, m, Parameter, rules);
+
+% m = TranslateSBML('../../Test/test-data/l3v1core.xml');
+% 
+% Parameter = {'p', 'p1', 'p2', 'p3', 'x', 'd', 'k'};;
+% rules = {'0', '0', '0', '0', {'2'}, '0', '0'};
+% 
+% fail = fail + TestFunction('GetParameterAlgebraicRules', 1, 2, m, Parameter, rules);
+

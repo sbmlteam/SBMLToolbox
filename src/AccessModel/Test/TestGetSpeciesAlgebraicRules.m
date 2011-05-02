@@ -44,3 +44,10 @@ species = {'S1', 'S2', 'S3', 'X', 'S4'};
 rules = {{'X+S1-S3'}, {'S2+S3-s2'}, {'X+S1-S3', 'S2+S3-s2'}, {'X+S1-S3'}, '0'};
 
 fail = TestFunction('GetSpeciesAlgebraicRules', 1, 2, m, species, rules);
+
+m = TranslateSBML('../../Test/test-data/l3v1core.xml');
+
+species = {'s', 's1', 's2'};
+rules = {'0', '0', '0'};
+
+fail = fail + TestFunction('GetSpeciesAlgebraicRules', 1, 2, m, species, rules);

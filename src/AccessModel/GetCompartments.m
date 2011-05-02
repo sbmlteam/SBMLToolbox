@@ -88,7 +88,8 @@ for i = 1:NumCompartments
     end;
       
     % might be an initial assignment in l2v2
-    if (SBMLModel.SBML_level == 2 && SBMLModel.SBML_version > 1)
+    if ((SBMLModel.SBML_level == 2 && SBMLModel.SBML_version > 1) ...
+        || SBMLModel.SBML_level == 3)
       IA = Model_getInitialAssignmentBySymbol(SBMLModel, name);
       if (~isempty(IA))
         % remove this from the substtution
