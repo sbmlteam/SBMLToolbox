@@ -66,6 +66,7 @@ end;
 message = '';
 
 SBMLStructure = varargin{1};
+
 Level = varargin{2};
 
 if (nargin == 3)
@@ -73,6 +74,7 @@ if (nargin == 3)
 else
     Version = 1;
 end;
+
 
 if (Level == 1)
     SBMLfieldnames = {'typecode', 'notes', 'annotation','name', 'value', 'units', 'isSetValue'};
@@ -104,10 +106,34 @@ end;
     
 typecode = 'SBML_PARAMETER';
 
+% if the level and version field exist - they must match
+if (length(SBMLStructure) == 1 && isfield(SBMLStructure, 'level'))
+  if ~isequal(Level, SBMLStructure.level)
+    error (sprintf('%s %s', typecode, 'SBML level mismatch detected'));
+  end;
+  if (isfield(SBMLStructure, 'version'))
+    if ~isequal(Version, SBMLStructure.version)
+      error (sprintf('%s %s', typecode, 'SBML version mismatch detected'));
+    end;
+  end;
+end;
+
 bSBML = 0;
 
 % check that argument is a structure
 bSBML = isstruct(SBMLStructure);
+
+% if the level and version field exist - they must match
+if (bSBML == 1 && length(SBMLStructure) == 1 && isfield(SBMLStructure, 'level'))
+  if ~isequal(Level, SBMLStructure.level)
+    bSBML = 0;
+  end;
+  if (bSBML == 1 && isfield(SBMLStructure, 'version'))
+    if ~isequal(Version, SBMLStructure.version)
+      bSBML = 0;
+    end;
+  end;
+end;
 
 % check it contains each of the fields listed
 index = 1;
@@ -116,14 +142,14 @@ while (bSBML == 1 && index <= nNumberFields)
     index = index + 1;
 end;
 
-% check that it contains only the fields listed
-if (bSBML == 1)
-    names = fieldnames(SBMLStructure);
-    [m,n] = size(names);
-    if (m ~= nNumberFields)
-        bSBML = 0;
-    end;
-end;
+% % check that it contains only the fields listed
+% if (bSBML == 1)
+%     names = fieldnames(SBMLStructure);
+%     [m,n] = size(names);
+%     if (m ~= nNumberFields)
+%         bSBML = 0;
+%     end;
+% end;
 
 % check that the typecode is correct
 if (bSBML == 1 && length(SBMLStructure) == 1)
@@ -133,7 +159,9 @@ if (bSBML == 1 && length(SBMLStructure) == 1)
         bSBML = 0;
     end;
 end;
+
     
+
 if (bSBML == 0)
   message = 'Invalid Parameter structure';
 end;

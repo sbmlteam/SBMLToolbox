@@ -104,6 +104,18 @@ bSBML = 0;
 % check that argument is a structure
 bSBML = isstruct(SBMLStructure);
 
+% if the level and version field exist - they must match
+if (bSBML == 1 && length(SBMLStructure) == 1 && isfield(SBMLStructure, 'level'))
+  if ~isequal(Level, SBMLStructure.level)
+    bSBML = 0;
+  end;
+  if (bSBML == 1 && isfield(SBMLStructure, 'version'))
+    if ~isequal(Version, SBMLStructure.version)
+      bSBML = 0;
+    end;
+  end;
+end;
+
 % check it contains each of the fields listed
 index = 1;
 while (bSBML == 1 && index <= nNumberFields)
@@ -111,14 +123,14 @@ while (bSBML == 1 && index <= nNumberFields)
     index = index + 1;
 end;
 
-% check that it contains only the fields listed
-if (bSBML == 1)
-    names = fieldnames(SBMLStructure);
-    [m,n] = size(names);
-    if (m ~= nNumberFields)
-        bSBML = 0;
-    end;
-end;
+% % check that it contains only the fields listed
+% if (bSBML == 1)
+%     names = fieldnames(SBMLStructure);
+%     [m,n] = size(names);
+%     if (m ~= nNumberFields)
+%         bSBML = 0;
+%     end;
+% end;
 
 % check that the typecode is correct
 if (bSBML == 1 && length(SBMLStructure) == 1)

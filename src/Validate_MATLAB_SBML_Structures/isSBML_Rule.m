@@ -129,15 +129,15 @@ while (bSBML == 1 && index <= nNumberFields)
     index = index + 1;
 end;
 
-% check that it contains only the fields listed
-if (bSBML == 1)
-    names = fieldnames(SBMLStructure);
-    [m,n] = size(names);
-    if (m ~= nNumberFields)
-        bSBML = 0;
-    end;
-end;
-
+% % check that it contains only the fields listed
+% if (bSBML == 1)
+%     names = fieldnames(SBMLStructure);
+%     [m,n] = size(names);
+%     if (m ~= nNumberFields)
+%         bSBML = 0;
+%     end;
+% end;
+% 
 % check that the typecode is correct
 index = 1;
 nMatch = 0;
