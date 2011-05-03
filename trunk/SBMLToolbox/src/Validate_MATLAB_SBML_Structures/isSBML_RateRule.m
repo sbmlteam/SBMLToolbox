@@ -84,6 +84,18 @@ index = 1;
 
 typecode = 'SBML_RATE_RULE';
 
+% if the level and version field exist - they must match
+if (length(SBMLStructure) == 1 && isfield(SBMLStructure, 'level'))
+  if ~isequal(Level, SBMLStructure.level)
+    error (sprintf('%s %s', typecode, 'SBML level mismatch detected'));
+  end;
+  if (isfield(SBMLStructure, 'version'))
+    if ~isequal(Version, SBMLStructure.version)
+      error (sprintf('%s %s', typecode, 'SBML version mismatch detected'));
+    end;
+  end;
+end;
+
 bSBML = isSBML_Rule(SBMLStructure, Level, Version);
 
 
