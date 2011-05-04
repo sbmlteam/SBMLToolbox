@@ -1,41 +1,16 @@
-function [y, message] = isSBML_Model(SBMLStructure)
-% isSBML_Model(SBMLStructure) checks that SBMLStructure represents an sbml model
-% 
-% if SBMLStructure represents an SBML model
-% it has the appropriate fields 
-% eg    Typecode
-%       Metaid (L2V1)
-%       Notes
-%       Annotations
-%       Level
-%       Version
-%       Name
-%       Id (L2V1)
-%       SBOTerm (L2V2)
-%       ListFunctionDefinition (L2V1)
-%       ListUnitDefinition
-%       ListOfCompartmentTypes (L2V2)
-%       ListOfSpeciesTypes (L2V2)
-%       ListCompartment
-%       ListSpecies
-%       ListParameter
-%       ListOfInitialAssignments (L2V2)
-%       ListRule
-%       ListOfConstraints (L2V2)
-%       ListReaction
-%       ListEvent (2)
+function [valid, message] = isSBML_Model(SBMLStructure)
 %
-% NOTE: content of brackets indicates the level and version of sbml from which the given field
-% is appropriate.
+% isSBML_Model
+%    takes a MATLAB_SBML structure
 %
-% Returns 1 if SBMLStructure is a structure containing each of the above
-% fields (appropriate with the given level and version) and the typecode is "SBML_MODEL"
-% 
-% Returns 0 if SBMLStructure is not a structure 
-% or does not contain one of the appropriate fields
-% or the typecode is not "SBML_MODEL"
+%    returns
+%      1) a flag indicating whether the structure represents
+%           an MATLAB_SBML Model structure of the appropriate
+%           level and version
+%      2) a message string explaining any failure
 %
-% Returns message indicating the structure that is invalid.
+% The fields present in MATLAB_SBML Model structure of the appropriate
+% level and version can be found using getModelFieldnames(level, version)
 
 %  Filename    :   isSBML_Model.m
 %  Description :
@@ -66,227 +41,201 @@ function [y, message] = isSBML_Model(SBMLStructure)
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
 
-y = isfield(SBMLStructure, 'SBML_level');
-if (y == 0)
-    return;
+
+%check the input arguments are appropriate
+
+if (length(SBMLStructure) > 1)
+	error('cannot deal with arrays of structures');
 end;
+
+if ~isempty(SBMLStructure)
+  level = SBMLStructure.SBML_level;
+  version = SBMLStructure.SBML_version;
+else
+  level = 3;
+  version = 1;
+end;
+
+if (level < 1 || level > 3)
+	error('current SBML levels are 1, 2 or 3');
+end;
+
+if (level == 1)
+	if (version < 1 || version > 2)
+		error('SBMLToolbox supports versions 1-2 of SBML Level 1');
+	end;
+
+elseif (level == 2)
+	if (version < 1 || version > 4)
+		error('SBMLToolbox supports versions 1-4 of SBML Level 2');
+	end;
+
+elseif (level == 3)
+	if (version ~= 1)
+		error('SBMLToolbox supports only version 1 of SBML Level 3');
+	end;
+
+end;
+
 message = '';
-% get level
-Level = SBMLStructure.SBML_level;
-if (Level < 1 || Level > 3)
-    y = 0;
-    message = 'Invalid SBML level';
-    return;
-end;
 
-% get version
-Version = SBMLStructure.SBML_version;
-if (Version < 1 || Version > 4)
-    y = 0;
-    message = 'Invalid SBML version';
-    return;
-end;
+% check that argument is a structure
+valid = isstruct(SBMLStructure);
 
-
-if (Level == 1)
-    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'SBML_level', 'SBML_version', 'name', 'unitDefinition',...
-        'compartment', 'species', 'parameter', 'rule', 'reaction'};
-    nNumberFields = 12;
-elseif (Level == 2)
-    if (Version == 1)
-        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'SBML_level', 'SBML_version', 'name', 'id', ...
-            'functionDefinition', 'unitDefinition', 'compartment', 'species', 'parameter', 'rule', 'reaction',...
-            'event'};
-        nNumberFields = 16;
-    elseif (Version == 2)
-        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'SBML_level', 'SBML_version', 'name', 'id', ...
-            'sboTerm', 'functionDefinition', 'unitDefinition', 'compartmentType', 'speciesType', 'compartment', ...
-            'species', 'parameter', 'initialAssignment', 'rule', 'constraint', 'reaction', 'event'};
-        nNumberFields = 21;
-    elseif (Version == 3)
-        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'SBML_level', 'SBML_version', 'name', 'id', ...
-            'sboTerm', 'functionDefinition', 'unitDefinition', 'compartmentType', 'speciesType', 'compartment', ...
-            'species', 'parameter', 'initialAssignment', 'rule', 'constraint', 'reaction', 'event'};
-        nNumberFields = 21;
-    elseif (Version == 4)
-        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'SBML_level', 'SBML_version', 'name', 'id', ...
-            'sboTerm', 'functionDefinition', 'unitDefinition', 'compartmentType', 'speciesType', 'compartment', ...
-            'species', 'parameter', 'initialAssignment', 'rule', 'constraint', 'reaction', 'event'};
-        nNumberFields = 21;
-    end;
-elseif (Level == 3)
-    if (Version == 1)
-        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'SBML_level', 'SBML_version', 'name', 'id', ...
-            'sboTerm', 'functionDefinition', 'unitDefinition', 'compartment', ...
-            'species', 'parameter', 'initialAssignment', 'rule', 'constraint', 'reaction', 'event', ...
-            'substanceUnits', 'timeUnits', 'lengthUnits', 'areaUnits', 'volumeUnits', 'extentUnits', 'conversionFactor'};
-        nNumberFields = 26;
-    end;
-end;
+% check the typecode
 typecode = 'SBML_MODEL';
+if (valid == 1 && ~isempty(SBMLStructure))
+	if (strcmp(typecode, SBMLStructure.typecode) ~= 1)
+		valid = 0;
+		message = 'typecode mismatch';
+	end;
+end;
 
-bSBML = 0;
+% check that structure contains all the necessary fields
+[SBMLfieldnames, numFields] = getFieldnames('SBML_MODEL', level, version);
 
-% check that Model is a structure
-bSBML = isstruct(SBMLStructure);
+if (numFields ==0)
+	valid = 0;
+	message = 'invalid level/version';
+end;
 
-% check it contains each of the fields listed
 index = 1;
-while (bSBML == 1 && index <= nNumberFields)
-    bSBML = isfield(SBMLStructure, char(SBMLfieldnames(index)));
+while (valid == 1 && index <= numFields)
+	valid = isfield(SBMLStructure, char(SBMLfieldnames(index)));
+	if (valid == 0);
+		message = sprintf('%s field missing', char(SBMLfieldnames(index)));
+	end;
+	index = index + 1;
+end;
+
+%check that any nested structures are appropriate
+
+% functionDefinitions
+if (valid == 1 && level > 1)
+  index = 1;
+  while (valid == 1 && index <= length(SBMLStructure.functionDefinition))
+    [valid, message] = isSBML_FunctionDefinition( ...
+                                  SBMLStructure.functionDefinition(index), ...
+                                  level, version);
     index = index + 1;
-end;
-
-% check that it contains only the fields listed
-% take out this requirement as a user may wish to 
-% add their own fields
-% if (bSBML == 1)
-%     names = fieldnames(SBMLStructure);
-%     [m,n] = size(names);
-%     if (m ~= nNumberFields)
-%         bSBML = 0;
-%     end;
-% end;
-% 
-% check that the typecode is correct
-if (bSBML == 1 && length(SBMLStructure) == 1)
-    type = SBMLStructure.typecode;
-    k = strcmp(type, typecode);
-    if (k ~= 1)
-        bSBML = 0;
-    end;
-end;
-  
-% check that any nested structures are appropriate
-if (bSBML == 1)
-    if (Level > 1)
-        index = 1;
-        [bSBML, message] = isSBML_FunctionDefinition(SBMLStructure.functionDefinition, Level, Version);
-        [x, nNumber] = size(SBMLStructure.functionDefinition);
-        while (bSBML == 1 && index <= nNumber)
-            [bSBML, message] = isSBML_FunctionDefinition(SBMLStructure.functionDefinition(index), Level, Version);
-            index = index + 1;
-        end;
-    end;
-
-    index = 1;
-    [bSBML, message] = isSBML_UnitDefinition(SBMLStructure.unitDefinition, Level, Version);
-    [x, nNumber] = size(SBMLStructure.unitDefinition);
-    while (bSBML == 1 && index <= nNumber)
-        [bSBML, message] = isSBML_UnitDefinition(SBMLStructure.unitDefinition(index), Level, Version);
-        index = index + 1;
-    end;
-
-    index = 1;
-    [bSBML, message] = isSBML_Compartment(SBMLStructure.compartment, Level, Version);
-    [x, nNumber] = size(SBMLStructure.compartment);
-    while (bSBML == 1 && index <= nNumber)
-        [bSBML, message] = isSBML_Compartment(SBMLStructure.compartment(index), Level, Version);
-        index = index + 1;
-    end;
-
-    index = 1;
-    [bSBML, message] = isSBML_Species(SBMLStructure.species, Level, Version);
-    [x, nNumber] = size(SBMLStructure.species);
-    while (bSBML == 1 && index <= nNumber)
-        [bSBML, message] = isSBML_Species(SBMLStructure.species(index), Level, Version);
-        index = index + 1;
-    end;
-
-    index = 1;
-    [bSBML, message] = isSBML_Parameter(SBMLStructure.parameter, Level, Version);
-    [x, nNumber] = size(SBMLStructure.parameter);
-    while (bSBML == 1 && index <= nNumber)
-        [bSBML, message] = isSBML_Parameter(SBMLStructure.parameter(index), Level, Version);
-        index = index + 1;
-    end;
-
-    index = 1;
-    [bSBML, message] = isSBML_Rule(SBMLStructure.rule, Level, Version);
-    [x, nNumber] = size(SBMLStructure.rule);
-    while (bSBML == 1 && index <= nNumber)
-        [bSBML, message] = isSBML_Rule(SBMLStructure.rule(index), Level, Version);
-        index = index + 1;
-    end;
-
-    index = 1;
-    [bSBML, message] = isSBML_Reaction(SBMLStructure.reaction, Level, Version);
-    [x, nNumber] = size(SBMLStructure.reaction);
-    while (bSBML == 1 && index <= nNumber)
-        [bSBML, message] = isSBML_Reaction(SBMLStructure.reaction(index), Level, Version);
-        index = index + 1;
-    end;
-
-    if (Level > 1)
-        index = 1;
-        [bSBML, message] = isSBML_Event(SBMLStructure.event, Level, Version);
-        [x, nNumber] = size(SBMLStructure.event);
-        while (bSBML == 1 && index <= nNumber)
-            [bSBML, message] = isSBML_Event(SBMLStructure.event(index), Level, Version);
-            index = index + 1;
-        end;
-    end;
-    
-    if (Level == 2 && Version > 1)
-        index = 1;
-        [bSBML, message] = isSBML_CompartmentType(SBMLStructure.compartmentType, Level, Version);
-        [x, nNumber] = size(SBMLStructure.compartmentType);
-        while (bSBML == 1 && index <= nNumber)
-            [bSBML, message] = isSBML_CompartmentType(SBMLStructure.compartmentType(index), Level, Version);
-            index = index + 1;
-        end;
-    
-        index = 1;
-        [bSBML, message] = isSBML_SpeciesType(SBMLStructure.speciesType, Level, Version);
-        [x, nNumber] = size(SBMLStructure.speciesType);
-        while (bSBML == 1 && index <= nNumber)
-            [bSBML, message] = isSBML_SpeciesType(SBMLStructure.speciesType(index), Level, Version);
-            index = index + 1;
-        end;
-
-        index = 1;
-        [bSBML, message] = isSBML_InitialAssignment(SBMLStructure.initialAssignment, Level, Version);
-        [x, nNumber] = size(SBMLStructure.initialAssignment);
-        while (bSBML == 1 && index <= nNumber)
-            [bSBML, message] = isSBML_InitialAssignment(SBMLStructure.initialAssignment(index), Level, Version);
-            index = index + 1;
-        end;
- 
-        index = 1;
-        [bSBML, message] = isSBML_Constraint(SBMLStructure.constraint, Level, Version);
-        [x, nNumber] = size(SBMLStructure.constraint);
-        while (bSBML == 1 && index <= nNumber)
-            [bSBML, message] = isSBML_Constraint(SBMLStructure.constraint(index), Level, Version);
-            index = index + 1;
-        end;
-    
-    elseif (Level > 2)
-
-        index = 1;
-        [bSBML, message] = isSBML_InitialAssignment(SBMLStructure.initialAssignment, Level, Version);
-        [x, nNumber] = size(SBMLStructure.initialAssignment);
-        while (bSBML == 1 && index <= nNumber)
-            [bSBML, message] = isSBML_InitialAssignment(SBMLStructure.initialAssignment(index), Level, Version);
-            index = index + 1;
-        end;
- 
-        index = 1;
-        [bSBML, message] = isSBML_Constraint(SBMLStructure.constraint, Level, Version);
-        [x, nNumber] = size(SBMLStructure.constraint);
-        while (bSBML == 1 && index <= nNumber)
-            [bSBML, message] = isSBML_Constraint(SBMLStructure.constraint(index), Level, Version);
-            index = index + 1;
-        end;
-    end;
-    
-end;
-
-if (bSBML == 0)
-  if (isempty(message))
-    message = 'Invalid Model structure';
-  else
-    message = sprintf('%s\n%s', message, 'Invalid Model structure');
   end;
 end;
 
-y = bSBML;
+% unitDefinitions
+if (valid == 1)
+  index = 1;
+  while (valid == 1 && index <= length(SBMLStructure.unitDefinition))
+    [valid, message] = isSBML_UnitDefinition( ...
+                                  SBMLStructure.unitDefinition(index), ...
+                                  level, version);
+    index = index + 1;
+  end;
+end;
+
+% compartments
+if (valid == 1)
+  index = 1;
+  while (valid == 1 && index <= length(SBMLStructure.compartment))
+    [valid, message] = isSBML_Compartment(SBMLStructure.compartment(index), ...
+                                  level, version);
+    index = index + 1;
+  end;
+end;
+
+% species
+if (valid == 1)
+  index = 1;
+  while (valid == 1 && index <= length(SBMLStructure.species))
+    [valid, message] = isSBML_Species(SBMLStructure.species(index), ...
+                                  level, version);
+    index = index + 1;
+  end;
+end;
+
+% compartmentTypes
+if (valid == 1 && level == 2 && version > 1)
+  index = 1;
+  while (valid == 1 && index <= length(SBMLStructure.compartmentType))
+    [valid, message] = isSBML_CompartmentType(SBMLStructure.compartmentType(index), ...
+                                  level, version);
+    index = index + 1;
+  end;
+end;
+
+% speciesTypes
+if (valid == 1 && level == 2 && version > 1)
+  index = 1;
+  while (valid == 1 && index <= length(SBMLStructure.speciesType))
+    [valid, message] = isSBML_SpeciesType(SBMLStructure.speciesType(index), ...
+                                  level, version);
+    index = index + 1;
+  end;
+end;
+
+% parameter
+if (valid == 1)
+  index = 1;
+  while (valid == 1 && index <= length(SBMLStructure.parameter))
+    [valid, message] = isSBML_Parameter(SBMLStructure.parameter(index), ...
+                                  level, version);
+    index = index + 1;
+  end;
+end;
+
+% initialAssignment
+if (valid == 1 && (level > 2 || (level == 2 && version > 1)))
+  index = 1;
+  while (valid == 1 && index <= length(SBMLStructure.initialAssignment))
+    [valid, message] = isSBML_InitialAssignment( ...
+                                  SBMLStructure.initialAssignment(index), ...
+                                  level, version);
+    index = index + 1;
+  end;
+end;
+
+% rule
+if (valid == 1)
+  index = 1;
+  while (valid == 1 && index <= length(SBMLStructure.rule))
+    [valid, message] = isSBML_Rule(SBMLStructure.rule(index), ...
+                                  level, version);
+    index = index + 1;
+  end;
+end;
+
+% constraints
+if (valid == 1 && (level > 2 || (level == 2 && version > 1)))
+  index = 1;
+  while (valid == 1 && index <= length(SBMLStructure.constraint))
+    [valid, message] = isSBML_Constraint( ...
+                                  SBMLStructure.constraint(index), ...
+                                  level, version);
+    index = index + 1;
+  end;
+end;
+
+% reaction
+if (valid == 1)
+  index = 1;
+  while (valid == 1 && index <= length(SBMLStructure.reaction))
+    [valid, message] = isSBML_Reaction(SBMLStructure.reaction(index), ...
+                                  level, version);
+    index = index + 1;
+  end;
+end;
+
+% event
+if (valid == 1 && level > 1)
+  index = 1;
+  while (valid == 1 && index <= length(SBMLStructure.event))
+    [valid, message] = isSBML_Event(SBMLStructure.event(index), ...
+                                  level, version);
+    index = index + 1;
+  end;
+end;
+
+
+% report failure
+if (valid == 0)
+	message = sprintf('Invalid Model\n%s\n', message);
+end;

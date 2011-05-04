@@ -1,5 +1,4 @@
 function y = isValid(sbml_struct)
-
 typecode = sbml_struct.typecode;
 
 switch (typecode)

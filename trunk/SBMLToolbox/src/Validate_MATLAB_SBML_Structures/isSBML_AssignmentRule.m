@@ -1,38 +1,20 @@
-function [y, message] = isSBML_AssignmentRule(varargin)
-% isSBML_AssignmentRule(SBMLStructure, Level, Version(optional)) 
-% checks that SBMLStructure represents an assignment rule 
-% within an sbml model of the specified level
-% 
-% if SBMLStructure represents a rule within an SBML model
-% it has the appropriate fields 
-% eg    Typecode
-%       Notes
-%       Annotations
-%       SBOTerm (L2V2)
-%       Type (L1V1 - L1V2)
-%       Formula
-%       Variable
-%       Species
-%       Compartment
-%       ParameterName
-%       ParameterUnits
+function [valid, message] = isSBML_AssignmentRule(varargin)
 %
-% NOTE: content of brackets indicates the level and version of sbml from which the given field
-% is appropriate.
+% isSBML_AssignmentRule
+%    takes a MATLAB_SBML structure
+%          an SBML level
+%    and optionally an SBML version
 %
-% Returns 1 if SBMLStructure is a structure containing each of the above
-% fields (appropriate with the given level and version) 
-% and the typecode is  one of
-%           "SBML_ASSIGNMENT_RULE", "SBML_SPECIES_CONCENTRATION_RULE",
-%   "SBML_COMPARTMENT_VOLUME_RULE", "SBML_PARAMETER_RULE"
-% 
-% Returns 0 if SBMLStructure is not a structure 
-% or does not contain one of the appropriate fields
-% or the typecode is not one of 
-%           "SBML_ASSIGNMENT_RULE""SBML_SPECIES_CONCENTRATION_RULE",
-%   "SBML_COMPARTMENT_VOLUME_RULE", "SBML_PARAMETER_RULE",
+%    returns
+%      1) a flag indicating whether the structure represents
+%           an MATLAB_SBML AssignmentRule structure of the appropriate
+%           level and version
+%      2) a message string explaining any failure
 %
-% Returns message indicating the structure that is invalid.
+% NOTE: the optional version defaults to a value of 1 
+%
+% The fields present in MATLAB_SBML AssignmentRule structure of the appropriate
+% level and version can be found using getAssignmentRuleFieldnames(level, version)
 
 %  Filename    :   isSBML_AssignmentRule.m
 %  Description :
@@ -63,46 +45,109 @@ function [y, message] = isSBML_AssignmentRule(varargin)
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
 
+
+%check the input arguments are appropriate
+
 if (nargin < 2 || nargin > 3)
-    error('wrong number of input arguments');
+	error('wrong number of input arguments');
+end;
+
+SBMLStructure = varargin{1};
+
+if (length(SBMLStructure) > 1)
+	error('cannot deal with arrays of structures');
+end;
+
+level = varargin{2};
+
+if (level < 1 || level > 3)
+	error('current SBML levels are 1, 2 or 3');
+end;
+
+if (nargin == 3)
+	version = varargin{3};
+else
+	version = 1;
+end;
+
+if (level == 1)
+	if (version < 1 || version > 2)
+		error('SBMLToolbox supports versions 1-2 of SBML Level 1');
+	end;
+
+elseif (level == 2)
+	if (version < 1 || version > 4)
+		error('SBMLToolbox supports versions 1-4 of SBML Level 2');
+	end;
+
+elseif (level == 3)
+	if (version ~= 1)
+		error('SBMLToolbox supports only version 1 of SBML Level 3');
+	end;
+
 end;
 
 message = '';
 
-SBMLStructure = varargin{1};
-Level = varargin{2};
+% check that argument is a structure
+valid = isstruct(SBMLStructure);
 
-if (nargin == 3)
-    Version = varargin{3};
-else
-    Version = 1;
+% check the typecode
+typecode = 'SBML_ASSIGNMENT_RULE';
+if (valid == 1 && ~isempty(SBMLStructure))
+	if (level > 1)
+    if (strcmp(typecode, SBMLStructure.typecode) ~= 1)
+      valid = 0;
+      message = 'typecode mismatch';
+    end;
+  else
+    % check L1 types
+    typecode = SBMLStructure.typecode;
+    cvr = strcmp(typecode, 'SBML_COMPARTMENT_VOLUME_RULE');
+    pr = strcmp(typecode, 'SBML_PARAMETER_RULE');
+    scr = strcmp(typecode, 'SBML_SPECIES_CONCENTRATION_RULE');
+    if (cvr ~= 1 && pr ~= 1 && scr ~= 1)
+      valid = 0;
+      message = 'typecode mismatch';
+    elseif (strcmp(SBMLStructure.type, 'scalar') ~= 1)
+      valid = 0;
+      message = 'expected scalar type';
+    end;      
+	end;
 end;
 
-typecode = {'SBML_SPECIES_CONCENTRATION_RULE', 'SBML_COMPARTMENT_VOLUME_RULE', 'SBML_PARAMETER_RULE', 'SBML_ASSIGNMENT_RULE'};
-nNumberTypecodes = 4;
+% if the level and version fields exist they must match
+if (valid == 1 && isfield(SBMLStructure, 'level') && ~isempty(SBMLStructure))
+	if ~isequal(level, SBMLStructure.level)
+		valid = 0;
+		message = 'level mismatch';
+	end;
+end;
+if (valid == 1 && isfield(SBMLStructure, 'version') && ~isempty(SBMLStructure))
+	if ~isequal(version, SBMLStructure.version)
+		valid = 0;
+		message = 'version mismatch';
+	end;
+end;
 
-bSBML = isSBML_Rule(SBMLStructure, Level, Version);
+% check that structure contains all the necessary fields
+[SBMLfieldnames, numFields] = getFieldnames(typecode, level, version);
 
+if (numFields ==0)
+	valid = 0;
+	message = 'invalid level/version';
+end;
 
-% check that the typecode is correct
 index = 1;
-nMatch = 0;
-if (bSBML == 1 && length(SBMLStructure) == 1)
-    type = SBMLStructure.typecode;
-    while (index <= nNumberTypecodes)
-        k = strcmp(type, typecode(index));
-        if (k == 1)
-            nMatch = nMatch + 1;
-        end;
-        index = index + 1;
-    end;
-    if (nMatch == 0)
-        bSBML = 0;
-    end;
-end;
-    
-if (bSBML == 0)
-  message = 'Invalid AssignmentRule structure';
+while (valid == 1 && index <= numFields)
+	valid = isfield(SBMLStructure, char(SBMLfieldnames(index)));
+	if (valid == 0);
+		message = sprintf('%s field missing', char(SBMLfieldnames(index)));
+	end;
+	index = index + 1;
 end;
 
-y = bSBML;
+% report failure
+if (valid == 0)
+	message = sprintf('Invalid AssignmentRule\n%s\n', message);
+end;
