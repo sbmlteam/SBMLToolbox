@@ -1,38 +1,20 @@
-function [y, message] = isSBML_RateRule(varargin)
-% isSBML_RateRule(SBMLStructure, Level, Version(optional)) 
-% checks that SBMLStructure represents a rate rule 
-% within an sbml model of the specified level
-% 
-% if SBMLStructure represents a rate rule within an SBML model
-% it has the appropriate fields 
-% eg    Typecode
-%       Notes
-%       Annotations
-%       Type (1)
-%       Formula
-%       Variable
-%       Species
-%       Compartment
-%       ParameterName
-%       ParameterUnits
+function [valid, message] = isSBML_RateRule(varargin)
 %
-% NOTE number in brackets indicates field is appropriate for that level of
-% sbml only
+% isSBML_RateRule
+%    takes a MATLAB_SBML structure
+%          an SBML level
+%    and optionally an SBML version
 %
-% Returns 1 if SBMLStructure is a structure containing each of the above
-% fields and the typecode is one of
-%           "SBML_RATE_RULE", "SBML_SPECIES_CONCENTRATION_RULE",
-%   "SBML_COMPARTMENT_VOLUME_RULE", "SBML_PARAMETER_RULE"
-% 
-% Returns 0 if SBMLStructure is not a structure 
-% or does not contain one of the above fields
-% or the typecode is not  one of 
-%           "SBML_RATE_RULE" "SBML_SPECIES_CONCENTRATION_RULE",
-%   "SBML_COMPARTMENT_VOLUME_RULE", "SBML_PARAMETER_RULE",
+%    returns
+%      1) a flag indicating whether the structure represents
+%           an MATLAB_SBML RateRule structure of the appropriate
+%           level and version
+%      2) a message string explaining any failure
 %
-% NOTE: where typecode is a Level 1 Rule the type must be set to "rate"
+% NOTE: the optional version defaults to a value of 1 
 %
-% Returns message indicating the structure that is invalid.
+% The fields present in MATLAB_SBML RateRule structure of the appropriate
+% level and version can be found using getRateRuleFieldnames(level, version)
 
 %  Filename    :   isSBML_RateRule.m
 %  Description :
@@ -63,63 +45,109 @@ function [y, message] = isSBML_RateRule(varargin)
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
 
+
+%check the input arguments are appropriate
+
 if (nargin < 2 || nargin > 3)
-    error('wrong number of input arguments');
+	error('wrong number of input arguments');
+end;
+
+SBMLStructure = varargin{1};
+
+if (length(SBMLStructure) > 1)
+	error('cannot deal with arrays of structures');
+end;
+
+level = varargin{2};
+
+if (level < 1 || level > 3)
+	error('current SBML levels are 1, 2 or 3');
+end;
+
+if (nargin == 3)
+	version = varargin{3};
+else
+	version = 1;
+end;
+
+if (level == 1)
+	if (version < 1 || version > 2)
+		error('SBMLToolbox supports versions 1-2 of SBML Level 1');
+	end;
+
+elseif (level == 2)
+	if (version < 1 || version > 4)
+		error('SBMLToolbox supports versions 1-4 of SBML Level 2');
+	end;
+
+elseif (level == 3)
+	if (version ~= 1)
+		error('SBMLToolbox supports only version 1 of SBML Level 3');
+	end;
+
 end;
 
 message = '';
 
-SBMLStructure = varargin{1};
-Level = varargin{2};
+% check that argument is a structure
+valid = isstruct(SBMLStructure);
 
-if (nargin == 3)
-    Version = varargin{3};
-else
-    Version = 1;
-end;
-
-typecodel1 = {'SBML_SPECIES_CONCENTRATION_RULE', ...
-  'SBML_COMPARTMENT_VOLUME_RULE', 'SBML_PARAMETER_RULE'};
-index = 1;
-
+% check the typecode
 typecode = 'SBML_RATE_RULE';
-
-% if the level and version field exist - they must match
-if (length(SBMLStructure) == 1 && isfield(SBMLStructure, 'level'))
-  if ~isequal(Level, SBMLStructure.level)
-    error (sprintf('%s %s', typecode, 'SBML level mismatch detected'));
-  end;
-  if (isfield(SBMLStructure, 'version'))
-    if ~isequal(Version, SBMLStructure.version)
-      error (sprintf('%s %s', typecode, 'SBML version mismatch detected'));
+if (valid == 1 && ~isempty(SBMLStructure))
+	if (level > 1)
+    if (strcmp(typecode, SBMLStructure.typecode) ~= 1)
+      valid = 0;
+      message = 'typecode mismatch';
     end;
-  end;
+  else
+    % check L1 types
+    typecode = SBMLStructure.typecode;
+    cvr = strcmp(typecode, 'SBML_COMPARTMENT_VOLUME_RULE');
+    pr = strcmp(typecode, 'SBML_PARAMETER_RULE');
+    scr = strcmp(typecode, 'SBML_SPECIES_CONCENTRATION_RULE');
+    if (cvr ~= 1 && pr ~= 1 && scr ~= 1)
+      valid = 0;
+      message = 'typecode mismatch';
+    elseif (strcmp(SBMLStructure.type, 'rate') ~= 1)
+      valid = 0;
+      message = 'expected rate type';
+    end;
+	end;
 end;
 
-bSBML = isSBML_Rule(SBMLStructure, Level, Version);
-
-
-% check that the typecode is correct
-if (bSBML == 1&& length(SBMLStructure) == 1)
-  code = SBMLStructure.typecode;
-  k = strcmp(code, typecode);
-  if (k ~= 1)
-    nMatch = 0;
-    while (index <= 3)
-      k = strcmp(code, typecodel1(index));
-      if (k == 1 && strcmp(SBMLStructure.type, 'rate'))
-        nMatch = nMatch + 1;
-      end;
-      index = index + 1;
-    end;
-    if (nMatch == 0)
-      bSBML = 0;
-    end;
-  end;
+% if the level and version fields exist they must match
+if (valid == 1 && isfield(SBMLStructure, 'level') && ~isempty(SBMLStructure))
+	if ~isequal(level, SBMLStructure.level)
+		valid = 0;
+		message = 'level mismatch';
+	end;
 end;
-    
-if (bSBML == 0)
-  message = 'Invalid RateRule structure';
+if (valid == 1 && isfield(SBMLStructure, 'version') && ~isempty(SBMLStructure))
+	if ~isequal(version, SBMLStructure.version)
+		valid = 0;
+		message = 'version mismatch';
+	end;
 end;
 
-y = bSBML;
+% check that structure contains all the necessary fields
+[SBMLfieldnames, numFields] = getFieldnames(typecode, level, version);
+
+if (numFields ==0)
+	valid = 0;
+	message = 'invalid level/version';
+end;
+
+index = 1;
+while (valid == 1 && index <= numFields)
+	valid = isfield(SBMLStructure, char(SBMLfieldnames(index)));
+	if (valid == 0);
+		message = sprintf('%s field missing', char(SBMLfieldnames(index)));
+	end;
+	index = index + 1;
+end;
+
+% report failure
+if (valid == 0)
+	message = sprintf('Invalid RateRule\n%s\n', message);
+end;

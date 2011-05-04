@@ -1,30 +1,20 @@
-function [y, message] = isSBML_Trigger(varargin)
-% isSBML_Trigger(SBMLStructure, Level, Version(optional)) 
-% checks that SBMLStructure represents a Trigger
-% within an sbml model of specified level
-% 
-% if SBMLStructure represents a Trigger within an SBML model
-% it has the appropriate fields (ONLY IN LEVEL 2 VERSION 3)
-% eg    Typecode (L2V3)
-%       Metaid (L2V3)
-%       Notes (L2V3)
-%       Annotations (L2V3)
-%       SBOTerm (L2V3)
-%       Math (L2V3)
+function [valid, message] = isSBML_Trigger(varargin)
 %
+% isSBML_Trigger
+%    takes a MATLAB_SBML structure
+%          an SBML level
+%    and optionally an SBML version
 %
-% NOTE: content of brackets indicates the level and version of sbml from which the given field
-% is appropriate.
+%    returns
+%      1) a flag indicating whether the structure represents
+%           an MATLAB_SBML Trigger structure of the appropriate
+%           level and version
+%      2) a message string explaining any failure
 %
-% Returns 1 if SBMLStructure is a structure containing each of the above
-% fields (appropriate with the given level and version) 
-% and the typecode is "SBML_TRIGGER"
-% 
-% Returns 0 if SBMLStructure is not a structure 
-% or does not contain one of the appropriate fields
-% or the typecode is not "SBML_TRIGGER"
+% NOTE: the optional version defaults to a value of 1 
 %
-% Returns message indicating the structure that is invalid.
+% The fields present in MATLAB_SBML Trigger structure of the appropriate
+% level and version can be found using getTriggerFieldnames(level, version)
 
 %  Filename    :   isSBML_Trigger.m
 %  Description :
@@ -56,93 +46,93 @@ function [y, message] = isSBML_Trigger(varargin)
 %----------------------------------------------------------------------- -->
 
 
-%input arguments
+%check the input arguments are appropriate
+
 if (nargin < 2 || nargin > 3)
-    error('wrong number of input arguments');
+	error('wrong number of input arguments');
+end;
+
+SBMLStructure = varargin{1};
+
+if (length(SBMLStructure) > 1)
+	error('cannot deal with arrays of structures');
+end;
+
+level = varargin{2};
+
+if (level < 1 || level > 3)
+	error('current SBML levels are 1, 2 or 3');
+end;
+
+if (nargin == 3)
+	version = varargin{3};
+else
+	version = 1;
+end;
+
+if (level == 1)
+	if (version < 1 || version > 2)
+		error('SBMLToolbox supports versions 1-2 of SBML Level 1');
+	end;
+
+elseif (level == 2)
+	if (version < 1 || version > 4)
+		error('SBMLToolbox supports versions 1-4 of SBML Level 2');
+	end;
+
+elseif (level == 3)
+	if (version ~= 1)
+		error('SBMLToolbox supports only version 1 of SBML Level 3');
+	end;
+
 end;
 
 message = '';
 
-SBMLStructure = varargin{1};
-Level = varargin{2};
-
-if (nargin == 3)
-    Version = varargin{3};
-else
-    Version = 1;
-end;
-
-if (Level == 1)
-    y = 0;
-    return;
-elseif (Level == 2)
-    if (Version == 1)
-        y = 0;
-        return;
-    elseif (Version == 2)
-        y = 0;
-        return;
-    elseif (Version == 3)
-        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'math'};
-        nNumberFields = 6;
-    elseif (Version == 4)
-        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'math'};
-        nNumberFields = 6;
-    end;
-elseif (Level == 3)
-    if (Version == 1)
-        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', ...
-          'persistent', 'initialValue' 'math'};
-        nNumberFields = 8;
-    end;
-end;
-    
- typecode = 'SBML_TRIGGER';
-
-bSBML = 0;
-
 % check that argument is a structure
-bSBML = isstruct(SBMLStructure);
+valid = isstruct(SBMLStructure);
 
-% if the level and version field exist - they must match
-if (bSBML == 1 && length(SBMLStructure) == 1 && isfield(SBMLStructure, 'level'))
-  if ~isequal(Level, SBMLStructure.level)
-    bSBML = 0;
-  end;
-  if (bSBML == 1 && isfield(SBMLStructure, 'version'))
-    if ~isequal(Version, SBMLStructure.version)
-      bSBML = 0;
-    end;
-  end;
+% check the typecode
+typecode = 'SBML_TRIGGER';
+if (valid == 1 && ~isempty(SBMLStructure))
+	if (strcmp(typecode, SBMLStructure.typecode) ~= 1)
+		valid = 0;
+		message = 'typecode mismatch';
+	end;
 end;
 
-% check it contains each of the fields listed
+% if the level and version fields exist they must match
+if (valid == 1 && isfield(SBMLStructure, 'level') && ~isempty(SBMLStructure))
+	if ~isequal(level, SBMLStructure.level)
+		valid = 0;
+		message = 'level mismatch';
+	end;
+end;
+if (valid == 1 && isfield(SBMLStructure, 'version') && ~isempty(SBMLStructure))
+	if ~isequal(version, SBMLStructure.version)
+		valid = 0;
+		message = 'version mismatch';
+	end;
+end;
+
+% check that structure contains all the necessary fields
+[SBMLfieldnames, numFields] = getFieldnames('SBML_TRIGGER', level, version);
+
+if (numFields ==0)
+	valid = 0;
+	message = 'invalid level/version';
+end;
+
 index = 1;
-while (bSBML == 1 && index <= nNumberFields)
-    bSBML = isfield(SBMLStructure, char(SBMLfieldnames(index)));
-    index = index + 1;
+while (valid == 1 && index <= numFields)
+	valid = isfield(SBMLStructure, char(SBMLfieldnames(index)));
+	if (valid == 0);
+		message = sprintf('%s field missing', char(SBMLfieldnames(index)));
+	end;
+	index = index + 1;
 end;
 
-% % check that it contains only the fields listed
-% if (bSBML == 1)
-%     names = fieldnames(SBMLStructure);
-%     [m,n] = size(names);
-%     if (m ~= nNumberFields)
-%         bSBML = 0;
-%     end;
-% end;
-
-% check that the typecode is correct
-if (bSBML == 1 && length(SBMLStructure) == 1)
-    type = SBMLStructure.typecode;
-    k = strcmp(type, typecode);
-    if (k ~= 1)
-        bSBML = 0;
-    end;
+% report failure
+if (valid == 0)
+	message = sprintf('Invalid Trigger\n%s\n', message);
 end;
- 
-if (bSBML == 0)
-  message = 'Invalid Trigger structure';
-end;
-
-y = bSBML;

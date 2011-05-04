@@ -1,34 +1,20 @@
-function [y, message] = isSBML_Event(varargin)
-% isSBML_Event(SBMLStructure, Level, Version(optional)) 
-% checks that SBMLStructure represents a Event
-% within an sbml model of specified level
-% 
-% if SBMLStructure represents a Event within an SBML model
-% it has the appropriate fields (ONLY IN LEVEL 2)
-% eg    Typecode (L2V1)
-%       Metaid (L2V1)
-%       Notes (L2V1)
-%       Annotations (L2V1)
-%       Name (L2V1)
-%       Id (L2V1)
-%       Trigger (L2V1)
-%       Delay (L2V1)
-%       TimeUnits (L2V1 - L2V2)
-%       SBOTerm (L2V2)
-%       ListEventAssignment (L2V1)
+function [valid, message] = isSBML_Event(varargin)
 %
-% NOTE: content of brackets indicates the level and version of sbml from which the given field
-% is appropriate.
+% isSBML_Event
+%    takes a MATLAB_SBML structure
+%          an SBML level
+%    and optionally an SBML version
 %
-% Returns 1 if SBMLStructure is a structure containing each of the above
-% fields (appropriate with the given level and version) 
-% and the typecode is "SBML_EVENT"
-% 
-% Returns 0 if SBMLStructure is not a structure 
-% or does not contain one of the appropriate fields
-% or the typecode is not "SBML_EVENT"
+%    returns
+%      1) a flag indicating whether the structure represents
+%           an MATLAB_SBML Event structure of the appropriate
+%           level and version
+%      2) a message string explaining any failure
 %
-% Returns message indicating the structure that is invalid.
+% NOTE: the optional version defaults to a value of 1 
+%
+% The fields present in MATLAB_SBML Event structure of the appropriate
+% level and version can be found using getEventFieldnames(level, version)
 
 %  Filename    :   isSBML_Event.m
 %  Description :
@@ -60,180 +46,146 @@ function [y, message] = isSBML_Event(varargin)
 %----------------------------------------------------------------------- -->
 
 
-%input arguments
+%check the input arguments are appropriate
+
 if (nargin < 2 || nargin > 3)
-    error('wrong number of input arguments');
+	error('wrong number of input arguments');
+end;
+
+SBMLStructure = varargin{1};
+
+if (length(SBMLStructure) > 1)
+	error('cannot deal with arrays of structures');
+end;
+
+level = varargin{2};
+
+if (level < 1 || level > 3)
+	error('current SBML levels are 1, 2 or 3');
+end;
+
+if (nargin == 3)
+	version = varargin{3};
+else
+	version = 1;
+end;
+
+if (level == 1)
+	if (version < 1 || version > 2)
+		error('SBMLToolbox supports versions 1-2 of SBML Level 1');
+	end;
+
+elseif (level == 2)
+	if (version < 1 || version > 4)
+		error('SBMLToolbox supports versions 1-4 of SBML Level 2');
+	end;
+
+elseif (level == 3)
+	if (version ~= 1)
+		error('SBMLToolbox supports only version 1 of SBML Level 3');
+	end;
+
 end;
 
 message = '';
 
-SBMLStructure = varargin{1};
-Level = varargin{2};
-
-if (nargin == 3)
-    Version = varargin{3};
-else
-    Version = 1;
-end;
-
-if (Level == 1)
-    y = 0;
-    message = 'Event is invalid for SBML L1';
-    return;
-elseif (Level == 2)
-    if (Version == 1)
-        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'name', 'id', 'trigger', 'delay', ...
-            'timeUnits', 'eventAssignment'};
-        nNumberFields = 10;
-    elseif (Version == 2)
-        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'name', 'id', 'trigger', 'delay', ...
-            'timeUnits', 'sboTerm', 'eventAssignment'};
-        nNumberFields = 11;
-    elseif (Version == 3)
-        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id', 'trigger', 'delay', ...
-            'eventAssignment'};
-        nNumberFields = 10;
-    elseif (Version == 4)
-        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id', ...
-          'useValuesFromTriggerTime', 'trigger', 'delay', 'eventAssignment'};
-        nNumberFields = 11;
-    end;
-elseif (Level == 3)
-    if (Version == 1)
-        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', 'id', ...
-          'useValuesFromTriggerTime', 'trigger', 'delay', 'priority', 'eventAssignment'};
-        nNumberFields = 12;
-    end;
-end;
-    
- typecode = 'SBML_EVENT';
-
-bSBML = 0;
-
 % check that argument is a structure
-bSBML = isstruct(SBMLStructure);
+valid = isstruct(SBMLStructure);
 
-% if the level and version field exist - they must match
-if (bSBML == 1 && length(SBMLStructure) == 1 && isfield(SBMLStructure, 'level'))
-  if ~isequal(Level, SBMLStructure.level)
-    bSBML = 0;
-  end;
-  if (bSBML == 1 && isfield(SBMLStructure, 'version'))
-    if ~isequal(Version, SBMLStructure.version)
-      bSBML = 0;
-    end;
-  end;
+% check the typecode
+typecode = 'SBML_EVENT';
+if (valid == 1 && ~isempty(SBMLStructure))
+	if (strcmp(typecode, SBMLStructure.typecode) ~= 1)
+		valid = 0;
+		message = 'typecode mismatch';
+	end;
 end;
 
-% check it contains each of the fields listed
+% if the level and version fields exist they must match
+if (valid == 1 && isfield(SBMLStructure, 'level') && ~isempty(SBMLStructure))
+	if ~isequal(level, SBMLStructure.level)
+		valid = 0;
+		message = 'level mismatch';
+	end;
+end;
+if (valid == 1 && isfield(SBMLStructure, 'version') && ~isempty(SBMLStructure))
+	if ~isequal(version, SBMLStructure.version)
+		valid = 0;
+		message = 'version mismatch';
+	end;
+end;
+
+% check that structure contains all the necessary fields
+[SBMLfieldnames, numFields] = getFieldnames('SBML_EVENT', level, version);
+
+if (numFields ==0)
+	valid = 0;
+	message = 'invalid level/version';
+end;
+
 index = 1;
-while (bSBML == 1 && index <= nNumberFields)
-    bSBML = isfield(SBMLStructure, char(SBMLfieldnames(index)));
+while (valid == 1 && index <= numFields)
+	valid = isfield(SBMLStructure, char(SBMLfieldnames(index)));
+	if (valid == 0);
+		message = sprintf('%s field missing', char(SBMLfieldnames(index)));
+	end;
+	index = index + 1;
+end;
+
+%check that any nested structures are appropriate
+
+% eventAssignments
+if (valid == 1)
+  index = 1;
+  while (valid == 1 && index <= length(SBMLStructure.eventAssignment))
+    [valid, message] = isSBML_EventAssignment( ...
+                                  SBMLStructure.eventAssignment(index), ...
+                                  level, version);
     index = index + 1;
+  end;
 end;
 
-% % check that it contains only the fields listed
-% if (bSBML == 1)
-%     names = fieldnames(SBMLStructure);
-%     [m,n] = size(names);
-%     if (m ~= nNumberFields)
-%         bSBML = 0;
-%     end;
-% end;
+% trigger/delay/priority
+% these are level and version dependent
+if (valid == 1)
+  if (level == 2 && version > 2)
+    if (length(SBMLStructure.trigger) > 1)
+      valid = 0;
+      message = 'multiple trigger elements encountered';
+    elseif (length(SBMLStructure.delay) > 1)
+      valid = 0;
+      message = 'multiple delay elements encountered';
+    end;
+    if (valid == 1)
+      [valid, message] = isSBML_Trigger(SBMLStructure.trigger, level, version);
+    end;
+    if (valid == 1)
+      [valid, message] = isSBML_Delay(SBMLStructure.delay, level, version);
+    end;
+  elseif (level > 2)
+    if (length(SBMLStructure.trigger) > 1)
+      valid = 0;
+      message = 'multiple trigger elements encountered';
+    elseif (length(SBMLStructure.delay) > 1)
+      valid = 0;
+      message = 'multiple delay elements encountered';
+    elseif (length(SBMLStructure.priority) > 1)
+      valid = 0;
+      message = 'multiple priority elements encountered';
+    end;
+    if (valid == 1)
+      [valid, message] = isSBML_Trigger(SBMLStructure.trigger, level, version);
+    end;
+    if (valid == 1)
+      [valid, message] = isSBML_Delay(SBMLStructure.delay, level, version);
+    end;
+    if (valid == 1)
+      [valid, message] = isSBML_Priority(SBMLStructure.priority, level, version);
+    end;
+  end;
+end;
 
-% check that the typecode is correct
-if (bSBML == 1 && length(SBMLStructure) == 1)
-    type = SBMLStructure.typecode;
-    k = strcmp(type, typecode);
-    if (k ~= 1)
-        bSBML = 0;
-    end;
+% report failure
+if (valid == 0)
+	message = sprintf('Invalid Event\n%s\n', message);
 end;
- 
-% check that any nested structures are appropriate
-if(bSBML == 1 && length(SBMLStructure) == 1)
-    index = 1;
-    [bSBML, message] = isSBML_EventAssignment(SBMLStructure.eventAssignment, Level, Version);
-    [x, nNumber] = size(SBMLStructure.eventAssignment); 
-    while (bSBML == 1 && index <= nNumber)
-        [bSBML, message] = isSBML_EventAssignment(SBMLStructure.eventAssignment(index), Level, Version);
-        index = index + 1;
-    end;
-end;
-
-if (bSBML == 1 && length(SBMLStructure) == 1)
-% nested structures that are empty should have the structure but with no
-% elements e.g. [1x0 struct]
-if ((Level == 2 && Version > 2))
-  if (length(SBMLStructure.trigger) > 1 || length(SBMLStructure.delay) > 1)
-    bSBML = 0;
-  end;
-
-  if(bSBML == 1) % && ~isempty(SBMLStructure.trigger))
-    [bSBML, mess1] = isSBML_Trigger(SBMLStructure.trigger, Level, Version);
-    if (bSBML == 0)
-      if (isempty(message))
-        message = mess1;
-      else
-        message = sprintf('%s\n%s', message, mess1);
-      end;
-    end;
-  end;
-  if(bSBML == 1) % && ~isempty(SBMLStructure.delay))
-    [bSBML, mess1] = isSBML_Delay(SBMLStructure.delay, Level, Version);
-    if (bSBML == 0)
-      if (isempty(message))
-        message = mess1;
-      else
-        message = sprintf('%s\n%s', message, mess1);
-      end;
-    end;
-  end;
-end;
-if (Level > 2)
-  if (length(SBMLStructure.trigger) > 1  ...
-      || length(SBMLStructure.delay) > 1 ...
-      || length(SBMLStructure.priority) > 1)
-    bSBML = 0;
-  end;
-
-  if(bSBML == 1) % && ~isempty(SBMLStructure.trigger))
-    [bSBML, mess1] = isSBML_Trigger(SBMLStructure.trigger, Level, Version);
-    if (bSBML == 0)
-      if (isempty(message))
-        message = mess1;
-      else
-        message = sprintf('%s\n%s', message, mess1);
-      end;
-    end;
-  end;
-  if(bSBML == 1) % && ~isempty(SBMLStructure.delay))
-    [bSBML, mess1] = isSBML_Delay(SBMLStructure.delay, Level, Version);
-    if (bSBML == 0)
-      if (isempty(message))
-        message = mess1;
-      else
-        message = sprintf('%s\n%s', message, mess1);
-      end;
-    end;
-  end;
-  if(bSBML == 1) % && ~isempty(SBMLStructure.priority))
-    [bSBML, mess1] = isSBML_Priority(SBMLStructure.priority, Level, Version);
-    if (bSBML == 0)
-      if (isempty(message))
-        message = mess1;
-      else
-        message = sprintf('%s\n%s', message, mess1);
-      end;
-    end;
-  end;
-end;
-end;
-if (bSBML == 0)
-  if (isempty(message))
-    message = 'Invalid Event structure';
-  else
-    message = sprintf('%s\n%s', message, 'Invalid Event structure');
-  end;
-end;
-y = bSBML;

@@ -1,33 +1,20 @@
-function [y, message] = isSBML_KineticLaw(varargin)
-% isSBML_KineticLaw(SBMLStructure, Level, Version(optional)) 
-% checks that SBMLStructure represents a kinetic law 
-% within an sbml model of the specified level
-% 
-% if SBMLStructure represents a kinetic law within an SBML model
-% it has the appropriate fields 
-% eg    Typecode
-%       Metaid (L2V1)
-%       Notes
-%       Annotations
-%       SBOTerm (L2V2)
-%       Formula
-%       Math (L2V1)
-%       ListParameter
-%       TimeUnits (L2V1 - L2V1)
-%       SubstanceUnits (L2V1 - L2V1)
+function [valid, message] = isSBML_KineticLaw(varargin)
 %
-% NOTE: content of brackets indicates the level and version of sbml from which the given field
-% is appropriate.
+% isSBML_KineticLaw
+%    takes a MATLAB_SBML structure
+%          an SBML level
+%    and optionally an SBML version
 %
-% Returns 1 if SBMLStructure is a structure containing each of the above
-% fields (appropriate with the given level and version) 
-% and the typecode is "SBML_KINETIC_LAW"
-% 
-% Returns 0 if SBMLStructure is not a structure 
-% or does not contain one of the appropriate fields
-% or the typecode is not "SBML_KINETIC_LAW"
+%    returns
+%      1) a flag indicating whether the structure represents
+%           an MATLAB_SBML KineticLaw structure of the appropriate
+%           level and version
+%      2) a message string explaining any failure
 %
-% Returns message indicating the structure that is invalid.
+% NOTE: the optional version defaults to a value of 1 
+%
+% The fields present in MATLAB_SBML KineticLaw structure of the appropriate
+% level and version can be found using getKineticLawFieldnames(level, version)
 
 %  Filename    :   isSBML_KineticLaw.m
 %  Description :
@@ -58,115 +45,119 @@ function [y, message] = isSBML_KineticLaw(varargin)
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
 
+
+%check the input arguments are appropriate
+
 if (nargin < 2 || nargin > 3)
-    error('wrong number of input arguments');
+	error('wrong number of input arguments');
+end;
+
+SBMLStructure = varargin{1};
+
+if (length(SBMLStructure) > 1)
+	error('cannot deal with arrays of structures');
+end;
+
+level = varargin{2};
+
+if (level < 1 || level > 3)
+	error('current SBML levels are 1, 2 or 3');
+end;
+
+if (nargin == 3)
+	version = varargin{3};
+else
+	version = 1;
+end;
+
+if (level == 1)
+	if (version < 1 || version > 2)
+		error('SBMLToolbox supports versions 1-2 of SBML Level 1');
+	end;
+
+elseif (level == 2)
+	if (version < 1 || version > 4)
+		error('SBMLToolbox supports versions 1-4 of SBML Level 2');
+	end;
+
+elseif (level == 3)
+	if (version ~= 1)
+		error('SBMLToolbox supports only version 1 of SBML Level 3');
+	end;
+
 end;
 
 message = '';
 
-SBMLStructure = varargin{1};
-Level = varargin{2};
-
-if (nargin == 3)
-    Version = varargin{3};
-else
-    Version = 1;
-end;
-
-if (Level == 1)
-    SBMLfieldnames = {'typecode', 'notes', 'annotation','formula', 'parameter', 'timeUnits', 'substanceUnits'};
-    nNumberFields = 7;
-elseif (Level == 2)
-    if (Version == 1)
-        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','formula', 'math','parameter', ...
-            'timeUnits','substanceUnits'};
-        nNumberFields = 9;
-    elseif (Version == 2)
-        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation','formula', 'math','parameter', 'sboTerm'};
-        nNumberFields = 8;
-    elseif (Version == 3)
-        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'formula', 'math','parameter'};
-        nNumberFields = 8;
-    elseif (Version == 4)
-        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'formula', 'math','parameter'};
-        nNumberFields = 8;
-    end;
-elseif (Level == 3)
-    if (Version == 1)
-        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'math','localParameter'};
-        nNumberFields = 7;
-    end;
-end;
-typecode = 'SBML_KINETIC_LAW';
-
-bSBML = 0;
-
 % check that argument is a structure
-bSBML = isstruct(SBMLStructure);
+valid = isstruct(SBMLStructure);
 
-% if the level and version field exist - they must match
-if (bSBML == 1 && length(SBMLStructure) == 1 && isfield(SBMLStructure, 'level'))
-  if ~isequal(Level, SBMLStructure.level)
-    bSBML = 0;
-  end;
-  if (bSBML == 1 && isfield(SBMLStructure, 'version'))
-    if ~isequal(Version, SBMLStructure.version)
-      bSBML = 0;
-    end;
-  end;
+% check the typecode
+typecode = 'SBML_KINETIC_LAW';
+if (valid == 1 && ~isempty(SBMLStructure))
+	if (strcmp(typecode, SBMLStructure.typecode) ~= 1)
+		valid = 0;
+		message = 'typecode mismatch';
+	end;
 end;
 
-% check it contains each of the fields listed
+% if the level and version fields exist they must match
+if (valid == 1 && isfield(SBMLStructure, 'level') && ~isempty(SBMLStructure))
+	if ~isequal(level, SBMLStructure.level)
+		valid = 0;
+		message = 'level mismatch';
+	end;
+end;
+if (valid == 1 && isfield(SBMLStructure, 'version') && ~isempty(SBMLStructure))
+	if ~isequal(version, SBMLStructure.version)
+		valid = 0;
+		message = 'version mismatch';
+	end;
+end;
+
+% check that structure contains all the necessary fields
+[SBMLfieldnames, numFields] = getFieldnames('SBML_KINETIC_LAW', level, version);
+
+if (numFields ==0)
+	valid = 0;
+	message = 'invalid level/version';
+end;
+
 index = 1;
-while (bSBML == 1 && index <= nNumberFields)
-    bSBML = isfield(SBMLStructure, char(SBMLfieldnames(index)));
+while (valid == 1 && index <= numFields)
+	valid = isfield(SBMLStructure, char(SBMLfieldnames(index)));
+	if (valid == 0);
+		message = sprintf('%s field missing', char(SBMLfieldnames(index)));
+	end;
+	index = index + 1;
+end;
+
+%check that any nested structures are appropriate
+
+% parameters
+if (valid == 1 && level < 3)
+  index = 1;
+  while (valid == 1 && index <= length(SBMLStructure.parameter))
+    [valid, message] = isSBML_Parameter(SBMLStructure.parameter(index), ...
+                                  level, version);
     index = index + 1;
-end;
-
-% % check that it contains only the fields listed
-% if (bSBML == 1)
-%     names = fieldnames(SBMLStructure);
-%     [m,n] = size(names);
-%     if (m ~= nNumberFields)
-%         bSBML = 0;
-%     end;
-% end;
-
-% check that the typecode is correct
-if (bSBML == 1 && length(SBMLStructure) == 1)
-    type = SBMLStructure.typecode;
-    k = strcmp(type, typecode);
-    if (k ~= 1)
-        bSBML = 0;
-    end;
-end;
-  
-% check that any nested structures are appropriate
-if(bSBML == 1 && length(SBMLStructure) == 1)
-    index = 1;
-    if (Level < 3)
-      [x, nNumberParameters] = size(SBMLStructure.parameter); 
-      [bSBML, message] = isSBML_Parameter(SBMLStructure.parameter, Level, Version);
-      while (bSBML == 1 && index <= nNumberParameters)
-          [bSBML, message] = isSBML_Parameter(SBMLStructure.parameter(index), Level, Version);
-          index = index + 1;
-      end;
-    else
-      [x, nNumberParameters] = size(SBMLStructure.localParameter); 
-      [bSBML, message] = isSBML_LocalParameter(SBMLStructure.localParameter, Level, Version);
-      while (bSBML == 1 && index <= nNumberParameters)
-          [bSBML, message] = isSBML_LocalParameter(SBMLStructure.localParameter(index), Level, Version);
-          index = index + 1;
-      end;
-    end;
-end;
-
-if (bSBML == 0)
-  if (isempty(message))
-    message = 'Invalid KineticLaw structure';
-  else
-    message = sprintf('%s\n%s', message, 'Invalid KineticLaw structure');
   end;
 end;
 
-y = bSBML;
+%check that any nested structures are appropriate
+
+% localParameters
+if (valid == 1 && level > 2)
+  index = 1;
+  while (valid == 1 && index <= length(SBMLStructure.localParameter))
+    [valid, message] = isSBML_LocalParameter(SBMLStructure.localParameter(index), ...
+                                  level, version);
+    index = index + 1;
+  end;
+end;
+
+
+% report failure
+if (valid == 0)
+	message = sprintf('Invalid KineticLaw\n%s\n', message);
+end;
