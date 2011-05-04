@@ -41,15 +41,15 @@ function [SBMLfieldnames, nNumberFields] = getFieldnames(typecode, ...
 
 switch (typecode)
   case 'SBML_ALGEBRAIC_RULE'
-    fhandle = str2func('getRuleFieldnames');
+    fhandle = str2func('getAlgebraicRuleFieldnames');
   case 'SBML_ASSIGNMENT_RULE'
-    fhandle = str2func('getRuleFieldnames');
+    fhandle = str2func('getAssignmentRuleFieldnames');
   case 'SBML_COMPARTMENT'
     fhandle = str2func('getCompartmentFieldnames');
   case 'SBML_COMPARTMENT_TYPE'
     fhandle = str2func('getCompartmentTypeFieldnames');
   case 'SBML_COMPARTMENT_VOLUME_RULE'
-    fhandle = str2func('getRuleFieldnames');
+    fhandle = str2func('getCompartmentVolumeRuleFieldnames');
   case 'SBML_CONSTRAINT'
     fhandle = str2func('getConstraintFieldnames');
   case 'SBML_DELAY'
@@ -73,17 +73,17 @@ switch (typecode)
   case 'SBML_PARAMETER'
     fhandle = str2func('getParameterFieldnames');
   case 'SBML_PARAMETER_RULE'
-    fhandle = str2func('getRuleFieldnames');
+    fhandle = str2func('getParameterRuleFieldnames');
   case 'SBML_PRIORITY'
     fhandle = str2func('getPriorityFieldnames');
   case 'SBML_RATE_RULE'
-    fhandle = str2func('getRuleFieldnames');
+    fhandle = str2func('getRateRuleFieldnames');
   case 'SBML_REACTION'
     fhandle = str2func('getReactionFieldnames');
   case 'SBML_SPECIES'
     fhandle = str2func('getSpeciesFieldnames');
   case 'SBML_SPECIES_CONCENTRATION_RULE'
-    fhandle = str2func('getRuleFieldnames');
+    fhandle = str2func('getSpeciesConcentrationRuleFieldnames');
   case 'SBML_SPECIES_REFERENCE'
     fhandle = str2func('getSpeciesReferenceFieldnames');
   case 'SBML_SPECIES_TYPE'
