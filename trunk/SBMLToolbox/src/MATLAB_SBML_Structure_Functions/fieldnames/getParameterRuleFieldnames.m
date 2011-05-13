@@ -41,6 +41,10 @@ function [SBMLfieldnames, nNumberFields] = getParameterRuleFieldnames(level, ...
 %----------------------------------------------------------------------- -->
 
 
+if (~isValidLevelVersionCombination(level, version))
+  error ('invalid level/version combination');
+end;
+
 if (level == 1)
 		SBMLfieldnames = { 'typecode', ...
 		                   'notes', ...
