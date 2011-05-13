@@ -40,6 +40,9 @@ function [SBMLfieldnames, nNumberFields] = getAlgebraicRuleFieldnames(level, ...
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
 
+if (~isValidLevelVersionCombination(level, version))
+  error ('invalid level/version combination');
+end;
 
 if (level == 1)
 		SBMLfieldnames = { 'typecode', ...
