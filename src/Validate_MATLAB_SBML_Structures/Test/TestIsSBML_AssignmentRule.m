@@ -31,7 +31,7 @@ function fail = TestIsSBML_AssignmentRule
 
 
 ar_l1 = struct('typecode', {'SBML_COMPARTMENT_VOLUME_RULE'}, 'notes', {''}, 'annotation', {''}, 'type', ...
-    {''}, 'formula', {''}, 'variable', {''}, 'species', {''}, 'compartment', {''}, 'name', {''}, 'units', {''});
+    {'scalar'}, 'formula', {''}, 'variable', {''}, 'species', {''}, 'compartment', {''}, 'name', {''}, 'units', {''});
 
 ar_l2 = struct('typecode', {'SBML_ASSIGNMENT_RULE'}, 'metaid', {''}, 'notes', {''}, 'annotation', {''},  ...
     'formula', {''}, 'variable', {''}, 'species', {''}, 'compartment', {''}, 'name', {''}, 'units', {''});
