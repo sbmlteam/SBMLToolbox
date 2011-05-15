@@ -1,11 +1,16 @@
-function ParameterRule = ParameterRule_create()
+function ParameterRule = ParameterRule_create(varargin)
 %
-%   ParameterRule_create 
+% ParameterRule_create
+%    takes an SBML level (optional)
+%    and   an SBML version (optional)
 %
-%             and returns 
-%               a parameterRule structure (level 1 ONLY)
+%    returns
+%      an MATLAB_SBML ParameterRule structure of the appropriate
+%           level and version
 %
-%       ParameterRule = ParameterRule_create
+% NOTE: the optional level and version preserve backwards compatability
+%         if version is missing the default values will be L1V2; L2V4 or L3V1
+%         if neither argument is supplied the default values will be L3V1
 
 %  Filename    :   ParameterRule_create.m
 %  Description :
@@ -37,22 +42,55 @@ function ParameterRule = ParameterRule_create()
 %----------------------------------------------------------------------- -->
 
 
+%check the input arguments are appropriate
 
-%default level = 1
-sbmlLevel = 1;
-if (nargin > 0)
-    error(sprintf('%s\n%s\n%s', 'ParameterRule_create()', ...
-      'requires no arguments', 'SEE help ParameterRule_create'));
+if (nargin > 2)
+	error('too many input arguments');
 end;
 
-SBMLfieldnames = {'typecode', 'notes', 'annotation', 'type', 'formula', ...
-  'variable', 'species', 'compartment', 'name', 'units'};
-Values = {'SBML_PARAMETER_RULE', '', '', '', '', '', '', '', '', ''};
-
-ParameterRule = cell2struct(Values, SBMLfieldnames, 2);
-
-%check created structure is appropriate
-if (~isSBML_ParameterRule(ParameterRule, sbmlLevel))
-    ParameterRule = [];
-    warning('Failed to create parameterRule');
+switch (nargin)
+	case 2
+		level = varargin{1};
+		version = varargin{2};
+	case 1
+		level = varargin{1};
+		if (level == 1)
+			version = 2;
+		elseif (level == 2)
+			version = 4;
+		else
+			version = 1;
+		end;
+	otherwise
+		level = 3;
+		version = 1;
 end;
+
+if ~isValidLevelVersionCombination(level, version)
+	error('invalid level/version combination');
+end;
+
+%get fields and values and create the structure
+
+[fieldnames, num] = getParameterRuleFieldnames(level, version);
+if (num > 0)
+	values = getParameterRuleDefaultValues(level, version);
+	ParameterRule = cell2struct(values, fieldnames, 2);
+
+	%add level and version
+
+	ParameterRule.level = level;
+	ParameterRule.version = version;
+
+%check correct structure
+
+	if ~isSBML_ParameterRule(ParameterRule, level, version)
+		ParameterRule = struct();
+		warning('Warn:BadStruct', 'Failed to create ParameterRule');
+	end;
+
+else
+	ParameterRule = [];
+	warning('Warn:InvalidLV', 'ParameterRule not an element in SBML L%dV%d', level, version);
+end;
+

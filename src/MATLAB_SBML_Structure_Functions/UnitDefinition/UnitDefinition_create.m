@@ -1,16 +1,16 @@
 function UnitDefinition = UnitDefinition_create(varargin)
 %
-%   UnitDefinition_create 
-%             optionally takes an SBML level 
-%             optionally takes an SBML version
+% UnitDefinition_create
+%    takes an SBML level (optional)
+%    and   an SBML version (optional)
 %
-%             and returns 
-%               a unitDefinition structure of the required level and version
-%               (default level = 2 version = 4)
+%    returns
+%      an MATLAB_SBML UnitDefinition structure of the appropriate
+%           level and version
 %
-%       UnitDefinition = UnitDefinition_create
-%    OR UnitDefinition = UnitDefinition_create(sbmlLevel)
-%    OR UnitDefinition = UnitDefinition_create(sbmlLevel, sbmlVersion)
+% NOTE: the optional level and version preserve backwards compatability
+%         if version is missing the default values will be L1V2; L2V4 or L3V1
+%         if neither argument is supplied the default values will be L3V1
 
 %  Filename    :   UnitDefinition_create.m
 %  Description :
@@ -42,89 +42,55 @@ function UnitDefinition = UnitDefinition_create(varargin)
 %----------------------------------------------------------------------- -->
 
 
-
-%default level = 2
-%default version = 4
-sbmlLevel = 2;
-sbmlVersion = 4;
+%check the input arguments are appropriate
 
 if (nargin > 2)
-  error(sprintf('%s\n%s\n%s', ...
-    'UnitDefinition_create(sbmlLevel, sbmlVersion)', ...
-    'requires either zero, one or two arguments', ...
-    'SEE help UnitDefinition_create'));
-
-elseif (nargin == 2)
-  if ((~isIntegralNumber(varargin{1})) ...
-      || (varargin{1} < 1) || (varargin{1} > 2))
-    error(sprintf('%s\n%s', ...
-      'UnitDefinition_create(sbmlLevel, sbmlVersion)', ...
-      'first argument must be a valid SBML level i.e. either 1 or 2'));
-  elseif ((~isIntegralNumber(varargin{2})) ...
-      || (varargin{2} < 1) || (varargin{2} > 4))
-    error(sprintf('%s\n%s', 'UnitDefinition_create(sbmlLevel, sbmlVersion)', ...
-      'second argument must be a valid SBML version i.e. either 1, 2, 3 or 4'));
-  end;
-  sbmlLevel = varargin{1};
-  if (sbmlLevel == 1 && varargin{2} > 2)
-    error(sprintf('%s\n%s', 'Level - version mismatch.', ...
-      'Allowed combinations are L1V1 L1V2 L2V1 L2V2 L2V3 or L2V4'));
-  else
-    sbmlVersion = varargin{2};
-  end;
-    
-elseif (nargin == 1)
-  if ((~isIntegralNumber(varargin{1})) ...
-      || (varargin{1} < 1) || (varargin{1} > 2))
-    error(sprintf('%s\n%s', 'UnitDefinition_create(sbmlLevel)', ...
-      'argument must be a valid SBML level i.e. either 1 or 2'));
-  end;
-  sbmlLevel = varargin{1};
-
+	error('too many input arguments');
 end;
 
-if exist('OCTAVE_VERSION')
-  warning off Octave:divide-by-zero;
+switch (nargin)
+	case 2
+		level = varargin{1};
+		version = varargin{2};
+	case 1
+		level = varargin{1};
+		if (level == 1)
+			version = 2;
+		elseif (level == 2)
+			version = 4;
+		else
+			version = 1;
+		end;
+	otherwise
+		level = 3;
+		version = 1;
+end;
+
+if ~isValidLevelVersionCombination(level, version)
+	error('invalid level/version combination');
+end;
+
+%get fields and values and create the structure
+
+[fieldnames, num] = getUnitDefinitionFieldnames(level, version);
+if (num > 0)
+	values = getUnitDefinitionDefaultValues(level, version);
+	UnitDefinition = cell2struct(values, fieldnames, 2);
+
+	%add level and version
+
+	UnitDefinition.level = level;
+	UnitDefinition.version = version;
+
+%check correct structure
+
+	if ~isSBML_UnitDefinition(UnitDefinition, level, version)
+		UnitDefinition = struct();
+		warning('Warn:BadStruct', 'Failed to create UnitDefinition');
+	end;
+
 else
-  warning off MATLAB:divideByZero;
+	UnitDefinition = [];
+	warning('Warn:InvalidLV', 'UnitDefinition not an element in SBML L%dV%d', level, version);
 end;
 
-if (sbmlLevel == 1)
-    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name', 'unit'};
-    Values = {'SBML_UNIT_DEFINITION', '', '', '', []};
-    unit = struct('typecode', {}, 'notes', {}, 'annotation', {}, 'kind', {}, ...
-      'exponent',{},  'scale', {});
-else
-  if (sbmlVersion == 1)
-    SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'name', 'id', 'unit'};
-    Values = {'SBML_UNIT_DEFINITION', '', '', '', '', '', []};
-    unit = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'kind', {}, ...
-      'exponent',{},  'scale', {}, 'multiplier', {}, 'offset',{});
-  elseif (sbmlVersion == 2)
-    SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'name', 'id', 'unit'};
-    Values = {'SBML_UNIT_DEFINITION', '', '', '', '', '', []};
-    unit = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'kind', {}, ...
-      'exponent',{},  'scale', {}, 'multiplier', {});
-  elseif (sbmlVersion > 2)
-    SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', 'name', ...
-      'id', 'unit'};
-    Values = {'SBML_UNIT_DEFINITION', '', '', '', int32(-1), '', '', []};
-    unit = struct('typecode', {}, 'metaid', {}, 'notes', {}, 'annotation', {}, 'sboTerm', ...
-      {}, 'kind', {}, 'exponent',{},  'scale', {}, 'multiplier', {});
-  end;
-end;
-
-UnitDefinition = cell2struct(Values, SBMLfieldnames, 2);
-UnitDefinition = setfield(UnitDefinition, 'unit', unit);
-
-if exist('OCTAVE_VERSION')
-  warning on Octave:divide-by-zero;
-else
-  warning on MATLAB:divideByZero;
-end;
-
-%check created structure is appropriate
-if (~isSBML_UnitDefinition(UnitDefinition, sbmlLevel, sbmlVersion))
-    UnitDefinition = [];
-    warning('Failed to create unitDefinition');
-end;

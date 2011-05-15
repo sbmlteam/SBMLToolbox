@@ -1,16 +1,16 @@
 function Compartment = Compartment_create(varargin)
 %
-%   Compartment_create 
-%             optionally takes an SBML level
-%             optionally takes an SBML version
+% Compartment_create
+%    takes an SBML level (optional)
+%    and   an SBML version (optional)
 %
-%             and returns 
-%               a compartment structure of the required level and version
-%               (default level = 2 version = 4)
+%    returns
+%      an MATLAB_SBML Compartment structure of the appropriate
+%           level and version
 %
-%       Compartment = Compartment_create
-%    OR Compartment = Compartment_create(sbmlLevel)
-%    OR Compartment = Compartment_create(sbmlLevel, sbmlVersion)
+% NOTE: the optional level and version preserve backwards compatability
+%         if version is missing the default values will be L1V2; L2V4 or L3V1
+%         if neither argument is supplied the default values will be L3V1
 
 %  Filename    :   Compartment_create.m
 %  Description :
@@ -42,90 +42,55 @@ function Compartment = Compartment_create(varargin)
 %----------------------------------------------------------------------- -->
 
 
-
-%default level = 2
-%default version = 4
-sbmlLevel = 2;
-sbmlVersion = 4;
+%check the input arguments are appropriate
 
 if (nargin > 2)
-    error(sprintf('%s\n%s\n%s', ...
-      'Compartment_create(sbmlLevel, sbmlVersion)', ...
-      'requires either zero, one or two arguments', ...
-      'SEE help Compartment_create'));
-
-elseif (nargin == 2)
-    if ((~isIntegralNumber(varargin{1})) ...
-        || (varargin{1} < 1) || (varargin{1} > 2))
-        error(sprintf('%s\n%s', ...
-          'Compartment_create(sbmlLevel, sbmlVersion)', ...
-          'first argument must be a valid SBML level i.e. either 1 or 2'));
-    elseif ((~isIntegralNumber(varargin{2})) ...
-        || (varargin{2} < 1) || (varargin{2} > 4))
-        error(sprintf('%s\n%s', ...
-          'Compartment_create(sbmlLevel, sbmlVersion)', ...
-          'second argument must be a valid SBML version i.e. either 1, 2, 3 or 4'));
-    end;
-    sbmlLevel = varargin{1};
-    if (sbmlLevel == 1 && varargin{2} > 2)
-        error(sprintf('%s\n%s', ...
-          'Level - version mismatch', ...
-          'Allowed combinations are L1V1 L1V2 L2V1 L2V2 L2V3 or L2V4'));
-    else
-        sbmlVersion = varargin{2};
-    end;
-    
-elseif (nargin == 1)
-    if ((~isIntegralNumber(varargin{1})) ...
-        || (varargin{1} < 1) || (varargin{1} > 2))
-        error(sprintf('%s\n%s', 'Compartment_create(sbmlLevel)', ...
-          'argument must be a valid SBML level i.e. either 1 or 2'));
-    end;
-    sbmlLevel = varargin{1};
-    
+	error('too many input arguments');
 end;
 
-if exist('OCTAVE_VERSION')
-  warning off Octave:divide-by-zero;
+switch (nargin)
+	case 2
+		level = varargin{1};
+		version = varargin{2};
+	case 1
+		level = varargin{1};
+		if (level == 1)
+			version = 2;
+		elseif (level == 2)
+			version = 4;
+		else
+			version = 1;
+		end;
+	otherwise
+		level = 3;
+		version = 1;
+end;
+
+if ~isValidLevelVersionCombination(level, version)
+	error('invalid level/version combination');
+end;
+
+%get fields and values and create the structure
+
+[fieldnames, num] = getCompartmentFieldnames(level, version);
+if (num > 0)
+	values = getCompartmentDefaultValues(level, version);
+	Compartment = cell2struct(values, fieldnames, 2);
+
+	%add level and version
+
+	Compartment.level = level;
+	Compartment.version = version;
+
+%check correct structure
+
+	if ~isSBML_Compartment(Compartment, level, version)
+		Compartment = struct();
+		warning('Warn:BadStruct', 'Failed to create Compartment');
+	end;
+
 else
-  warning off MATLAB:divideByZero;
-end;
-if (sbmlLevel == 1)
-    SBMLfieldnames = {'typecode', 'notes', 'annotation', 'name', 'volume', ...
-      'units', 'outside', 'isSetVolume' };
-    Values = {'SBML_COMPARTMENT', '', '', '', 1, '', '', int32(1)};
-else
-    if (sbmlVersion == 1)
-        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', ...
-          'name', 'id', 'spatialDimensions', ...
-            'size', 'units', 'outside', 'constant', 'isSetSize','isSetVolume'};
-        Values = {'SBML_COMPARTMENT','','', '', '', '',int32(3), 0/0, ...
-          '', '', int32(1), int32(0), int32(0)};
-    elseif (sbmlVersion == 2)
-        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', ...
-          'name', 'id', 'compartmentType', 'spatialDimensions', 'size', ...
-          'units', 'outside', 'constant', 'isSetSize','isSetVolume'};
-        Values = {'SBML_COMPARTMENT','', '', '', '', '', '', int32(3), 0/0, ...
-          '', '', int32(1), int32(0), int32(0)};
-    elseif (sbmlVersion > 2)
-        SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', ...
-          'sboTerm', 'name', 'id', 'compartmentType', 'spatialDimensions', ...
-          'size', 'units', 'outside', 'constant', 'isSetSize','isSetVolume'};
-        Values = {'SBML_COMPARTMENT','', '', '', int32(-1), '', '', '', ...
-          int32(3), 0/0, '', '', int32(1), int32(0), int32(0)};
-    end;
+	Compartment = [];
+	warning('Warn:InvalidLV', 'Compartment not an element in SBML L%dV%d', level, version);
 end;
 
-if exist('OCTAVE_VERSION')
-  warning off Octave:divide-by-zero;
-else
-  warning off MATLAB:divideByZero;
-end;
-
-Compartment = cell2struct(Values, SBMLfieldnames, 2);
-
-%check created structure is appropriate
-if (~isSBML_Compartment(Compartment, sbmlLevel, sbmlVersion))
-    Compartment = [];
-    warning('Failed to create compartment');
-end;

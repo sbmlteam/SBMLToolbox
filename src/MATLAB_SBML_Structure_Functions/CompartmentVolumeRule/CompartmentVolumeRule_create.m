@@ -1,11 +1,16 @@
-function CompartmentVolumeRule = CompartmentVolumeRule_create()
+function CompartmentVolumeRule = CompartmentVolumeRule_create(varargin)
 %
-%   CompartmentVolumeRule_create 
+% CompartmentVolumeRule_create
+%    takes an SBML level (optional)
+%    and   an SBML version (optional)
 %
-%             and returns 
-%               a compartmentVolumeRule structure (level 1 ONLY)
+%    returns
+%      an MATLAB_SBML CompartmentVolumeRule structure of the appropriate
+%           level and version
 %
-%       CompartmentVolumeRule = CompartmentVolumeRule_create
+% NOTE: the optional level and version preserve backwards compatability
+%         if version is missing the default values will be L1V2; L2V4 or L3V1
+%         if neither argument is supplied the default values will be L3V1
 
 %  Filename    :   CompartmentVolumeRule_create.m
 %  Description :
@@ -37,22 +42,55 @@ function CompartmentVolumeRule = CompartmentVolumeRule_create()
 %----------------------------------------------------------------------- -->
 
 
+%check the input arguments are appropriate
 
-%default level = 1
-sbmlLevel = 1;
-if (nargin > 0)
-    error(sprintf('%s\n%s\n%s', 'CompartmentVolumeRule_create()', ...
-      'requires no arguments', 'SEE help CompartmentVolumeRule_create'));
+if (nargin > 2)
+	error('too many input arguments');
 end;
 
-SBMLfieldnames = {'typecode', 'notes', 'annotation', 'type', 'formula', ...
-  'variable', 'species', 'compartment', 'name', 'units'};
-Values = {'SBML_COMPARTMENT_VOLUME_RULE', '', '', '', '', '', '', '', '', ''};
-
-CompartmentVolumeRule = cell2struct(Values, SBMLfieldnames, 2);
-
-%check created structure is appropriate
-if (~isSBML_CompartmentVolumeRule(CompartmentVolumeRule, sbmlLevel))
-    CompartmentVolumeRule = [];
-    warning('Failed to create compartmentVolumeRule');
+switch (nargin)
+	case 2
+		level = varargin{1};
+		version = varargin{2};
+	case 1
+		level = varargin{1};
+		if (level == 1)
+			version = 2;
+		elseif (level == 2)
+			version = 4;
+		else
+			version = 1;
+		end;
+	otherwise
+		level = 3;
+		version = 1;
 end;
+
+if ~isValidLevelVersionCombination(level, version)
+	error('invalid level/version combination');
+end;
+
+%get fields and values and create the structure
+
+[fieldnames, num] = getCompartmentVolumeRuleFieldnames(level, version);
+if (num > 0)
+	values = getCompartmentVolumeRuleDefaultValues(level, version);
+	CompartmentVolumeRule = cell2struct(values, fieldnames, 2);
+
+	%add level and version
+
+	CompartmentVolumeRule.level = level;
+	CompartmentVolumeRule.version = version;
+
+%check correct structure
+
+	if ~isSBML_CompartmentVolumeRule(CompartmentVolumeRule, level, version)
+		CompartmentVolumeRule = struct();
+		warning('Warn:BadStruct', 'Failed to create CompartmentVolumeRule');
+	end;
+
+else
+	CompartmentVolumeRule = [];
+	warning('Warn:InvalidLV', 'CompartmentVolumeRule not an element in SBML L%dV%d', level, version);
+end;
+
