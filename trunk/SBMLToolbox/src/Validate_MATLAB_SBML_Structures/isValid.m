@@ -1,4 +1,15 @@
-function y = isValid(sbml_struct)
+function y = isValid(varargin)
+
+if (nargin < 1)
+  error('need input argument');
+end;
+sbml_struct = varargin{1};
+
+if isempty(fieldnames(sbml_struct))
+  y = 0;
+  return;
+end;
+
 typecode = sbml_struct.typecode;
 
 switch (typecode)
@@ -60,6 +71,7 @@ switch (typecode)
     fhandle = str2func('isSBML_Model');
 end;
 
+if (nargin == 1)
  y = (feval(fhandle, sbml_struct, 1, 1) ...
    || feval(fhandle, sbml_struct, 1, 2) ...
    || feval(fhandle, sbml_struct, 2, 1) ...
@@ -67,3 +79,10 @@ end;
    || feval(fhandle, sbml_struct, 2, 3) ...
    || feval(fhandle, sbml_struct, 2, 4) ...
    || feval(fhandle, sbml_struct, 3, 1)); 
+elseif (nargin == 3)
+  if strcmp(typecode, 'SBML_MODEL')
+    y = feval(fhandle, sbml_struct);
+  else
+    y = feval(fhandle, sbml_struct, varargin{2}, varargin{3});
+  end;
+end;
