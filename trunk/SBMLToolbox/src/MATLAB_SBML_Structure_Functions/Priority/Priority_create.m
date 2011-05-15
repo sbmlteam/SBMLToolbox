@@ -1,21 +1,21 @@
-function ModifierSpeciesReference = ModifierSpeciesReference_create(varargin)
+function Priority = Priority_create(varargin)
 %
-% ModifierSpeciesReference_create
+% Priority_create
 %    takes an SBML level (optional)
 %    and   an SBML version (optional)
 %
 %    returns
-%      an MATLAB_SBML ModifierSpeciesReference structure of the appropriate
+%      an MATLAB_SBML Priority structure of the appropriate
 %           level and version
 %
 % NOTE: the optional level and version preserve backwards compatability
 %         if version is missing the default values will be L1V2; L2V4 or L3V1
 %         if neither argument is supplied the default values will be L3V1
 
-%  Filename    :   ModifierSpeciesReference_create.m
+%  Filename    :   Priority_create.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -72,25 +72,25 @@ end;
 
 %get fields and values and create the structure
 
-[fieldnames, num] = getModifierSpeciesReferenceFieldnames(level, version);
+[fieldnames, num] = getPriorityFieldnames(level, version);
 if (num > 0)
-	values = getModifierSpeciesReferenceDefaultValues(level, version);
-	ModifierSpeciesReference = cell2struct(values, fieldnames, 2);
+	values = getPriorityDefaultValues(level, version);
+	Priority = cell2struct(values, fieldnames, 2);
 
 	%add level and version
 
-	ModifierSpeciesReference.level = level;
-	ModifierSpeciesReference.version = version;
+	Priority.level = level;
+	Priority.version = version;
 
 %check correct structure
 
-	if ~isSBML_ModifierSpeciesReference(ModifierSpeciesReference, level, version)
-		ModifierSpeciesReference = struct();
-		warning('Warn:BadStruct', 'Failed to create ModifierSpeciesReference');
+	if ~isSBML_Priority(Priority, level, version)
+		Priority = struct();
+		warning('Warn:BadStruct', 'Failed to create Priority');
 	end;
 
 else
-	ModifierSpeciesReference = [];
-	warning('Warn:InvalidLV', 'ModifierSpeciesReference not an element in SBML L%dV%d', level, version);
+	Priority = [];
+	warning('Warn:InvalidLV', 'Priority not an element in SBML L%dV%d', level, version);
 end;
 

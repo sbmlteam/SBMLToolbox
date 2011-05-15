@@ -1,17 +1,22 @@
-function level = GetLevel(SBMLStructure)
+function SBMLObject = Object_create(typecode, level, version)
+
 %
-%   GetLevel
-%             takes an SBMLStructure
+%   Object_create 
+%             optionally takes an SBML level
+%             optionally takes an SBML version
 %
 %             and returns 
-%               the sbml level 
+%               a compartment structure of the required level and version
+%               (default level = 3 version = 1)
 %
-%       level = GetLevel(SBMLStructure)
+%       Compartment = Compartment_create
+%    OR Compartment = Compartment_create(sbmlLevel)
+%    OR Compartment = Compartment_create(sbmlLevel, sbmlVersion)
 
-%  Filename    :   GetLevel.m
+%  Filename    :   Compartment_create.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: GetLevelVersion.m 13259 2011-03-21 05:40:36Z mhucka $
+%  $Id: Compartment_create.m 13259 2011-03-21 05:40:36Z mhucka $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -39,105 +44,67 @@ function level = GetLevel(SBMLStructure)
 
 
 
-% check that input is correct
-if (~isValid(SBMLStructure))
-    error(sprintf('%s\n%s', ...
-      'GetLevel(SBMLStructure)', ...
-      'argument must be an SBML structure'));
-end;
- 
-
-typecode = SBMLStructure.typecode;
-
 switch (typecode)
   case {'SBML_ALGEBRAIC_RULE', 'AlgebraicRule', 'algebraicRule'}
-    fhandle = str2func('isSBML_AlgebraicRule');
+    fhandle = str2func('AlgebraicRule_create');
   case {'SBML_ASSIGNMENT_RULE', 'AssignmentRule', 'assignmentRule'}
-    fhandle = str2func('isSBML_AssignmentRule');
+    fhandle = str2func('AssignmentRule_create');
   case {'SBML_COMPARTMENT', 'Compartment', 'compartment'}
-    fhandle = str2func('isSBML_Compartment');
+    fhandle = str2func('Compartment_create');
   case {'SBML_COMPARTMENT_TYPE', 'CompartmentType', 'compartmentType'}
-    fhandle = str2func('isSBML_CompartmentType');
+    fhandle = str2func('CompartmentType_create');
   case {'SBML_COMPARTMENT_VOLUME_RULE', 'CompartmentVolumeRule', 'compartmentVolumeRule'}
-    fhandle = str2func('isSBML_CompartmentVolumeRule');
+    fhandle = str2func('CompartmentVolumeRule_create');
   case {'SBML_CONSTRAINT', 'Constraint', 'constraint'}
-    fhandle = str2func('isSBML_Constraint');
+    fhandle = str2func('Constraint_create');
   case {'SBML_DELAY', 'Delay', 'delay'}
-    fhandle = str2func('isSBML_Delay');
+    fhandle = str2func('Delay_create');
   case {'SBML_EVENT', 'Event', 'event'}
-    fhandle = str2func('isSBML_Event');
+    fhandle = str2func('Event_create');
   case {'SBML_EVENT_ASSIGNMENT', 'EventAssignment', 'eventAssignment'}
-    fhandle = str2func('isSBML_EventAssignment');
+    fhandle = str2func('EventAssignment_create');
   case {'SBML_FUNCTION_DEFINITION', 'FunctionDefinition', 'functionDefinition'}
-    fhandle = str2func('isSBML_FunctionDefinition');
+    fhandle = str2func('FunctionDefinition_create');
   case {'SBML_INITIAL_ASSIGNMENT', 'InitialAssignment', 'initialAssignment'}
-    fhandle = str2func('isSBML_InitialAssignment');
+    fhandle = str2func('InitialAssignment_create');
   case {'SBML_KINETIC_LAW', 'KineticLaw', 'kineticLaw'}
-    fhandle = str2func('isSBML_KineticLaw');
+    fhandle = str2func('KineticLaw_create');
   case {'SBML_LOCAL_PARAMETER', 'LocalParameter', 'localParameter'}
-    fhandle = str2func('isSBML_LocalParameter');
+    fhandle = str2func('LocalParameter_create');
   case {'SBML_MODEL', 'Model', 'model'}
-    level = SBMLStructure.SBML_Level;
-    return;
+    fhandle = str2func('Model_create');
   case {'SBML_MODIFIER_SPECIES_REFERENCE', 'ModifierSpeciesReference', 'modifierSpeciesReference'}
-    fhandle = str2func('isSBML_ModifierSpeciesReference');
+    fhandle = str2func('ModifierSpeciesReference_create');
   case {'SBML_PARAMETER', 'Parameter', 'parameter'}
-    fhandle = str2func('isSBML_Parameter');
+    fhandle = str2func('Parameter_create');
   case {'SBML_PARAMETER_RULE', 'ParameterRule', 'parameterRule'}
-    fhandle = str2func('isSBML_ParameterRule');
+    fhandle = str2func('ParameterRule_create');
   case {'SBML_PRIORITY', 'Priority', 'priority'}
-    fhandle = str2func('isSBML_Priority');
+    fhandle = str2func('Priority_create');
   case {'SBML_RATE_RULE', 'RateRule', 'ruleRule'}
-    fhandle = str2func('isSBML_RateRule');
+    fhandle = str2func('RateRule_create');
   case {'SBML_REACTION', 'Reaction', 'reaction'}
-    fhandle = str2func('isSBML_Reaction');
+    fhandle = str2func('Reaction_create');
   case {'SBML_SPECIES', 'Species', 'species'}
-    fhandle = str2func('isSBML_Species');
+    fhandle = str2func('Species_create');
   case {'SBML_SPECIES_CONCENTRATION_RULE', 'SpeciesConcentrationRule', 'speciesConcentrationRule'}
-    fhandle = str2func('isSBML_SpeciesConcentrationRule');
+    fhandle = str2func('SpeciesConcentrationRule_create');
   case {'SBML_SPECIES_REFERENCE', 'SpeciesReference', 'speciesReference'}
-    fhandle = str2func('isSBML_SpeciesReference');
+    fhandle = str2func('SpeciesReference_create');
   case {'SBML_SPECIES_TYPE', 'SpeciesType', 'speciesType'}
-    fhandle = str2func('isSBML_SpeciesType');
+    fhandle = str2func('SpeciesType_create');
   case {'SBML_STOICHIOMETRY_MATH', 'StoichiometryMath', 'stoichiometryMath'}
-    fhandle = str2func('isSBML_StoichiometryMath');
+    fhandle = str2func('StoichiometryMath_create');
   case {'SBML_TRIGGER', 'Trigger', 'trigger'}
-    fhandle = str2func('isSBML_Trigger');
+    fhandle = str2func('Trigger_create');
   case {'SBML_UNIT', 'Unit', 'unit'}
-    fhandle = str2func('isSBML_Unit');
+    fhandle = str2func('Unit_create');
   case {'SBML_UNIT_DEFINITION', 'UnitDefinition', 'unitDefinition'}
-    fhandle = str2func('isSBML_UnitDefinition');
+    fhandle = str2func('UnitDefinition_create');
   otherwise
-    error(sprintf('%s\n%s', ...
-      'GetLevel(SBMLStructure)', ...
-      'argument must be an SBML structure'));    
+    error('%s\n%s', ...
+      'Object_create(typecode, level, version)', ...
+      'typecode not recognised');    
 end;
 
-   
-level = 1;
-version = 1;
-
-if (~feval(fhandle, SBMLStructure, level))
-  level = 2;
-  version = 1;
-end;
-
-while (version < 5)
-  if (feval(fhandle, SBMLStructure, level, version))
-    return;
-  else
-    version = version + 1;
-  end;
-end;
-
-level = 3;
-version = 1;
-if (feval(fhandle, SBMLStructure, level, version))
-  return;
-else
-  error(sprintf('%s\n%s', ...
-      'GetLevel(SBMLStructure)', ...
-      'cannot determine the level'));    
-end;
-
-
+SBMLObject = feval(fhandle, level, version);

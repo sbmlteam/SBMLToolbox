@@ -1,16 +1,16 @@
 function FunctionDefinition = FunctionDefinition_create(varargin)
 %
-%   FunctionDefinition_create 
-%             optionally takes an SBML level (which must be 2)
-%             optionally takes an SBML version
+% FunctionDefinition_create
+%    takes an SBML level (optional)
+%    and   an SBML version (optional)
 %
-%             returns 
-%               an functionDefinition structure of the required level and version
-%               (default level = 2 version = 4)
+%    returns
+%      an MATLAB_SBML FunctionDefinition structure of the appropriate
+%           level and version
 %
-%       FunctionDefinition = FunctionDefinition_create
-%    OR FunctionDefinition = FunctionDefinition_create(sbmlLevel)
-%    OR FunctionDefinition = FunctionDefinition_create(sbmlLevel, sbmlVersion)
+% NOTE: the optional level and version preserve backwards compatability
+%         if version is missing the default values will be L1V2; L2V4 or L3V1
+%         if neither argument is supplied the default values will be L3V1
 
 %  Filename    :   FunctionDefinition_create.m
 %  Description :
@@ -42,48 +42,55 @@ function FunctionDefinition = FunctionDefinition_create(varargin)
 %----------------------------------------------------------------------- -->
 
 
+%check the input arguments are appropriate
 
-%default level = 2
-%default version = 4
-sbmlLevel = 2;
-sbmlVersion = 4;
 if (nargin > 2)
-  error(sprintf('%s\n%s\n%s', ...
-    'FunctionDefinition_create(sbmlLevel, sbmlVersion)', ...
-    'requires either zero, one or two arguments', ...
-    'SEE help FunctionDefinition_create'));
-
-elseif (nargin == 2)
-  if ((~isIntegralNumber(varargin{1})) || (varargin{1} ~= 2))
-    error(sprintf('%s\n%s', 'FunctionDefinition_create(sbmlLevel, sbmlVersion)', ...
-      'first argument must be 2'));
-  elseif ((~isIntegralNumber(varargin{2})) || (varargin{2} < 1) || (varargin{2} > 4))
-    error(sprintf('%s\n%s', 'FunctionDefinition_create(sbmlLevel, sbmlVersion)', ...
-      'second argument must be a valid SBML version i.e. either 1, 2, 3 or 4'));
-  end;
-  sbmlVersion = varargin{2};
-    
-elseif (nargin == 1)
-  if ((~isIntegralNumber(varargin{1})) || (varargin{1} ~= 2))
-    error(sprintf('%s\n%s', 'FunctionDefinition_create(sbmlLevel, sbmlVersion)', ...
-      'first argument must be 2'));
-  end;
-    
+	error('too many input arguments');
 end;
 
-if (sbmlVersion == 1)
-  SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'name', 'id', 'math'};
-  Values = {'SBML_FUNCTION_DEFINITION','', '', '', '', '', ''};
-elseif (sbmlVersion > 1)
-  SBMLfieldnames = {'typecode', 'metaid', 'notes', 'annotation', 'sboTerm', ...
-    'name', 'id', 'math'};
-  Values = {'SBML_FUNCTION_DEFINITION', '', '', '', int32(-1), '', '', ''};
+switch (nargin)
+	case 2
+		level = varargin{1};
+		version = varargin{2};
+	case 1
+		level = varargin{1};
+		if (level == 1)
+			version = 2;
+		elseif (level == 2)
+			version = 4;
+		else
+			version = 1;
+		end;
+	otherwise
+		level = 3;
+		version = 1;
 end;
 
-FunctionDefinition = cell2struct(Values, SBMLfieldnames, 2);
-
-%check created structure is appropriate
-if (~isSBML_FunctionDefinition(FunctionDefinition, sbmlLevel, sbmlVersion))
-    FunctionDefinition = [];
-    warning('Failed to create functionDefinition');
+if ~isValidLevelVersionCombination(level, version)
+	error('invalid level/version combination');
 end;
+
+%get fields and values and create the structure
+
+[fieldnames, num] = getFunctionDefinitionFieldnames(level, version);
+if (num > 0)
+	values = getFunctionDefinitionDefaultValues(level, version);
+	FunctionDefinition = cell2struct(values, fieldnames, 2);
+
+	%add level and version
+
+	FunctionDefinition.level = level;
+	FunctionDefinition.version = version;
+
+%check correct structure
+
+	if ~isSBML_FunctionDefinition(FunctionDefinition, level, version)
+		FunctionDefinition = struct();
+		warning('Warn:BadStruct', 'Failed to create FunctionDefinition');
+	end;
+
+else
+	FunctionDefinition = [];
+	warning('Warn:InvalidLV', 'FunctionDefinition not an element in SBML L%dV%d', level, version);
+end;
+

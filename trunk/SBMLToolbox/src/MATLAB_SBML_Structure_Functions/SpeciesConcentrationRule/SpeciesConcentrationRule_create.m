@@ -1,11 +1,16 @@
-function SpeciesConcentrationRule = SpeciesConcentrationRule_create()
+function SpeciesConcentrationRule = SpeciesConcentrationRule_create(varargin)
 %
-%   SpeciesConcentrationRule_create 
+% SpeciesConcentrationRule_create
+%    takes an SBML level (optional)
+%    and   an SBML version (optional)
 %
-%             and returns 
-%               a speciesConcentrationRule structure (level 1 ONLY)
+%    returns
+%      an MATLAB_SBML SpeciesConcentrationRule structure of the appropriate
+%           level and version
 %
-%       SpeciesConcentrationRule = SpeciesConcentrationRule_create
+% NOTE: the optional level and version preserve backwards compatability
+%         if version is missing the default values will be L1V2; L2V4 or L3V1
+%         if neither argument is supplied the default values will be L3V1
 
 %  Filename    :   SpeciesConcentrationRule_create.m
 %  Description :
@@ -37,22 +42,55 @@ function SpeciesConcentrationRule = SpeciesConcentrationRule_create()
 %----------------------------------------------------------------------- -->
 
 
+%check the input arguments are appropriate
 
-%default level = 1
-sbmlLevel = 1;
-if (nargin > 0)
-    error(sprintf('%s\n%s\n%s', 'SpeciesConcentrationRule_create()', ...
-      'requires no arguments', 'SEE help SpeciesConcentrationRule_create'));
+if (nargin > 2)
+	error('too many input arguments');
 end;
 
-SBMLfieldnames = {'typecode', 'notes', 'annotation', 'type', 'formula', ...
-  'variable', 'species', 'compartment', 'name', 'units'};
-Values = {'SBML_SPECIES_CONCENTRATION_RULE', '', '', '', '', '', '', '', '', ''};
-
-SpeciesConcentrationRule = cell2struct(Values, SBMLfieldnames, 2);
-
-%check created structure is appropriate
-if (~isSBML_SpeciesConcentrationRule(SpeciesConcentrationRule, sbmlLevel))
-    SpeciesConcentrationRule = [];
-    warning('Failed to create speciesConcentrationRule');
+switch (nargin)
+	case 2
+		level = varargin{1};
+		version = varargin{2};
+	case 1
+		level = varargin{1};
+		if (level == 1)
+			version = 2;
+		elseif (level == 2)
+			version = 4;
+		else
+			version = 1;
+		end;
+	otherwise
+		level = 3;
+		version = 1;
 end;
+
+if ~isValidLevelVersionCombination(level, version)
+	error('invalid level/version combination');
+end;
+
+%get fields and values and create the structure
+
+[fieldnames, num] = getSpeciesConcentrationRuleFieldnames(level, version);
+if (num > 0)
+	values = getSpeciesConcentrationRuleDefaultValues(level, version);
+	SpeciesConcentrationRule = cell2struct(values, fieldnames, 2);
+
+	%add level and version
+
+	SpeciesConcentrationRule.level = level;
+	SpeciesConcentrationRule.version = version;
+
+%check correct structure
+
+	if ~isSBML_SpeciesConcentrationRule(SpeciesConcentrationRule, level, version)
+		SpeciesConcentrationRule = struct();
+		warning('Warn:BadStruct', 'Failed to create SpeciesConcentrationRule');
+	end;
+
+else
+	SpeciesConcentrationRule = [];
+	warning('Warn:InvalidLV', 'SpeciesConcentrationRule not an element in SBML L%dV%d', level, version);
+end;
+

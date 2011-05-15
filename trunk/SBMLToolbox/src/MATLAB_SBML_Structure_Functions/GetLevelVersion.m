@@ -50,7 +50,7 @@ end;
 typecode = SBMLStructure.typecode;
 
 switch (typecode)
-  case 'SBML_COMPARTMENT'
+  case {'SBML_COMPARTMENT', 'Compartment', 'compartment'}
     func = 'isSBML_Compartment';
     fhandle =  str2func(func);
   case 'SBML_EVENT'
@@ -59,65 +59,65 @@ switch (typecode)
   case 'SBML_EVENT_ASSIGNMENT'
     func = 'isSBML_EventAssignment';
     fhandle =  str2func(func);
-  case 'SBML_FUNCTION_DEFINITION'
+  case {'SBML_FUNCTION_DEFINITION', 'FunctionDefinition', 'functionDefinition'}
     func = 'isSBML_FunctionDefinition';
     fhandle =  str2func(func);
-  case 'SBML_KINETIC_LAW'
+  case {'SBML_KINETIC_LAW', 'KineticLaw', 'kineticLaw'}
     func = 'isSBML_KineticLaw';
     fhandle =  str2func(func);
-  case 'SBML_MODEL'
+  case {'SBML_MODEL', 'Model', 'model'}
     level = SBMLStructure.SBML_level;
     version = SBMLStructure.SBML_version;
     return;
-  case 'SBML_PARAMETER'
+  case {'SBML_PARAMETER', 'Parameter', 'parameter'}
     func = 'isSBML_Parameter';
     fhandle =  str2func(func);
-  case 'SBML_REACTION'
+  case {'SBML_REACTION', 'Reaction', 'reaction'}
     func = 'isSBML_Reaction';
     fhandle =  str2func(func);
-  case 'SBML_SPECIES'
+  case {'SBML_SPECIES', 'Species', 'species'}
     func = 'isSBML_Species';
     fhandle =  str2func(func);
-  case 'SBML_SPECIES_REFERENCE'
+  case {'SBML_SPECIES_REFERENCE', 'SpeciesReference', 'speciesReference'}
     func = 'isSBML_SpeciesReference';
     fhandle =  str2func(func);
-  case 'SBML_MODIFIER_SPECIES_REFERENCE'
+  case {'SBML_MODIFIER_SPECIES_REFERENCE', 'ModifierSpeciesReference', 'modifierSpeciesReference'}
     func = 'isSBML_ModifierSpeciesReference';
     fhandle =  str2func(func);
-  case 'SBML_UNIT_DEFINITION'
+  case {'SBML_UNIT_DEFINITION', 'UnitDefinition', 'unitDefinition'}
     func = 'isSBML_UnitDefinition';
     fhandle =  str2func(func);
-  case 'SBML_UNIT'
+  case {'SBML_UNIT', 'Unit', 'unit'}
     func = 'isSBML_Unit';
     fhandle =  str2func(func);
-  case 'SBML_ASSIGNMENT_RULE'
+  case {'SBML_ASSIGNMENT_RULE', 'AssignmentRule', 'assignmentRule'}
     func = 'isSBML_AssignmentRule';
     fhandle =  str2func(func);
-  case 'SBML_ALGEBRAIC_RULE'
+  case {'SBML_ALGEBRAIC_RULE', 'AlgebraicRule', 'algebraicRule'}
     func = 'isSBML_AlgebraicRule';
     fhandle =  str2func(func);
-  case 'SBML_RATE_RULE'
+  case {'SBML_RATE_RULE', 'RateRule', 'ruleRule'}
     func = 'isSBML_RateRule';
     fhandle =  str2func(func);
-  case 'SBML_SPECIES_CONCENTRATION_RULE'
+  case {'SBML_SPECIES_CONCENTRATION_RULE', 'SpeciesConcentrationRule', 'speciesConcentrationRule'}
     func = 'isSBML_SpeciesConcentrationRule';
     fhandle =  str2func(func);
-  case 'SBML_COMPARTMENT_VOLUME_RULE'
+  case {'SBML_COMPARTMENT_VOLUME_RULE', 'CompartmentVolumeRule', 'compartmentVolumeRule'}
     func = 'isSBML_CompartmentVolumeRule';
     fhandle =  str2func(func);
-  case 'SBML_PARAMETER_RULE'
+  case {'SBML_PARAMETER_RULE', 'ParameterRule', 'parameterRule'}
     func = 'isSBML_ParameterRule';
     fhandle =  str2func(func);
-  case 'SBML_CONSTRAINT'
+  case {'SBML_CONSTRAINT', 'Constraint', 'constraint'}
     func = 'isSBML_Constraint';
     fhandle =  str2func(func);
-  case 'SBML_INITIAL_ASSIGNMENT'
+  case {'SBML_INITIAL_ASSIGNMENT', 'InitialAssignment', 'initialAssignment'}
     func = 'isSBML_InitialAssignment';
     fhandle =  str2func(func);
-  case 'SBML_COMPARTMENT_TYPE'
+  case {'SBML_COMPARTMENT_TYPE', 'CompartmentType', 'compartmentType'}
     func = 'isSBML_CompartmentType';
     fhandle =  str2func(func);
-  case 'SBML_SPECIES_TYPE'
+  case {'SBML_SPECIES_TYPE', 'SpeciesType', 'speciesType'}
     func = 'isSBML_SpeciesType';
     fhandle =  str2func(func);
   otherwise
