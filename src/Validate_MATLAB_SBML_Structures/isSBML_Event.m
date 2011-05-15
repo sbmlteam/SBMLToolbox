@@ -156,10 +156,10 @@ if (valid == 1)
       valid = 0;
       message = 'multiple delay elements encountered';
     end;
-    if (valid == 1)
+    if (valid == 1 && length(SBMLStructure.trigger) == 1)
       [valid, message] = isSBML_Trigger(SBMLStructure.trigger, level, version);
     end;
-    if (valid == 1)
+    if (valid == 1 && length(SBMLStructure.delay) == 1)
       [valid, message] = isSBML_Delay(SBMLStructure.delay, level, version);
     end;
   elseif (level > 2)
@@ -173,13 +173,13 @@ if (valid == 1)
       valid = 0;
       message = 'multiple priority elements encountered';
     end;
-    if (valid == 1)
+    if (valid == 1 && length(SBMLStructure.trigger) == 1)
       [valid, message] = isSBML_Trigger(SBMLStructure.trigger, level, version);
     end;
-    if (valid == 1)
+    if (valid == 1 && length(SBMLStructure.delay) == 1)
       [valid, message] = isSBML_Delay(SBMLStructure.delay, level, version);
     end;
-    if (valid == 1)
+    if (valid == 1 && length(SBMLStructure.priority) == 1)
       [valid, message] = isSBML_Priority(SBMLStructure.priority, level, version);
     end;
   end;

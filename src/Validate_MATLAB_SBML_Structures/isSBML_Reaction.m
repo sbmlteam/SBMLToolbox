@@ -166,7 +166,7 @@ if (valid == 1 && level > 1)
 end;
 
 % kineticLaw
-if (valid == 1)
+if (valid == 1 && length(SBMLStructure.kineticLaw) == 1)
   [valid, message] = isSBML_KineticLaw(SBMLStructure.kineticLaw, level, version);
 end;
 
