@@ -40,61 +40,61 @@ function [SBMLfieldnames, nNumberFields] = getFieldnames(typecode, ...
 
 
 switch (typecode)
-  case 'SBML_ALGEBRAIC_RULE'
+  case {'SBML_ALGEBRAIC_RULE', 'AlgebraicRule', 'algebraicRule'}
     fhandle = str2func('getAlgebraicRuleFieldnames');
-  case 'SBML_ASSIGNMENT_RULE'
+  case {'SBML_ASSIGNMENT_RULE', 'AssignmentRule', 'assignmentRule'}
     fhandle = str2func('getAssignmentRuleFieldnames');
-  case 'SBML_COMPARTMENT'
+  case {'SBML_COMPARTMENT', 'Compartment', 'compartment'}
     fhandle = str2func('getCompartmentFieldnames');
-  case 'SBML_COMPARTMENT_TYPE'
+  case {'SBML_COMPARTMENT_TYPE', 'CompartmentType', 'compartmentType'}
     fhandle = str2func('getCompartmentTypeFieldnames');
-  case 'SBML_COMPARTMENT_VOLUME_RULE'
+  case {'SBML_COMPARTMENT_VOLUME_RULE', 'CompartmentVolumeRule', 'compartmentVolumeRule'}
     fhandle = str2func('getCompartmentVolumeRuleFieldnames');
-  case 'SBML_CONSTRAINT'
+  case {'SBML_CONSTRAINT', 'Constraint', 'constraint'}
     fhandle = str2func('getConstraintFieldnames');
-  case 'SBML_DELAY'
+  case {'SBML_DELAY', 'Delay', 'delay'}
     fhandle = str2func('getDelayFieldnames');
-  case 'SBML_EVENT'
+  case {'SBML_EVENT', 'Event', 'event'}
     fhandle = str2func('getEventFieldnames');
-  case 'SBML_EVENT_ASSIGNMENT'
+  case {'SBML_EVENT_ASSIGNMENT', 'EventAssignment', 'eventAssignment'}
     fhandle = str2func('getEventAssignmentFieldnames');
-  case 'SBML_FUNCTION_DEFINITION'
+  case {'SBML_FUNCTION_DEFINITION', 'FunctionDefinition', 'functionDefinition'}
     fhandle = str2func('getFunctionDefinitionFieldnames');
-  case 'SBML_INITIAL_ASSIGNMENT'
+  case {'SBML_INITIAL_ASSIGNMENT', 'InitialAssignment', 'initialAssignment'}
     fhandle = str2func('getInitialAssignmentFieldnames');
-  case 'SBML_KINETIC_LAW'
+  case {'SBML_KINETIC_LAW', 'KineticLaw', 'kineticLaw'}
     fhandle = str2func('getKineticLawFieldnames');
-  case 'SBML_LOCAL_PARAMETER'
+  case {'SBML_LOCAL_PARAMETER', 'LocalParameter', 'localParameter'}
     fhandle = str2func('getLocalParameterFieldnames');
-  case 'SBML_MODEL'
+  case {'SBML_MODEL', 'Model', 'model'}
     fhandle = str2func('getModelFieldnames');
-  case 'SBML_MODIFIER_SPECIES_REFERENCE'
+  case {'SBML_MODIFIER_SPECIES_REFERENCE', 'ModifierSpeciesReference', 'modifierSpeciesReference'}
     fhandle = str2func('getModifierSpeciesReferenceFieldnames');
-  case 'SBML_PARAMETER'
+  case {'SBML_PARAMETER', 'Parameter', 'parameter'}
     fhandle = str2func('getParameterFieldnames');
-  case 'SBML_PARAMETER_RULE'
+  case {'SBML_PARAMETER_RULE', 'ParameterRule', 'parameterRule'}
     fhandle = str2func('getParameterRuleFieldnames');
-  case 'SBML_PRIORITY'
+  case {'SBML_PRIORITY', 'Priority', 'priority'}
     fhandle = str2func('getPriorityFieldnames');
-  case 'SBML_RATE_RULE'
+  case {'SBML_RATE_RULE', 'RateRule', 'ruleRule'}
     fhandle = str2func('getRateRuleFieldnames');
-  case 'SBML_REACTION'
+  case {'SBML_REACTION', 'Reaction', 'reaction'}
     fhandle = str2func('getReactionFieldnames');
-  case 'SBML_SPECIES'
+  case {'SBML_SPECIES', 'Species', 'species'}
     fhandle = str2func('getSpeciesFieldnames');
-  case 'SBML_SPECIES_CONCENTRATION_RULE'
+  case {'SBML_SPECIES_CONCENTRATION_RULE', 'SpeciesConcentrationRule', 'speciesConcentrationRule'}
     fhandle = str2func('getSpeciesConcentrationRuleFieldnames');
-  case 'SBML_SPECIES_REFERENCE'
+  case {'SBML_SPECIES_REFERENCE', 'SpeciesReference', 'speciesReference'}
     fhandle = str2func('getSpeciesReferenceFieldnames');
-  case 'SBML_SPECIES_TYPE'
+  case {'SBML_SPECIES_TYPE', 'SpeciesType', 'speciesType'}
     fhandle = str2func('getSpeciesTypeFieldnames');
-  case 'SBML_STOICHIOMETRY_MATH'
+  case {'SBML_STOICHIOMETRY_MATH', 'StoichiometryMath', 'stoichiometryMath'}
     fhandle = str2func('getStoichiometryMathFieldnames');
-  case 'SBML_TRIGGER'
+  case {'SBML_TRIGGER', 'Trigger', 'trigger'}
     fhandle = str2func('getTriggerFieldnames');
-  case 'SBML_UNIT'
+  case {'SBML_UNIT', 'Unit', 'unit'}
     fhandle = str2func('getUnitFieldnames');
-  case 'SBML_UNIT_DEFINITION'
+  case {'SBML_UNIT_DEFINITION', 'UnitDefinition', 'unitDefinition'}
     fhandle = str2func('getUnitDefinitionFieldnames');
   otherwise
     error('%s\n%s', ...

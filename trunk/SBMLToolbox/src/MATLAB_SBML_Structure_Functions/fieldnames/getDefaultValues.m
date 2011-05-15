@@ -39,61 +39,61 @@ function [defaultValues] = getDefaultValues(typecode, level, version)
 
 
 switch (typecode)
-  case 'SBML_ALGEBRAIC_RULE'
+  case {'SBML_ALGEBRAIC_RULE', 'AlgebraicRule', 'algebraicRule'}
     fhandle = str2func('getAlgebraicRuleDefaultValues');
-  case 'SBML_ASSIGNMENT_RULE'
+  case {'SBML_ASSIGNMENT_RULE', 'AssignmentRule', 'assignmentRule'}
     fhandle = str2func('getAssignmentRuleDefaultValues');
-  case 'SBML_COMPARTMENT'
+  case {'SBML_COMPARTMENT', 'Compartment', 'compartment'}
     fhandle = str2func('getCompartmentDefaultValues');
-  case 'SBML_COMPARTMENT_TYPE'
+  case {'SBML_COMPARTMENT_TYPE', 'CompartmentType', 'compartmentType'}
     fhandle = str2func('getCompartmentTypeDefaultValues');
-  case 'SBML_COMPARTMENT_VOLUME_RULE'
+  case {'SBML_COMPARTMENT_VOLUME_RULE', 'CompartmentVolumeRule', 'compartmentVolumeRule'}
     fhandle = str2func('getCompartmentVolumeRuleDefaultValues');
-  case 'SBML_CONSTRAINT'
+  case {'SBML_CONSTRAINT', 'Constraint', 'constraint'}
     fhandle = str2func('getConstraintDefaultValues');
-  case 'SBML_DELAY'
+  case {'SBML_DELAY', 'Delay', 'delay'}
     fhandle = str2func('getDelayDefaultValues');
-  case 'SBML_EVENT'
+  case {'SBML_EVENT', 'Event', 'event'}
     fhandle = str2func('getEventDefaultValues');
-  case 'SBML_EVENT_ASSIGNMENT'
+  case {'SBML_EVENT_ASSIGNMENT', 'EventAssignment', 'eventAssignment'}
     fhandle = str2func('getEventAssignmentDefaultValues');
-  case 'SBML_FUNCTION_DEFINITION'
+  case {'SBML_FUNCTION_DEFINITION', 'FunctionDefinition', 'functionDefinition'}
     fhandle = str2func('getFunctionDefinitionDefaultValues');
-  case 'SBML_INITIAL_ASSIGNMENT'
+  case {'SBML_INITIAL_ASSIGNMENT', 'InitialAssignment', 'initialAssignment'}
     fhandle = str2func('getInitialAssignmentDefaultValues');
-  case 'SBML_KINETIC_LAW'
+  case {'SBML_KINETIC_LAW', 'KineticLaw', 'kineticLaw'}
     fhandle = str2func('getKineticLawDefaultValues');
-  case 'SBML_LOCAL_PARAMETER'
+  case {'SBML_LOCAL_PARAMETER', 'LocalParameter', 'localParameter'}
     fhandle = str2func('getLocalParameterDefaultValues');
-  case 'SBML_MODEL'
+  case {'SBML_MODEL', 'Model', 'model'}
     fhandle = str2func('getModelDefaultValues');
-  case 'SBML_MODIFIER_SPECIES_REFERENCE'
+  case {'SBML_MODIFIER_SPECIES_REFERENCE', 'ModifierSpeciesReference', 'modifierSpeciesReference'}
     fhandle = str2func('getModifierSpeciesReferenceDefaultValues');
-  case 'SBML_PARAMETER'
+  case {'SBML_PARAMETER', 'Parameter', 'parameter'}
     fhandle = str2func('getParameterDefaultValues');
-  case 'SBML_PARAMETER_RULE'
+  case {'SBML_PARAMETER_RULE', 'ParameterRule', 'parameterRule'}
     fhandle = str2func('getParameterRuleDefaultValues');
-  case 'SBML_PRIORITY'
+  case {'SBML_PRIORITY', 'Priority', 'priority'}
     fhandle = str2func('getPriorityDefaultValues');
-  case 'SBML_RATE_RULE'
+  case {'SBML_RATE_RULE', 'RateRule', 'ruleRule'}
     fhandle = str2func('getRateRuleDefaultValues');
-  case 'SBML_REACTION'
+  case {'SBML_REACTION', 'Reaction', 'reaction'}
     fhandle = str2func('getReactionDefaultValues');
-  case 'SBML_SPECIES'
+  case {'SBML_SPECIES', 'Species', 'species'}
     fhandle = str2func('getSpeciesDefaultValues');
-  case 'SBML_SPECIES_CONCENTRATION_RULE'
+  case {'SBML_SPECIES_CONCENTRATION_RULE', 'SpeciesConcentrationRule', 'speciesConcentrationRule'}
     fhandle = str2func('getSpeciesConcentrationRuleDefaultValues');
-  case 'SBML_SPECIES_REFERENCE'
+  case {'SBML_SPECIES_REFERENCE', 'SpeciesReference', 'speciesReference'}
     fhandle = str2func('getSpeciesReferenceDefaultValues');
-  case 'SBML_SPECIES_TYPE'
+  case {'SBML_SPECIES_TYPE', 'SpeciesType', 'speciesType'}
     fhandle = str2func('getSpeciesTypeDefaultValues');
-  case 'SBML_STOICHIOMETRY_MATH'
+  case {'SBML_STOICHIOMETRY_MATH', 'StoichiometryMath', 'stoichiometryMath'}
     fhandle = str2func('getStoichiometryMathDefaultValues');
-  case 'SBML_TRIGGER'
+  case {'SBML_TRIGGER', 'Trigger', 'trigger'}
     fhandle = str2func('getTriggerDefaultValues');
-  case 'SBML_UNIT'
+  case {'SBML_UNIT', 'Unit', 'unit'}
     fhandle = str2func('getUnitDefaultValues');
-  case 'SBML_UNIT_DEFINITION'
+  case {'SBML_UNIT_DEFINITION', 'UnitDefinition', 'unitDefinition'}
     fhandle = str2func('getUnitDefinitionDefaultValues');
   otherwise
     error('%s\n%s', ...
