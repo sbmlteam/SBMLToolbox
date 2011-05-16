@@ -1,13 +1,11 @@
 function SBMLConstraint = Constraint_setSBOTerm(SBMLConstraint, sboTerm)
 %
-%   Constraint_setSBOTerm 
-%             takes  1) an SBMLConstraint structure 
-%             and    2) an integer representing the sboTerm to be set
+% Constraint_setSBOTerm
+%    takes an SBML Constraint structure
+%    and the sboTerm to be set
 %
-%             and returns 
-%               the Constraint with the sboTerm set
-%
-%       SBMLConstraint = Constraint_setSBOTerm(SBMLConstraint, sboTerm)
+%    returns
+%      the Constraint with the new value for the sboTerm attribute
 
 %  Filename    :   Constraint_setSBOTerm.m
 %  Description :
@@ -39,28 +37,17 @@ function SBMLConstraint = Constraint_setSBOTerm(SBMLConstraint, sboTerm)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLConstraint))
-    error(sprintf('%s\n%s', ...
-      'Constraint_setSBOTerm(SBMLConstraint, sboTerm)', ...
-      'argument must be an SBML Constraint structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLConstraint);
+[level, version] = GetLevelVersion(SBMLConstraint);
 
-if (~isSBML_Constraint(SBMLConstraint, sbmlLevel, sbmlVersion))
-  error(sprintf('%s\n%s', ...
-    'Constraint_setSBOTerm(SBMLConstraint, sboTerm)', ...
-    'first argument must be an SBML Constraint structure'));
-elseif (~isIntegralNumber(sboTerm))
-    error(sprintf('%s\n%s', ...
-      'Constraint_setSBOTerm(SBMLConstraint, sboTerm)', ...
-      'second argument must be an integer representing the sboTerm'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'Constraint_setSBOTerm(SBMLConstraint, sboTerm)',  ...
-      'sboTerm field only in level 2 version 2/3 model'));    
+if isfield(SBMLConstraint, 'sboTerm')
+	if ~isIntegralNumber(sboTerm)
+		error('sboTerm must be an integer') ;
+	else
+		SBMLConstraint.sboTerm = sboTerm;
+	end;
+else
+	error('sboTerm not an attribute on SBML L%dV%d Constraint', level, version);
 end;
 
-SBMLConstraint.sboTerm = sboTerm;

@@ -1,13 +1,11 @@
 function value = CompartmentVolumeRule_isSetCompartment(SBMLCompartmentVolumeRule)
 %
-%   CompartmentVolumeRule_isSetCompartment 
-%             takes an SBMLCompartmentVolumeRule structure 
+% CompartmentVolumeRule_isSetCompartment
+%    takes an SBML CompartmentVolumeRule structure
 %
-%             and returns 
-%               1 if the compartment has been set 
-%               0 otherwise
-%
-%       value = CompartmentVolumeRule_isSetCompartment(SBMLCompartmentVolumeRule)
+%    returns
+%      1 if the value for the compartment attribute is set
+%      0 otherwise
 
 %  Filename    :   CompartmentVolumeRule_isSetCompartment.m
 %  Description :
@@ -39,18 +37,13 @@ function value = CompartmentVolumeRule_isSetCompartment(SBMLCompartmentVolumeRul
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLCompartmentVolumeRule))
-    error(sprintf('%s\n%s', ...
-      'CompartmentVolumeRule_isSetCompartment(SBMLCompartmentVolumeRule)', ...
-      'argument must be an SBML compartmentVolumeRule structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLCompartmentVolumeRule);
+[level, version] = GetLevelVersion(SBMLCompartmentVolumeRule);
 
-if (~isSBML_CompartmentVolumeRule(SBMLCompartmentVolumeRule, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'CompartmentVolumeRule_isSetCompartment(SBMLCompartmentVolumeRule)', 'argument must be an SBML compartmentVolumeRule structure'));
+if isfield(SBMLCompartmentVolumeRule, 'compartment')
+	value = ~isempty(SBMLCompartmentVolumeRule.compartment);
+else
+	error('compartment not an attribute on SBML L%dV%d CompartmentVolumeRule', level, version);
 end;
 
-value = ~isempty(SBMLCompartmentVolumeRule.compartment);

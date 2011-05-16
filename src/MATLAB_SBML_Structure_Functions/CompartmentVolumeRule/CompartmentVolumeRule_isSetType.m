@@ -1,16 +1,16 @@
-function SBMLConstraint = Constraint_setMessage(SBMLConstraint, message)
+function value = CompartmentVolumeRule_isSetType(SBMLCompartmentVolumeRule)
 %
-% Constraint_setMessage
-%    takes an SBML Constraint structure
-%    and the message to be set
+% CompartmentVolumeRule_isSetType
+%    takes an SBML CompartmentVolumeRule structure
 %
 %    returns
-%      the Constraint with the new value for the message attribute
+%      1 if the value for the type attribute is set
+%      0 otherwise
 
-%  Filename    :   Constraint_setMessage.m
+%  Filename    :   CompartmentVolumeRule_isSetType.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -39,15 +39,11 @@ function SBMLConstraint = Constraint_setMessage(SBMLConstraint, message)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLConstraint);
+[level, version] = GetLevelVersion(SBMLCompartmentVolumeRule);
 
-if isfield(SBMLConstraint, 'message')
-	if ~ischar(message)
-		error('message must be character array') ;
-	else
-		SBMLConstraint.message = message;
-	end;
+if isfield(SBMLCompartmentVolumeRule, 'type')
+	value = ~isempty(SBMLCompartmentVolumeRule.type);
 else
-	error('message not an attribute on SBML L%dV%d Constraint', level, version);
+	error('type not an attribute on SBML L%dV%d CompartmentVolumeRule', level, version);
 end;
 

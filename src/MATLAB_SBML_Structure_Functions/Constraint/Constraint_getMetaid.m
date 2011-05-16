@@ -1,16 +1,15 @@
-function SBMLConstraint = Constraint_setMessage(SBMLConstraint, message)
+function metaid = Constraint_getMetaid(SBMLConstraint)
 %
-% Constraint_setMessage
+% Constraint_getMetaid
 %    takes an SBML Constraint structure
-%    and the message to be set
 %
 %    returns
-%      the Constraint with the new value for the message attribute
+%      the value of the metaid attribute
 
-%  Filename    :   Constraint_setMessage.m
+%  Filename    :   Constraint_getMetaid.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -41,13 +40,9 @@ function SBMLConstraint = Constraint_setMessage(SBMLConstraint, message)
 
 [level, version] = GetLevelVersion(SBMLConstraint);
 
-if isfield(SBMLConstraint, 'message')
-	if ~ischar(message)
-		error('message must be character array') ;
-	else
-		SBMLConstraint.message = message;
-	end;
+if isfield(SBMLConstraint, 'metaid')
+	metaid = SBMLConstraint.metaid;
 else
-	error('message not an attribute on SBML L%dV%d Constraint', level, version);
+	error('metaid not an attribute on SBML L%dV%d Constraint', level, version);
 end;
 

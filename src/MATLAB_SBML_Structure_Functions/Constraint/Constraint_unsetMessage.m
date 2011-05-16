@@ -1,16 +1,15 @@
-function SBMLConstraint = Constraint_setMessage(SBMLConstraint, message)
+function SBMLConstraint = Constraint_unsetMessage(SBMLConstraint)
 %
-% Constraint_setMessage
+% Constraint_getMessage
 %    takes an SBML Constraint structure
-%    and the message to be set
 %
 %    returns
-%      the Constraint with the new value for the message attribute
+%      the Constraint with the value for the message attribute unset
 
-%  Filename    :   Constraint_setMessage.m
+%  Filename    :   Constraint_unsetMessage.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -42,11 +41,7 @@ function SBMLConstraint = Constraint_setMessage(SBMLConstraint, message)
 [level, version] = GetLevelVersion(SBMLConstraint);
 
 if isfield(SBMLConstraint, 'message')
-	if ~ischar(message)
-		error('message must be character array') ;
-	else
-		SBMLConstraint.message = message;
-	end;
+	SBMLConstraint.message = '';
 else
 	error('message not an attribute on SBML L%dV%d Constraint', level, version);
 end;

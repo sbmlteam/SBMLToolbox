@@ -1,12 +1,10 @@
 function sboTerm = Constraint_getSBOTerm(SBMLConstraint)
 %
-%   Constraint_getSBOTerm 
-%             takes an SBMLConstraint structure 
+% Constraint_getSBOTerm
+%    takes an SBML Constraint structure
 %
-%             and returns 
-%               the sboTerm of the Constraint as an integer
-%
-%       sboTerm = Constraint_getSBOTerm(SBMLConstraint)
+%    returns
+%      the value of the sboTerm attribute
 
 %  Filename    :   Constraint_getSBOTerm.m
 %  Description :
@@ -38,24 +36,13 @@ function sboTerm = Constraint_getSBOTerm(SBMLConstraint)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLConstraint))
-    error(sprintf('%s\n%s', ...
-      'Constraint_getSBOTerm(SBMLConstraint)', ...
-      'argument must be an SBML Constraint structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLConstraint);
+[level, version] = GetLevelVersion(SBMLConstraint);
 
-if (~isSBML_Constraint(SBMLConstraint, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', ...
-      'Constraint_getSBOTerm(SBMLConstraint)', ...
-      'argument must be an SBML Constraint structure'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'Constraint_getSBOTerm(SBMLConstraint)', ...
-      'sboTerm field only in level 2 version 2/3 model'));    
+if isfield(SBMLConstraint, 'sboTerm')
+	sboTerm = SBMLConstraint.sboTerm;
+else
+	error('sboTerm not an attribute on SBML L%dV%d Constraint', level, version);
 end;
 
-sboTerm = SBMLConstraint.sboTerm;

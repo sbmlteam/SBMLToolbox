@@ -1,12 +1,10 @@
 function id = CompartmentType_getId(SBMLCompartmentType)
 %
-%   CompartmentType_getId 
-%             takes an SBMLCompartmentType structure 
+% CompartmentType_getId
+%    takes an SBML CompartmentType structure
 %
-%             and returns 
-%               the id of the CompartmentType as a string
-%
-%       id = CompartmentType_getId(SBMLCompartmentType)
+%    returns
+%      the value of the id attribute
 
 %  Filename    :   CompartmentType_getId.m
 %  Description :
@@ -38,24 +36,13 @@ function id = CompartmentType_getId(SBMLCompartmentType)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLCompartmentType))
-    error(sprintf('%s\n%s', ...
-      'CompartmentType_getId(SBMLCompartmentType)', ...
-      'argument must be an SBML CompartmentType structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLCompartmentType);
+[level, version] = GetLevelVersion(SBMLCompartmentType);
 
-if (~isSBML_CompartmentType(SBMLCompartmentType, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', ...
-      'CompartmentType_getId(SBMLCompartmentType)', ...
-      'argument must be an SBML CompartmentType structure'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'CompartmentType_getId(SBMLCompartmentType)', ...
-      'id field only in level 2 version 2/3 model'));    
+if isfield(SBMLCompartmentType, 'id')
+	id = SBMLCompartmentType.id;
+else
+	error('id not an attribute on SBML L%dV%d CompartmentType', level, version);
 end;
 
-id = SBMLCompartmentType.id;
