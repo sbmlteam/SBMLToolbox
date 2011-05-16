@@ -46,9 +46,7 @@ fprintf(fileOut, '%%------------------------------------------------------------
 fprintf(fileOut, '%%get level and version and check the input arguments are appropriate\n\n');
 fprintf(fileOut, '[level, version] = GetLevelVersion(SBML%s);\n\n', name);
 
-fprintf(fileOut, 'fieldnames = get%sFieldnames(level, version);\n\n', name);
-
-fprintf(fileOut, 'if sum(ismember(fieldnames, ''%s'')) > 0\n', attrib);
+fprintf(fileOut, 'if isfield(SBML%s, ''%s'')\n', name, attrib);
 fprintf(fileOut, '\tSBML%s.%s = '''';\n', name, attrib);
 fprintf(fileOut, 'else\n');
 fprintf(fileOut, '\terror(''%s not an attribute on SBML L%%dV%%d %s'', level, version);\n', ...

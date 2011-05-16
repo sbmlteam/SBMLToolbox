@@ -1,22 +1,21 @@
-function writeIsset(name, attrib)
+function writeAddStruct(name, attrib)
 
 capAttrib = strcat(upper(attrib(1)), attrib(2:end));
-newfilename = sprintf('%s_isSet%s.m', name, capAttrib);
+newfilename = sprintf('%s_add%s.m', name, capAttrib);
 fileOut = fopen(newfilename', 'w');
 
-fprintf(fileOut, 'function value = %s_isSet%s(SBML%s)\n', name, capAttrib, name);
+fprintf(fileOut, 'function SBML%s = %s_add%s(SBML%s, SBML%s)\n', name, name, capAttrib, name, capAttrib);
 
 % put in header and licence
 fprintf(fileOut, '%%\n');
-fprintf(fileOut, '%% %s_isSet%s\n', name, capAttrib); 
+fprintf(fileOut, '%% %s_add%s(SBML%s, SBML%s)\n', name, capAttrib, name, capAttrib); 
 fprintf(fileOut, '%%    takes an SBML %s structure\n', name);
+fprintf(fileOut, '%%    and an SBML %s structure\n', capAttrib);
 fprintf(fileOut, '%%\n');
 fprintf(fileOut, '%%    returns\n'); 
-fprintf(fileOut, '%%      1 if the value for the %s attribute is set\n', attrib);
-fprintf(fileOut, '%%      0 otherwise\n\n');
+fprintf(fileOut, '%%      the %s with the %s element added\n\n', name, capAttrib);
 
-
-fprintf(fileOut, '%%  Filename    :   %s_isSet%s.m\n', name, capAttrib);
+fprintf(fileOut, '%%  Filename    :   %s_add%s.m\n', name, capAttrib);
 fprintf(fileOut, '%%  Description :\n');
 fprintf(fileOut, '%%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>\n');
 fprintf(fileOut, '%%  $Id: $\n');
@@ -46,13 +45,26 @@ fprintf(fileOut, '%% in the file named "LICENSE.txt" included with this software
 fprintf(fileOut, '%%----------------------------------------------------------------------- -->\n\n\n');
 
 fprintf(fileOut, '%%get level and version and check the input arguments are appropriate\n\n');
-fprintf(fileOut, '[level, version] = GetLevelVersion(SBML%s);\n\n', name);
+fprintf(fileOut, '[level, version] = GetLevelVersion(SBML%s);\n', name);
+fprintf(fileOut, '[%s_level, %s_version] = GetLevelVersion(SBML%s);\n\n', attrib, attrib, capAttrib);
+
+
+fprintf(fileOut, 'if level ~= %s_level\n', attrib);
+fprintf(fileOut, '\terror(''mismatch in levels'');\n');
+fprintf(fileOut, 'elseif version ~= %s_version\n', attrib);
+fprintf(fileOut, '\terror(''mismatch in versions'');\n');
+fprintf(fileOut, 'end;\n\n');
 
 fprintf(fileOut, 'if isfield(SBML%s, ''%s'')\n', name, attrib);
-fprintf(fileOut, '\tvalue = SBML%s.isSet%s;\n', name, capAttrib);
+fprintf(fileOut, '\tindex = length(SBML%s.%s);\n', name, attrib);
+fprintf(fileOut, '\tif index == 0\n');
+fprintf(fileOut, '\t\tSBML%s.%s = SBML%s;\n', name, attrib, capAttrib);
+fprintf(fileOut, '\telse\n');
+fprintf(fileOut, '\t\tSBML%s.%s(index+1) = SBML%s;\n', name, attrib, capAttrib);
+fprintf(fileOut, '\tend;\n');
 fprintf(fileOut, 'else\n');
-fprintf(fileOut, '\terror(''isSet%s not an attribute on SBML L%%dV%%d %s'', level, version);\n', ...
-  capAttrib, name);
+fprintf(fileOut, '\terror(''%s not an element on SBML L%%dV%%d %s'', level, version);\n', ...
+  attrib, name);
 fprintf(fileOut, 'end;\n\n');
 
 fclose(fileOut);

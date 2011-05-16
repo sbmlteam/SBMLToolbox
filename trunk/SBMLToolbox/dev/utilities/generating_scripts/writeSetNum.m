@@ -1,22 +1,21 @@
-function writeIsset(name, attrib)
+function writeSetNum(name, attrib)
 
 capAttrib = strcat(upper(attrib(1)), attrib(2:end));
-newfilename = sprintf('%s_isSet%s.m', name, capAttrib);
+newfilename = sprintf('%s_set%s.m', name, capAttrib);
 fileOut = fopen(newfilename', 'w');
 
-fprintf(fileOut, 'function value = %s_isSet%s(SBML%s)\n', name, capAttrib, name);
+fprintf(fileOut, 'function SBML%s = %s_set%s(SBML%s, %s)\n', name, name, capAttrib, name, attrib);
 
 % put in header and licence
 fprintf(fileOut, '%%\n');
-fprintf(fileOut, '%% %s_isSet%s\n', name, capAttrib); 
+fprintf(fileOut, '%% %s_set%s\n', name, capAttrib); 
 fprintf(fileOut, '%%    takes an SBML %s structure\n', name);
+fprintf(fileOut, '%%    and the %s to be set\n', attrib);
 fprintf(fileOut, '%%\n');
 fprintf(fileOut, '%%    returns\n'); 
-fprintf(fileOut, '%%      1 if the value for the %s attribute is set\n', attrib);
-fprintf(fileOut, '%%      0 otherwise\n\n');
+fprintf(fileOut, '%%      the %s with the new value for the %s attribute\n\n', name, attrib);
 
-
-fprintf(fileOut, '%%  Filename    :   %s_isSet%s.m\n', name, capAttrib);
+fprintf(fileOut, '%%  Filename    :   %s_set%s.m\n', name, capAttrib);
 fprintf(fileOut, '%%  Description :\n');
 fprintf(fileOut, '%%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>\n');
 fprintf(fileOut, '%%  $Id: $\n');
@@ -49,10 +48,14 @@ fprintf(fileOut, '%%get level and version and check the input arguments are appr
 fprintf(fileOut, '[level, version] = GetLevelVersion(SBML%s);\n\n', name);
 
 fprintf(fileOut, 'if isfield(SBML%s, ''%s'')\n', name, attrib);
-fprintf(fileOut, '\tvalue = SBML%s.isSet%s;\n', name, capAttrib);
+fprintf(fileOut, '\tif ~isnumeric(%s)\n', attrib);
+fprintf(fileOut, '\t\terror(''%s must be numeric'') ;\n', attrib);
+fprintf(fileOut, '\telse\n');
+fprintf(fileOut, '\t\tSBML%s.%s = %s;\n', name, attrib, attrib);
+fprintf(fileOut, '\tend;\n');
 fprintf(fileOut, 'else\n');
-fprintf(fileOut, '\terror(''isSet%s not an attribute on SBML L%%dV%%d %s'', level, version);\n', ...
-  capAttrib, name);
+fprintf(fileOut, '\terror(''%s not an attribute on SBML L%%dV%%d %s'', level, version);\n', ...
+  attrib, name);
 fprintf(fileOut, 'end;\n\n');
 
 fclose(fileOut);
