@@ -1,12 +1,10 @@
 function compartmentType = Compartment_getCompartmentType(SBMLCompartment)
 %
-%   Compartment_getCompartmentType 
-%             takes an SBMLCompartment structure 
+% Compartment_getCompartmentType
+%    takes an SBML Compartment structure
 %
-%             and returns 
-%               the compartmentType of the compartment as an integer
-%
-%       compartmentType = Compartment_getCompartmentType(SBMLCompartment)
+%    returns
+%      the value of the compartmentType attribute
 
 %  Filename    :   Compartment_getCompartmentType.m
 %  Description :
@@ -38,24 +36,13 @@ function compartmentType = Compartment_getCompartmentType(SBMLCompartment)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLCompartment))
-    error(sprintf('%s\n%s', ...
-      'Compartment_getCompartmentType(SBMLCompartment)', ...
-      'argument must be an SBML compartment structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLCompartment);
+[level, version] = GetLevelVersion(SBMLCompartment);
 
-if (~isSBML_Compartment(SBMLCompartment, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', ...
-      'Compartment_getCompartmentType(SBMLCompartment)', ...
-      'argument must be an SBML compartment structure'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'Compartment_getCompartmentType(SBMLCompartment)', ...
-      'compartmentType field only in level 2 version 2/3 model'));    
+if isfield(SBMLCompartment, 'compartmentType')
+	compartmentType = SBMLCompartment.compartmentType;
+else
+	error('compartmentType not an attribute on SBML L%dV%d Compartment', level, version);
 end;
 
-compartmentType = SBMLCompartment.compartmentType;

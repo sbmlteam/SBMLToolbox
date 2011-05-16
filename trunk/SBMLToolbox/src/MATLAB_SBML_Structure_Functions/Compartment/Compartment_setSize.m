@@ -1,13 +1,11 @@
 function SBMLCompartment = Compartment_setSize(SBMLCompartment, size)
 %
-%   Compartment_setSize 
-%             takes  1) an SBMLCompartment structure 
-%             and    2) a double representing the size to be set
+% Compartment_setSize
+%    takes an SBML Compartment structure
+%    and the size to be set
 %
-%             and returns 
-%               the compartment with the size set
-%
-%       SBMLCompartment = Compartment_setSize(SBMLCompartment, size)
+%    returns
+%      the Compartment with the new value for the size attribute
 
 %  Filename    :   Compartment_setSize.m
 %  Description :
@@ -39,21 +37,20 @@ function SBMLCompartment = Compartment_setSize(SBMLCompartment, size)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLCompartment))
-    error(sprintf('%s\n%s', ...
-      'Compartment_setSize(SBMLCompartment)', ...
-      'argument must be an SBML compartment structure'));
+[level, version] = GetLevelVersion(SBMLCompartment);
+
+if isfield(SBMLCompartment, 'size')
+	if ~isnumeric(size)
+		error('size must be numeric') ;
+	else
+		SBMLCompartment.size = size;
+    if (isfield(SBMLCompartment, 'isSetSize'))
+      SBMLCompartment.isSetSize = 1;
+    end;
+	end;
+else
+	error('size not an attribute on SBML L%dV%d Compartment', level, version);
 end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLCompartment);
 
-if (~isSBML_Compartment(SBMLCompartment, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Compartment_setSize(SBMLCompartment, size)', 'first argument must be an SBML compartment structure'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Compartment_setSize(SBMLCompartment, size)', 'no size field in a level 1 model'));    
-end;
-
-SBMLCompartment.size = size;
-SBMLCompartment.isSetSize = int32(1);

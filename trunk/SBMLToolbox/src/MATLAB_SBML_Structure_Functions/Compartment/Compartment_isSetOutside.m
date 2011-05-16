@@ -1,13 +1,11 @@
 function value = Compartment_isSetOutside(SBMLCompartment)
 %
-%   Compartment_isSetOutside 
-%             takes an SBMLCompartment structure 
+% Compartment_isSetOutside
+%    takes an SBML Compartment structure
 %
-%             and returns 
-%               1 if the outside has been set 
-%               0 otherwise
-%
-%       value = Compartment_isSetOutside(SBMLCompartment)
+%    returns
+%      1 if the value for the outside attribute is set
+%      0 otherwise
 
 %  Filename    :   Compartment_isSetOutside.m
 %  Description :
@@ -39,18 +37,13 @@ function value = Compartment_isSetOutside(SBMLCompartment)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLCompartment))
-    error(sprintf('%s\n%s', ...
-      'Compartment_isSetOutside(SBMLCompartment)', ...
-      'argument must be an SBML compartment structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLCompartment);
+[level, version] = GetLevelVersion(SBMLCompartment);
 
-if (~isSBML_Compartment(SBMLCompartment, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Compartment_isSetOutside(SBMLCompartment)', 'argument must be an SBML compartment structure'));
+if isfield(SBMLCompartment, 'outside')
+	value = ~isempty(SBMLCompartment.outside);
+else
+	error('outside not an attribute on SBML L%dV%d Compartment', level, version);
 end;
 
-value = ~isempty(SBMLCompartment.outside);

@@ -1,13 +1,11 @@
 function SBMLCompartment = Compartment_setName(SBMLCompartment, name)
 %
-%   Compartment_setName 
-%             takes  1) an SBMLCompartment structure 
-%             and    2) a string representing the name to be set
+% Compartment_setName
+%    takes an SBML Compartment structure
+%    and the name to be set
 %
-%             and returns 
-%               the compartment with the name set
-%
-%       SBMLCompartment = Compartment_setName(SBMLCompartment, 'name')
+%    returns
+%      the Compartment with the new value for the name attribute
 
 %  Filename    :   Compartment_setName.m
 %  Description :
@@ -39,20 +37,17 @@ function SBMLCompartment = Compartment_setName(SBMLCompartment, name)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLCompartment))
-    error(sprintf('%s\n%s', ...
-      'Compartment_setName(SBMLCompartment)', ...
-      'argument must be an SBML compartment structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLCompartment);
+[level, version] = GetLevelVersion(SBMLCompartment);
 
-if (~isSBML_Compartment(SBMLCompartment, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Compartment_setName(SBMLCompartment, name)', 'first argument must be an SBML compartment structure'));
-elseif (~ischar(name))
-    error(sprintf('Compartment_setName(SBMLCompartment, name)\n%s', 'second argument must be a string representing the name of the compartment'));
+if isfield(SBMLCompartment, 'name')
+	if ~ischar(name)
+		error('name must be character array') ;
+	else
+		SBMLCompartment.name = name;
+	end;
+else
+	error('name not an attribute on SBML L%dV%d Compartment', level, version);
 end;
 
-SBMLCompartment.name = name;

@@ -1,15 +1,15 @@
-function spatialDimensions = Compartment_getSpatialDimensions(SBMLCompartment)
+function SBMLCompartment = Compartment_unsetMetaid(SBMLCompartment)
 %
-% Compartment_getSpatialDimensions
+% Compartment_getMetaid
 %    takes an SBML Compartment structure
 %
 %    returns
-%      the value of the spatialDimensions attribute
+%      the Compartment with the value for the metaid attribute unset
 
-%  Filename    :   Compartment_getSpatialDimensions.m
+%  Filename    :   Compartment_unsetMetaid.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -40,9 +40,9 @@ function spatialDimensions = Compartment_getSpatialDimensions(SBMLCompartment)
 
 [level, version] = GetLevelVersion(SBMLCompartment);
 
-if isfield(SBMLCompartment, 'spatialDimensions')
-	spatialDimensions = SBMLCompartment.spatialDimensions;
+if isfield(SBMLCompartment, 'metaid')
+	SBMLCompartment.metaid = '';
 else
-	error('spatialDimensions not an attribute on SBML L%dV%d Compartment', level, version);
+	error('metaid not an attribute on SBML L%dV%d Compartment', level, version);
 end;
 

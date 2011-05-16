@@ -1,13 +1,11 @@
 function SBMLCompartment = Compartment_setId(SBMLCompartment, id)
 %
-%   Compartment_setId 
-%             takes  1) an SBMLCompartment structure 
-%             and    2) a string representing the id to be set
+% Compartment_setId
+%    takes an SBML Compartment structure
+%    and the id to be set
 %
-%             and returns 
-%               the compartment with the id set
-%
-%       SBMLCompartment = Compartment_setId(SBMLCompartment, 'id')
+%    returns
+%      the Compartment with the new value for the id attribute
 
 %  Filename    :   Compartment_setId.m
 %  Description :
@@ -39,22 +37,17 @@ function SBMLCompartment = Compartment_setId(SBMLCompartment, id)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLCompartment))
-    error(sprintf('%s\n%s', ...
-      'Compartment_setId(SBMLCompartment)', ...
-      'argument must be an SBML compartment structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLCompartment);
+[level, version] = GetLevelVersion(SBMLCompartment);
 
-if (~isSBML_Compartment(SBMLCompartment, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Compartment_setId(SBMLCompartment, id)', 'first argument must be an SBML compartment structure'));
-elseif (~ischar(id))
-    error(sprintf('Compartment_setId(SBMLCompartment, id)\n%s', 'second argument must be a string representing the id of the compartment'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Compartment_setId(SBMLCompartment, id)', 'no id field in a level 1 model'));    
+if isfield(SBMLCompartment, 'id')
+	if ~ischar(id)
+		error('id must be character array') ;
+	else
+		SBMLCompartment.id = id;
+	end;
+else
+	error('id not an attribute on SBML L%dV%d Compartment', level, version);
 end;
 
-SBMLCompartment.id = id;

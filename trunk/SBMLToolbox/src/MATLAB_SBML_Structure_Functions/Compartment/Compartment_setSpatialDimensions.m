@@ -1,13 +1,11 @@
 function SBMLCompartment = Compartment_setSpatialDimensions(SBMLCompartment, spatialDimensions)
 %
-%   Compartment_setSpatialDimensions 
-%             takes  1) an SBMLCompartment structure 
-%             and    2) an integer representing the spatialDimensions to be set
+% Compartment_setSpatialDimensions
+%    takes an SBML Compartment structure
+%    and the spatialDimensions to be set
 %
-%             and returns 
-%               the compartment with the spatialDimensions set
-%
-%       SBMLCompartment = Compartment_setSpatialDimensions(SBMLCompartment, spatialDimensions)
+%    returns
+%      the Compartment with the new value for the spatialDimensions attribute
 
 %  Filename    :   Compartment_setSpatialDimensions.m
 %  Description :
@@ -39,22 +37,23 @@ function SBMLCompartment = Compartment_setSpatialDimensions(SBMLCompartment, spa
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLCompartment))
-    error(sprintf('%s\n%s', ...
-      'Compartment_setSpatialDimensions(SBMLCompartment)', ...
-      'argument must be an SBML compartment structure'));
+[level, version] = GetLevelVersion(SBMLCompartment);
+
+if isfield(SBMLCompartment, 'spatialDimensions')
+	if (level > 2 && ~isnumeric(spatialDimensions))
+		error('spatialDimensions must be numeric') ;
+  elseif (level < 3 && (~isIntegralNumber(spatialDimensions) ...
+      || spatialDimensions < 0 || spatialDimensions > 3))
+    error('spatialDimensions must be integer values 0, 1, 2, or 3');
+	else
+		SBMLCompartment.spatialDimensions = spatialDimensions;
+    if (isfield(SBMLCompartment, 'isSetSpatialDimensions'))
+      SBMLCompartment.isSetSpatialDimensions = 1;
+    end;
+	end;
+else
+	error('spatialDimensions not an attribute on SBML L%dV%d Compartment', level, version);
 end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLCompartment);
 
-if (~isSBML_Compartment(SBMLCompartment, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Compartment_setSpatialDimensions(SBMLCompartment, spatialDimensions)', 'first argument must be an SBML model structure'));
-elseif ((~isIntegralNumber(spatialDimensions)) || (spatialDimensions < 0) || (spatialDimensions > 3))
-    error(sprintf('Compartment_setSpatialDimensions(SBMLCompartment, spatialDimensions)\n%s', 'second argument must be an integer between 0 and 3 representing the spatial dimensions of the compartment'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Compartment_setSpatialDimensions(SBMLCompartment, spatialDimensions)', 'no spatialDimensions field in a level 1 model'));    
-end;
-
-SBMLCompartment.spatialDimensions = int32(spatialDimensions);

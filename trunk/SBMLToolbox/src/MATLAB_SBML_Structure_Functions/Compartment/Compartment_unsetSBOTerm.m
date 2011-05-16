@@ -1,15 +1,15 @@
-function spatialDimensions = Compartment_getSpatialDimensions(SBMLCompartment)
+function SBMLCompartment = Compartment_unsetSBOTerm(SBMLCompartment)
 %
-% Compartment_getSpatialDimensions
+% Compartment_getSBOTerm
 %    takes an SBML Compartment structure
 %
 %    returns
-%      the value of the spatialDimensions attribute
+%      the Compartment with the value for the sboTerm attribute unset
 
-%  Filename    :   Compartment_getSpatialDimensions.m
+%  Filename    :   Compartment_unsetSBOTerm.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -40,9 +40,9 @@ function spatialDimensions = Compartment_getSpatialDimensions(SBMLCompartment)
 
 [level, version] = GetLevelVersion(SBMLCompartment);
 
-if isfield(SBMLCompartment, 'spatialDimensions')
-	spatialDimensions = SBMLCompartment.spatialDimensions;
+if isfield(SBMLCompartment, 'sboTerm')
+	SBMLCompartment.sboTerm = -1;
 else
-	error('spatialDimensions not an attribute on SBML L%dV%d Compartment', level, version);
+	error('sboTerm not an attribute on SBML L%dV%d Compartment', level, version);
 end;
 

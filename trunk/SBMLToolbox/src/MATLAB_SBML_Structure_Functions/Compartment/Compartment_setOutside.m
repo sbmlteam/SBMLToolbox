@@ -1,13 +1,11 @@
 function SBMLCompartment = Compartment_setOutside(SBMLCompartment, outside)
 %
-%   Compartment_setOutside 
-%             takes  1) an SBMLCompartment structure 
-%             and    2) a string representing the outside to be set
+% Compartment_setOutside
+%    takes an SBML Compartment structure
+%    and the outside to be set
 %
-%             and returns 
-%               the compartment with the outside set
-%
-%       SBMLCompartment = Compartment_setOutside(SBMLCompartment, 'outside')
+%    returns
+%      the Compartment with the new value for the outside attribute
 
 %  Filename    :   Compartment_setOutside.m
 %  Description :
@@ -39,20 +37,17 @@ function SBMLCompartment = Compartment_setOutside(SBMLCompartment, outside)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLCompartment))
-    error(sprintf('%s\n%s', ...
-      'Compartment_setOutside(SBMLCompartment)', ...
-      'argument must be an SBML compartment structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLCompartment);
+[level, version] = GetLevelVersion(SBMLCompartment);
 
-if (~isSBML_Compartment(SBMLCompartment, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Compartment_setOutside(SBMLCompartment, outside)', 'first argument must be an SBML compartment structure'));
-elseif (~ischar(outside))
-    error(sprintf('Compartment_setOutside(SBMLCompartment, outside)\n%s', 'second argument must be a string representing the outside of the compartment'));
+if isfield(SBMLCompartment, 'outside')
+	if ~ischar(outside)
+		error('outside must be character array') ;
+	else
+		SBMLCompartment.outside = outside;
+	end;
+else
+	error('outside not an attribute on SBML L%dV%d Compartment', level, version);
 end;
 
-SBMLCompartment.outside = outside;

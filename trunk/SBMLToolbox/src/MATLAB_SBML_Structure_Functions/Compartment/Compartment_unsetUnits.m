@@ -1,13 +1,10 @@
 function SBMLCompartment = Compartment_unsetUnits(SBMLCompartment)
 %
-%   Compartment_unsetUnits 
-%             takes an SBMLCompartment structure 
+% Compartment_getUnits
+%    takes an SBML Compartment structure
 %
-%             and returns 
-%               the compartment with the units unset
-%               (i.e. units = '')
-%
-%       SBMLCompartment = Compartment_unsetUnits(SBMLCompartment)
+%    returns
+%      the Compartment with the value for the units attribute unset
 
 %  Filename    :   Compartment_unsetUnits.m
 %  Description :
@@ -39,18 +36,13 @@ function SBMLCompartment = Compartment_unsetUnits(SBMLCompartment)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLCompartment))
-    error(sprintf('%s\n%s', ...
-      'Compartment_unsetUnits(SBMLCompartment)', ...
-      'argument must be an SBML compartment structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLCompartment);
+[level, version] = GetLevelVersion(SBMLCompartment);
 
-if (~isSBML_Compartment(SBMLCompartment, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Compartment_unsetUnits(SBMLCompartment)', 'argument must be an SBML compartment structure'));
+if isfield(SBMLCompartment, 'units')
+	SBMLCompartment.units = '';
+else
+	error('units not an attribute on SBML L%dV%d Compartment', level, version);
 end;
 
-SBMLCompartment.units = '';

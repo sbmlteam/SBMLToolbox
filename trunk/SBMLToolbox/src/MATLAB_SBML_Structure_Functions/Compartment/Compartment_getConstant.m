@@ -1,12 +1,10 @@
 function constant = Compartment_getConstant(SBMLCompartment)
 %
-%   Compartment_getConstant 
-%             takes an SBMLCompartment structure 
+% Compartment_getConstant
+%    takes an SBML Compartment structure
 %
-%             and returns 
-%               the constant of the compartment as an integer
-%
-%       constant = Compartment_getConstant(SBMLCompartment)
+%    returns
+%      the value of the constant attribute
 
 %  Filename    :   Compartment_getConstant.m
 %  Description :
@@ -38,20 +36,13 @@ function constant = Compartment_getConstant(SBMLCompartment)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLCompartment))
-    error(sprintf('%s\n%s', ...
-      'Compartment_getConstant(SBMLCompartment)', ...
-      'argument must be an SBML compartment structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLCompartment);
+[level, version] = GetLevelVersion(SBMLCompartment);
 
-if (~isSBML_Compartment(SBMLCompartment, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Compartment_getConstant(SBMLCompartment)', 'argument must be an SBML compartment structure'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Compartment_getConstant(SBMLCompartment)', 'no constant field in a level 1 model'));    
+if isfield(SBMLCompartment, 'constant')
+	constant = SBMLCompartment.constant;
+else
+	error('constant not an attribute on SBML L%dV%d Compartment', level, version);
 end;
 
-constant = SBMLCompartment.constant;

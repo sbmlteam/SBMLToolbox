@@ -1,13 +1,11 @@
 function value = Compartment_isSetVolume(SBMLCompartment)
 %
-%   Compartment_isSetVolume 
-%             takes an SBMLCompartment structure 
+% Compartment_isSetVolume
+%    takes an SBML Compartment structure
 %
-%             and returns the value of the isSetVolume field
-%               1 if the volume has been set 
-%               0 otherwise
-%
-%       value = Compartment_isSetVolume(SBMLCompartment)
+%    returns
+%      1 if the value for the volume attribute is set
+%      0 otherwise
 
 %  Filename    :   Compartment_isSetVolume.m
 %  Description :
@@ -39,20 +37,13 @@ function value = Compartment_isSetVolume(SBMLCompartment)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLCompartment))
-    error(sprintf('%s\n%s', ...
-      'Compartment_isSetVolume(SBMLCompartment)', ...
-      'argument must be an SBML compartment structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLCompartment);
+[level, version] = GetLevelVersion(SBMLCompartment);
 
-if (~isSBML_Compartment(SBMLCompartment, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Compartment_isSetVolume(SBMLCompartment)', 'argument must be an SBML compartment structure'));
-elseif (sbmlLevel ~= 1)
-    error(sprintf('%s\n%s', 'Compartment_isSetVolume(SBMLCompartment)', 'no volume field in a level 2 model'));    
+if isfield(SBMLCompartment, 'volume')
+	value = SBMLCompartment.isSetVolume;
+else
+	error('isSetVolume not an attribute on SBML L%dV%d Compartment', level, version);
 end;
 
-value = SBMLCompartment.isSetVolume;

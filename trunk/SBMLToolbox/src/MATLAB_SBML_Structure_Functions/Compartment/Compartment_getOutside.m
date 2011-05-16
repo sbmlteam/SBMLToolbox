@@ -1,12 +1,10 @@
 function outside = Compartment_getOutside(SBMLCompartment)
 %
-%   Compartment_getOutside 
-%             takes an SBMLCompartment structure 
+% Compartment_getOutside
+%    takes an SBML Compartment structure
 %
-%             and returns 
-%               the outside of the compartment as a string
-%
-%       outside = Compartment_getOutside(SBMLCompartment)
+%    returns
+%      the value of the outside attribute
 
 %  Filename    :   Compartment_getOutside.m
 %  Description :
@@ -38,18 +36,13 @@ function outside = Compartment_getOutside(SBMLCompartment)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLCompartment))
-    error(sprintf('%s\n%s', ...
-      'Compartment_getOutside(SBMLCompartment)', ...
-      'argument must be an SBML compartment structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLCompartment);
+[level, version] = GetLevelVersion(SBMLCompartment);
 
-if (~isSBML_Compartment(SBMLCompartment, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Compartment_getOutside(SBMLCompartment)', 'argument must be an SBML compartment structure'));
+if isfield(SBMLCompartment, 'outside')
+	outside = SBMLCompartment.outside;
+else
+	error('outside not an attribute on SBML L%dV%d Compartment', level, version);
 end;
 
-outside = SBMLCompartment.outside;

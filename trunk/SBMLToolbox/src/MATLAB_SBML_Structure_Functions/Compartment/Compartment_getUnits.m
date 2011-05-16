@@ -1,12 +1,10 @@
 function units = Compartment_getUnits(SBMLCompartment)
 %
-%   Compartment_getUnits 
-%             takes an SBMLCompartment structure 
+% Compartment_getUnits
+%    takes an SBML Compartment structure
 %
-%             and returns 
-%               the units of the compartment as a string
-%
-%       units = Compartment_getUnits(SBMLCompartment)
+%    returns
+%      the value of the units attribute
 
 %  Filename    :   Compartment_getUnits.m
 %  Description :
@@ -38,18 +36,13 @@ function units = Compartment_getUnits(SBMLCompartment)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLCompartment))
-    error(sprintf('%s\n%s', ...
-      'Compartment_getUnits(SBMLCompartment)', ...
-      'argument must be an SBML compartment structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLCompartment);
+[level, version] = GetLevelVersion(SBMLCompartment);
 
-if (~isSBML_Compartment(SBMLCompartment, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Compartment_getUnits(SBMLCompartment)', 'argument must be an SBML compartment structure'));
+if isfield(SBMLCompartment, 'units')
+	units = SBMLCompartment.units;
+else
+	error('units not an attribute on SBML L%dV%d Compartment', level, version);
 end;
 
-units = SBMLCompartment.units;

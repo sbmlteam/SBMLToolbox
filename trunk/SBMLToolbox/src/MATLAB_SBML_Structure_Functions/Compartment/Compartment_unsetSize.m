@@ -1,13 +1,10 @@
 function SBMLCompartment = Compartment_unsetSize(SBMLCompartment)
 %
-%   Compartment_unsetSize 
-%             takes an SBMLCompartment structure 
+% Compartment_getSize
+%    takes an SBML Compartment structure
 %
-%             and returns 
-%               the compartment with the size unset
-%               (i.e. size = NAN)
-%
-%       SBMLCompartment = Compartment_unsetSize(SBMLCompartment)
+%    returns
+%      the Compartment with the value for the size attribute unset
 
 %  Filename    :   Compartment_unsetSize.m
 %  Description :
@@ -39,33 +36,16 @@ function SBMLCompartment = Compartment_unsetSize(SBMLCompartment)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLCompartment))
-    error(sprintf('%s\n%s', ...
-      'Compartment_unsetSize(SBMLCompartment)', ...
-      'argument must be an SBML compartment structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLCompartment);
+[level, version] = GetLevelVersion(SBMLCompartment);
 
-if (~isSBML_Compartment(SBMLCompartment, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Compartment_unsetSize(SBMLCompartment)', 'argument must be an SBML compartment structure'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Compartment_unsetSize(SBMLCompartment)', 'no size field in a level 1 model'));    
-end;
-
-if exist('OCTAVE_VERSION')
-  warning off Octave:divide-by-zero;
+if isfield(SBMLCompartment, 'size')
+	SBMLCompartment.size = NaN;
+    if (isfield(SBMLCompartment, 'isSetSize'))
+      SBMLCompartment.isSetSize = 0;
+    end;
 else
-  warning off MATLAB:divideByZero;
+	error('size not an attribute on SBML L%dV%d Compartment', level, version);
 end;
 
-SBMLCompartment.size = 0/0;
-SBMLCompartment.isSetSize = 0;
-
-if exist('OCTAVE_VERSION')
-  warning off Octave:divide-by-zero;
-else
-  warning off MATLAB:divideByZero;
-end;

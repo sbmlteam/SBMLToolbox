@@ -1,13 +1,11 @@
 function SBMLCompartment = Compartment_setUnits(SBMLCompartment, units)
 %
-%   Compartment_setUnits 
-%             takes  1) an SBMLCompartment structure 
-%             and    2) a string representing the units to be set
+% Compartment_setUnits
+%    takes an SBML Compartment structure
+%    and the units to be set
 %
-%             and returns 
-%               the compartment with the units set
-%
-%       SBMLCompartment = Compartment_setUnits(SBMLCompartment, 'units')
+%    returns
+%      the Compartment with the new value for the units attribute
 
 %  Filename    :   Compartment_setUnits.m
 %  Description :
@@ -39,20 +37,17 @@ function SBMLCompartment = Compartment_setUnits(SBMLCompartment, units)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLCompartment))
-    error(sprintf('%s\n%s', ...
-      'Compartment_setUnits(SBMLCompartment)', ...
-      'argument must be an SBML compartment structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLCompartment);
+[level, version] = GetLevelVersion(SBMLCompartment);
 
-if (~isSBML_Compartment(SBMLCompartment, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Compartment_setUnits(SBMLCompartment, units)', 'first argument must be an SBML compartment structure'));
-elseif (~ischar(units))
-    error(sprintf('Compartment_setUnits(SBMLCompartment, units)\n%s', 'second argument must be a string representing the units of the compartment'));
+if isfield(SBMLCompartment, 'units')
+	if ~ischar(units)
+		error('units must be character array') ;
+	else
+		SBMLCompartment.units = units;
+	end;
+else
+	error('units not an attribute on SBML L%dV%d Compartment', level, version);
 end;
 
-SBMLCompartment.units = units;
