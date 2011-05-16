@@ -1,12 +1,10 @@
 function variable = AssignmentRule_getVariable(SBMLAssignmentRule)
 %
-%   AssignmentRule_getVariable 
-%             takes an SBMLAssignmentRule structure 
+% AssignmentRule_getVariable
+%    takes an SBML AssignmentRule structure
 %
-%             and returns 
-%               the variable of the assignmentRule as a string
-%
-%       variable = AssignmentRule_getVariable(SBMLAssignmentRule)
+%    returns
+%      the value of the variable attribute
 
 %  Filename    :   AssignmentRule_getVariable.m
 %  Description :
@@ -38,18 +36,13 @@ function variable = AssignmentRule_getVariable(SBMLAssignmentRule)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLAssignmentRule))
-    error(sprintf('%s\n%s', ...
-      'AssignmentRule_getVariable(SBMLAssignmentRule)', ...
-      'argument must be an SBML assignmentRule structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLAssignmentRule);
+[level, version] = GetLevelVersion(SBMLAssignmentRule);
 
-if (~isSBML_AssignmentRule(SBMLAssignmentRule, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'AssignmentRule_getVariable(SBMLAssignmentRule)', 'argument must be an SBML assignmentRule structure'));
+if isfield(SBMLAssignmentRule, 'variable')
+	variable = SBMLAssignmentRule.variable;
+else
+	error('variable not an attribute on SBML L%dV%d AssignmentRule', level, version);
 end;
 
-variable = SBMLAssignmentRule.variable;

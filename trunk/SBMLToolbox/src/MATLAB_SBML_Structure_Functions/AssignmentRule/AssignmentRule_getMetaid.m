@@ -1,16 +1,15 @@
-function value = AssignmentRule_isSetVariable(SBMLAssignmentRule)
+function metaid = AssignmentRule_getMetaid(SBMLAssignmentRule)
 %
-% AssignmentRule_isSetVariable
+% AssignmentRule_getMetaid
 %    takes an SBML AssignmentRule structure
 %
 %    returns
-%      1 if the value for the variable attribute is set
-%      0 otherwise
+%      the value of the metaid attribute
 
-%  Filename    :   AssignmentRule_isSetVariable.m
+%  Filename    :   AssignmentRule_getMetaid.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -41,9 +40,9 @@ function value = AssignmentRule_isSetVariable(SBMLAssignmentRule)
 
 [level, version] = GetLevelVersion(SBMLAssignmentRule);
 
-if isfield(SBMLAssignmentRule, 'variable')
-	value = ~isempty(SBMLAssignmentRule.variable);
+if isfield(SBMLAssignmentRule, 'metaid')
+	metaid = SBMLAssignmentRule.metaid;
 else
-	error('variable not an attribute on SBML L%dV%d AssignmentRule', level, version);
+	error('metaid not an attribute on SBML L%dV%d AssignmentRule', level, version);
 end;
 

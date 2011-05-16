@@ -1,16 +1,16 @@
-function value = AssignmentRule_isSetVariable(SBMLAssignmentRule)
+function SBMLAssignmentRule = AssignmentRule_setFormula(SBMLAssignmentRule, formula)
 %
-% AssignmentRule_isSetVariable
+% AssignmentRule_setFormula
 %    takes an SBML AssignmentRule structure
+%    and the formula to be set
 %
 %    returns
-%      1 if the value for the variable attribute is set
-%      0 otherwise
+%      the AssignmentRule with the new value for the formula attribute
 
-%  Filename    :   AssignmentRule_isSetVariable.m
+%  Filename    :   AssignmentRule_setFormula.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -41,9 +41,13 @@ function value = AssignmentRule_isSetVariable(SBMLAssignmentRule)
 
 [level, version] = GetLevelVersion(SBMLAssignmentRule);
 
-if isfield(SBMLAssignmentRule, 'variable')
-	value = ~isempty(SBMLAssignmentRule.variable);
+if isfield(SBMLAssignmentRule, 'formula')
+	if ~ischar(formula)
+		error('formula must be character array') ;
+	else
+		SBMLAssignmentRule.formula = formula;
+	end;
 else
-	error('variable not an attribute on SBML L%dV%d AssignmentRule', level, version);
+	error('formula not an attribute on SBML L%dV%d AssignmentRule', level, version);
 end;
 

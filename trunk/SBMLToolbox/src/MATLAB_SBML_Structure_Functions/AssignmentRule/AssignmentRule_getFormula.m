@@ -1,17 +1,15 @@
-function type = AssignmentRule_getType(SBMLAssignmentRule)
+function formula = AssignmentRule_getFormula(SBMLAssignmentRule)
 %
-%   AssignmentRule_getType 
-%             takes an SBMLAssignmentRule structure 
+% AssignmentRule_getFormula
+%    takes an SBML AssignmentRule structure
 %
-%             and returns 
-%               the type of the assignmentRule as a string
-%
-%       type = AssignmentRule_getType(SBMLAssignmentRule)
+%    returns
+%      the value of the formula attribute
 
-%  Filename    :   AssignmentRule_getType.m
+%  Filename    :   AssignmentRule_getFormula.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -38,20 +36,13 @@ function type = AssignmentRule_getType(SBMLAssignmentRule)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLAssignmentRule))
-    error(sprintf('%s\n%s', ...
-      'AssignmentRule_getType(SBMLAssignmentRule)', ...
-      'argument must be an SBML assignmentRule structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLAssignmentRule);
+[level, version] = GetLevelVersion(SBMLAssignmentRule);
 
-if (~isSBML_AssignmentRule(SBMLAssignmentRule, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'AssignmentRule_getType(SBMLAssignmentRule)', 'argument must be an SBML assignmentRule structure'));
-elseif(sbmlLevel ~= 1)
-    error(sprintf('%s\n%s', 'AssignmentRule_getType(SBMLAssignmentRule)', 'no type field in level 2 model'));    
+if isfield(SBMLAssignmentRule, 'formula')
+	formula = SBMLAssignmentRule.formula;
+else
+	error('formula not an attribute on SBML L%dV%d AssignmentRule', level, version);
 end;
 
-type = SBMLAssignmentRule.type;
