@@ -1,12 +1,10 @@
 function timeUnits = Event_getTimeUnits(SBMLEvent)
 %
-%   Event_getTimeUnits 
-%             takes an SBMLEvent structure 
+% Event_getTimeUnits
+%    takes an SBML Event structure
 %
-%             and returns 
-%               the timeUnits of the event as a string
-%
-%       timeUnits = Event_getTimeUnits(SBMLEvent)
+%    returns
+%      the value of the timeUnits attribute
 
 %  Filename    :   Event_getTimeUnits.m
 %  Description :
@@ -38,18 +36,13 @@ function timeUnits = Event_getTimeUnits(SBMLEvent)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLEvent))
-    error(sprintf('%s\n%s', ...
-      'Event_getTimeUnits(SBMLEvent)', ...
-      'argument must be an SBML Constraint structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEvent);
+[level, version] = GetLevelVersion(SBMLEvent);
 
-if (~isSBML_Event(SBMLEvent, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Event_getTimeUnits(SBMLEvent)', 'argument must be an SBML event structure'));
+if isfield(SBMLEvent, 'timeUnits')
+	timeUnits = SBMLEvent.timeUnits;
+else
+	error('timeUnits not an attribute on SBML L%dV%d Event', level, version);
 end;
 
-timeUnits = SBMLEvent.timeUnits;

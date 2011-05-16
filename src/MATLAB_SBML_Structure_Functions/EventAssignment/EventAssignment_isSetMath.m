@@ -1,13 +1,11 @@
 function value = EventAssignment_isSetMath(SBMLEventAssignment)
 %
-%   EventAssignment_isSetMath 
-%             takes an SBMLEventAssignment structure 
+% EventAssignment_isSetMath
+%    takes an SBML EventAssignment structure
 %
-%             and returns 
-%               1 if the math has been set 
-%               0 otherwise
-%
-%       value = EventAssignment_isSetMath(SBMLEventAssignment)
+%    returns
+%      1 if the value for the math attribute is set
+%      0 otherwise
 
 %  Filename    :   EventAssignment_isSetMath.m
 %  Description :
@@ -39,18 +37,13 @@ function value = EventAssignment_isSetMath(SBMLEventAssignment)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLEventAssignment))
-  error(sprintf('%s\n%s', ...
-    'EventAssignment_isSetMath(SBMLEventAssignment)', ...
-    'first argument must be an SBML eventAssignment structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEventAssignment);
+[level, version] = GetLevelVersion(SBMLEventAssignment);
 
-if (~isSBML_EventAssignment(SBMLEventAssignment, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'EventAssignment_isSetMath(SBMLEventAssignment)', 'argument must be an SBML eventAssignment structure'));
+if isfield(SBMLEventAssignment, 'math')
+	value = ~isempty(SBMLEventAssignment.math);
+else
+	error('math not an attribute on SBML L%dV%d EventAssignment', level, version);
 end;
 
-value = ~isempty(SBMLEventAssignment.math);

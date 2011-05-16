@@ -1,12 +1,10 @@
 function sboTerm = EventAssignment_getSBOTerm(SBMLEventAssignment)
 %
-%   EventAssignment_getSBOTerm 
-%             takes an SBMLEventAssignment structure 
+% EventAssignment_getSBOTerm
+%    takes an SBML EventAssignment structure
 %
-%             and returns 
-%               the sboTerm of the compartment as an integer
-%
-%       sboTerm = EventAssignment_getSBOTerm(SBMLEventAssignment)
+%    returns
+%      the value of the sboTerm attribute
 
 %  Filename    :   EventAssignment_getSBOTerm.m
 %  Description :
@@ -38,24 +36,13 @@ function sboTerm = EventAssignment_getSBOTerm(SBMLEventAssignment)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLEventAssignment))
-  error(sprintf('%s\n%s', ...
-    'EventAssignment_getSBOTerm(SBMLEventAssignment)', ...
-    'first argument must be an SBML eventAssignment structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEventAssignment);
+[level, version] = GetLevelVersion(SBMLEventAssignment);
 
-if (~isSBML_EventAssignment(SBMLEventAssignment, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', ...
-      'EventAssignment_getSBOTerm(SBMLEventAssignment)', ...
-      'argument must be an SBML eventAssignment structure'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'EventAssignment_getSBOTerm(SBMLEventAssignment)', ...
-      'sboTerm field only in level 2 version 2/3 model'));    
+if isfield(SBMLEventAssignment, 'sboTerm')
+	sboTerm = SBMLEventAssignment.sboTerm;
+else
+	error('sboTerm not an attribute on SBML L%dV%d EventAssignment', level, version);
 end;
 
-sboTerm = SBMLEventAssignment.sboTerm;

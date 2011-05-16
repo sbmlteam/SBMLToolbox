@@ -1,13 +1,11 @@
 function SBMLEvent = Event_setDelay(SBMLEvent, delay)
 %
-%   Event_setDelay 
-%             takes  1) an SBMLEvent structure 
-%             and    2) a string representing the delay to be set
+% Event_setDelay
+%    takes an SBML Event structure
+%    and the delay to be set
 %
-%             and returns 
-%               the event with the delay set
-%
-%       SBMLEvent = Event_setDelay(SBMLEvent, 'delay')
+%    returns
+%      the Event with the new value for the delay attribute
 
 %  Filename    :   Event_setDelay.m
 %  Description :
@@ -39,20 +37,29 @@ function SBMLEvent = Event_setDelay(SBMLEvent, delay)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLEvent))
-    error(sprintf('%s\n%s', ...
-      'Event_setDelay(SBMLEvent, delay)', ...
-      'argument must be an SBML Constraint structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEvent);
+[level, version] = GetLevelVersion(SBMLEvent);
+if isstruct(delay)
+  [delay_level, delay_version] = GetLevelVersion(delay);
 
-if (~isSBML_Event(SBMLEvent, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Event_setDelay(SBMLEvent, delay)', 'first argument must be an SBML event structure'));
-elseif (~ischar(delay))
-    error(sprintf('Event_setDelay(SBMLEvent, delay)\n%s', 'second argument must be a string representing the delay of the event'));
+  if level ~= delay_level
+    error('mismatch in levels');
+  elseif version ~= delay_version
+    error('mismatch in versions');
+  end;
 end;
 
-SBMLEvent.delay = delay;
+if isfield(SBMLEvent, 'delay')
+	if (level == 2 && version < 3) && ~ischar(delay)
+		error('delay must be character array') ;
+  elseif (((level == 2 && version > 2) || level > 2) ...
+      && ~isValid(delay, level, version))
+    error('delay must be an SBML Delay structure');
+  else
+		SBMLEvent.delay = delay;
+	end;
+else
+	error('delay not an attribute on SBML L%dV%d Event', level, version);
+end;
+

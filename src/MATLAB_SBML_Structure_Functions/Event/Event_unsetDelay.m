@@ -1,13 +1,10 @@
 function SBMLEvent = Event_unsetDelay(SBMLEvent)
 %
-%   Event_unsetDelay 
-%             takes an SBMLEvent structure 
+% Event_getDelay
+%    takes an SBML Event structure
 %
-%             and returns 
-%               the event with the delay unset
-%               (i.e. delay = '')
-%
-%       SBMLEvent = Event_unsetDelay(SBMLEvent)
+%    returns
+%      the Event with the value for the delay attribute unset
 
 %  Filename    :   Event_unsetDelay.m
 %  Description :
@@ -39,18 +36,17 @@ function SBMLEvent = Event_unsetDelay(SBMLEvent)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLEvent))
-    error(sprintf('%s\n%s', ...
-      'Event_unsetDelay(SBMLEvent)', ...
-      'argument must be an SBML Constraint structure'));
+[level, version] = GetLevelVersion(SBMLEvent);
+
+if isfield(SBMLEvent, 'delay')
+	if (level == 2 && version < 3)
+    SBMLEvent.delay = '';
+  else
+    SBMLEvent.delay = [];
+  end;
+else
+	error('delay not an attribute on SBML L%dV%d Event', level, version);
 end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEvent);
 
-if (~isSBML_Event(SBMLEvent, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Event_unsetDelay(SBMLEvent)', 'argument must be an SBML event structure'));
-end;
-
-SBMLEvent.delay = '';

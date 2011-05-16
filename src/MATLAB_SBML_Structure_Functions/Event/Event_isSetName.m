@@ -1,13 +1,11 @@
 function value = Event_isSetName(SBMLEvent)
 %
-%   Event_isSetName 
-%             takes an SBMLEvent structure 
+% Event_isSetName
+%    takes an SBML Event structure
 %
-%             and returns 
-%               1 if the name has been set 
-%               0 otherwise
-%
-%       value = Event_isSetName(SBMLEvent)
+%    returns
+%      1 if the value for the name attribute is set
+%      0 otherwise
 
 %  Filename    :   Event_isSetName.m
 %  Description :
@@ -39,18 +37,13 @@ function value = Event_isSetName(SBMLEvent)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLEvent))
-    error(sprintf('%s\n%s', ...
-      'Event_isSetName(SBMLEvent)', ...
-      'argument must be an SBML Constraint structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEvent);
+[level, version] = GetLevelVersion(SBMLEvent);
 
-if (~isSBML_Event(SBMLEvent, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Event_isSetName(SBMLEvent)', 'argument must be an SBML event structure'));
+if isfield(SBMLEvent, 'name')
+	value = ~isempty(SBMLEvent.name);
+else
+	error('name not an attribute on SBML L%dV%d Event', level, version);
 end;
 
-value = ~isempty(SBMLEvent.name);

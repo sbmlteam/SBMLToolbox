@@ -1,13 +1,11 @@
 function SBMLEvent = Event_setName(SBMLEvent, name)
 %
-%   Event_setName 
-%             takes  1) an SBMLEvent structure 
-%             and    2) a string representing the name to be set
+% Event_setName
+%    takes an SBML Event structure
+%    and the name to be set
 %
-%             and returns 
-%               the event with the name set
-%
-%       SBMLEvent = Event_setName(SBMLEvent, 'name')
+%    returns
+%      the Event with the new value for the name attribute
 
 %  Filename    :   Event_setName.m
 %  Description :
@@ -39,20 +37,17 @@ function SBMLEvent = Event_setName(SBMLEvent, name)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLEvent))
-    error(sprintf('%s\n%s', ...
-      'Event_setName(SBMLEvent, name)', ...
-      'argument must be an SBML Constraint structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEvent);
+[level, version] = GetLevelVersion(SBMLEvent);
 
-if (~isSBML_Event(SBMLEvent, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Event_setName(SBMLEvent, name)', 'first argument must be an SBML event structure'));
-elseif (~ischar(name))
-    error(sprintf('Event_setName(SBMLEvent, name)\n%s', 'second argument must be a string representing the name of the event'));
+if isfield(SBMLEvent, 'name')
+	if ~ischar(name)
+		error('name must be character array') ;
+	else
+		SBMLEvent.name = name;
+	end;
+else
+	error('name not an attribute on SBML L%dV%d Event', level, version);
 end;
 
-SBMLEvent.name = name;

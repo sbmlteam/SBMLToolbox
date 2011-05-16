@@ -1,13 +1,11 @@
 function SBMLEvent = Event_setTrigger(SBMLEvent, trigger)
 %
-%   Event_setTrigger 
-%             takes  1) an SBMLEvent structure 
-%             and    2) a string representing the trigger to be set
+% Event_setTrigger
+%    takes an SBML Event structure
+%    and the trigger to be set
 %
-%             and returns 
-%               the event with the trigger set
-%
-%       SBMLEvent = Event_setTrigger(SBMLEvent, 'trigger')
+%    returns
+%      the Event with the new value for the trigger attribute
 
 %  Filename    :   Event_setTrigger.m
 %  Description :
@@ -39,20 +37,29 @@ function SBMLEvent = Event_setTrigger(SBMLEvent, trigger)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLEvent))
-    error(sprintf('%s\n%s', ...
-      'Event_setTrigger(SBMLEvent, trigger)', ...
-      'argument must be an SBML Constraint structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEvent);
+[level, version] = GetLevelVersion(SBMLEvent);
+if isstruct(trigger)
+  [trigger_level, trigger_version] = GetLevelVersion(trigger);
 
-if (~isSBML_Event(SBMLEvent, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Event_setTrigger(SBMLEvent, trigger)', 'first argument must be an SBML event structure'));
-elseif (~ischar(trigger))
-    error(sprintf('Event_setTrigger(SBMLEvent, trigger)\n%s', 'second argument must be a string representing the trigger of the event'));
+  if level ~= trigger_level
+    error('mismatch in levels');
+  elseif version ~= trigger_version
+    error('mismatch in versions');
+  end;
 end;
 
-SBMLEvent.trigger = trigger;
+if isfield(SBMLEvent, 'trigger')
+	if (level == 2 && version < 3) && ~ischar(trigger)
+		error('trigger must be character array') ;
+  elseif (((level == 2 && version > 2) || level > 2) ...
+      && ~isValid(trigger, level, version))
+    error('trigger must be an SBML Trigger structure');
+	else
+		SBMLEvent.trigger = trigger;
+	end;
+else
+	error('trigger not an attribute on SBML L%dV%d Event', level, version);
+end;
+

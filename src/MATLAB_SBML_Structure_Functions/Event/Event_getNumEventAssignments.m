@@ -1,12 +1,10 @@
-function number = Event_getNumEventAssignments(SBMLEvent)
+function num = Event_getNumEventAssignments(SBMLEvent)
 %
-%   Event_getNumEventAssignments 
-%             takes an SBMLEvent structure 
+% Event_getNumEventAssignments
+%    takes an SBML Event structure
 %
-%             and returns 
-%               the number of eventAssignment structures defined within the event
-%
-%       number = Event_getNumEventAssignments(SBMLEvent)
+%    returns
+%      the number of eventAssignment elements
 
 %  Filename    :   Event_getNumEventAssignments.m
 %  Description :
@@ -38,24 +36,13 @@ function number = Event_getNumEventAssignments(SBMLEvent)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLEvent))
-    error(sprintf('%s\n%s', ...
-      'Event_getNumEventAssignments(SBMLEvent)', ...
-      'argument must be an SBML Constraint structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEvent);
+[level, version] = GetLevelVersion(SBMLEvent);
 
-if (~isSBML_Event(SBMLEvent, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Event_getNumEventAssignments(SBMLEvent)', 'argument must be an SBML event structure'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Event_getNumEventAssignments(SBMLEvent)', 'no events in a level 1 model'));   
+if isfield(SBMLEvent, 'eventAssignment')
+	num = length(SBMLEvent.eventAssignment);
+else
+	error('eventAssignment not an element on SBML L%dV%d Event', level, version);
 end;
 
-number = 0;
-
-if (~isempty(SBMLEvent.eventAssignment))
-    number = length(SBMLEvent.eventAssignment);
-end;

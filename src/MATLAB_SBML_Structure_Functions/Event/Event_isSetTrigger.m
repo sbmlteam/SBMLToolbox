@@ -1,13 +1,11 @@
 function value = Event_isSetTrigger(SBMLEvent)
 %
-%   Event_isSetTrigger 
-%             takes an SBMLEvent structure 
+% Event_isSetTrigger
+%    takes an SBML Event structure
 %
-%             and returns 
-%               1 if the trigger has been set 
-%               0 otherwise
-%
-%       value = Event_isSetTrigger(SBMLEvent)
+%    returns
+%      1 if the value for the trigger attribute is set
+%      0 otherwise
 
 %  Filename    :   Event_isSetTrigger.m
 %  Description :
@@ -39,18 +37,13 @@ function value = Event_isSetTrigger(SBMLEvent)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLEvent))
-    error(sprintf('%s\n%s', ...
-      'Event_isSetTrigger(SBMLEvent)', ...
-      'argument must be an SBML Constraint structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEvent);
+[level, version] = GetLevelVersion(SBMLEvent);
 
-if (~isSBML_Event(SBMLEvent, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Event_isSetTrigger(SBMLEvent)', 'argument must be an SBML event structure'));
+if isfield(SBMLEvent, 'trigger')
+	value = ~isempty(SBMLEvent.trigger);
+else
+	error('trigger not an attribute on SBML L%dV%d Event', level, version);
 end;
 
-value = ~isempty(SBMLEvent.trigger);

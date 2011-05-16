@@ -1,13 +1,11 @@
 function value = Event_isSetTimeUnits(SBMLEvent)
 %
-%   Event_isSetTimeUnits 
-%             takes an SBMLEvent structure 
+% Event_isSetTimeUnits
+%    takes an SBML Event structure
 %
-%             and returns 
-%               1 if the timeUnits has been set 
-%               0 otherwise
-%
-%       value = Event_isSetTimeUnits(SBMLEvent)
+%    returns
+%      1 if the value for the timeUnits attribute is set
+%      0 otherwise
 
 %  Filename    :   Event_isSetTimeUnits.m
 %  Description :
@@ -39,18 +37,13 @@ function value = Event_isSetTimeUnits(SBMLEvent)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLEvent))
-    error(sprintf('%s\n%s', ...
-      'Event_isSetTimeUnits(SBMLEvent)', ...
-      'argument must be an SBML Constraint structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEvent);
+[level, version] = GetLevelVersion(SBMLEvent);
 
-if (~isSBML_Event(SBMLEvent, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Event_isSetTimeUnits(SBMLEvent)', 'argument must be an SBML event structure'));
+if isfield(SBMLEvent, 'timeUnits')
+	value = ~isempty(SBMLEvent.timeUnits);
+else
+	error('timeUnits not an attribute on SBML L%dV%d Event', level, version);
 end;
 
-value = ~isempty(SBMLEvent.timeUnits);

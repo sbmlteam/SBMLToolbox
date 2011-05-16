@@ -1,13 +1,11 @@
 function SBMLEvent = Event_setTimeUnits(SBMLEvent, timeUnits)
 %
-%   Event_setTimeUnits 
-%             takes  1) an SBMLEvent structure 
-%             and    2) a string representing the timeUnits to be set
+% Event_setTimeUnits
+%    takes an SBML Event structure
+%    and the timeUnits to be set
 %
-%             and returns 
-%               the event with the timeUnits set
-%
-%       SBMLEvent = Event_setTimeUnits(SBMLEvent, 'timeUnits')
+%    returns
+%      the Event with the new value for the timeUnits attribute
 
 %  Filename    :   Event_setTimeUnits.m
 %  Description :
@@ -39,20 +37,17 @@ function SBMLEvent = Event_setTimeUnits(SBMLEvent, timeUnits)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLEvent))
-    error(sprintf('%s\n%s', ...
-      'Event_setTimeUnits(SBMLEvent, timeUnits)', ...
-      'argument must be an SBML Constraint structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEvent);
+[level, version] = GetLevelVersion(SBMLEvent);
 
-if (~isSBML_Event(SBMLEvent, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Event_setTimeUnits(SBMLEvent, timeUnits)', 'first argument must be an SBML event structure'));
-elseif (~ischar(timeUnits))
-    error(sprintf('Event_setTimeUnits(SBMLEvent, timeUnits)\n%s', 'second argument must be a string representing the timeUnits of the event'));
+if isfield(SBMLEvent, 'timeUnits')
+	if ~ischar(timeUnits)
+		error('timeUnits must be character array') ;
+	else
+		SBMLEvent.timeUnits = timeUnits;
+	end;
+else
+	error('timeUnits not an attribute on SBML L%dV%d Event', level, version);
 end;
 
-SBMLEvent.timeUnits = timeUnits;

@@ -1,13 +1,11 @@
 function value = EventAssignment_isSetVariable(SBMLEventAssignment)
 %
-%   EventAssignment_isSetVariable 
-%             takes an SBMLEventAssignment structure 
+% EventAssignment_isSetVariable
+%    takes an SBML EventAssignment structure
 %
-%             and returns 
-%               1 if the variable has been set 
-%               0 otherwise
-%
-%       value = EventAssignment_isSetVariable(SBMLEventAssignment)
+%    returns
+%      1 if the value for the variable attribute is set
+%      0 otherwise
 
 %  Filename    :   EventAssignment_isSetVariable.m
 %  Description :
@@ -39,18 +37,13 @@ function value = EventAssignment_isSetVariable(SBMLEventAssignment)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLEventAssignment))
-  error(sprintf('%s\n%s', ...
-    'EventAssignment_isSetVariable(SBMLEventAssignment)', ...
-    'first argument must be an SBML eventAssignment structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEventAssignment);
+[level, version] = GetLevelVersion(SBMLEventAssignment);
 
-if (~isSBML_EventAssignment(SBMLEventAssignment, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'EventAssignment_isSetVariable(SBMLEventAssignment)', 'argument must be an SBML eventAssignment structure'));
+if isfield(SBMLEventAssignment, 'variable')
+	value = ~isempty(SBMLEventAssignment.variable);
+else
+	error('variable not an attribute on SBML L%dV%d EventAssignment', level, version);
 end;
 
-value = ~isempty(SBMLEventAssignment.variable);

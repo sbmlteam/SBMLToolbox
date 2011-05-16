@@ -1,12 +1,10 @@
 function name = Event_getName(SBMLEvent)
 %
-%   Event_getName 
-%             takes an SBMLEvent structure 
+% Event_getName
+%    takes an SBML Event structure
 %
-%             and returns 
-%               the name of the event as a string
-%
-%       name = Event_getName(SBMLEvent)
+%    returns
+%      the value of the name attribute
 
 %  Filename    :   Event_getName.m
 %  Description :
@@ -38,18 +36,13 @@ function name = Event_getName(SBMLEvent)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLEvent))
-    error(sprintf('%s\n%s', ...
-      'Event_getName(SBMLEvent)', ...
-      'argument must be an SBML Constraint structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEvent);
+[level, version] = GetLevelVersion(SBMLEvent);
 
-if (~isSBML_Event(SBMLEvent, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Event_getName(SBMLEvent)', 'argument must be an SBML event structure'));
+if isfield(SBMLEvent, 'name')
+	name = SBMLEvent.name;
+else
+	error('name not an attribute on SBML L%dV%d Event', level, version);
 end;
 
-name = SBMLEvent.name;

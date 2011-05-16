@@ -1,12 +1,10 @@
 function delay = Event_getDelay(SBMLEvent)
 %
-%   Event_getDelay 
-%             takes an SBMLEvent structure 
+% Event_getDelay
+%    takes an SBML Event structure
 %
-%             and returns 
-%               the delay of the event as a string
-%
-%       delay = Event_getDelay(SBMLEvent)
+%    returns
+%      the value of the delay attribute
 
 %  Filename    :   Event_getDelay.m
 %  Description :
@@ -38,18 +36,13 @@ function delay = Event_getDelay(SBMLEvent)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLEvent))
-    error(sprintf('%s\n%s', ...
-      'Event_getDelay(SBMLEvent)', ...
-      'argument must be an SBML Constraint structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEvent);
+[level, version] = GetLevelVersion(SBMLEvent);
 
-if (~isSBML_Event(SBMLEvent, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Event_getDelay(SBMLEvent)', 'argument must be an SBML event structure'));
+if isfield(SBMLEvent, 'delay')
+	delay = SBMLEvent.delay;
+else
+	error('delay not an attribute on SBML L%dV%d Event', level, version);
 end;
 
-delay = SBMLEvent.delay;

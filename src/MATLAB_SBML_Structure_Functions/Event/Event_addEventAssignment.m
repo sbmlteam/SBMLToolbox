@@ -1,13 +1,11 @@
-function event = Event_addEventAssignment(SBMLEvent, SBMLEventAssignment)
+function SBMLEvent = Event_addEventAssignment(SBMLEvent, SBMLEventAssignment)
 %
-%   Event_addEventAssignment 
-%             takes  1) an SBMLEvent structure 
-%             and    2) an SBMLEventAssignment structure
+% Event_addEventAssignment(SBMLEvent, SBMLEventAssignment)
+%    takes an SBML Event structure
+%    and an SBML EventAssignment structure
 %
-%             and returns 
-%               the event with the eventAssignment added
-%
-%       event = Event_addEventAssignment(SBMLEvent, SBMLEventAssignment)
+%    returns
+%      the Event with the EventAssignment element added
 
 %  Filename    :   Event_addEventAssignment.m
 %  Description :
@@ -39,27 +37,25 @@ function event = Event_addEventAssignment(SBMLEvent, SBMLEventAssignment)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLEvent))
-    error(sprintf('%s\n%s', ...
-      'Event_addEventAssignment(SBMLEvent, sboTerm)', ...
-      'argument must be an SBML Constraint structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEvent);
+[level, version] = GetLevelVersion(SBMLEvent);
+[eventAssignment_level, eventAssignment_version] = GetLevelVersion(SBMLEventAssignment);
 
-if (~isSBML_Event(SBMLEvent, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Event_addEventAssignment(SBMLEvent, SBMLEventAssignment)', 'first argument must be an SBML event structure'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Event_addEventAssignment(SBMLEvent, SBMLEventAssignment)', 'no events in level 1 model'));
-elseif (~isSBML_EventAssignment(SBMLEventAssignment, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Event_addEventAssignment(SBMLEvent, SBMLEventAssignment)', 'second argument must be an SBML eventAssignment structure'));
+if level ~= eventAssignment_level
+	error('mismatch in levels');
+elseif version ~= eventAssignment_version
+	error('mismatch in versions');
 end;
 
-numberEventAssignments = length(SBMLEvent.eventAssignment);
-
-SBMLEvent.eventAssignment(numberEventAssignments+1) = SBMLEventAssignment;
-
-event = SBMLEvent;
+if isfield(SBMLEvent, 'eventAssignment')
+	index = length(SBMLEvent.eventAssignment);
+	if index == 0
+		SBMLEvent.eventAssignment = SBMLEventAssignment;
+	else
+		SBMLEvent.eventAssignment(index+1) = SBMLEventAssignment;
+	end;
+else
+	error('eventAssignment not an element on SBML L%dV%d Event', level, version);
+end;
 
