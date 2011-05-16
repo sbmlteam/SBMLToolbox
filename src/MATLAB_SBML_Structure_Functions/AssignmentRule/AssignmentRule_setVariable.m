@@ -1,13 +1,11 @@
 function SBMLAssignmentRule = AssignmentRule_setVariable(SBMLAssignmentRule, variable)
 %
-%   AssignmentRule_setVariable 
-%             takes  1) an SBMLAssignmentRule structure 
-%             and    2) a string representing the variable to be set
+% AssignmentRule_setVariable
+%    takes an SBML AssignmentRule structure
+%    and the variable to be set
 %
-%             and returns 
-%               the assignmentRule with the variable set
-%
-%       SBMLAssignmentRule = AssignmentRule_setVariable(SBMLAssignmentRule, 'variable')
+%    returns
+%      the AssignmentRule with the new value for the variable attribute
 
 %  Filename    :   AssignmentRule_setVariable.m
 %  Description :
@@ -39,20 +37,17 @@ function SBMLAssignmentRule = AssignmentRule_setVariable(SBMLAssignmentRule, var
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLAssignmentRule))
-    error(sprintf('%s\n%s', ...
-      'AssignmentRule_setVariable(SBMLAssignmentRule)', ...
-      'argument must be an SBML assignmentRule structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLAssignmentRule);
+[level, version] = GetLevelVersion(SBMLAssignmentRule);
 
-if (~isSBML_AssignmentRule(SBMLAssignmentRule, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'AssignmentRule_setVariable(SBMLAssignmentRule, variable)', 'first argument must be an SBML assignmentRule structure'));
-elseif (~ischar(variable))
-    error(sprintf('AssignmentRule_setVariable(SBMLAssignmentRule, variable)\n%s', 'second argument must be a string representing the variable of the assignmentRule'));
+if isfield(SBMLAssignmentRule, 'variable')
+	if ~ischar(variable)
+		error('variable must be character array') ;
+	else
+		SBMLAssignmentRule.variable = variable;
+	end;
+else
+	error('variable not an attribute on SBML L%dV%d AssignmentRule', level, version);
 end;
 
-SBMLAssignmentRule.variable = variable;

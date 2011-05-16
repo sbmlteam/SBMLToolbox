@@ -1,16 +1,15 @@
-function value = AssignmentRule_isSetVariable(SBMLAssignmentRule)
+function sboTerm = AssignmentRule_getSBOTerm(SBMLAssignmentRule)
 %
-% AssignmentRule_isSetVariable
+% AssignmentRule_getSBOTerm
 %    takes an SBML AssignmentRule structure
 %
 %    returns
-%      1 if the value for the variable attribute is set
-%      0 otherwise
+%      the value of the sboTerm attribute
 
-%  Filename    :   AssignmentRule_isSetVariable.m
+%  Filename    :   AssignmentRule_getSBOTerm.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -41,9 +40,9 @@ function value = AssignmentRule_isSetVariable(SBMLAssignmentRule)
 
 [level, version] = GetLevelVersion(SBMLAssignmentRule);
 
-if isfield(SBMLAssignmentRule, 'variable')
-	value = ~isempty(SBMLAssignmentRule.variable);
+if isfield(SBMLAssignmentRule, 'sboTerm')
+	sboTerm = SBMLAssignmentRule.sboTerm;
 else
-	error('variable not an attribute on SBML L%dV%d AssignmentRule', level, version);
+	error('sboTerm not an attribute on SBML L%dV%d AssignmentRule', level, version);
 end;
 
