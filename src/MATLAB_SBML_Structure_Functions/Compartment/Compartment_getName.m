@@ -1,12 +1,10 @@
 function name = Compartment_getName(SBMLCompartment)
 %
-%   Compartment_getName 
-%             takes an SBMLCompartment structure 
+% Compartment_getName
+%    takes an SBML Compartment structure
 %
-%             and returns 
-%               the name of the compartment as a string
-%
-%       name = Compartment_getName(SBMLCompartment)
+%    returns
+%      the value of the name attribute
 
 %  Filename    :   Compartment_getName.m
 %  Description :
@@ -38,18 +36,13 @@ function name = Compartment_getName(SBMLCompartment)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLCompartment))
-    error(sprintf('%s\n%s', ...
-      'Compartment_getName(SBMLCompartment)', ...
-      'argument must be an SBML compartment structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLCompartment);
+[level, version] = GetLevelVersion(SBMLCompartment);
 
-if (~isSBML_Compartment(SBMLCompartment, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Compartment_getName(SBMLCompartment)', 'argument must be an SBML compartment structure'));
+if isfield(SBMLCompartment, 'name')
+	name = SBMLCompartment.name;
+else
+	error('name not an attribute on SBML L%dV%d Compartment', level, version);
 end;
 
-name = SBMLCompartment.name;

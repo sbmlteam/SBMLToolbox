@@ -1,12 +1,10 @@
 function volume = Compartment_getVolume(SBMLCompartment)
 %
-%   Compartment_getVolume 
-%             takes an SBMLCompartment structure 
+% Compartment_getVolume
+%    takes an SBML Compartment structure
 %
-%             and returns 
-%               the volume of the compartment as a double
-%
-%       volume = Compartment_getVolume(SBMLCompartment)
+%    returns
+%      the value of the volume attribute
 
 %  Filename    :   Compartment_getVolume.m
 %  Description :
@@ -38,20 +36,13 @@ function volume = Compartment_getVolume(SBMLCompartment)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLCompartment))
-    error(sprintf('%s\n%s', ...
-      'Compartment_getVolume(SBMLCompartment)', ...
-      'argument must be an SBML compartment structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLCompartment);
+[level, version] = GetLevelVersion(SBMLCompartment);
 
-if (~isSBML_Compartment(SBMLCompartment, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Compartment_getVolume(SBMLCompartment)', 'argument must be an SBML compartment structure'));
-elseif (sbmlLevel ~= 1)
-    error(sprintf('%s\n%s', 'Compartment_getVolume(SBMLCompartment)', 'no volume field in a level 2 model'));    
+if isfield(SBMLCompartment, 'volume')
+	volume = SBMLCompartment.volume;
+else
+	error('volume not an attribute on SBML L%dV%d Compartment', level, version);
 end;
 
-volume = SBMLCompartment.volume;

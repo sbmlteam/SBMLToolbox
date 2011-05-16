@@ -1,15 +1,16 @@
-function spatialDimensions = Compartment_getSpatialDimensions(SBMLCompartment)
+function value = Compartment_isSetSpatialDimensions(SBMLCompartment)
 %
-% Compartment_getSpatialDimensions
+% Compartment_isSetSpatialDimensions
 %    takes an SBML Compartment structure
 %
 %    returns
-%      the value of the spatialDimensions attribute
+%      1 if the value for the spatialDimensions attribute is set
+%      0 otherwise
 
-%  Filename    :   Compartment_getSpatialDimensions.m
+%  Filename    :   Compartment_isSetSpatialDimensions.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -41,7 +42,11 @@ function spatialDimensions = Compartment_getSpatialDimensions(SBMLCompartment)
 [level, version] = GetLevelVersion(SBMLCompartment);
 
 if isfield(SBMLCompartment, 'spatialDimensions')
-	spatialDimensions = SBMLCompartment.spatialDimensions;
+  if (level < 3)
+    value = 1;
+  else
+    value = SBMLCompartment.isSetSpatialDimensions;
+  end;
 else
 	error('spatialDimensions not an attribute on SBML L%dV%d Compartment', level, version);
 end;

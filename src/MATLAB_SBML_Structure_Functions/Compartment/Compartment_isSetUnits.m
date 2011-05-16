@@ -1,13 +1,11 @@
 function value = Compartment_isSetUnits(SBMLCompartment)
 %
-%   Compartment_isSetUnits 
-%             takes an SBMLCompartment structure 
+% Compartment_isSetUnits
+%    takes an SBML Compartment structure
 %
-%             and returns 
-%               1 if the units has been set 
-%               0 otherwise
-%
-%       value = Compartment_isSetUnits(SBMLCompartment)
+%    returns
+%      1 if the value for the units attribute is set
+%      0 otherwise
 
 %  Filename    :   Compartment_isSetUnits.m
 %  Description :
@@ -39,18 +37,13 @@ function value = Compartment_isSetUnits(SBMLCompartment)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLCompartment))
-    error(sprintf('%s\n%s', ...
-      'Compartment_isSetUnits(SBMLCompartment)', ...
-      'argument must be an SBML compartment structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLCompartment);
+[level, version] = GetLevelVersion(SBMLCompartment);
 
-if (~isSBML_Compartment(SBMLCompartment, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Compartment_isSetUnits(SBMLCompartment)', 'argument must be an SBML compartment structure'));
+if isfield(SBMLCompartment, 'units')
+	value = ~isempty(SBMLCompartment.units);
+else
+	error('units not an attribute on SBML L%dV%d Compartment', level, version);
 end;
 
-value = ~isempty(SBMLCompartment.units);

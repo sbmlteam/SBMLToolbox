@@ -1,12 +1,10 @@
 function sboTerm = Compartment_getSBOTerm(SBMLCompartment)
 %
-%   Compartment_getSBOTerm 
-%             takes an SBMLCompartment structure 
+% Compartment_getSBOTerm
+%    takes an SBML Compartment structure
 %
-%             and returns 
-%               the sboTerm of the compartment as an integer
-%
-%       sboTerm = Compartment_getSBOTerm(SBMLCompartment)
+%    returns
+%      the value of the sboTerm attribute
 
 %  Filename    :   Compartment_getSBOTerm.m
 %  Description :
@@ -38,24 +36,13 @@ function sboTerm = Compartment_getSBOTerm(SBMLCompartment)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLCompartment))
-    error(sprintf('%s\n%s', ...
-      'Compartment_getSBOTerm(SBMLCompartment)', ...
-      'argument must be an SBML compartment structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLCompartment);
+[level, version] = GetLevelVersion(SBMLCompartment);
 
-if (~isSBML_Compartment(SBMLCompartment, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', ...
-      'Compartment_getSBOTerm(SBMLCompartment)', ...
-      'argument must be an SBML compartment structure'));
-elseif (sbmlLevel ~= 2 || sbmlVersion ~= 3)
-    error(sprintf('%s\n%s', ...
-      'Compartment_getSBOTerm(SBMLCompartment)', ...
-      'sboTerm field only in level 2 version 3 model'));    
+if isfield(SBMLCompartment, 'sboTerm')
+	sboTerm = SBMLCompartment.sboTerm;
+else
+	error('sboTerm not an attribute on SBML L%dV%d Compartment', level, version);
 end;
 
-sboTerm = SBMLCompartment.sboTerm;

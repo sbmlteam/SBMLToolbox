@@ -1,13 +1,11 @@
 function SBMLCompartment = Compartment_setSBOTerm(SBMLCompartment, sboTerm)
 %
-%   Compartment_setSBOTerm 
-%             takes  1) an SBMLCompartment structure 
-%             and    2) an integer representing the sboTerm to be set
+% Compartment_setSBOTerm
+%    takes an SBML Compartment structure
+%    and the sboTerm to be set
 %
-%             and returns 
-%               the compartment with the sboTerm set
-%
-%       SBMLCompartment = Compartment_setSBOTerm(SBMLCompartment, sboTerm)
+%    returns
+%      the Compartment with the new value for the sboTerm attribute
 
 %  Filename    :   Compartment_setSBOTerm.m
 %  Description :
@@ -39,28 +37,17 @@ function SBMLCompartment = Compartment_setSBOTerm(SBMLCompartment, sboTerm)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLCompartment))
-    error(sprintf('%s\n%s', ...
-      'Compartment_setSBOTerm(SBMLCompartment, sboTerm)', ...
-      'argument must be an SBML compartment structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLCompartment);
+[level, version] = GetLevelVersion(SBMLCompartment);
 
-if (~isSBML_Compartment(SBMLCompartment, sbmlLevel, sbmlVersion))
-  error(sprintf('%s\n%s', ...
-    'Compartment_setSBOTerm(SBMLCompartment, sboTerm)', ...
-    'first argument must be an SBML compartment structure'));
-elseif (~isIntegralNumber(sboTerm))
-    error(sprintf('%s\n%s', ...
-      'Compartment_setSBOTerm(SBMLCompartment, sboTerm)', ...
-      'second argument must be an integer representing the sboTerm'));
-elseif (sbmlLevel ~= 2 || sbmlVersion ~= 3)
-    error(sprintf('%s\n%s', ...
-      'Compartment_setSBOTerm(SBMLCompartment, sboTerm)',  ...
-      'sboTerm field only in level 2 version 3 model'));    
+if isfield(SBMLCompartment, 'sboTerm')
+	if ~isIntegralNumber(sboTerm)
+		error('sboTerm must be an integer') ;
+	else
+		SBMLCompartment.sboTerm = sboTerm;
+	end;
+else
+	error('sboTerm not an attribute on SBML L%dV%d Compartment', level, version);
 end;
 
-SBMLCompartment.sboTerm = sboTerm;

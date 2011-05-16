@@ -1,13 +1,11 @@
 function SBMLCompartment = Compartment_setConstant(SBMLCompartment, constant)
 %
-%   Compartment_setConstant 
-%             takes  1) an SBMLCompartment structure 
-%             and    2) an integer representing the constant to be set
+% Compartment_setConstant
+%    takes an SBML Compartment structure
+%    and the constant to be set
 %
-%             and returns 
-%               the compartment with the constant set
-%
-%       SBMLCompartment = Compartment_setConstant(SBMLCompartment, constant)
+%    returns
+%      the Compartment with the new value for the constant attribute
 
 %  Filename    :   Compartment_setConstant.m
 %  Description :
@@ -39,22 +37,17 @@ function SBMLCompartment = Compartment_setConstant(SBMLCompartment, constant)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLCompartment))
-    error(sprintf('%s\n%s', ...
-      'Compartment_setConstant(SBMLCompartment)', ...
-      'argument must be an SBML compartment structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLCompartment);
+[level, version] = GetLevelVersion(SBMLCompartment);
 
-if (~isSBML_Compartment(SBMLCompartment, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Compartment_setConstant(SBMLCompartment, constant)', 'first argument must be an SBML model structure'));
-elseif ((~isIntegralNumber(constant)) || (constant < 0) || (constant > 1))
-    error(sprintf('Compartment_setConstant(SBMLCompartment, constant)\n%s', 'second argument must be either true (=1) or false (=0) representing whether the compartment is constant'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Compartment_setConstant(SBMLCompartment, constant)', 'no constant field in a level 1 model'));    
+if isfield(SBMLCompartment, 'constant')
+	if (~isIntegralNumber(constant) || constant < 0 || constant > 1)
+		error('constant must be an integer of value 0/1') ;
+	else
+		SBMLCompartment.constant = constant;
+	end;
+else
+	error('constant not an attribute on SBML L%dV%d Compartment', level, version);
 end;
 
-SBMLCompartment.constant = int32(constant);

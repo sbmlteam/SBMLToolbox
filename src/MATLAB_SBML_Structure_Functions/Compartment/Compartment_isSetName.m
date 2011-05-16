@@ -1,13 +1,11 @@
 function value = Compartment_isSetName(SBMLCompartment)
 %
-%   Compartment_isSetName 
-%             takes an SBMLCompartment structure 
+% Compartment_isSetName
+%    takes an SBML Compartment structure
 %
-%             and returns 
-%               1 if the name has been set 
-%               0 otherwise
-%
-%       value = Compartment_isSetName(SBMLCompartment)
+%    returns
+%      1 if the value for the name attribute is set
+%      0 otherwise
 
 %  Filename    :   Compartment_isSetName.m
 %  Description :
@@ -39,18 +37,13 @@ function value = Compartment_isSetName(SBMLCompartment)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLCompartment))
-    error(sprintf('%s\n%s', ...
-      'Compartment_isSetName(SBMLCompartment)', ...
-      'argument must be an SBML compartment structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLCompartment);
+[level, version] = GetLevelVersion(SBMLCompartment);
 
-if (~isSBML_Compartment(SBMLCompartment, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Compartment_isSetName(SBMLCompartment)', 'argument must be an SBML compartment structure'));
+if isfield(SBMLCompartment, 'name')
+	value = ~isempty(SBMLCompartment.name);
+else
+	error('name not an attribute on SBML L%dV%d Compartment', level, version);
 end;
 
-value = ~isempty(SBMLCompartment.name);

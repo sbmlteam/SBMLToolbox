@@ -1,15 +1,15 @@
-function spatialDimensions = Compartment_getSpatialDimensions(SBMLCompartment)
+function SBMLCompartment = Compartment_unsetCompartmentType(SBMLCompartment)
 %
-% Compartment_getSpatialDimensions
+% Compartment_getCompartmentType
 %    takes an SBML Compartment structure
 %
 %    returns
-%      the value of the spatialDimensions attribute
+%      the Compartment with the value for the compartmentType attribute unset
 
-%  Filename    :   Compartment_getSpatialDimensions.m
+%  Filename    :   Compartment_unsetCompartmentType.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -40,9 +40,9 @@ function spatialDimensions = Compartment_getSpatialDimensions(SBMLCompartment)
 
 [level, version] = GetLevelVersion(SBMLCompartment);
 
-if isfield(SBMLCompartment, 'spatialDimensions')
-	spatialDimensions = SBMLCompartment.spatialDimensions;
+if isfield(SBMLCompartment, 'compartmentType')
+	SBMLCompartment.compartmentType = '';
 else
-	error('spatialDimensions not an attribute on SBML L%dV%d Compartment', level, version);
+	error('compartmentType not an attribute on SBML L%dV%d Compartment', level, version);
 end;
 

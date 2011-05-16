@@ -1,13 +1,11 @@
 function SBMLCompartment = Compartment_setCompartmentType(SBMLCompartment, compartmentType)
 %
-%   Compartment_setCompartmentType 
-%             takes  1) an SBMLCompartment structure 
-%             and    2) an string representing the compartmentType to be set
+% Compartment_setCompartmentType
+%    takes an SBML Compartment structure
+%    and the compartmentType to be set
 %
-%             and returns 
-%               the compartment with the compartmentType set
-%
-%       SBMLCompartment = Compartment_setCompartmentType(SBMLCompartment, compartmentType)
+%    returns
+%      the Compartment with the new value for the compartmentType attribute
 
 %  Filename    :   Compartment_setCompartmentType.m
 %  Description :
@@ -39,28 +37,17 @@ function SBMLCompartment = Compartment_setCompartmentType(SBMLCompartment, compa
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLCompartment))
-    error(sprintf('%s\n%s', ...
-      'Compartment_setCompartmentType(SBMLCompartment, compartmentType)', ...
-      'argument must be an SBML compartment structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLCompartment);
+[level, version] = GetLevelVersion(SBMLCompartment);
 
-if (~isSBML_Compartment(SBMLCompartment, sbmlLevel, sbmlVersion))
-  error(sprintf('%s\n%s', ...
-    'Compartment_setCompartmentType(SBMLCompartment, compartmentType)', ...
-    'first argument must be an SBML compartment structure'));
-elseif (~ischar(compartmentType))
-    error(sprintf('%s\n%s', ...
-      'Compartment_setCompartmentType(SBMLCompartment, compartmentType)', ...
-      'second argument must be a string representing the compartmentType'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'Compartment_setCompartmentType(SBMLCompartment, compartmentType)',  ...
-      'compartmentType field only in level 2 version 2/3 model'));    
+if isfield(SBMLCompartment, 'compartmentType')
+	if ~ischar(compartmentType)
+		error('compartmentType must be character array') ;
+	else
+		SBMLCompartment.compartmentType = compartmentType;
+	end;
+else
+	error('compartmentType not an attribute on SBML L%dV%d Compartment', level, version);
 end;
 
-SBMLCompartment.compartmentType = compartmentType;

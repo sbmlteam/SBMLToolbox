@@ -1,13 +1,10 @@
 function SBMLCompartment = Compartment_unsetVolume(SBMLCompartment)
 %
-%   Compartment_unsetVolume 
-%             takes an SBMLCompartment structure 
+% Compartment_getVolume
+%    takes an SBML Compartment structure
 %
-%             and returns 
-%               the compartment with the volume unset
-%               (i.e. volume = NAN)
-%
-%       SBMLCompartment = Compartment_unsetVolume(SBMLCompartment)
+%    returns
+%      the Compartment with the value for the volume attribute unset
 
 %  Filename    :   Compartment_unsetVolume.m
 %  Description :
@@ -39,33 +36,20 @@ function SBMLCompartment = Compartment_unsetVolume(SBMLCompartment)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLCompartment))
-    error(sprintf('%s\n%s', ...
-      'Compartment_unsetVolume(SBMLCompartment)', ...
-      'argument must be an SBML compartment structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLCompartment);
+[level, version] = GetLevelVersion(SBMLCompartment);
 
-if (~isSBML_Compartment(SBMLCompartment, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Compartment_unsetVolume(SBMLCompartment)', 'argument must be an SBML compartment structure'));
-elseif (sbmlLevel ~= 1)
-    error(sprintf('%s\n%s', 'Compartment_unsetVolume(SBMLCompartment)', 'no volume field in a level 2 model'));    
-end;
-
-if exist('OCTAVE_VERSION')
-  warning off Octave:divide-by-zero;
+if isfield(SBMLCompartment, 'volume')
+	if level == 1
+    SBMLCompartment.volume = 1;
+  else
+    SBMLCompartment.volume = NaN;
+  end;
+  if (isfield(SBMLCompartment, 'isSetVolume'))
+    SBMLCompartment.isSetVolume = 0;
+  end;
 else
-  warning off MATLAB:divideByZero;
+	error('volume not an attribute on SBML L%dV%d Compartment', level, version);
 end;
 
-SBMLCompartment.volume = 0/0;
-SBMLCompartment.isSetVolume = 0;
-
-if exist('OCTAVE_VERSION')
-  warning off Octave:divide-by-zero;
-else
-  warning off MATLAB:divideByZero;
-end;
