@@ -1,13 +1,11 @@
-function eventAssignment = Event_getEventAssignment(SBMLEvent, number)
+function eventAssignment = Event_getEventAssignment(SBMLEvent, index)
 %
-%   Event_getEventAssignment 
-%             takes  1) an SBMLEvent structure 
-%             and    2) a number n
+% Event_getEventAssignment
+%    takes an SBML Event structure
+%    and an index
 %
-%             and returns 
-%               the nth eventAssignment structure defined within the event
-%
-%       eventAssignment = Event_getEventAssignment(SBMLEvent, number)
+%    returns
+%      the value of the eventAssignment element at the indexed position
 
 %  Filename    :   Event_getEventAssignment.m
 %  Description :
@@ -39,26 +37,19 @@ function eventAssignment = Event_getEventAssignment(SBMLEvent, number)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLEvent))
-    error(sprintf('%s\n%s', ...
-      'Event_getEventAssignment(SBMLEvent, number)', ...
-      'argument must be an SBML Constraint structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEvent);
+[level, version] = GetLevelVersion(SBMLEvent);
 
-if (~isSBML_Event(SBMLEvent, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Event_getEventAssignment(SBMLEvent, number)', 'first argument must be an SBML event structure'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Event_getEventAssignment(SBMLEvent, number)', 'no events in level 1 model'));
-elseif ((number < 1) || (~isIntegralNumber(number)))
-    error(sprintf('%s\n%s', 'Event_getEventAssignment(SBMLEvent, number)', 'second argument must be a positive integer'));
-end;
-
-if (number > length(SBMLEvent.eventAssignment))
-    eventAssignment = [];
+if isfield(SBMLEvent, 'eventAssignment')
+	if (~isIntegralNumber(index) || index <= 0)
+		error('index must be a positive integer');
+	elseif index <= length(SBMLEvent.eventAssignment)
+		eventAssignment = SBMLEvent.eventAssignment;
+	else
+		error('index is out of range');
+	end;
 else
-    eventAssignment = SBMLEvent.eventAssignment(number);
+	error('eventAssignment not an element on SBML L%dV%d Event', level, version);
 end;
+

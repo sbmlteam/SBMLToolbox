@@ -1,13 +1,11 @@
 function SBMLEventAssignment = EventAssignment_setMath(SBMLEventAssignment, math)
 %
-%   EventAssignment_setMath 
-%             takes  1) an SBMLEventAssignment structure 
-%             and    2) a string representing the math to be set
+% EventAssignment_setMath
+%    takes an SBML EventAssignment structure
+%    and the math to be set
 %
-%             and returns 
-%               the eventAssignment with the math set
-%
-%       SBMLEventAssignment = EventAssignment_setMath(SBMLEventAssignment, 'math')
+%    returns
+%      the EventAssignment with the new value for the math attribute
 
 %  Filename    :   EventAssignment_setMath.m
 %  Description :
@@ -39,20 +37,17 @@ function SBMLEventAssignment = EventAssignment_setMath(SBMLEventAssignment, math
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLEventAssignment))
-  error(sprintf('%s\n%s', ...
-    'EventAssignment_setMath(SBMLEventAssignment, math)', ...
-    'first argument must be an SBML eventAssignment structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEventAssignment);
+[level, version] = GetLevelVersion(SBMLEventAssignment);
 
-if (~isSBML_EventAssignment(SBMLEventAssignment, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'EventAssignment_setMath(SBMLEventAssignment, math)', 'first argument must be an SBML eventAssignment structure'));
-elseif (~ischar(math))
-    error(sprintf('EventAssignment_setMath(SBMLEventAssignment, math)\n%s', 'second argument must be a string representing the math of the eventAssignment'));
+if isfield(SBMLEventAssignment, 'math')
+	if ~ischar(math)
+		error('math must be character array') ;
+	else
+		SBMLEventAssignment.math = math;
+	end;
+else
+	error('math not an attribute on SBML L%dV%d EventAssignment', level, version);
 end;
 
-SBMLEventAssignment.math = math;

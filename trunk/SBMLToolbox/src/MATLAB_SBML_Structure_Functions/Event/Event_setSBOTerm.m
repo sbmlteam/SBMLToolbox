@@ -1,13 +1,11 @@
 function SBMLEvent = Event_setSBOTerm(SBMLEvent, sboTerm)
 %
-%   Event_setSBOTerm 
-%             takes  1) an SBMLEvent structure 
-%             and    2) an integer representing the sboTerm to be set
+% Event_setSBOTerm
+%    takes an SBML Event structure
+%    and the sboTerm to be set
 %
-%             and returns 
-%               the compartment with the sboTerm set
-%
-%       SBMLEvent = Event_setSBOTerm(SBMLEvent, sboTerm)
+%    returns
+%      the Event with the new value for the sboTerm attribute
 
 %  Filename    :   Event_setSBOTerm.m
 %  Description :
@@ -39,28 +37,17 @@ function SBMLEvent = Event_setSBOTerm(SBMLEvent, sboTerm)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLEvent))
-  error(sprintf('%s\n%s', ...
-    'Event_setSBOTerm(SBMLEvent, sboTerm)', ...
-    'first argument must be an SBML event structure'));
+[level, version] = GetLevelVersion(SBMLEvent);
+
+if isfield(SBMLEvent, 'sboTerm')
+	if ~isIntegralNumber(sboTerm)
+		error('sboTerm must be an integer') ;
+	else
+		SBMLEvent.sboTerm = sboTerm;
+	end;
+else
+	error('sboTerm not an attribute on SBML L%dV%d Event', level, version);
 end;
 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEvent);
-
-if (~isSBML_Event(SBMLEvent, sbmlLevel, sbmlVersion))
-  error(sprintf('%s\n%s', ...
-    'Event_setSBOTerm(SBMLEvent, sboTerm)', ...
-    'first argument must be an SBML event structure'));
-elseif (~isIntegralNumber(sboTerm))
-    error(sprintf('%s\n%s', ...
-      'Event_setSBOTerm(SBMLEvent, sboTerm)', ...
-      'second argument must be an integer representing the sboTerm'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'Event_setSBOTerm(SBMLEvent, sboTerm)',  ...
-      'sboTerm field only in level 2 version 3 model'));    
-end;
-
-SBMLEvent.sboTerm = sboTerm;

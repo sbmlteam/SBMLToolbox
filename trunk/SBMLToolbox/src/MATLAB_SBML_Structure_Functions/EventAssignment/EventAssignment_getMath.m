@@ -1,12 +1,10 @@
 function math = EventAssignment_getMath(SBMLEventAssignment)
 %
-%   EventAssignment_getMath 
-%             takes an SBMLEventAssignment structure 
+% EventAssignment_getMath
+%    takes an SBML EventAssignment structure
 %
-%             and returns 
-%               the math of the eventAssignment as a string
-%
-%       math = EventAssignment_getMath(SBMLEventAssignment)
+%    returns
+%      the value of the math attribute
 
 %  Filename    :   EventAssignment_getMath.m
 %  Description :
@@ -38,18 +36,13 @@ function math = EventAssignment_getMath(SBMLEventAssignment)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLEventAssignment))
-  error(sprintf('%s\n%s', ...
-    'EventAssignment_getMath(SBMLEventAssignment)', ...
-    'first argument must be an SBML eventAssignment structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEventAssignment);
+[level, version] = GetLevelVersion(SBMLEventAssignment);
 
-if (~isSBML_EventAssignment(SBMLEventAssignment, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'EventAssignment_getMath(SBMLEventAssignment)', 'argument must be an SBML eventAssignment structure'));
+if isfield(SBMLEventAssignment, 'math')
+	math = SBMLEventAssignment.math;
+else
+	error('math not an attribute on SBML L%dV%d EventAssignment', level, version);
 end;
 
-math = SBMLEventAssignment.math;

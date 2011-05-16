@@ -1,13 +1,11 @@
 function SBMLDelay = Delay_setMath(SBMLDelay, math)
 %
-%   Delay_setMath 
-%             takes  1) an SBMLDelay structure 
-%             and    2) an string representing the math to be set
+% Delay_setMath
+%    takes an SBML Delay structure
+%    and the math to be set
 %
-%             and returns 
-%               the compartment with the math set
-%
-%       SBMLDelay = Delay_setMath(SBMLDelay, math)
+%    returns
+%      the Delay with the new value for the math attribute
 
 %  Filename    :   Delay_setMath.m
 %  Description :
@@ -39,28 +37,17 @@ function SBMLDelay = Delay_setMath(SBMLDelay, math)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLDelay))
-    error(sprintf('%s\n%s', ...
-      'Delay_getMath(SBMLDelay)', ...
-      'argument must be an SBML Delay structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLDelay);
+[level, version] = GetLevelVersion(SBMLDelay);
 
-if (~isSBML_Delay(SBMLDelay, sbmlLevel, sbmlVersion))
-  error(sprintf('%s\n%s', ...
-    'Delay_setMath(SBMLDelay, math)', ...
-    'first argument must be an SBML Delay structure'));
-elseif (~ischar(math))
-    error(sprintf('%s\n%s', ...
-      'Delay_setMath(SBMLDelay, math)', ...
-      'second argument must be a string representing the math'));
-elseif (sbmlLevel ~= 2 || sbmlVersion ~= 3)
-    error(sprintf('%s\n%s', ...
-      'Delay_setMath(SBMLDelay, math)',  ...
-      'math field only in level 2 version 3 model'));    
+if isfield(SBMLDelay, 'math')
+	if ~ischar(math)
+		error('math must be character array') ;
+	else
+		SBMLDelay.math = math;
+	end;
+else
+	error('math not an attribute on SBML L%dV%d Delay', level, version);
 end;
 
-SBMLDelay.math = math;

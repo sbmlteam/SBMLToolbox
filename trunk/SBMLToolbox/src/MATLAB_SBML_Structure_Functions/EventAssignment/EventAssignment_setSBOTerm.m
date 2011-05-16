@@ -1,13 +1,11 @@
 function SBMLEventAssignment = EventAssignment_setSBOTerm(SBMLEventAssignment, sboTerm)
 %
-%   EventAssignment_setSBOTerm 
-%             takes  1) an SBMLEventAssignment structure 
-%             and    2) an integer representing the sboTerm to be set
+% EventAssignment_setSBOTerm
+%    takes an SBML EventAssignment structure
+%    and the sboTerm to be set
 %
-%             and returns 
-%               the compartment with the sboTerm set
-%
-%       SBMLEventAssignment = EventAssignment_setSBOTerm(SBMLEventAssignment, sboTerm)
+%    returns
+%      the EventAssignment with the new value for the sboTerm attribute
 
 %  Filename    :   EventAssignment_setSBOTerm.m
 %  Description :
@@ -39,28 +37,17 @@ function SBMLEventAssignment = EventAssignment_setSBOTerm(SBMLEventAssignment, s
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLEventAssignment))
-  error(sprintf('%s\n%s', ...
-    'EventAssignment_setSBOTerm(SBMLEventAssignment, sboTerm)', ...
-    'first argument must be an SBML eventAssignment structure'));
+[level, version] = GetLevelVersion(SBMLEventAssignment);
+
+if isfield(SBMLEventAssignment, 'sboTerm')
+	if ~isIntegralNumber(sboTerm)
+		error('sboTerm must be an integer') ;
+	else
+		SBMLEventAssignment.sboTerm = sboTerm;
+	end;
+else
+	error('sboTerm not an attribute on SBML L%dV%d EventAssignment', level, version);
 end;
 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEventAssignment);
-
-if (~isSBML_EventAssignment(SBMLEventAssignment, sbmlLevel, sbmlVersion))
-  error(sprintf('%s\n%s', ...
-    'EventAssignment_setSBOTerm(SBMLEventAssignment, sboTerm)', ...
-    'first argument must be an SBML eventAssignment structure'));
-elseif (~isIntegralNumber(sboTerm))
-    error(sprintf('%s\n%s', ...
-      'EventAssignment_setSBOTerm(SBMLEventAssignment, sboTerm)', ...
-      'second argument must be an integer representing the sboTerm'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'EventAssignment_setSBOTerm(SBMLEventAssignment, sboTerm)',  ...
-      'sboTerm field only in level 2 version 3 model'));    
-end;
-
-SBMLEventAssignment.sboTerm = sboTerm;

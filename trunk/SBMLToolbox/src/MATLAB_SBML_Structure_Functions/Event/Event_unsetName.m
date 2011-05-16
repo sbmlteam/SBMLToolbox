@@ -1,13 +1,10 @@
 function SBMLEvent = Event_unsetName(SBMLEvent)
 %
-%   Event_unsetName 
-%             takes an SBMLEvent structure 
+% Event_getName
+%    takes an SBML Event structure
 %
-%             and returns 
-%               the event with the name unset
-%               (i.e. name = '')
-%
-%       SBMLEvent = Event_unsetName(SBMLEvent)
+%    returns
+%      the Event with the value for the name attribute unset
 
 %  Filename    :   Event_unsetName.m
 %  Description :
@@ -39,18 +36,13 @@ function SBMLEvent = Event_unsetName(SBMLEvent)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLEvent))
-    error(sprintf('%s\n%s', ...
-      'Event_unsetName(SBMLEvent)', ...
-      'argument must be an SBML Constraint structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEvent);
+[level, version] = GetLevelVersion(SBMLEvent);
 
-if (~isSBML_Event(SBMLEvent, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Event_unsetName(SBMLEvent)', 'argument must be an SBML event structure'));
+if isfield(SBMLEvent, 'name')
+	SBMLEvent.name = '';
+else
+	error('name not an attribute on SBML L%dV%d Event', level, version);
 end;
 
-SBMLEvent.name = '';

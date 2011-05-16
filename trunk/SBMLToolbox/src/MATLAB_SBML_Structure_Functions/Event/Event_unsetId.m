@@ -1,13 +1,10 @@
 function SBMLEvent = Event_unsetId(SBMLEvent)
 %
-%   Event_unsetId 
-%             takes an SBMLEvent structure 
+% Event_getId
+%    takes an SBML Event structure
 %
-%             and returns 
-%               the event with the id unset
-%               (i.e. id = '')
-%
-%       SBMLEvent = Event_unsetId(SBMLEvent)
+%    returns
+%      the Event with the value for the id attribute unset
 
 %  Filename    :   Event_unsetId.m
 %  Description :
@@ -39,18 +36,13 @@ function SBMLEvent = Event_unsetId(SBMLEvent)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLEvent))
-    error(sprintf('%s\n%s', ...
-      'Event_unsetId(SBMLEvent)', ...
-      'argument must be an SBML Constraint structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEvent);
+[level, version] = GetLevelVersion(SBMLEvent);
 
-if (~isSBML_Event(SBMLEvent, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Event_unsetId(SBMLEvent)', 'argument must be an SBML event structure'));
+if isfield(SBMLEvent, 'id')
+	SBMLEvent.id = '';
+else
+	error('id not an attribute on SBML L%dV%d Event', level, version);
 end;
 
-SBMLEvent.id = '';

@@ -1,13 +1,11 @@
 function SBMLEventAssignment = EventAssignment_setVariable(SBMLEventAssignment, variable)
 %
-%   EventAssignment_setVariable 
-%             takes  1) an SBMLEventAssignment structure 
-%             and    2) a string representing the variable to be set
+% EventAssignment_setVariable
+%    takes an SBML EventAssignment structure
+%    and the variable to be set
 %
-%             and returns 
-%               the eventAssignment with the variable set
-%
-%       SBMLEventAssignment = EventAssignment_setVariable(SBMLEventAssignment, 'variable')
+%    returns
+%      the EventAssignment with the new value for the variable attribute
 
 %  Filename    :   EventAssignment_setVariable.m
 %  Description :
@@ -39,20 +37,17 @@ function SBMLEventAssignment = EventAssignment_setVariable(SBMLEventAssignment, 
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLEventAssignment))
-  error(sprintf('%s\n%s', ...
-    'EventAssignment_setVariable(SBMLEventAssignment, variable)', ...
-    'first argument must be an SBML eventAssignment structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEventAssignment);
+[level, version] = GetLevelVersion(SBMLEventAssignment);
 
-if (~isSBML_EventAssignment(SBMLEventAssignment, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'EventAssignment_setVariable(SBMLEventAssignment, variable)', 'first argument must be an SBML eventAssignment structure'));
-elseif (~ischar(variable))
-    error(sprintf('EventAssignment_setVariable(SBMLEventAssignment, variable)\n%s', 'second argument must be a string representing the variable of the eventAssignment'));
+if isfield(SBMLEventAssignment, 'variable')
+	if ~ischar(variable)
+		error('variable must be character array') ;
+	else
+		SBMLEventAssignment.variable = variable;
+	end;
+else
+	error('variable not an attribute on SBML L%dV%d EventAssignment', level, version);
 end;
 
-SBMLEventAssignment.variable = variable;

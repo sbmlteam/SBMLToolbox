@@ -1,12 +1,10 @@
 function trigger = Event_getTrigger(SBMLEvent)
 %
-%   Event_getTrigger 
-%             takes an SBMLEvent structure 
+% Event_getTrigger
+%    takes an SBML Event structure
 %
-%             and returns 
-%               the trigger of the event as a string
-%
-%       trigger = Event_getTrigger(SBMLEvent)
+%    returns
+%      the value of the trigger attribute
 
 %  Filename    :   Event_getTrigger.m
 %  Description :
@@ -38,18 +36,13 @@ function trigger = Event_getTrigger(SBMLEvent)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLEvent))
-    error(sprintf('%s\n%s', ...
-      'Event_getTrigger(SBMLEvent)', ...
-      'argument must be an SBML Constraint structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEvent);
+[level, version] = GetLevelVersion(SBMLEvent);
 
-if (~isSBML_Event(SBMLEvent, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Event_getTrigger(SBMLEvent)', 'argument must be an SBML event structure'));
+if isfield(SBMLEvent, 'trigger')
+	trigger = SBMLEvent.trigger;
+else
+	error('trigger not an attribute on SBML L%dV%d Event', level, version);
 end;
 
-trigger = SBMLEvent.trigger;

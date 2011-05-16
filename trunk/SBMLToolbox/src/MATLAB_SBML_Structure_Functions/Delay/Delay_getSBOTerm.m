@@ -1,12 +1,10 @@
 function sboTerm = Delay_getSBOTerm(SBMLDelay)
 %
-%   Delay_getSBOTerm 
-%             takes an SBMLDelay structure 
+% Delay_getSBOTerm
+%    takes an SBML Delay structure
 %
-%             and returns 
-%               the sboTerm of the Delay as an integer
-%
-%       sboTerm = Delay_getSBOTerm(SBMLDelay)
+%    returns
+%      the value of the sboTerm attribute
 
 %  Filename    :   Delay_getSBOTerm.m
 %  Description :
@@ -38,24 +36,13 @@ function sboTerm = Delay_getSBOTerm(SBMLDelay)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLDelay))
-    error(sprintf('%s\n%s', ...
-      'Delay_getSBOTerm(SBMLDelay)', ...
-      'argument must be an SBML Delay structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLDelay);
+[level, version] = GetLevelVersion(SBMLDelay);
 
-if (~isSBML_Delay(SBMLDelay, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', ...
-      'Delay_getSBOTerm(SBMLDelay)', ...
-      'argument must be an SBML Delay structure'));
-elseif (sbmlLevel ~= 2 || sbmlVersion ~= 3)
-    error(sprintf('%s\n%s', ...
-      'Delay_getSBOTerm(SBMLDelay)', ...
-      'sboTerm field only in level 2 version 3 model'));    
+if isfield(SBMLDelay, 'sboTerm')
+	sboTerm = SBMLDelay.sboTerm;
+else
+	error('sboTerm not an attribute on SBML L%dV%d Delay', level, version);
 end;
 
-sboTerm = SBMLDelay.sboTerm;

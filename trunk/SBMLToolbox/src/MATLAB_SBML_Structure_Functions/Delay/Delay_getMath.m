@@ -1,12 +1,10 @@
 function math = Delay_getMath(SBMLDelay)
 %
-%   Delay_getMath 
-%             takes an SBMLDelay structure 
+% Delay_getMath
+%    takes an SBML Delay structure
 %
-%             and returns 
-%               the math of the Delay as a string
-%
-%       math = Delay_getMath(SBMLDelay)
+%    returns
+%      the value of the math attribute
 
 %  Filename    :   Delay_getMath.m
 %  Description :
@@ -38,24 +36,13 @@ function math = Delay_getMath(SBMLDelay)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLDelay))
-    error(sprintf('%s\n%s', ...
-      'Delay_getMath(SBMLDelay)', ...
-      'argument must be an SBML Delay structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLDelay);
+[level, version] = GetLevelVersion(SBMLDelay);
 
-if (~isSBML_Delay(SBMLDelay, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', ...
-      'Delay_getMath(SBMLDelay)', ...
-      'argument must be an SBML Delay structure'));
-elseif (sbmlLevel ~= 2 || sbmlVersion ~= 3)
-    error(sprintf('%s\n%s', ...
-      'Delay_getMath(SBMLDelay)', ...
-      'math field only in level 2 version 3 model'));    
+if isfield(SBMLDelay, 'math')
+	math = SBMLDelay.math;
+else
+	error('math not an attribute on SBML L%dV%d Delay', level, version);
 end;
 
-math = SBMLDelay.math;

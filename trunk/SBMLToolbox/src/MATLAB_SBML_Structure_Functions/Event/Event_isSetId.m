@@ -1,13 +1,11 @@
 function value = Event_isSetId(SBMLEvent)
 %
-%   Event_isSetId 
-%             takes an SBMLEvent structure 
+% Event_isSetId
+%    takes an SBML Event structure
 %
-%             and returns 
-%               1 if the id has been set 
-%               0 otherwise
-%
-%       value = Event_isSetId(SBMLEvent)
+%    returns
+%      1 if the value for the id attribute is set
+%      0 otherwise
 
 %  Filename    :   Event_isSetId.m
 %  Description :
@@ -39,18 +37,13 @@ function value = Event_isSetId(SBMLEvent)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLEvent))
-    error(sprintf('%s\n%s', ...
-      'Event_isSetId(SBMLEvent)', ...
-      'argument must be an SBML Constraint structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEvent);
+[level, version] = GetLevelVersion(SBMLEvent);
 
-if (~isSBML_Event(SBMLEvent, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Event_isSetId(SBMLEvent)', 'argument must be an SBML event structure'));
+if isfield(SBMLEvent, 'id')
+	value = ~isempty(SBMLEvent.id);
+else
+	error('id not an attribute on SBML L%dV%d Event', level, version);
 end;
 
-value = ~isempty(SBMLEvent.id);

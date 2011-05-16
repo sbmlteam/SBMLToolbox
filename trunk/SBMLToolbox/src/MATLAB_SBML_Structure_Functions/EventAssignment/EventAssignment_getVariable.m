@@ -1,12 +1,10 @@
 function variable = EventAssignment_getVariable(SBMLEventAssignment)
 %
-%   EventAssignment_getVariable 
-%             takes an SBMLEventAssignment structure 
+% EventAssignment_getVariable
+%    takes an SBML EventAssignment structure
 %
-%             and returns 
-%               the variable of the eventAssignment as a string
-%
-%       variable = EventAssignment_getVariable(SBMLEventAssignment)
+%    returns
+%      the value of the variable attribute
 
 %  Filename    :   EventAssignment_getVariable.m
 %  Description :
@@ -38,18 +36,13 @@ function variable = EventAssignment_getVariable(SBMLEventAssignment)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLEventAssignment))
-  error(sprintf('%s\n%s', ...
-    'EventAssignment_getVariable(SBMLEventAssignment)', ...
-    'first argument must be an SBML eventAssignment structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEventAssignment);
+[level, version] = GetLevelVersion(SBMLEventAssignment);
 
-if (~isSBML_EventAssignment(SBMLEventAssignment, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'EventAssignment_getVariable(SBMLEventAssignment)', 'argument must be an SBML eventAssignment structure'));
+if isfield(SBMLEventAssignment, 'variable')
+	variable = SBMLEventAssignment.variable;
+else
+	error('variable not an attribute on SBML L%dV%d EventAssignment', level, version);
 end;
 
-variable = SBMLEventAssignment.variable;

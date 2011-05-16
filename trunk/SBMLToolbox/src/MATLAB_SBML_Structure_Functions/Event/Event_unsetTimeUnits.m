@@ -1,13 +1,10 @@
 function SBMLEvent = Event_unsetTimeUnits(SBMLEvent)
 %
-%   Event_unsetTimeUnits 
-%             takes an SBMLEvent structure 
+% Event_getTimeUnits
+%    takes an SBML Event structure
 %
-%             and returns 
-%               the event with the timeUnits unset
-%               (i.e. timeUnits = '')
-%
-%       SBMLEvent = Event_unsetTimeUnits(SBMLEvent)
+%    returns
+%      the Event with the value for the timeUnits attribute unset
 
 %  Filename    :   Event_unsetTimeUnits.m
 %  Description :
@@ -39,18 +36,13 @@ function SBMLEvent = Event_unsetTimeUnits(SBMLEvent)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLEvent))
-    error(sprintf('%s\n%s', ...
-      'Event_unsetTimeUnits(SBMLEvent)', ...
-      'argument must be an SBML Constraint structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEvent);
+[level, version] = GetLevelVersion(SBMLEvent);
 
-if (~isSBML_Event(SBMLEvent, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Event_unsetTimeUnits(SBMLEvent)', 'argument must be an SBML event structure'));
+if isfield(SBMLEvent, 'timeUnits')
+	SBMLEvent.timeUnits = '';
+else
+	error('timeUnits not an attribute on SBML L%dV%d Event', level, version);
 end;
 
-SBMLEvent.timeUnits = '';

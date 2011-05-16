@@ -1,13 +1,11 @@
 function SBMLEvent = Event_setId(SBMLEvent, id)
 %
-%   Event_setId 
-%             takes  1) an SBMLEvent structure 
-%             and    2) a string representing the id to be set
+% Event_setId
+%    takes an SBML Event structure
+%    and the id to be set
 %
-%             and returns 
-%               the event with the id set
-%
-%       SBMLEvent = Event_setId(SBMLEvent, 'id')
+%    returns
+%      the Event with the new value for the id attribute
 
 %  Filename    :   Event_setId.m
 %  Description :
@@ -39,20 +37,17 @@ function SBMLEvent = Event_setId(SBMLEvent, id)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLEvent))
-    error(sprintf('%s\n%s', ...
-      'Event_setId(SBMLEvent, id)', ...
-      'argument must be an SBML Constraint structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLEvent);
+[level, version] = GetLevelVersion(SBMLEvent);
 
-if (~isSBML_Event(SBMLEvent, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Event_setId(SBMLEvent, id)', 'first argument must be an SBML event structure'));
-elseif (~ischar(id))
-    error(sprintf('Event_setId(SBMLEvent, id)\n%s', 'second argument must be a string representing the id of the event'));
+if isfield(SBMLEvent, 'id')
+	if ~ischar(id)
+		error('id must be character array') ;
+	else
+		SBMLEvent.id = id;
+	end;
+else
+	error('id not an attribute on SBML L%dV%d Event', level, version);
 end;
 
-SBMLEvent.id = id;
