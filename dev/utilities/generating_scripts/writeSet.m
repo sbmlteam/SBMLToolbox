@@ -47,11 +47,9 @@ fprintf(fileOut, '%%------------------------------------------------------------
 fprintf(fileOut, '%%get level and version and check the input arguments are appropriate\n\n');
 fprintf(fileOut, '[level, version] = GetLevelVersion(SBML%s);\n\n', name);
 
-fprintf(fileOut, 'fieldnames = get%sFieldnames(level, version);\n\n', name);
-
-fprintf(fileOut, 'if sum(ismember(fieldnames, ''%s'')) > 0\n', attrib);
-fprintf(fileOut, '\tif ~isnumeric(%s)\n', attrib);
-fprintf(fileOut, '\t\terror(''%s must be numeric'') ;\n', attrib);
+fprintf(fileOut, 'if isfield(SBML%s, ''%s'')\n', name, attrib);
+fprintf(fileOut, '\tif ~ischar(%s)\n', attrib);
+fprintf(fileOut, '\t\terror(''%s must be character array'') ;\n', attrib);
 fprintf(fileOut, '\telse\n');
 fprintf(fileOut, '\t\tSBML%s.%s = %s;\n', name, attrib, attrib);
 fprintf(fileOut, '\tend;\n');
