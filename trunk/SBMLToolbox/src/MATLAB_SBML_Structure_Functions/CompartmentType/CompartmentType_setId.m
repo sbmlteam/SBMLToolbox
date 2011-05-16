@@ -1,13 +1,11 @@
 function SBMLCompartmentType = CompartmentType_setId(SBMLCompartmentType, id)
 %
-%   CompartmentType_setId 
-%             takes  1) an SBMLCompartmentType structure 
-%             and    2) an string representing the id to be set
+% CompartmentType_setId
+%    takes an SBML CompartmentType structure
+%    and the id to be set
 %
-%             and returns 
-%               the compartment with the id set
-%
-%       SBMLCompartmentType = CompartmentType_setId(SBMLCompartmentType, id)
+%    returns
+%      the CompartmentType with the new value for the id attribute
 
 %  Filename    :   CompartmentType_setId.m
 %  Description :
@@ -39,28 +37,17 @@ function SBMLCompartmentType = CompartmentType_setId(SBMLCompartmentType, id)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLCompartmentType))
-    error(sprintf('%s\n%s', ...
-      'CompartmentType_getId(SBMLCompartmentType)', ...
-      'argument must be an SBML CompartmentType structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLCompartmentType);
+[level, version] = GetLevelVersion(SBMLCompartmentType);
 
-if (~isSBML_CompartmentType(SBMLCompartmentType, sbmlLevel, sbmlVersion))
-  error(sprintf('%s\n%s', ...
-    'CompartmentType_setId(SBMLCompartmentType, id)', ...
-    'first argument must be an SBML CompartmentType structure'));
-elseif (~ischar(id))
-    error(sprintf('%s\n%s', ...
-      'CompartmentType_setId(SBMLCompartmentType, id)', ...
-      'second argument must be a string representing the id'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'CompartmentType_setId(SBMLCompartmentType, id)',  ...
-      'id field only in level 2 version 2/3 model'));    
+if isfield(SBMLCompartmentType, 'id')
+	if ~ischar(id)
+		error('id must be character array') ;
+	else
+		SBMLCompartmentType.id = id;
+	end;
+else
+	error('id not an attribute on SBML L%dV%d CompartmentType', level, version);
 end;
 
-SBMLCompartmentType.id = id;

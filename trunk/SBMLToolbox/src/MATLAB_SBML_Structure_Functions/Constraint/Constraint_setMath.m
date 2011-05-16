@@ -1,13 +1,11 @@
 function SBMLConstraint = Constraint_setMath(SBMLConstraint, math)
 %
-%   Constraint_setMath 
-%             takes  1) an SBMLConstraint structure 
-%             and    2) an string representing the math to be set
+% Constraint_setMath
+%    takes an SBML Constraint structure
+%    and the math to be set
 %
-%             and returns 
-%               the compartment with the math set
-%
-%       SBMLConstraint = Constraint_setMath(SBMLConstraint, math)
+%    returns
+%      the Constraint with the new value for the math attribute
 
 %  Filename    :   Constraint_setMath.m
 %  Description :
@@ -39,28 +37,17 @@ function SBMLConstraint = Constraint_setMath(SBMLConstraint, math)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLConstraint))
-    error(sprintf('%s\n%s', ...
-      'Constraint_getMath(SBMLConstraint)', ...
-      'argument must be an SBML Constraint structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLConstraint);
+[level, version] = GetLevelVersion(SBMLConstraint);
 
-if (~isSBML_Constraint(SBMLConstraint, sbmlLevel, sbmlVersion))
-  error(sprintf('%s\n%s', ...
-    'Constraint_setMath(SBMLConstraint, math)', ...
-    'first argument must be an SBML Constraint structure'));
-elseif (~ischar(math))
-    error(sprintf('%s\n%s', ...
-      'Constraint_setMath(SBMLConstraint, math)', ...
-      'second argument must be a string representing the math'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'Constraint_setMath(SBMLConstraint, math)',  ...
-      'math field only in level 2 version 2/3 model'));    
+if isfield(SBMLConstraint, 'math')
+	if ~ischar(math)
+		error('math must be character array') ;
+	else
+		SBMLConstraint.math = math;
+	end;
+else
+	error('math not an attribute on SBML L%dV%d Constraint', level, version);
 end;
 
-SBMLConstraint.math = math;

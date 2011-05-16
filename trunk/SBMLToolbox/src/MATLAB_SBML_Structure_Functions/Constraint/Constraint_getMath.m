@@ -1,12 +1,10 @@
 function math = Constraint_getMath(SBMLConstraint)
 %
-%   Constraint_getMath 
-%             takes an SBMLConstraint structure 
+% Constraint_getMath
+%    takes an SBML Constraint structure
 %
-%             and returns 
-%               the math of the Constraint as a string
-%
-%       math = Constraint_getMath(SBMLConstraint)
+%    returns
+%      the value of the math attribute
 
 %  Filename    :   Constraint_getMath.m
 %  Description :
@@ -38,24 +36,13 @@ function math = Constraint_getMath(SBMLConstraint)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLConstraint))
-    error(sprintf('%s\n%s', ...
-      'Constraint_getMath(SBMLConstraint)', ...
-      'argument must be an SBML Constraint structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLConstraint);
+[level, version] = GetLevelVersion(SBMLConstraint);
 
-if (~isSBML_Constraint(SBMLConstraint, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', ...
-      'Constraint_getMath(SBMLConstraint)', ...
-      'argument must be an SBML Constraint structure'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'Constraint_getMath(SBMLConstraint)', ...
-      'math field only in level 2 version 2/3 model'));    
+if isfield(SBMLConstraint, 'math')
+	math = SBMLConstraint.math;
+else
+	error('math not an attribute on SBML L%dV%d Constraint', level, version);
 end;
 
-math = SBMLConstraint.math;

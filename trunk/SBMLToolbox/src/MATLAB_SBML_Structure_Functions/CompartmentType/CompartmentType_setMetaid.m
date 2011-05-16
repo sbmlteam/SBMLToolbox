@@ -1,16 +1,16 @@
-function SBMLConstraint = Constraint_setMessage(SBMLConstraint, message)
+function SBMLCompartmentType = CompartmentType_setMetaid(SBMLCompartmentType, metaid)
 %
-% Constraint_setMessage
-%    takes an SBML Constraint structure
-%    and the message to be set
+% CompartmentType_setMetaid
+%    takes an SBML CompartmentType structure
+%    and the metaid to be set
 %
 %    returns
-%      the Constraint with the new value for the message attribute
+%      the CompartmentType with the new value for the metaid attribute
 
-%  Filename    :   Constraint_setMessage.m
+%  Filename    :   CompartmentType_setMetaid.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -39,15 +39,15 @@ function SBMLConstraint = Constraint_setMessage(SBMLConstraint, message)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLConstraint);
+[level, version] = GetLevelVersion(SBMLCompartmentType);
 
-if isfield(SBMLConstraint, 'message')
-	if ~ischar(message)
-		error('message must be character array') ;
+if isfield(SBMLCompartmentType, 'metaid')
+	if ~ischar(metaid)
+		error('metaid must be character array') ;
 	else
-		SBMLConstraint.message = message;
+		SBMLCompartmentType.metaid = metaid;
 	end;
 else
-	error('message not an attribute on SBML L%dV%d Constraint', level, version);
+	error('metaid not an attribute on SBML L%dV%d CompartmentType', level, version);
 end;
 

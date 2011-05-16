@@ -1,13 +1,11 @@
 function SBMLCompartmentType = CompartmentType_setSBOTerm(SBMLCompartmentType, sboTerm)
 %
-%   CompartmentType_setSBOTerm 
-%             takes  1) an SBMLCompartmentType structure 
-%             and    2) an integer representing the sboTerm to be set
+% CompartmentType_setSBOTerm
+%    takes an SBML CompartmentType structure
+%    and the sboTerm to be set
 %
-%             and returns 
-%               the CompartmentType with the sboTerm set
-%
-%       SBMLCompartmentType = CompartmentType_setSBOTerm(SBMLCompartmentType, sboTerm)
+%    returns
+%      the CompartmentType with the new value for the sboTerm attribute
 
 %  Filename    :   CompartmentType_setSBOTerm.m
 %  Description :
@@ -39,28 +37,17 @@ function SBMLCompartmentType = CompartmentType_setSBOTerm(SBMLCompartmentType, s
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLCompartmentType))
-    error(sprintf('%s\n%s', ...
-      'CompartmentType_setSBOTerm(SBMLCompartmentType, sboTerm)', ...
-      'argument must be an SBML CompartmentType structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLCompartmentType);
+[level, version] = GetLevelVersion(SBMLCompartmentType);
 
-if (~isSBML_CompartmentType(SBMLCompartmentType, sbmlLevel, sbmlVersion))
-  error(sprintf('%s\n%s', ...
-    'CompartmentType_setSBOTerm(SBMLCompartmentType, sboTerm)', ...
-    'first argument must be an SBML CompartmentType structure'));
-elseif (~isIntegralNumber(sboTerm))
-    error(sprintf('%s\n%s', ...
-      'CompartmentType_setSBOTerm(SBMLCompartmentType, sboTerm)', ...
-      'second argument must be an integer representing the sboTerm'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'CompartmentType_setSBOTerm(SBMLCompartmentType, sboTerm)',  ...
-      'sboTerm field only in level 2 version 2/3 model'));    
+if isfield(SBMLCompartmentType, 'sboTerm')
+	if ~isIntegralNumber(sboTerm)
+		error('sboTerm must be an integer') ;
+	else
+		SBMLCompartmentType.sboTerm = sboTerm;
+	end;
+else
+	error('sboTerm not an attribute on SBML L%dV%d CompartmentType', level, version);
 end;
 
-SBMLCompartmentType.sboTerm = sboTerm;

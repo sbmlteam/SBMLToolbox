@@ -1,16 +1,16 @@
-function SBMLConstraint = Constraint_setMessage(SBMLConstraint, message)
+function SBMLCompartmentVolumeRule = CompartmentVolumeRule_setFormula(SBMLCompartmentVolumeRule, formula)
 %
-% Constraint_setMessage
-%    takes an SBML Constraint structure
-%    and the message to be set
+% CompartmentVolumeRule_setFormula
+%    takes an SBML CompartmentVolumeRule structure
+%    and the formula to be set
 %
 %    returns
-%      the Constraint with the new value for the message attribute
+%      the CompartmentVolumeRule with the new value for the formula attribute
 
-%  Filename    :   Constraint_setMessage.m
+%  Filename    :   CompartmentVolumeRule_setFormula.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -39,15 +39,15 @@ function SBMLConstraint = Constraint_setMessage(SBMLConstraint, message)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLConstraint);
+[level, version] = GetLevelVersion(SBMLCompartmentVolumeRule);
 
-if isfield(SBMLConstraint, 'message')
-	if ~ischar(message)
-		error('message must be character array') ;
+if isfield(SBMLCompartmentVolumeRule, 'formula')
+	if ~ischar(formula)
+		error('formula must be character array') ;
 	else
-		SBMLConstraint.message = message;
+		SBMLCompartmentVolumeRule.formula = formula;
 	end;
 else
-	error('message not an attribute on SBML L%dV%d Constraint', level, version);
+	error('formula not an attribute on SBML L%dV%d CompartmentVolumeRule', level, version);
 end;
 

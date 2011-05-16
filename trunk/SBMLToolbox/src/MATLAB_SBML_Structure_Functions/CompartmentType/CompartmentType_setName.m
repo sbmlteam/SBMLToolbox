@@ -1,13 +1,11 @@
 function SBMLCompartmentType = CompartmentType_setName(SBMLCompartmentType, name)
 %
-%   CompartmentType_setName 
-%             takes  1) an SBMLCompartmentType structure 
-%             and    2) an string representing the name to be set
+% CompartmentType_setName
+%    takes an SBML CompartmentType structure
+%    and the name to be set
 %
-%             and returns 
-%               the compartment with the name set
-%
-%       SBMLCompartmentType = CompartmentType_setName(SBMLCompartmentType, name)
+%    returns
+%      the CompartmentType with the new value for the name attribute
 
 %  Filename    :   CompartmentType_setName.m
 %  Description :
@@ -39,28 +37,17 @@ function SBMLCompartmentType = CompartmentType_setName(SBMLCompartmentType, name
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLCompartmentType))
-    error(sprintf('%s\n%s', ...
-      'CompartmentType_getName(SBMLCompartmentType)', ...
-      'argument must be an SBML CompartmentType structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLCompartmentType);
+[level, version] = GetLevelVersion(SBMLCompartmentType);
 
-if (~isSBML_CompartmentType(SBMLCompartmentType, sbmlLevel, sbmlVersion))
-  error(sprintf('%s\n%s', ...
-    'CompartmentType_setName(SBMLCompartmentType, name)', ...
-    'first argument must be an SBML CompartmentType structure'));
-elseif (~ischar(name))
-    error(sprintf('%s\n%s', ...
-      'CompartmentType_setName(SBMLCompartmentType, name)', ...
-      'second argument must be a string representing the name'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'CompartmentType_setName(SBMLCompartmentType, name)',  ...
-      'name field only in level 2 version 2/3 model'));    
+if isfield(SBMLCompartmentType, 'name')
+	if ~ischar(name)
+		error('name must be character array') ;
+	else
+		SBMLCompartmentType.name = name;
+	end;
+else
+	error('name not an attribute on SBML L%dV%d CompartmentType', level, version);
 end;
 
-SBMLCompartmentType.name = name;

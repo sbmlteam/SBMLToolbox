@@ -1,12 +1,10 @@
 function message = Constraint_getMessage(SBMLConstraint)
 %
-%   Constraint_getMessage 
-%             takes an SBMLConstraint structure 
+% Constraint_getMessage
+%    takes an SBML Constraint structure
 %
-%             and returns 
-%               the message of the Constraint as a string
-%
-%       message = Constraint_getMessage(SBMLConstraint)
+%    returns
+%      the value of the message attribute
 
 %  Filename    :   Constraint_getMessage.m
 %  Description :
@@ -38,24 +36,13 @@ function message = Constraint_getMessage(SBMLConstraint)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLConstraint))
-    error(sprintf('%s\n%s', ...
-      'Constraint_getMessage(SBMLConstraint)', ...
-      'argument must be an SBML Constraint structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLConstraint);
+[level, version] = GetLevelVersion(SBMLConstraint);
 
-if (~isSBML_Constraint(SBMLConstraint, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', ...
-      'Constraint_getMessage(SBMLConstraint)', ...
-      'argument must be an SBML Constraint structure'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'Constraint_getMessage(SBMLConstraint)', ...
-      'message field only in level 2 version 2/3 model'));    
+if isfield(SBMLConstraint, 'message')
+	message = SBMLConstraint.message;
+else
+	error('message not an attribute on SBML L%dV%d Constraint', level, version);
 end;
 
-message = SBMLConstraint.message;

@@ -1,12 +1,10 @@
 function compartment = CompartmentVolumeRule_getCompartment(SBMLCompartmentVolumeRule)
 %
-%   CompartmentVolumeRule_getCompartment 
-%             takes an SBMLCompartmentVolumeRule structure 
+% CompartmentVolumeRule_getCompartment
+%    takes an SBML CompartmentVolumeRule structure
 %
-%             and returns 
-%               the compartment of the compartmentVolumeRule as a string
-%
-%       compartment = CompartmentVolumeRule_getCompartment(SBMLCompartmentVolumeRule)
+%    returns
+%      the value of the compartment attribute
 
 %  Filename    :   CompartmentVolumeRule_getCompartment.m
 %  Description :
@@ -38,18 +36,13 @@ function compartment = CompartmentVolumeRule_getCompartment(SBMLCompartmentVolum
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLCompartmentVolumeRule))
-    error(sprintf('%s\n%s', ...
-      'CompartmentVolumeRule_getCompartment(SBMLCompartmentVolumeRule)', ...
-      'argument must be an SBML compartmentVolumeRule structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLCompartmentVolumeRule);
+[level, version] = GetLevelVersion(SBMLCompartmentVolumeRule);
 
-if (~isSBML_CompartmentVolumeRule(SBMLCompartmentVolumeRule, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'CompartmentVolumeRule_getCompartment(SBMLCompartmentVolumeRule)', 'argument must be an SBML compartmentVolumeRule structure'));
+if isfield(SBMLCompartmentVolumeRule, 'compartment')
+	compartment = SBMLCompartmentVolumeRule.compartment;
+else
+	error('compartment not an attribute on SBML L%dV%d CompartmentVolumeRule', level, version);
 end;
 
-compartment = SBMLCompartmentVolumeRule.compartment;
