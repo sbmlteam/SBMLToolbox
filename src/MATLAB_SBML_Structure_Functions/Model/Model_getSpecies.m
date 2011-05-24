@@ -1,13 +1,11 @@
-function species = Model_getSpecies(SBMLModel, number)
+function species = Model_getSpecies(SBMLModel, index)
 %
-%   Model_getSpecies 
-%             takes  1) an SBMLModel structure 
-%             and    2) a number n
+% Model_getSpecies
+%    takes an SBML Model structure
+%    and an index
 %
-%             and returns 
-%               the nth species structure defined within the model
-%
-%       species = Model_getSpecies(SBMLModel, number)
+%    returns
+%      the value of the species element at the indexed position
 
 %  Filename    :   Model_getSpecies.m
 %  Description :
@@ -39,16 +37,17 @@ function species = Model_getSpecies(SBMLModel, number)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_getSpecies(SBMLModel, number)', 'first argument must be an SBML model structure'));
-elseif ((number < 1) || (~isIntegralNumber(number)))
-    error(sprintf('%s\n%s', 'Model_getSpecies(SBMLModel, number)', 'second argument must be a positive integer'));
-end;
+[level, version] = GetLevelVersion(SBMLModel);
 
-if (number > length(SBMLModel.species))
-    species = [];
+if isfield(SBMLModel, 'species')
+	if index <= length(SBMLModel.species)
+		species = SBMLModel.species;
+	else
+		error('index is out of range');
+	end;
 else
-    species = SBMLModel.species(number);
+	error('species not an element on SBML L%dV%d Model', level, version);
 end;
+

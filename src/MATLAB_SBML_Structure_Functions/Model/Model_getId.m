@@ -1,12 +1,10 @@
 function id = Model_getId(SBMLModel)
 %
-%   Model_getId 
-%             takes an SBMLModel structure 
+% Model_getId
+%    takes an SBML Model structure
 %
-%             and returns 
-%               the id of the model as a string
-%
-%       id = Model_getId(SBMLModel)
+%    returns
+%      the value of the id attribute
 
 %  Filename    :   Model_getId.m
 %  Description :
@@ -38,12 +36,13 @@ function id = Model_getId(SBMLModel)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_getId(SBMLModel)', 'argument must be an SBML model structure'));
-elseif (SBMLModel.SBML_level ~= 2)
-    error(sprintf('%s\n%s', 'Model_getId(SBMLModel)', 'no id field in a level 1 model'));    
+[level, version] = GetLevelVersion(SBMLModel);
+
+if isfield(SBMLModel, 'id')
+	id = SBMLModel.id;
+else
+	error('id not an attribute on SBML L%dV%d Model', level, version);
 end;
 
-id = SBMLModel.id;

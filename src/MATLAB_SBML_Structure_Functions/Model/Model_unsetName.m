@@ -1,13 +1,10 @@
 function SBMLModel = Model_unsetName(SBMLModel)
 %
-%   Model_unsetName 
-%             takes an SBMLModel structure 
+% Model_getName
+%    takes an SBML Model structure
 %
-%             and returns 
-%               the model with the name unset
-%               (i.e. name = '')
-%
-%       SBMLModel = Model_unsetName(SBMLModel)
+%    returns
+%      the Model with the value for the name attribute unset
 
 %  Filename    :   Model_unsetName.m
 %  Description :
@@ -39,10 +36,13 @@ function SBMLModel = Model_unsetName(SBMLModel)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_unsetName(SBMLModel)', 'argument must be an SBML model structure'));
+[level, version] = GetLevelVersion(SBMLModel);
+
+if isfield(SBMLModel, 'name')
+	SBMLModel.name = '';
+else
+	error('name not an attribute on SBML L%dV%d Model', level, version);
 end;
 
-SBMLModel.name = '';

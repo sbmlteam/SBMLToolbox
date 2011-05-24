@@ -1,12 +1,10 @@
-function constraints = Model_getListOfConstraints(SBMLModel)
+function constraint = Model_getListOfConstraints(SBMLModel)
 %
-%   Model_getListOfConstraints 
-%             takes an SBMLModel structure 
+% Model_getListOfConstraints
+%    takes an SBML Model structure
 %
-%             and returns 
-%               an array of SBML constraint structures defined within the model
-%
-%       constraints = Model_getListOfConstraints(SBMLModel)
+%    returns
+%      the array of structures of the constraint elements
 
 %  Filename    :   Model_getListOfConstraints.m
 %  Description :
@@ -38,10 +36,13 @@ function constraints = Model_getListOfConstraints(SBMLModel)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_getListOfConstraints(SBMLModel)', 'argument must be an SBML model structure'));
+[level, version] = GetLevelVersion(SBMLModel);
+
+if isfield(SBMLModel, 'constraint')
+	constraint = SBMLModel.constraint;
+else
+	error('constraint not an element on SBML L%dV%d Model', level, version);
 end;
 
-constraints = SBMLModel.constraint;

@@ -1,12 +1,10 @@
 function name = Model_getName(SBMLModel)
 %
-%   Model_getName 
-%             takes an SBMLModel structure 
+% Model_getName
+%    takes an SBML Model structure
 %
-%             and returns 
-%               the name of the model as a string
-%
-%       name = Model_getName(SBMLModel)
+%    returns
+%      the value of the name attribute
 
 %  Filename    :   Model_getName.m
 %  Description :
@@ -38,10 +36,13 @@ function name = Model_getName(SBMLModel)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_getName(SBMLModel)', 'argument must be an SBML model structure'));
+[level, version] = GetLevelVersion(SBMLModel);
+
+if isfield(SBMLModel, 'name')
+	name = SBMLModel.name;
+else
+	error('name not an attribute on SBML L%dV%d Model', level, version);
 end;
 
-name = SBMLModel.name;

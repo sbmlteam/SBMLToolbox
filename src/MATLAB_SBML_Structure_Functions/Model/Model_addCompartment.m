@@ -1,13 +1,11 @@
 function SBMLModel = Model_addCompartment(SBMLModel, SBMLCompartment)
 %
-%   Model_addCompartment 
-%             takes  1) an SBMLModel structure 
-%             and    2) an SBMLCompartment structure
+% Model_addCompartment(SBMLModel, SBMLCompartment)
+%    takes an SBML Model structure
+%    and an SBML Compartment structure
 %
-%             and returns 
-%               the model with the compartment added
-%
-%       SBMLModel = Model_addCompartment(SBMLModel, SBMLCompartment)
+%    returns
+%      the Model with the Compartment element added
 
 %  Filename    :   Model_addCompartment.m
 %  Description :
@@ -39,25 +37,25 @@ function SBMLModel = Model_addCompartment(SBMLModel, SBMLCompartment)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% get level and version
-sbmlLevel = SBMLModel.SBML_level;
-sbmlVersion = SBMLModel.SBML_version;
+[level, version] = GetLevelVersion(SBMLModel);
+[compartment_level, compartment_version] = GetLevelVersion(SBMLCompartment);
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', ...
-    'Model_addCompartment(SBMLModel, SBMLCompartment)', ...
-    'first argument must be an SBML model structure'));
-elseif (~isSBML_Compartment(SBMLCompartment, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s\n%s%u%s%u\n', ...
-    'Model_addCompartment(SBMLModel, SBMLCompartment)', ...
-    'second argument must be an SBML Compartment structure', ...
-    'of the same SBML level and version, namely level ', sbmlLevel, ...
-    ' version ', sbmlVersion));
+if level ~= compartment_level
+	error('mismatch in levels');
+elseif version ~= compartment_version
+	error('mismatch in versions');
 end;
 
-numberCompartments = length(SBMLModel.compartment);
-
-SBMLModel.compartment(numberCompartments+1) = SBMLCompartment;
+if isfield(SBMLModel, 'compartment')
+	index = length(SBMLModel.compartment);
+	if index == 0
+		SBMLModel.compartment = SBMLCompartment;
+	else
+		SBMLModel.compartment(index+1) = SBMLCompartment;
+	end;
+else
+	error('compartment not an element on SBML L%dV%d Model', level, version);
+end;
 

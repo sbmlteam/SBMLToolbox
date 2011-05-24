@@ -1,12 +1,10 @@
-function events = Model_getListOfEvents(SBMLModel)
+function event = Model_getListOfEvents(SBMLModel)
 %
-%   Model_getListOfEvents 
-%             takes an SBMLModel structure 
+% Model_getListOfEvents
+%    takes an SBML Model structure
 %
-%             and returns 
-%               an array of SBML event structures defined within the model
-%
-%       events = Model_getListOfEvents(SBMLModel)
+%    returns
+%      the array of structures of the event elements
 
 %  Filename    :   Model_getListOfEvents.m
 %  Description :
@@ -38,12 +36,13 @@ function events = Model_getListOfEvents(SBMLModel)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_getListOfEvents(SBMLModel)', 'argument must be an SBML model structure'));
-elseif (SBMLModel.SBML_level ~= 2)
-    error(sprintf('%s\n%s', 'Model_getListOfEvents(SBMLModel)', 'no events in a level 1 model'));    
+[level, version] = GetLevelVersion(SBMLModel);
+
+if isfield(SBMLModel, 'event')
+	event = SBMLModel.event;
+else
+	error('event not an element on SBML L%dV%d Model', level, version);
 end;
 
-events = SBMLModel.event;

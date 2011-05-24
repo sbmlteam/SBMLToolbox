@@ -1,13 +1,11 @@
 function SBMLModel = Model_addUnitDefinition(SBMLModel, SBMLUnitDefinition)
 %
-%   Model_addUnitDefinition 
-%             takes  1) an SBMLModel structure 
-%             and    2) an SBMLUnitDefinition structure
+% Model_addUnitDefinition(SBMLModel, SBMLUnitDefinition)
+%    takes an SBML Model structure
+%    and an SBML UnitDefinition structure
 %
-%             and returns 
-%               the model with the unitDefinition added
-%
-%       SBMLModel = Model_addUnitDefinition(SBMLModel, SBMLUnitDefinition)
+%    returns
+%      the Model with the UnitDefinition element added
 
 %  Filename    :   Model_addUnitDefinition.m
 %  Description :
@@ -39,25 +37,25 @@ function SBMLModel = Model_addUnitDefinition(SBMLModel, SBMLUnitDefinition)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% get level and version
-sbmlLevel = SBMLModel.SBML_level;
-sbmlVersion = SBMLModel.SBML_version;
+[level, version] = GetLevelVersion(SBMLModel);
+[unitDefinition_level, unitDefinition_version] = GetLevelVersion(SBMLUnitDefinition);
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', ...
-    'Model_addUnitDefinition(SBMLModel, SBMLUnitDefinition)', ...
-    'first argument must be an SBML model structure'));
-elseif (~isSBML_UnitDefinition(SBMLUnitDefinition, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s\n%s%u%s%u\n', ...
-    'Model_addUnitDefinition(SBMLModel, SBMLUnitDefinition)', ...
-    'second argument must be an SBML UnitDefinition structure', ...
-    'of the same SBML level and version, namely level ', sbmlLevel, ...
-    ' version ', sbmlVersion));
+if level ~= unitDefinition_level
+	error('mismatch in levels');
+elseif version ~= unitDefinition_version
+	error('mismatch in versions');
 end;
 
-numberUnitDefinitions = length(SBMLModel.unitDefinition);
-
-SBMLModel.unitDefinition(numberUnitDefinitions+1) = SBMLUnitDefinition;
+if isfield(SBMLModel, 'unitDefinition')
+	index = length(SBMLModel.unitDefinition);
+	if index == 0
+		SBMLModel.unitDefinition = SBMLUnitDefinition;
+	else
+		SBMLModel.unitDefinition(index+1) = SBMLUnitDefinition;
+	end;
+else
+	error('unitDefinition not an element on SBML L%dV%d Model', level, version);
+end;
 

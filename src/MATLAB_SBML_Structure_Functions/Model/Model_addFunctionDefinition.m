@@ -1,13 +1,11 @@
 function SBMLModel = Model_addFunctionDefinition(SBMLModel, SBMLFunctionDefinition)
 %
-%   Model_addFunctionDefinition 
-%             takes  1) an SBMLModel structure 
-%             and    2) an SBMLFunctionDefinition structure
+% Model_addFunctionDefinition(SBMLModel, SBMLFunctionDefinition)
+%    takes an SBML Model structure
+%    and an SBML FunctionDefinition structure
 %
-%             and returns 
-%               the model with the functionDefinition added
-%
-%       SBMLModel = Model_addFunctionDefinition(SBMLModel, SBMLFunctionDefinition)
+%    returns
+%      the Model with the FunctionDefinition element added
 
 %  Filename    :   Model_addFunctionDefinition.m
 %  Description :
@@ -39,25 +37,25 @@ function SBMLModel = Model_addFunctionDefinition(SBMLModel, SBMLFunctionDefiniti
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% get level and version
-sbmlLevel = SBMLModel.SBML_level;
-sbmlVersion = SBMLModel.SBML_version;
+[level, version] = GetLevelVersion(SBMLModel);
+[functionDefinition_level, functionDefinition_version] = GetLevelVersion(SBMLFunctionDefinition);
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', ...
-    'Model_addFunctionDefinition(SBMLModel, SBMLFunctionDefinition)', ...
-    'first argument must be an SBML model structure'));
-elseif (~isSBML_FunctionDefinition(SBMLFunctionDefinition, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s\n%s%u%s%u\n', ...
-    'Model_addFunctionDefinition(SBMLModel, SBMLFunctionDefinition)', ...
-    'second argument must be an SBML FunctionDefinition structure', ...
-    'of the same SBML level and version, namely level ', sbmlLevel, ...
-    ' version ', sbmlVersion));
+if level ~= functionDefinition_level
+	error('mismatch in levels');
+elseif version ~= functionDefinition_version
+	error('mismatch in versions');
 end;
 
-numberFunctionDefinitions = length(SBMLModel.functionDefinition);
-
-SBMLModel.functionDefinition(numberFunctionDefinitions+1) = SBMLFunctionDefinition;
+if isfield(SBMLModel, 'functionDefinition')
+	index = length(SBMLModel.functionDefinition);
+	if index == 0
+		SBMLModel.functionDefinition = SBMLFunctionDefinition;
+	else
+		SBMLModel.functionDefinition(index+1) = SBMLFunctionDefinition;
+	end;
+else
+	error('functionDefinition not an element on SBML L%dV%d Model', level, version);
+end;
 

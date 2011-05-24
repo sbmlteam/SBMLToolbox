@@ -1,13 +1,10 @@
 function SBMLModel = Model_unsetId(SBMLModel)
 %
-%   Model_unsetId 
-%             takes an SBMLModel structure 
+% Model_getId
+%    takes an SBML Model structure
 %
-%             and returns 
-%               the model with the id unset
-%               (i.e. id = '')
-%
-%       SBMLModel = Model_unsetId(SBMLModel)
+%    returns
+%      the Model with the value for the id attribute unset
 
 %  Filename    :   Model_unsetId.m
 %  Description :
@@ -39,12 +36,13 @@ function SBMLModel = Model_unsetId(SBMLModel)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_unsetId(SBMLModel)', 'argument must be an SBML model structure'));
-elseif (SBMLModel.SBML_level ~= 2)
-    error(sprintf('%s\n%s', 'Model_unsetId(SBMLModel)', 'no id field in a level 1 model'));    
+[level, version] = GetLevelVersion(SBMLModel);
+
+if isfield(SBMLModel, 'id')
+	SBMLModel.id = '';
+else
+	error('id not an attribute on SBML L%dV%d Model', level, version);
 end;
 
-SBMLModel.id = '';

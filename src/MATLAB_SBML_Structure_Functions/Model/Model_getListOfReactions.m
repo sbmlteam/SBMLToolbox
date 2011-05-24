@@ -1,12 +1,10 @@
-function reactions = Model_getListOfReactions(SBMLModel)
+function reaction = Model_getListOfReactions(SBMLModel)
 %
-%   Model_getListOfReactions 
-%             takes an SBMLModel structure 
+% Model_getListOfReactions
+%    takes an SBML Model structure
 %
-%             and returns 
-%               an array of SBML reaction structures defined within the model
-%
-%       reactions = Model_getListOfReactions(SBMLModel)
+%    returns
+%      the array of structures of the reaction elements
 
 %  Filename    :   Model_getListOfReactions.m
 %  Description :
@@ -38,10 +36,13 @@ function reactions = Model_getListOfReactions(SBMLModel)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_getListOfReactions(SBMLModel)', 'argument must be an SBML model structure'));
+[level, version] = GetLevelVersion(SBMLModel);
+
+if isfield(SBMLModel, 'reaction')
+	reaction = SBMLModel.reaction;
+else
+	error('reaction not an element on SBML L%dV%d Model', level, version);
 end;
 
-reactions = SBMLModel.reaction;

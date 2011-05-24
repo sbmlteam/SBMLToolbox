@@ -1,13 +1,11 @@
 function value = Model_isSetId(SBMLModel)
 %
-%   Model_isSetId 
-%             takes an SBMLModel structure 
+% Model_isSetId
+%    takes an SBML Model structure
 %
-%             and returns 
-%               1 if the id has been set 
-%               0 otherwise
-%
-%       value = Model_isSetId(SBMLModel)
+%    returns
+%      1 if the value for the id attribute is set
+%      0 otherwise
 
 %  Filename    :   Model_isSetId.m
 %  Description :
@@ -39,12 +37,13 @@ function value = Model_isSetId(SBMLModel)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_isSetId(SBMLModel)', 'argument must be an SBML model structure'));
-elseif (SBMLModel.SBML_level ~= 2)
-    error(sprintf('%s\n%s', 'Model_isSetId(SBMLModel)', 'no id field in a level 1 model'));    
+[level, version] = GetLevelVersion(SBMLModel);
+
+if isfield(SBMLModel, 'id')
+	value = ~isempty(SBMLModel.id);
+else
+	error('id not an attribute on SBML L%dV%d Model', level, version);
 end;
 
-value = ~isempty(SBMLModel.id);

@@ -1,12 +1,10 @@
-function speciesTypes = Model_getListOfSpeciesTypes(SBMLModel)
+function speciesType = Model_getListOfSpeciesTypes(SBMLModel)
 %
-%   Model_getListOfSpeciesTypes 
-%             takes an SBMLModel structure 
+% Model_getListOfSpeciesTypes
+%    takes an SBML Model structure
 %
-%             and returns 
-%               an array of SBML speciesType structures defined within the model
-%
-%       speciesTypes = Model_getListOfSpeciesTypes(SBMLModel)
+%    returns
+%      the array of structures of the speciesType elements
 
 %  Filename    :   Model_getListOfSpeciesTypes.m
 %  Description :
@@ -38,10 +36,13 @@ function speciesTypes = Model_getListOfSpeciesTypes(SBMLModel)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_getListOfSpeciesTypes(SBMLModel)', 'argument must be an SBML model structure'));
+[level, version] = GetLevelVersion(SBMLModel);
+
+if isfield(SBMLModel, 'speciesType')
+	speciesType = SBMLModel.speciesType;
+else
+	error('speciesType not an element on SBML L%dV%d Model', level, version);
 end;
 
-speciesTypes = SBMLModel.speciesType;

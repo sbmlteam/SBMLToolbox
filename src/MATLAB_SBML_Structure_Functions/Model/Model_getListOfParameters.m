@@ -1,12 +1,10 @@
-function parameters = Model_getListOfParameters(SBMLModel)
+function parameter = Model_getListOfParameters(SBMLModel)
 %
-%   Model_getListOfParameters 
-%             takes an SBMLModel structure 
+% Model_getListOfParameters
+%    takes an SBML Model structure
 %
-%             and returns 
-%               an array of SBML parameter structures defined within the model
-%
-%       parameters = Model_getListOfParameters(SBMLModel)
+%    returns
+%      the array of structures of the parameter elements
 
 %  Filename    :   Model_getListOfParameters.m
 %  Description :
@@ -38,10 +36,13 @@ function parameters = Model_getListOfParameters(SBMLModel)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_getListOfParameters(SBMLModel)', 'argument must be an SBML model structure'));
+[level, version] = GetLevelVersion(SBMLModel);
+
+if isfield(SBMLModel, 'parameter')
+	parameter = SBMLModel.parameter;
+else
+	error('parameter not an element on SBML L%dV%d Model', level, version);
 end;
 
-parameters = SBMLModel.parameter;

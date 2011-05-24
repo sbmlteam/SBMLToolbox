@@ -1,12 +1,10 @@
-function number = Model_getNumEvents(SBMLModel)
+function num = Model_getNumEvents(SBMLModel)
 %
-%   Model_getNumEvents 
-%             takes an SBMLModel structure 
+% Model_getNumEvents
+%    takes an SBML Model structure
 %
-%             and returns 
-%               the number of event structures defined within the model
-%
-%       number = Model_getNumEvents(SBMLModel)
+%    returns
+%      the number of event elements
 
 %  Filename    :   Model_getNumEvents.m
 %  Description :
@@ -38,16 +36,13 @@ function number = Model_getNumEvents(SBMLModel)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_getNumEvents(SBMLModel)', 'argument must be an SBML model structure'));
-elseif (SBMLModel.SBML_level ~= 2)
-    error(sprintf('%s\n%s', 'Model_getNumEvents(SBMLModel)', 'no events in a level 1 model'));   
+[level, version] = GetLevelVersion(SBMLModel);
+
+if isfield(SBMLModel, 'event')
+	num = length(SBMLModel.event);
+else
+	error('event not an element on SBML L%dV%d Model', level, version);
 end;
 
-number = 0;
-
-if (~isempty(SBMLModel.event))
-    number = length(SBMLModel.event);
-end;

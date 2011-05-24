@@ -1,13 +1,11 @@
-function initialAssignment = Model_getInitialAssignment(SBMLModel, number)
+function initialAssignment = Model_getInitialAssignment(SBMLModel, index)
 %
-%   Model_getInitialAssignment 
-%             takes  1) an SBMLModel structure 
-%             and    2) a number n
+% Model_getInitialAssignment
+%    takes an SBML Model structure
+%    and an index
 %
-%             and returns 
-%               the nth initialAssignment structure defined within the model
-%
-%       initialAssignment = Model_getInitialAssignment(SBMLModel, number)
+%    returns
+%      the value of the initialAssignment element at the indexed position
 
 %  Filename    :   Model_getInitialAssignment.m
 %  Description :
@@ -39,16 +37,17 @@ function initialAssignment = Model_getInitialAssignment(SBMLModel, number)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_getInitialAssignment(SBMLModel, number)', 'first argument must be an SBML model structure'));
-elseif ((number < 1) || (~isIntegralNumber(number)))
-    error(sprintf('%s\n%s', 'Model_getInitialAssignment(SBMLModel, number)', 'second argument must be a positive integer'));
-end;
+[level, version] = GetLevelVersion(SBMLModel);
 
-if (number > length(SBMLModel.initialAssignment))
-    initialAssignment = [];
+if isfield(SBMLModel, 'initialAssignment')
+	if index <= length(SBMLModel.initialAssignment)
+		initialAssignment = SBMLModel.initialAssignment;
+	else
+		error('index is out of range');
+	end;
 else
-    initialAssignment = SBMLModel.initialAssignment(number);
+	error('initialAssignment not an element on SBML L%dV%d Model', level, version);
 end;
+

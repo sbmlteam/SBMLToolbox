@@ -1,12 +1,10 @@
-function number = Model_getNumUnitDefinitions(SBMLModel)
+function num = Model_getNumUnitDefinitions(SBMLModel)
 %
-%   Model_getNumUnitDefinitions 
-%             takes an SBMLModel structure 
+% Model_getNumUnitDefinitions
+%    takes an SBML Model structure
 %
-%             and returns 
-%               the number of unit definition structures defined within the model
-%
-%       number = Model_getNumUnitDefinitions(SBMLModel)
+%    returns
+%      the number of unitDefinition elements
 
 %  Filename    :   Model_getNumUnitDefinitions.m
 %  Description :
@@ -38,14 +36,13 @@ function number = Model_getNumUnitDefinitions(SBMLModel)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_getNumUnitDefinitions(SBMLModel)', 'argument must be an SBML model structure'));
+[level, version] = GetLevelVersion(SBMLModel);
+
+if isfield(SBMLModel, 'unitDefinition')
+	num = length(SBMLModel.unitDefinition);
+else
+	error('unitDefinition not an element on SBML L%dV%d Model', level, version);
 end;
 
-number = 0;
-
-if (~isempty(SBMLModel.unitDefinition))
-    number = length(SBMLModel.unitDefinition);
-end;

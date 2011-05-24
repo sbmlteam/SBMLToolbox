@@ -1,13 +1,11 @@
 function SBMLModel = Model_addRule(SBMLModel, SBMLRule)
 %
-%   Model_addRule 
-%             takes  1) an SBMLModel structure 
-%             and    2) an SBMLRule structure
+% Model_addRule(SBMLModel, SBMLRule)
+%    takes an SBML Model structure
+%    and an SBML Rule structure
 %
-%             and returns 
-%               the model with the rule added
-%
-%       SBMLModel = Model_addRule(SBMLModel, SBMLRule)
+%    returns
+%      the Model with the Rule element added
 
 %  Filename    :   Model_addRule.m
 %  Description :
@@ -39,25 +37,25 @@ function SBMLModel = Model_addRule(SBMLModel, SBMLRule)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% get level and version
-sbmlLevel = SBMLModel.SBML_level;
-sbmlVersion = SBMLModel.SBML_version;
+[level, version] = GetLevelVersion(SBMLModel);
+[rule_level, rule_version] = GetLevelVersion(SBMLRule);
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', ...
-    'Model_addRule(SBMLModel, SBMLRule)', ...
-    'first argument must be an SBML model structure'));
-elseif (~isSBML_Rule(SBMLRule, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s\n%s%u%s%u\n', ...
-    'Model_addRule(SBMLModel, SBMLRule)', ...
-    'second argument must be an SBML Rule structure', ...
-    'of the same SBML level and version, namely level ', sbmlLevel, ...
-    ' version ', sbmlVersion));
+if level ~= rule_level
+	error('mismatch in levels');
+elseif version ~= rule_version
+	error('mismatch in versions');
 end;
 
-numberRules = length(SBMLModel.rule);
-
-SBMLModel.rule(numberRules+1) = SBMLRule;
+if isfield(SBMLModel, 'rule')
+	index = length(SBMLModel.rule);
+	if index == 0
+		SBMLModel.rule = SBMLRule;
+	else
+		SBMLModel.rule(index+1) = SBMLRule;
+	end;
+else
+	error('rule not an element on SBML L%dV%d Model', level, version);
+end;
 

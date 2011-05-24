@@ -1,12 +1,10 @@
-function number = Model_getNumReactions(SBMLModel)
+function num = Model_getNumReactions(SBMLModel)
 %
-%   Model_getNumReactions 
-%             takes an SBMLModel structure 
+% Model_getNumReactions
+%    takes an SBML Model structure
 %
-%             and returns 
-%               the number of reaction structures defined within the model
-%
-%       number = Model_getNumReactions(SBMLModel)
+%    returns
+%      the number of reaction elements
 
 %  Filename    :   Model_getNumReactions.m
 %  Description :
@@ -38,14 +36,13 @@ function number = Model_getNumReactions(SBMLModel)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_getNumReactions(SBMLModel)', 'argument must be an SBML model structure'));
+[level, version] = GetLevelVersion(SBMLModel);
+
+if isfield(SBMLModel, 'reaction')
+	num = length(SBMLModel.reaction);
+else
+	error('reaction not an element on SBML L%dV%d Model', level, version);
 end;
 
-number = 0;
-
-if (~isempty(SBMLModel.reaction))
-    number = length(SBMLModel.reaction);
-end;

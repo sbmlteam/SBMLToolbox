@@ -1,13 +1,11 @@
 function SBMLModel = Model_addConstraint(SBMLModel, SBMLConstraint)
 %
-%   Model_addConstraint 
-%             takes  1) an SBMLModel structure 
-%             and    2) an SBMLConstraint structure
+% Model_addConstraint(SBMLModel, SBMLConstraint)
+%    takes an SBML Model structure
+%    and an SBML Constraint structure
 %
-%             and returns 
-%               the model with the species added
-%
-%       SBMLModel = Model_addConstraint(SBMLModel, SBMLConstraint)
+%    returns
+%      the Model with the Constraint element added
 
 %  Filename    :   Model_addConstraint.m
 %  Description :
@@ -39,25 +37,25 @@ function SBMLModel = Model_addConstraint(SBMLModel, SBMLConstraint)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% get level and version
-sbmlLevel = SBMLModel.SBML_level;
-sbmlVersion = SBMLModel.SBML_version;
+[level, version] = GetLevelVersion(SBMLModel);
+[constraint_level, constraint_version] = GetLevelVersion(SBMLConstraint);
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', ...
-    'Model_addConstraint(SBMLModel, SBMLConstraint)', ...
-    'first argument must be an SBML model structure'));
-elseif (~isSBML_Constraint(SBMLConstraint, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s\n%s%u%s%u\n', ...
-    'Model_addConstraint(SBMLModel, SBMLConstraint)', ...
-    'second argument must be an SBML constraint structure', ...
-    'of the same SBML level and version, namely level ', sbmlLevel, ...
-    ' version ', sbmlVersion));
+if level ~= constraint_level
+	error('mismatch in levels');
+elseif version ~= constraint_version
+	error('mismatch in versions');
 end;
 
-numberConstraints = length(SBMLModel.constraint);
-
-SBMLModel.constraint(numberConstraints+1) = SBMLConstraint;
+if isfield(SBMLModel, 'constraint')
+	index = length(SBMLModel.constraint);
+	if index == 0
+		SBMLModel.constraint = SBMLConstraint;
+	else
+		SBMLModel.constraint(index+1) = SBMLConstraint;
+	end;
+else
+	error('constraint not an element on SBML L%dV%d Model', level, version);
+end;
 

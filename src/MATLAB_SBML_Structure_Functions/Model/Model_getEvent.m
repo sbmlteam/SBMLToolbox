@@ -1,13 +1,11 @@
-function event = Model_getEvent(SBMLModel, number)
+function event = Model_getEvent(SBMLModel, index)
 %
-%   Model_getEvent 
-%             takes  1) an SBMLModel structure 
-%             and    2) a number n
+% Model_getEvent
+%    takes an SBML Model structure
+%    and an index
 %
-%             and returns 
-%               the nth event structure defined within the model
-%
-%       event = Model_getEvent(SBMLModel, number)
+%    returns
+%      the value of the event element at the indexed position
 
 %  Filename    :   Model_getEvent.m
 %  Description :
@@ -39,18 +37,17 @@ function event = Model_getEvent(SBMLModel, number)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_getEvent(SBMLModel, number)', 'first argument must be an SBML model structure'));
-elseif (SBMLModel.SBML_level ~= 2)
-    error(sprintf('%s\n%s', 'Model_getEvent(SBMLModel, number)', 'no events in level 1 model'));
-elseif ((number < 1) || (~isIntegralNumber(number)))
-    error(sprintf('%s\n%s', 'Model_getEvent(SBMLModel, number)', 'second argument must be a positive integer'));
-end;
+[level, version] = GetLevelVersion(SBMLModel);
 
-if (number > length(SBMLModel.event))
-    event = [];
+if isfield(SBMLModel, 'event')
+	if index <= length(SBMLModel.event)
+		event = SBMLModel.event;
+	else
+		error('index is out of range');
+	end;
 else
-    event = SBMLModel.event(number);
+	error('event not an element on SBML L%dV%d Model', level, version);
 end;
+

@@ -1,13 +1,11 @@
 function SBMLModel = Model_setName(SBMLModel, name)
 %
-%   Model_setName 
-%             takes  1) an SBMLModel structure 
-%             and    2) a string representing the name to be set
+% Model_setName
+%    takes an SBML Model structure
+%    and the name to be set
 %
-%             and returns 
-%               the model with the name set
-%
-%       SBMLModel = Model_setName(SBMLModel, 'name')
+%    returns
+%      the Model with the new value for the name attribute
 
 %  Filename    :   Model_setName.m
 %  Description :
@@ -39,12 +37,17 @@ function SBMLModel = Model_setName(SBMLModel, name)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_setName(SBMLModel, name)', 'first argument must be an SBML model structure'));
-elseif (~ischar(name))
-    error(sprintf('Model_setName(SBMLModel, name)\n%s', 'second argument must be a string representing the name of the model'));
+[level, version] = GetLevelVersion(SBMLModel);
+
+if isfield(SBMLModel, 'name')
+	if ~ischar(name)
+		error('name must be character array') ;
+	else
+		SBMLModel.name = name;
+	end;
+else
+	error('name not an attribute on SBML L%dV%d Model', level, version);
 end;
 
-SBMLModel.name = name;

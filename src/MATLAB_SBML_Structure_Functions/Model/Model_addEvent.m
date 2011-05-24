@@ -1,13 +1,11 @@
 function SBMLModel = Model_addEvent(SBMLModel, SBMLEvent)
 %
-%   Model_addEvent 
-%             takes  1) an SBMLModel structure 
-%             and    2) an SBMLEvent structure
+% Model_addEvent(SBMLModel, SBMLEvent)
+%    takes an SBML Model structure
+%    and an SBML Event structure
 %
-%             and returns 
-%               the model with the event added
-%
-%       SBMLModel = Model_addEvent(SBMLModel, SBMLEvent)
+%    returns
+%      the Model with the Event element added
 
 %  Filename    :   Model_addEvent.m
 %  Description :
@@ -39,25 +37,25 @@ function SBMLModel = Model_addEvent(SBMLModel, SBMLEvent)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% get level and version
-sbmlLevel = SBMLModel.SBML_level;
-sbmlVersion = SBMLModel.SBML_version;
+[level, version] = GetLevelVersion(SBMLModel);
+[event_level, event_version] = GetLevelVersion(SBMLEvent);
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', ...
-    'Model_addEvent(SBMLModel, SBMLEvent)', ...
-    'first argument must be an SBML model structure'));
-elseif (~isSBML_Event(SBMLEvent, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s\n%s%u%s%u\n', ...
-    'Model_addEvent(SBMLModel, SBMLEvent)', ...
-    'second argument must be an SBML Event structure', ...
-    'of the same SBML level and version, namely level ', sbmlLevel, ...
-    ' version ', sbmlVersion));
+if level ~= event_level
+	error('mismatch in levels');
+elseif version ~= event_version
+	error('mismatch in versions');
 end;
 
-numberEvents = length(SBMLModel.event);
-
-SBMLModel.event(numberEvents+1) = SBMLEvent;
+if isfield(SBMLModel, 'event')
+	index = length(SBMLModel.event);
+	if index == 0
+		SBMLModel.event = SBMLEvent;
+	else
+		SBMLModel.event(index+1) = SBMLEvent;
+	end;
+else
+	error('event not an element on SBML L%dV%d Model', level, version);
+end;
 

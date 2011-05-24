@@ -1,12 +1,10 @@
-function compartmentTypes = Model_getListOfCompartmentTypes(SBMLModel)
+function compartmentType = Model_getListOfCompartmentTypes(SBMLModel)
 %
-%   Model_getListOfCompartmentTypes 
-%             takes an SBMLModel structure 
+% Model_getListOfCompartmentTypes
+%    takes an SBML Model structure
 %
-%             and returns 
-%               an array of SBML compartmentType structures defined within the model
-%
-%       compartmentTypes = Model_getListOfCompartmentTypes(SBMLModel)
+%    returns
+%      the array of structures of the compartmentType elements
 
 %  Filename    :   Model_getListOfCompartmentTypes.m
 %  Description :
@@ -38,10 +36,13 @@ function compartmentTypes = Model_getListOfCompartmentTypes(SBMLModel)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_getListOfCompartmentTypes(SBMLModel)', 'argument must be an SBML model structure'));
+[level, version] = GetLevelVersion(SBMLModel);
+
+if isfield(SBMLModel, 'compartmentType')
+	compartmentType = SBMLModel.compartmentType;
+else
+	error('compartmentType not an element on SBML L%dV%d Model', level, version);
 end;
 
-compartmentTypes = SBMLModel.compartmentType;
