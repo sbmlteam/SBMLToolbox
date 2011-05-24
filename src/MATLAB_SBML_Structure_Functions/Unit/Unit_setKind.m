@@ -1,13 +1,11 @@
 function SBMLUnit = Unit_setKind(SBMLUnit, kind)
 %
-%   Unit_setKind 
-%             takes  1) an SBMLUnit structure 
-%             and    2) a string representing the kind to be set
+% Unit_setKind
+%    takes an SBML Unit structure
+%    and the kind to be set
 %
-%             and returns 
-%               the unit with the kind set
-%
-%       SBMLUnit = Unit_setKind(SBMLUnit, 'kind')
+%    returns
+%      the Unit with the new value for the kind attribute
 
 %  Filename    :   Unit_setKind.m
 %  Description :
@@ -39,19 +37,17 @@ function SBMLUnit = Unit_setKind(SBMLUnit, kind)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLUnit))
-    error(sprintf('%s', ...
-      'argument must be an SBML Unit structure'));
+[level, version] = GetLevelVersion(SBMLUnit);
+
+if isfield(SBMLUnit, 'kind')
+	if ~ischar(kind)
+		error('kind must be character array') ;
+	else
+		SBMLUnit.kind = kind;
+	end;
+else
+	error('kind not an attribute on SBML L%dV%d Unit', level, version);
 end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLUnit);
 
-if (~isSBML_Unit(SBMLUnit, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Unit_setKind(SBMLUnit, kind)', 'first argument must be an SBML unit structure'));
-elseif (~ischar(kind) || (~isValidUnitKind(kind)))
-    error(sprintf('Unit_setKind(SBMLUnit, kind)\n%s', 'second argument must be a string representing the kind of the unit'));
-end;
-
-SBMLUnit.kind = kind;

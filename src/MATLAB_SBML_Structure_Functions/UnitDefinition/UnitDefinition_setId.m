@@ -1,13 +1,11 @@
 function SBMLUnitDefinition = UnitDefinition_setId(SBMLUnitDefinition, id)
 %
-%   UnitDefinition_setId 
-%             takes  1) an SBMLUnitDefinition structure 
-%             and    2) a string representing the id to be set
+% UnitDefinition_setId
+%    takes an SBML UnitDefinition structure
+%    and the id to be set
 %
-%             and returns 
-%               the unitDefinition with the id set
-%
-%       SBMLUnitDefinition = UnitDefinition_setId(SBMLUnitDefinition, 'id')
+%    returns
+%      the UnitDefinition with the new value for the id attribute
 
 %  Filename    :   UnitDefinition_setId.m
 %  Description :
@@ -39,21 +37,17 @@ function SBMLUnitDefinition = UnitDefinition_setId(SBMLUnitDefinition, id)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLUnitDefinition))
-    error(sprintf('%s', ...
-      'argument must be an SBML UnitDefinition structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLUnitDefinition);
+[level, version] = GetLevelVersion(SBMLUnitDefinition);
 
-if (~isSBML_UnitDefinition(SBMLUnitDefinition, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'UnitDefinition_setId(SBMLUnitDefinition, id)', 'first argument must be an SBML unitDefinition structure'));
-elseif (~ischar(id))
-    error(sprintf('UnitDefinition_setId(SBMLUnitDefinition, id)\n%s', 'second argument must be a string representing the id of the unitDefinition'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'UnitDefinition_setId(SBMLUnitDefinition, id)', 'no id field in a level 1 model'));    
+if isfield(SBMLUnitDefinition, 'id')
+	if ~ischar(id)
+		error('id must be character array') ;
+	else
+		SBMLUnitDefinition.id = id;
+	end;
+else
+	error('id not an attribute on SBML L%dV%d UnitDefinition', level, version);
 end;
 
-SBMLUnitDefinition.id = id;

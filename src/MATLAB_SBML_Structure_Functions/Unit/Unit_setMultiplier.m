@@ -1,13 +1,11 @@
 function SBMLUnit = Unit_setMultiplier(SBMLUnit, multiplier)
 %
-%   Unit_setMultiplier 
-%             takes  1) an SBMLUnit structure 
-%             and    2) the multiplier to be set
+% Unit_setMultiplier
+%    takes an SBML Unit structure
+%    and the multiplier to be set
 %
-%             and returns 
-%               the unit with the multiplier set
-%
-%       SBMLUnit = Unit_setMultiplier(SBMLUnit, multiplier)
+%    returns
+%      the Unit with the new value for the multiplier attribute
 
 %  Filename    :   Unit_setMultiplier.m
 %  Description :
@@ -39,21 +37,17 @@ function SBMLUnit = Unit_setMultiplier(SBMLUnit, multiplier)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLUnit))
-    error(sprintf('%s', ...
-      'argument must be an SBML Unit structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLUnit);
+[level, version] = GetLevelVersion(SBMLUnit);
 
-if (~isSBML_Unit(SBMLUnit, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Unit_setMultiplier(SBMLUnit, multiplier)', 'first argument must be an SBML unit structure'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Unit_setMultiplier(SBMLUnit, multiplier)', 'no multiplier field in a level 1 model'));    
-elseif (~isnumeric(multiplier))
-    error(sprintf('%s\n%s', 'Unit_setMultiplier(SBMLUnit, multiplier)', 'second argument must be a number representing the multiplier'));        
+if isfield(SBMLUnit, 'multiplier')
+	if ~isnumeric(multiplier)
+		error('multiplier must be numeric') ;
+	else
+		SBMLUnit.multiplier = multiplier;
+	end;
+else
+	error('multiplier not an attribute on SBML L%dV%d Unit', level, version);
 end;
 
-SBMLUnit.multiplier = multiplier;

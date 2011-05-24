@@ -1,12 +1,10 @@
 function id = UnitDefinition_getId(SBMLUnitDefinition)
 %
-%   UnitDefinition_getId 
-%             takes an SBMLUnitDefinition structure 
+% UnitDefinition_getId
+%    takes an SBML UnitDefinition structure
 %
-%             and returns 
-%               the id of the unitDefinition as a string
-%
-%       id = UnitDefinition_getId(SBMLUnitDefinition)
+%    returns
+%      the value of the id attribute
 
 %  Filename    :   UnitDefinition_getId.m
 %  Description :
@@ -38,19 +36,13 @@ function id = UnitDefinition_getId(SBMLUnitDefinition)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLUnitDefinition))
-    error(sprintf('%s', ...
-      'argument must be an SBML UnitDefinition structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLUnitDefinition);
+[level, version] = GetLevelVersion(SBMLUnitDefinition);
 
-if (~isSBML_UnitDefinition(SBMLUnitDefinition, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'UnitDefinition_getId(SBMLUnitDefinition)', 'argument must be an SBML unitDefinition structure'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'UnitDefinition_getId(SBMLUnitDefinition)', 'no id field in a level 1 model'));    
+if isfield(SBMLUnitDefinition, 'id')
+	id = SBMLUnitDefinition.id;
+else
+	error('id not an attribute on SBML L%dV%d UnitDefinition', level, version);
 end;
 
-id = SBMLUnitDefinition.id;

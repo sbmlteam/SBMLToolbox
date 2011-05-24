@@ -1,12 +1,10 @@
 function sboTerm = Trigger_getSBOTerm(SBMLTrigger)
 %
-%   Trigger_getSBOTerm 
-%             takes an SBMLTrigger structure 
+% Trigger_getSBOTerm
+%    takes an SBML Trigger structure
 %
-%             and returns 
-%               the sboTerm of the Trigger as an integer
-%
-%       sboTerm = Trigger_getSBOTerm(SBMLTrigger)
+%    returns
+%      the value of the sboTerm attribute
 
 %  Filename    :   Trigger_getSBOTerm.m
 %  Description :
@@ -38,24 +36,13 @@ function sboTerm = Trigger_getSBOTerm(SBMLTrigger)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLTrigger))
-    error(sprintf('%s\n%s', ...
-      'Trigger_getSBOTerm(SBMLTrigger)', ...
-      'argument must be an SBML Trigger structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLTrigger);
+[level, version] = GetLevelVersion(SBMLTrigger);
 
-if (~isSBML_Trigger(SBMLTrigger, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', ...
-      'Trigger_getSBOTerm(SBMLTrigger)', ...
-      'argument must be an SBML Trigger structure'));
-elseif (sbmlLevel ~= 2 || sbmlVersion ~= 3)
-    error(sprintf('%s\n%s', ...
-      'Trigger_getSBOTerm(SBMLTrigger)', ...
-      'sboTerm field only in level 2 version 3 model'));    
+if isfield(SBMLTrigger, 'sboTerm')
+	sboTerm = SBMLTrigger.sboTerm;
+else
+	error('sboTerm not an attribute on SBML L%dV%d Trigger', level, version);
 end;
 
-sboTerm = SBMLTrigger.sboTerm;

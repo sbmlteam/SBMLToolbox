@@ -1,13 +1,11 @@
-function unit = UnitDefinition_getUnit(SBMLUnitDefinition, number)
+function unit = UnitDefinition_getUnit(SBMLUnitDefinition, index)
 %
-%   UnitDefinition_getUnit 
-%             takes  1) an SBMLUnitDefinition structure 
-%             and    2) a number n
+% UnitDefinition_getUnit
+%    takes an SBML UnitDefinition structure
+%    and an index
 %
-%             and returns 
-%               the nth unit structure defined within the unitDefinition
-%
-%       unit = UnitDefinition_getUnit(SBMLUnitDefinition, number)
+%    returns
+%      the value of the unit element at the indexed position
 
 %  Filename    :   UnitDefinition_getUnit.m
 %  Description :
@@ -39,23 +37,17 @@ function unit = UnitDefinition_getUnit(SBMLUnitDefinition, number)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLUnitDefinition))
-    error(sprintf('%s', ...
-      'argument must be an SBML UnitDefinition structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLUnitDefinition);
+[level, version] = GetLevelVersion(SBMLUnitDefinition);
 
-if (~isSBML_UnitDefinition(SBMLUnitDefinition, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'UnitDefinition_getUnit(SBMLUnitDefinition, number)', 'first argument must be an SBML unitDefinition structure'));
-elseif ((number < 1) || (~isIntegralNumber(number)))
-    error(sprintf('%s\n%s', 'UnitDefinition_getUnit(SBMLUnitDefinition, number)', 'second argument must be a positive integer'));
-end;
-
-if (number > length(SBMLUnitDefinition.unit))
-    unit = [];
+if isfield(SBMLUnitDefinition, 'unit')
+	if index <= length(SBMLUnitDefinition.unit)
+		unit = SBMLUnitDefinition.unit;
+	else
+		error('index is out of range');
+	end;
 else
-    unit = SBMLUnitDefinition.unit(number);
+	error('unit not an element on SBML L%dV%d UnitDefinition', level, version);
 end;
+

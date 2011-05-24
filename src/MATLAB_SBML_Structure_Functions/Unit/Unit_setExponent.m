@@ -1,13 +1,11 @@
 function SBMLUnit = Unit_setExponent(SBMLUnit, exponent)
 %
-%   Unit_setExponent 
-%             takes  1) an SBMLUnit structure 
-%             and    2) an integer representing the exponent to be set
+% Unit_setExponent
+%    takes an SBML Unit structure
+%    and the exponent to be set
 %
-%             and returns 
-%               the unit with the exponent set
-%
-%       SBMLUnit = Unit_setExponent(SBMLUnit, exponent)
+%    returns
+%      the Unit with the new value for the exponent attribute
 
 %  Filename    :   Unit_setExponent.m
 %  Description :
@@ -39,19 +37,25 @@ function SBMLUnit = Unit_setExponent(SBMLUnit, exponent)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLUnit))
-    error(sprintf('%s', ...
-      'argument must be an SBML Unit structure'));
+[level, version] = GetLevelVersion(SBMLUnit);
+
+if isfield(SBMLUnit, 'exponent')
+  if level < 3
+    if ~isIntegralNumber(exponent)
+      error('exponent must be an integer') ;
+    else
+      SBMLUnit.exponent = exponent;
+    end;
+  else   
+    if ~isnumeric(exponent)
+      error('exponent must be numeric') ;
+    else
+      SBMLUnit.exponent = exponent;
+    end;
+  end;
+else
+	error('exponent not an attribute on SBML L%dV%d Unit', level, version);
 end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLUnit);
 
-if (~isSBML_Unit(SBMLUnit, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Unit_setExponent(SBMLUnit, exponent)', 'first argument must be an SBML model structure'));
-elseif (~isIntegralNumber(exponent))
-    error(sprintf('Unit_setExponent(SBMLUnit, exponent)\n%s', 'second argument must be an integer representing the exponent of the unit'));
-end;
-
-SBMLUnit.exponent = int32(exponent);

@@ -1,13 +1,11 @@
 function SBMLUnit = Unit_setOffset(SBMLUnit, offset)
 %
-%   Unit_setOffset 
-%             takes  1) an SBMLUnit structure 
-%             and    2) the offset to be set
+% Unit_setOffset
+%    takes an SBML Unit structure
+%    and the offset to be set
 %
-%             and returns 
-%               the unit with the offset set
-%
-%       SBMLUnit = Unit_setOffset(SBMLUnit, offset)
+%    returns
+%      the Unit with the new value for the offset attribute
 
 %  Filename    :   Unit_setOffset.m
 %  Description :
@@ -39,21 +37,17 @@ function SBMLUnit = Unit_setOffset(SBMLUnit, offset)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLUnit))
-    error(sprintf('%s', ...
-      'argument must be an SBML Unit structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLUnit);
+[level, version] = GetLevelVersion(SBMLUnit);
 
-if (~isSBML_Unit(SBMLUnit, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Unit_setOffset(SBMLUnit, offset)', 'first argument must be an SBML unit structure'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Unit_setOffset(SBMLUnit, offset)', 'no offset field in a level 1 model'));    
-elseif (~isnumeric(offset))
-    error(sprintf('%s\n%s', 'Unit_setOffset(SBMLUnit, offset)', 'second argument must be a number representing the offset'));        
+if isfield(SBMLUnit, 'offset')
+	if ~isnumeric(offset)
+		error('offset must be numeric') ;
+	else
+		SBMLUnit.offset = offset;
+	end;
+else
+	error('offset not an attribute on SBML L%dV%d Unit', level, version);
 end;
 
-SBMLUnit.offset = offset;

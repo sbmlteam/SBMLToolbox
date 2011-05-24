@@ -1,12 +1,10 @@
-function units = UnitDefinition_getListOfUnits(SBMLUnitDefinition)
+function unit = UnitDefinition_getListOfUnits(SBMLUnitDefinition)
 %
-%   UnitDefinition_getListOfUnits 
-%             takes an SBMLUnitDefinition structure 
+% UnitDefinition_getListOfUnits
+%    takes an SBML UnitDefinition structure
 %
-%             and returns 
-%               an array of SBML unit structures defined within the unitDefinition
-%
-%       units = UnitDefinition_getListOfUnits(SBMLUnitDefinition)
+%    returns
+%      the array of structures of the unit elements
 
 %  Filename    :   UnitDefinition_getListOfUnits.m
 %  Description :
@@ -38,17 +36,13 @@ function units = UnitDefinition_getListOfUnits(SBMLUnitDefinition)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLUnitDefinition))
-    error(sprintf('%s', ...
-      'argument must be an SBML UnitDefinition structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLUnitDefinition);
+[level, version] = GetLevelVersion(SBMLUnitDefinition);
 
-if (~isSBML_UnitDefinition(SBMLUnitDefinition, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'UnitDefinition_getListOfUnits(SBMLUnitDefinition)', 'argument must be an SBML unitDefinition structure'));
+if isfield(SBMLUnitDefinition, 'unit')
+	unit = SBMLUnitDefinition.unit;
+else
+	error('unit not an element on SBML L%dV%d UnitDefinition', level, version);
 end;
 
-units = SBMLUnitDefinition.unit;

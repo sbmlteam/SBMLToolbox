@@ -1,13 +1,11 @@
 function value = UnitDefinition_isSetId(SBMLUnitDefinition)
 %
-%   UnitDefinition_isSetId 
-%             takes an SBMLUnitDefinition structure 
+% UnitDefinition_isSetId
+%    takes an SBML UnitDefinition structure
 %
-%             and returns 
-%               1 if the id has been set 
-%               0 otherwise
-%
-%       value = UnitDefinition_isSetId(SBMLUnitDefinition)
+%    returns
+%      1 if the value for the id attribute is set
+%      0 otherwise
 
 %  Filename    :   UnitDefinition_isSetId.m
 %  Description :
@@ -39,19 +37,13 @@ function value = UnitDefinition_isSetId(SBMLUnitDefinition)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLUnitDefinition))
-    error(sprintf('%s', ...
-      'argument must be an SBML UnitDefinition structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLUnitDefinition);
+[level, version] = GetLevelVersion(SBMLUnitDefinition);
 
-if (~isSBML_UnitDefinition(SBMLUnitDefinition, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'UnitDefinition_isSetId(SBMLUnitDefinition)', 'argument must be an SBML unitDefinition structure'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'UnitDefinition_isSetId(SBMLUnitDefinition)', 'no id field in a level 1 model'));    
+if isfield(SBMLUnitDefinition, 'id')
+	value = ~isempty(SBMLUnitDefinition.id);
+else
+	error('id not an attribute on SBML L%dV%d UnitDefinition', level, version);
 end;
 
-value = ~isempty(SBMLUnitDefinition.id);

@@ -1,13 +1,11 @@
 function SBMLTrigger = Trigger_setMath(SBMLTrigger, math)
 %
-%   Trigger_setMath 
-%             takes  1) an SBMLTrigger structure 
-%             and    2) an string representing the math to be set
+% Trigger_setMath
+%    takes an SBML Trigger structure
+%    and the math to be set
 %
-%             and returns 
-%               the compartment with the math set
-%
-%       SBMLTrigger = Trigger_setMath(SBMLTrigger, math)
+%    returns
+%      the Trigger with the new value for the math attribute
 
 %  Filename    :   Trigger_setMath.m
 %  Description :
@@ -39,28 +37,17 @@ function SBMLTrigger = Trigger_setMath(SBMLTrigger, math)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLTrigger))
-    error(sprintf('%s\n%s', ...
-      'Trigger_getMath(SBMLTrigger)', ...
-      'argument must be an SBML Trigger structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLTrigger);
+[level, version] = GetLevelVersion(SBMLTrigger);
 
-if (~isSBML_Trigger(SBMLTrigger, sbmlLevel, sbmlVersion))
-  error(sprintf('%s\n%s', ...
-    'Trigger_setMath(SBMLTrigger, math)', ...
-    'first argument must be an SBML Trigger structure'));
-elseif (~ischar(math))
-    error(sprintf('%s\n%s', ...
-      'Trigger_setMath(SBMLTrigger, math)', ...
-      'second argument must be a string representing the math'));
-elseif (sbmlLevel ~= 2 || sbmlVersion ~= 3)
-    error(sprintf('%s\n%s', ...
-      'Trigger_setMath(SBMLTrigger, math)',  ...
-      'math field only in level 2 version 3 model'));    
+if isfield(SBMLTrigger, 'math')
+	if ~ischar(math)
+		error('math must be character array') ;
+	else
+		SBMLTrigger.math = math;
+	end;
+else
+	error('math not an attribute on SBML L%dV%d Trigger', level, version);
 end;
 
-SBMLTrigger.math = math;

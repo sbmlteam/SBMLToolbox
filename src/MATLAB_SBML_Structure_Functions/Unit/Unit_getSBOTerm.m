@@ -1,12 +1,10 @@
 function sboTerm = Unit_getSBOTerm(SBMLUnit)
 %
-%   Unit_getSBOTerm 
-%             takes an SBMLUnit structure 
+% Unit_getSBOTerm
+%    takes an SBML Unit structure
 %
-%             and returns 
-%               the sboTerm of the Unit as an integer
-%
-%       sboTerm = Unit_getSBOTerm(SBMLUnit)
+%    returns
+%      the value of the sboTerm attribute
 
 %  Filename    :   Unit_getSBOTerm.m
 %  Description :
@@ -38,23 +36,13 @@ function sboTerm = Unit_getSBOTerm(SBMLUnit)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLUnit))
-    error(sprintf('%s', ...
-      'argument must be an SBML Unit structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLUnit);
+[level, version] = GetLevelVersion(SBMLUnit);
 
-if (~isSBML_Unit(SBMLUnit, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', ...
-      'Unit_getSBOTerm(SBMLUnit)', ...
-      'argument must be an SBML Unit structure'));
-elseif (sbmlLevel ~= 2 || sbmlVersion ~= 3)
-    error(sprintf('%s\n%s', ...
-      'Unit_getSBOTerm(SBMLUnit)', ...
-      'sboTerm field only in level 2 version 3 model'));    
+if isfield(SBMLUnit, 'sboTerm')
+	sboTerm = SBMLUnit.sboTerm;
+else
+	error('sboTerm not an attribute on SBML L%dV%d Unit', level, version);
 end;
 
-sboTerm = SBMLUnit.sboTerm;

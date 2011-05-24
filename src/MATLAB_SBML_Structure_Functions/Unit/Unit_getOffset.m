@@ -1,12 +1,10 @@
 function offset = Unit_getOffset(SBMLUnit)
 %
-%   Unit_getOffset 
-%             takes an SBMLUnit structure 
+% Unit_getOffset
+%    takes an SBML Unit structure
 %
-%             and returns 
-%               the offset of the unit as a double
-%
-%       offset = Unit_getOffset(SBMLUnit)
+%    returns
+%      the value of the offset attribute
 
 %  Filename    :   Unit_getOffset.m
 %  Description :
@@ -38,19 +36,13 @@ function offset = Unit_getOffset(SBMLUnit)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLUnit))
-    error(sprintf('%s', ...
-      'argument must be an SBML Unit structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLUnit);
+[level, version] = GetLevelVersion(SBMLUnit);
 
-if (~isSBML_Unit(SBMLUnit, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Unit_getOffset(SBMLUnit)', 'argument must be an SBML unit structure'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Unit_getOffset(SBMLUnit)', 'no offset field in a level 1 model'));    
+if isfield(SBMLUnit, 'offset')
+	offset = SBMLUnit.offset;
+else
+	error('offset not an attribute on SBML L%dV%d Unit', level, version);
 end;
 
-offset = SBMLUnit.offset;
