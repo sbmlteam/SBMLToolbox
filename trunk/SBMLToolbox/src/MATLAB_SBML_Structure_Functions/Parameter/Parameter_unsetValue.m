@@ -1,13 +1,10 @@
 function SBMLParameter = Parameter_unsetValue(SBMLParameter)
 %
-%   Parameter_unsetValue 
-%             takes an SBMLParameter structure 
+% Parameter_getValue
+%    takes an SBML Parameter structure
 %
-%             and returns 
-%               the parameter with the value unset
-%               (i.e. value = NAN)
-%
-%       SBMLParameter = Parameter_unsetValue(SBMLParameter)
+%    returns
+%      the Parameter with the value for the value attribute unset
 
 %  Filename    :   Parameter_unsetValue.m
 %  Description :
@@ -39,31 +36,14 @@ function SBMLParameter = Parameter_unsetValue(SBMLParameter)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLParameter))
-  error(sprintf('%s\n%s', ...
-    'Parameter_unsetValue(SBMLParameter)', ...
-    'first argument must be an SBML Parameter structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLParameter);
+[level, version] = GetLevelVersion(SBMLParameter);
 
-if (~isSBML_Parameter(SBMLParameter, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Parameter_unsetValue(SBMLParameter)', 'argument must be an SBML parameter structure'));
-end;
-
-if exist('OCTAVE_VERSION')
-  warning off Octave:divide-by-zero;
+if isfield(SBMLParameter, 'value')
+	SBMLParameter.value = NaN;
+  SBMLParameter.isSetValue = 0;
 else
-  warning off MATLAB:divideByZero;
+	error('value not an attribute on SBML L%dV%d Parameter', level, version);
 end;
 
-SBMLParameter.value = 0/0;
-SBMLParameter.isSetValue = int32(0);
-
-if exist('OCTAVE_VERSION')
-  warning off Octave:divide-by-zero;
-else
-  warning off MATLAB:divideByZero;
-end;

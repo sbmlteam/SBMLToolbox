@@ -1,13 +1,11 @@
 function value = Parameter_isSetId(SBMLParameter)
 %
-%   Parameter_isSetId 
-%             takes an SBMLParameter structure 
+% Parameter_isSetId
+%    takes an SBML Parameter structure
 %
-%             and returns 
-%               1 if the id has been set 
-%               0 otherwise
-%
-%       value = Parameter_isSetId(SBMLParameter)
+%    returns
+%      1 if the value for the id attribute is set
+%      0 otherwise
 
 %  Filename    :   Parameter_isSetId.m
 %  Description :
@@ -39,20 +37,13 @@ function value = Parameter_isSetId(SBMLParameter)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLParameter))
-  error(sprintf('%s\n%s', ...
-    'Parameter_isSetId(SBMLParameter)', ...
-    'first argument must be an SBML Parameter structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLParameter);
+[level, version] = GetLevelVersion(SBMLParameter);
 
-if (~isSBML_Parameter(SBMLParameter, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Parameter_isSetId(SBMLParameter)', 'argument must be an SBML parameter structure'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Parameter_isSetId(SBMLParameter)', 'no id field in a level 1 model'));    
+if isfield(SBMLParameter, 'id')
+	value = ~isempty(SBMLParameter.id);
+else
+	error('id not an attribute on SBML L%dV%d Parameter', level, version);
 end;
 
-value = ~isempty(SBMLParameter.id);

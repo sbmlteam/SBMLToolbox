@@ -1,13 +1,11 @@
 function SBMLParameter = Parameter_setValue(SBMLParameter, value)
 %
-%   Parameter_setValue 
-%             takes  1) an SBMLParameter structure 
-%             and    2) a double representing the value to be set
+% Parameter_setValue
+%    takes an SBML Parameter structure
+%    and the value to be set
 %
-%             and returns 
-%               the parameter with the value set
-%
-%       SBMLParameter = Parameter_setValue(SBMLParameter, value)
+%    returns
+%      the Parameter with the new value for the value attribute
 
 %  Filename    :   Parameter_setValue.m
 %  Description :
@@ -39,19 +37,18 @@ function SBMLParameter = Parameter_setValue(SBMLParameter, value)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLParameter))
-  error(sprintf('%s\n%s', ...
-    'Parameter_setValue(SBMLParameter)', ...
-    'first argument must be an SBML Parameter structure'));
+[level, version] = GetLevelVersion(SBMLParameter);
+
+if isfield(SBMLParameter, 'value')
+	if ~isnumeric(value)
+		error('value must be numeric') ;
+	else
+		SBMLParameter.value = value;
+    SBMLParameter.isSetValue = 1;
+	end;
+else
+	error('value not an attribute on SBML L%dV%d Parameter', level, version);
 end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLParameter);
 
-if (~isSBML_Parameter(SBMLParameter, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Parameter_setValue(SBMLParameter, value)', 'first argument must be an SBML parameter structure'));
-end;
-
-SBMLParameter.value = value;
-SBMLParameter.isSetValue = int32(1);

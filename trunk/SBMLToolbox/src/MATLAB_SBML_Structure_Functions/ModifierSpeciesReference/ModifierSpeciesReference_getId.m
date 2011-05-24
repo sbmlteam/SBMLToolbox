@@ -1,12 +1,10 @@
 function id = ModifierSpeciesReference_getId(SBMLModifierSpeciesReference)
 %
-%   ModifierSpeciesReference_getId 
-%             takes an SBMLModifierSpeciesReference structure 
+% ModifierSpeciesReference_getId
+%    takes an SBML ModifierSpeciesReference structure
 %
-%             and returns 
-%               the id of the compartment as an integer
-%
-%       id = ModifierSpeciesReference_getId(SBMLModifierSpeciesReference)
+%    returns
+%      the value of the id attribute
 
 %  Filename    :   ModifierSpeciesReference_getId.m
 %  Description :
@@ -38,24 +36,13 @@ function id = ModifierSpeciesReference_getId(SBMLModifierSpeciesReference)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLModifierSpeciesReference))
-    error(sprintf('%s\n%s', ...
-      'ModifierSpeciesReference_getId(SBMLModifierSpeciesReference)', ...
-      'argument must be an SBML modifierSpeciesReference structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLModifierSpeciesReference);
+[level, version] = GetLevelVersion(SBMLModifierSpeciesReference);
 
-if (~isSBML_ModifierSpeciesReference(SBMLModifierSpeciesReference, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', ...
-      'ModifierSpeciesReference_getId(SBMLModifierSpeciesReference)', ...
-      'argument must be an SBML modifierSpeciesReference structure'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'ModifierSpeciesReference_getId(SBMLModifierSpeciesReference)', ...
-      'id field only in level 2 version 2/3 model'));    
+if isfield(SBMLModifierSpeciesReference, 'id')
+	id = SBMLModifierSpeciesReference.id;
+else
+	error('id not an attribute on SBML L%dV%d ModifierSpeciesReference', level, version);
 end;
 
-id = SBMLModifierSpeciesReference.id;

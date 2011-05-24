@@ -1,13 +1,10 @@
 function SBMLParameter = Parameter_unsetName(SBMLParameter)
 %
-%   Parameter_unsetName 
-%             takes an SBMLParameter structure 
+% Parameter_getName
+%    takes an SBML Parameter structure
 %
-%             and returns 
-%               the parameter with the name unset
-%               (i.e. name = '')
-%
-%       SBMLParameter = Parameter_unsetName(SBMLParameter)
+%    returns
+%      the Parameter with the value for the name attribute unset
 
 %  Filename    :   Parameter_unsetName.m
 %  Description :
@@ -39,18 +36,13 @@ function SBMLParameter = Parameter_unsetName(SBMLParameter)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLParameter))
-  error(sprintf('%s\n%s', ...
-    'Parameter_unsetName(SBMLParameter)', ...
-    'first argument must be an SBML Parameter structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLParameter);
+[level, version] = GetLevelVersion(SBMLParameter);
 
-if (~isSBML_Parameter(SBMLParameter, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Parameter_unsetName(SBMLParameter)', 'argument must be an SBML parameter structure'));
+if isfield(SBMLParameter, 'name')
+	SBMLParameter.name = '';
+else
+	error('name not an attribute on SBML L%dV%d Parameter', level, version);
 end;
 
-SBMLParameter.name = '';

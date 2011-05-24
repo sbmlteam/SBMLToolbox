@@ -1,13 +1,11 @@
 function value = Parameter_isSetUnits(SBMLParameter)
 %
-%   Parameter_isSetUnits 
-%             takes an SBMLParameter structure 
+% Parameter_isSetUnits
+%    takes an SBML Parameter structure
 %
-%             and returns 
-%               1 if the units has been set 
-%               0 otherwise
-%
-%       value = Parameter_isSetUnits(SBMLParameter)
+%    returns
+%      1 if the value for the units attribute is set
+%      0 otherwise
 
 %  Filename    :   Parameter_isSetUnits.m
 %  Description :
@@ -39,18 +37,13 @@ function value = Parameter_isSetUnits(SBMLParameter)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLParameter))
-  error(sprintf('%s\n%s', ...
-    'Parameter_isSetUnits(SBMLParameter)', ...
-    'first argument must be an SBML Parameter structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLParameter);
+[level, version] = GetLevelVersion(SBMLParameter);
 
-if (~isSBML_Parameter(SBMLParameter, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Parameter_isSetUnits(SBMLParameter)', 'argument must be an SBML parameter structure'));
+if isfield(SBMLParameter, 'units')
+	value = ~isempty(SBMLParameter.units);
+else
+	error('units not an attribute on SBML L%dV%d Parameter', level, version);
 end;
 
-value = ~isempty(SBMLParameter.units);

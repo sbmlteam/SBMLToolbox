@@ -1,12 +1,10 @@
 function units = Parameter_getUnits(SBMLParameter)
 %
-%   Parameter_getUnits 
-%             takes an SBMLParameter structure 
+% Parameter_getUnits
+%    takes an SBML Parameter structure
 %
-%             and returns 
-%               the units of the parameter as a string
-%
-%       units = Parameter_getUnits(SBMLParameter)
+%    returns
+%      the value of the units attribute
 
 %  Filename    :   Parameter_getUnits.m
 %  Description :
@@ -38,18 +36,13 @@ function units = Parameter_getUnits(SBMLParameter)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLParameter))
-  error(sprintf('%s\n%s', ...
-    'Parameter_getUnits(SBMLParameter)', ...
-    'first argument must be an SBML Parameter structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLParameter);
+[level, version] = GetLevelVersion(SBMLParameter);
 
-if (~isSBML_Parameter(SBMLParameter, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Parameter_getUnits(SBMLParameter)', 'argument must be an SBML parameter structure'));
+if isfield(SBMLParameter, 'units')
+	units = SBMLParameter.units;
+else
+	error('units not an attribute on SBML L%dV%d Parameter', level, version);
 end;
 
-units = SBMLParameter.units;

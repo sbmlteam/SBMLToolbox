@@ -1,12 +1,10 @@
 function id = Parameter_getId(SBMLParameter)
 %
-%   Parameter_getId 
-%             takes an SBMLParameter structure 
+% Parameter_getId
+%    takes an SBML Parameter structure
 %
-%             and returns 
-%               the id of the parameter as a string
-%
-%       id = Parameter_getId(SBMLParameter)
+%    returns
+%      the value of the id attribute
 
 %  Filename    :   Parameter_getId.m
 %  Description :
@@ -38,20 +36,13 @@ function id = Parameter_getId(SBMLParameter)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLParameter))
-  error(sprintf('%s\n%s', ...
-    'Parameter_getId(SBMLParameter)', ...
-    'first argument must be an SBML Parameter structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLParameter);
+[level, version] = GetLevelVersion(SBMLParameter);
 
-if (~isSBML_Parameter(SBMLParameter, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Parameter_getId(SBMLParameter)', 'argument must be an SBML parameter structure'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Parameter_getId(SBMLParameter)', 'no id field in a level 1 model'));    
+if isfield(SBMLParameter, 'id')
+	id = SBMLParameter.id;
+else
+	error('id not an attribute on SBML L%dV%d Parameter', level, version);
 end;
 
-id = SBMLParameter.id;

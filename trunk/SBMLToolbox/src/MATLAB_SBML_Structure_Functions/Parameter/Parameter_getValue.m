@@ -1,12 +1,10 @@
 function value = Parameter_getValue(SBMLParameter)
 %
-%   Parameter_getValue 
-%             takes an SBMLParameter structure 
+% Parameter_getValue
+%    takes an SBML Parameter structure
 %
-%             and returns 
-%               the value of the parameter as a double
-%
-%       value = Parameter_getValue(SBMLParameter)
+%    returns
+%      the value of the value attribute
 
 %  Filename    :   Parameter_getValue.m
 %  Description :
@@ -38,18 +36,13 @@ function value = Parameter_getValue(SBMLParameter)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLParameter))
-  error(sprintf('%s\n%s', ...
-    'Parameter_getValue(SBMLParameter)', ...
-    'first argument must be an SBML Parameter structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLParameter);
+[level, version] = GetLevelVersion(SBMLParameter);
 
-if (~isSBML_Parameter(SBMLParameter, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Parameter_getValue(SBMLParameter)', 'argument must be an SBML parameter structure'));
+if isfield(SBMLParameter, 'value')
+	value = SBMLParameter.value;
+else
+	error('value not an attribute on SBML L%dV%d Parameter', level, version);
 end;
 
-value = SBMLParameter.value;

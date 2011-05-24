@@ -1,13 +1,11 @@
 function SBMLParameter = Parameter_setId(SBMLParameter, id)
 %
-%   Parameter_setId 
-%             takes  1) an SBMLParameter structure 
-%             and    2) a string representing the id to be set
+% Parameter_setId
+%    takes an SBML Parameter structure
+%    and the id to be set
 %
-%             and returns 
-%               the parameter with the id set
-%
-%       SBMLParameter = Parameter_setId(SBMLParameter, 'id')
+%    returns
+%      the Parameter with the new value for the id attribute
 
 %  Filename    :   Parameter_setId.m
 %  Description :
@@ -39,22 +37,17 @@ function SBMLParameter = Parameter_setId(SBMLParameter, id)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLParameter))
-  error(sprintf('%s\n%s', ...
-    'Parameter_setId(SBMLParameter)', ...
-    'first argument must be an SBML Parameter structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLParameter);
+[level, version] = GetLevelVersion(SBMLParameter);
 
-if (~isSBML_Parameter(SBMLParameter, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Parameter_setId(SBMLParameter, id)', 'first argument must be an SBML parameter structure'));
-elseif (~ischar(id))
-    error(sprintf('Parameter_setId(SBMLParameter, id)\n%s', 'second argument must be a string representing the id of the parameter'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Parameter_setId(SBMLParameter, id)', 'no id field in a level 1 model'));    
+if isfield(SBMLParameter, 'id')
+	if ~ischar(id)
+		error('id must be character array') ;
+	else
+		SBMLParameter.id = id;
+	end;
+else
+	error('id not an attribute on SBML L%dV%d Parameter', level, version);
 end;
 
-SBMLParameter.id = id;

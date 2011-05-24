@@ -1,13 +1,11 @@
 function SBMLParameter = Parameter_setName(SBMLParameter, name)
 %
-%   Parameter_setName 
-%             takes  1) an SBMLParameter structure 
-%             and    2) a string representing the name to be set
+% Parameter_setName
+%    takes an SBML Parameter structure
+%    and the name to be set
 %
-%             and returns 
-%               the parameter with the name set
-%
-%       SBMLParameter = Parameter_setName(SBMLParameter, 'name')
+%    returns
+%      the Parameter with the new value for the name attribute
 
 %  Filename    :   Parameter_setName.m
 %  Description :
@@ -39,20 +37,17 @@ function SBMLParameter = Parameter_setName(SBMLParameter, name)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLParameter))
-  error(sprintf('%s\n%s', ...
-    'Parameter_setName(SBMLParameter)', ...
-    'first argument must be an SBML Parameter structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLParameter);
+[level, version] = GetLevelVersion(SBMLParameter);
 
-if (~isSBML_Parameter(SBMLParameter, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Parameter_setName(SBMLParameter, name)', 'first argument must be an SBML parameter structure'));
-elseif (~ischar(name))
-    error(sprintf('Parameter_setName(SBMLParameter, name)\n%s', 'second argument must be a string representing the name of the parameter'));
+if isfield(SBMLParameter, 'name')
+	if ~ischar(name)
+		error('name must be character array') ;
+	else
+		SBMLParameter.name = name;
+	end;
+else
+	error('name not an attribute on SBML L%dV%d Parameter', level, version);
 end;
 
-SBMLParameter.name = name;

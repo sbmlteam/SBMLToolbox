@@ -1,12 +1,10 @@
 function species = ModifierSpeciesReference_getSpecies(SBMLModifierSpeciesReference)
 %
-%   ModifierSpeciesReference_getSpecies 
-%             takes an SBMLModifierSpeciesReference structure 
+% ModifierSpeciesReference_getSpecies
+%    takes an SBML ModifierSpeciesReference structure
 %
-%             and returns 
-%               the species of the modifierSpeciesReference as a string
-%
-%       species = ModifierSpeciesReference_getSpecies(SBMLModifierSpeciesReference)
+%    returns
+%      the value of the species attribute
 
 %  Filename    :   ModifierSpeciesReference_getSpecies.m
 %  Description :
@@ -38,18 +36,13 @@ function species = ModifierSpeciesReference_getSpecies(SBMLModifierSpeciesRefere
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLModifierSpeciesReference))
-    error(sprintf('%s\n%s', ...
-      'ModifierSpeciesReference_getSpecies(SBMLModifierSpeciesReference)', ...
-      'argument must be an SBML modifierSpeciesReference structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLModifierSpeciesReference);
+[level, version] = GetLevelVersion(SBMLModifierSpeciesReference);
 
-if (~isSBML_ModifierSpeciesReference(SBMLModifierSpeciesReference, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'ModifierSpeciesReference_getSpecies(SBMLModifierSpeciesReference)', 'argument must be an SBML modifierSpeciesReference structure'));
+if isfield(SBMLModifierSpeciesReference, 'species')
+	species = SBMLModifierSpeciesReference.species;
+else
+	error('species not an attribute on SBML L%dV%d ModifierSpeciesReference', level, version);
 end;
 
-species = SBMLModifierSpeciesReference.species;

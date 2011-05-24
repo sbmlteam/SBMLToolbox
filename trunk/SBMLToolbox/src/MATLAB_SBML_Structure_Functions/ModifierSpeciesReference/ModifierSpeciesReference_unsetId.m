@@ -1,16 +1,15 @@
-function SBMLParameter = Parameter_setConstant(SBMLParameter, constant)
+function SBMLModifierSpeciesReference = ModifierSpeciesReference_unsetId(SBMLModifierSpeciesReference)
 %
-% Parameter_setConstant
-%    takes an SBML Parameter structure
-%    and the constant to be set
+% ModifierSpeciesReference_getId
+%    takes an SBML ModifierSpeciesReference structure
 %
 %    returns
-%      the Parameter with the new value for the constant attribute
+%      the ModifierSpeciesReference with the value for the id attribute unset
 
-%  Filename    :   Parameter_setConstant.m
+%  Filename    :   ModifierSpeciesReference_unsetId.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -39,15 +38,11 @@ function SBMLParameter = Parameter_setConstant(SBMLParameter, constant)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLParameter);
+[level, version] = GetLevelVersion(SBMLModifierSpeciesReference);
 
-if isfield(SBMLParameter, 'constant')
-	if (~isIntegralNumber(constant) || constant < 0 || constant > 1)
-		error('constant must be an integer of value 0/1') ;
-	else
-		SBMLParameter.constant = constant;
-	end;
+if isfield(SBMLModifierSpeciesReference, 'id')
+	SBMLModifierSpeciesReference.id = '';
 else
-	error('constant not an attribute on SBML L%dV%d Parameter', level, version);
+	error('id not an attribute on SBML L%dV%d ModifierSpeciesReference', level, version);
 end;
 

@@ -1,16 +1,16 @@
-function SBMLParameter = Parameter_setConstant(SBMLParameter, constant)
+function value = Parameter_isSetSBOTerm(SBMLParameter)
 %
-% Parameter_setConstant
+% Parameter_isSetSBOTerm
 %    takes an SBML Parameter structure
-%    and the constant to be set
 %
 %    returns
-%      the Parameter with the new value for the constant attribute
+%      1 if the value for the sboTerm attribute is set
+%      0 otherwise
 
-%  Filename    :   Parameter_setConstant.m
+%  Filename    :   Parameter_isSetSBOTerm.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -41,13 +41,9 @@ function SBMLParameter = Parameter_setConstant(SBMLParameter, constant)
 
 [level, version] = GetLevelVersion(SBMLParameter);
 
-if isfield(SBMLParameter, 'constant')
-	if (~isIntegralNumber(constant) || constant < 0 || constant > 1)
-		error('constant must be an integer of value 0/1') ;
-	else
-		SBMLParameter.constant = constant;
-	end;
+if isfield(SBMLParameter, 'sboTerm')
+	value = (SBMLParameter.sboTerm >0);
 else
-	error('constant not an attribute on SBML L%dV%d Parameter', level, version);
+	error('sboTerm not an attribute on SBML L%dV%d Parameter', level, version);
 end;
 

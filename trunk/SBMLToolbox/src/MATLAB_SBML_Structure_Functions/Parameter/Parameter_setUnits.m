@@ -1,13 +1,11 @@
 function SBMLParameter = Parameter_setUnits(SBMLParameter, units)
 %
-%   Parameter_setUnits 
-%             takes  1) an SBMLParameter structure 
-%             and    2) a string representing the units to be set
+% Parameter_setUnits
+%    takes an SBML Parameter structure
+%    and the units to be set
 %
-%             and returns 
-%               the parameter with the units set
-%
-%       SBMLParameter = Parameter_setUnits(SBMLParameter, 'units')
+%    returns
+%      the Parameter with the new value for the units attribute
 
 %  Filename    :   Parameter_setUnits.m
 %  Description :
@@ -39,20 +37,17 @@ function SBMLParameter = Parameter_setUnits(SBMLParameter, units)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLParameter))
-  error(sprintf('%s\n%s', ...
-    'Parameter_setUnits(SBMLParameter)', ...
-    'first argument must be an SBML Parameter structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLParameter);
+[level, version] = GetLevelVersion(SBMLParameter);
 
-if (~isSBML_Parameter(SBMLParameter, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Parameter_setUnits(SBMLParameter, units)', 'first argument must be an SBML parameter structure'));
-elseif (~ischar(units))
-    error(sprintf('Parameter_setUnits(SBMLParameter, units)\n%s', 'second argument must be a string representing the units of the parameter'));
+if isfield(SBMLParameter, 'units')
+	if ~ischar(units)
+		error('units must be character array') ;
+	else
+		SBMLParameter.units = units;
+	end;
+else
+	error('units not an attribute on SBML L%dV%d Parameter', level, version);
 end;
 
-SBMLParameter.units = units;
