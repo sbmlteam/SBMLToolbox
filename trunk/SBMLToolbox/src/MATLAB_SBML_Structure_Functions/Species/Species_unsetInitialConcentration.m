@@ -1,13 +1,10 @@
 function SBMLSpecies = Species_unsetInitialConcentration(SBMLSpecies)
 %
-%   Species_unsetInitialConcentration 
-%             takes an SBMLSpecies structure 
+% Species_getInitialConcentration
+%    takes an SBML Species structure
 %
-%             and returns 
-%               the species with the initialConcentration unset
-%               (i.e. initialConcentration = NAN)
-%
-%       SBMLSpecies = Species_unsetInitialConcentration(SBMLSpecies)
+%    returns
+%      the Species with the value for the initialConcentration attribute unset
 
 %  Filename    :   Species_unsetInitialConcentration.m
 %  Description :
@@ -39,32 +36,14 @@ function SBMLSpecies = Species_unsetInitialConcentration(SBMLSpecies)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpecies))
-    error(sprintf('%s', ...
-      'argument must be an SBML Species structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
+[level, version] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Species_unsetInitialConcentration(SBMLSpecies)', 'argument must be an SBML species structure'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Species_unsetInitialConcentration(SBMLSpecies)', 'no initialConcentration field in a level 1 model'));    
-end;
-
-if exist('OCTAVE_VERSION')
-  warning off Octave:divide-by-zero;
+if isfield(SBMLSpecies, 'initialConcentration')
+	SBMLSpecies.initialConcentration = NaN;
+  SBMLSpecies.isSetInitialConcentration = 0;
 else
-  warning off MATLAB:divideByZero;
+	error('initialConcentration not an attribute on SBML L%dV%d Species', level, version);
 end;
 
-SBMLSpecies.initialConcentration = 0/0;
-SBMLSpecies.isSetInitialConcentration = int32(0);
-
-if exist('OCTAVE_VERSION')
-  warning off Octave:divide-by-zero;
-else
-  warning off MATLAB:divideByZero;
-end;

@@ -1,13 +1,11 @@
 function SBMLSpecies = Species_setUnits(SBMLSpecies, units)
 %
-%   Species_setUnits 
-%             takes  1) an SBMLSpecies structure 
-%             and    2) a string representing the units to be set
+% Species_setUnits
+%    takes an SBML Species structure
+%    and the units to be set
 %
-%             and returns 
-%               the species with the units set
-%
-%       SBMLSpecies = Species_setUnits(SBMLSpecies, 'units')
+%    returns
+%      the Species with the new value for the units attribute
 
 %  Filename    :   Species_setUnits.m
 %  Description :
@@ -39,21 +37,17 @@ function SBMLSpecies = Species_setUnits(SBMLSpecies, units)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpecies))
-    error(sprintf('%s', ...
-      'argument must be an SBML Species structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
+[level, version] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Species_setUnits(SBMLSpecies, units)', 'first argument must be an SBML species structure'));
-elseif (~ischar(units))
-    error(sprintf('Species_setUnits(SBMLSpecies, units)\n%s', 'second argument must be a string representing the units of the species'));
-elseif (sbmlLevel ~= 1)
-    error(sprintf('%s\n%s', 'Species_setUnits(SBMLSpecies, units)', 'no units field in a level 2 model'));    
+if isfield(SBMLSpecies, 'units')
+	if ~ischar(units)
+		error('units must be character array') ;
+	else
+		SBMLSpecies.units = units;
+	end;
+else
+	error('units not an attribute on SBML L%dV%d Species', level, version);
 end;
 
-SBMLSpecies.units = units;

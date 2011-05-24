@@ -1,12 +1,10 @@
 function initialConcentration = Species_getInitialConcentration(SBMLSpecies)
 %
-%   Species_getInitialConcentration 
-%             takes an SBMLSpecies structure 
+% Species_getInitialConcentration
+%    takes an SBML Species structure
 %
-%             and returns 
-%               the initialConcentration of the species as a double
-%
-%       initialConcentration = Species_getInitialConcentration(SBMLSpecies)
+%    returns
+%      the value of the initialConcentration attribute
 
 %  Filename    :   Species_getInitialConcentration.m
 %  Description :
@@ -38,19 +36,13 @@ function initialConcentration = Species_getInitialConcentration(SBMLSpecies)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpecies))
-    error(sprintf('%s', ...
-      'argument must be an SBML Species structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
+[level, version] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Species_getInitialConcentration(SBMLSpecies)', 'argument must be an SBML species structure'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Species_getInitialConcentration(SBMLSpecies)', 'no initialConcentration field in a level 1 model'));    
+if isfield(SBMLSpecies, 'initialConcentration')
+	initialConcentration = SBMLSpecies.initialConcentration;
+else
+	error('initialConcentration not an attribute on SBML L%dV%d Species', level, version);
 end;
 
-initialConcentration = SBMLSpecies.initialConcentration;

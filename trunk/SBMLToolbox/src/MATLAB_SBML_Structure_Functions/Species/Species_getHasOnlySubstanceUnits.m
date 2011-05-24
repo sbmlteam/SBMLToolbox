@@ -1,12 +1,10 @@
 function hasOnlySubstanceUnits = Species_getHasOnlySubstanceUnits(SBMLSpecies)
 %
-%   Species_getHasOnlySubstanceUnits 
-%             takes an SBMLSpecies structure 
+% Species_getHasOnlySubstanceUnits
+%    takes an SBML Species structure
 %
-%             and returns 
-%               the hasOnlySubstanceUnits of the species as an integer
-%
-%       hasOnlySubstanceUnits = Species_getHasOnlySubstanceUnits(SBMLSpecies)
+%    returns
+%      the value of the hasOnlySubstanceUnits attribute
 
 %  Filename    :   Species_getHasOnlySubstanceUnits.m
 %  Description :
@@ -38,19 +36,13 @@ function hasOnlySubstanceUnits = Species_getHasOnlySubstanceUnits(SBMLSpecies)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpecies))
-    error(sprintf('%s', ...
-      'argument must be an SBML Species structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
+[level, version] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Species_getHasOnlySubstanceUnits(SBMLSpecies)', 'argument must be an SBML species structure'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Species_getHasOnlySubstanceUnits(SBMLSpecies)', 'no hasOnlySubstanceUnits field in a level 1 model'));    
+if isfield(SBMLSpecies, 'hasOnlySubstanceUnits')
+	hasOnlySubstanceUnits = SBMLSpecies.hasOnlySubstanceUnits;
+else
+	error('hasOnlySubstanceUnits not an attribute on SBML L%dV%d Species', level, version);
 end;
 
-hasOnlySubstanceUnits = SBMLSpecies.hasOnlySubstanceUnits;

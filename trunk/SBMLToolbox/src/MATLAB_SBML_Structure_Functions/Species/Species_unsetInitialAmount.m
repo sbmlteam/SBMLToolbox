@@ -1,13 +1,10 @@
 function SBMLSpecies = Species_unsetInitialAmount(SBMLSpecies)
 %
-%   Species_unsetInitialAmount 
-%             takes an SBMLSpecies structure 
+% Species_getInitialAmount
+%    takes an SBML Species structure
 %
-%             and returns 
-%               the species with the initialAmount unset
-%               (i.e. initialAmount = NAN)
-%
-%       SBMLSpecies = Species_unsetInitialAmount(SBMLSpecies)
+%    returns
+%      the Species with the value for the initialAmount attribute unset
 
 %  Filename    :   Species_unsetInitialAmount.m
 %  Description :
@@ -39,30 +36,14 @@ function SBMLSpecies = Species_unsetInitialAmount(SBMLSpecies)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpecies))
-    error(sprintf('%s', ...
-      'argument must be an SBML Species structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
+[level, version] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Species_unsetInitialAmount(SBMLSpecies)', 'argument must be an SBML species structure'));
-end;
-
-if exist('OCTAVE_VERSION')
-  warning off Octave:divide-by-zero;
+if isfield(SBMLSpecies, 'initialAmount')
+	SBMLSpecies.initialAmount = NaN;
+  SBMLSpecies.isSetInitialAmount = 0;
 else
-  warning off MATLAB:divideByZero;
+	error('initialAmount not an attribute on SBML L%dV%d Species', level, version);
 end;
 
-SBMLSpecies.initialAmount = 0/0;
-SBMLSpecies.isSetInitialAmount = int32(0);
-
-if exist('OCTAVE_VERSION')
-  warning off Octave:divide-by-zero;
-else
-  warning off MATLAB:divideByZero;
-end;

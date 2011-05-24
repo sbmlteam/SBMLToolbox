@@ -1,13 +1,11 @@
 function SBMLSpecies = Species_setSpeciesType(SBMLSpecies, speciesType)
 %
-%   Species_setSpeciesType 
-%             takes  1) an SBMLSpecies structure 
-%             and    2) an string representing the speciesType to be set
+% Species_setSpeciesType
+%    takes an SBML Species structure
+%    and the speciesType to be set
 %
-%             and returns 
-%               the Species with the speciesType set
-%
-%       SBMLSpecies = Species_setSpeciesType(SBMLSpecies, speciesType)
+%    returns
+%      the Species with the new value for the speciesType attribute
 
 %  Filename    :   Species_setSpeciesType.m
 %  Description :
@@ -39,27 +37,17 @@ function SBMLSpecies = Species_setSpeciesType(SBMLSpecies, speciesType)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpecies))
-    error(sprintf('%s', ...
-      'argument must be an SBML Species structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
+[level, version] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-  error(sprintf('%s\n%s', ...
-    'Species_setSpeciesType(SBMLSpecies, speciesType)', ...
-    'first argument must be an SBML Species structure'));
-elseif (~ischar(speciesType))
-    error(sprintf('%s\n%s', ...
-      'Species_setSpeciesType(SBMLSpecies, speciesType)', ...
-      'second argument must be a string representing the speciesType'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'Species_setSpeciesType(SBMLSpecies, speciesType)',  ...
-      'speciesType field only in level 2 version 2/3 model'));    
+if isfield(SBMLSpecies, 'speciesType')
+	if ~ischar(speciesType)
+		error('speciesType must be character array') ;
+	else
+		SBMLSpecies.speciesType = speciesType;
+	end;
+else
+	error('speciesType not an attribute on SBML L%dV%d Species', level, version);
 end;
 
-SBMLSpecies.speciesType = speciesType;

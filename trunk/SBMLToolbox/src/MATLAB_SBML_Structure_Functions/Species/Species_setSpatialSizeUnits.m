@@ -1,13 +1,11 @@
 function SBMLSpecies = Species_setSpatialSizeUnits(SBMLSpecies, spatialSizeUnits)
 %
-%   Species_setSpatialSizeUnits 
-%             takes  1) an SBMLSpecies structure 
-%             and    2) a string representing the spatialSizeUnits to be set
+% Species_setSpatialSizeUnits
+%    takes an SBML Species structure
+%    and the spatialSizeUnits to be set
 %
-%             and returns 
-%               the species with the spatialSizeUnits set
-%
-%       SBMLSpecies = Species_setSpatialSizeUnits(SBMLSpecies, 'spatialSizeUnits')
+%    returns
+%      the Species with the new value for the spatialSizeUnits attribute
 
 %  Filename    :   Species_setSpatialSizeUnits.m
 %  Description :
@@ -39,21 +37,17 @@ function SBMLSpecies = Species_setSpatialSizeUnits(SBMLSpecies, spatialSizeUnits
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpecies))
-    error(sprintf('%s', ...
-      'argument must be an SBML Species structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
+[level, version] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Species_setSpatialSizeUnits(SBMLSpecies, spatialSizeUnits)', 'first argument must be an SBML species structure'));
-elseif (~ischar(spatialSizeUnits))
-    error(sprintf('Species_setSpatialSizeUnits(SBMLSpecies, spatialSizeUnits)\n%s', 'second argument must be a string representing the spatialSizeUnits of the species'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Species_setSpatialSizeUnits(SBMLSpecies, spatialSizeUnits)', 'no spatialSizeUnits field in a level 1 model'));    
+if isfield(SBMLSpecies, 'spatialSizeUnits')
+	if ~ischar(spatialSizeUnits)
+		error('spatialSizeUnits must be character array') ;
+	else
+		SBMLSpecies.spatialSizeUnits = spatialSizeUnits;
+	end;
+else
+	error('spatialSizeUnits not an attribute on SBML L%dV%d Species', level, version);
 end;
 
-SBMLSpecies.spatialSizeUnits = spatialSizeUnits;

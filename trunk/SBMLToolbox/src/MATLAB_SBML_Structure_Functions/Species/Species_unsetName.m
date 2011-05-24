@@ -1,13 +1,10 @@
 function SBMLSpecies = Species_unsetName(SBMLSpecies)
 %
-%   Species_unsetName 
-%             takes an SBMLSpecies structure 
+% Species_getName
+%    takes an SBML Species structure
 %
-%             and returns 
-%               the species with the name unset
-%               (i.e. name = '')
-%
-%       SBMLSpecies = Species_unsetName(SBMLSpecies)
+%    returns
+%      the Species with the value for the name attribute unset
 
 %  Filename    :   Species_unsetName.m
 %  Description :
@@ -39,17 +36,13 @@ function SBMLSpecies = Species_unsetName(SBMLSpecies)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpecies))
-    error(sprintf('%s', ...
-      'argument must be an SBML Species structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
+[level, version] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Species_unsetName(SBMLSpecies)', 'argument must be an SBML species structure'));
+if isfield(SBMLSpecies, 'name')
+	SBMLSpecies.name = '';
+else
+	error('name not an attribute on SBML L%dV%d Species', level, version);
 end;
 
-SBMLSpecies.name = '';

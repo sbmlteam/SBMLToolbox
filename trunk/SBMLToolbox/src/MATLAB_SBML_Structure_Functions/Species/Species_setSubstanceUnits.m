@@ -1,13 +1,11 @@
 function SBMLSpecies = Species_setSubstanceUnits(SBMLSpecies, substanceUnits)
 %
-%   Species_setSubstanceUnits 
-%             takes  1) an SBMLSpecies structure 
-%             and    2) a string representing the substanceUnits to be set
+% Species_setSubstanceUnits
+%    takes an SBML Species structure
+%    and the substanceUnits to be set
 %
-%             and returns 
-%               the species with the substanceUnits set
-%
-%       SBMLSpecies = Species_setSubstanceUnits(SBMLSpecies, 'substanceUnits')
+%    returns
+%      the Species with the new value for the substanceUnits attribute
 
 %  Filename    :   Species_setSubstanceUnits.m
 %  Description :
@@ -39,21 +37,17 @@ function SBMLSpecies = Species_setSubstanceUnits(SBMLSpecies, substanceUnits)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpecies))
-    error(sprintf('%s', ...
-      'argument must be an SBML Species structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
+[level, version] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Species_setSubstanceUnits(SBMLSpecies, substanceUnits)', 'first argument must be an SBML species structure'));
-elseif (~ischar(substanceUnits))
-    error(sprintf('Species_setSubstanceUnits(SBMLSpecies, substanceUnits)\n%s', 'second argument must be a string representing the substanceUnits of the species'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Species_setSubstanceUnits(SBMLSpecies, substanceUnits)', 'no substanceUnits field in a level 1 model'));    
+if isfield(SBMLSpecies, 'substanceUnits')
+	if ~ischar(substanceUnits)
+		error('substanceUnits must be character array') ;
+	else
+		SBMLSpecies.substanceUnits = substanceUnits;
+	end;
+else
+	error('substanceUnits not an attribute on SBML L%dV%d Species', level, version);
 end;
 
-SBMLSpecies.substanceUnits = substanceUnits;

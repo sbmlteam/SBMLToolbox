@@ -1,13 +1,11 @@
 function value = Species_isSetInitialConcentration(SBMLSpecies)
 %
-%   Species_isSetInitialConcentration 
-%             takes an SBMLSpecies structure 
+% Species_isSetInitialConcentration
+%    takes an SBML Species structure
 %
-%             and returns the value of the isSetInitialConcentration field
-%               1 if the initialConcentration has been set 
-%               0 otherwise
-%
-%       value = Species_isSetInitialConcentration(SBMLSpecies)
+%    returns
+%      1 if the value for the initialConcentration attribute is set
+%      0 otherwise
 
 %  Filename    :   Species_isSetInitialConcentration.m
 %  Description :
@@ -39,19 +37,13 @@ function value = Species_isSetInitialConcentration(SBMLSpecies)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpecies))
-    error(sprintf('%s', ...
-      'argument must be an SBML Species structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
+[level, version] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Species_isSetInitialConcentration(SBMLSpecies)', 'argument must be an SBML species structure'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Species_isSetInitialConcentration(SBMLSpecies)', 'no initialConcentration field in a level 1 model'));    
+if isfield(SBMLSpecies, 'initialConcentration')
+	value = SBMLSpecies.isSetInitialConcentration;
+else
+	error('isSetInitialConcentration not an attribute on SBML L%dV%d Species', level, version);
 end;
 
-value = SBMLSpecies.isSetInitialConcentration;

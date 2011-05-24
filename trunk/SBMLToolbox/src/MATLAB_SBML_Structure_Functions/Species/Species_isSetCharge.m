@@ -1,13 +1,11 @@
 function value = Species_isSetCharge(SBMLSpecies)
 %
-%   Species_isSetCharge 
-%             takes an SBMLSpecies structure 
+% Species_isSetCharge
+%    takes an SBML Species structure
 %
-%             and returns the value of the isSetCharge field
-%               1 if the charge has been set 
-%               0 otherwise
-%
-%       value = Species_isSetCharge(SBMLSpecies)
+%    returns
+%      1 if the value for the charge attribute is set
+%      0 otherwise
 
 %  Filename    :   Species_isSetCharge.m
 %  Description :
@@ -39,17 +37,13 @@ function value = Species_isSetCharge(SBMLSpecies)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpecies))
-    error(sprintf('%s', ...
-      'argument must be an SBML Species structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
+[level, version] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Species_isSetCharge(SBMLSpecies)', 'argument must be an SBML species structure'));
+if isfield(SBMLSpecies, 'charge')
+	value = SBMLSpecies.isSetCharge;
+else
+	error('isSetCharge not an attribute on SBML L%dV%d Species', level, version);
 end;
 
-value = SBMLSpecies.isSetCharge;

@@ -1,13 +1,11 @@
 function SBMLSpecies = Species_setBoundaryCondition(SBMLSpecies, boundaryCondition)
 %
-%   Species_setBoundaryCondition 
-%             takes  1) an SBMLSpecies structure 
-%             and    2) an integer representing the boundaryCondition to be set
+% Species_setBoundaryCondition
+%    takes an SBML Species structure
+%    and the boundaryCondition to be set
 %
-%             and returns 
-%               the species with the boundaryCondition set
-%
-%       SBMLSpecies = Species_setBoundaryCondition(SBMLSpecies, boundaryCondition)
+%    returns
+%      the Species with the new value for the boundaryCondition attribute
 
 %  Filename    :   Species_setBoundaryCondition.m
 %  Description :
@@ -39,19 +37,17 @@ function SBMLSpecies = Species_setBoundaryCondition(SBMLSpecies, boundaryConditi
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpecies))
-    error(sprintf('%s', ...
-      'argument must be an SBML Species structure'));
+[level, version] = GetLevelVersion(SBMLSpecies);
+
+if isfield(SBMLSpecies, 'boundaryCondition')
+	if (~isIntegralNumber(boundaryCondition) || boundaryCondition < 0 || boundaryCondition > 1)
+		error('boundaryCondition must be an integer of value 0/1') ;
+	else
+		SBMLSpecies.boundaryCondition = boundaryCondition;
+	end;
+else
+	error('boundaryCondition not an attribute on SBML L%dV%d Species', level, version);
 end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Species_setBoundaryCondition(SBMLSpecies, boundaryCondition)', 'first argument must be an SBML model structure'));
-elseif ((~isIntegralNumber(boundaryCondition)) || (boundaryCondition < 0) || (boundaryCondition > 1))
-    error(sprintf('Species_setBoundaryCondition(SBMLSpecies, boundaryCondition)\n%s', 'second argument must be either true (=1) or false (=0) representing whether the species is boundaryCondition'));
-end;
-
-SBMLSpecies.boundaryCondition = int32(boundaryCondition);

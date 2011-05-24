@@ -1,12 +1,10 @@
 function spatialSizeUnits = Species_getSpatialSizeUnits(SBMLSpecies)
 %
-%   Species_getSpatialSizeUnits 
-%             takes an SBMLSpecies structure 
+% Species_getSpatialSizeUnits
+%    takes an SBML Species structure
 %
-%             and returns 
-%               the spatialSizeUnits of the species as a string
-%
-%       spatialSizeUnits = Species_getSpatialSizeUnits(SBMLSpecies)
+%    returns
+%      the value of the spatialSizeUnits attribute
 
 %  Filename    :   Species_getSpatialSizeUnits.m
 %  Description :
@@ -38,19 +36,13 @@ function spatialSizeUnits = Species_getSpatialSizeUnits(SBMLSpecies)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpecies))
-    error(sprintf('%s', ...
-      'argument must be an SBML Species structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
+[level, version] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Species_getSpatialSizeUnits(SBMLSpecies)', 'argument must be an SBML species structure'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Species_getSpatialSizeUnits(SBMLSpecies)', 'no spatialSizeUnits field in a level 1 model'));    
+if isfield(SBMLSpecies, 'spatialSizeUnits')
+	spatialSizeUnits = SBMLSpecies.spatialSizeUnits;
+else
+	error('spatialSizeUnits not an attribute on SBML L%dV%d Species', level, version);
 end;
 
-spatialSizeUnits = SBMLSpecies.spatialSizeUnits;

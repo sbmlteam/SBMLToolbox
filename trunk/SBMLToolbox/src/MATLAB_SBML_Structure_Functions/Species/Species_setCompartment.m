@@ -1,13 +1,11 @@
 function SBMLSpecies = Species_setCompartment(SBMLSpecies, compartment)
 %
-%   Species_setCompartment 
-%             takes  1) an SBMLSpecies structure 
-%             and    2) a string representing the compartment to be set
+% Species_setCompartment
+%    takes an SBML Species structure
+%    and the compartment to be set
 %
-%             and returns 
-%               the species with the compartment set
-%
-%       SBMLSpecies = Species_setCompartment(SBMLSpecies, 'compartment')
+%    returns
+%      the Species with the new value for the compartment attribute
 
 %  Filename    :   Species_setCompartment.m
 %  Description :
@@ -39,19 +37,17 @@ function SBMLSpecies = Species_setCompartment(SBMLSpecies, compartment)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpecies))
-    error(sprintf('%s', ...
-      'argument must be an SBML Species structure'));
+[level, version] = GetLevelVersion(SBMLSpecies);
+
+if isfield(SBMLSpecies, 'compartment')
+	if ~ischar(compartment)
+		error('compartment must be character array') ;
+	else
+		SBMLSpecies.compartment = compartment;
+	end;
+else
+	error('compartment not an attribute on SBML L%dV%d Species', level, version);
 end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Species_setCompartment(SBMLSpecies, compartment)', 'first argument must be an SBML species structure'));
-elseif (~ischar(compartment))
-    error(sprintf('Species_setCompartment(SBMLSpecies, compartment)\n%s', 'second argument must be a string representing the compartment of the species'));
-end;
-
-SBMLSpecies.compartment = compartment;

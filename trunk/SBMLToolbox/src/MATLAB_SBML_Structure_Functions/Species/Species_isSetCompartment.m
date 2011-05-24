@@ -1,13 +1,11 @@
 function value = Species_isSetCompartment(SBMLSpecies)
 %
-%   Species_isSetCompartment 
-%             takes an SBMLSpecies structure 
+% Species_isSetCompartment
+%    takes an SBML Species structure
 %
-%             and returns 
-%               1 if the compartment has been set 
-%               0 otherwise
-%
-%       value = Species_isSetCompartment(SBMLSpecies)
+%    returns
+%      1 if the value for the compartment attribute is set
+%      0 otherwise
 
 %  Filename    :   Species_isSetCompartment.m
 %  Description :
@@ -39,17 +37,13 @@ function value = Species_isSetCompartment(SBMLSpecies)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpecies))
-    error(sprintf('%s', ...
-      'argument must be an SBML Species structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
+[level, version] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Species_isSetCompartment(SBMLSpecies)', 'argument must be an SBML species structure'));
+if isfield(SBMLSpecies, 'compartment')
+	value = ~isempty(SBMLSpecies.compartment);
+else
+	error('compartment not an attribute on SBML L%dV%d Species', level, version);
 end;
 
-value = ~isempty(SBMLSpecies.compartment);

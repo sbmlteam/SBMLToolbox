@@ -1,16 +1,15 @@
-function SBMLSpecies = Species_setInitialConcentration(SBMLSpecies, initialConcentration)
+function SBMLSpecies = Species_unsetSBOTerm(SBMLSpecies)
 %
-% Species_setInitialConcentration
+% Species_getSBOTerm
 %    takes an SBML Species structure
-%    and the initialConcentration to be set
 %
 %    returns
-%      the Species with the new value for the initialConcentration attribute
+%      the Species with the value for the sboTerm attribute unset
 
-%  Filename    :   Species_setInitialConcentration.m
+%  Filename    :   Species_unsetSBOTerm.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -41,14 +40,9 @@ function SBMLSpecies = Species_setInitialConcentration(SBMLSpecies, initialConce
 
 [level, version] = GetLevelVersion(SBMLSpecies);
 
-if isfield(SBMLSpecies, 'initialConcentration')
-	if ~isnumeric(initialConcentration)
-		error('initialConcentration must be numeric') ;
-	else
-		SBMLSpecies.initialConcentration = initialConcentration;
-    SBMLSpecies.isSetInitialConcentration = 1;
-	end;
+if isfield(SBMLSpecies, 'sboTerm')
+	SBMLSpecies.sboTerm = -1;
 else
-	error('initialConcentration not an attribute on SBML L%dV%d Species', level, version);
+	error('sboTerm not an attribute on SBML L%dV%d Species', level, version);
 end;
 

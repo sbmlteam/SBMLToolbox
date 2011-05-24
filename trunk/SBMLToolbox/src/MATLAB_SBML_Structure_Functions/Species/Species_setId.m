@@ -1,13 +1,11 @@
 function SBMLSpecies = Species_setId(SBMLSpecies, id)
 %
-%   Species_setId 
-%             takes  1) an SBMLSpecies structure 
-%             and    2) a string representing the id to be set
+% Species_setId
+%    takes an SBML Species structure
+%    and the id to be set
 %
-%             and returns 
-%               the species with the id set
-%
-%       SBMLSpecies = Species_setId(SBMLSpecies, 'id')
+%    returns
+%      the Species with the new value for the id attribute
 
 %  Filename    :   Species_setId.m
 %  Description :
@@ -39,21 +37,17 @@ function SBMLSpecies = Species_setId(SBMLSpecies, id)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpecies))
-    error(sprintf('%s', ...
-      'argument must be an SBML Species structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
+[level, version] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Species_setId(SBMLSpecies, id)', 'first argument must be an SBML species structure'));
-elseif (~ischar(id))
-    error(sprintf('Species_setId(SBMLSpecies, id)\n%s', 'second argument must be a string representing the id of the species'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Species_setId(SBMLSpecies, id)', 'no id field in a level 1 model'));    
+if isfield(SBMLSpecies, 'id')
+	if ~ischar(id)
+		error('id must be character array') ;
+	else
+		SBMLSpecies.id = id;
+	end;
+else
+	error('id not an attribute on SBML L%dV%d Species', level, version);
 end;
 
-SBMLSpecies.id = id;

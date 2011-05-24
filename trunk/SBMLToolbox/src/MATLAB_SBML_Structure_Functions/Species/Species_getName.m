@@ -1,12 +1,10 @@
 function name = Species_getName(SBMLSpecies)
 %
-%   Species_getName 
-%             takes an SBMLSpecies structure 
+% Species_getName
+%    takes an SBML Species structure
 %
-%             and returns 
-%               the name of the species as a string
-%
-%       name = Species_getName(SBMLSpecies)
+%    returns
+%      the value of the name attribute
 
 %  Filename    :   Species_getName.m
 %  Description :
@@ -38,17 +36,13 @@ function name = Species_getName(SBMLSpecies)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpecies))
-    error(sprintf('%s', ...
-      'argument must be an SBML Species structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
+[level, version] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Species_getName(SBMLSpecies)', 'argument must be an SBML species structure'));
+if isfield(SBMLSpecies, 'name')
+	name = SBMLSpecies.name;
+else
+	error('name not an attribute on SBML L%dV%d Species', level, version);
 end;
 
-name = SBMLSpecies.name;

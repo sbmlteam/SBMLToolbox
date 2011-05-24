@@ -1,13 +1,11 @@
 function SBMLSpecies = Species_setInitialAmount(SBMLSpecies, initialAmount)
 %
-%   Species_setInitialAmount 
-%             takes  1) an SBMLSpecies structure 
-%             and    2) a double representing the initialAmount to be set
+% Species_setInitialAmount
+%    takes an SBML Species structure
+%    and the initialAmount to be set
 %
-%             and returns 
-%               the species with the initialAmount set
-%
-%       SBMLSpecies = Species_setInitialAmount(SBMLSpecies, initialAmount)
+%    returns
+%      the Species with the new value for the initialAmount attribute
 
 %  Filename    :   Species_setInitialAmount.m
 %  Description :
@@ -39,35 +37,18 @@ function SBMLSpecies = Species_setInitialAmount(SBMLSpecies, initialAmount)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpecies))
-    error(sprintf('%s', ...
-      'argument must be an SBML Species structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
+[level, version] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Species_setInitialAmount(SBMLSpecies, initialAmount)', 'first argument must be an SBML species structure'));
-elseif(~isnumeric(initialAmount))
-    error(sprintf('%s\n%s', 'Species_setInitialAmount(SBMLSpecies, initialAmount)', 'second argument must be a number representing the initialAmount')); 
-end;
-
-SBMLSpecies.initialAmount = initialAmount;
-SBMLSpecies.isSetInitialAmount = int32(1);
-
-if exist('OCTAVE_VERSION')
-  warning off Octave:divide-by-zero;
+if isfield(SBMLSpecies, 'initialAmount')
+	if ~isnumeric(initialAmount)
+		error('initialAmount must be numeric') ;
+	else
+		SBMLSpecies.initialAmount = initialAmount;
+    SBMLSpecies.isSetInitialAmount = 1;
+	end;
 else
-  warning off MATLAB:divideByZero;
+	error('initialAmount not an attribute on SBML L%dV%d Species', level, version);
 end;
 
-SBMLSpecies.initialConcentration = 0/0;
-SBMLSpecies.isSetInitialConcentration = int32(0);
-
-if exist('OCTAVE_VERSION')
-  warning off Octave:divide-by-zero;
-else
-  warning off MATLAB:divideByZero;
-end;
