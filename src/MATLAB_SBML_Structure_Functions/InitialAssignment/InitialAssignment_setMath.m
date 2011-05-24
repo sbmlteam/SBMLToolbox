@@ -1,13 +1,11 @@
 function SBMLInitialAssignment = InitialAssignment_setMath(SBMLInitialAssignment, math)
 %
-%   InitialAssignment_setMath 
-%             takes  1) an SBMLInitialAssignment structure 
-%             and    2) an string representing the math to be set
+% InitialAssignment_setMath
+%    takes an SBML InitialAssignment structure
+%    and the math to be set
 %
-%             and returns 
-%               the compartment with the math set
-%
-%       SBMLInitialAssignment = InitialAssignment_setMath(SBMLInitialAssignment, math)
+%    returns
+%      the InitialAssignment with the new value for the math attribute
 
 %  Filename    :   InitialAssignment_setMath.m
 %  Description :
@@ -39,28 +37,17 @@ function SBMLInitialAssignment = InitialAssignment_setMath(SBMLInitialAssignment
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLInitialAssignment))
-    error(sprintf('%s\n%s', ...
-      'InitialAssignment_getMath(SBMLInitialAssignment)', ...
-      'argument must be an SBML InitialAssignment structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLInitialAssignment);
+[level, version] = GetLevelVersion(SBMLInitialAssignment);
 
-if (~isSBML_InitialAssignment(SBMLInitialAssignment, sbmlLevel, sbmlVersion))
-  error(sprintf('%s\n%s', ...
-    'InitialAssignment_setMath(SBMLInitialAssignment, math)', ...
-    'first argument must be an SBML InitialAssignment structure'));
-elseif (~ischar(math))
-    error(sprintf('%s\n%s', ...
-      'InitialAssignment_setMath(SBMLInitialAssignment, math)', ...
-      'second argument must be a string representing the math'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'InitialAssignment_setMath(SBMLInitialAssignment, math)',  ...
-      'math field only in level 2 version 2/3 model'));    
+if isfield(SBMLInitialAssignment, 'math')
+	if ~ischar(math)
+		error('math must be character array') ;
+	else
+		SBMLInitialAssignment.math = math;
+	end;
+else
+	error('math not an attribute on SBML L%dV%d InitialAssignment', level, version);
 end;
 
-SBMLInitialAssignment.math = math;

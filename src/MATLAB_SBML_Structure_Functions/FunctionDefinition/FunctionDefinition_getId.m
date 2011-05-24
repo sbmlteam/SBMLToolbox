@@ -1,12 +1,10 @@
 function id = FunctionDefinition_getId(SBMLFunctionDefinition)
 %
-%   FunctionDefinition_getId 
-%             takes an SBMLFunctionDefinition structure 
+% FunctionDefinition_getId
+%    takes an SBML FunctionDefinition structure
 %
-%             and returns 
-%               the id of the functionDefinition as a string
-%
-%       id = FunctionDefinition_getId(SBMLFunctionDefinition)
+%    returns
+%      the value of the id attribute
 
 %  Filename    :   FunctionDefinition_getId.m
 %  Description :
@@ -38,18 +36,13 @@ function id = FunctionDefinition_getId(SBMLFunctionDefinition)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLFunctionDefinition))
-  error(sprintf('%s\n%s', ...
-    'FunctionDefinition_getId(SBMLFunctionDefinition)', ...
-    'first argument must be an SBML functionDefinition structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLFunctionDefinition);
+[level, version] = GetLevelVersion(SBMLFunctionDefinition);
 
-if (~isSBML_FunctionDefinition(SBMLFunctionDefinition, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'FunctionDefinition_getId(SBMLFunctionDefinition)', 'argument must be an SBML functionDefinition structure'));
+if isfield(SBMLFunctionDefinition, 'id')
+	id = SBMLFunctionDefinition.id;
+else
+	error('id not an attribute on SBML L%dV%d FunctionDefinition', level, version);
 end;
 
-id = SBMLFunctionDefinition.id;

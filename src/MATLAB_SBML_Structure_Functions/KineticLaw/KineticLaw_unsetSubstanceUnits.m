@@ -1,13 +1,10 @@
 function SBMLKineticLaw = KineticLaw_unsetSubstanceUnits(SBMLKineticLaw)
 %
-%   KineticLaw_unsetSubstanceUnits 
-%             takes an SBMLKineticLaw structure 
+% KineticLaw_getSubstanceUnits
+%    takes an SBML KineticLaw structure
 %
-%             and returns 
-%               the kineticLaw with the substanceUnits unset
-%               (i.e. substanceUnits = '')
-%
-%       SBMLKineticLaw = KineticLaw_unsetSubstanceUnits(SBMLKineticLaw)
+%    returns
+%      the KineticLaw with the value for the substanceUnits attribute unset
 
 %  Filename    :   KineticLaw_unsetSubstanceUnits.m
 %  Description :
@@ -39,18 +36,13 @@ function SBMLKineticLaw = KineticLaw_unsetSubstanceUnits(SBMLKineticLaw)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLKineticLaw))
-  error(sprintf('%s\n%s', ...
-    'KineticLaw_unsetSubstanceUnits(SBMLKineticLaw)', ...
-    'first argument must be an SBML KineticLaw structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLKineticLaw);
+[level, version] = GetLevelVersion(SBMLKineticLaw);
 
-if (~isSBML_KineticLaw(SBMLKineticLaw, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'KineticLaw_unsetSubstanceUnits(SBMLKineticLaw)', 'argument must be an SBML kineticLaw structure'));
+if isfield(SBMLKineticLaw, 'substanceUnits')
+	SBMLKineticLaw.substanceUnits = '';
+else
+	error('substanceUnits not an attribute on SBML L%dV%d KineticLaw', level, version);
 end;
 
-SBMLKineticLaw.substanceUnits = '';

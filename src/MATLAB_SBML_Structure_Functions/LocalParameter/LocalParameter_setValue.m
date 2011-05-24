@@ -1,18 +1,16 @@
 function SBMLLocalParameter = LocalParameter_setValue(SBMLLocalParameter, value)
 %
-%   LocalParameter_setValue 
-%             takes  1) an SBMLLocalParameter structure 
-%             and    2) a double representing the value to be set
+% LocalParameter_setValue
+%    takes an SBML LocalParameter structure
+%    and the value to be set
 %
-%             and returns 
-%               the parameter with the value set
-%
-%       SBMLLocalParameter = LocalParameter_setValue(SBMLLocalParameter, value)
+%    returns
+%      the LocalParameter with the new value for the value attribute
 
 %  Filename    :   LocalParameter_setValue.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: LocalParameter_setValue.m 13259 2011-03-21 05:40:36Z mhucka $
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -39,19 +37,18 @@ function SBMLLocalParameter = LocalParameter_setValue(SBMLLocalParameter, value)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLLocalParameter))
-  error(sprintf('%s\n%s', ...
-    'LocalParameter_setValue(SBMLLocalParameter)', ...
-    'first argument must be an SBML LocalParameter structure'));
+[level, version] = GetLevelVersion(SBMLLocalParameter);
+
+if isfield(SBMLLocalParameter, 'value')
+	if ~isnumeric(value)
+		error('value must be numeric') ;
+	else
+		SBMLLocalParameter.value = value;
+    SBMLLocalParameter.isSetValue = 1;
+	end;
+else
+	error('value not an attribute on SBML L%dV%d LocalParameter', level, version);
 end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLLocalParameter);
 
-if (~isSBML_LocalParameter(SBMLLocalParameter, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'LocalParameter_setValue(SBMLLocalParameter, value)', 'first argument must be an SBML parameter structure'));
-end;
-
-SBMLLocalParameter.value = value;
-SBMLLocalParameter.isSetValue = int32(1);

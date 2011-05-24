@@ -1,12 +1,10 @@
 function math = KineticLaw_getMath(SBMLKineticLaw)
 %
-%   KineticLaw_getMath 
-%             takes an SBMLKineticLaw structure 
+% KineticLaw_getMath
+%    takes an SBML KineticLaw structure
 %
-%             and returns 
-%               the math of the kineticLaw as a string
-%
-%       math = KineticLaw_getMath(SBMLKineticLaw)
+%    returns
+%      the value of the math attribute
 
 %  Filename    :   KineticLaw_getMath.m
 %  Description :
@@ -38,20 +36,13 @@ function math = KineticLaw_getMath(SBMLKineticLaw)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLKineticLaw))
-  error(sprintf('%s\n%s', ...
-    'KineticLaw_getMath(SBMLKineticLaw)', ...
-    'first argument must be an SBML KineticLaw structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLKineticLaw);
+[level, version] = GetLevelVersion(SBMLKineticLaw);
 
-if (~isSBML_KineticLaw(SBMLKineticLaw, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'KineticLaw_getMath(SBMLKineticLaw)', 'argument must be an SBML kineticLaw structure'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'KineticLaw_getMath(SBMLKineticLaw)', 'no math field in a level 1 model'));    
+if isfield(SBMLKineticLaw, 'math')
+	math = SBMLKineticLaw.math;
+else
+	error('math not an attribute on SBML L%dV%d KineticLaw', level, version);
 end;
 
-math = SBMLKineticLaw.math;

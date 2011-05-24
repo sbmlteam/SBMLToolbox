@@ -1,18 +1,16 @@
 function SBMLLocalParameter = LocalParameter_setName(SBMLLocalParameter, name)
 %
-%   LocalParameter_setName 
-%             takes  1) an SBMLLocalParameter structure 
-%             and    2) a string representing the name to be set
+% LocalParameter_setName
+%    takes an SBML LocalParameter structure
+%    and the name to be set
 %
-%             and returns 
-%               the parameter with the name set
-%
-%       SBMLLocalParameter = LocalParameter_setName(SBMLLocalParameter, 'name')
+%    returns
+%      the LocalParameter with the new value for the name attribute
 
 %  Filename    :   LocalParameter_setName.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: LocalParameter_setName.m 13259 2011-03-21 05:40:36Z mhucka $
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -39,20 +37,17 @@ function SBMLLocalParameter = LocalParameter_setName(SBMLLocalParameter, name)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLLocalParameter))
-  error(sprintf('%s\n%s', ...
-    'LocalParameter_setName(SBMLLocalParameter)', ...
-    'first argument must be an SBML LocalParameter structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLLocalParameter);
+[level, version] = GetLevelVersion(SBMLLocalParameter);
 
-if (~isSBML_LocalParameter(SBMLLocalParameter, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'LocalParameter_setName(SBMLLocalParameter, name)', 'first argument must be an SBML parameter structure'));
-elseif (~ischar(name))
-    error(sprintf('LocalParameter_setName(SBMLLocalParameter, name)\n%s', 'second argument must be a string representing the name of the parameter'));
+if isfield(SBMLLocalParameter, 'name')
+	if ~ischar(name)
+		error('name must be character array') ;
+	else
+		SBMLLocalParameter.name = name;
+	end;
+else
+	error('name not an attribute on SBML L%dV%d LocalParameter', level, version);
 end;
 
-SBMLLocalParameter.name = name;

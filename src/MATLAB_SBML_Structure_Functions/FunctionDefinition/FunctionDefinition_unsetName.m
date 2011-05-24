@@ -1,13 +1,10 @@
 function SBMLFunctionDefinition = FunctionDefinition_unsetName(SBMLFunctionDefinition)
 %
-%   FunctionDefinition_unsetName 
-%             takes an SBMLFunctionDefinition structure 
+% FunctionDefinition_getName
+%    takes an SBML FunctionDefinition structure
 %
-%             and returns 
-%               the functionDefinition with the name unset
-%               (i.e. name = '')
-%
-%       SBMLFunctionDefinition = FunctionDefinition_unsetName(SBMLFunctionDefinition)
+%    returns
+%      the FunctionDefinition with the value for the name attribute unset
 
 %  Filename    :   FunctionDefinition_unsetName.m
 %  Description :
@@ -39,18 +36,13 @@ function SBMLFunctionDefinition = FunctionDefinition_unsetName(SBMLFunctionDefin
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLFunctionDefinition))
-  error(sprintf('%s\n%s', ...
-    'FunctionDefinition_unsetName(SBMLFunctionDefinition)', ...
-    'first argument must be an SBML functionDefinition structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLFunctionDefinition);
+[level, version] = GetLevelVersion(SBMLFunctionDefinition);
 
-if (~isSBML_FunctionDefinition(SBMLFunctionDefinition, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'FunctionDefinition_unsetName(SBMLFunctionDefinition)', 'argument must be an SBML functionDefinition structure'));
+if isfield(SBMLFunctionDefinition, 'name')
+	SBMLFunctionDefinition.name = '';
+else
+	error('name not an attribute on SBML L%dV%d FunctionDefinition', level, version);
 end;
 
-SBMLFunctionDefinition.name = '';

@@ -1,12 +1,10 @@
 function formula = KineticLaw_getFormula(SBMLKineticLaw)
 %
-%   KineticLaw_getFormula 
-%             takes an SBMLKineticLaw structure 
+% KineticLaw_getFormula
+%    takes an SBML KineticLaw structure
 %
-%             and returns 
-%               the formula of the kineticLaw as a string
-%
-%       formula = KineticLaw_getFormula(SBMLKineticLaw)
+%    returns
+%      the value of the formula attribute
 
 %  Filename    :   KineticLaw_getFormula.m
 %  Description :
@@ -38,18 +36,13 @@ function formula = KineticLaw_getFormula(SBMLKineticLaw)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLKineticLaw))
-  error(sprintf('%s\n%s', ...
-    'KineticLaw_getFormula(SBMLKineticLaw)', ...
-    'first argument must be an SBML KineticLaw structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLKineticLaw);
+[level, version] = GetLevelVersion(SBMLKineticLaw);
 
-if (~isSBML_KineticLaw(SBMLKineticLaw, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'KineticLaw_getFormula(SBMLKineticLaw)', 'argument must be an SBML kineticLaw structure'));
+if isfield(SBMLKineticLaw, 'formula')
+	formula = SBMLKineticLaw.formula;
+else
+	error('formula not an attribute on SBML L%dV%d KineticLaw', level, version);
 end;
 
-formula = SBMLKineticLaw.formula;

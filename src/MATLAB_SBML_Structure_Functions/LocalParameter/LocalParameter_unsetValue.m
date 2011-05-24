@@ -1,18 +1,15 @@
 function SBMLLocalParameter = LocalParameter_unsetValue(SBMLLocalParameter)
 %
-%   LocalParameter_unsetValue 
-%             takes an SBMLLocalParameter structure 
+% LocalParameter_getValue
+%    takes an SBML LocalParameter structure
 %
-%             and returns 
-%               the parameter with the value unset
-%               (i.e. value = NAN)
-%
-%       SBMLLocalParameter = LocalParameter_unsetValue(SBMLLocalParameter)
+%    returns
+%      the LocalParameter with the value for the value attribute unset
 
 %  Filename    :   LocalParameter_unsetValue.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: LocalParameter_unsetValue.m 13259 2011-03-21 05:40:36Z mhucka $
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -39,31 +36,14 @@ function SBMLLocalParameter = LocalParameter_unsetValue(SBMLLocalParameter)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLLocalParameter))
-  error(sprintf('%s\n%s', ...
-    'LocalParameter_unsetValue(SBMLLocalParameter)', ...
-    'first argument must be an SBML LocalParameter structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLLocalParameter);
+[level, version] = GetLevelVersion(SBMLLocalParameter);
 
-if (~isSBML_LocalParameter(SBMLLocalParameter, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'LocalParameter_unsetValue(SBMLLocalParameter)', 'argument must be an SBML parameter structure'));
-end;
-
-if exist('OCTAVE_VERSION')
-  warning off Octave:divide-by-zero;
+if isfield(SBMLLocalParameter, 'value')
+	SBMLLocalParameter.value = NaN;
+  SBMLLocalParameter.isSetValue = 0;
 else
-  warning off MATLAB:divideByZero;
+	error('value not an attribute on SBML L%dV%d LocalParameter', level, version);
 end;
 
-SBMLLocalParameter.value = 0/0;
-SBMLLocalParameter.isSetValue = int32(0);
-
-if exist('OCTAVE_VERSION')
-  warning off Octave:divide-by-zero;
-else
-  warning off MATLAB:divideByZero;
-end;

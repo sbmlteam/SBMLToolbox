@@ -1,12 +1,10 @@
 function sboTerm = FunctionDefinition_getSBOTerm(SBMLFunctionDefinition)
 %
-%   FunctionDefinition_getSBOTerm 
-%             takes an SBMLFunctionDefinition structure 
+% FunctionDefinition_getSBOTerm
+%    takes an SBML FunctionDefinition structure
 %
-%             and returns 
-%               the sboTerm of the compartment as an integer
-%
-%       sboTerm = FunctionDefinition_getSBOTerm(SBMLFunctionDefinition)
+%    returns
+%      the value of the sboTerm attribute
 
 %  Filename    :   FunctionDefinition_getSBOTerm.m
 %  Description :
@@ -38,24 +36,13 @@ function sboTerm = FunctionDefinition_getSBOTerm(SBMLFunctionDefinition)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLFunctionDefinition))
-  error(sprintf('%s\n%s', ...
-    'FunctionDefinition_getSBOTerm(SBMLFunctionDefinition)', ...
-    'first argument must be an SBML functionDefinition structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLFunctionDefinition);
+[level, version] = GetLevelVersion(SBMLFunctionDefinition);
 
-if (~isSBML_FunctionDefinition(SBMLFunctionDefinition, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', ...
-      'FunctionDefinition_getSBOTerm(SBMLFunctionDefinition)', ...
-      'argument must be an SBML functionDefinition structure'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'FunctionDefinition_getSBOTerm(SBMLFunctionDefinition)', ...
-      'sboTerm field only in level 2 version 2/3 model'));    
+if isfield(SBMLFunctionDefinition, 'sboTerm')
+	sboTerm = SBMLFunctionDefinition.sboTerm;
+else
+	error('sboTerm not an attribute on SBML L%dV%d FunctionDefinition', level, version);
 end;
 
-sboTerm = SBMLFunctionDefinition.sboTerm;

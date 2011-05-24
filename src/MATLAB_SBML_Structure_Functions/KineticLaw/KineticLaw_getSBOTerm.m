@@ -1,12 +1,10 @@
 function sboTerm = KineticLaw_getSBOTerm(SBMLKineticLaw)
 %
-%   KineticLaw_getSBOTerm 
-%             takes an SBMLKineticLaw structure 
+% KineticLaw_getSBOTerm
+%    takes an SBML KineticLaw structure
 %
-%             and returns 
-%               the sboTerm of the compartment as an integer
-%
-%       sboTerm = KineticLaw_getSBOTerm(SBMLKineticLaw)
+%    returns
+%      the value of the sboTerm attribute
 
 %  Filename    :   KineticLaw_getSBOTerm.m
 %  Description :
@@ -38,24 +36,13 @@ function sboTerm = KineticLaw_getSBOTerm(SBMLKineticLaw)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLKineticLaw))
-  error(sprintf('%s\n%s', ...
-    'KineticLaw_getSBOTerm(SBMLKineticLaw)', ...
-    'first argument must be an SBML KineticLaw structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLKineticLaw);
+[level, version] = GetLevelVersion(SBMLKineticLaw);
 
-if (~isSBML_KineticLaw(SBMLKineticLaw, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', ...
-      'KineticLaw_getSBOTerm(SBMLKineticLaw)', ...
-      'argument must be an SBML KineticLaw structure'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'KineticLaw_getSBOTerm(SBMLKineticLaw)', ...
-      'sboTerm field only in level 2 version 2/3 model'));    
+if isfield(SBMLKineticLaw, 'sboTerm')
+	sboTerm = SBMLKineticLaw.sboTerm;
+else
+	error('sboTerm not an attribute on SBML L%dV%d KineticLaw', level, version);
 end;
 
-sboTerm = SBMLKineticLaw.sboTerm;

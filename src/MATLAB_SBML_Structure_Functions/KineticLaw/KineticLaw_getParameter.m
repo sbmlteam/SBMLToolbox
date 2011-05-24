@@ -1,13 +1,11 @@
-function parameter = KineticLaw_getParameter(SBMLKineticLaw, number)
+function parameter = KineticLaw_getParameter(SBMLKineticLaw, index)
 %
-%   KineticLaw_getParameter 
-%             takes  1) an SBMLKineticLaw structure 
-%             and    2) a number n
+% KineticLaw_getParameter
+%    takes an SBML KineticLaw structure
+%    and an index
 %
-%             and returns 
-%               the nth parameter structure defined within the kineticLaw
-%
-%       parameter = KineticLaw_getParameter(SBMLKineticLaw, number)
+%    returns
+%      the value of the parameter element at the indexed position
 
 %  Filename    :   KineticLaw_getParameter.m
 %  Description :
@@ -39,24 +37,17 @@ function parameter = KineticLaw_getParameter(SBMLKineticLaw, number)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLKineticLaw))
-  error(sprintf('%s\n%s', ...
-    'KineticLaw_getParameter(SBMLKineticLaw, number)', ...
-    'first argument must be an SBML KineticLaw structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLKineticLaw);
+[level, version] = GetLevelVersion(SBMLKineticLaw);
 
-if (~isSBML_KineticLaw(SBMLKineticLaw, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'KineticLaw_getParameter(SBMLKineticLaw, number)', 'first argument must be an SBML kineticLaw structure'));
-elseif ((number < 1) || (~isIntegralNumber(number)))
-    error(sprintf('%s\n%s', 'KineticLaw_getParameter(SBMLKineticLaw, number)', 'second argument must be a positive integer'));
-end;
-
-if (number > length(SBMLKineticLaw.parameter))
-    parameter = [];
+if isfield(SBMLKineticLaw, 'parameter')
+	if index <= length(SBMLKineticLaw.parameter)
+		parameter = SBMLKineticLaw.parameter;
+	else
+		error('index is out of range');
+	end;
 else
-    parameter = SBMLKineticLaw.parameter(number);
+	error('parameter not an element on SBML L%dV%d KineticLaw', level, version);
 end;
+

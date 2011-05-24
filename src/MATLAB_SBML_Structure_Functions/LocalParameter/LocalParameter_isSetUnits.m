@@ -1,18 +1,16 @@
 function value = LocalParameter_isSetUnits(SBMLLocalParameter)
 %
-%   LocalParameter_isSetUnits 
-%             takes an SBMLLocalParameter structure 
+% LocalParameter_isSetUnits
+%    takes an SBML LocalParameter structure
 %
-%             and returns 
-%               1 if the units has been set 
-%               0 otherwise
-%
-%       value = LocalParameter_isSetUnits(SBMLLocalParameter)
+%    returns
+%      1 if the value for the units attribute is set
+%      0 otherwise
 
 %  Filename    :   LocalParameter_isSetUnits.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: LocalParameter_isSetUnits.m 13259 2011-03-21 05:40:36Z mhucka $
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -39,18 +37,13 @@ function value = LocalParameter_isSetUnits(SBMLLocalParameter)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLLocalParameter))
-  error(sprintf('%s\n%s', ...
-    'LocalParameter_isSetUnits(SBMLLocalParameter)', ...
-    'first argument must be an SBML LocalParameter structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLLocalParameter);
+[level, version] = GetLevelVersion(SBMLLocalParameter);
 
-if (~isSBML_LocalParameter(SBMLLocalParameter, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'LocalParameter_isSetUnits(SBMLLocalParameter)', 'argument must be an SBML parameter structure'));
+if isfield(SBMLLocalParameter, 'units')
+	value = ~isempty(SBMLLocalParameter.units);
+else
+	error('units not an attribute on SBML L%dV%d LocalParameter', level, version);
 end;
 
-value = ~isempty(SBMLLocalParameter.units);

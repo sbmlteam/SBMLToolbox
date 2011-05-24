@@ -1,17 +1,15 @@
 function sboTerm = LocalParameter_getSBOTerm(SBMLLocalParameter)
 %
-%   LocalParameter_getSBOTerm 
-%             takes an SBMLLocalParameter structure 
+% LocalParameter_getSBOTerm
+%    takes an SBML LocalParameter structure
 %
-%             and returns 
-%               the sboTerm of the compartment as an integer
-%
-%       sboTerm = LocalParameter_getSBOTerm(SBMLLocalParameter)
+%    returns
+%      the value of the sboTerm attribute
 
 %  Filename    :   LocalParameter_getSBOTerm.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: LocalParameter_getSBOTerm.m 13259 2011-03-21 05:40:36Z mhucka $
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -38,24 +36,13 @@ function sboTerm = LocalParameter_getSBOTerm(SBMLLocalParameter)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLLocalParameter))
-  error(sprintf('%s\n%s', ...
-    'LocalParameter_getSBOTerm(SBMLLocalParameter)', ...
-    'first argument must be an SBML LocalParameter structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLLocalParameter);
+[level, version] = GetLevelVersion(SBMLLocalParameter);
 
-if (~isSBML_LocalParameter(SBMLLocalParameter, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', ...
-      'LocalParameter_getSBOTerm(SBMLLocalParameter)', ...
-      'argument must be an SBML LocalParameter structure'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'LocalParameter_getSBOTerm(SBMLLocalParameter)', ...
-      'sboTerm field only in level 2 version 2/3 model'));    
+if isfield(SBMLLocalParameter, 'sboTerm')
+	sboTerm = SBMLLocalParameter.sboTerm;
+else
+	error('sboTerm not an attribute on SBML L%dV%d LocalParameter', level, version);
 end;
 
-sboTerm = SBMLLocalParameter.sboTerm;

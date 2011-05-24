@@ -1,13 +1,11 @@
 function SBMLInitialAssignment = InitialAssignment_setSymbol(SBMLInitialAssignment, symbol)
 %
-%   InitialAssignment_setSymbol 
-%             takes  1) an SBMLInitialAssignment structure 
-%             and    2) an string representing the symbol to be set
+% InitialAssignment_setSymbol
+%    takes an SBML InitialAssignment structure
+%    and the symbol to be set
 %
-%             and returns 
-%               the compartment with the symbol set
-%
-%       SBMLInitialAssignment = InitialAssignment_setSymbol(SBMLInitialAssignment, symbol)
+%    returns
+%      the InitialAssignment with the new value for the symbol attribute
 
 %  Filename    :   InitialAssignment_setSymbol.m
 %  Description :
@@ -39,28 +37,17 @@ function SBMLInitialAssignment = InitialAssignment_setSymbol(SBMLInitialAssignme
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLInitialAssignment))
-    error(sprintf('%s\n%s', ...
-      'InitialAssignment_getSymbol(SBMLInitialAssignment)', ...
-      'argument must be an SBML InitialAssignment structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLInitialAssignment);
+[level, version] = GetLevelVersion(SBMLInitialAssignment);
 
-if (~isSBML_InitialAssignment(SBMLInitialAssignment, sbmlLevel, sbmlVersion))
-  error(sprintf('%s\n%s', ...
-    'InitialAssignment_setSymbol(SBMLInitialAssignment, symbol)', ...
-    'first argument must be an SBML InitialAssignment structure'));
-elseif (~ischar(symbol))
-    error(sprintf('%s\n%s', ...
-      'InitialAssignment_setSymbol(SBMLInitialAssignment, symbol)', ...
-      'second argument must be a string representing the symbol'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'InitialAssignment_setSymbol(SBMLInitialAssignment, symbol)',  ...
-      'symbol field only in level 2 version 2/3 model'));    
+if isfield(SBMLInitialAssignment, 'symbol')
+	if ~ischar(symbol)
+		error('symbol must be character array') ;
+	else
+		SBMLInitialAssignment.symbol = symbol;
+	end;
+else
+	error('symbol not an attribute on SBML L%dV%d InitialAssignment', level, version);
 end;
 
-SBMLInitialAssignment.symbol = symbol;

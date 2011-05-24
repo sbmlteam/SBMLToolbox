@@ -1,17 +1,15 @@
 function units = LocalParameter_getUnits(SBMLLocalParameter)
 %
-%   LocalParameter_getUnits 
-%             takes an SBMLLocalParameter structure 
+% LocalParameter_getUnits
+%    takes an SBML LocalParameter structure
 %
-%             and returns 
-%               the units of the parameter as a string
-%
-%       units = LocalParameter_getUnits(SBMLLocalParameter)
+%    returns
+%      the value of the units attribute
 
 %  Filename    :   LocalParameter_getUnits.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: LocalParameter_getUnits.m 13259 2011-03-21 05:40:36Z mhucka $
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -38,18 +36,13 @@ function units = LocalParameter_getUnits(SBMLLocalParameter)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLLocalParameter))
-  error(sprintf('%s\n%s', ...
-    'LocalParameter_getUnits(SBMLLocalParameter)', ...
-    'first argument must be an SBML LocalParameter structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLLocalParameter);
+[level, version] = GetLevelVersion(SBMLLocalParameter);
 
-if (~isSBML_LocalParameter(SBMLLocalParameter, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'LocalParameter_getUnits(SBMLLocalParameter)', 'argument must be an SBML parameter structure'));
+if isfield(SBMLLocalParameter, 'units')
+	units = SBMLLocalParameter.units;
+else
+	error('units not an attribute on SBML L%dV%d LocalParameter', level, version);
 end;
 
-units = SBMLLocalParameter.units;

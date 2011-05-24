@@ -1,13 +1,11 @@
 function SBMLKineticLaw = KineticLaw_setTimeUnits(SBMLKineticLaw, timeUnits)
 %
-%   KineticLaw_setTimeUnits 
-%             takes  1) an SBMLKineticLaw structure 
-%             and    2) a string representing the timeUnits to be set
+% KineticLaw_setTimeUnits
+%    takes an SBML KineticLaw structure
+%    and the timeUnits to be set
 %
-%             and returns 
-%               the kineticLaw with the timeUnits set
-%
-%       SBMLKineticLaw = KineticLaw_setTimeUnits(SBMLKineticLaw, 'timeUnits')
+%    returns
+%      the KineticLaw with the new value for the timeUnits attribute
 
 %  Filename    :   KineticLaw_setTimeUnits.m
 %  Description :
@@ -39,20 +37,17 @@ function SBMLKineticLaw = KineticLaw_setTimeUnits(SBMLKineticLaw, timeUnits)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLKineticLaw))
-  error(sprintf('%s\n%s', ...
-    'KineticLaw_setTimeUnits(SBMLKineticLaw, ..)', ...
-    'first argument must be an SBML KineticLaw structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLKineticLaw);
+[level, version] = GetLevelVersion(SBMLKineticLaw);
 
-if (~isSBML_KineticLaw(SBMLKineticLaw, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'KineticLaw_setTimeUnits(SBMLKineticLaw, timeUnits)', 'first argument must be an SBML kineticLaw structure'));
-elseif (~ischar(timeUnits))
-    error(sprintf('KineticLaw_setTimeUnits(SBMLKineticLaw, timeUnits)\n%s', 'second argument must be a string representing the timeUnits of the kineticLaw'));
+if isfield(SBMLKineticLaw, 'timeUnits')
+	if ~ischar(timeUnits)
+		error('timeUnits must be character array') ;
+	else
+		SBMLKineticLaw.timeUnits = timeUnits;
+	end;
+else
+	error('timeUnits not an attribute on SBML L%dV%d KineticLaw', level, version);
 end;
 
-SBMLKineticLaw.timeUnits = timeUnits;

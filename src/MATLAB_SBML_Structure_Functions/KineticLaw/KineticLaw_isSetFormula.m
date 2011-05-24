@@ -1,13 +1,11 @@
 function value = KineticLaw_isSetFormula(SBMLKineticLaw)
 %
-%   KineticLaw_isSetFormula 
-%             takes an SBMLKineticLaw structure 
+% KineticLaw_isSetFormula
+%    takes an SBML KineticLaw structure
 %
-%             and returns 
-%               1 if the formula has been set 
-%               0 otherwise
-%
-%       value = KineticLaw_isSetFormula(SBMLKineticLaw)
+%    returns
+%      1 if the value for the formula attribute is set
+%      0 otherwise
 
 %  Filename    :   KineticLaw_isSetFormula.m
 %  Description :
@@ -39,18 +37,13 @@ function value = KineticLaw_isSetFormula(SBMLKineticLaw)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLKineticLaw))
-  error(sprintf('%s\n%s', ...
-    'KineticLaw_isSetFormula(SBMLKineticLaw)', ...
-    'first argument must be an SBML KineticLaw structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLKineticLaw);
+[level, version] = GetLevelVersion(SBMLKineticLaw);
 
-if (~isSBML_KineticLaw(SBMLKineticLaw, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'KineticLaw_isSetFormula(SBMLKineticLaw)', 'argument must be an SBML kineticLaw structure'));
+if isfield(SBMLKineticLaw, 'formula')
+	value = ~isempty(SBMLKineticLaw.formula);
+else
+	error('formula not an attribute on SBML L%dV%d KineticLaw', level, version);
 end;
 
-value = ~isempty(SBMLKineticLaw.formula);

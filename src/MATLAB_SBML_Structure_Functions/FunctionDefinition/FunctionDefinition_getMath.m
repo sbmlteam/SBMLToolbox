@@ -1,12 +1,10 @@
 function math = FunctionDefinition_getMath(SBMLFunctionDefinition)
 %
-%   FunctionDefinition_getMath 
-%             takes an SBMLFunctionDefinition structure 
+% FunctionDefinition_getMath
+%    takes an SBML FunctionDefinition structure
 %
-%             and returns 
-%               the math of the functionDefinition as a string
-%
-%       math = FunctionDefinition_getMath(SBMLFunctionDefinition)
+%    returns
+%      the value of the math attribute
 
 %  Filename    :   FunctionDefinition_getMath.m
 %  Description :
@@ -38,18 +36,13 @@ function math = FunctionDefinition_getMath(SBMLFunctionDefinition)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLFunctionDefinition))
-  error(sprintf('%s\n%s', ...
-    'FunctionDefinition_getMath(SBMLFunctionDefinition)', ...
-    'first argument must be an SBML functionDefinition structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLFunctionDefinition);
+[level, version] = GetLevelVersion(SBMLFunctionDefinition);
 
-if (~isSBML_FunctionDefinition(SBMLFunctionDefinition, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'FunctionDefinition_getMath(SBMLFunctionDefinition)', 'argument must be an SBML functionDefinition structure'));
+if isfield(SBMLFunctionDefinition, 'math')
+	math = SBMLFunctionDefinition.math;
+else
+	error('math not an attribute on SBML L%dV%d FunctionDefinition', level, version);
 end;
 
-math = SBMLFunctionDefinition.math;

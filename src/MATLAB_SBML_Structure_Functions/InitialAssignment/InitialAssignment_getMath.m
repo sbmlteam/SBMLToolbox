@@ -1,12 +1,10 @@
 function math = InitialAssignment_getMath(SBMLInitialAssignment)
 %
-%   InitialAssignment_getMath 
-%             takes an SBMLInitialAssignment structure 
+% InitialAssignment_getMath
+%    takes an SBML InitialAssignment structure
 %
-%             and returns 
-%               the math of the InitialAssignment as a string
-%
-%       math = InitialAssignment_getMath(SBMLInitialAssignment)
+%    returns
+%      the value of the math attribute
 
 %  Filename    :   InitialAssignment_getMath.m
 %  Description :
@@ -38,24 +36,13 @@ function math = InitialAssignment_getMath(SBMLInitialAssignment)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLInitialAssignment))
-    error(sprintf('%s\n%s', ...
-      'InitialAssignment_getMath(SBMLInitialAssignment)', ...
-      'argument must be an SBML InitialAssignment structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLInitialAssignment);
+[level, version] = GetLevelVersion(SBMLInitialAssignment);
 
-if (~isSBML_InitialAssignment(SBMLInitialAssignment, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', ...
-      'InitialAssignment_getMath(SBMLInitialAssignment)', ...
-      'argument must be an SBML InitialAssignment structure'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'InitialAssignment_getMath(SBMLInitialAssignment)', ...
-      'math field only in level 2 version 2/3 model'));    
+if isfield(SBMLInitialAssignment, 'math')
+	math = SBMLInitialAssignment.math;
+else
+	error('math not an attribute on SBML L%dV%d InitialAssignment', level, version);
 end;
 
-math = SBMLInitialAssignment.math;

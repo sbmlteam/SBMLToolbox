@@ -1,13 +1,11 @@
 function SBMLKineticLaw = KineticLaw_setSBOTerm(SBMLKineticLaw, sboTerm)
 %
-%   KineticLaw_setSBOTerm 
-%             takes  1) an SBMLKineticLaw structure 
-%             and    2) an integer representing the sboTerm to be set
+% KineticLaw_setSBOTerm
+%    takes an SBML KineticLaw structure
+%    and the sboTerm to be set
 %
-%             and returns 
-%               the compartment with the sboTerm set
-%
-%       SBMLKineticLaw = KineticLaw_setSBOTerm(SBMLKineticLaw, sboTerm)
+%    returns
+%      the KineticLaw with the new value for the sboTerm attribute
 
 %  Filename    :   KineticLaw_setSBOTerm.m
 %  Description :
@@ -39,28 +37,17 @@ function SBMLKineticLaw = KineticLaw_setSBOTerm(SBMLKineticLaw, sboTerm)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLKineticLaw))
-  error(sprintf('%s\n%s', ...
-    'KineticLaw_setSBOTerm(SBMLKineticLaw, sboTerm)', ...
-    'first argument must be an SBML KineticLaw structure'));
+[level, version] = GetLevelVersion(SBMLKineticLaw);
+
+if isfield(SBMLKineticLaw, 'sboTerm')
+	if ~isIntegralNumber(sboTerm)
+		error('sboTerm must be an integer') ;
+	else
+		SBMLKineticLaw.sboTerm = sboTerm;
+	end;
+else
+	error('sboTerm not an attribute on SBML L%dV%d KineticLaw', level, version);
 end;
 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLKineticLaw);
-
-if (~isSBML_KineticLaw(SBMLKineticLaw, sbmlLevel, sbmlVersion))
-  error(sprintf('%s\n%s', ...
-    'KineticLaw_setSBOTerm(SBMLKineticLaw, sboTerm)', ...
-    'first argument must be an SBML KineticLaw structure'));
-elseif (~isIntegralNumber(sboTerm))
-    error(sprintf('%s\n%s', ...
-      'KineticLaw_setSBOTerm(SBMLKineticLaw, sboTerm)', ...
-      'second argument must be an integer representing the sboTerm'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'KineticLaw_setSBOTerm(SBMLKineticLaw, sboTerm)',  ...
-      'sboTerm field only in level 2 version 3 model'));    
-end;
-
-SBMLKineticLaw.sboTerm = sboTerm;

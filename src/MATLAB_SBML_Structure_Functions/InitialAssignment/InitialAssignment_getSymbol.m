@@ -1,12 +1,10 @@
 function symbol = InitialAssignment_getSymbol(SBMLInitialAssignment)
 %
-%   InitialAssignment_getSymbol 
-%             takes an SBMLInitialAssignment structure 
+% InitialAssignment_getSymbol
+%    takes an SBML InitialAssignment structure
 %
-%             and returns 
-%               the symbol of the InitialAssignment as a string
-%
-%       symbol = InitialAssignment_getSymbol(SBMLInitialAssignment)
+%    returns
+%      the value of the symbol attribute
 
 %  Filename    :   InitialAssignment_getSymbol.m
 %  Description :
@@ -38,24 +36,13 @@ function symbol = InitialAssignment_getSymbol(SBMLInitialAssignment)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLInitialAssignment))
-    error(sprintf('%s\n%s', ...
-      'InitialAssignment_getSymbol(SBMLInitialAssignment)', ...
-      'argument must be an SBML InitialAssignment structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLInitialAssignment);
+[level, version] = GetLevelVersion(SBMLInitialAssignment);
 
-if (~isSBML_InitialAssignment(SBMLInitialAssignment, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', ...
-      'InitialAssignment_getSymbol(SBMLInitialAssignment)', ...
-      'argument must be an SBML InitialAssignment structure'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'InitialAssignment_getSymbol(SBMLInitialAssignment)', ...
-      'symbol field only in level 2 version 2/3 model'));    
+if isfield(SBMLInitialAssignment, 'symbol')
+	symbol = SBMLInitialAssignment.symbol;
+else
+	error('symbol not an attribute on SBML L%dV%d InitialAssignment', level, version);
 end;
 
-symbol = SBMLInitialAssignment.symbol;

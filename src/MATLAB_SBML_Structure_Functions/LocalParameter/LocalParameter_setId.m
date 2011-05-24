@@ -1,18 +1,16 @@
 function SBMLLocalParameter = LocalParameter_setId(SBMLLocalParameter, id)
 %
-%   LocalParameter_setId 
-%             takes  1) an SBMLLocalParameter structure 
-%             and    2) a string representing the id to be set
+% LocalParameter_setId
+%    takes an SBML LocalParameter structure
+%    and the id to be set
 %
-%             and returns 
-%               the parameter with the id set
-%
-%       SBMLLocalParameter = LocalParameter_setId(SBMLLocalParameter, 'id')
+%    returns
+%      the LocalParameter with the new value for the id attribute
 
 %  Filename    :   LocalParameter_setId.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: LocalParameter_setId.m 13259 2011-03-21 05:40:36Z mhucka $
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -39,22 +37,17 @@ function SBMLLocalParameter = LocalParameter_setId(SBMLLocalParameter, id)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLLocalParameter))
-  error(sprintf('%s\n%s', ...
-    'LocalParameter_setId(SBMLLocalParameter)', ...
-    'first argument must be an SBML LocalParameter structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLLocalParameter);
+[level, version] = GetLevelVersion(SBMLLocalParameter);
 
-if (~isSBML_LocalParameter(SBMLLocalParameter, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'LocalParameter_setId(SBMLLocalParameter, id)', 'first argument must be an SBML parameter structure'));
-elseif (~ischar(id))
-    error(sprintf('LocalParameter_setId(SBMLLocalParameter, id)\n%s', 'second argument must be a string representing the id of the parameter'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'LocalParameter_setId(SBMLLocalParameter, id)', 'no id field in a level 1 model'));    
+if isfield(SBMLLocalParameter, 'id')
+	if ~ischar(id)
+		error('id must be character array') ;
+	else
+		SBMLLocalParameter.id = id;
+	end;
+else
+	error('id not an attribute on SBML L%dV%d LocalParameter', level, version);
 end;
 
-SBMLLocalParameter.id = id;

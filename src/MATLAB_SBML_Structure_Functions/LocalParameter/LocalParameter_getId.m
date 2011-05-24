@@ -1,17 +1,15 @@
 function id = LocalParameter_getId(SBMLLocalParameter)
 %
-%   LocalParameter_getId 
-%             takes an SBMLLocalParameter structure 
+% LocalParameter_getId
+%    takes an SBML LocalParameter structure
 %
-%             and returns 
-%               the id of the parameter as a string
-%
-%       id = LocalParameter_getId(SBMLLocalParameter)
+%    returns
+%      the value of the id attribute
 
 %  Filename    :   LocalParameter_getId.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: LocalParameter_getId.m 13259 2011-03-21 05:40:36Z mhucka $
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -38,20 +36,13 @@ function id = LocalParameter_getId(SBMLLocalParameter)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLLocalParameter))
-  error(sprintf('%s\n%s', ...
-    'LocalParameter_getId(SBMLLocalParameter)', ...
-    'first argument must be an SBML LocalParameter structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLLocalParameter);
+[level, version] = GetLevelVersion(SBMLLocalParameter);
 
-if (~isSBML_LocalParameter(SBMLLocalParameter, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'LocalParameter_getId(SBMLLocalParameter)', 'argument must be an SBML parameter structure'));
-elseif (sbmlLevel ~= 3)
-    error(sprintf('%s\n%s', 'LocalParameter_getId(SBMLLocalParameter)', 'no id field in a level 1 model'));    
+if isfield(SBMLLocalParameter, 'id')
+	id = SBMLLocalParameter.id;
+else
+	error('id not an attribute on SBML L%dV%d LocalParameter', level, version);
 end;
 
-id = SBMLLocalParameter.id;

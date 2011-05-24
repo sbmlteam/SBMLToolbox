@@ -1,13 +1,11 @@
 function SBMLFunctionDefinition = FunctionDefinition_setName(SBMLFunctionDefinition, name)
 %
-%   FunctionDefinition_setName 
-%             takes  1) an SBMLFunctionDefinition structure 
-%             and    2) a string representing the name to be set
+% FunctionDefinition_setName
+%    takes an SBML FunctionDefinition structure
+%    and the name to be set
 %
-%             and returns 
-%               the functionDefinition with the name set
-%
-%       SBMLFunctionDefinition = FunctionDefinition_setName(SBMLFunctionDefinition, 'name')
+%    returns
+%      the FunctionDefinition with the new value for the name attribute
 
 %  Filename    :   FunctionDefinition_setName.m
 %  Description :
@@ -39,20 +37,17 @@ function SBMLFunctionDefinition = FunctionDefinition_setName(SBMLFunctionDefinit
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLFunctionDefinition))
-  error(sprintf('%s\n%s', ...
-    'FunctionDefinition_setName(SBMLFunctionDefinition, name)', ...
-    'first argument must be an SBML functionDefinition structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLFunctionDefinition);
+[level, version] = GetLevelVersion(SBMLFunctionDefinition);
 
-if (~isSBML_FunctionDefinition(SBMLFunctionDefinition, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'FunctionDefinition_setName(SBMLFunctionDefinition, name)', 'first argument must be an SBML functionDefinition structure'));
-elseif (~ischar(name))
-    error(sprintf('FunctionDefinition_setName(SBMLFunctionDefinition, name)\n%s', 'second argument must be a string representing the name of the functionDefinition'));
+if isfield(SBMLFunctionDefinition, 'name')
+	if ~ischar(name)
+		error('name must be character array') ;
+	else
+		SBMLFunctionDefinition.name = name;
+	end;
+else
+	error('name not an attribute on SBML L%dV%d FunctionDefinition', level, version);
 end;
 
-SBMLFunctionDefinition.name = name;

@@ -1,12 +1,10 @@
-function number = KineticLaw_getNumParameters(SBMLKineticLaw)
+function num = KineticLaw_getNumParameters(SBMLKineticLaw)
 %
-%   KineticLaw_getNumParameters 
-%             takes an SBMLKineticLaw structure 
+% KineticLaw_getNumParameters
+%    takes an SBML KineticLaw structure
 %
-%             and returns 
-%               the number of parameter structures defined within the kineticLaw
-%
-%       number = KineticLaw_getNumParameters(SBMLKineticLaw)
+%    returns
+%      the number of parameter elements
 
 %  Filename    :   KineticLaw_getNumParameters.m
 %  Description :
@@ -38,22 +36,13 @@ function number = KineticLaw_getNumParameters(SBMLKineticLaw)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLKineticLaw))
-  error(sprintf('%s\n%s', ...
-    'KineticLaw_getNumParameters(SBMLKineticLaw)', ...
-    'first argument must be an SBML KineticLaw structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLKineticLaw);
+[level, version] = GetLevelVersion(SBMLKineticLaw);
 
-if (~isSBML_KineticLaw(SBMLKineticLaw, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'KineticLaw_getNumParameters(SBMLKineticLaw)', 'argument must be an SBML kineticLaw structure'));
+if isfield(SBMLKineticLaw, 'parameter')
+	num = length(SBMLKineticLaw.parameter);
+else
+	error('parameter not an element on SBML L%dV%d KineticLaw', level, version);
 end;
 
-number = 0;
-
-if (~isempty(SBMLKineticLaw.parameter))
-    number = length(SBMLKineticLaw.parameter);
-end;
