@@ -1,13 +1,11 @@
 function SBMLModifierSpeciesReference = ModifierSpeciesReference_setName(SBMLModifierSpeciesReference, name)
 %
-%   ModifierSpeciesReference_setName 
-%             takes  1) an SBMLModifierSpeciesReference structure 
-%             and    2) an string representing the name to be set
+% ModifierSpeciesReference_setName
+%    takes an SBML ModifierSpeciesReference structure
+%    and the name to be set
 %
-%             and returns 
-%               the compartment with the name set
-%
-%       SBMLModifierSpeciesReference = ModifierSpeciesReference_setName(SBMLModifierSpeciesReference, name)
+%    returns
+%      the ModifierSpeciesReference with the new value for the name attribute
 
 %  Filename    :   ModifierSpeciesReference_setName.m
 %  Description :
@@ -39,28 +37,17 @@ function SBMLModifierSpeciesReference = ModifierSpeciesReference_setName(SBMLMod
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLModifierSpeciesReference))
-    error(sprintf('%s\n%s', ...
-      'ModifierSpeciesReference_setName(SBMLModifierSpeciesReference)', ...
-      'argument must be an SBML modifierSpeciesReference structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLModifierSpeciesReference);
+[level, version] = GetLevelVersion(SBMLModifierSpeciesReference);
 
-if (~isSBML_ModifierSpeciesReference(SBMLModifierSpeciesReference, sbmlLevel, sbmlVersion))
-  error(sprintf('%s\n%s', ...
-    'ModifierSpeciesReference_setName(SBMLModifierSpeciesReference, name)', ...
-    'first argument must be an SBML modifierSpeciesReference structure'));
-elseif (~ischar(name))
-    error(sprintf('%s\n%s', ...
-      'ModifierSpeciesReference_setName(SBMLModifierSpeciesReference, name)', ...
-      'second argument must be a string representing the name'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'ModifierSpeciesReference_setName(SBMLModifierSpeciesReference, name)',  ...
-      'name field only in level 2 version 2/3 model'));    
+if isfield(SBMLModifierSpeciesReference, 'name')
+	if ~ischar(name)
+		error('name must be character array') ;
+	else
+		SBMLModifierSpeciesReference.name = name;
+	end;
+else
+	error('name not an attribute on SBML L%dV%d ModifierSpeciesReference', level, version);
 end;
 
-SBMLModifierSpeciesReference.name = name;

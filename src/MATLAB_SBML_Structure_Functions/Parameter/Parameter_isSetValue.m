@@ -1,13 +1,11 @@
 function value = Parameter_isSetValue(SBMLParameter)
 %
-%   Parameter_isSetValue 
-%             takes an SBMLParameter structure 
+% Parameter_isSetValue
+%    takes an SBML Parameter structure
 %
-%             and returns the value of the isSetValue field
-%               1 if the value has been set 
-%               0 otherwise
-%
-%       value = Parameter_isSetValue(SBMLParameter)
+%    returns
+%      1 if the value for the value attribute is set
+%      0 otherwise
 
 %  Filename    :   Parameter_isSetValue.m
 %  Description :
@@ -39,18 +37,13 @@ function value = Parameter_isSetValue(SBMLParameter)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLParameter))
-  error(sprintf('%s\n%s', ...
-    'Parameter_isSetValue(SBMLParameter)', ...
-    'first argument must be an SBML Parameter structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLParameter);
+[level, version] = GetLevelVersion(SBMLParameter);
 
-if (~isSBML_Parameter(SBMLParameter, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Parameter_isSetValue(SBMLParameter)', 'argument must be an SBML parameter structure'));
+if isfield(SBMLParameter, 'value')
+	value = SBMLParameter.isSetValue;
+else
+	error('isSetValue not an attribute on SBML L%dV%d Parameter', level, version);
 end;
 
-value = SBMLParameter.isSetValue;

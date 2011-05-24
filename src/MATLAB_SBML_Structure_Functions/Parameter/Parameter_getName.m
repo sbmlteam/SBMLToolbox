@@ -1,12 +1,10 @@
 function name = Parameter_getName(SBMLParameter)
 %
-%   Parameter_getName 
-%             takes an SBMLParameter structure 
+% Parameter_getName
+%    takes an SBML Parameter structure
 %
-%             and returns 
-%               the name of the parameter as a string
-%
-%       name = Parameter_getName(SBMLParameter)
+%    returns
+%      the value of the name attribute
 
 %  Filename    :   Parameter_getName.m
 %  Description :
@@ -38,18 +36,13 @@ function name = Parameter_getName(SBMLParameter)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLParameter))
-  error(sprintf('%s\n%s', ...
-    'Parameter_getName(SBMLParameter)', ...
-    'first argument must be an SBML Parameter structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLParameter);
+[level, version] = GetLevelVersion(SBMLParameter);
 
-if (~isSBML_Parameter(SBMLParameter, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Parameter_getName(SBMLParameter)', 'argument must be an SBML parameter structure'));
+if isfield(SBMLParameter, 'name')
+	name = SBMLParameter.name;
+else
+	error('name not an attribute on SBML L%dV%d Parameter', level, version);
 end;
 
-name = SBMLParameter.name;

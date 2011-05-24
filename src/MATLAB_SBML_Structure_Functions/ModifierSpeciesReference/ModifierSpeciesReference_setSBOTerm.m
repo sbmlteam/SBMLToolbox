@@ -1,13 +1,11 @@
 function SBMLModifierSpeciesReference = ModifierSpeciesReference_setSBOTerm(SBMLModifierSpeciesReference, sboTerm)
 %
-%   ModifierSpeciesReference_setSBOTerm 
-%             takes  1) an SBMLModifierSpeciesReference structure 
-%             and    2) an integer representing the sboTerm to be set
+% ModifierSpeciesReference_setSBOTerm
+%    takes an SBML ModifierSpeciesReference structure
+%    and the sboTerm to be set
 %
-%             and returns 
-%               the compartment with the sboTerm set
-%
-%       SBMLModifierSpeciesReference = ModifierSpeciesReference_setSBOTerm(SBMLModifierSpeciesReference, sboTerm)
+%    returns
+%      the ModifierSpeciesReference with the new value for the sboTerm attribute
 
 %  Filename    :   ModifierSpeciesReference_setSBOTerm.m
 %  Description :
@@ -39,28 +37,17 @@ function SBMLModifierSpeciesReference = ModifierSpeciesReference_setSBOTerm(SBML
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLModifierSpeciesReference))
-  error(sprintf('%s\n%s', ...
-    'ModifierSpeciesReference_setSBOTerm(SBMLModifierSpeciesReference, sboTerm)', ...
-    'first argument must be an SBML ModifierSpeciesReference structure'));
+[level, version] = GetLevelVersion(SBMLModifierSpeciesReference);
+
+if isfield(SBMLModifierSpeciesReference, 'sboTerm')
+	if ~isIntegralNumber(sboTerm)
+		error('sboTerm must be an integer') ;
+	else
+		SBMLModifierSpeciesReference.sboTerm = sboTerm;
+	end;
+else
+	error('sboTerm not an attribute on SBML L%dV%d ModifierSpeciesReference', level, version);
 end;
 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLModifierSpeciesReference);
-
-if (~isSBML_ModifierSpeciesReference(SBMLModifierSpeciesReference, sbmlLevel, sbmlVersion))
-  error(sprintf('%s\n%s', ...
-    'ModifierSpeciesReference_setSBOTerm(SBMLModifierSpeciesReference, sboTerm)', ...
-    'first argument must be an SBML ModifierSpeciesReference structure'));
-elseif (~isIntegralNumber(sboTerm))
-    error(sprintf('%s\n%s', ...
-      'ModifierSpeciesReference_setSBOTerm(SBMLModifierSpeciesReference, sboTerm)', ...
-      'second argument must be an integer representing the sboTerm'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'ModifierSpeciesReference_setSBOTerm(SBMLModifierSpeciesReference, sboTerm)',  ...
-      'sboTerm field only in level 2 version 3 model'));    
-end;
-
-SBMLModifierSpeciesReference.sboTerm = sboTerm;

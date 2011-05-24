@@ -1,12 +1,10 @@
 function sboTerm = ModifierSpeciesReference_getSBOTerm(SBMLModifierSpeciesReference)
 %
-%   ModifierSpeciesReference_getSBOTerm 
-%             takes an SBMLModifierSpeciesReference structure 
+% ModifierSpeciesReference_getSBOTerm
+%    takes an SBML ModifierSpeciesReference structure
 %
-%             and returns 
-%               the sboTerm of the compartment as an integer
-%
-%       sboTerm = ModifierSpeciesReference_getSBOTerm(SBMLModifierSpeciesReference)
+%    returns
+%      the value of the sboTerm attribute
 
 %  Filename    :   ModifierSpeciesReference_getSBOTerm.m
 %  Description :
@@ -38,24 +36,13 @@ function sboTerm = ModifierSpeciesReference_getSBOTerm(SBMLModifierSpeciesRefere
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLModifierSpeciesReference))
-  error(sprintf('%s\n%s', ...
-    'ModifierSpeciesReference_setSBOTerm(SBMLModifierSpeciesReference, sboTerm)', ...
-    'first argument must be an SBML ModifierSpeciesReference structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLModifierSpeciesReference);
+[level, version] = GetLevelVersion(SBMLModifierSpeciesReference);
 
-if (~isSBML_ModifierSpeciesReference(SBMLModifierSpeciesReference, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', ...
-      'ModifierSpeciesReference_getSBOTerm(SBMLModifierSpeciesReference)', ...
-      'argument must be an SBML ModifierSpeciesReference structure'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'ModifierSpeciesReference_getSBOTerm(SBMLModifierSpeciesReference)', ...
-      'sboTerm field only in level 2 version 2/3 model'));    
+if isfield(SBMLModifierSpeciesReference, 'sboTerm')
+	sboTerm = SBMLModifierSpeciesReference.sboTerm;
+else
+	error('sboTerm not an attribute on SBML L%dV%d ModifierSpeciesReference', level, version);
 end;
 
-sboTerm = SBMLModifierSpeciesReference.sboTerm;

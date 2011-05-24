@@ -1,13 +1,11 @@
 function value = ModifierSpeciesReference_isSetSpecies(SBMLModifierSpeciesReference)
 %
-%   ModifierSpeciesReference_isSetSpecies 
-%             takes an SBMLModifierSpeciesReference structure 
+% ModifierSpeciesReference_isSetSpecies
+%    takes an SBML ModifierSpeciesReference structure
 %
-%             and returns 
-%               1 if the species has been set 
-%               0 otherwise
-%
-%       value = ModifierSpeciesReference_isSetSpecies(SBMLModifierSpeciesReference)
+%    returns
+%      1 if the value for the species attribute is set
+%      0 otherwise
 
 %  Filename    :   ModifierSpeciesReference_isSetSpecies.m
 %  Description :
@@ -39,18 +37,13 @@ function value = ModifierSpeciesReference_isSetSpecies(SBMLModifierSpeciesRefere
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLModifierSpeciesReference))
-    error(sprintf('%s\n%s', ...
-      'ModifierSpeciesReference_isSetSpecies(SBMLModifierSpeciesReference)', ...
-      'argument must be an SBML modifierSpeciesReference structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLModifierSpeciesReference);
+[level, version] = GetLevelVersion(SBMLModifierSpeciesReference);
 
-if (~isSBML_ModifierSpeciesReference(SBMLModifierSpeciesReference, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'ModifierSpeciesReference_isSetSpecies(SBMLModifierSpeciesReference)', 'argument must be an SBML modifierSpeciesReference structure'));
+if isfield(SBMLModifierSpeciesReference, 'species')
+	value = ~isempty(SBMLModifierSpeciesReference.species);
+else
+	error('species not an attribute on SBML L%dV%d ModifierSpeciesReference', level, version);
 end;
 
-value = ~isempty(SBMLModifierSpeciesReference.species);

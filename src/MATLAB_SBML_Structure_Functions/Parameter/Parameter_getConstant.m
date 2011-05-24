@@ -1,12 +1,10 @@
 function constant = Parameter_getConstant(SBMLParameter)
 %
-%   Parameter_getConstant 
-%             takes an SBMLParameter structure 
+% Parameter_getConstant
+%    takes an SBML Parameter structure
 %
-%             and returns 
-%               the constant of the parameter as an integer
-%
-%       constant = Parameter_getConstant(SBMLParameter)
+%    returns
+%      the value of the constant attribute
 
 %  Filename    :   Parameter_getConstant.m
 %  Description :
@@ -38,20 +36,13 @@ function constant = Parameter_getConstant(SBMLParameter)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLParameter))
-  error(sprintf('%s\n%s', ...
-    'Parameter_getConstant(SBMLParameter)', ...
-    'first argument must be an SBML Parameter structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLParameter);
+[level, version] = GetLevelVersion(SBMLParameter);
 
-if (~isSBML_Parameter(SBMLParameter, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Parameter_getConstant(SBMLParameter)', 'argument must be an SBML parameter structure'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Parameter_getConstant(SBMLParameter)', 'no constant field in a level 1 model'));    
+if isfield(SBMLParameter, 'constant')
+	constant = SBMLParameter.constant;
+else
+	error('constant not an attribute on SBML L%dV%d Parameter', level, version);
 end;
 
-constant = SBMLParameter.constant;

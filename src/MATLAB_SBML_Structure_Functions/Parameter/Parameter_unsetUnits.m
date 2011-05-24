@@ -1,13 +1,10 @@
 function SBMLParameter = Parameter_unsetUnits(SBMLParameter)
 %
-%   Parameter_unsetUnits 
-%             takes an SBMLParameter structure 
+% Parameter_getUnits
+%    takes an SBML Parameter structure
 %
-%             and returns 
-%               the parameter with the units unset
-%               (i.e. units = '')
-%
-%       SBMLParameter = Parameter_unsetUnits(SBMLParameter)
+%    returns
+%      the Parameter with the value for the units attribute unset
 
 %  Filename    :   Parameter_unsetUnits.m
 %  Description :
@@ -39,18 +36,13 @@ function SBMLParameter = Parameter_unsetUnits(SBMLParameter)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLParameter))
-  error(sprintf('%s\n%s', ...
-    'Parameter_unsetUnits(SBMLParameter)', ...
-    'first argument must be an SBML Parameter structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLParameter);
+[level, version] = GetLevelVersion(SBMLParameter);
 
-if (~isSBML_Parameter(SBMLParameter, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Parameter_unsetUnits(SBMLParameter)', 'argument must be an SBML parameter structure'));
+if isfield(SBMLParameter, 'units')
+	SBMLParameter.units = '';
+else
+	error('units not an attribute on SBML L%dV%d Parameter', level, version);
 end;
 
-SBMLParameter.units = '';

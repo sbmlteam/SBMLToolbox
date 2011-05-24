@@ -1,13 +1,11 @@
 function value = Parameter_isSetName(SBMLParameter)
 %
-%   Parameter_isSetName 
-%             takes an SBMLParameter structure 
+% Parameter_isSetName
+%    takes an SBML Parameter structure
 %
-%             and returns 
-%               1 if the name has been set 
-%               0 otherwise
-%
-%       value = Parameter_isSetName(SBMLParameter)
+%    returns
+%      1 if the value for the name attribute is set
+%      0 otherwise
 
 %  Filename    :   Parameter_isSetName.m
 %  Description :
@@ -39,18 +37,13 @@ function value = Parameter_isSetName(SBMLParameter)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLParameter))
-  error(sprintf('%s\n%s', ...
-    'Parameter_isSetName(SBMLParameter)', ...
-    'first argument must be an SBML Parameter structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLParameter);
+[level, version] = GetLevelVersion(SBMLParameter);
 
-if (~isSBML_Parameter(SBMLParameter, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Parameter_isSetName(SBMLParameter)', 'argument must be an SBML parameter structure'));
+if isfield(SBMLParameter, 'name')
+	value = ~isempty(SBMLParameter.name);
+else
+	error('name not an attribute on SBML L%dV%d Parameter', level, version);
 end;
 
-value = ~isempty(SBMLParameter.name);

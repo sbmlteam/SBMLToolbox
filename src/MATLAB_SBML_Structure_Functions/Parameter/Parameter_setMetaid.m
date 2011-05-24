@@ -1,16 +1,16 @@
-function SBMLParameter = Parameter_setConstant(SBMLParameter, constant)
+function SBMLParameter = Parameter_setMetaid(SBMLParameter, metaid)
 %
-% Parameter_setConstant
+% Parameter_setMetaid
 %    takes an SBML Parameter structure
-%    and the constant to be set
+%    and the metaid to be set
 %
 %    returns
-%      the Parameter with the new value for the constant attribute
+%      the Parameter with the new value for the metaid attribute
 
-%  Filename    :   Parameter_setConstant.m
+%  Filename    :   Parameter_setMetaid.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -41,13 +41,13 @@ function SBMLParameter = Parameter_setConstant(SBMLParameter, constant)
 
 [level, version] = GetLevelVersion(SBMLParameter);
 
-if isfield(SBMLParameter, 'constant')
-	if (~isIntegralNumber(constant) || constant < 0 || constant > 1)
-		error('constant must be an integer of value 0/1') ;
+if isfield(SBMLParameter, 'metaid')
+	if ~ischar(metaid)
+		error('metaid must be character array') ;
 	else
-		SBMLParameter.constant = constant;
+		SBMLParameter.metaid = metaid;
 	end;
 else
-	error('constant not an attribute on SBML L%dV%d Parameter', level, version);
+	error('metaid not an attribute on SBML L%dV%d Parameter', level, version);
 end;
 

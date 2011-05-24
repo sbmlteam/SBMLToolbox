@@ -1,16 +1,16 @@
-function SBMLParameter = Parameter_setConstant(SBMLParameter, constant)
+function SBMLModifierSpeciesReference = ModifierSpeciesReference_setMetaid(SBMLModifierSpeciesReference, metaid)
 %
-% Parameter_setConstant
-%    takes an SBML Parameter structure
-%    and the constant to be set
+% ModifierSpeciesReference_setMetaid
+%    takes an SBML ModifierSpeciesReference structure
+%    and the metaid to be set
 %
 %    returns
-%      the Parameter with the new value for the constant attribute
+%      the ModifierSpeciesReference with the new value for the metaid attribute
 
-%  Filename    :   Parameter_setConstant.m
+%  Filename    :   ModifierSpeciesReference_setMetaid.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -39,15 +39,15 @@ function SBMLParameter = Parameter_setConstant(SBMLParameter, constant)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLParameter);
+[level, version] = GetLevelVersion(SBMLModifierSpeciesReference);
 
-if isfield(SBMLParameter, 'constant')
-	if (~isIntegralNumber(constant) || constant < 0 || constant > 1)
-		error('constant must be an integer of value 0/1') ;
+if isfield(SBMLModifierSpeciesReference, 'metaid')
+	if ~ischar(metaid)
+		error('metaid must be character array') ;
 	else
-		SBMLParameter.constant = constant;
+		SBMLModifierSpeciesReference.metaid = metaid;
 	end;
 else
-	error('constant not an attribute on SBML L%dV%d Parameter', level, version);
+	error('metaid not an attribute on SBML L%dV%d ModifierSpeciesReference', level, version);
 end;
 

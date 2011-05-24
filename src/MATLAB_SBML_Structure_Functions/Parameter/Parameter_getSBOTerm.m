@@ -1,12 +1,10 @@
 function sboTerm = Parameter_getSBOTerm(SBMLParameter)
 %
-%   Parameter_getSBOTerm 
-%             takes an SBMLParameter structure 
+% Parameter_getSBOTerm
+%    takes an SBML Parameter structure
 %
-%             and returns 
-%               the sboTerm of the compartment as an integer
-%
-%       sboTerm = Parameter_getSBOTerm(SBMLParameter)
+%    returns
+%      the value of the sboTerm attribute
 
 %  Filename    :   Parameter_getSBOTerm.m
 %  Description :
@@ -38,24 +36,13 @@ function sboTerm = Parameter_getSBOTerm(SBMLParameter)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLParameter))
-  error(sprintf('%s\n%s', ...
-    'Parameter_getSBOTerm(SBMLParameter)', ...
-    'first argument must be an SBML Parameter structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLParameter);
+[level, version] = GetLevelVersion(SBMLParameter);
 
-if (~isSBML_Parameter(SBMLParameter, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', ...
-      'Parameter_getSBOTerm(SBMLParameter)', ...
-      'argument must be an SBML Parameter structure'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'Parameter_getSBOTerm(SBMLParameter)', ...
-      'sboTerm field only in level 2 version 2/3 model'));    
+if isfield(SBMLParameter, 'sboTerm')
+	sboTerm = SBMLParameter.sboTerm;
+else
+	error('sboTerm not an attribute on SBML L%dV%d Parameter', level, version);
 end;
 
-sboTerm = SBMLParameter.sboTerm;
