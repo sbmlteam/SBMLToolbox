@@ -1,12 +1,10 @@
 function id = SpeciesType_getId(SBMLSpeciesType)
 %
-%   SpeciesType_getId 
-%             takes an SBMLSpeciesType structure 
+% SpeciesType_getId
+%    takes an SBML SpeciesType structure
 %
-%             and returns 
-%               the id of the SpeciesType as a string
-%
-%       id = SpeciesType_getId(SBMLSpeciesType)
+%    returns
+%      the value of the id attribute
 
 %  Filename    :   SpeciesType_getId.m
 %  Description :
@@ -38,24 +36,13 @@ function id = SpeciesType_getId(SBMLSpeciesType)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpeciesType))
-    error(sprintf('%s\n%s', ...
-      'SpeciesType_getId(SBMLSpeciesType)', ...
-      'argument must be an SBML SpeciesType structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpeciesType);
+[level, version] = GetLevelVersion(SBMLSpeciesType);
 
-if (~isSBML_SpeciesType(SBMLSpeciesType, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', ...
-      'SpeciesType_getId(SBMLSpeciesType)', ...
-      'argument must be an SBML SpeciesType structure'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'SpeciesType_getId(SBMLSpeciesType)', ...
-      'id field only in level 2 version 2/3 model'));    
+if isfield(SBMLSpeciesType, 'id')
+	id = SBMLSpeciesType.id;
+else
+	error('id not an attribute on SBML L%dV%d SpeciesType', level, version);
 end;
 
-id = SBMLSpeciesType.id;

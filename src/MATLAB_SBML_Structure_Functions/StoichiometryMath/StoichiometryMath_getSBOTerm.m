@@ -1,12 +1,10 @@
 function sboTerm = StoichiometryMath_getSBOTerm(SBMLStoichiometryMath)
 %
-%   StoichiometryMath_getSBOTerm 
-%             takes an SBMLStoichiometryMath structure 
+% StoichiometryMath_getSBOTerm
+%    takes an SBML StoichiometryMath structure
 %
-%             and returns 
-%               the sboTerm of the StoichiometryMath as an integer
-%
-%       sboTerm = StoichiometryMath_getSBOTerm(SBMLStoichiometryMath)
+%    returns
+%      the value of the sboTerm attribute
 
 %  Filename    :   StoichiometryMath_getSBOTerm.m
 %  Description :
@@ -38,24 +36,13 @@ function sboTerm = StoichiometryMath_getSBOTerm(SBMLStoichiometryMath)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLStoichiometryMath))
-    error(sprintf('%s\n%s', ...
-      'StoichiometryMath_getSBOTerm(SBMLStoichiometryMath)', ...
-      'argument must be an SBML StoichiometryMath structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLStoichiometryMath);
+[level, version] = GetLevelVersion(SBMLStoichiometryMath);
 
-if (~isSBML_StoichiometryMath(SBMLStoichiometryMath, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', ...
-      'StoichiometryMath_getSBOTerm(SBMLStoichiometryMath)', ...
-      'argument must be an SBML StoichiometryMath structure'));
-elseif (sbmlLevel ~= 2 || sbmlVersion ~= 3)
-    error(sprintf('%s\n%s', ...
-      'StoichiometryMath_getSBOTerm(SBMLStoichiometryMath)', ...
-      'sboTerm field only in level 2 version 3 model'));    
+if isfield(SBMLStoichiometryMath, 'sboTerm')
+	sboTerm = SBMLStoichiometryMath.sboTerm;
+else
+	error('sboTerm not an attribute on SBML L%dV%d StoichiometryMath', level, version);
 end;
 
-sboTerm = SBMLStoichiometryMath.sboTerm;

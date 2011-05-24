@@ -1,12 +1,10 @@
 function species = SpeciesConcentrationRule_getSpecies(SBMLSpeciesConcentrationRule)
 %
-%   SpeciesConcentrationRule_getSpecies 
-%             takes an SBMLSpeciesConcentrationRule structure 
+% SpeciesConcentrationRule_getSpecies
+%    takes an SBML SpeciesConcentrationRule structure
 %
-%             and returns 
-%               the species of the speciesConcentrationRule as a string
-%
-%       species = SpeciesConcentrationRule_getSpecies(SBMLSpeciesConcentrationRule)
+%    returns
+%      the value of the species attribute
 
 %  Filename    :   SpeciesConcentrationRule_getSpecies.m
 %  Description :
@@ -38,17 +36,13 @@ function species = SpeciesConcentrationRule_getSpecies(SBMLSpeciesConcentrationR
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpeciesConcentrationRule))
-    error(sprintf('%s', ...
-      'argument must be an SBML SpeciesConcentrationRule structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpeciesConcentrationRule);
+[level, version] = GetLevelVersion(SBMLSpeciesConcentrationRule);
 
-if (~isSBML_SpeciesConcentrationRule(SBMLSpeciesConcentrationRule, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'SpeciesConcentrationRule_getSpecies(SBMLSpeciesConcentrationRule)', 'argument must be an SBML speciesConcentrationRule structure'));
+if isfield(SBMLSpeciesConcentrationRule, 'species')
+	species = SBMLSpeciesConcentrationRule.species;
+else
+	error('species not an attribute on SBML L%dV%d SpeciesConcentrationRule', level, version);
 end;
 
-species = SBMLSpeciesConcentrationRule.species;

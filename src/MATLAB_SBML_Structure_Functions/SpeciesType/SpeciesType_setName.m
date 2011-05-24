@@ -1,13 +1,11 @@
 function SBMLSpeciesType = SpeciesType_setName(SBMLSpeciesType, name)
 %
-%   SpeciesType_setName 
-%             takes  1) an SBMLSpeciesType structure 
-%             and    2) an string representing the name to be set
+% SpeciesType_setName
+%    takes an SBML SpeciesType structure
+%    and the name to be set
 %
-%             and returns 
-%               the Species with the name set
-%
-%       SBMLSpeciesType = SpeciesType_setName(SBMLSpeciesType, name)
+%    returns
+%      the SpeciesType with the new value for the name attribute
 
 %  Filename    :   SpeciesType_setName.m
 %  Description :
@@ -39,28 +37,17 @@ function SBMLSpeciesType = SpeciesType_setName(SBMLSpeciesType, name)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpeciesType))
-    error(sprintf('%s\n%s', ...
-      'SpeciesType_getName(SBMLSpeciesType)', ...
-      'argument must be an SBML SpeciesType structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpeciesType);
+[level, version] = GetLevelVersion(SBMLSpeciesType);
 
-if (~isSBML_SpeciesType(SBMLSpeciesType, sbmlLevel, sbmlVersion))
-  error(sprintf('%s\n%s', ...
-    'SpeciesType_setName(SBMLSpeciesType, name)', ...
-    'first argument must be an SBML SpeciesType structure'));
-elseif (~ischar(name))
-    error(sprintf('%s\n%s', ...
-      'SpeciesType_setName(SBMLSpeciesType, name)', ...
-      'second argument must be a string representing the name'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'SpeciesType_setName(SBMLSpeciesType, name)',  ...
-      'name field only in level 2 version 2/3 model'));    
+if isfield(SBMLSpeciesType, 'name')
+	if ~ischar(name)
+		error('name must be character array') ;
+	else
+		SBMLSpeciesType.name = name;
+	end;
+else
+	error('name not an attribute on SBML L%dV%d SpeciesType', level, version);
 end;
 
-SBMLSpeciesType.name = name;

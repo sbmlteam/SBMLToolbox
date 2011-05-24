@@ -1,14 +1,10 @@
 function stoichiometry = SpeciesReference_getStoichiometry(SBMLSpeciesReference)
 %
-%   SpeciesReference_getStoichiometry 
-%             takes an SBMLSpeciesReference structure 
+% SpeciesReference_getStoichiometry
+%    takes an SBML SpeciesReference structure
 %
-%             and returns 
-%               the stoichiometry of the speciesreference as 
-%               either an integer (Level 1 models)
-%               or     a double (Level 2 models)
-%
-%       stoichiometry = SpeciesReference_getStoichiometry(SBMLSpeciesReference)
+%    returns
+%      the value of the stoichiometry attribute
 
 %  Filename    :   SpeciesReference_getStoichiometry.m
 %  Description :
@@ -40,17 +36,13 @@ function stoichiometry = SpeciesReference_getStoichiometry(SBMLSpeciesReference)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpeciesReference))
-    error(sprintf('%s', ...
-      'argument must be an SBML SpeciesReference structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpeciesReference);
+[level, version] = GetLevelVersion(SBMLSpeciesReference);
 
-if (~isSBML_SpeciesReference(SBMLSpeciesReference, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'SpeciesReference_getStoichiometry(SBMLSpeciesReference)', 'argument must be an SBML speciesreference structure'));
+if isfield(SBMLSpeciesReference, 'stoichiometry')
+	stoichiometry = SBMLSpeciesReference.stoichiometry;
+else
+	error('stoichiometry not an attribute on SBML L%dV%d SpeciesReference', level, version);
 end;
 
-stoichiometry = SBMLSpeciesReference.stoichiometry;

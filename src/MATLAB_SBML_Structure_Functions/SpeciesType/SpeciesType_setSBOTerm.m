@@ -1,13 +1,11 @@
 function SBMLSpeciesType = SpeciesType_setSBOTerm(SBMLSpeciesType, sboTerm)
 %
-%   SpeciesType_setSBOTerm 
-%             takes  1) an SBMLSpeciesType structure 
-%             and    2) an integer representing the sboTerm to be set
+% SpeciesType_setSBOTerm
+%    takes an SBML SpeciesType structure
+%    and the sboTerm to be set
 %
-%             and returns 
-%               the SpeciesType with the sboTerm set
-%
-%       SBMLSpeciesType = SpeciesType_setSBOTerm(SBMLSpeciesType, sboTerm)
+%    returns
+%      the SpeciesType with the new value for the sboTerm attribute
 
 %  Filename    :   SpeciesType_setSBOTerm.m
 %  Description :
@@ -39,28 +37,17 @@ function SBMLSpeciesType = SpeciesType_setSBOTerm(SBMLSpeciesType, sboTerm)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpeciesType))
-    error(sprintf('%s\n%s', ...
-      'SpeciesType_setSBOTerm(SBMLSpeciesType, sboTerm)', ...
-      'argument must be an SBML SpeciesType structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpeciesType);
+[level, version] = GetLevelVersion(SBMLSpeciesType);
 
-if (~isSBML_SpeciesType(SBMLSpeciesType, sbmlLevel, sbmlVersion))
-  error(sprintf('%s\n%s', ...
-    'SpeciesType_setSBOTerm(SBMLSpeciesType, sboTerm)', ...
-    'first argument must be an SBML SpeciesType structure'));
-elseif (~isIntegralNumber(sboTerm))
-    error(sprintf('%s\n%s', ...
-      'SpeciesType_setSBOTerm(SBMLSpeciesType, sboTerm)', ...
-      'second argument must be an integer representing the sboTerm'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'SpeciesType_setSBOTerm(SBMLSpeciesType, sboTerm)',  ...
-      'sboTerm field only in level 2 version 2/3 model'));    
+if isfield(SBMLSpeciesType, 'sboTerm')
+	if ~isIntegralNumber(sboTerm)
+		error('sboTerm must be an integer') ;
+	else
+		SBMLSpeciesType.sboTerm = sboTerm;
+	end;
+else
+	error('sboTerm not an attribute on SBML L%dV%d SpeciesType', level, version);
 end;
 
-SBMLSpeciesType.sboTerm = sboTerm;

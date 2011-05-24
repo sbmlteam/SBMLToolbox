@@ -1,12 +1,10 @@
 function species = SpeciesReference_getSpecies(SBMLSpeciesReference)
 %
-%   SpeciesReference_getSpecies 
-%             takes an SBMLSpeciesReference structure 
+% SpeciesReference_getSpecies
+%    takes an SBML SpeciesReference structure
 %
-%             and returns 
-%               the species of the speciesreference as a string
-%
-%       species = SpeciesReference_getSpecies(SBMLSpeciesReference)
+%    returns
+%      the value of the species attribute
 
 %  Filename    :   SpeciesReference_getSpecies.m
 %  Description :
@@ -38,17 +36,13 @@ function species = SpeciesReference_getSpecies(SBMLSpeciesReference)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpeciesReference))
-    error(sprintf('%s', ...
-      'argument must be an SBML SpeciesReference structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpeciesReference);
+[level, version] = GetLevelVersion(SBMLSpeciesReference);
 
-if (~isSBML_SpeciesReference(SBMLSpeciesReference, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'SpeciesReference_getSpecies(SBMLSpeciesReference)', 'argument must be an SBML speciesreference structure'));
+if isfield(SBMLSpeciesReference, 'species')
+	species = SBMLSpeciesReference.species;
+else
+	error('species not an attribute on SBML L%dV%d SpeciesReference', level, version);
 end;
 
-species = SBMLSpeciesReference.species;

@@ -1,13 +1,11 @@
 function SBMLStoichiometryMath = StoichiometryMath_setSBOTerm(SBMLStoichiometryMath, sboTerm)
 %
-%   StoichiometryMath_setSBOTerm 
-%             takes  1) an SBMLStoichiometryMath structure 
-%             and    2) an integer representing the sboTerm to be set
+% StoichiometryMath_setSBOTerm
+%    takes an SBML StoichiometryMath structure
+%    and the sboTerm to be set
 %
-%             and returns 
-%               the StoichiometryMath with the sboTerm set
-%
-%       SBMLStoichiometryMath = StoichiometryMath_setSBOTerm(SBMLStoichiometryMath, sboTerm)
+%    returns
+%      the StoichiometryMath with the new value for the sboTerm attribute
 
 %  Filename    :   StoichiometryMath_setSBOTerm.m
 %  Description :
@@ -39,28 +37,17 @@ function SBMLStoichiometryMath = StoichiometryMath_setSBOTerm(SBMLStoichiometryM
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLStoichiometryMath))
-    error(sprintf('%s\n%s', ...
-      'StoichiometryMath_setSBOTerm(SBMLStoichiometryMath, sboTerm)', ...
-      'argument must be an SBML StoichiometryMath structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLStoichiometryMath);
+[level, version] = GetLevelVersion(SBMLStoichiometryMath);
 
-if (~isSBML_StoichiometryMath(SBMLStoichiometryMath, sbmlLevel, sbmlVersion))
-  error(sprintf('%s\n%s', ...
-    'StoichiometryMath_setSBOTerm(SBMLStoichiometryMath, sboTerm)', ...
-    'first argument must be an SBML StoichiometryMath structure'));
-elseif (~isIntegralNumber(sboTerm))
-    error(sprintf('%s\n%s', ...
-      'StoichiometryMath_setSBOTerm(SBMLStoichiometryMath, sboTerm)', ...
-      'second argument must be an integer representing the sboTerm'));
-elseif (sbmlLevel ~= 2 || sbmlVersion ~= 3)
-    error(sprintf('%s\n%s', ...
-      'StoichiometryMath_setSBOTerm(SBMLStoichiometryMath, sboTerm)',  ...
-      'sboTerm field only in level 2 version 3 model'));    
+if isfield(SBMLStoichiometryMath, 'sboTerm')
+	if ~isIntegralNumber(sboTerm)
+		error('sboTerm must be an integer') ;
+	else
+		SBMLStoichiometryMath.sboTerm = sboTerm;
+	end;
+else
+	error('sboTerm not an attribute on SBML L%dV%d StoichiometryMath', level, version);
 end;
 
-SBMLStoichiometryMath.sboTerm = sboTerm;

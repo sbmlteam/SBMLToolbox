@@ -1,13 +1,11 @@
 function value = SpeciesConcentrationRule_isSetSpecies(SBMLSpeciesConcentrationRule)
 %
-%   SpeciesConcentrationRule_isSetSpecies 
-%             takes an SBMLSpeciesConcentrationRule structure 
+% SpeciesConcentrationRule_isSetSpecies
+%    takes an SBML SpeciesConcentrationRule structure
 %
-%             and returns 
-%               1 if the species has been set 
-%               0 otherwise
-%
-%       value = SpeciesConcentrationRule_isSetSpecies(SBMLSpeciesConcentrationRule)
+%    returns
+%      1 if the value for the species attribute is set
+%      0 otherwise
 
 %  Filename    :   SpeciesConcentrationRule_isSetSpecies.m
 %  Description :
@@ -39,17 +37,13 @@ function value = SpeciesConcentrationRule_isSetSpecies(SBMLSpeciesConcentrationR
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpeciesConcentrationRule))
-    error(sprintf('%s', ...
-      'argument must be an SBML SpeciesConcentrationRule structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpeciesConcentrationRule);
+[level, version] = GetLevelVersion(SBMLSpeciesConcentrationRule);
 
-if (~isSBML_SpeciesConcentrationRule(SBMLSpeciesConcentrationRule, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'SpeciesConcentrationRule_isSetSpecies(SBMLSpeciesConcentrationRule)', 'argument must be an SBML speciesConcentrationRule structure'));
+if isfield(SBMLSpeciesConcentrationRule, 'species')
+	value = ~isempty(SBMLSpeciesConcentrationRule.species);
+else
+	error('species not an attribute on SBML L%dV%d SpeciesConcentrationRule', level, version);
 end;
 
-value = ~isempty(SBMLSpeciesConcentrationRule.species);

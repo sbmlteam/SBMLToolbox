@@ -1,13 +1,11 @@
 function SBMLSpeciesReference = SpeciesReference_setName(SBMLSpeciesReference, name)
 %
-%   SpeciesReference_setName 
-%             takes  1) an SBMLSpeciesReference structure 
-%             and    2) an string representing the name to be set
+% SpeciesReference_setName
+%    takes an SBML SpeciesReference structure
+%    and the name to be set
 %
-%             and returns 
-%               the speciesReference with the name set
-%
-%       SBMLSpeciesReference = SpeciesReference_setName(SBMLSpeciesReference, name)
+%    returns
+%      the SpeciesReference with the new value for the name attribute
 
 %  Filename    :   SpeciesReference_setName.m
 %  Description :
@@ -39,27 +37,17 @@ function SBMLSpeciesReference = SpeciesReference_setName(SBMLSpeciesReference, n
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpeciesReference))
-    error(sprintf('%s', ...
-      'argument must be an SBML SpeciesReference structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpeciesReference);
+[level, version] = GetLevelVersion(SBMLSpeciesReference);
 
-if (~isSBML_SpeciesReference(SBMLSpeciesReference, sbmlLevel, sbmlVersion))
-  error(sprintf('%s\n%s', ...
-    'SpeciesReference_setName(SBMLSpeciesReference, name)', ...
-    'first argument must be an SBML SpeciesReference structure'));
-elseif (~ischar(name))
-    error(sprintf('%s\n%s', ...
-      'SpeciesReference_setName(SBMLSpeciesReference, name)', ...
-      'second argument must be a string representing the name'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'SpeciesReference_setName(SBMLSpeciesReference, name)',  ...
-      'name field only in level 2 version 2/3 model'));    
+if isfield(SBMLSpeciesReference, 'name')
+	if ~ischar(name)
+		error('name must be character array') ;
+	else
+		SBMLSpeciesReference.name = name;
+	end;
+else
+	error('name not an attribute on SBML L%dV%d SpeciesReference', level, version);
 end;
 
-SBMLSpeciesReference.name = name;
