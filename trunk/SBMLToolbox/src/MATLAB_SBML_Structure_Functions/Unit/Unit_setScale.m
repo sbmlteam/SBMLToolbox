@@ -1,13 +1,11 @@
 function SBMLUnit = Unit_setScale(SBMLUnit, scale)
 %
-%   Unit_setScale 
-%             takes  1) an SBMLUnit structure 
-%             and    2) an integer representing the scale to be set
+% Unit_setScale
+%    takes an SBML Unit structure
+%    and the scale to be set
 %
-%             and returns 
-%               the unit with the scale set
-%
-%       SBMLUnit = Unit_setScale(SBMLUnit, scale)
+%    returns
+%      the Unit with the new value for the scale attribute
 
 %  Filename    :   Unit_setScale.m
 %  Description :
@@ -39,19 +37,17 @@ function SBMLUnit = Unit_setScale(SBMLUnit, scale)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLUnit))
-    error(sprintf('%s', ...
-      'argument must be an SBML Unit structure'));
+[level, version] = GetLevelVersion(SBMLUnit);
+
+if isfield(SBMLUnit, 'scale')
+	if (~isIntegralNumber(scale))
+		error('scale must be an integer') ;
+	else
+		SBMLUnit.scale = scale;
+	end;
+else
+	error('scale not an attribute on SBML L%dV%d Unit', level, version);
 end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLUnit);
 
-if (~isSBML_Unit(SBMLUnit, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Unit_setScale(SBMLUnit, scale)', 'first argument must be an SBML model structure'));
-elseif (~isIntegralNumber(scale))
-    error(sprintf('Unit_setScale(SBMLUnit, scale)\n%s', 'second argument must be an integer representing the scale of the unit'));
-end;
-
-SBMLUnit.scale = int32(scale);

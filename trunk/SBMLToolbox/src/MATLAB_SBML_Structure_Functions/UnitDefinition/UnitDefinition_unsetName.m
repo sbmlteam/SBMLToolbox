@@ -1,13 +1,10 @@
 function SBMLUnitDefinition = UnitDefinition_unsetName(SBMLUnitDefinition)
 %
-%   UnitDefinition_unsetName 
-%             takes an SBMLUnitDefinition structure 
+% UnitDefinition_getName
+%    takes an SBML UnitDefinition structure
 %
-%             and returns 
-%               the unitDefinition with the name unset
-%               (i.e. name = '')
-%
-%       SBMLUnitDefinition = UnitDefinition_unsetName(SBMLUnitDefinition)
+%    returns
+%      the UnitDefinition with the value for the name attribute unset
 
 %  Filename    :   UnitDefinition_unsetName.m
 %  Description :
@@ -39,17 +36,13 @@ function SBMLUnitDefinition = UnitDefinition_unsetName(SBMLUnitDefinition)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLUnitDefinition))
-    error(sprintf('%s', ...
-      'argument must be an SBML UnitDefinition structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLUnitDefinition);
+[level, version] = GetLevelVersion(SBMLUnitDefinition);
 
-if (~isSBML_UnitDefinition(SBMLUnitDefinition, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'UnitDefinition_unsetName(SBMLUnitDefinition)', 'argument must be an SBML unitDefinition structure'));
+if isfield(SBMLUnitDefinition, 'name')
+	SBMLUnitDefinition.name = '';
+else
+	error('name not an attribute on SBML L%dV%d UnitDefinition', level, version);
 end;
 
-SBMLUnitDefinition.name = '';

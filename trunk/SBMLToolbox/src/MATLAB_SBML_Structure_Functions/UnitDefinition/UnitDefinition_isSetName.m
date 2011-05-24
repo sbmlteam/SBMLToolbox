@@ -1,13 +1,11 @@
 function value = UnitDefinition_isSetName(SBMLUnitDefinition)
 %
-%   UnitDefinition_isSetName 
-%             takes an SBMLUnitDefinition structure 
+% UnitDefinition_isSetName
+%    takes an SBML UnitDefinition structure
 %
-%             and returns 
-%               1 if the name has been set 
-%               0 otherwise
-%
-%       value = UnitDefinition_isSetName(SBMLUnitDefinition)
+%    returns
+%      1 if the value for the name attribute is set
+%      0 otherwise
 
 %  Filename    :   UnitDefinition_isSetName.m
 %  Description :
@@ -39,17 +37,13 @@ function value = UnitDefinition_isSetName(SBMLUnitDefinition)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLUnitDefinition))
-    error(sprintf('%s', ...
-      'argument must be an SBML UnitDefinition structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLUnitDefinition);
+[level, version] = GetLevelVersion(SBMLUnitDefinition);
 
-if (~isSBML_UnitDefinition(SBMLUnitDefinition, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'UnitDefinition_isSetName(SBMLUnitDefinition)', 'argument must be an SBML unitDefinition structure'));
+if isfield(SBMLUnitDefinition, 'name')
+	value = ~isempty(SBMLUnitDefinition.name);
+else
+	error('name not an attribute on SBML L%dV%d UnitDefinition', level, version);
 end;
 
-value = ~isempty(SBMLUnitDefinition.name);

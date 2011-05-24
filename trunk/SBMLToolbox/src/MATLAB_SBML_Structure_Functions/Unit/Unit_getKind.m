@@ -1,12 +1,10 @@
 function kind = Unit_getKind(SBMLUnit)
 %
-%   Unit_getKind 
-%             takes an SBMLUnit structure 
+% Unit_getKind
+%    takes an SBML Unit structure
 %
-%             and returns 
-%               the kind of the unit as a string
-%
-%       kind = Unit_getKind(SBMLUnit)
+%    returns
+%      the value of the kind attribute
 
 %  Filename    :   Unit_getKind.m
 %  Description :
@@ -38,17 +36,13 @@ function kind = Unit_getKind(SBMLUnit)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLUnit))
-    error(sprintf('%s', ...
-      'argument must be an SBML Unit structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLUnit);
+[level, version] = GetLevelVersion(SBMLUnit);
 
-if (~isSBML_Unit(SBMLUnit, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Unit_getKind(SBMLUnit)', 'argument must be an SBML unit structure'));
+if isfield(SBMLUnit, 'kind')
+	kind = SBMLUnit.kind;
+else
+	error('kind not an attribute on SBML L%dV%d Unit', level, version);
 end;
 
-kind = SBMLUnit.kind;

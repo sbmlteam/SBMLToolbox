@@ -1,13 +1,11 @@
 function value = Unit_isSetKind(SBMLUnit)
 %
-%   Unit_isSetKind 
-%             takes an SBMLUnit structure 
+% Unit_isSetKind
+%    takes an SBML Unit structure
 %
-%             and returns 
-%               1 if the kind has been set 
-%               0 otherwise
-%
-%       value = Unit_isSetKind(SBMLUnit)
+%    returns
+%      1 if the value for the kind attribute is set
+%      0 otherwise
 
 %  Filename    :   Unit_isSetKind.m
 %  Description :
@@ -39,17 +37,13 @@ function value = Unit_isSetKind(SBMLUnit)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLUnit))
-    error(sprintf('%s', ...
-      'argument must be an SBML Unit structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLUnit);
+[level, version] = GetLevelVersion(SBMLUnit);
 
-if (~isSBML_Unit(SBMLUnit, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Unit_isSetKind(SBMLUnit)', 'argument must be an SBML unit structure'));
+if isfield(SBMLUnit, 'kind')
+	value = ~isempty(SBMLUnit.kind);
+else
+	error('kind not an attribute on SBML L%dV%d Unit', level, version);
 end;
 
-value = ~isempty(SBMLUnit.kind);

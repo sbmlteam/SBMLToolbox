@@ -1,12 +1,10 @@
 function name = UnitDefinition_getName(SBMLUnitDefinition)
 %
-%   UnitDefinition_getName 
-%             takes an SBMLUnitDefinition structure 
+% UnitDefinition_getName
+%    takes an SBML UnitDefinition structure
 %
-%             and returns 
-%               the name of the unitDefinition as a string
-%
-%       name = UnitDefinition_getName(SBMLUnitDefinition)
+%    returns
+%      the value of the name attribute
 
 %  Filename    :   UnitDefinition_getName.m
 %  Description :
@@ -38,17 +36,13 @@ function name = UnitDefinition_getName(SBMLUnitDefinition)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLUnitDefinition))
-    error(sprintf('%s', ...
-      'argument must be an SBML UnitDefinition structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLUnitDefinition);
+[level, version] = GetLevelVersion(SBMLUnitDefinition);
 
-if (~isSBML_UnitDefinition(SBMLUnitDefinition, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'UnitDefinition_getName(SBMLUnitDefinition)', 'argument must be an SBML unitDefinition structure'));
+if isfield(SBMLUnitDefinition, 'name')
+	name = SBMLUnitDefinition.name;
+else
+	error('name not an attribute on SBML L%dV%d UnitDefinition', level, version);
 end;
 
-name = SBMLUnitDefinition.name;

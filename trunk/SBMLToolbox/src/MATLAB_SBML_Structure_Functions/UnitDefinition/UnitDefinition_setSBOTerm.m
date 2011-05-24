@@ -1,13 +1,11 @@
 function SBMLUnitDefinition = UnitDefinition_setSBOTerm(SBMLUnitDefinition, sboTerm)
 %
-%   UnitDefinition_setSBOTerm 
-%             takes  1) an SBMLUnitDefinition structure 
-%             and    2) an integer representing the sboTerm to be set
+% UnitDefinition_setSBOTerm
+%    takes an SBML UnitDefinition structure
+%    and the sboTerm to be set
 %
-%             and returns 
-%               the UnitDefinition with the sboTerm set
-%
-%       SBMLUnitDefinition = UnitDefinition_setSBOTerm(SBMLUnitDefinition, sboTerm)
+%    returns
+%      the UnitDefinition with the new value for the sboTerm attribute
 
 %  Filename    :   UnitDefinition_setSBOTerm.m
 %  Description :
@@ -39,27 +37,17 @@ function SBMLUnitDefinition = UnitDefinition_setSBOTerm(SBMLUnitDefinition, sboT
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLUnitDefinition))
-    error(sprintf('%s', ...
-      'argument must be an SBML UnitDefinition structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLUnitDefinition);
+[level, version] = GetLevelVersion(SBMLUnitDefinition);
 
-if (~isSBML_UnitDefinition(SBMLUnitDefinition, sbmlLevel, sbmlVersion))
-  error(sprintf('%s\n%s', ...
-    'UnitDefinition_setSBOTerm(SBMLUnitDefinition, sboTerm)', ...
-    'first argument must be an SBML UnitDefinition structure'));
-elseif (~isIntegralNumber(sboTerm))
-    error(sprintf('%s\n%s', ...
-      'UnitDefinition_setSBOTerm(SBMLUnitDefinition, sboTerm)', ...
-      'second argument must be an integer representing the sboTerm'));
-elseif (sbmlLevel ~= 2 || sbmlVersion ~= 3)
-    error(sprintf('%s\n%s', ...
-      'UnitDefinition_setSBOTerm(SBMLUnitDefinition, sboTerm)',  ...
-      'sboTerm field only in level 2 version 3 model'));    
+if isfield(SBMLUnitDefinition, 'sboTerm')
+	if ~isIntegralNumber(sboTerm)
+		error('sboTerm must be an integer') ;
+	else
+		SBMLUnitDefinition.sboTerm = sboTerm;
+	end;
+else
+	error('sboTerm not an attribute on SBML L%dV%d UnitDefinition', level, version);
 end;
 
-SBMLUnitDefinition.sboTerm = sboTerm;

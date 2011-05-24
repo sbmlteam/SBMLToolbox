@@ -1,12 +1,10 @@
-function number = UnitDefinition_getNumUnits(SBMLUnitDefinition)
+function num = UnitDefinition_getNumUnits(SBMLUnitDefinition)
 %
-%   UnitDefinition_getNumUnits 
-%             takes an SBMLUnitDefinition structure 
+% UnitDefinition_getNumUnits
+%    takes an SBML UnitDefinition structure
 %
-%             and returns 
-%               the number of unit structures defined within the unitDefinition
-%
-%       number = UnitDefinition_getNumUnits(SBMLUnitDefinition)
+%    returns
+%      the number of unit elements
 
 %  Filename    :   UnitDefinition_getNumUnits.m
 %  Description :
@@ -38,21 +36,13 @@ function number = UnitDefinition_getNumUnits(SBMLUnitDefinition)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLUnitDefinition))
-    error(sprintf('%s', ...
-      'argument must be an SBML UnitDefinition structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLUnitDefinition);
+[level, version] = GetLevelVersion(SBMLUnitDefinition);
 
-if (~isSBML_UnitDefinition(SBMLUnitDefinition, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'UnitDefinition_getNumUnits(SBMLUnitDefinition)', 'argument must be an SBML unitDefinition structure'));
+if isfield(SBMLUnitDefinition, 'unit')
+	num = length(SBMLUnitDefinition.unit);
+else
+	error('unit not an element on SBML L%dV%d UnitDefinition', level, version);
 end;
 
-number = 0;
-
-if (~isempty(SBMLUnitDefinition.unit))
-    number = length(SBMLUnitDefinition.unit);
-end;

@@ -1,13 +1,11 @@
-function unitDefinition = UnitDefinition_addUnit(SBMLUnitDefinition, SBMLUnit)
+function SBMLUnitDefinition = UnitDefinition_addUnit(SBMLUnitDefinition, SBMLUnit)
 %
-%   UnitDefinition_addUnit 
-%             takes  1) an SBMLUnitDefinition structure 
-%             and    2) an SBMLUnit structure
+% UnitDefinition_addUnit(SBMLUnitDefinition, SBMLUnit)
+%    takes an SBML UnitDefinition structure
+%    and an SBML Unit structure
 %
-%             and returns 
-%               the unitDefinition with the unit added
-%
-%       unitDefinition = UnitDefinition_addUnit(SBMLUnitDefinition, SBMLUnit)
+%    returns
+%      the UnitDefinition with the Unit element added
 
 %  Filename    :   UnitDefinition_addUnit.m
 %  Description :
@@ -39,24 +37,25 @@ function unitDefinition = UnitDefinition_addUnit(SBMLUnitDefinition, SBMLUnit)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLUnitDefinition))
-    error(sprintf('%s', ...
-      'argument must be an SBML UnitDefinition structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLUnitDefinition);
+[level, version] = GetLevelVersion(SBMLUnitDefinition);
+[unit_level, unit_version] = GetLevelVersion(SBMLUnit);
 
-if (~isSBML_UnitDefinition(SBMLUnitDefinition, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'UnitDefinition_addUnit(SBMLUnitDefinition, SBMLUnit)', 'first argument must be an SBML unitDefinition structure'));
-elseif (~isSBML_Unit(SBMLUnit, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s\n of the same SBML level, namely level %u', 'UnitDefinition_addUnit(SBMLUnitDefinition, SBMLUnit)', 'second argument must be an SBML unit structure', sbmlLevel));
+if level ~= unit_level
+	error('mismatch in levels');
+elseif version ~= unit_version
+	error('mismatch in versions');
 end;
 
-numberUnits = length(SBMLUnitDefinition.unit);
-
-SBMLUnitDefinition.unit(numberUnits+1) = SBMLUnit;
-
-unitDefinition = SBMLUnitDefinition;
+if isfield(SBMLUnitDefinition, 'unit')
+	index = length(SBMLUnitDefinition.unit);
+	if index == 0
+		SBMLUnitDefinition.unit = SBMLUnit;
+	else
+		SBMLUnitDefinition.unit(index+1) = SBMLUnit;
+	end;
+else
+	error('unit not an element on SBML L%dV%d UnitDefinition', level, version);
+end;
 

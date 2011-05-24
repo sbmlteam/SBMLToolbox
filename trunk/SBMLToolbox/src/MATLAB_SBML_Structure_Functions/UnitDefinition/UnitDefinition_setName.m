@@ -1,13 +1,11 @@
 function SBMLUnitDefinition = UnitDefinition_setName(SBMLUnitDefinition, name)
 %
-%   UnitDefinition_setName 
-%             takes  1) an SBMLUnitDefinition structure 
-%             and    2) a string representing the name to be set
+% UnitDefinition_setName
+%    takes an SBML UnitDefinition structure
+%    and the name to be set
 %
-%             and returns 
-%               the unitDefinition with the name set
-%
-%       SBMLUnitDefinition = UnitDefinition_setName(SBMLUnitDefinition, 'name')
+%    returns
+%      the UnitDefinition with the new value for the name attribute
 
 %  Filename    :   UnitDefinition_setName.m
 %  Description :
@@ -39,19 +37,17 @@ function SBMLUnitDefinition = UnitDefinition_setName(SBMLUnitDefinition, name)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLUnitDefinition))
-    error(sprintf('%s', ...
-      'argument must be an SBML UnitDefinition structure'));
+[level, version] = GetLevelVersion(SBMLUnitDefinition);
+
+if isfield(SBMLUnitDefinition, 'name')
+	if ~ischar(name)
+		error('name must be character array') ;
+	else
+		SBMLUnitDefinition.name = name;
+	end;
+else
+	error('name not an attribute on SBML L%dV%d UnitDefinition', level, version);
 end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLUnitDefinition);
 
-if (~isSBML_UnitDefinition(SBMLUnitDefinition, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'UnitDefinition_setName(SBMLUnitDefinition, name)', 'first argument must be an SBML unitDefinition structure'));
-elseif (~ischar(name))
-    error(sprintf('UnitDefinition_setName(SBMLUnitDefinition, name)\n%s', 'second argument must be a string representing the name of the unitDefinition'));
-end;
-
-SBMLUnitDefinition.name = name;

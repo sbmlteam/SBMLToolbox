@@ -1,12 +1,10 @@
 function scale = Unit_getScale(SBMLUnit)
 %
-%   Unit_getScale 
-%             takes an SBMLUnit structure 
+% Unit_getScale
+%    takes an SBML Unit structure
 %
-%             and returns 
-%               the scale of the unit as an integer
-%
-%       scale = Unit_getScale(SBMLUnit)
+%    returns
+%      the value of the scale attribute
 
 %  Filename    :   Unit_getScale.m
 %  Description :
@@ -38,17 +36,13 @@ function scale = Unit_getScale(SBMLUnit)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLUnit))
-    error(sprintf('%s', ...
-      'argument must be an SBML Unit structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLUnit);
+[level, version] = GetLevelVersion(SBMLUnit);
 
-if (~isSBML_Unit(SBMLUnit, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Unit_getScale(SBMLUnit)', 'argument must be an SBML unit structure'));
+if isfield(SBMLUnit, 'scale')
+	scale = SBMLUnit.scale;
+else
+	error('scale not an attribute on SBML L%dV%d Unit', level, version);
 end;
 
-scale = SBMLUnit.scale;

@@ -1,12 +1,10 @@
 function exponent = Unit_getExponent(SBMLUnit)
 %
-%   Unit_getExponent 
-%             takes an SBMLUnit structure 
+% Unit_getExponent
+%    takes an SBML Unit structure
 %
-%             and returns 
-%               the exponent of the unit as an integer
-%
-%       exponent = Unit_getExponent(SBMLUnit)
+%    returns
+%      the value of the exponent attribute
 
 %  Filename    :   Unit_getExponent.m
 %  Description :
@@ -38,17 +36,13 @@ function exponent = Unit_getExponent(SBMLUnit)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLUnit))
-    error(sprintf('%s', ...
-      'argument must be an SBML Unit structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLUnit);
+[level, version] = GetLevelVersion(SBMLUnit);
 
-if (~isSBML_Unit(SBMLUnit, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Unit_getExponent(SBMLUnit)', 'argument must be an SBML unit structure'));
+if isfield(SBMLUnit, 'exponent')
+	exponent = SBMLUnit.exponent;
+else
+	error('exponent not an attribute on SBML L%dV%d Unit', level, version);
 end;
 
-exponent = SBMLUnit.exponent;

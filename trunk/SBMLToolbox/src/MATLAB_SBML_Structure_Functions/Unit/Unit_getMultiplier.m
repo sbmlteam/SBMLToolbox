@@ -1,12 +1,10 @@
 function multiplier = Unit_getMultiplier(SBMLUnit)
 %
-%   Unit_getMultiplier 
-%             takes an SBMLUnit structure 
+% Unit_getMultiplier
+%    takes an SBML Unit structure
 %
-%             and returns 
-%               the multiplier of the unit as a double
-%
-%       multiplier = Unit_getMultiplier(SBMLUnit)
+%    returns
+%      the value of the multiplier attribute
 
 %  Filename    :   Unit_getMultiplier.m
 %  Description :
@@ -38,19 +36,13 @@ function multiplier = Unit_getMultiplier(SBMLUnit)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLUnit))
-    error(sprintf('%s', ...
-      'argument must be an SBML Unit structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLUnit);
+[level, version] = GetLevelVersion(SBMLUnit);
 
-if (~isSBML_Unit(SBMLUnit, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Unit_getMultiplier(SBMLUnit)', 'argument must be an SBML unit structure'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Unit_getMultiplier(SBMLUnit)', 'no multiplier field in a level 1 model'));    
+if isfield(SBMLUnit, 'multiplier')
+	multiplier = SBMLUnit.multiplier;
+else
+	error('multiplier not an attribute on SBML L%dV%d Unit', level, version);
 end;
 
-multiplier = SBMLUnit.multiplier;

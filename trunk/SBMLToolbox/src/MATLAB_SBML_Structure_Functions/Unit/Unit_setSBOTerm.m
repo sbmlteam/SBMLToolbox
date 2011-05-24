@@ -1,13 +1,11 @@
 function SBMLUnit = Unit_setSBOTerm(SBMLUnit, sboTerm)
 %
-%   Unit_setSBOTerm 
-%             takes  1) an SBMLUnit structure 
-%             and    2) an integer representing the sboTerm to be set
+% Unit_setSBOTerm
+%    takes an SBML Unit structure
+%    and the sboTerm to be set
 %
-%             and returns 
-%               the Unit with the sboTerm set
-%
-%       SBMLUnit = Unit_setSBOTerm(SBMLUnit, sboTerm)
+%    returns
+%      the Unit with the new value for the sboTerm attribute
 
 %  Filename    :   Unit_setSBOTerm.m
 %  Description :
@@ -39,27 +37,17 @@ function SBMLUnit = Unit_setSBOTerm(SBMLUnit, sboTerm)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLUnit))
-    error(sprintf('%s', ...
-      'argument must be an SBML Unit structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLUnit);
+[level, version] = GetLevelVersion(SBMLUnit);
 
-if (~isSBML_Unit(SBMLUnit, sbmlLevel, sbmlVersion))
-  error(sprintf('%s\n%s', ...
-    'Unit_setSBOTerm(SBMLUnit, sboTerm)', ...
-    'first argument must be an SBML Unit structure'));
-elseif (~isIntegralNumber(sboTerm))
-    error(sprintf('%s\n%s', ...
-      'Unit_setSBOTerm(SBMLUnit, sboTerm)', ...
-      'second argument must be an integer representing the sboTerm'));
-elseif (sbmlLevel ~= 2 || sbmlVersion ~= 3)
-    error(sprintf('%s\n%s', ...
-      'Unit_setSBOTerm(SBMLUnit, sboTerm)',  ...
-      'sboTerm field only in level 2 version 3 model'));    
+if isfield(SBMLUnit, 'sboTerm')
+	if ~isIntegralNumber(sboTerm)
+		error('sboTerm must be an integer') ;
+	else
+		SBMLUnit.sboTerm = sboTerm;
+	end;
+else
+	error('sboTerm not an attribute on SBML L%dV%d Unit', level, version);
 end;
 
-SBMLUnit.sboTerm = sboTerm;

@@ -1,12 +1,10 @@
 function math = Trigger_getMath(SBMLTrigger)
 %
-%   Trigger_getMath 
-%             takes an SBMLTrigger structure 
+% Trigger_getMath
+%    takes an SBML Trigger structure
 %
-%             and returns 
-%               the math of the Trigger as a string
-%
-%       math = Trigger_getMath(SBMLTrigger)
+%    returns
+%      the value of the math attribute
 
 %  Filename    :   Trigger_getMath.m
 %  Description :
@@ -38,24 +36,13 @@ function math = Trigger_getMath(SBMLTrigger)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLTrigger))
-    error(sprintf('%s\n%s', ...
-      'Trigger_getMath(SBMLTrigger)', ...
-      'argument must be an SBML Trigger structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLTrigger);
+[level, version] = GetLevelVersion(SBMLTrigger);
 
-if (~isSBML_Trigger(SBMLTrigger, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', ...
-      'Trigger_getMath(SBMLTrigger)', ...
-      'argument must be an SBML Trigger structure'));
-elseif (sbmlLevel ~= 2 || sbmlVersion ~= 3)
-    error(sprintf('%s\n%s', ...
-      'Trigger_getMath(SBMLTrigger)', ...
-      'math field only in level 2 version 3 model'));    
+if isfield(SBMLTrigger, 'math')
+	math = SBMLTrigger.math;
+else
+	error('math not an attribute on SBML L%dV%d Trigger', level, version);
 end;
 
-math = SBMLTrigger.math;
