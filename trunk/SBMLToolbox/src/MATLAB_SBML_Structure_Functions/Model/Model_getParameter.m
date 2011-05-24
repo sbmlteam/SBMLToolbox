@@ -1,13 +1,11 @@
-function parameter = Model_getParameter(SBMLModel, number)
+function parameter = Model_getParameter(SBMLModel, index)
 %
-%   Model_getParameter 
-%             takes  1) an SBMLModel structure 
-%             and    2) a number n
+% Model_getParameter
+%    takes an SBML Model structure
+%    and an index
 %
-%             and returns 
-%               the nth parameter structure defined within the model
-%
-%       parameter = Model_getParameter(SBMLModel, number)
+%    returns
+%      the value of the parameter element at the indexed position
 
 %  Filename    :   Model_getParameter.m
 %  Description :
@@ -39,16 +37,17 @@ function parameter = Model_getParameter(SBMLModel, number)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_getParameter(SBMLModel, number)', 'first argument must be an SBML model structure'));
-elseif ((number < 1) || (~isIntegralNumber(number)))
-    error(sprintf('%s\n%s', 'Model_getParameter(SBMLModel, number)', 'second argument must be a positive integer'));
-end;
+[level, version] = GetLevelVersion(SBMLModel);
 
-if (number > length(SBMLModel.parameter))
-    parameter = [];
+if isfield(SBMLModel, 'parameter')
+	if index <= length(SBMLModel.parameter)
+		parameter = SBMLModel.parameter;
+	else
+		error('index is out of range');
+	end;
 else
-    parameter = SBMLModel.parameter(number);
+	error('parameter not an element on SBML L%dV%d Model', level, version);
 end;
+

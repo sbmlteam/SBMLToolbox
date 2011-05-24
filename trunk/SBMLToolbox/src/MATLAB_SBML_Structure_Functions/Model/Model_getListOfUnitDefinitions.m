@@ -1,12 +1,10 @@
-function unitDefinitions = Model_getListOfUnitDefinitions(SBMLModel)
+function unitDefinition = Model_getListOfUnitDefinitions(SBMLModel)
 %
-%   Model_getListOfUnitDefinitions 
-%             takes an SBMLModel structure 
+% Model_getListOfUnitDefinitions
+%    takes an SBML Model structure
 %
-%             and returns 
-%               an array of SBML unit definition structures defined within the model
-%
-%       unitDefinitions = Model_getListOfUnitDefinitions(SBMLModel)
+%    returns
+%      the array of structures of the unitDefinition elements
 
 %  Filename    :   Model_getListOfUnitDefinitions.m
 %  Description :
@@ -38,10 +36,13 @@ function unitDefinitions = Model_getListOfUnitDefinitions(SBMLModel)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_getListOfUnitDefinitions(SBMLModel)', 'argument must be an SBML model structure'));
+[level, version] = GetLevelVersion(SBMLModel);
+
+if isfield(SBMLModel, 'unitDefinition')
+	unitDefinition = SBMLModel.unitDefinition;
+else
+	error('unitDefinition not an element on SBML L%dV%d Model', level, version);
 end;
 
-unitDefinitions = SBMLModel.unitDefinition;

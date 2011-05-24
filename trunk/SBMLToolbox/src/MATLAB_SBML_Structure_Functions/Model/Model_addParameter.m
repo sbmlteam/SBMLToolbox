@@ -1,13 +1,11 @@
 function SBMLModel = Model_addParameter(SBMLModel, SBMLParameter)
 %
-%   Model_addParameter 
-%             takes  1) an SBMLModel structure 
-%             and    2) an SBMLParameter structure
+% Model_addParameter(SBMLModel, SBMLParameter)
+%    takes an SBML Model structure
+%    and an SBML Parameter structure
 %
-%             and returns 
-%               the model with the parameter added
-%
-%       SBMLModel = Model_addParameter(SBMLModel, SBMLParameter)
+%    returns
+%      the Model with the Parameter element added
 
 %  Filename    :   Model_addParameter.m
 %  Description :
@@ -39,25 +37,25 @@ function SBMLModel = Model_addParameter(SBMLModel, SBMLParameter)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% get level and version
-sbmlLevel = SBMLModel.SBML_level;
-sbmlVersion = SBMLModel.SBML_version;
+[level, version] = GetLevelVersion(SBMLModel);
+[parameter_level, parameter_version] = GetLevelVersion(SBMLParameter);
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', ...
-    'Model_addParameter(SBMLModel, SBMLParameter)', ...
-    'first argument must be an SBML model structure'));
-elseif (~isSBML_Parameter(SBMLParameter, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s\n%s%u%s%u\n', ...
-    'Model_addParameter(SBMLModel, SBMLParameter)', ...
-    'second argument must be an SBML Parameter structure', ...
-    'of the same SBML level and version, namely level ', sbmlLevel, ...
-    ' version ', sbmlVersion));
+if level ~= parameter_level
+	error('mismatch in levels');
+elseif version ~= parameter_version
+	error('mismatch in versions');
 end;
 
-numberParameters = length(SBMLModel.parameter);
-
-SBMLModel.parameter(numberParameters+1) = SBMLParameter;
+if isfield(SBMLModel, 'parameter')
+	index = length(SBMLModel.parameter);
+	if index == 0
+		SBMLModel.parameter = SBMLParameter;
+	else
+		SBMLModel.parameter(index+1) = SBMLParameter;
+	end;
+else
+	error('parameter not an element on SBML L%dV%d Model', level, version);
+end;
 

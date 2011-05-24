@@ -1,13 +1,11 @@
-function functionDefinition = Model_getFunctionDefinition(SBMLModel, number)
+function functionDefinition = Model_getFunctionDefinition(SBMLModel, index)
 %
-%   Model_getFunctionDefinition 
-%             takes  1) an SBMLModel structure 
-%             and    2) a number n
+% Model_getFunctionDefinition
+%    takes an SBML Model structure
+%    and an index
 %
-%             and returns 
-%               the nth function definition structure defined within the model
-%
-%       functionDefinition = Model_getFunctionDefinition(SBMLModel, number)
+%    returns
+%      the value of the functionDefinition element at the indexed position
 
 %  Filename    :   Model_getFunctionDefinition.m
 %  Description :
@@ -39,18 +37,17 @@ function functionDefinition = Model_getFunctionDefinition(SBMLModel, number)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_getFunctionDefinition(SBMLModel, number)', 'first argument must be an SBML model structure'));
-elseif (SBMLModel.SBML_level < 2)
-    error(sprintf('%s\n%s', 'Model_getFunctionDefinition(SBMLModel, number)', 'no function definitions in a level 1 model'));   
-elseif ((number < 1) || (~isIntegralNumber(number)))
-    error(sprintf('%s\n%s', 'Model_getFunctionDefinition(SBMLModel, number)', 'second argument must be a positive integer'));
-end;
+[level, version] = GetLevelVersion(SBMLModel);
 
-if (number > length(SBMLModel.functionDefinition))
-    functionDefinition = [];
+if isfield(SBMLModel, 'functionDefinition')
+	if index <= length(SBMLModel.functionDefinition)
+		functionDefinition = SBMLModel.functionDefinition;
+	else
+		error('index is out of range');
+	end;
 else
-    functionDefinition = SBMLModel.functionDefinition(number);
+	error('functionDefinition not an element on SBML L%dV%d Model', level, version);
 end;
+

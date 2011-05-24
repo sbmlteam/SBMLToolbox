@@ -1,12 +1,10 @@
-function rules = Model_getListOfRules(SBMLModel)
+function rule = Model_getListOfRules(SBMLModel)
 %
-%   Model_getListOfRules 
-%             takes an SBMLModel structure 
+% Model_getListOfRules
+%    takes an SBML Model structure
 %
-%             and returns 
-%               an array of SBML rule structures defined within the model
-%
-%       rules = Model_getListOfRules(SBMLModel)
+%    returns
+%      the array of structures of the rule elements
 
 %  Filename    :   Model_getListOfRules.m
 %  Description :
@@ -38,10 +36,13 @@ function rules = Model_getListOfRules(SBMLModel)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_getListOfRules(SBMLModel)', 'argument must be an SBML model structure'));
+[level, version] = GetLevelVersion(SBMLModel);
+
+if isfield(SBMLModel, 'rule')
+	rule = SBMLModel.rule;
+else
+	error('rule not an element on SBML L%dV%d Model', level, version);
 end;
 
-rules = SBMLModel.rule;

@@ -1,13 +1,11 @@
 function SBMLModel = Model_addCompartmentType(SBMLModel, SBMLCompartmentType)
 %
-%   Model_addCompartmentType 
-%             takes  1) an SBMLModel structure 
-%             and    2) an SBMLCompartmentType structure
+% Model_addCompartmentType(SBMLModel, SBMLCompartmentType)
+%    takes an SBML Model structure
+%    and an SBML CompartmentType structure
 %
-%             and returns 
-%               the model with the compartment added
-%
-%       SBMLModel = Model_addCompartmentType(SBMLModel, SBMLCompartmentType)
+%    returns
+%      the Model with the CompartmentType element added
 
 %  Filename    :   Model_addCompartmentType.m
 %  Description :
@@ -39,25 +37,25 @@ function SBMLModel = Model_addCompartmentType(SBMLModel, SBMLCompartmentType)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% get level and version
-sbmlLevel = SBMLModel.SBML_level;
-sbmlVersion = SBMLModel.SBML_version;
+[level, version] = GetLevelVersion(SBMLModel);
+[compartmentType_level, compartmentType_version] = GetLevelVersion(SBMLCompartmentType);
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', ...
-    'Model_addCompartmentType(SBMLModel, SBMLCompartmentType)', ...
-    'first argument must be an SBML model structure'));
-elseif (~isSBML_CompartmentType(SBMLCompartmentType, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s\n%s%u%s%u\n', ...
-    'Model_addCompartmentType(SBMLModel, SBMLCompartmentType)', ...
-    'second argument must be an SBML compartmentType structure', ...
-    'of the same SBML level and version, namely level ', sbmlLevel, ...
-    ' version ', sbmlVersion));
+if level ~= compartmentType_level
+	error('mismatch in levels');
+elseif version ~= compartmentType_version
+	error('mismatch in versions');
 end;
 
-numberCompartmentTypes = length(SBMLModel.compartmentType);
-
-SBMLModel.compartmentType(numberCompartmentTypes+1) = SBMLCompartmentType;
+if isfield(SBMLModel, 'compartmentType')
+	index = length(SBMLModel.compartmentType);
+	if index == 0
+		SBMLModel.compartmentType = SBMLCompartmentType;
+	else
+		SBMLModel.compartmentType(index+1) = SBMLCompartmentType;
+	end;
+else
+	error('compartmentType not an element on SBML L%dV%d Model', level, version);
+end;
 

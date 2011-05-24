@@ -1,13 +1,11 @@
 function SBMLModel = Model_addInitialAssignment(SBMLModel, SBMLInitialAssignment)
 %
-%   Model_addInitialAssignment 
-%             takes  1) an SBMLModel structure 
-%             and    2) an SBMLInitialAssignment structure
+% Model_addInitialAssignment(SBMLModel, SBMLInitialAssignment)
+%    takes an SBML Model structure
+%    and an SBML InitialAssignment structure
 %
-%             and returns 
-%               the model with the species added
-%
-%       SBMLModel = Model_addInitialAssignment(SBMLModel, SBMLInitialAssignment)
+%    returns
+%      the Model with the InitialAssignment element added
 
 %  Filename    :   Model_addInitialAssignment.m
 %  Description :
@@ -39,25 +37,25 @@ function SBMLModel = Model_addInitialAssignment(SBMLModel, SBMLInitialAssignment
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% get level and version
-sbmlLevel = SBMLModel.SBML_level;
-sbmlVersion = SBMLModel.SBML_version;
+[level, version] = GetLevelVersion(SBMLModel);
+[initialAssignment_level, initialAssignment_version] = GetLevelVersion(SBMLInitialAssignment);
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', ...
-    'Model_addInitialAssignment(SBMLModel, SBMLInitialAssignment)', ...
-    'first argument must be an SBML model structure'));
-elseif (~isSBML_InitialAssignment(SBMLInitialAssignment, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s\n%s%u%s%u\n', ...
-    'Model_addInitialAssignment(SBMLModel, SBMLInitialAssignment)', ...
-    'second argument must be an SBML initialAssignment structure', ...
-    'of the same SBML level and version, namely level ', sbmlLevel, ...
-    ' version ', sbmlVersion));
+if level ~= initialAssignment_level
+	error('mismatch in levels');
+elseif version ~= initialAssignment_version
+	error('mismatch in versions');
 end;
 
-numberInitialAssignments = length(SBMLModel.initialAssignment);
-
-SBMLModel.initialAssignment(numberInitialAssignments+1) = SBMLInitialAssignment;
+if isfield(SBMLModel, 'initialAssignment')
+	index = length(SBMLModel.initialAssignment);
+	if index == 0
+		SBMLModel.initialAssignment = SBMLInitialAssignment;
+	else
+		SBMLModel.initialAssignment(index+1) = SBMLInitialAssignment;
+	end;
+else
+	error('initialAssignment not an element on SBML L%dV%d Model', level, version);
+end;
 

@@ -1,13 +1,11 @@
 function value = Model_isSetName(SBMLModel)
 %
-%   Model_isSetName 
-%             takes an SBMLModel structure 
+% Model_isSetName
+%    takes an SBML Model structure
 %
-%             and returns 
-%               1 if the name has been set 
-%               0 otherwise
-%
-%       value = Model_isSetName(SBMLModel)
+%    returns
+%      1 if the value for the name attribute is set
+%      0 otherwise
 
 %  Filename    :   Model_isSetName.m
 %  Description :
@@ -39,10 +37,13 @@ function value = Model_isSetName(SBMLModel)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_isSetName(SBMLModel)', 'argument must be an SBML model structure'));
+[level, version] = GetLevelVersion(SBMLModel);
+
+if isfield(SBMLModel, 'name')
+	value = ~isempty(SBMLModel.name);
+else
+	error('name not an attribute on SBML L%dV%d Model', level, version);
 end;
 
-value = ~isempty(SBMLModel.name);

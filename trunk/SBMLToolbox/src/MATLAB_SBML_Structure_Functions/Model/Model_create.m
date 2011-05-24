@@ -77,10 +77,10 @@ if (num > 0)
 	values = getModelDefaultValues(level, version);
 	Model = cell2struct(values, fieldnames, 2);
 
-	%add level and version
-
-	Model.level = level;
-	Model.version = version;
+% 	%add level and version
+% 
+% 	Model.level = level;
+% 	Model.version = version;
 
 %check correct structure
 

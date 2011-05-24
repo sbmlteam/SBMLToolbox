@@ -1,13 +1,11 @@
-function reaction = Model_getReaction(SBMLModel, number)
+function reaction = Model_getReaction(SBMLModel, index)
 %
-%   Model_getReaction 
-%             takes  1) an SBMLModel structure 
-%             and    2) a number n
+% Model_getReaction
+%    takes an SBML Model structure
+%    and an index
 %
-%             and returns 
-%               the nth reaction structure defined within the model
-%
-%       reaction = Model_getReaction(SBMLModel, number)
+%    returns
+%      the value of the reaction element at the indexed position
 
 %  Filename    :   Model_getReaction.m
 %  Description :
@@ -39,16 +37,17 @@ function reaction = Model_getReaction(SBMLModel, number)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_getReaction(SBMLModel, number)', 'first argument must be an SBML model structure'));
-elseif ((number < 1) || (~isIntegralNumber(number)))
-    error(sprintf('%s\n%s', 'Model_getReaction(SBMLModel, number)', 'second argument must be a positive integer'));
-end;
+[level, version] = GetLevelVersion(SBMLModel);
 
-if (number > length(SBMLModel.reaction))
-    reaction = [];
+if isfield(SBMLModel, 'reaction')
+	if index <= length(SBMLModel.reaction)
+		reaction = SBMLModel.reaction;
+	else
+		error('index is out of range');
+	end;
 else
-    reaction = SBMLModel.reaction(number);
+	error('reaction not an element on SBML L%dV%d Model', level, version);
 end;
+

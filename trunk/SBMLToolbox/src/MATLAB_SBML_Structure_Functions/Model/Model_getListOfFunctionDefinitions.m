@@ -1,12 +1,10 @@
-function functionDefinitions = Model_getListOfFunctionDefinitions(SBMLModel)
+function functionDefinition = Model_getListOfFunctionDefinitions(SBMLModel)
 %
-%   Model_getListOfFunctionDefinitions 
-%             takes an SBMLModel structure 
+% Model_getListOfFunctionDefinitions
+%    takes an SBML Model structure
 %
-%             and returns 
-%               an array of SBML function definition structures defined within the model
-%
-%       functionDefinitions = Model_getListOfFunctionDefinitions(SBMLModel)
+%    returns
+%      the array of structures of the functionDefinition elements
 
 %  Filename    :   Model_getListOfFunctionDefinitions.m
 %  Description :
@@ -38,12 +36,13 @@ function functionDefinitions = Model_getListOfFunctionDefinitions(SBMLModel)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_getListOfFunctionDefinitions(SBMLModel)', 'argument must be an SBML model structure'));
-elseif (SBMLModel.SBML_level ~= 2)
-    error(sprintf('%s\n%s', 'Model_getListOfFunctionDefinitions(SBMLModel)', 'no function definitions in a level 1 model'));    
+[level, version] = GetLevelVersion(SBMLModel);
+
+if isfield(SBMLModel, 'functionDefinition')
+	functionDefinition = SBMLModel.functionDefinition;
+else
+	error('functionDefinition not an element on SBML L%dV%d Model', level, version);
 end;
 
-functionDefinitions = SBMLModel.functionDefinition;

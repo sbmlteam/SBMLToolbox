@@ -1,13 +1,11 @@
-function unitDefinition = Model_getUnitDefinition(SBMLModel, number)
+function unitDefinition = Model_getUnitDefinition(SBMLModel, index)
 %
-%   Model_getUnitDefinition 
-%             takes  1) an SBMLModel structure 
-%             and    2) a number n
+% Model_getUnitDefinition
+%    takes an SBML Model structure
+%    and an index
 %
-%             and returns 
-%               the nth unit definition structure defined within the model
-%
-%       unitDefinition = Model_getUnitDefinition(SBMLModel, number)
+%    returns
+%      the value of the unitDefinition element at the indexed position
 
 %  Filename    :   Model_getUnitDefinition.m
 %  Description :
@@ -39,16 +37,17 @@ function unitDefinition = Model_getUnitDefinition(SBMLModel, number)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_getUnitDefinition(SBMLModel, number)', 'first argument must be an SBML model structure'));
-elseif ((number < 1) || (~isIntegralNumber(number)))
-    error(sprintf('%s\n%s', 'Model_getUnitDefinition(SBMLModel, number)', 'second argument must be a positive integer'));
-end;
+[level, version] = GetLevelVersion(SBMLModel);
 
-if (number > length(SBMLModel.unitDefinition))
-    unitDefinition = [];
+if isfield(SBMLModel, 'unitDefinition')
+	if index <= length(SBMLModel.unitDefinition)
+		unitDefinition = SBMLModel.unitDefinition;
+	else
+		error('index is out of range');
+	end;
 else
-    unitDefinition = SBMLModel.unitDefinition(number);
+	error('unitDefinition not an element on SBML L%dV%d Model', level, version);
 end;
+

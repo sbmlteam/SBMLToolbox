@@ -1,13 +1,11 @@
-function compartment = Model_getCompartment(SBMLModel, number)
+function compartment = Model_getCompartment(SBMLModel, index)
 %
-%   Model_getCompartment 
-%             takes  1) an SBMLModel structure 
-%             and    2) a number n
+% Model_getCompartment
+%    takes an SBML Model structure
+%    and an index
 %
-%             and returns 
-%               the nth compartment structure defined within the model
-%
-%       compartment = Model_getCompartment(SBMLModel, number)
+%    returns
+%      the value of the compartment element at the indexed position
 
 %  Filename    :   Model_getCompartment.m
 %  Description :
@@ -39,16 +37,17 @@ function compartment = Model_getCompartment(SBMLModel, number)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_getCompartment(SBMLModel, number)', 'first argument must be an SBML model structure'));
-elseif ((number < 1) || (~isIntegralNumber(number)))
-    error(sprintf('%s\n%s', 'Model_getCompartment(SBMLModel, number)', 'second argument must be a positive integer'));
-end;
+[level, version] = GetLevelVersion(SBMLModel);
 
-if (number > length(SBMLModel.compartment))
-    compartment = [];
+if isfield(SBMLModel, 'compartment')
+	if index <= length(SBMLModel.compartment)
+		compartment = SBMLModel.compartment;
+	else
+		error('index is out of range');
+	end;
 else
-    compartment = SBMLModel.compartment(number);
+	error('compartment not an element on SBML L%dV%d Model', level, version);
 end;
+

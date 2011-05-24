@@ -1,12 +1,10 @@
-function initialAssignments = Model_getListOfInitialAssignments(SBMLModel)
+function initialAssignment = Model_getListOfInitialAssignments(SBMLModel)
 %
-%   Model_getListOfInitialAssignments 
-%             takes an SBMLModel structure 
+% Model_getListOfInitialAssignments
+%    takes an SBML Model structure
 %
-%             and returns 
-%               an array of SBML initialAssignment structures defined within the model
-%
-%       initialAssignments = Model_getListOfInitialAssignments(SBMLModel)
+%    returns
+%      the array of structures of the initialAssignment elements
 
 %  Filename    :   Model_getListOfInitialAssignments.m
 %  Description :
@@ -38,10 +36,13 @@ function initialAssignments = Model_getListOfInitialAssignments(SBMLModel)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_getListOfInitialAssignments(SBMLModel)', 'argument must be an SBML model structure'));
+[level, version] = GetLevelVersion(SBMLModel);
+
+if isfield(SBMLModel, 'initialAssignment')
+	initialAssignment = SBMLModel.initialAssignment;
+else
+	error('initialAssignment not an element on SBML L%dV%d Model', level, version);
 end;
 
-initialAssignments = SBMLModel.initialAssignment;

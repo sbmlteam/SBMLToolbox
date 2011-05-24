@@ -1,13 +1,11 @@
 function SBMLModel = Model_addSpecies(SBMLModel, SBMLSpecies)
 %
-%   Model_addSpecies 
-%             takes  1) an SBMLModel structure 
-%             and    2) an SBMLSpecies structure
+% Model_addSpecies(SBMLModel, SBMLSpecies)
+%    takes an SBML Model structure
+%    and an SBML Species structure
 %
-%             and returns 
-%               the model with the species added
-%
-%       SBMLModel = Model_addSpecies(SBMLModel, SBMLSpecies)
+%    returns
+%      the Model with the Species element added
 
 %  Filename    :   Model_addSpecies.m
 %  Description :
@@ -39,25 +37,25 @@ function SBMLModel = Model_addSpecies(SBMLModel, SBMLSpecies)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% get level and version
-sbmlLevel = SBMLModel.SBML_level;
-sbmlVersion = SBMLModel.SBML_version;
+[level, version] = GetLevelVersion(SBMLModel);
+[species_level, species_version] = GetLevelVersion(SBMLSpecies);
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', ...
-    'Model_addSpecies(SBMLModel, SBMLSpecies)', ...
-    'first argument must be an SBML model structure'));
-elseif (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s\n%s%u%s%u\n', ...
-    'Model_addSpecies(SBMLModel, SBMLSpecies)', ...
-    'second argument must be an SBML Species structure', ...
-    'of the same SBML level and version, namely level ', sbmlLevel, ...
-    ' version ', sbmlVersion));
+if level ~= species_level
+	error('mismatch in levels');
+elseif version ~= species_version
+	error('mismatch in versions');
 end;
 
-numberSpeciess = length(SBMLModel.species);
-
-SBMLModel.species(numberSpeciess+1) = SBMLSpecies;
+if isfield(SBMLModel, 'species')
+	index = length(SBMLModel.species);
+	if index == 0
+		SBMLModel.species = SBMLSpecies;
+	else
+		SBMLModel.species(index+1) = SBMLSpecies;
+	end;
+else
+	error('species not an element on SBML L%dV%d Model', level, version);
+end;
 

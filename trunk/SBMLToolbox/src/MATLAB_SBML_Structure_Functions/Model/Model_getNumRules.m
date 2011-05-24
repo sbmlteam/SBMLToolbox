@@ -1,12 +1,10 @@
-function number = Model_getNumRules(SBMLModel)
+function num = Model_getNumRules(SBMLModel)
 %
-%   Model_getNumRules 
-%             takes an SBMLModel structure 
+% Model_getNumRules
+%    takes an SBML Model structure
 %
-%             and returns 
-%               the number of rule structures defined within the model
-%
-%       number = Model_getNumRules(SBMLModel)
+%    returns
+%      the number of rule elements
 
 %  Filename    :   Model_getNumRules.m
 %  Description :
@@ -38,14 +36,13 @@ function number = Model_getNumRules(SBMLModel)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_getNumRules(SBMLModel)', 'argument must be an SBML model structure'));
+[level, version] = GetLevelVersion(SBMLModel);
+
+if isfield(SBMLModel, 'rule')
+	num = length(SBMLModel.rule);
+else
+	error('rule not an element on SBML L%dV%d Model', level, version);
 end;
 
-number = 0;
-
-if (~isempty(SBMLModel.rule))
-    number = length(SBMLModel.rule);
-end;

@@ -1,12 +1,10 @@
-function number = Model_getNumCompartments(SBMLModel)
+function num = Model_getNumCompartments(SBMLModel)
 %
-%   Model_getNumCompartments 
-%             takes an SBMLModel structure 
+% Model_getNumCompartments
+%    takes an SBML Model structure
 %
-%             and returns 
-%               the number of compartment structures defined within the model
-%
-%       number = Model_getNumCompartments(SBMLModel)
+%    returns
+%      the number of compartment elements
 
 %  Filename    :   Model_getNumCompartments.m
 %  Description :
@@ -38,14 +36,13 @@ function number = Model_getNumCompartments(SBMLModel)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_getNumCompartments(SBMLModel)', 'argument must be an SBML model structure'));
+[level, version] = GetLevelVersion(SBMLModel);
+
+if isfield(SBMLModel, 'compartment')
+	num = length(SBMLModel.compartment);
+else
+	error('compartment not an element on SBML L%dV%d Model', level, version);
 end;
 
-number = 0;
-
-if (~isempty(SBMLModel.compartment))
-    number = length(SBMLModel.compartment);
-end;

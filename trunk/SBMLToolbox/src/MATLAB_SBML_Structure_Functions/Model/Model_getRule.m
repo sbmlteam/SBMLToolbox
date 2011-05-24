@@ -1,13 +1,11 @@
-function rule = Model_getRule(SBMLModel, number)
+function rule = Model_getRule(SBMLModel, index)
 %
-%   Model_getRule 
-%             takes  1) an SBMLModel structure 
-%             and    2) a number n
+% Model_getRule
+%    takes an SBML Model structure
+%    and an index
 %
-%             and returns 
-%               the nth rule structure defined within the model
-%
-%       rule = Model_getRule(SBMLModel, number)
+%    returns
+%      the value of the rule element at the indexed position
 
 %  Filename    :   Model_getRule.m
 %  Description :
@@ -39,16 +37,17 @@ function rule = Model_getRule(SBMLModel, number)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_getRule(SBMLModel, number)', 'first argument must be an SBML model structure'));
-elseif ((number < 1) || (~isIntegralNumber(number)))
-    error(sprintf('%s\n%s', 'Model_getRule(SBMLModel, number)', 'second argument must be a positive integer'));
-end;
+[level, version] = GetLevelVersion(SBMLModel);
 
-if (number > length(SBMLModel.rule))
-    rule = [];
+if isfield(SBMLModel, 'rule')
+	if index <= length(SBMLModel.rule)
+		rule = SBMLModel.rule;
+	else
+		error('index is out of range');
+	end;
 else
-    rule = SBMLModel.rule(number);
+	error('rule not an element on SBML L%dV%d Model', level, version);
 end;
+

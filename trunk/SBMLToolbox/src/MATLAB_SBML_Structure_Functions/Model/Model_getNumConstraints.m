@@ -1,12 +1,10 @@
-function number = Model_getNumConstraints(SBMLModel)
+function num = Model_getNumConstraints(SBMLModel)
 %
-%   Model_getNumConstraints 
-%             takes an SBMLModel structure 
+% Model_getNumConstraints
+%    takes an SBML Model structure
 %
-%             and returns 
-%               the number of constraint structures defined within the model
-%
-%       number = Model_getNumConstraints(SBMLModel)
+%    returns
+%      the number of constraint elements
 
 %  Filename    :   Model_getNumConstraints.m
 %  Description :
@@ -38,14 +36,13 @@ function number = Model_getNumConstraints(SBMLModel)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_getNumConstraints(SBMLModel)', 'argument must be an SBML model structure'));
+[level, version] = GetLevelVersion(SBMLModel);
+
+if isfield(SBMLModel, 'constraint')
+	num = length(SBMLModel.constraint);
+else
+	error('constraint not an element on SBML L%dV%d Model', level, version);
 end;
 
-number = 0;
-
-if (~isempty(SBMLModel.constraint))
-    number = length(SBMLModel.constraint);
-end;

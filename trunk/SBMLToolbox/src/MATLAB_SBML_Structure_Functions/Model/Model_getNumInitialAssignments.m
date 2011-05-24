@@ -1,12 +1,10 @@
-function number = Model_getNumInitialAssignments(SBMLModel)
+function num = Model_getNumInitialAssignments(SBMLModel)
 %
-%   Model_getNumInitialAssignments 
-%             takes an SBMLModel structure 
+% Model_getNumInitialAssignments
+%    takes an SBML Model structure
 %
-%             and returns 
-%               the number of initialAssignment structures defined within the model
-%
-%       number = Model_getNumInitialAssignments(SBMLModel)
+%    returns
+%      the number of initialAssignment elements
 
 %  Filename    :   Model_getNumInitialAssignments.m
 %  Description :
@@ -38,14 +36,13 @@ function number = Model_getNumInitialAssignments(SBMLModel)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isSBML_Model(SBMLModel))
-    error(sprintf('%s\n%s', 'Model_getNumInitialAssignments(SBMLModel)', 'argument must be an SBML model structure'));
+[level, version] = GetLevelVersion(SBMLModel);
+
+if isfield(SBMLModel, 'initialAssignment')
+	num = length(SBMLModel.initialAssignment);
+else
+	error('initialAssignment not an element on SBML L%dV%d Model', level, version);
 end;
 
-number = 0;
-
-if (~isempty(SBMLModel.initialAssignment))
-    number = length(SBMLModel.initialAssignment);
-end;
