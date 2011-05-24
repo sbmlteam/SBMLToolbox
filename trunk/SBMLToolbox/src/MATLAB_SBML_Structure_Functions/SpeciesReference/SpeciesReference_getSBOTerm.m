@@ -1,12 +1,10 @@
 function sboTerm = SpeciesReference_getSBOTerm(SBMLSpeciesReference)
 %
-%   SpeciesReference_getSBOTerm 
-%             takes an SBMLSpeciesReference structure 
+% SpeciesReference_getSBOTerm
+%    takes an SBML SpeciesReference structure
 %
-%             and returns 
-%               the sboTerm of the speciesReference as an integer
-%
-%       sboTerm = SpeciesReference_getSBOTerm(SBMLSpeciesReference)
+%    returns
+%      the value of the sboTerm attribute
 
 %  Filename    :   SpeciesReference_getSBOTerm.m
 %  Description :
@@ -38,23 +36,13 @@ function sboTerm = SpeciesReference_getSBOTerm(SBMLSpeciesReference)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpeciesReference))
-    error(sprintf('%s', ...
-      'argument must be an SBML SpeciesReference structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpeciesReference);
+[level, version] = GetLevelVersion(SBMLSpeciesReference);
 
-if (~isSBML_SpeciesReference(SBMLSpeciesReference, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', ...
-      'SpeciesReference_getSBOTerm(SBMLSpeciesReference)', ...
-      'argument must be an SBML SpeciesReference structure'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'SpeciesReference_getSBOTerm(SBMLSpeciesReference)', ...
-      'sboTerm field only in level 2 version 2/3 model'));    
+if isfield(SBMLSpeciesReference, 'sboTerm')
+	sboTerm = SBMLSpeciesReference.sboTerm;
+else
+	error('sboTerm not an attribute on SBML L%dV%d SpeciesReference', level, version);
 end;
 
-sboTerm = SBMLSpeciesReference.sboTerm;

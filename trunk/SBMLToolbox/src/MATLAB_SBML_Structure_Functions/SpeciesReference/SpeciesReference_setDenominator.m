@@ -1,13 +1,11 @@
 function SBMLSpeciesReference = SpeciesReference_setDenominator(SBMLSpeciesReference, denominator)
 %
-%   SpeciesReference_setDenominator 
-%             takes  1) an SBMLSpeciesReference structure 
-%             and    2) an integer representing the denominator to be set
+% SpeciesReference_setDenominator
+%    takes an SBML SpeciesReference structure
+%    and the denominator to be set
 %
-%             and returns 
-%               the speciesreference with the denominator set
-%
-%       SBMLSpeciesReference = SpeciesReference_setDenominator(SBMLSpeciesReference, denominator)
+%    returns
+%      the SpeciesReference with the new value for the denominator attribute
 
 %  Filename    :   SpeciesReference_setDenominator.m
 %  Description :
@@ -39,19 +37,17 @@ function SBMLSpeciesReference = SpeciesReference_setDenominator(SBMLSpeciesRefer
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpeciesReference))
-    error(sprintf('%s', ...
-      'argument must be an SBML SpeciesReference structure'));
+[level, version] = GetLevelVersion(SBMLSpeciesReference);
+
+if isfield(SBMLSpeciesReference, 'denominator')
+	if ~isnumeric(denominator)
+		error('denominator must be numeric') ;
+	else
+		SBMLSpeciesReference.denominator = denominator;
+	end;
+else
+	error('denominator not an attribute on SBML L%dV%d SpeciesReference', level, version);
 end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpeciesReference);
 
-if (~isSBML_SpeciesReference(SBMLSpeciesReference, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'SpeciesReference_setDenominator(SBMLSpeciesReference, denominator)', 'first argument must be an SBML model structure'));
-elseif (~isIntegralNumber(denominator))
-    error(sprintf('SpeciesReference_setDenominator(SBMLSpeciesReference, denominator)\n%s', 'second argument must be an integer representing the denominator of the speciesreference'));
-end;
-
-SBMLSpeciesReference.denominator = int32(denominator);

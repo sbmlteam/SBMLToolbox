@@ -1,12 +1,10 @@
 function name = SpeciesReference_getName(SBMLSpeciesReference)
 %
-%   SpeciesReference_getName 
-%             takes an SBMLSpeciesReference structure 
+% SpeciesReference_getName
+%    takes an SBML SpeciesReference structure
 %
-%             and returns 
-%               the name of the speciesReference as an integer
-%
-%       name = SpeciesReference_getName(SBMLSpeciesReference)
+%    returns
+%      the value of the name attribute
 
 %  Filename    :   SpeciesReference_getName.m
 %  Description :
@@ -38,23 +36,13 @@ function name = SpeciesReference_getName(SBMLSpeciesReference)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpeciesReference))
-    error(sprintf('%s', ...
-      'argument must be an SBML SpeciesReference structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpeciesReference);
+[level, version] = GetLevelVersion(SBMLSpeciesReference);
 
-if (~isSBML_SpeciesReference(SBMLSpeciesReference, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', ...
-      'SpeciesReference_getName(SBMLSpeciesReference)', ...
-      'argument must be an SBML SpeciesReference structure'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'SpeciesReference_getName(SBMLSpeciesReference)', ...
-      'name field only in level 2 version 2/3 model'));    
+if isfield(SBMLSpeciesReference, 'name')
+	name = SBMLSpeciesReference.name;
+else
+	error('name not an attribute on SBML L%dV%d SpeciesReference', level, version);
 end;
 
-name = SBMLSpeciesReference.name;

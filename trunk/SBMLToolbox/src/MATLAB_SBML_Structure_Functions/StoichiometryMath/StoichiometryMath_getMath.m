@@ -1,12 +1,10 @@
 function math = StoichiometryMath_getMath(SBMLStoichiometryMath)
 %
-%   StoichiometryMath_getMath 
-%             takes an SBMLStoichiometryMath structure 
+% StoichiometryMath_getMath
+%    takes an SBML StoichiometryMath structure
 %
-%             and returns 
-%               the math of the StoichiometryMath as a string
-%
-%       math = StoichiometryMath_getMath(SBMLStoichiometryMath)
+%    returns
+%      the value of the math attribute
 
 %  Filename    :   StoichiometryMath_getMath.m
 %  Description :
@@ -38,24 +36,13 @@ function math = StoichiometryMath_getMath(SBMLStoichiometryMath)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLStoichiometryMath))
-    error(sprintf('%s\n%s', ...
-      'StoichiometryMath_getMath(SBMLStoichiometryMath)', ...
-      'argument must be an SBML StoichiometryMath structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLStoichiometryMath);
+[level, version] = GetLevelVersion(SBMLStoichiometryMath);
 
-if (~isSBML_StoichiometryMath(SBMLStoichiometryMath, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', ...
-      'StoichiometryMath_getMath(SBMLStoichiometryMath)', ...
-      'argument must be an SBML StoichiometryMath structure'));
-elseif (sbmlLevel ~= 2 || sbmlVersion ~= 3)
-    error(sprintf('%s\n%s', ...
-      'StoichiometryMath_getMath(SBMLStoichiometryMath)', ...
-      'math field only in level 2 version 3 model'));    
+if isfield(SBMLStoichiometryMath, 'math')
+	math = SBMLStoichiometryMath.math;
+else
+	error('math not an attribute on SBML L%dV%d StoichiometryMath', level, version);
 end;
 
-math = SBMLStoichiometryMath.math;

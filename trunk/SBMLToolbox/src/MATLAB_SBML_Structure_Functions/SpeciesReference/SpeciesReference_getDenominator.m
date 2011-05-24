@@ -1,12 +1,10 @@
 function denominator = SpeciesReference_getDenominator(SBMLSpeciesReference)
 %
-%   SpeciesReference_getDenominator 
-%             takes an SBMLSpeciesReference structure 
+% SpeciesReference_getDenominator
+%    takes an SBML SpeciesReference structure
 %
-%             and returns 
-%               the denominator of the speciesreference as an integer
-%
-%       denominator = SpeciesReference_getDenominator(SBMLSpeciesReference)
+%    returns
+%      the value of the denominator attribute
 
 %  Filename    :   SpeciesReference_getDenominator.m
 %  Description :
@@ -38,17 +36,13 @@ function denominator = SpeciesReference_getDenominator(SBMLSpeciesReference)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpeciesReference))
-    error(sprintf('%s', ...
-      'argument must be an SBML SpeciesReference structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpeciesReference);
+[level, version] = GetLevelVersion(SBMLSpeciesReference);
 
-if (~isSBML_SpeciesReference(SBMLSpeciesReference, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'SpeciesReference_getDenominator(SBMLSpeciesReference)', 'argument must be an SBML speciesreference structure'));
+if isfield(SBMLSpeciesReference, 'denominator')
+	denominator = SBMLSpeciesReference.denominator;
+else
+	error('denominator not an attribute on SBML L%dV%d SpeciesReference', level, version);
 end;
 
-denominator = SBMLSpeciesReference.denominator;

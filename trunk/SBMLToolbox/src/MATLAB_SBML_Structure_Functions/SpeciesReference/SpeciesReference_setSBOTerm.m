@@ -1,13 +1,11 @@
 function SBMLSpeciesReference = SpeciesReference_setSBOTerm(SBMLSpeciesReference, sboTerm)
 %
-%   SpeciesReference_setSBOTerm 
-%             takes  1) an SBMLSpeciesReference structure 
-%             and    2) an integer representing the sboTerm to be set
+% SpeciesReference_setSBOTerm
+%    takes an SBML SpeciesReference structure
+%    and the sboTerm to be set
 %
-%             and returns 
-%               the speciesReference with the sboTerm set
-%
-%       SBMLSpeciesReference = SpeciesReference_setSBOTerm(SBMLSpeciesReference, sboTerm)
+%    returns
+%      the SpeciesReference with the new value for the sboTerm attribute
 
 %  Filename    :   SpeciesReference_setSBOTerm.m
 %  Description :
@@ -39,27 +37,17 @@ function SBMLSpeciesReference = SpeciesReference_setSBOTerm(SBMLSpeciesReference
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpeciesReference))
-    error(sprintf('%s', ...
-      'argument must be an SBML SpeciesReference structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpeciesReference);
+[level, version] = GetLevelVersion(SBMLSpeciesReference);
 
-if (~isSBML_SpeciesReference(SBMLSpeciesReference, sbmlLevel, sbmlVersion))
-  error(sprintf('%s\n%s', ...
-    'SpeciesReference_setSBOTerm(SBMLSpeciesReference, sboTerm)', ...
-    'first argument must be an SBML SpeciesReference structure'));
-elseif (~isIntegralNumber(sboTerm))
-    error(sprintf('%s\n%s', ...
-      'SpeciesReference_setSBOTerm(SBMLSpeciesReference, sboTerm)', ...
-      'second argument must be an integer representing the sboTerm'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'SpeciesReference_setSBOTerm(SBMLSpeciesReference, sboTerm)',  ...
-      'sboTerm field only in level 2 version 3 model'));    
+if isfield(SBMLSpeciesReference, 'sboTerm')
+	if ~isIntegralNumber(sboTerm)
+		error('sboTerm must be an integer') ;
+	else
+		SBMLSpeciesReference.sboTerm = sboTerm;
+	end;
+else
+	error('sboTerm not an attribute on SBML L%dV%d SpeciesReference', level, version);
 end;
 
-SBMLSpeciesReference.sboTerm = sboTerm;

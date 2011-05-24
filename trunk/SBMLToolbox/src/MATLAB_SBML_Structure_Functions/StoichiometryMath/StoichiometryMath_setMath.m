@@ -1,13 +1,11 @@
 function SBMLStoichiometryMath = StoichiometryMath_setMath(SBMLStoichiometryMath, math)
 %
-%   StoichiometryMath_setMath 
-%             takes  1) an SBMLStoichiometryMath structure 
-%             and    2) an string representing the math to be set
+% StoichiometryMath_setMath
+%    takes an SBML StoichiometryMath structure
+%    and the math to be set
 %
-%             and returns 
-%               the compartment with the math set
-%
-%       SBMLStoichiometryMath = StoichiometryMath_setMath(SBMLStoichiometryMath, math)
+%    returns
+%      the StoichiometryMath with the new value for the math attribute
 
 %  Filename    :   StoichiometryMath_setMath.m
 %  Description :
@@ -39,28 +37,17 @@ function SBMLStoichiometryMath = StoichiometryMath_setMath(SBMLStoichiometryMath
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLStoichiometryMath))
-    error(sprintf('%s\n%s', ...
-      'StoichiometryMath_getMath(SBMLStoichiometryMath)', ...
-      'argument must be an SBML StoichiometryMath structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLStoichiometryMath);
+[level, version] = GetLevelVersion(SBMLStoichiometryMath);
 
-if (~isSBML_StoichiometryMath(SBMLStoichiometryMath, sbmlLevel, sbmlVersion))
-  error(sprintf('%s\n%s', ...
-    'StoichiometryMath_setMath(SBMLStoichiometryMath, math)', ...
-    'first argument must be an SBML StoichiometryMath structure'));
-elseif (~ischar(math))
-    error(sprintf('%s\n%s', ...
-      'StoichiometryMath_setMath(SBMLStoichiometryMath, math)', ...
-      'second argument must be a string representing the math'));
-elseif (sbmlLevel ~= 2 || sbmlVersion ~= 3)
-    error(sprintf('%s\n%s', ...
-      'StoichiometryMath_setMath(SBMLStoichiometryMath, math)',  ...
-      'math field only in level 2 version 3 model'));    
+if isfield(SBMLStoichiometryMath, 'math')
+	if ~ischar(math)
+		error('math must be character array') ;
+	else
+		SBMLStoichiometryMath.math = math;
+	end;
+else
+	error('math not an attribute on SBML L%dV%d StoichiometryMath', level, version);
 end;
 
-SBMLStoichiometryMath.math = math;

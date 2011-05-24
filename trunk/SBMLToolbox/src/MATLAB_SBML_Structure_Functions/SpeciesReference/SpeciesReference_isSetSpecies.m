@@ -1,13 +1,11 @@
 function value = SpeciesReference_isSetSpecies(SBMLSpeciesReference)
 %
-%   SpeciesReference_isSetSpecies 
-%             takes an SBMLSpeciesReference structure 
+% SpeciesReference_isSetSpecies
+%    takes an SBML SpeciesReference structure
 %
-%             and returns 
-%               1 if the species has been set 
-%               0 otherwise
-%
-%       value = SpeciesReference_isSetSpecies(SBMLSpeciesReference)
+%    returns
+%      1 if the value for the species attribute is set
+%      0 otherwise
 
 %  Filename    :   SpeciesReference_isSetSpecies.m
 %  Description :
@@ -39,17 +37,13 @@ function value = SpeciesReference_isSetSpecies(SBMLSpeciesReference)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpeciesReference))
-    error(sprintf('%s', ...
-      'argument must be an SBML SpeciesReference structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpeciesReference);
+[level, version] = GetLevelVersion(SBMLSpeciesReference);
 
-if (~isSBML_SpeciesReference(SBMLSpeciesReference, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'SpeciesReference_isSetSpecies(SBMLSpeciesReference)', 'argument must be an SBML speciesreference structure'));
+if isfield(SBMLSpeciesReference, 'species')
+	value = ~isempty(SBMLSpeciesReference.species);
+else
+	error('species not an attribute on SBML L%dV%d SpeciesReference', level, version);
 end;
 
-value = ~isempty(SBMLSpeciesReference.species);

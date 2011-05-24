@@ -1,13 +1,11 @@
 function value = SpeciesReference_isSetStoichiometryMath(SBMLSpeciesReference)
 %
-%   SpeciesReference_isSetStoichiometryMath 
-%             takes an SBMLSpeciesReference structure 
+% SpeciesReference_isSetStoichiometryMath
+%    takes an SBML SpeciesReference structure
 %
-%             and returns 
-%               1 if the stoichiometryMath has been set 
-%               0 otherwise
-%
-%       value = SpeciesReference_isSetStoichiometryMath(SBMLSpeciesReference)
+%    returns
+%      1 if the value for the stoichiometryMath attribute is set
+%      0 otherwise
 
 %  Filename    :   SpeciesReference_isSetStoichiometryMath.m
 %  Description :
@@ -39,19 +37,13 @@ function value = SpeciesReference_isSetStoichiometryMath(SBMLSpeciesReference)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpeciesReference))
-    error(sprintf('%s', ...
-      'argument must be an SBML SpeciesReference structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpeciesReference);
+[level, version] = GetLevelVersion(SBMLSpeciesReference);
 
-if (~isSBML_SpeciesReference(SBMLSpeciesReference, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'SpeciesReference_isSetStoichiometryMath(SBMLSpeciesReference)', 'argument must be an SBML speciesreference structure'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'SpeciesReference_isSetStoichiometryMath(SBMLSpeciesReference)', 'no stoichiometryMath field in a level 1 model'));    
+if isfield(SBMLSpeciesReference, 'stoichiometryMath')
+	value = ~isempty(SBMLSpeciesReference.stoichiometryMath);
+else
+	error('stoichiometryMath not an attribute on SBML L%dV%d SpeciesReference', level, version);
 end;
 
-value = ~isempty(SBMLSpeciesReference.stoichiometryMath);

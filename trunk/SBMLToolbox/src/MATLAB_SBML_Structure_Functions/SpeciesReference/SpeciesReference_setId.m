@@ -1,13 +1,11 @@
 function SBMLSpeciesReference = SpeciesReference_setId(SBMLSpeciesReference, id)
 %
-%   SpeciesReference_setId 
-%             takes  1) an SBMLSpeciesReference structure 
-%             and    2) an string representing the id to be set
+% SpeciesReference_setId
+%    takes an SBML SpeciesReference structure
+%    and the id to be set
 %
-%             and returns 
-%               the speciesReference with the id set
-%
-%       SBMLSpeciesReference = SpeciesReference_setId(SBMLSpeciesReference, id)
+%    returns
+%      the SpeciesReference with the new value for the id attribute
 
 %  Filename    :   SpeciesReference_setId.m
 %  Description :
@@ -39,27 +37,17 @@ function SBMLSpeciesReference = SpeciesReference_setId(SBMLSpeciesReference, id)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpeciesReference))
-    error(sprintf('%s', ...
-      'argument must be an SBML SpeciesReference structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpeciesReference);
+[level, version] = GetLevelVersion(SBMLSpeciesReference);
 
-if (~isSBML_SpeciesReference(SBMLSpeciesReference, sbmlLevel, sbmlVersion))
-  error(sprintf('%s\n%s', ...
-    'SpeciesReference_setId(SBMLSpeciesReference, id)', ...
-    'first argument must be an SBML SpeciesReference structure'));
-elseif (~ischar(id))
-    error(sprintf('%s\n%s', ...
-      'SpeciesReference_setId(SBMLSpeciesReference, id)', ...
-      'second argument must be a string representing the id'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'SpeciesReference_setId(SBMLSpeciesReference, id)',  ...
-      'id field only in level 2 version 2/3 model'));    
+if isfield(SBMLSpeciesReference, 'id')
+	if ~ischar(id)
+		error('id must be character array') ;
+	else
+		SBMLSpeciesReference.id = id;
+	end;
+else
+	error('id not an attribute on SBML L%dV%d SpeciesReference', level, version);
 end;
 
-SBMLSpeciesReference.id = id;
