@@ -1,16 +1,16 @@
-function SBMLSpecies = Species_setInitialConcentration(SBMLSpecies, initialConcentration)
+function value = Species_isSetSpeciesType(SBMLSpecies)
 %
-% Species_setInitialConcentration
+% Species_isSetSpeciesType
 %    takes an SBML Species structure
-%    and the initialConcentration to be set
 %
 %    returns
-%      the Species with the new value for the initialConcentration attribute
+%      1 if the value for the speciesType attribute is set
+%      0 otherwise
 
-%  Filename    :   Species_setInitialConcentration.m
+%  Filename    :   Species_isSetSpeciesType.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -41,14 +41,9 @@ function SBMLSpecies = Species_setInitialConcentration(SBMLSpecies, initialConce
 
 [level, version] = GetLevelVersion(SBMLSpecies);
 
-if isfield(SBMLSpecies, 'initialConcentration')
-	if ~isnumeric(initialConcentration)
-		error('initialConcentration must be numeric') ;
-	else
-		SBMLSpecies.initialConcentration = initialConcentration;
-    SBMLSpecies.isSetInitialConcentration = 1;
-	end;
+if isfield(SBMLSpecies, 'speciesType')
+	value = ~isempty(SBMLSpecies.speciesType);
 else
-	error('initialConcentration not an attribute on SBML L%dV%d Species', level, version);
+	error('speciesType not an attribute on SBML L%dV%d Species', level, version);
 end;
 

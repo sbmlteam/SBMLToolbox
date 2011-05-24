@@ -1,13 +1,11 @@
 function SBMLSpecies = Species_setName(SBMLSpecies, name)
 %
-%   Species_setName 
-%             takes  1) an SBMLSpecies structure 
-%             and    2) a string representing the name to be set
+% Species_setName
+%    takes an SBML Species structure
+%    and the name to be set
 %
-%             and returns 
-%               the species with the name set
-%
-%       SBMLSpecies = Species_setName(SBMLSpecies, 'name')
+%    returns
+%      the Species with the new value for the name attribute
 
 %  Filename    :   Species_setName.m
 %  Description :
@@ -39,19 +37,17 @@ function SBMLSpecies = Species_setName(SBMLSpecies, name)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpecies))
-    error(sprintf('%s', ...
-      'argument must be an SBML Species structure'));
+[level, version] = GetLevelVersion(SBMLSpecies);
+
+if isfield(SBMLSpecies, 'name')
+	if ~ischar(name)
+		error('name must be character array') ;
+	else
+		SBMLSpecies.name = name;
+	end;
+else
+	error('name not an attribute on SBML L%dV%d Species', level, version);
 end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Species_setName(SBMLSpecies, name)', 'first argument must be an SBML species structure'));
-elseif (~ischar(name))
-    error(sprintf('Species_setName(SBMLSpecies, name)\n%s', 'second argument must be a string representing the name of the species'));
-end;
-
-SBMLSpecies.name = name;

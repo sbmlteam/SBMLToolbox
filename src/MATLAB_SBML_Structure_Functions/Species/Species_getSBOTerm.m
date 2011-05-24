@@ -1,12 +1,10 @@
 function sboTerm = Species_getSBOTerm(SBMLSpecies)
 %
-%   Species_getSBOTerm 
-%             takes an SBMLSpecies structure 
+% Species_getSBOTerm
+%    takes an SBML Species structure
 %
-%             and returns 
-%               the sboTerm of the Species as an integer
-%
-%       sboTerm = Species_getSBOTerm(SBMLSpecies)
+%    returns
+%      the value of the sboTerm attribute
 
 %  Filename    :   Species_getSBOTerm.m
 %  Description :
@@ -38,23 +36,13 @@ function sboTerm = Species_getSBOTerm(SBMLSpecies)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpecies))
-    error(sprintf('%s', ...
-      'argument must be an SBML Species structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
+[level, version] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', ...
-      'Species_getSBOTerm(SBMLSpecies)', ...
-      'argument must be an SBML Species structure'));
-elseif (sbmlLevel ~= 2 || sbmlVersion ~= 3)
-    error(sprintf('%s\n%s', ...
-      'Species_getSBOTerm(SBMLSpecies)', ...
-      'sboTerm field only in level 2 version 3 model'));    
+if isfield(SBMLSpecies, 'sboTerm')
+	sboTerm = SBMLSpecies.sboTerm;
+else
+	error('sboTerm not an attribute on SBML L%dV%d Species', level, version);
 end;
 
-sboTerm = SBMLSpecies.sboTerm;

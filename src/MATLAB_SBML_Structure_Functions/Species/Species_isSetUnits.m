@@ -1,13 +1,11 @@
 function value = Species_isSetUnits(SBMLSpecies)
 %
-%   Species_isSetUnits 
-%             takes an SBMLSpecies structure 
+% Species_isSetUnits
+%    takes an SBML Species structure
 %
-%             and returns 
-%               1 if the units has been set 
-%               0 otherwise
-%
-%       value = Species_isSetUnits(SBMLSpecies)
+%    returns
+%      1 if the value for the units attribute is set
+%      0 otherwise
 
 %  Filename    :   Species_isSetUnits.m
 %  Description :
@@ -39,19 +37,13 @@ function value = Species_isSetUnits(SBMLSpecies)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpecies))
-    error(sprintf('%s', ...
-      'argument must be an SBML Species structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
+[level, version] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Species_isSetUnits(SBMLSpecies)', 'argument must be an SBML species structure'));
-elseif (sbmlLevel ~= 1)
-    error(sprintf('%s\n%s', 'Species_isSetUnits(SBMLSpecies)', 'no units field in a level 2 model'));    
+if isfield(SBMLSpecies, 'units')
+	value = ~isempty(SBMLSpecies.units);
+else
+	error('units not an attribute on SBML L%dV%d Species', level, version);
 end;
 
-value = ~isempty(SBMLSpecies.units);

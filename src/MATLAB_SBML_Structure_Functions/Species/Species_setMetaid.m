@@ -1,16 +1,16 @@
-function SBMLSpecies = Species_setInitialConcentration(SBMLSpecies, initialConcentration)
+function SBMLSpecies = Species_setMetaid(SBMLSpecies, metaid)
 %
-% Species_setInitialConcentration
+% Species_setMetaid
 %    takes an SBML Species structure
-%    and the initialConcentration to be set
+%    and the metaid to be set
 %
 %    returns
-%      the Species with the new value for the initialConcentration attribute
+%      the Species with the new value for the metaid attribute
 
-%  Filename    :   Species_setInitialConcentration.m
+%  Filename    :   Species_setMetaid.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -41,14 +41,13 @@ function SBMLSpecies = Species_setInitialConcentration(SBMLSpecies, initialConce
 
 [level, version] = GetLevelVersion(SBMLSpecies);
 
-if isfield(SBMLSpecies, 'initialConcentration')
-	if ~isnumeric(initialConcentration)
-		error('initialConcentration must be numeric') ;
+if isfield(SBMLSpecies, 'metaid')
+	if ~ischar(metaid)
+		error('metaid must be character array') ;
 	else
-		SBMLSpecies.initialConcentration = initialConcentration;
-    SBMLSpecies.isSetInitialConcentration = 1;
+		SBMLSpecies.metaid = metaid;
 	end;
 else
-	error('initialConcentration not an attribute on SBML L%dV%d Species', level, version);
+	error('metaid not an attribute on SBML L%dV%d Species', level, version);
 end;
 

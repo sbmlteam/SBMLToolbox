@@ -1,12 +1,10 @@
 function units = Species_getUnits(SBMLSpecies)
 %
-%   Species_getUnits 
-%             takes an SBMLSpecies structure 
+% Species_getUnits
+%    takes an SBML Species structure
 %
-%             and returns 
-%               the units of the species as a string
-%
-%       units = Species_getUnits(SBMLSpecies)
+%    returns
+%      the value of the units attribute
 
 %  Filename    :   Species_getUnits.m
 %  Description :
@@ -38,19 +36,13 @@ function units = Species_getUnits(SBMLSpecies)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpecies))
-    error(sprintf('%s', ...
-      'argument must be an SBML Species structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
+[level, version] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Species_getUnits(SBMLSpecies)', 'argument must be an SBML species structure'));
-elseif (sbmlLevel ~= 1)
-    error(sprintf('%s\n%s', 'Species_getUnits(SBMLSpecies)', 'no units field in a level 2 model'));    
+if isfield(SBMLSpecies, 'units')
+	units = SBMLSpecies.units;
+else
+	error('units not an attribute on SBML L%dV%d Species', level, version);
 end;
 
-units = SBMLSpecies.units;

@@ -1,13 +1,10 @@
 function SBMLSpecies = Species_unsetUnits(SBMLSpecies)
 %
-%   Species_unsetUnits 
-%             takes an SBMLSpecies structure 
+% Species_getUnits
+%    takes an SBML Species structure
 %
-%             and returns 
-%               the species with the units unset
-%               (i.e. units = '')
-%
-%       SBMLSpecies = Species_unsetUnits(SBMLSpecies)
+%    returns
+%      the Species with the value for the units attribute unset
 
 %  Filename    :   Species_unsetUnits.m
 %  Description :
@@ -39,19 +36,13 @@ function SBMLSpecies = Species_unsetUnits(SBMLSpecies)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpecies))
-    error(sprintf('%s', ...
-      'argument must be an SBML Species structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
+[level, version] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Species_unsetUnits(SBMLSpecies)', 'argument must be an SBML species structure'));
-elseif (sbmlLevel ~= 1)
-    error(sprintf('%s\n%s', 'Species_unsetUnits(SBMLSpecies)', 'no units field in a level 2 model'));    
+if isfield(SBMLSpecies, 'units')
+	SBMLSpecies.units = '';
+else
+	error('units not an attribute on SBML L%dV%d Species', level, version);
 end;
 
-SBMLSpecies.units = '';

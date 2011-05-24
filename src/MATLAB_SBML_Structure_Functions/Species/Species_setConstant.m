@@ -1,13 +1,11 @@
 function SBMLSpecies = Species_setConstant(SBMLSpecies, constant)
 %
-%   Species_setConstant 
-%             takes  1) an SBMLSpecies structure 
-%             and    2) an integer representing the constant to be set
+% Species_setConstant
+%    takes an SBML Species structure
+%    and the constant to be set
 %
-%             and returns 
-%               the species with the constant set
-%
-%       SBMLSpecies = Species_setConstant(SBMLSpecies, constant)
+%    returns
+%      the Species with the new value for the constant attribute
 
 %  Filename    :   Species_setConstant.m
 %  Description :
@@ -39,21 +37,17 @@ function SBMLSpecies = Species_setConstant(SBMLSpecies, constant)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpecies))
-    error(sprintf('%s', ...
-      'argument must be an SBML Species structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
+[level, version] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Species_setConstant(SBMLSpecies, constant)', 'first argument must be an SBML model structure'));
-elseif ((~isIntegralNumber(constant)) || (constant < 0) || (constant > 1))
-    error(sprintf('Species_setConstant(SBMLSpecies, constant)\n%s', 'second argument must be either true (=1) or false (=0) representing whether the species is constant'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Species_setConstant(SBMLSpecies, constant)', 'no constant field in a level 1 model'));    
+if isfield(SBMLSpecies, 'constant')
+	if (~isIntegralNumber(constant) || constant < 0 || constant > 1)
+		error('constant must be an integer of value 0/1') ;
+	else
+		SBMLSpecies.constant = constant;
+	end;
+else
+	error('constant not an attribute on SBML L%dV%d Species', level, version);
 end;
 
-SBMLSpecies.constant = int32(constant);

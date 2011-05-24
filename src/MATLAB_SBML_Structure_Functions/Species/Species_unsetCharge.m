@@ -1,13 +1,10 @@
 function SBMLSpecies = Species_unsetCharge(SBMLSpecies)
 %
-%   Species_unsetCharge 
-%             takes an SBMLSpecies structure 
+% Species_getCharge
+%    takes an SBML Species structure
 %
-%             and returns 
-%               the species with the charge unset
-%               (i.e. charge = NAN)
-%
-%       SBMLSpecies = Species_unsetCharge(SBMLSpecies)
+%    returns
+%      the Species with the value for the charge attribute unset
 
 %  Filename    :   Species_unsetCharge.m
 %  Description :
@@ -39,30 +36,14 @@ function SBMLSpecies = Species_unsetCharge(SBMLSpecies)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpecies))
-    error(sprintf('%s', ...
-      'argument must be an SBML Species structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
+[level, version] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Species_unsetCharge(SBMLSpecies)', 'argument must be an SBML species structure'));
-end;
-
-if exist('OCTAVE_VERSION')
-  warning off Octave:divide-by-zero;
+if isfield(SBMLSpecies, 'charge')
+	SBMLSpecies.charge = NaN;
+  SBMLSpecies.isSetCharge = 0;
 else
-  warning off MATLAB:divideByZero;
+	error('charge not an attribute on SBML L%dV%d Species', level, version);
 end;
 
-SBMLSpecies.charge = int32(0);
-SBMLSpecies.isSetCharge = int32(0);
-
-if exist('OCTAVE_VERSION')
-  warning off Octave:divide-by-zero;
-else
-  warning off MATLAB:divideByZero;
-end;

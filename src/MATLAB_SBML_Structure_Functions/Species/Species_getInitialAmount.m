@@ -1,12 +1,10 @@
 function initialAmount = Species_getInitialAmount(SBMLSpecies)
 %
-%   Species_getInitialAmount 
-%             takes an SBMLSpecies structure 
+% Species_getInitialAmount
+%    takes an SBML Species structure
 %
-%             and returns 
-%               the initialAmount of the species as a double
-%
-%       initialAmount = Species_getInitialAmount(SBMLSpecies)
+%    returns
+%      the value of the initialAmount attribute
 
 %  Filename    :   Species_getInitialAmount.m
 %  Description :
@@ -38,17 +36,13 @@ function initialAmount = Species_getInitialAmount(SBMLSpecies)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpecies))
-    error(sprintf('%s', ...
-      'argument must be an SBML Species structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
+[level, version] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Species_getInitialAmount(SBMLSpecies)', 'argument must be an SBML species structure'));
+if isfield(SBMLSpecies, 'initialAmount')
+	initialAmount = SBMLSpecies.initialAmount;
+else
+	error('initialAmount not an attribute on SBML L%dV%d Species', level, version);
 end;
 
-initialAmount = SBMLSpecies.initialAmount;

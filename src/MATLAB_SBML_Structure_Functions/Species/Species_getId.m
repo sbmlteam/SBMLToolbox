@@ -1,12 +1,10 @@
 function id = Species_getId(SBMLSpecies)
 %
-%   Species_getId 
-%             takes an SBMLSpecies structure 
+% Species_getId
+%    takes an SBML Species structure
 %
-%             and returns 
-%               the id of the species as a string
-%
-%       id = Species_getId(SBMLSpecies)
+%    returns
+%      the value of the id attribute
 
 %  Filename    :   Species_getId.m
 %  Description :
@@ -38,19 +36,13 @@ function id = Species_getId(SBMLSpecies)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpecies))
-    error(sprintf('%s', ...
-      'argument must be an SBML Species structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
+[level, version] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Species_getId(SBMLSpecies)', 'argument must be an SBML species structure'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Species_getId(SBMLSpecies)', 'no id field in a level 1 model'));    
+if isfield(SBMLSpecies, 'id')
+	id = SBMLSpecies.id;
+else
+	error('id not an attribute on SBML L%dV%d Species', level, version);
 end;
 
-id = SBMLSpecies.id;

@@ -1,12 +1,10 @@
 function substanceUnits = Species_getSubstanceUnits(SBMLSpecies)
 %
-%   Species_getSubstanceUnits 
-%             takes an SBMLSpecies structure 
+% Species_getSubstanceUnits
+%    takes an SBML Species structure
 %
-%             and returns 
-%               the substanceUnits of the species as a string
-%
-%       substanceUnits = Species_getSubstanceUnits(SBMLSpecies)
+%    returns
+%      the value of the substanceUnits attribute
 
 %  Filename    :   Species_getSubstanceUnits.m
 %  Description :
@@ -38,19 +36,13 @@ function substanceUnits = Species_getSubstanceUnits(SBMLSpecies)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpecies))
-    error(sprintf('%s', ...
-      'argument must be an SBML Species structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
+[level, version] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Species_getSubstanceUnits(SBMLSpecies)', 'argument must be an SBML species structure'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Species_getSubstanceUnits(SBMLSpecies)', 'no substanceUnits field in a level 1 model'));    
+if isfield(SBMLSpecies, 'substanceUnits')
+	substanceUnits = SBMLSpecies.substanceUnits;
+else
+	error('substanceUnits not an attribute on SBML L%dV%d Species', level, version);
 end;
 
-substanceUnits = SBMLSpecies.substanceUnits;

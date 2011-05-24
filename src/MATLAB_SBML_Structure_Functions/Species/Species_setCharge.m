@@ -1,13 +1,11 @@
 function SBMLSpecies = Species_setCharge(SBMLSpecies, charge)
 %
-%   Species_setCharge 
-%             takes  1) an SBMLSpecies structure 
-%             and    2) an integer representing the charge to be set
+% Species_setCharge
+%    takes an SBML Species structure
+%    and the charge to be set
 %
-%             and returns 
-%               the species with the charge set
-%
-%       SBMLSpecies = Species_setCharge(SBMLSpecies, charge)
+%    returns
+%      the Species with the new value for the charge attribute
 
 %  Filename    :   Species_setCharge.m
 %  Description :
@@ -39,20 +37,18 @@ function SBMLSpecies = Species_setCharge(SBMLSpecies, charge)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpecies))
-    error(sprintf('%s', ...
-      'argument must be an SBML Species structure'));
+[level, version] = GetLevelVersion(SBMLSpecies);
+
+if isfield(SBMLSpecies, 'charge')
+	if ~isnumeric(charge)
+		error('charge must be numeric') ;
+	else
+		SBMLSpecies.charge = charge;
+    SBMLSpecies.isSetCharge = 1;
+	end;
+else
+	error('charge not an attribute on SBML L%dV%d Species', level, version);
 end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Species_setCharge(SBMLSpecies, charge)', 'first argument must be an SBML model structure'));
-elseif (~isIntegralNumber(charge))
-    error(sprintf('Species_setCharge(SBMLSpecies, charge)\n%s', 'second argument must be an integer representing the charge of the species'));
-end;
-
-SBMLSpecies.charge = int32(charge);
-SBMLSpecies.isSetCharge = int32(1);

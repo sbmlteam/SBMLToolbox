@@ -1,13 +1,11 @@
 function SBMLSpecies = Species_setSBOTerm(SBMLSpecies, sboTerm)
 %
-%   Species_setSBOTerm 
-%             takes  1) an SBMLSpecies structure 
-%             and    2) an integer representing the sboTerm to be set
+% Species_setSBOTerm
+%    takes an SBML Species structure
+%    and the sboTerm to be set
 %
-%             and returns 
-%               the Species with the sboTerm set
-%
-%       SBMLSpecies = Species_setSBOTerm(SBMLSpecies, sboTerm)
+%    returns
+%      the Species with the new value for the sboTerm attribute
 
 %  Filename    :   Species_setSBOTerm.m
 %  Description :
@@ -39,27 +37,17 @@ function SBMLSpecies = Species_setSBOTerm(SBMLSpecies, sboTerm)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpecies))
-    error(sprintf('%s', ...
-      'argument must be an SBML Species structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
+[level, version] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-  error(sprintf('%s\n%s', ...
-    'Species_setSBOTerm(SBMLSpecies, sboTerm)', ...
-    'first argument must be an SBML Species structure'));
-elseif (~isIntegralNumber(sboTerm))
-    error(sprintf('%s\n%s', ...
-      'Species_setSBOTerm(SBMLSpecies, sboTerm)', ...
-      'second argument must be an integer representing the sboTerm'));
-elseif (sbmlLevel ~= 2 || sbmlVersion ~= 3)
-    error(sprintf('%s\n%s', ...
-      'Species_setSBOTerm(SBMLSpecies, sboTerm)',  ...
-      'sboTerm field only in level 2 version 3 model'));    
+if isfield(SBMLSpecies, 'sboTerm')
+	if ~isIntegralNumber(sboTerm)
+		error('sboTerm must be an integer') ;
+	else
+		SBMLSpecies.sboTerm = sboTerm;
+	end;
+else
+	error('sboTerm not an attribute on SBML L%dV%d Species', level, version);
 end;
 
-SBMLSpecies.sboTerm = sboTerm;

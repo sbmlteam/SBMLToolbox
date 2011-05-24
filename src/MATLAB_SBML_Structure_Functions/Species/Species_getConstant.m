@@ -1,12 +1,10 @@
 function constant = Species_getConstant(SBMLSpecies)
 %
-%   Species_getConstant 
-%             takes an SBMLSpecies structure 
+% Species_getConstant
+%    takes an SBML Species structure
 %
-%             and returns 
-%               the constant of the species as an integer
-%
-%       constant = Species_getConstant(SBMLSpecies)
+%    returns
+%      the value of the constant attribute
 
 %  Filename    :   Species_getConstant.m
 %  Description :
@@ -38,19 +36,13 @@ function constant = Species_getConstant(SBMLSpecies)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpecies))
-    error(sprintf('%s', ...
-      'argument must be an SBML Species structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
+[level, version] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Species_getConstant(SBMLSpecies)', 'argument must be an SBML species structure'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Species_getConstant(SBMLSpecies)', 'no constant field in a level 1 model'));    
+if isfield(SBMLSpecies, 'constant')
+	constant = SBMLSpecies.constant;
+else
+	error('constant not an attribute on SBML L%dV%d Species', level, version);
 end;
 
-constant = SBMLSpecies.constant;

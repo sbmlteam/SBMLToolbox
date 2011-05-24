@@ -1,12 +1,10 @@
 function compartment = Species_getCompartment(SBMLSpecies)
 %
-%   Species_getCompartment 
-%             takes an SBMLSpecies structure 
+% Species_getCompartment
+%    takes an SBML Species structure
 %
-%             and returns 
-%               the compartment of the species as a string
-%
-%       compartment = Species_getCompartment(SBMLSpecies)
+%    returns
+%      the value of the compartment attribute
 
 %  Filename    :   Species_getCompartment.m
 %  Description :
@@ -38,17 +36,13 @@ function compartment = Species_getCompartment(SBMLSpecies)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLSpecies))
-    error(sprintf('%s', ...
-      'argument must be an SBML Species structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
+[level, version] = GetLevelVersion(SBMLSpecies);
 
-if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Species_getCompartment(SBMLSpecies)', 'argument must be an SBML species structure'));
+if isfield(SBMLSpecies, 'compartment')
+	compartment = SBMLSpecies.compartment;
+else
+	error('compartment not an attribute on SBML L%dV%d Species', level, version);
 end;
 
-compartment = SBMLSpecies.compartment;
