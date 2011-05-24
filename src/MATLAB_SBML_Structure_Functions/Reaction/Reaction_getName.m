@@ -1,12 +1,10 @@
 function name = Reaction_getName(SBMLReaction)
 %
-%   Reaction_getName 
-%             takes an SBMLReaction structure 
+% Reaction_getName
+%    takes an SBML Reaction structure
 %
-%             and returns 
-%               the name of the reaction as a string
-%
-%       name = Reaction_getName(SBMLReaction)
+%    returns
+%      the value of the name attribute
 
 %  Filename    :   Reaction_getName.m
 %  Description :
@@ -38,17 +36,13 @@ function name = Reaction_getName(SBMLReaction)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLReaction))
-  error(sprintf('%s', ...
-    'first argument must be an SBML Reaction structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
+[level, version] = GetLevelVersion(SBMLReaction);
 
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Reaction_getName(SBMLReaction)', 'argument must be an SBML reaction structure'));
+if isfield(SBMLReaction, 'name')
+	name = SBMLReaction.name;
+else
+	error('name not an attribute on SBML L%dV%d Reaction', level, version);
 end;
 
-name = SBMLReaction.name;

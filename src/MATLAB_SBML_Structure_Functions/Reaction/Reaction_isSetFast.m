@@ -1,12 +1,11 @@
 function value = Reaction_isSetFast(SBMLReaction)
 %
-%   Reaction_isSetFast 
-%             takes an SBMLReaction structure 
+% Reaction_isSetFast
+%    takes an SBML Reaction structure
 %
-%             and returns 
-%               value of the isSetFast field (level 2 ONLY) 
-%
-%       value = Reaction_isSetFast(SBMLReaction)
+%    returns
+%      1 if the value for the fast attribute is set
+%      0 otherwise
 
 %  Filename    :   Reaction_isSetFast.m
 %  Description :
@@ -38,27 +37,17 @@ function value = Reaction_isSetFast(SBMLReaction)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLReaction))
-  error(sprintf('%s', ...
-    'first argument must be an SBML Reaction structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
+[level, version] = GetLevelVersion(SBMLReaction);
 
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Reaction_isSetFast(SBMLReaction)', 'argument must be an SBML reaction structure'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Reaction_isSetFast(SBMLReaction)', 'no isSetFast field in a level 1 model'));    
-end;
-
-% catch case in version 1.0.2 where isSetFast fieldname was incorrectly 
-% entered as IsSetFast
-
-if (isfield(SBMLReaction, 'IsSetFast'))
-    value = SBMLReaction.IsSetFast;
-else
+if isfield(SBMLReaction, 'fast')
+  if (level == 1)
+    value = 1;
+  else
     value = SBMLReaction.isSetFast;
+  end;
+else
+	error('isSetFast not an attribute on SBML L%dV%d Reaction', level, version);
 end;
 

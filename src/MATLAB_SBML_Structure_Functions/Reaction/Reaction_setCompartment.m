@@ -1,15 +1,16 @@
-function num = Reaction_getNumReactants(SBMLReaction)
+function SBMLReaction = Reaction_setCompartment(SBMLReaction, compartment)
 %
-% Reaction_getNumReactants
+% Reaction_setCompartment
 %    takes an SBML Reaction structure
+%    and the compartment to be set
 %
 %    returns
-%      the number of reactant elements
+%      the Reaction with the new value for the compartment attribute
 
-%  Filename    :   Reaction_getNumReactants.m
+%  Filename    :   Reaction_setCompartment.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -40,9 +41,13 @@ function num = Reaction_getNumReactants(SBMLReaction)
 
 [level, version] = GetLevelVersion(SBMLReaction);
 
-if isfield(SBMLReaction, 'reactant')
-	num = length(SBMLReaction.reactant);
+if isfield(SBMLReaction, 'compartment')
+	if ~ischar(compartment)
+		error('compartment must be character array') ;
+	else
+		SBMLReaction.compartment = compartment;
+	end;
 else
-	error('reactant not an element on SBML L%dV%d Reaction', level, version);
+	error('compartment not an attribute on SBML L%dV%d Reaction', level, version);
 end;
 

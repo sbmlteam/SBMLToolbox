@@ -1,12 +1,10 @@
 function SBMLReaction = Reaction_unsetFast(SBMLReaction)
 %
-%   Reaction_setFast 
-%             takes an SBMLReaction structure 
+% Reaction_getFast
+%    takes an SBML Reaction structure
 %
-%             and returns 
-%               the reaction with the fast filed unset
-%
-%       SBMLReaction = Reaction_setFast(SBMLReaction, fast)
+%    returns
+%      the Reaction with the value for the fast attribute unset
 
 %  Filename    :   Reaction_unsetFast.m
 %  Description :
@@ -38,21 +36,17 @@ function SBMLReaction = Reaction_unsetFast(SBMLReaction)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLReaction))
-  error(sprintf('%s', ...
-    'first argument must be an SBML Reaction structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
+[level, version] = GetLevelVersion(SBMLReaction);
 
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Reaction_unsetFast(SBMLReaction)', 'argument must be an SBML model structure'));
+if isfield(SBMLReaction, 'fast')
+	SBMLReaction.fast = 0;
+  if (level > 1)
+    SBMLReaction.isSetFast = 0;
+  end;
+  
+else
+	error('fast not an attribute on SBML L%dV%d Reaction', level, version);
 end;
 
-SBMLReaction.fast = int32(0);
-if (sbmlLevel == 2)
-    SBMLReaction.fast = int32(-1);
-    SBMLReaction.isSetFast = int32(0);
-end;

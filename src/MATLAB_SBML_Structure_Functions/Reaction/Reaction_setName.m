@@ -1,13 +1,11 @@
 function SBMLReaction = Reaction_setName(SBMLReaction, name)
 %
-%   Reaction_setName 
-%             takes  1) an SBMLReaction structure 
-%             and    2) a string representing the name to be set
+% Reaction_setName
+%    takes an SBML Reaction structure
+%    and the name to be set
 %
-%             and returns 
-%               the reaction with the name set
-%
-%       SBMLReaction = Reaction_setName(SBMLReaction, 'name')
+%    returns
+%      the Reaction with the new value for the name attribute
 
 %  Filename    :   Reaction_setName.m
 %  Description :
@@ -39,19 +37,17 @@ function SBMLReaction = Reaction_setName(SBMLReaction, name)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLReaction))
-  error(sprintf('%s', ...
-    'first argument must be an SBML Reaction structure'));
+[level, version] = GetLevelVersion(SBMLReaction);
+
+if isfield(SBMLReaction, 'name')
+	if ~ischar(name)
+		error('name must be character array') ;
+	else
+		SBMLReaction.name = name;
+	end;
+else
+	error('name not an attribute on SBML L%dV%d Reaction', level, version);
 end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
 
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Reaction_setName(SBMLReaction, name)', 'first argument must be an SBML reaction structure'));
-elseif (~ischar(name))
-    error(sprintf('Reaction_setName(SBMLReaction, name)\n%s', 'second argument must be a string representing the name of the reaction'));
-end;
-
-SBMLReaction.name = name;

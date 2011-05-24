@@ -1,13 +1,11 @@
 function value = Reaction_isSetName(SBMLReaction)
 %
-%   Reaction_isSetName 
-%             takes an SBMLReaction structure 
+% Reaction_isSetName
+%    takes an SBML Reaction structure
 %
-%             and returns 
-%               1 if the name has been set 
-%               0 otherwise
-%
-%       value = Reaction_isSetName(SBMLReaction)
+%    returns
+%      1 if the value for the name attribute is set
+%      0 otherwise
 
 %  Filename    :   Reaction_isSetName.m
 %  Description :
@@ -39,17 +37,13 @@ function value = Reaction_isSetName(SBMLReaction)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLReaction))
-  error(sprintf('%s', ...
-    'first argument must be an SBML Reaction structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
+[level, version] = GetLevelVersion(SBMLReaction);
 
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Reaction_isSetName(SBMLReaction)', 'argument must be an SBML reaction structure'));
+if isfield(SBMLReaction, 'name')
+	value = ~isempty(SBMLReaction.name);
+else
+	error('name not an attribute on SBML L%dV%d Reaction', level, version);
 end;
 
-value = ~isempty(SBMLReaction.name);

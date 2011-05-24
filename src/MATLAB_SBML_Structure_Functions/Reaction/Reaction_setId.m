@@ -1,13 +1,11 @@
 function SBMLReaction = Reaction_setId(SBMLReaction, id)
 %
-%   Reaction_setId 
-%             takes  1) an SBMLReaction structure 
-%             and    2) a string representing the id to be set
+% Reaction_setId
+%    takes an SBML Reaction structure
+%    and the id to be set
 %
-%             and returns 
-%               the reaction with the id set
-%
-%       SBMLReaction = Reaction_setId(SBMLReaction, 'id')
+%    returns
+%      the Reaction with the new value for the id attribute
 
 %  Filename    :   Reaction_setId.m
 %  Description :
@@ -39,21 +37,17 @@ function SBMLReaction = Reaction_setId(SBMLReaction, id)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLReaction))
-  error(sprintf('%s', ...
-    'first argument must be an SBML Reaction structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
+[level, version] = GetLevelVersion(SBMLReaction);
 
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Reaction_setId(SBMLReaction, id)', 'first argument must be an SBML reaction structure'));
-elseif (~ischar(id))
-    error(sprintf('Reaction_setId(SBMLReaction, id)\n%s', 'second argument must be a string representing the id of the reaction'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Reaction_setId(SBMLReaction, id)', 'no id field in a level 1 model'));    
+if isfield(SBMLReaction, 'id')
+	if ~ischar(id)
+		error('id must be character array') ;
+	else
+		SBMLReaction.id = id;
+	end;
+else
+	error('id not an attribute on SBML L%dV%d Reaction', level, version);
 end;
 
-SBMLReaction.id = id;

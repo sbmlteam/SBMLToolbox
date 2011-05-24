@@ -1,13 +1,11 @@
-function reaction = Reaction_addReactant(SBMLReaction, SBMLReactant)
+function SBMLReaction = Reaction_addReactant(SBMLReaction, SBMLReactant)
 %
-%   Reaction_addReactant 
-%             takes  1) an SBMLReaction structure 
-%             and    2) an SBMLReactant structure
+% Reaction_addReactant(SBMLReaction, SBMLReactant)
+%    takes an SBML Reaction structure
+%    and an SBML Reactant structure
 %
-%             and returns 
-%               the reaction with the reactant added
-%
-%       reaction = Reaction_addReactant(SBMLReaction, SBMLReactant)
+%    returns
+%      the Reaction with the Reactant element added
 
 %  Filename    :   Reaction_addReactant.m
 %  Description :
@@ -39,25 +37,25 @@ function reaction = Reaction_addReactant(SBMLReaction, SBMLReactant)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLReaction))
-  error(sprintf('%s\n%s', ...
-    'Reaction_addReactant(SBMLReaction, SBMLReactant)', ...
-    'first argument must be an SBML Reaction structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
+[level, version] = GetLevelVersion(SBMLReaction);
+[reactant_level, reactant_version] = GetLevelVersion(SBMLReactant);
 
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Reaction_addReactant(SBMLReaction, SBMLReactant)', 'first argument must be an SBML reaction structure'));
-elseif (~isSBML_SpeciesReference(SBMLReactant, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s\n of the same SBML level, namely level %u', 'Reaction_addReactant(SBMLReaction, SBMLReactant)', 'second argument must be an SBML reactant structure', sbmlLevel));
+if level ~= reactant_level
+	error('mismatch in levels');
+elseif version ~= reactant_version
+	error('mismatch in versions');
 end;
 
-numberReactants = length(SBMLReaction.reactant);
-
-SBMLReaction.reactant(numberReactants+1) = SBMLReactant;
-
-reaction = SBMLReaction;
+if isfield(SBMLReaction, 'reactant')
+	index = length(SBMLReaction.reactant);
+	if index == 0
+		SBMLReaction.reactant = SBMLReactant;
+	else
+		SBMLReaction.reactant(index+1) = SBMLReactant;
+	end;
+else
+	error('reactant not an element on SBML L%dV%d Reaction', level, version);
+end;
 

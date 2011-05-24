@@ -1,13 +1,11 @@
 function value = Reaction_isSetId(SBMLReaction)
 %
-%   Reaction_isSetId 
-%             takes an SBMLReaction structure 
+% Reaction_isSetId
+%    takes an SBML Reaction structure
 %
-%             and returns 
-%               1 if the id has been set 
-%               0 otherwise
-%
-%       value = Reaction_isSetId(SBMLReaction)
+%    returns
+%      1 if the value for the id attribute is set
+%      0 otherwise
 
 %  Filename    :   Reaction_isSetId.m
 %  Description :
@@ -39,19 +37,13 @@ function value = Reaction_isSetId(SBMLReaction)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLReaction))
-  error(sprintf('%s', ...
-    'first argument must be an SBML Reaction structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
+[level, version] = GetLevelVersion(SBMLReaction);
 
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Reaction_isSetId(SBMLReaction)', 'argument must be an SBML reaction structure'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Reaction_isSetId(SBMLReaction)', 'no id field in a level 1 model'));    
+if isfield(SBMLReaction, 'id')
+	value = ~isempty(SBMLReaction.id);
+else
+	error('id not an attribute on SBML L%dV%d Reaction', level, version);
 end;
 
-value = ~isempty(SBMLReaction.id);

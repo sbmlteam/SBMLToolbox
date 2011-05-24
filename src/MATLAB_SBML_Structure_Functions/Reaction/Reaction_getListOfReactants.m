@@ -1,12 +1,10 @@
-function reactants = Reaction_getListOfReactants(SBMLReaction)
+function reactant = Reaction_getListOfReactants(SBMLReaction)
 %
-%   Reaction_getListOfReactants 
-%             takes an SBMLReaction structure 
+% Reaction_getListOfReactants
+%    takes an SBML Reaction structure
 %
-%             and returns 
-%               an array of SBML reactant structures defined within the reaction
-%
-%       reactants = Reaction_getListOfReactants(SBMLReaction)
+%    returns
+%      the array of structures of the reactant elements
 
 %  Filename    :   Reaction_getListOfReactants.m
 %  Description :
@@ -38,17 +36,13 @@ function reactants = Reaction_getListOfReactants(SBMLReaction)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLReaction))
-  error(sprintf('%s', ...
-    'first argument must be an SBML Reaction structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
+[level, version] = GetLevelVersion(SBMLReaction);
 
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Reaction_getListOfReactants(SBMLReaction)', 'argument must be an SBML reaction structure'));
+if isfield(SBMLReaction, 'reactant')
+	reactant = SBMLReaction.reactant;
+else
+	error('reactant not an element on SBML L%dV%d Reaction', level, version);
 end;
 
-reactants = SBMLReaction.reactant;

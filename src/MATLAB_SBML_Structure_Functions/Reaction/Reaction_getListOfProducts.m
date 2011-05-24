@@ -1,12 +1,10 @@
-function products = Reaction_getListOfProducts(SBMLReaction)
+function product = Reaction_getListOfProducts(SBMLReaction)
 %
-%   Reaction_getListOfProducts 
-%             takes an SBMLReaction structure 
+% Reaction_getListOfProducts
+%    takes an SBML Reaction structure
 %
-%             and returns 
-%               an array of SBML product structures defined within the reaction
-%
-%       products = Reaction_getListOfProducts(SBMLReaction)
+%    returns
+%      the array of structures of the product elements
 
 %  Filename    :   Reaction_getListOfProducts.m
 %  Description :
@@ -38,17 +36,13 @@ function products = Reaction_getListOfProducts(SBMLReaction)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLReaction))
-  error(sprintf('%s', ...
-    'first argument must be an SBML Reaction structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
+[level, version] = GetLevelVersion(SBMLReaction);
 
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Reaction_getListOfProducts(SBMLReaction)', 'argument must be an SBML reaction structure'));
+if isfield(SBMLReaction, 'product')
+	product = SBMLReaction.product;
+else
+	error('product not an element on SBML L%dV%d Reaction', level, version);
 end;
 
-products = SBMLReaction.product;

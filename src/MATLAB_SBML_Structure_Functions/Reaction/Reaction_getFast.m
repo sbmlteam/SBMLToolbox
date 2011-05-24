@@ -1,13 +1,10 @@
 function fast = Reaction_getFast(SBMLReaction)
 %
-%   Reaction_getFast 
-%             takes an SBMLReaction structure 
+% Reaction_getFast
+%    takes an SBML Reaction structure
 %
-%             and returns 
-%               the whether the reaction is fast as an integer
-%                   1 - true  0 - false
-%
-%       fast = Reaction_getFast(SBMLReaction)
+%    returns
+%      the value of the fast attribute
 
 %  Filename    :   Reaction_getFast.m
 %  Description :
@@ -39,17 +36,13 @@ function fast = Reaction_getFast(SBMLReaction)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLReaction))
-  error(sprintf('%s', ...
-    'first argument must be an SBML Reaction structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
+[level, version] = GetLevelVersion(SBMLReaction);
 
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Reaction_getFast(SBMLReaction)', 'argument must be an SBML reaction structure'));
+if isfield(SBMLReaction, 'fast')
+	fast = SBMLReaction.fast;
+else
+	error('fast not an attribute on SBML L%dV%d Reaction', level, version);
 end;
 
-fast = SBMLReaction.fast;

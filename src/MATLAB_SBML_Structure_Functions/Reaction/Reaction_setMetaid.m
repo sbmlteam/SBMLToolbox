@@ -1,15 +1,16 @@
-function num = Reaction_getNumReactants(SBMLReaction)
+function SBMLReaction = Reaction_setMetaid(SBMLReaction, metaid)
 %
-% Reaction_getNumReactants
+% Reaction_setMetaid
 %    takes an SBML Reaction structure
+%    and the metaid to be set
 %
 %    returns
-%      the number of reactant elements
+%      the Reaction with the new value for the metaid attribute
 
-%  Filename    :   Reaction_getNumReactants.m
+%  Filename    :   Reaction_setMetaid.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -40,9 +41,13 @@ function num = Reaction_getNumReactants(SBMLReaction)
 
 [level, version] = GetLevelVersion(SBMLReaction);
 
-if isfield(SBMLReaction, 'reactant')
-	num = length(SBMLReaction.reactant);
+if isfield(SBMLReaction, 'metaid')
+	if ~ischar(metaid)
+		error('metaid must be character array') ;
+	else
+		SBMLReaction.metaid = metaid;
+	end;
 else
-	error('reactant not an element on SBML L%dV%d Reaction', level, version);
+	error('metaid not an attribute on SBML L%dV%d Reaction', level, version);
 end;
 

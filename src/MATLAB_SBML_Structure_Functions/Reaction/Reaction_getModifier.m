@@ -1,13 +1,11 @@
-function modifier = Reaction_getModifier(SBMLReaction, number)
+function modifier = Reaction_getModifier(SBMLReaction, index)
 %
-%   Reaction_getModifier 
-%             takes  1) an SBMLReaction structure 
-%             and    2) a number n
+% Reaction_getModifier
+%    takes an SBML Reaction structure
+%    and an index
 %
-%             and returns 
-%               the nth modifier structure defined within the reaction
-%
-%       modifier = Reaction_getModifier(SBMLReaction, number)
+%    returns
+%      the value of the modifier element at the indexed position
 
 %  Filename    :   Reaction_getModifier.m
 %  Description :
@@ -39,25 +37,19 @@ function modifier = Reaction_getModifier(SBMLReaction, number)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLReaction))
-  error(sprintf('%s', ...
-    'first argument must be an SBML Reaction structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
+[level, version] = GetLevelVersion(SBMLReaction);
 
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Reaction_getModifier(SBMLReaction, number)', 'first argument must be an SBML reaction structure'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Reaction_getModifier(SBMLReaction, number)', 'no modifiers in level 1 model'));
-elseif ((number < 1) || (~isIntegralNumber(number)))
-    error(sprintf('%s\n%s', 'Reaction_getModifier(SBMLReaction, number)', 'second argument must be a positive integer'));
-end;
-
-if (number > length(SBMLReaction.modifier))
-    modifier = [];
+if isfield(SBMLReaction, 'modifier')
+	if (~isIntegralNumber(index) || index <= 0)
+		error('index must be a positive integer');
+	elseif index <= length(SBMLReaction.modifier)
+		modifier = SBMLReaction.modifier;
+	else
+		error('index is out of range');
+	end;
 else
-    modifier = SBMLReaction.modifier(number);
+	error('modifier not an element on SBML L%dV%d Reaction', level, version);
 end;
+

@@ -1,13 +1,11 @@
 function value = Reaction_isSetKineticLaw(SBMLReaction)
 %
-%   Reaction_isSetKineticLaw 
-%             takes an SBMLReaction structure 
+% Reaction_isSetKineticLaw
+%    takes an SBML Reaction structure
 %
-%             and returns 
-%               1 if the kineticLaw has been set 
-%               0 otherwise
-%
-%       value = Reaction_isSetKineticLaw(SBMLReaction)
+%    returns
+%      1 if the value for the kineticLaw attribute is set
+%      0 otherwise
 
 %  Filename    :   Reaction_isSetKineticLaw.m
 %  Description :
@@ -39,17 +37,13 @@ function value = Reaction_isSetKineticLaw(SBMLReaction)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLReaction))
-  error(sprintf('%s', ...
-    'first argument must be an SBML Reaction structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
+[level, version] = GetLevelVersion(SBMLReaction);
 
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Reaction_isSetKineticLaw(SBMLReaction)', 'argument must be an SBML reaction structure'));
+if isfield(SBMLReaction, 'kineticLaw')
+	value = SBMLReaction.isSetKineticLaw;
+else
+	error('isSetKineticLaw not an attribute on SBML L%dV%d Reaction', level, version);
 end;
 
-value = ~isempty(SBMLReaction.kineticLaw);

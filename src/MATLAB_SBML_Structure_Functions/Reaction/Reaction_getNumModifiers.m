@@ -1,12 +1,10 @@
-function number = Reaction_getNumModifiers(SBMLReaction)
+function num = Reaction_getNumModifiers(SBMLReaction)
 %
-%   Reaction_getNumModifiers 
-%             takes an SBMLReaction structure 
+% Reaction_getNumModifiers
+%    takes an SBML Reaction structure
 %
-%             and returns 
-%               the number of modifier structures defined within the reaction
-%
-%       number = Reaction_getNumModifiers(SBMLReaction)
+%    returns
+%      the number of modifier elements
 
 %  Filename    :   Reaction_getNumModifiers.m
 %  Description :
@@ -38,23 +36,13 @@ function number = Reaction_getNumModifiers(SBMLReaction)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLReaction))
-  error(sprintf('%s', ...
-    'first argument must be an SBML Reaction structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
+[level, version] = GetLevelVersion(SBMLReaction);
 
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Reaction_getNumModifiers(SBMLReaction)', 'argument must be an SBML reaction structure'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Reaction_getNumModifiers(SBMLReaction)', 'no modifiers in level 1 model'));
+if isfield(SBMLReaction, 'modifier')
+	num = length(SBMLReaction.modifier);
+else
+	error('modifier not an element on SBML L%dV%d Reaction', level, version);
 end;
 
-number = 0;
-
-if (~isempty(SBMLReaction.modifier))
-    number = length(SBMLReaction.modifier);
-end;

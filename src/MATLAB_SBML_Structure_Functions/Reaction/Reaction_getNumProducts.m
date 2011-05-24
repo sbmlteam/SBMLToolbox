@@ -1,12 +1,10 @@
-function number = Reaction_getNumProducts(SBMLReaction)
+function num = Reaction_getNumProducts(SBMLReaction)
 %
-%   Reaction_getNumProducts 
-%             takes an SBMLReaction structure 
+% Reaction_getNumProducts
+%    takes an SBML Reaction structure
 %
-%             and returns 
-%               the number of product structures defined within the reaction
-%
-%       number = Reaction_getNumProducts(SBMLReaction)
+%    returns
+%      the number of product elements
 
 %  Filename    :   Reaction_getNumProducts.m
 %  Description :
@@ -38,21 +36,13 @@ function number = Reaction_getNumProducts(SBMLReaction)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLReaction))
-  error(sprintf('%s', ...
-    'first argument must be an SBML Reaction structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
+[level, version] = GetLevelVersion(SBMLReaction);
 
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Reaction_getNumProducts(SBMLReaction)', 'argument must be an SBML reaction structure'));
+if isfield(SBMLReaction, 'product')
+	num = length(SBMLReaction.product);
+else
+	error('product not an element on SBML L%dV%d Reaction', level, version);
 end;
 
-number = 0;
-
-if (~isempty(SBMLReaction.product))
-    number = length(SBMLReaction.product);
-end;

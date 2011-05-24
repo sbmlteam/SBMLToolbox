@@ -1,12 +1,10 @@
-function modifiers = Reaction_getListOfModifiers(SBMLReaction)
+function modifier = Reaction_getListOfModifiers(SBMLReaction)
 %
-%   Reaction_getListOfModifiers 
-%             takes an SBMLReaction structure 
+% Reaction_getListOfModifiers
+%    takes an SBML Reaction structure
 %
-%             and returns 
-%               an array of SBML modifier structures defined within the reaction
-%
-%       modifiers = Reaction_getListOfModifiers(SBMLReaction)
+%    returns
+%      the array of structures of the modifier elements
 
 %  Filename    :   Reaction_getListOfModifiers.m
 %  Description :
@@ -38,19 +36,13 @@ function modifiers = Reaction_getListOfModifiers(SBMLReaction)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLReaction))
-  error(sprintf('%s', ...
-    'first argument must be an SBML Reaction structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
+[level, version] = GetLevelVersion(SBMLReaction);
 
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Reaction_getListOfModifiers(SBMLReaction)', 'argument must be an SBML reaction structure'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Reaction_getListOfModifiers(SBMLReaction)', 'no modifiers in level 1 model'));
+if isfield(SBMLReaction, 'modifier')
+	modifier = SBMLReaction.modifier;
+else
+	error('modifier not an element on SBML L%dV%d Reaction', level, version);
 end;
 
-modifiers = SBMLReaction.modifier;
