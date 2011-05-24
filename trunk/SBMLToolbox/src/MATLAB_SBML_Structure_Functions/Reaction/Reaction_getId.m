@@ -1,12 +1,10 @@
 function id = Reaction_getId(SBMLReaction)
 %
-%   Reaction_getId 
-%             takes an SBMLReaction structure 
+% Reaction_getId
+%    takes an SBML Reaction structure
 %
-%             and returns 
-%               the id of the reaction as a string
-%
-%       id = Reaction_getId(SBMLReaction)
+%    returns
+%      the value of the id attribute
 
 %  Filename    :   Reaction_getId.m
 %  Description :
@@ -38,19 +36,13 @@ function id = Reaction_getId(SBMLReaction)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLReaction))
-  error(sprintf('%s', ...
-    'first argument must be an SBML Reaction structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
+[level, version] = GetLevelVersion(SBMLReaction);
 
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Reaction_getId(SBMLReaction)', 'argument must be an SBML reaction structure'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'Reaction_getId(SBMLReaction)', 'no id field in a level 1 model'));    
+if isfield(SBMLReaction, 'id')
+	id = SBMLReaction.id;
+else
+	error('id not an attribute on SBML L%dV%d Reaction', level, version);
 end;
 
-id = SBMLReaction.id;

@@ -1,13 +1,10 @@
 function SBMLReaction = Reaction_unsetKineticLaw(SBMLReaction)
 %
-%   Reaction_unsetKineticLaw 
-%             takes an SBMLReaction structure 
+% Reaction_getKineticLaw
+%    takes an SBML Reaction structure
 %
-%             and returns 
-%               the reaction with the kineticLaw unset
-%               (i.e. kineticLaw = [])
-%
-%       SBMLReaction = Reaction_unsetKineticLaw(SBMLReaction)
+%    returns
+%      the Reaction with the value for the kineticLaw attribute unset
 
 %  Filename    :   Reaction_unsetKineticLaw.m
 %  Description :
@@ -39,17 +36,13 @@ function SBMLReaction = Reaction_unsetKineticLaw(SBMLReaction)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLReaction))
-  error(sprintf('%s', ...
-    'first argument must be an SBML Reaction structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
+[level, version] = GetLevelVersion(SBMLReaction);
 
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Reaction_unsetKineticLaw(SBMLReaction)', 'argument must be an SBML reaction structure'));
+if isfield(SBMLReaction, 'kineticLaw')
+	SBMLReaction.kineticLaw = NaN;
+else
+	error('kineticLaw not an attribute on SBML L%dV%d Reaction', level, version);
 end;
 
-SBMLReaction.kineticLaw = [];

@@ -1,13 +1,11 @@
-function reactant = Reaction_getReactant(SBMLReaction, number)
+function reactant = Reaction_getReactant(SBMLReaction, index)
 %
-%   Reaction_getReactant 
-%             takes  1) an SBMLReaction structure 
-%             and    2) a number n
+% Reaction_getReactant
+%    takes an SBML Reaction structure
+%    and an index
 %
-%             and returns 
-%               the nth reactant structure defined within the reaction
-%
-%       reactant = Reaction_getReactant(SBMLReaction, number)
+%    returns
+%      the value of the reactant element at the indexed position
 
 %  Filename    :   Reaction_getReactant.m
 %  Description :
@@ -39,23 +37,19 @@ function reactant = Reaction_getReactant(SBMLReaction, number)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLReaction))
-  error(sprintf('%s', ...
-    'first argument must be an SBML Reaction structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
+[level, version] = GetLevelVersion(SBMLReaction);
 
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Reaction_getReactant(SBMLReaction, number)', 'first argument must be an SBML reaction structure'));
-elseif ((number < 1) || (~isIntegralNumber(number)))
-    error(sprintf('%s\n%s', 'Reaction_getReactant(SBMLReaction, number)', 'second argument must be a positive integer'));
-end;
-
-if (number > length(SBMLReaction.reactant))
-    reactant = [];
+if isfield(SBMLReaction, 'reactant')
+	if (~isIntegralNumber(index) || index <= 0)
+		error('index must be a positive integer');
+	elseif index <= length(SBMLReaction.reactant)
+		reactant = SBMLReaction.reactant;
+	else
+		error('index is out of range');
+	end;
 else
-    reactant = SBMLReaction.reactant(number);
+	error('reactant not an element on SBML L%dV%d Reaction', level, version);
 end;
+

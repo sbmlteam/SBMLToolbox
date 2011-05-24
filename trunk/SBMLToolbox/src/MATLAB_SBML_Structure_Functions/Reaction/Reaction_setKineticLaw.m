@@ -1,13 +1,11 @@
-function SBMLReaction = Reaction_setKineticLaw(SBMLReaction, SBMLKineticLaw)
+function SBMLReaction = Reaction_setKineticLaw(SBMLReaction, kineticLaw)
 %
-%   Reaction_setKineticLaw 
-%             takes  1) an SBMLReaction structure 
-%             and    2) an SBMLKineticLaw structure representing the kineticLaw to be set
+% Reaction_setKineticLaw
+%    takes an SBML Reaction structure
+%    and the kineticLaw to be set
 %
-%             and returns 
-%               the reaction with the kineticLaw set
-%
-%       SBMLReaction = Reaction_setKineticLaw(SBMLReaction, SBMLKineticLaw)
+%    returns
+%      the Reaction with the new value for the kineticLaw attribute
 
 %  Filename    :   Reaction_setKineticLaw.m
 %  Description :
@@ -39,19 +37,17 @@ function SBMLReaction = Reaction_setKineticLaw(SBMLReaction, SBMLKineticLaw)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLReaction))
-  error(sprintf('%s', ...
-    'first argument must be an SBML Reaction structure'));
+[level, version] = GetLevelVersion(SBMLReaction);
+
+if isfield(SBMLReaction, 'kineticLaw')
+	if ~isnumeric(kineticLaw)
+		error('kineticLaw must be numeric') ;
+	else
+		SBMLReaction.kineticLaw = kineticLaw;
+	end;
+else
+	error('kineticLaw not an attribute on SBML L%dV%d Reaction', level, version);
 end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
 
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Reaction_setKineticLaw(SBMLReaction, kineticLaw)', 'first argument must be an SBML reaction structure'));
-elseif (~isSBML_KineticLaw(SBMLKineticLaw, sbmlLevel, sbmlVersion))
-    error(sprintf('Reaction_setKineticLaw(SBMLReaction, kineticLaw)\n%s\nof the same level, namely level %u', 'second argument must be an SBML KineticLaw structure', sbmlLevel));
-end;
-
-SBMLReaction.kineticLaw = SBMLKineticLaw;

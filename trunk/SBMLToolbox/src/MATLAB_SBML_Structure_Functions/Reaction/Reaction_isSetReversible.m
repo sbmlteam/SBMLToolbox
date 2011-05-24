@@ -1,15 +1,16 @@
-function num = Reaction_getNumReactants(SBMLReaction)
+function value = Reaction_isSetReversible(SBMLReaction)
 %
-% Reaction_getNumReactants
+% Reaction_isSetReversible
 %    takes an SBML Reaction structure
 %
 %    returns
-%      the number of reactant elements
+%      1 if the value for the reversible attribute is set
+%      0 otherwise
 
-%  Filename    :   Reaction_getNumReactants.m
+%  Filename    :   Reaction_isSetReversible.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -40,9 +41,9 @@ function num = Reaction_getNumReactants(SBMLReaction)
 
 [level, version] = GetLevelVersion(SBMLReaction);
 
-if isfield(SBMLReaction, 'reactant')
-	num = length(SBMLReaction.reactant);
+if isfield(SBMLReaction, 'reversible')
+	value = SBMLReaction.isSetReversible;
 else
-	error('reactant not an element on SBML L%dV%d Reaction', level, version);
+	error('isSetReversible not an attribute on SBML L%dV%d Reaction', level, version);
 end;
 

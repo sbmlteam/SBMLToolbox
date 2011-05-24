@@ -1,14 +1,12 @@
-function sboTerm = Reaction_getSBOTerm(SBMLReaction)
+function sboTerm = Reaction_getSboTerm(SBMLReaction)
 %
-%   Reaction_getSBOTerm 
-%             takes an SBMLReaction structure 
+% Reaction_getSboTerm
+%    takes an SBML Reaction structure
 %
-%             and returns 
-%               the sboTerm of the compartment as an integer
-%
-%       sboTerm = Reaction_getSBOTerm(SBMLReaction)
+%    returns
+%      the value of the sboTerm attribute
 
-%  Filename    :   Reaction_getSBOTerm.m
+%  Filename    :   Reaction_getSboTerm.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
 %  $Id$
@@ -38,23 +36,13 @@ function sboTerm = Reaction_getSBOTerm(SBMLReaction)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLReaction))
-  error(sprintf('%s', ...
-    'first argument must be an SBML Reaction structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
+[level, version] = GetLevelVersion(SBMLReaction);
 
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', ...
-      'Reaction_getSBOTerm(SBMLReaction)', ...
-      'argument must be an SBML Reaction structure'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'Reaction_getSBOTerm(SBMLReaction)', ...
-      'sboTerm field only in level 2 version 2/3 model'));    
+if isfield(SBMLReaction, 'sboTerm')
+	sboTerm = SBMLReaction.sboTerm;
+else
+	error('sboTerm not an attribute on SBML L%dV%d Reaction', level, version);
 end;
 
-sboTerm = SBMLReaction.sboTerm;

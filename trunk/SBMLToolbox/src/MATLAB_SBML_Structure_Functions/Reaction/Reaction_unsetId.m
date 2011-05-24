@@ -1,15 +1,15 @@
-function num = Reaction_getNumReactants(SBMLReaction)
+function SBMLReaction = Reaction_unsetId(SBMLReaction)
 %
-% Reaction_getNumReactants
+% Reaction_getId
 %    takes an SBML Reaction structure
 %
 %    returns
-%      the number of reactant elements
+%      the Reaction with the value for the id attribute unset
 
-%  Filename    :   Reaction_getNumReactants.m
+%  Filename    :   Reaction_unsetId.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -40,9 +40,9 @@ function num = Reaction_getNumReactants(SBMLReaction)
 
 [level, version] = GetLevelVersion(SBMLReaction);
 
-if isfield(SBMLReaction, 'reactant')
-	num = length(SBMLReaction.reactant);
+if isfield(SBMLReaction, 'id')
+	SBMLReaction.id = '';
 else
-	error('reactant not an element on SBML L%dV%d Reaction', level, version);
+	error('id not an attribute on SBML L%dV%d Reaction', level, version);
 end;
 

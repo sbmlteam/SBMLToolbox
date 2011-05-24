@@ -1,13 +1,10 @@
 function SBMLReaction = Reaction_unsetName(SBMLReaction)
 %
-%   Reaction_unsetName 
-%             takes an SBMLReaction structure 
+% Reaction_getName
+%    takes an SBML Reaction structure
 %
-%             and returns 
-%               the reaction with the name unset
-%               (i.e. name = '')
-%
-%       SBMLReaction = Reaction_unsetName(SBMLReaction)
+%    returns
+%      the Reaction with the value for the name attribute unset
 
 %  Filename    :   Reaction_unsetName.m
 %  Description :
@@ -39,17 +36,13 @@ function SBMLReaction = Reaction_unsetName(SBMLReaction)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLReaction))
-  error(sprintf('%s', ...
-    'first argument must be an SBML Reaction structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
+[level, version] = GetLevelVersion(SBMLReaction);
 
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Reaction_unsetName(SBMLReaction)', 'argument must be an SBML reaction structure'));
+if isfield(SBMLReaction, 'name')
+	SBMLReaction.name = '';
+else
+	error('name not an attribute on SBML L%dV%d Reaction', level, version);
 end;
 
-SBMLReaction.name = '';

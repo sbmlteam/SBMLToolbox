@@ -1,15 +1,13 @@
-function SBMLReaction = Reaction_setSBOTerm(SBMLReaction, sboTerm)
+function SBMLReaction = Reaction_setSboTerm(SBMLReaction, sboTerm)
 %
-%   Reaction_setSBOTerm 
-%             takes  1) an SBMLReaction structure 
-%             and    2) an integer representing the sboTerm to be set
+% Reaction_setSboTerm
+%    takes an SBML Reaction structure
+%    and the sboTerm to be set
 %
-%             and returns 
-%               the compartment with the sboTerm set
-%
-%       SBMLReaction = Reaction_setSBOTerm(SBMLReaction, sboTerm)
+%    returns
+%      the Reaction with the new value for the sboTerm attribute
 
-%  Filename    :   Reaction_setSBOTerm.m
+%  Filename    :   Reaction_setSboTerm.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
 %  $Id$
@@ -39,27 +37,17 @@ function SBMLReaction = Reaction_setSBOTerm(SBMLReaction, sboTerm)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLReaction))
-  error(sprintf('%s', ...
-    'first argument must be an SBML Reaction structure'));
+[level, version] = GetLevelVersion(SBMLReaction);
+
+if isfield(SBMLReaction, 'sboTerm')
+	if ~isIntegralNumber(sboTerm)
+		error('sboTerm must be an integer') ;
+	else
+		SBMLReaction.sboTerm = sboTerm;
+	end;
+else
+	error('sboTerm not an attribute on SBML L%dV%d Reaction', level, version);
 end;
 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
-
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
-  error(sprintf('%s\n%s', ...
-    'Reaction_setSBOTerm(SBMLReaction, sboTerm)', ...
-    'first argument must be an SBML Reaction structure'));
-elseif (~isIntegralNumber(sboTerm))
-    error(sprintf('%s\n%s', ...
-      'Reaction_setSBOTerm(SBMLReaction, sboTerm)', ...
-      'second argument must be an integer representing the sboTerm'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'Reaction_setSBOTerm(SBMLReaction, sboTerm)',  ...
-      'sboTerm field only in level 2 version 3 model'));    
-end;
-
-SBMLReaction.sboTerm = sboTerm;

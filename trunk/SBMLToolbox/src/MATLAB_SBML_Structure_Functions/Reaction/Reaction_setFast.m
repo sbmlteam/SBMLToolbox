@@ -1,13 +1,11 @@
 function SBMLReaction = Reaction_setFast(SBMLReaction, fast)
 %
-%   Reaction_setFast 
-%             takes  1) an SBMLReaction structure 
-%             and    2) an integer representing the fast to be set
+% Reaction_setFast
+%    takes an SBML Reaction structure
+%    and the fast to be set
 %
-%             and returns 
-%               the reaction with the fast set
-%
-%       SBMLReaction = Reaction_setFast(SBMLReaction, fast)
+%    returns
+%      the Reaction with the new value for the fast attribute
 
 %  Filename    :   Reaction_setFast.m
 %  Description :
@@ -39,22 +37,20 @@ function SBMLReaction = Reaction_setFast(SBMLReaction, fast)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLReaction))
-  error(sprintf('%s', ...
-    'first argument must be an SBML Reaction structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
+[level, version] = GetLevelVersion(SBMLReaction);
 
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Reaction_setFast(SBMLReaction, fast)', 'first argument must be an SBML reaction structure'));
-elseif ((~isIntegralNumber(fast)) || (fast < 0) || (fast > 1))
-    error(sprintf('Reaction_setFast(SBMLReaction, fast)\n%s', 'second argument must be either true (=1) or false (=0) representing whether the reaction is fast'));
+if isfield(SBMLReaction, 'fast')
+	if (~isIntegralNumber(fast) || fast < 0 || fast > 1)
+		error('fast must be an integer of value 0/1') ;
+	else
+		SBMLReaction.fast = fast;
+    if (level > 1)
+      SBMLReaction.isSetFast = 1;
+    end;
+	end;
+else
+	error('fast not an attribute on SBML L%dV%d Reaction', level, version);
 end;
 
-SBMLReaction.fast = int32(fast);
-if (sbmlLevel == 2)
-    SBMLReaction.isSetFast = int32(1);
-end;

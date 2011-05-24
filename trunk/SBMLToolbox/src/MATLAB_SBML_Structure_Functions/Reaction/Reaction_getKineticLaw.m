@@ -1,13 +1,10 @@
 function kineticLaw = Reaction_getKineticLaw(SBMLReaction)
 %
-%   Reaction_getKineticLaw 
-%             takes an SBMLReaction structure 
+% Reaction_getKineticLaw
+%    takes an SBML Reaction structure
 %
-%             and returns 
-%               the kineticLaw of the reaction as an SBML KineticLaw
-%               structure
-%
-%       kineticLaw = Reaction_getKineticLaw(SBMLReaction)
+%    returns
+%      the value of the kineticLaw attribute
 
 %  Filename    :   Reaction_getKineticLaw.m
 %  Description :
@@ -39,17 +36,13 @@ function kineticLaw = Reaction_getKineticLaw(SBMLReaction)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLReaction))
-  error(sprintf('%s', ...
-    'first argument must be an SBML Reaction structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
+[level, version] = GetLevelVersion(SBMLReaction);
 
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Reaction_getKineticLaw(SBMLReaction)', 'argument must be an SBML reaction structure'));
+if isfield(SBMLReaction, 'kineticLaw')
+	kineticLaw = SBMLReaction.kineticLaw;
+else
+	error('kineticLaw not an attribute on SBML L%dV%d Reaction', level, version);
 end;
 
-kineticLaw = SBMLReaction.kineticLaw;

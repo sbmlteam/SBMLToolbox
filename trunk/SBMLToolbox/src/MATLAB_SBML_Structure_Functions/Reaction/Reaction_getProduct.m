@@ -1,13 +1,11 @@
-function product = Reaction_getProduct(SBMLReaction, number)
+function product = Reaction_getProduct(SBMLReaction, index)
 %
-%   Reaction_getProduct 
-%             takes  1) an SBMLReaction structure 
-%             and    2) a number n
+% Reaction_getProduct
+%    takes an SBML Reaction structure
+%    and an index
 %
-%             and returns 
-%               the nth product structure defined within the reaction
-%
-%       product = Reaction_getProduct(SBMLReaction, number)
+%    returns
+%      the value of the product element at the indexed position
 
 %  Filename    :   Reaction_getProduct.m
 %  Description :
@@ -39,23 +37,19 @@ function product = Reaction_getProduct(SBMLReaction, number)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLReaction))
-  error(sprintf('%s', ...
-    'first argument must be an SBML Reaction structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
+[level, version] = GetLevelVersion(SBMLReaction);
 
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Reaction_getProduct(SBMLReaction, number)', 'first argument must be an SBML reaction structure'));
-elseif ((number < 1) || (~isIntegralNumber(number)))
-    error(sprintf('%s\n%s', 'Reaction_getProduct(SBMLReaction, number)', 'second argument must be a positive integer'));
-end;
-
-if (number > length(SBMLReaction.product))
-    product = [];
+if isfield(SBMLReaction, 'product')
+	if (~isIntegralNumber(index) || index <= 0)
+		error('index must be a positive integer');
+	elseif index <= length(SBMLReaction.product)
+		product = SBMLReaction.product;
+	else
+		error('index is out of range');
+	end;
 else
-    product = SBMLReaction.product(number);
+	error('product not an element on SBML L%dV%d Reaction', level, version);
 end;
+

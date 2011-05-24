@@ -1,13 +1,11 @@
-function reaction = Reaction_addProduct(SBMLReaction, SBMLProduct)
+function SBMLReaction = Reaction_addProduct(SBMLReaction, SBMLProduct)
 %
-%   Reaction_addProduct 
-%             takes  1) an SBMLReaction structure 
-%             and    2) an SBMLProduct structure
+% Reaction_addProduct(SBMLReaction, SBMLProduct)
+%    takes an SBML Reaction structure
+%    and an SBML Product structure
 %
-%             and returns 
-%               the reaction with the product added
-%
-%       reaction = Reaction_addProduct(SBMLReaction, SBMLProduct)
+%    returns
+%      the Reaction with the Product element added
 
 %  Filename    :   Reaction_addProduct.m
 %  Description :
@@ -39,25 +37,25 @@ function reaction = Reaction_addProduct(SBMLReaction, SBMLProduct)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLReaction))
-  error(sprintf('%s\n%s', ...
-    'Reaction_addProduct(SBMLReaction, SBMLProduct)', ...
-    'first argument must be an SBML Reaction structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
+[level, version] = GetLevelVersion(SBMLReaction);
+[product_level, product_version] = GetLevelVersion(SBMLProduct);
 
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Reaction_addProduct(SBMLReaction, SBMLProduct)', 'first argument must be an SBML reaction structure'));
-elseif (~isSBML_SpeciesReference(SBMLProduct, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s\n of the same SBML level, namely level %u', 'Reaction_addProduct(SBMLReaction, SBMLProduct)', 'second argument must be an SBML product structure', sbmlLevel));
+if level ~= product_level
+	error('mismatch in levels');
+elseif version ~= product_version
+	error('mismatch in versions');
 end;
 
-numberProducts = length(SBMLReaction.product);
-
-SBMLReaction.product(numberProducts+1) = SBMLProduct;
-
-reaction = SBMLReaction;
+if isfield(SBMLReaction, 'product')
+	index = length(SBMLReaction.product);
+	if index == 0
+		SBMLReaction.product = SBMLProduct;
+	else
+		SBMLReaction.product(index+1) = SBMLProduct;
+	end;
+else
+	error('product not an element on SBML L%dV%d Reaction', level, version);
+end;
 

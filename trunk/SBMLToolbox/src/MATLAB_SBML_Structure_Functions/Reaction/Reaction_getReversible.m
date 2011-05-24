@@ -1,13 +1,10 @@
 function reversible = Reaction_getReversible(SBMLReaction)
 %
-%   Reaction_getReversible 
-%             takes an SBMLReaction structure 
+% Reaction_getReversible
+%    takes an SBML Reaction structure
 %
-%             and returns 
-%               the whether the reaction is reversible as an integer
-%                   1 - true  0 - false
-%
-%       reversible = Reaction_getReversible(SBMLReaction)
+%    returns
+%      the value of the reversible attribute
 
 %  Filename    :   Reaction_getReversible.m
 %  Description :
@@ -39,17 +36,13 @@ function reversible = Reaction_getReversible(SBMLReaction)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLReaction))
-  error(sprintf('%s', ...
-    'first argument must be an SBML Reaction structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLReaction);
+[level, version] = GetLevelVersion(SBMLReaction);
 
-if (~isSBML_Reaction(SBMLReaction, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Reaction_getReversible(SBMLReaction)', 'argument must be an SBML reaction structure'));
+if isfield(SBMLReaction, 'reversible')
+	reversible = SBMLReaction.reversible;
+else
+	error('reversible not an attribute on SBML L%dV%d Reaction', level, version);
 end;
 
-reversible = SBMLReaction.reversible;
