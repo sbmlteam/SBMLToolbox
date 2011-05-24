@@ -1,17 +1,15 @@
 function math = Priority_getMath(SBMLPriority)
 %
-%   Priority_getMath 
-%             takes an SBMLPriority structure 
+% Priority_getMath
+%    takes an SBML Priority structure
 %
-%             and returns 
-%               the math of the Priority as a string
-%
-%       math = Priority_getMath(SBMLPriority)
+%    returns
+%      the value of the math attribute
 
 %  Filename    :   Priority_getMath.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: Priority_getMath.m 13259 2011-03-21 05:40:36Z mhucka $
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -38,20 +36,13 @@ function math = Priority_getMath(SBMLPriority)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLPriority))
-    error(sprintf('%s\n%s', ...
-      'Priority_getMath(SBMLPriority)', ...
-      'argument must be an SBML Priority structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLPriority);
+[level, version] = GetLevelVersion(SBMLPriority);
 
-if (~isSBML_Priority(SBMLPriority, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', ...
-      'Priority_getMath(SBMLPriority)', ...
-      'argument must be an SBML Priority structure'));
+if isfield(SBMLPriority, 'math')
+	math = SBMLPriority.math;
+else
+	error('math not an attribute on SBML L%dV%d Priority', level, version);
 end;
 
-math = SBMLPriority.math;

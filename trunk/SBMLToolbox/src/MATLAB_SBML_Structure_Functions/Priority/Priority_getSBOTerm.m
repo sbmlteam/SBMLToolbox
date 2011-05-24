@@ -1,17 +1,15 @@
 function sboTerm = Priority_getSBOTerm(SBMLPriority)
 %
-%   Priority_getSBOTerm 
-%             takes an SBMLPriority structure 
+% Priority_getSBOTerm
+%    takes an SBML Priority structure
 %
-%             and returns 
-%               the sboTerm of the Priority as an integer
-%
-%       sboTerm = Priority_getSBOTerm(SBMLPriority)
+%    returns
+%      the value of the sboTerm attribute
 
 %  Filename    :   Priority_getSBOTerm.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: Priority_getSBOTerm.m 13259 2011-03-21 05:40:36Z mhucka $
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -38,20 +36,13 @@ function sboTerm = Priority_getSBOTerm(SBMLPriority)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLPriority))
-    error(sprintf('%s\n%s', ...
-      'Priority_getSBOTerm(SBMLPriority)', ...
-      'argument must be an SBML Priority structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLPriority);
+[level, version] = GetLevelVersion(SBMLPriority);
 
-if (~isSBML_Priority(SBMLPriority, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', ...
-      'Priority_getSBOTerm(SBMLPriority)', ...
-      'argument must be an SBML Priority structure'));
+if isfield(SBMLPriority, 'sboTerm')
+	sboTerm = SBMLPriority.sboTerm;
+else
+	error('sboTerm not an attribute on SBML L%dV%d Priority', level, version);
 end;
 
-sboTerm = SBMLPriority.sboTerm;

@@ -1,18 +1,16 @@
 function SBMLPriority = Priority_setSBOTerm(SBMLPriority, sboTerm)
 %
-%   Priority_setSBOTerm 
-%             takes  1) an SBMLPriority structure 
-%             and    2) an integer representing the sboTerm to be set
+% Priority_setSBOTerm
+%    takes an SBML Priority structure
+%    and the sboTerm to be set
 %
-%             and returns 
-%               the Priority with the sboTerm set
-%
-%       SBMLPriority = Priority_setSBOTerm(SBMLPriority, sboTerm)
+%    returns
+%      the Priority with the new value for the sboTerm attribute
 
 %  Filename    :   Priority_setSBOTerm.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: Priority_setSBOTerm.m 13259 2011-03-21 05:40:36Z mhucka $
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -39,24 +37,17 @@ function SBMLPriority = Priority_setSBOTerm(SBMLPriority, sboTerm)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLPriority))
-    error(sprintf('%s\n%s', ...
-      'Priority_setSBOTerm(SBMLPriority, sboTerm)', ...
-      'argument must be an SBML Priority structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLPriority);
+[level, version] = GetLevelVersion(SBMLPriority);
 
-if (~isSBML_Priority(SBMLPriority, sbmlLevel, sbmlVersion))
-  error(sprintf('%s\n%s', ...
-    'Priority_setSBOTerm(SBMLPriority, sboTerm)', ...
-    'first argument must be an SBML Priority structure'));
-elseif (~isIntegralNumber(sboTerm))
-    error(sprintf('%s\n%s', ...
-      'Priority_setSBOTerm(SBMLPriority, sboTerm)', ...
-      'second argument must be an integer representing the sboTerm'));
+if isfield(SBMLPriority, 'sboTerm')
+	if ~isIntegralNumber(sboTerm)
+		error('sboTerm must be an integer') ;
+	else
+		SBMLPriority.sboTerm = sboTerm;
+	end;
+else
+	error('sboTerm not an attribute on SBML L%dV%d Priority', level, version);
 end;
 
-SBMLPriority.sboTerm = sboTerm;

@@ -1,16 +1,16 @@
-function value = ParameterRule_isSetName(SBMLParameterRule)
+function value = Priority_isSetMath(SBMLPriority)
 %
-% ParameterRule_isSetName
-%    takes an SBML ParameterRule structure
+% Priority_isSetMath
+%    takes an SBML Priority structure
 %
 %    returns
-%      1 if the value for the name attribute is set
+%      1 if the value for the math attribute is set
 %      0 otherwise
 
-%  Filename    :   ParameterRule_isSetName.m
+%  Filename    :   Priority_isSetMath.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -39,11 +39,11 @@ function value = ParameterRule_isSetName(SBMLParameterRule)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLParameterRule);
+[level, version] = GetLevelVersion(SBMLPriority);
 
-if isfield(SBMLParameterRule, 'name')
-	value = ~isempty(SBMLParameterRule.name);
+if isfield(SBMLPriority, 'math')
+	value = ~isempty(SBMLPriority.math);
 else
-	error('name not an attribute on SBML L%dV%d ParameterRule', level, version);
+	error('math not an attribute on SBML L%dV%d Priority', level, version);
 end;
 

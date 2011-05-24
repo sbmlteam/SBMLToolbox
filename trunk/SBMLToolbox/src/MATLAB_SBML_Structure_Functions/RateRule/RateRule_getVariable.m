@@ -1,12 +1,10 @@
 function variable = RateRule_getVariable(SBMLRateRule)
 %
-%   RateRule_getVariable 
-%             takes an SBMLRateRule structure 
+% RateRule_getVariable
+%    takes an SBML RateRule structure
 %
-%             and returns 
-%               the variable of the rateRule as a string
-%
-%       variable = RateRule_getVariable(SBMLRateRule)
+%    returns
+%      the value of the variable attribute
 
 %  Filename    :   RateRule_getVariable.m
 %  Description :
@@ -38,18 +36,13 @@ function variable = RateRule_getVariable(SBMLRateRule)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLRateRule))
-  error(sprintf('%s\n%s', ...
-    'RateRule_getVariable(SBMLRateRule)', ...
-    'first argument must be an SBML RateRule structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLRateRule);
+[level, version] = GetLevelVersion(SBMLRateRule);
 
-if (~isSBML_RateRule(SBMLRateRule, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'RateRule_getVariable(SBMLRateRule)', 'argument must be an SBML rateRule structure'));
+if isfield(SBMLRateRule, 'variable')
+	variable = SBMLRateRule.variable;
+else
+	error('variable not an attribute on SBML L%dV%d RateRule', level, version);
 end;
 
-variable = SBMLRateRule.variable;

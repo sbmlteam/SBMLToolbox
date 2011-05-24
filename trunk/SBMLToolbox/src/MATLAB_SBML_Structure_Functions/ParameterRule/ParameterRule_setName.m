@@ -1,13 +1,11 @@
 function SBMLParameterRule = ParameterRule_setName(SBMLParameterRule, name)
 %
-%   ParameterRule_setName 
-%             takes  1) an SBMLParameterRule structure 
-%             and    2) a string representing the name to be set
+% ParameterRule_setName
+%    takes an SBML ParameterRule structure
+%    and the name to be set
 %
-%             and returns 
-%               the parameterRule with the name set
-%
-%       SBMLParameterRule = ParameterRule_setName(SBMLParameterRule, 'name')
+%    returns
+%      the ParameterRule with the new value for the name attribute
 
 %  Filename    :   ParameterRule_setName.m
 %  Description :
@@ -39,20 +37,17 @@ function SBMLParameterRule = ParameterRule_setName(SBMLParameterRule, name)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLParameterRule))
-  error(sprintf('%s\n%s', ...
-    'ParameterRule_setName(SBMLParameterRule)', ...
-    'first argument must be an SBML ParameterRule structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLParameterRule);
+[level, version] = GetLevelVersion(SBMLParameterRule);
 
-if (~isSBML_ParameterRule(SBMLParameterRule, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'ParameterRule_setName(SBMLParameterRule, name)', 'first argument must be an SBML parameterRule structure'));
-elseif (~ischar(name))
-    error(sprintf('ParameterRule_setName(SBMLParameterRule, name)\n%s', 'second argument must be a string representing the name of the parameterRule'));
+if isfield(SBMLParameterRule, 'name')
+	if ~ischar(name)
+		error('name must be character array') ;
+	else
+		SBMLParameterRule.name = name;
+	end;
+else
+	error('name not an attribute on SBML L%dV%d ParameterRule', level, version);
 end;
 
-SBMLParameterRule.name = name;

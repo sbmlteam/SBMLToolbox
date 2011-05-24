@@ -1,13 +1,11 @@
 function value = RateRule_isSetVariable(SBMLRateRule)
 %
-%   RateRule_isSetVariable 
-%             takes an SBMLRateRule structure 
+% RateRule_isSetVariable
+%    takes an SBML RateRule structure
 %
-%             and returns 
-%               1 if the variable has been set 
-%               0 otherwise
-%
-%       value = RateRule_isSetVariable(SBMLRateRule)
+%    returns
+%      1 if the value for the variable attribute is set
+%      0 otherwise
 
 %  Filename    :   RateRule_isSetVariable.m
 %  Description :
@@ -39,18 +37,13 @@ function value = RateRule_isSetVariable(SBMLRateRule)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLRateRule))
-  error(sprintf('%s\n%s', ...
-    'RateRule_isSetVariable(SBMLRateRule)', ...
-    'first argument must be an SBML RateRule structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLRateRule);
+[level, version] = GetLevelVersion(SBMLRateRule);
 
-if (~isSBML_RateRule(SBMLRateRule, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'RateRule_isSetVariable(SBMLRateRule)', 'argument must be an SBML rateRule structure'));
+if isfield(SBMLRateRule, 'variable')
+	value = ~isempty(SBMLRateRule.variable);
+else
+	error('variable not an attribute on SBML L%dV%d RateRule', level, version);
 end;
 
-value = ~isempty(SBMLRateRule.variable);

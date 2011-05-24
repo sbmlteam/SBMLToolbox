@@ -1,13 +1,11 @@
 function value = ParameterRule_isSetUnits(SBMLParameterRule)
 %
-%   ParameterRule_isSetUnits 
-%             takes an SBMLParameterRule structure 
+% ParameterRule_isSetUnits
+%    takes an SBML ParameterRule structure
 %
-%             and returns 
-%               1 if the units has been set 
-%               0 otherwise
-%
-%       value = ParameterRule_isSetUnits(SBMLParameterRule)
+%    returns
+%      1 if the value for the units attribute is set
+%      0 otherwise
 
 %  Filename    :   ParameterRule_isSetUnits.m
 %  Description :
@@ -39,18 +37,13 @@ function value = ParameterRule_isSetUnits(SBMLParameterRule)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLParameterRule))
-  error(sprintf('%s\n%s', ...
-    'ParameterRule_isSetUnits(SBMLParameterRule)', ...
-    'first argument must be an SBML ParameterRule structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLParameterRule);
+[level, version] = GetLevelVersion(SBMLParameterRule);
 
-if (~isSBML_ParameterRule(SBMLParameterRule, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'ParameterRule_isSetUnits(SBMLParameterRule)', 'argument must be an SBML parameterRule structure'));
+if isfield(SBMLParameterRule, 'units')
+	value = ~isempty(SBMLParameterRule.units);
+else
+	error('units not an attribute on SBML L%dV%d ParameterRule', level, version);
 end;
 
-value = ~isempty(SBMLParameterRule.units);
