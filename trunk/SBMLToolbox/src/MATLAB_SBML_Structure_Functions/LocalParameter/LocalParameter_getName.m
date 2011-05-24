@@ -1,17 +1,15 @@
 function name = LocalParameter_getName(SBMLLocalParameter)
 %
-%   LocalParameter_getName 
-%             takes an SBMLLocalParameter structure 
+% LocalParameter_getName
+%    takes an SBML LocalParameter structure
 %
-%             and returns 
-%               the name of the parameter as a string
-%
-%       name = LocalParameter_getName(SBMLLocalParameter)
+%    returns
+%      the value of the name attribute
 
 %  Filename    :   LocalParameter_getName.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: LocalParameter_getName.m 13259 2011-03-21 05:40:36Z mhucka $
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -38,18 +36,13 @@ function name = LocalParameter_getName(SBMLLocalParameter)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLLocalParameter))
-  error(sprintf('%s\n%s', ...
-    'LocalParameter_getName(SBMLLocalParameter)', ...
-    'first argument must be an SBML LocalParameter structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLLocalParameter);
+[level, version] = GetLevelVersion(SBMLLocalParameter);
 
-if (~isSBML_LocalParameter(SBMLLocalParameter, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'LocalParameter_getName(SBMLLocalParameter)', 'argument must be an SBML parameter structure'));
+if isfield(SBMLLocalParameter, 'name')
+	name = SBMLLocalParameter.name;
+else
+	error('name not an attribute on SBML L%dV%d LocalParameter', level, version);
 end;
 
-name = SBMLLocalParameter.name;

@@ -1,13 +1,10 @@
 function SBMLKineticLaw = KineticLaw_unsetTimeUnits(SBMLKineticLaw)
 %
-%   KineticLaw_unsetTimeUnits 
-%             takes an SBMLKineticLaw structure 
+% KineticLaw_getTimeUnits
+%    takes an SBML KineticLaw structure
 %
-%             and returns 
-%               the kineticLaw with the timeUnits unset
-%               (i.e. timeUnits = '')
-%
-%       SBMLKineticLaw = KineticLaw_unsetTimeUnits(SBMLKineticLaw)
+%    returns
+%      the KineticLaw with the value for the timeUnits attribute unset
 
 %  Filename    :   KineticLaw_unsetTimeUnits.m
 %  Description :
@@ -39,18 +36,13 @@ function SBMLKineticLaw = KineticLaw_unsetTimeUnits(SBMLKineticLaw)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLKineticLaw))
-  error(sprintf('%s\n%s', ...
-    'KineticLaw_unsetTimeUnits(SBMLKineticLaw)', ...
-    'first argument must be an SBML KineticLaw structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLKineticLaw);
+[level, version] = GetLevelVersion(SBMLKineticLaw);
 
-if (~isSBML_KineticLaw(SBMLKineticLaw, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'KineticLaw_unsetTimeUnits(SBMLKineticLaw)', 'argument must be an SBML kineticLaw structure'));
+if isfield(SBMLKineticLaw, 'timeUnits')
+	SBMLKineticLaw.timeUnits = '';
+else
+	error('timeUnits not an attribute on SBML L%dV%d KineticLaw', level, version);
 end;
 
-SBMLKineticLaw.timeUnits = '';

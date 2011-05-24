@@ -1,13 +1,11 @@
 function value = FunctionDefinition_isSetMath(SBMLFunctionDefinition)
 %
-%   FunctionDefinition_isSetMath 
-%             takes an SBMLFunctionDefinition structure 
+% FunctionDefinition_isSetMath
+%    takes an SBML FunctionDefinition structure
 %
-%             and returns 
-%               1 if the math has been set 
-%               0 otherwise
-%
-%       value = FunctionDefinition_isSetMath(SBMLFunctionDefinition)
+%    returns
+%      1 if the value for the math attribute is set
+%      0 otherwise
 
 %  Filename    :   FunctionDefinition_isSetMath.m
 %  Description :
@@ -39,18 +37,13 @@ function value = FunctionDefinition_isSetMath(SBMLFunctionDefinition)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLFunctionDefinition))
-  error(sprintf('%s\n%s', ...
-    'FunctionDefinition_isSetMath(SBMLFunctionDefinition)', ...
-    'first argument must be an SBML functionDefinition structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLFunctionDefinition);
+[level, version] = GetLevelVersion(SBMLFunctionDefinition);
 
-if (~isSBML_FunctionDefinition(SBMLFunctionDefinition, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'FunctionDefinition_isSetMath(SBMLFunctionDefinition)', 'argument must be an SBML functionDefinition structure'));
+if isfield(SBMLFunctionDefinition, 'math')
+	value = ~isempty(SBMLFunctionDefinition.math);
+else
+	error('math not an attribute on SBML L%dV%d FunctionDefinition', level, version);
 end;
 
-value = ~isempty(SBMLFunctionDefinition.math);

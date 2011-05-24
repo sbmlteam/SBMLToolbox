@@ -1,13 +1,11 @@
 function SBMLKineticLaw = KineticLaw_setSubstanceUnits(SBMLKineticLaw, substanceUnits)
 %
-%   KineticLaw_setSubstanceUnits 
-%             takes  1) an SBMLKineticLaw structure 
-%             and    2) a string representing the substanceUnits to be set
+% KineticLaw_setSubstanceUnits
+%    takes an SBML KineticLaw structure
+%    and the substanceUnits to be set
 %
-%             and returns 
-%               the kineticLaw with the substanceUnits set
-%
-%       SBMLKineticLaw = KineticLaw_setSubstanceUnits(SBMLKineticLaw, 'substanceUnits')
+%    returns
+%      the KineticLaw with the new value for the substanceUnits attribute
 
 %  Filename    :   KineticLaw_setSubstanceUnits.m
 %  Description :
@@ -39,20 +37,17 @@ function SBMLKineticLaw = KineticLaw_setSubstanceUnits(SBMLKineticLaw, substance
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLKineticLaw))
-  error(sprintf('%s\n%s', ...
-    'KineticLaw_setSubstanceUnits(SBMLKineticLaw, ..)', ...
-    'first argument must be an SBML KineticLaw structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLKineticLaw);
+[level, version] = GetLevelVersion(SBMLKineticLaw);
 
-if (~isSBML_KineticLaw(SBMLKineticLaw, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'KineticLaw_setSubstanceUnits(SBMLKineticLaw, substanceUnits)', 'first argument must be an SBML kineticLaw structure'));
-elseif (~ischar(substanceUnits))
-    error(sprintf('KineticLaw_setSubstanceUnits(SBMLKineticLaw, substanceUnits)\n%s', 'second argument must be a string representing the substanceUnits of the kineticLaw'));
+if isfield(SBMLKineticLaw, 'substanceUnits')
+	if ~ischar(substanceUnits)
+		error('substanceUnits must be character array') ;
+	else
+		SBMLKineticLaw.substanceUnits = substanceUnits;
+	end;
+else
+	error('substanceUnits not an attribute on SBML L%dV%d KineticLaw', level, version);
 end;
 
-SBMLKineticLaw.substanceUnits = substanceUnits;

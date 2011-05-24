@@ -1,18 +1,16 @@
 function value = LocalParameter_isSetId(SBMLLocalParameter)
 %
-%   LocalParameter_isSetId 
-%             takes an SBMLLocalParameter structure 
+% LocalParameter_isSetId
+%    takes an SBML LocalParameter structure
 %
-%             and returns 
-%               1 if the id has been set 
-%               0 otherwise
-%
-%       value = LocalParameter_isSetId(SBMLLocalParameter)
+%    returns
+%      1 if the value for the id attribute is set
+%      0 otherwise
 
 %  Filename    :   LocalParameter_isSetId.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: LocalParameter_isSetId.m 13259 2011-03-21 05:40:36Z mhucka $
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -39,20 +37,13 @@ function value = LocalParameter_isSetId(SBMLLocalParameter)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLLocalParameter))
-  error(sprintf('%s\n%s', ...
-    'LocalParameter_isSetId(SBMLLocalParameter)', ...
-    'first argument must be an SBML LocalParameter structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLLocalParameter);
+[level, version] = GetLevelVersion(SBMLLocalParameter);
 
-if (~isSBML_LocalParameter(SBMLLocalParameter, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'LocalParameter_isSetId(SBMLLocalParameter)', 'argument must be an SBML parameter structure'));
-elseif (sbmlLevel ~= 2)
-    error(sprintf('%s\n%s', 'LocalParameter_isSetId(SBMLLocalParameter)', 'no id field in a level 1 model'));    
+if isfield(SBMLLocalParameter, 'id')
+	value = ~isempty(SBMLLocalParameter.id);
+else
+	error('id not an attribute on SBML L%dV%d LocalParameter', level, version);
 end;
 
-value = ~isempty(SBMLLocalParameter.id);

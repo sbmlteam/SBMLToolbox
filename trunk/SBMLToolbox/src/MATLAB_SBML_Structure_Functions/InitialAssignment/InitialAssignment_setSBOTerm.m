@@ -1,13 +1,11 @@
 function SBMLInitialAssignment = InitialAssignment_setSBOTerm(SBMLInitialAssignment, sboTerm)
 %
-%   InitialAssignment_setSBOTerm 
-%             takes  1) an SBMLInitialAssignment structure 
-%             and    2) an integer representing the sboTerm to be set
+% InitialAssignment_setSBOTerm
+%    takes an SBML InitialAssignment structure
+%    and the sboTerm to be set
 %
-%             and returns 
-%               the InitialAssignment with the sboTerm set
-%
-%       SBMLInitialAssignment = InitialAssignment_setSBOTerm(SBMLInitialAssignment, sboTerm)
+%    returns
+%      the InitialAssignment with the new value for the sboTerm attribute
 
 %  Filename    :   InitialAssignment_setSBOTerm.m
 %  Description :
@@ -39,28 +37,17 @@ function SBMLInitialAssignment = InitialAssignment_setSBOTerm(SBMLInitialAssignm
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLInitialAssignment))
-    error(sprintf('%s\n%s', ...
-      'InitialAssignment_setSBOTerm(SBMLInitialAssignment, sboTerm)', ...
-      'argument must be an SBML InitialAssignment structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLInitialAssignment);
+[level, version] = GetLevelVersion(SBMLInitialAssignment);
 
-if (~isSBML_InitialAssignment(SBMLInitialAssignment, sbmlLevel, sbmlVersion))
-  error(sprintf('%s\n%s', ...
-    'InitialAssignment_setSBOTerm(SBMLInitialAssignment, sboTerm)', ...
-    'first argument must be an SBML InitialAssignment structure'));
-elseif (~isIntegralNumber(sboTerm))
-    error(sprintf('%s\n%s', ...
-      'InitialAssignment_setSBOTerm(SBMLInitialAssignment, sboTerm)', ...
-      'second argument must be an integer representing the sboTerm'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'InitialAssignment_setSBOTerm(SBMLInitialAssignment, sboTerm)',  ...
-      'sboTerm field only in level 2 version 2/3 model'));    
+if isfield(SBMLInitialAssignment, 'sboTerm')
+	if ~isIntegralNumber(sboTerm)
+		error('sboTerm must be an integer') ;
+	else
+		SBMLInitialAssignment.sboTerm = sboTerm;
+	end;
+else
+	error('sboTerm not an attribute on SBML L%dV%d InitialAssignment', level, version);
 end;
 
-SBMLInitialAssignment.sboTerm = sboTerm;

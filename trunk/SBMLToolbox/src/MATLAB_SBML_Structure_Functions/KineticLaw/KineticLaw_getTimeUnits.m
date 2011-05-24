@@ -1,12 +1,10 @@
 function timeUnits = KineticLaw_getTimeUnits(SBMLKineticLaw)
 %
-%   KineticLaw_getTimeUnits 
-%             takes an SBMLKineticLaw structure 
+% KineticLaw_getTimeUnits
+%    takes an SBML KineticLaw structure
 %
-%             and returns 
-%               the timeUnits of the kineticLaw as a string
-%
-%       timeUnits = KineticLaw_getTimeUnits(SBMLKineticLaw)
+%    returns
+%      the value of the timeUnits attribute
 
 %  Filename    :   KineticLaw_getTimeUnits.m
 %  Description :
@@ -38,18 +36,13 @@ function timeUnits = KineticLaw_getTimeUnits(SBMLKineticLaw)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLKineticLaw))
-  error(sprintf('%s\n%s', ...
-    'KineticLaw_getTimeUnits(SBMLKineticLaw)', ...
-    'first argument must be an SBML KineticLaw structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLKineticLaw);
+[level, version] = GetLevelVersion(SBMLKineticLaw);
 
-if (~isSBML_KineticLaw(SBMLKineticLaw, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'KineticLaw_getTimeUnits(SBMLKineticLaw)', 'argument must be an SBML kineticLaw structure'));
+if isfield(SBMLKineticLaw, 'timeUnits')
+	timeUnits = SBMLKineticLaw.timeUnits;
+else
+	error('timeUnits not an attribute on SBML L%dV%d KineticLaw', level, version);
 end;
 
-timeUnits = SBMLKineticLaw.timeUnits;

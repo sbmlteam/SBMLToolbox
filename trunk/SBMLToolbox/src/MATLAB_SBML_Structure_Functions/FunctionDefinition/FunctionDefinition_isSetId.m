@@ -1,13 +1,11 @@
 function value = FunctionDefinition_isSetId(SBMLFunctionDefinition)
 %
-%   FunctionDefinition_isSetId 
-%             takes an SBMLFunctionDefinition structure 
+% FunctionDefinition_isSetId
+%    takes an SBML FunctionDefinition structure
 %
-%             and returns 
-%               1 if the id has been set 
-%               0 otherwise
-%
-%       value = FunctionDefinition_isSetId(SBMLFunctionDefinition)
+%    returns
+%      1 if the value for the id attribute is set
+%      0 otherwise
 
 %  Filename    :   FunctionDefinition_isSetId.m
 %  Description :
@@ -39,18 +37,13 @@ function value = FunctionDefinition_isSetId(SBMLFunctionDefinition)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLFunctionDefinition))
-  error(sprintf('%s\n%s', ...
-    'FunctionDefinition_isSetId(SBMLFunctionDefinition)', ...
-    'first argument must be an SBML functionDefinition structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLFunctionDefinition);
+[level, version] = GetLevelVersion(SBMLFunctionDefinition);
 
-if (~isSBML_FunctionDefinition(SBMLFunctionDefinition, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'FunctionDefinition_isSetId(SBMLFunctionDefinition)', 'argument must be an SBML functionDefinition structure'));
+if isfield(SBMLFunctionDefinition, 'id')
+	value = ~isempty(SBMLFunctionDefinition.id);
+else
+	error('id not an attribute on SBML L%dV%d FunctionDefinition', level, version);
 end;
 
-value = ~isempty(SBMLFunctionDefinition.id);

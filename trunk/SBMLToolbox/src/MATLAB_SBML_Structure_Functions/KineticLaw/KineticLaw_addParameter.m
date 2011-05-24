@@ -1,13 +1,11 @@
-function kineticLaw = KineticLaw_addParameter(SBMLKineticLaw, SBMLParameter)
+function SBMLKineticLaw = KineticLaw_addParameter(SBMLKineticLaw, SBMLParameter)
 %
-%   KineticLaw_addParameter 
-%             takes  1) an SBMLKineticLaw structure 
-%             and    2) an SBMLParameter structure
+% KineticLaw_addParameter(SBMLKineticLaw, SBMLParameter)
+%    takes an SBML KineticLaw structure
+%    and an SBML Parameter structure
 %
-%             and returns 
-%               the kineticLaw with the parameter added
-%
-%       kineticLaw = KineticLaw_addParameter(SBMLKineticLaw, SBMLParameter)
+%    returns
+%      the KineticLaw with the Parameter element added
 
 %  Filename    :   KineticLaw_addParameter.m
 %  Description :
@@ -39,25 +37,25 @@ function kineticLaw = KineticLaw_addParameter(SBMLKineticLaw, SBMLParameter)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLKineticLaw))
-  error(sprintf('%s\n%s', ...
-    'KineticLaw_addParameter(SBMLKineticLaw, SBMLParameter)', ...
-    'first argument must be an SBML KineticLaw structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLKineticLaw);
+[level, version] = GetLevelVersion(SBMLKineticLaw);
+[parameter_level, parameter_version] = GetLevelVersion(SBMLParameter);
 
-if (~isSBML_KineticLaw(SBMLKineticLaw, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'KineticLaw_addParameter(SBMLKineticLaw, SBMLParameter)', 'first argument must be an SBML kineticLaw structure'));
-elseif (~isSBML_Parameter(SBMLParameter, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s\nof the same SBML level, namely level %u', 'KineticLaw_addParameter(SBMLKineticLaw, SBMLParameter)', 'second argument must be an SBML parameter structure', sbmlLevel));
+if level ~= parameter_level
+	error('mismatch in levels');
+elseif version ~= parameter_version
+	error('mismatch in versions');
 end;
 
-numberParameters = length(SBMLKineticLaw.parameter);
-
-SBMLKineticLaw.parameter(numberParameters+1) = SBMLParameter;
-
-kineticLaw = SBMLKineticLaw;
+if isfield(SBMLKineticLaw, 'parameter')
+	index = length(SBMLKineticLaw.parameter);
+	if index == 0
+		SBMLKineticLaw.parameter = SBMLParameter;
+	else
+		SBMLKineticLaw.parameter(index+1) = SBMLParameter;
+	end;
+else
+	error('parameter not an element on SBML L%dV%d KineticLaw', level, version);
+end;
 

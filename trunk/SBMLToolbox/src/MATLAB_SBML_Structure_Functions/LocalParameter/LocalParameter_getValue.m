@@ -1,17 +1,15 @@
 function value = LocalParameter_getValue(SBMLLocalParameter)
 %
-%   LocalParameter_getValue 
-%             takes an SBMLLocalParameter structure 
+% LocalParameter_getValue
+%    takes an SBML LocalParameter structure
 %
-%             and returns 
-%               the value of the parameter as a double
-%
-%       value = LocalParameter_getValue(SBMLLocalParameter)
+%    returns
+%      the value of the value attribute
 
 %  Filename    :   LocalParameter_getValue.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: LocalParameter_getValue.m 13259 2011-03-21 05:40:36Z mhucka $
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -38,18 +36,13 @@ function value = LocalParameter_getValue(SBMLLocalParameter)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLLocalParameter))
-  error(sprintf('%s\n%s', ...
-    'LocalParameter_getValue(SBMLLocalParameter)', ...
-    'first argument must be an SBML LocalParameter structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLLocalParameter);
+[level, version] = GetLevelVersion(SBMLLocalParameter);
 
-if (~isSBML_LocalParameter(SBMLLocalParameter, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'LocalParameter_getValue(SBMLLocalParameter)', 'argument must be an SBML parameter structure'));
+if isfield(SBMLLocalParameter, 'value')
+	value = SBMLLocalParameter.value;
+else
+	error('value not an attribute on SBML L%dV%d LocalParameter', level, version);
 end;
 
-value = SBMLLocalParameter.value;

@@ -1,13 +1,11 @@
 function SBMLFunctionDefinition = FunctionDefinition_setSBOTerm(SBMLFunctionDefinition, sboTerm)
 %
-%   FunctionDefinition_setSBOTerm 
-%             takes  1) an SBMLFunctionDefinition structure 
-%             and    2) an integer representing the sboTerm to be set
+% FunctionDefinition_setSBOTerm
+%    takes an SBML FunctionDefinition structure
+%    and the sboTerm to be set
 %
-%             and returns 
-%               the compartment with the sboTerm set
-%
-%       SBMLFunctionDefinition = FunctionDefinition_setSBOTerm(SBMLFunctionDefinition, sboTerm)
+%    returns
+%      the FunctionDefinition with the new value for the sboTerm attribute
 
 %  Filename    :   FunctionDefinition_setSBOTerm.m
 %  Description :
@@ -39,28 +37,17 @@ function SBMLFunctionDefinition = FunctionDefinition_setSBOTerm(SBMLFunctionDefi
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLFunctionDefinition))
-  error(sprintf('%s\n%s', ...
-    'FunctionDefinition_setSBOTerm(SBMLFunctionDefinition, sboTerm)', ...
-    'first argument must be an SBML functionDefinition structure'));
+[level, version] = GetLevelVersion(SBMLFunctionDefinition);
+
+if isfield(SBMLFunctionDefinition, 'sboTerm')
+	if ~isIntegralNumber(sboTerm)
+		error('sboTerm must be an integer') ;
+	else
+		SBMLFunctionDefinition.sboTerm = sboTerm;
+	end;
+else
+	error('sboTerm not an attribute on SBML L%dV%d FunctionDefinition', level, version);
 end;
 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLFunctionDefinition);
-
-if (~isSBML_FunctionDefinition(SBMLFunctionDefinition, sbmlLevel, sbmlVersion))
-  error(sprintf('%s\n%s', ...
-    'FunctionDefinition_setSBOTerm(SBMLFunctionDefinition, sboTerm)', ...
-    'first argument must be an SBML functionDefinition structure'));
-elseif (~isIntegralNumber(sboTerm))
-    error(sprintf('%s\n%s', ...
-      'FunctionDefinition_setSBOTerm(SBMLFunctionDefinition, sboTerm)', ...
-      'second argument must be an integer representing the sboTerm'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'FunctionDefinition_setSBOTerm(SBMLFunctionDefinition, sboTerm)',  ...
-      'sboTerm field only in level 2 version 3 model'));    
-end;
-
-SBMLFunctionDefinition.sboTerm = sboTerm;

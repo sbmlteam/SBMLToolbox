@@ -1,18 +1,16 @@
 function SBMLLocalParameter = LocalParameter_setUnits(SBMLLocalParameter, units)
 %
-%   LocalParameter_setUnits 
-%             takes  1) an SBMLLocalParameter structure 
-%             and    2) a string representing the units to be set
+% LocalParameter_setUnits
+%    takes an SBML LocalParameter structure
+%    and the units to be set
 %
-%             and returns 
-%               the parameter with the units set
-%
-%       SBMLLocalParameter = LocalParameter_setUnits(SBMLLocalParameter, 'units')
+%    returns
+%      the LocalParameter with the new value for the units attribute
 
 %  Filename    :   LocalParameter_setUnits.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: LocalParameter_setUnits.m 13259 2011-03-21 05:40:36Z mhucka $
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -39,20 +37,17 @@ function SBMLLocalParameter = LocalParameter_setUnits(SBMLLocalParameter, units)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLLocalParameter))
-  error(sprintf('%s\n%s', ...
-    'LocalParameter_setUnits(SBMLLocalParameter)', ...
-    'first argument must be an SBML LocalParameter structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLLocalParameter);
+[level, version] = GetLevelVersion(SBMLLocalParameter);
 
-if (~isSBML_LocalParameter(SBMLLocalParameter, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'LocalParameter_setUnits(SBMLLocalParameter, units)', 'first argument must be an SBML parameter structure'));
-elseif (~ischar(units))
-    error(sprintf('LocalParameter_setUnits(SBMLLocalParameter, units)\n%s', 'second argument must be a string representing the units of the parameter'));
+if isfield(SBMLLocalParameter, 'units')
+	if ~ischar(units)
+		error('units must be character array') ;
+	else
+		SBMLLocalParameter.units = units;
+	end;
+else
+	error('units not an attribute on SBML L%dV%d LocalParameter', level, version);
 end;
 
-SBMLLocalParameter.units = units;
