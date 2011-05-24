@@ -1,16 +1,16 @@
-function value = ParameterRule_isSetName(SBMLParameterRule)
+function SBMLParameterRule = ParameterRule_setType(SBMLParameterRule, type)
 %
-% ParameterRule_isSetName
+% ParameterRule_setType
 %    takes an SBML ParameterRule structure
+%    and the type to be set
 %
 %    returns
-%      1 if the value for the name attribute is set
-%      0 otherwise
+%      the ParameterRule with the new value for the type attribute
 
-%  Filename    :   ParameterRule_isSetName.m
+%  Filename    :   ParameterRule_setType.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -41,9 +41,13 @@ function value = ParameterRule_isSetName(SBMLParameterRule)
 
 [level, version] = GetLevelVersion(SBMLParameterRule);
 
-if isfield(SBMLParameterRule, 'name')
-	value = ~isempty(SBMLParameterRule.name);
+if isfield(SBMLParameterRule, 'type')
+	if ~ischar(type)
+		error('type must be character array') ;
+	else
+		SBMLParameterRule.type = type;
+	end;
 else
-	error('name not an attribute on SBML L%dV%d ParameterRule', level, version);
+	error('type not an attribute on SBML L%dV%d ParameterRule', level, version);
 end;
 

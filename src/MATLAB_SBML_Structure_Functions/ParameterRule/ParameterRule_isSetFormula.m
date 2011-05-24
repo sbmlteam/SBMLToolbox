@@ -1,16 +1,16 @@
-function value = ParameterRule_isSetName(SBMLParameterRule)
+function value = ParameterRule_isSetFormula(SBMLParameterRule)
 %
-% ParameterRule_isSetName
+% ParameterRule_isSetFormula
 %    takes an SBML ParameterRule structure
 %
 %    returns
-%      1 if the value for the name attribute is set
+%      1 if the value for the formula attribute is set
 %      0 otherwise
 
-%  Filename    :   ParameterRule_isSetName.m
+%  Filename    :   ParameterRule_isSetFormula.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -41,9 +41,9 @@ function value = ParameterRule_isSetName(SBMLParameterRule)
 
 [level, version] = GetLevelVersion(SBMLParameterRule);
 
-if isfield(SBMLParameterRule, 'name')
-	value = ~isempty(SBMLParameterRule.name);
+if isfield(SBMLParameterRule, 'formula')
+	value = ~isempty(SBMLParameterRule.formula);
 else
-	error('name not an attribute on SBML L%dV%d ParameterRule', level, version);
+	error('formula not an attribute on SBML L%dV%d ParameterRule', level, version);
 end;
 

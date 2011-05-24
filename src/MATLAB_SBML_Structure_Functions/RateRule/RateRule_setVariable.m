@@ -1,13 +1,11 @@
 function SBMLRateRule = RateRule_setVariable(SBMLRateRule, variable)
 %
-%   RateRule_setVariable 
-%             takes  1) an SBMLRateRule structure 
-%             and    2) a string representing the variable to be set
+% RateRule_setVariable
+%    takes an SBML RateRule structure
+%    and the variable to be set
 %
-%             and returns 
-%               the rateRule with the variable set
-%
-%       SBMLRateRule = RateRule_setVariable(SBMLRateRule, 'variable')
+%    returns
+%      the RateRule with the new value for the variable attribute
 
 %  Filename    :   RateRule_setVariable.m
 %  Description :
@@ -39,20 +37,17 @@ function SBMLRateRule = RateRule_setVariable(SBMLRateRule, variable)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLRateRule))
-  error(sprintf('%s\n%s', ...
-    'RateRule_setVariable(SBMLRateRule)', ...
-    'first argument must be an SBML RateRule structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLRateRule);
+[level, version] = GetLevelVersion(SBMLRateRule);
 
-if (~isSBML_RateRule(SBMLRateRule, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'RateRule_setVariable(SBMLRateRule, variable)', 'first argument must be an SBML rateRule structure'));
-elseif (~ischar(variable))
-    error(sprintf('RateRule_setVariable(SBMLRateRule, variable)\n%s', 'second argument must be a string representing the variable of the rateRule'));
+if isfield(SBMLRateRule, 'variable')
+	if ~ischar(variable)
+		error('variable must be character array') ;
+	else
+		SBMLRateRule.variable = variable;
+	end;
+else
+	error('variable not an attribute on SBML L%dV%d RateRule', level, version);
 end;
 
-SBMLRateRule.variable = variable;

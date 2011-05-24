@@ -1,16 +1,15 @@
-function value = ParameterRule_isSetName(SBMLParameterRule)
+function sboTerm = RateRule_getSBOTerm(SBMLRateRule)
 %
-% ParameterRule_isSetName
-%    takes an SBML ParameterRule structure
+% RateRule_getSBOTerm
+%    takes an SBML RateRule structure
 %
 %    returns
-%      1 if the value for the name attribute is set
-%      0 otherwise
+%      the value of the sboTerm attribute
 
-%  Filename    :   ParameterRule_isSetName.m
+%  Filename    :   RateRule_getSBOTerm.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -39,11 +38,11 @@ function value = ParameterRule_isSetName(SBMLParameterRule)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLParameterRule);
+[level, version] = GetLevelVersion(SBMLRateRule);
 
-if isfield(SBMLParameterRule, 'name')
-	value = ~isempty(SBMLParameterRule.name);
+if isfield(SBMLRateRule, 'sboTerm')
+	sboTerm = SBMLRateRule.sboTerm;
 else
-	error('name not an attribute on SBML L%dV%d ParameterRule', level, version);
+	error('sboTerm not an attribute on SBML L%dV%d RateRule', level, version);
 end;
 

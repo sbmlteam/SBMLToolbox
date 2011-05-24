@@ -1,13 +1,11 @@
 function SBMLParameterRule = ParameterRule_setUnits(SBMLParameterRule, units)
 %
-%   ParameterRule_setUnits 
-%             takes  1) an SBMLParameterRule structure 
-%             and    2) a string representing the units to be set
+% ParameterRule_setUnits
+%    takes an SBML ParameterRule structure
+%    and the units to be set
 %
-%             and returns 
-%               the parameterRule with the units set
-%
-%       SBMLParameterRule = ParameterRule_setUnits(SBMLParameterRule, 'units')
+%    returns
+%      the ParameterRule with the new value for the units attribute
 
 %  Filename    :   ParameterRule_setUnits.m
 %  Description :
@@ -39,20 +37,17 @@ function SBMLParameterRule = ParameterRule_setUnits(SBMLParameterRule, units)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLParameterRule))
-  error(sprintf('%s\n%s', ...
-    'ParameterRule_setUnits(SBMLParameterRule)', ...
-    'first argument must be an SBML ParameterRule structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLParameterRule);
+[level, version] = GetLevelVersion(SBMLParameterRule);
 
-if (~isSBML_ParameterRule(SBMLParameterRule, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'ParameterRule_setUnits(SBMLParameterRule, units)', 'first argument must be an SBML parameterRule structure'));
-elseif (~ischar(units))
-    error(sprintf('ParameterRule_setUnits(SBMLParameterRule, units)\n%s', 'second argument must be a string representing the units of the parameterRule'));
+if isfield(SBMLParameterRule, 'units')
+	if ~ischar(units)
+		error('units must be character array') ;
+	else
+		SBMLParameterRule.units = units;
+	end;
+else
+	error('units not an attribute on SBML L%dV%d ParameterRule', level, version);
 end;
 
-SBMLParameterRule.units = units;

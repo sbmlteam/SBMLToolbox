@@ -1,18 +1,16 @@
 function SBMLPriority = Priority_setMath(SBMLPriority, math)
 %
-%   Priority_setMath 
-%             takes  1) an SBMLPriority structure 
-%             and    2) an string representing the math to be set
+% Priority_setMath
+%    takes an SBML Priority structure
+%    and the math to be set
 %
-%             and returns 
-%               the compartment with the math set
-%
-%       SBMLPriority = Priority_setMath(SBMLPriority, math)
+%    returns
+%      the Priority with the new value for the math attribute
 
 %  Filename    :   Priority_setMath.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: Priority_setMath.m 13259 2011-03-21 05:40:36Z mhucka $
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -39,24 +37,17 @@ function SBMLPriority = Priority_setMath(SBMLPriority, math)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLPriority))
-    error(sprintf('%s\n%s', ...
-      'Priority_getMath(SBMLPriority)', ...
-      'argument must be an SBML Priority structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLPriority);
+[level, version] = GetLevelVersion(SBMLPriority);
 
-if (~isSBML_Priority(SBMLPriority, sbmlLevel, sbmlVersion))
-  error(sprintf('%s\n%s', ...
-    'Priority_setMath(SBMLPriority, math)', ...
-    'first argument must be an SBML Priority structure'));
-elseif (~ischar(math))
-    error(sprintf('%s\n%s', ...
-      'Priority_setMath(SBMLPriority, math)', ...
-      'second argument must be a string representing the math'));
+if isfield(SBMLPriority, 'math')
+	if ~ischar(math)
+		error('math must be character array') ;
+	else
+		SBMLPriority.math = math;
+	end;
+else
+	error('math not an attribute on SBML L%dV%d Priority', level, version);
 end;
 
-SBMLPriority.math = math;
