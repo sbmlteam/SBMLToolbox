@@ -35,6 +35,18 @@ function [fail, num, message] = testObject(obj, attributes, component, fail, num
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
 
+% different cases which indicate what type of attribute is being tested
+% 1 string
+% 2 sboTerm - ie integer with unset value = -1
+% 3 double whose unset value is NaN
+% 4 double - always set
+% 5 boolean - with issetvalue
+% 6 int - always set
+% 7 boolean - no issetvalue
+% 8 L1RuleType - always set
+% 9 another structure -ignore
+% 10 SBMLlevel/version - always set - ignore
+
 
 % if no attributes obj should be empty
 if length(attributes) == 0
@@ -51,7 +63,7 @@ for i = 1:length(attributes)
   switch (attributes{i}{2})
     case {7, 9}
       f = 0;
-    case {6, 8, 10}
+    case {4, 6, 8, 10}
       [f, m] = testAlwaysSet(component, attributes{i}{1}, obj);
     otherwise
       [f, m] = testIsNotSet(component, attributes{i}{1}, obj);
@@ -218,11 +230,7 @@ end;
 
 % unset and check it is unset
 switch (type)
-  case 6
-    result = 0;
-  case 7
-    result = 0;
-  case 8
+  case {4, 6, 7, 8}
     result = 0;
   otherwise
     obj = feval(fhandle_unset, obj);
