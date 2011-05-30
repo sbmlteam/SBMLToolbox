@@ -1,10 +1,10 @@
 function SBMLFunctionDefinition = FunctionDefinition_unsetSBOTerm(SBMLFunctionDefinition)
 %
 % FunctionDefinition_getSBOTerm
-%    takes an SBML FunctionDefinition structure
+%       takes an SBML FunctionDefinition structure
 %
-%    returns
-%      the FunctionDefinition with the value for the sboTerm attribute unset
+%       and returns
+%           the FunctionDefinition with the value for the sboTerm attribute unset
 
 %  Filename    :   FunctionDefinition_unsetSBOTerm.m
 %  Description :

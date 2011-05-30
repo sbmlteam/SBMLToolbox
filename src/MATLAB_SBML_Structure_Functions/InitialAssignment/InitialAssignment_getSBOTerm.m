@@ -1,10 +1,10 @@
 function sboTerm = InitialAssignment_getSBOTerm(SBMLInitialAssignment)
 %
 % InitialAssignment_getSBOTerm
-%    takes an SBML InitialAssignment structure
+%       takes an SBML InitialAssignment structure
 %
-%    returns
-%      the value of the sboTerm attribute
+%       and returns
+%           the value of the sboTerm attribute
 
 %  Filename    :   InitialAssignment_getSBOTerm.m
 %  Description :

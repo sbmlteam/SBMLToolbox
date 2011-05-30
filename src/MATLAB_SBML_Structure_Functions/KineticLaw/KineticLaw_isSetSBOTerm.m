@@ -1,11 +1,11 @@
 function value = KineticLaw_isSetSBOTerm(SBMLKineticLaw)
 %
 % KineticLaw_isSetSBOTerm
-%    takes an SBML KineticLaw structure
+%       takes an SBML KineticLaw structure
 %
-%    returns
-%      1 if the value for the sboTerm attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the sboTerm attribute is set
+%           0 otherwise
 
 %  Filename    :   KineticLaw_isSetSBOTerm.m
 %  Description :

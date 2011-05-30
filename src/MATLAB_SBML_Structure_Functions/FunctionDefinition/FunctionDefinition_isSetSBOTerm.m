@@ -1,11 +1,11 @@
 function value = FunctionDefinition_isSetSBOTerm(SBMLFunctionDefinition)
 %
 % FunctionDefinition_isSetSBOTerm
-%    takes an SBML FunctionDefinition structure
+%       takes an SBML FunctionDefinition structure
 %
-%    returns
-%      1 if the value for the sboTerm attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the sboTerm attribute is set
+%           0 otherwise
 
 %  Filename    :   FunctionDefinition_isSetSBOTerm.m
 %  Description :

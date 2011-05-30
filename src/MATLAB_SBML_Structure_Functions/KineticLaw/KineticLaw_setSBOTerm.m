@@ -1,11 +1,11 @@
 function SBMLKineticLaw = KineticLaw_setSBOTerm(SBMLKineticLaw, sboTerm)
 %
 % KineticLaw_setSBOTerm
-%    takes an SBML KineticLaw structure
+%       takes an SBML KineticLaw structure
 %    and the sboTerm to be set
 %
-%    returns
-%      the KineticLaw with the new value for the sboTerm attribute
+%       and returns
+%           the KineticLaw with the new value for the sboTerm attribute
 
 %  Filename    :   KineticLaw_setSBOTerm.m
 %  Description :

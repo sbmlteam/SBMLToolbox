@@ -1,11 +1,11 @@
 function SBMLKineticLaw = KineticLaw_addParameter(SBMLKineticLaw, SBMLParameter)
 %
 % KineticLaw_addParameter(SBMLKineticLaw, SBMLParameter)
-%    takes an SBML KineticLaw structure
+%       takes an SBML KineticLaw structure
 %    and an SBML Parameter structure
 %
-%    returns
-%      the KineticLaw with the Parameter element added
+%       and returns
+%           the KineticLaw with the Parameter element added
 
 %  Filename    :   KineticLaw_addParameter.m
 %  Description :

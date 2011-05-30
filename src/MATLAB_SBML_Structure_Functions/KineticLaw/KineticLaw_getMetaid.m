@@ -1,10 +1,10 @@
 function metaid = KineticLaw_getMetaid(SBMLKineticLaw)
 %
 % KineticLaw_getMetaid
-%    takes an SBML KineticLaw structure
+%       takes an SBML KineticLaw structure
 %
-%    returns
-%      the value of the metaid attribute
+%       and returns
+%           the value of the metaid attribute
 
 %  Filename    :   KineticLaw_getMetaid.m
 %  Description :

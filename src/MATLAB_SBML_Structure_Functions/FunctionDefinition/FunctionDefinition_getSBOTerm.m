@@ -1,10 +1,10 @@
 function sboTerm = FunctionDefinition_getSBOTerm(SBMLFunctionDefinition)
 %
 % FunctionDefinition_getSBOTerm
-%    takes an SBML FunctionDefinition structure
+%       takes an SBML FunctionDefinition structure
 %
-%    returns
-%      the value of the sboTerm attribute
+%       and returns
+%           the value of the sboTerm attribute
 
 %  Filename    :   FunctionDefinition_getSBOTerm.m
 %  Description :

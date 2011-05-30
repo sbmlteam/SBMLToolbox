@@ -1,11 +1,11 @@
 function value = FunctionDefinition_isSetName(SBMLFunctionDefinition)
 %
 % FunctionDefinition_isSetName
-%    takes an SBML FunctionDefinition structure
+%       takes an SBML FunctionDefinition structure
 %
-%    returns
-%      1 if the value for the name attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the name attribute is set
+%           0 otherwise
 
 %  Filename    :   FunctionDefinition_isSetName.m
 %  Description :

@@ -1,11 +1,11 @@
 function SBMLInitialAssignment = InitialAssignment_setSBOTerm(SBMLInitialAssignment, sboTerm)
 %
 % InitialAssignment_setSBOTerm
-%    takes an SBML InitialAssignment structure
+%       takes an SBML InitialAssignment structure
 %    and the sboTerm to be set
 %
-%    returns
-%      the InitialAssignment with the new value for the sboTerm attribute
+%       and returns
+%           the InitialAssignment with the new value for the sboTerm attribute
 
 %  Filename    :   InitialAssignment_setSBOTerm.m
 %  Description :

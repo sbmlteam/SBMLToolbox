@@ -1,10 +1,10 @@
 function SBMLFunctionDefinition = FunctionDefinition_unsetId(SBMLFunctionDefinition)
 %
 % FunctionDefinition_getId
-%    takes an SBML FunctionDefinition structure
+%       takes an SBML FunctionDefinition structure
 %
-%    returns
-%      the FunctionDefinition with the value for the id attribute unset
+%       and returns
+%           the FunctionDefinition with the value for the id attribute unset
 
 %  Filename    :   FunctionDefinition_unsetId.m
 %  Description :

@@ -1,11 +1,11 @@
 function SBMLKineticLaw = KineticLaw_setMath(SBMLKineticLaw, math)
 %
 % KineticLaw_setMath
-%    takes an SBML KineticLaw structure
+%       takes an SBML KineticLaw structure
 %    and the math to be set
 %
-%    returns
-%      the KineticLaw with the new value for the math attribute
+%       and returns
+%           the KineticLaw with the new value for the math attribute
 
 %  Filename    :   KineticLaw_setMath.m
 %  Description :

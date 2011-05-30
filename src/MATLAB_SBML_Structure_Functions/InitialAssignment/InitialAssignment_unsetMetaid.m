@@ -1,10 +1,10 @@
 function SBMLInitialAssignment = InitialAssignment_unsetMetaid(SBMLInitialAssignment)
 %
 % InitialAssignment_getMetaid
-%    takes an SBML InitialAssignment structure
+%       takes an SBML InitialAssignment structure
 %
-%    returns
-%      the InitialAssignment with the value for the metaid attribute unset
+%       and returns
+%           the InitialAssignment with the value for the metaid attribute unset
 
 %  Filename    :   InitialAssignment_unsetMetaid.m
 %  Description :

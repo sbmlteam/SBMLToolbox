@@ -1,11 +1,11 @@
 function SBMLEventAssignment = EventAssignment_setSBOTerm(SBMLEventAssignment, sboTerm)
 %
 % EventAssignment_setSBOTerm
-%    takes an SBML EventAssignment structure
+%       takes an SBML EventAssignment structure
 %    and the sboTerm to be set
 %
-%    returns
-%      the EventAssignment with the new value for the sboTerm attribute
+%       and returns
+%           the EventAssignment with the new value for the sboTerm attribute
 
 %  Filename    :   EventAssignment_setSBOTerm.m
 %  Description :

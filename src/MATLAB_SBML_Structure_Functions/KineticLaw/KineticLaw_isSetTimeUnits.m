@@ -1,11 +1,11 @@
 function value = KineticLaw_isSetTimeUnits(SBMLKineticLaw)
 %
 % KineticLaw_isSetTimeUnits
-%    takes an SBML KineticLaw structure
+%       takes an SBML KineticLaw structure
 %
-%    returns
-%      1 if the value for the timeUnits attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the timeUnits attribute is set
+%           0 otherwise
 
 %  Filename    :   KineticLaw_isSetTimeUnits.m
 %  Description :

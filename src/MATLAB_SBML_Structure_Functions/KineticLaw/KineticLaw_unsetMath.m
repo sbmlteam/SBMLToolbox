@@ -1,10 +1,10 @@
 function SBMLKineticLaw = KineticLaw_unsetMath(SBMLKineticLaw)
 %
 % KineticLaw_getMath
-%    takes an SBML KineticLaw structure
+%       takes an SBML KineticLaw structure
 %
-%    returns
-%      the KineticLaw with the value for the math attribute unset
+%       and returns
+%           the KineticLaw with the value for the math attribute unset
 
 %  Filename    :   KineticLaw_unsetMath.m
 %  Description :

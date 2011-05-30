@@ -1,10 +1,10 @@
 function SBMLInitialAssignment = InitialAssignment_unsetMath(SBMLInitialAssignment)
 %
 % InitialAssignment_getMath
-%    takes an SBML InitialAssignment structure
+%       takes an SBML InitialAssignment structure
 %
-%    returns
-%      the InitialAssignment with the value for the math attribute unset
+%       and returns
+%           the InitialAssignment with the value for the math attribute unset
 
 %  Filename    :   InitialAssignment_unsetMath.m
 %  Description :

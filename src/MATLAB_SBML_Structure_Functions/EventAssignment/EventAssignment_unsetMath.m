@@ -1,10 +1,10 @@
 function SBMLEventAssignment = EventAssignment_unsetMath(SBMLEventAssignment)
 %
 % EventAssignment_getMath
-%    takes an SBML EventAssignment structure
+%       takes an SBML EventAssignment structure
 %
-%    returns
-%      the EventAssignment with the value for the math attribute unset
+%       and returns
+%           the EventAssignment with the value for the math attribute unset
 
 %  Filename    :   EventAssignment_unsetMath.m
 %  Description :

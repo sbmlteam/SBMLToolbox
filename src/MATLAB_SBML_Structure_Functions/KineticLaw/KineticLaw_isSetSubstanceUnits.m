@@ -1,11 +1,11 @@
 function value = KineticLaw_isSetSubstanceUnits(SBMLKineticLaw)
 %
 % KineticLaw_isSetSubstanceUnits
-%    takes an SBML KineticLaw structure
+%       takes an SBML KineticLaw structure
 %
-%    returns
-%      1 if the value for the substanceUnits attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the substanceUnits attribute is set
+%           0 otherwise
 
 %  Filename    :   KineticLaw_isSetSubstanceUnits.m
 %  Description :

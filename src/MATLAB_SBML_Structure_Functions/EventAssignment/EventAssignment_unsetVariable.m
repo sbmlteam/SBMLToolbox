@@ -1,10 +1,10 @@
 function SBMLEventAssignment = EventAssignment_unsetVariable(SBMLEventAssignment)
 %
 % EventAssignment_getVariable
-%    takes an SBML EventAssignment structure
+%       takes an SBML EventAssignment structure
 %
-%    returns
-%      the EventAssignment with the value for the variable attribute unset
+%       and returns
+%           the EventAssignment with the value for the variable attribute unset
 
 %  Filename    :   EventAssignment_unsetVariable.m
 %  Description :

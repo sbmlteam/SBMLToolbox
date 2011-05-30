@@ -1,11 +1,11 @@
 function SBMLKineticLaw = KineticLaw_setFormula(SBMLKineticLaw, formula)
 %
 % KineticLaw_setFormula
-%    takes an SBML KineticLaw structure
+%       takes an SBML KineticLaw structure
 %    and the formula to be set
 %
-%    returns
-%      the KineticLaw with the new value for the formula attribute
+%       and returns
+%           the KineticLaw with the new value for the formula attribute
 
 %  Filename    :   KineticLaw_setFormula.m
 %  Description :

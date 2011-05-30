@@ -1,10 +1,10 @@
 function localParameter = KineticLaw_getListOfLocalParameters(SBMLKineticLaw)
 %
 % KineticLaw_getListOfLocalParameters
-%    takes an SBML KineticLaw structure
+%       takes an SBML KineticLaw structure
 %
-%    returns
-%      the array of structures of the localParameter elements
+%       and returns
+%           the array of structures of the localParameter elements
 
 %  Filename    :   KineticLaw_getListOfLocalParameters.m
 %  Description :

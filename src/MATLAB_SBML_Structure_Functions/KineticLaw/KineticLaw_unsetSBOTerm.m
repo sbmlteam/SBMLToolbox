@@ -1,10 +1,10 @@
 function SBMLKineticLaw = KineticLaw_unsetSBOTerm(SBMLKineticLaw)
 %
 % KineticLaw_getSBOTerm
-%    takes an SBML KineticLaw structure
+%       takes an SBML KineticLaw structure
 %
-%    returns
-%      the KineticLaw with the value for the sboTerm attribute unset
+%       and returns
+%           the KineticLaw with the value for the sboTerm attribute unset
 
 %  Filename    :   KineticLaw_unsetSBOTerm.m
 %  Description :

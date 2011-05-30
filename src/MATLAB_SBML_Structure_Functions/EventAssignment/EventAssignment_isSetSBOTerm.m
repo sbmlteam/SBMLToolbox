@@ -1,11 +1,11 @@
 function value = EventAssignment_isSetSBOTerm(SBMLEventAssignment)
 %
 % EventAssignment_isSetSBOTerm
-%    takes an SBML EventAssignment structure
+%       takes an SBML EventAssignment structure
 %
-%    returns
-%      1 if the value for the sboTerm attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the sboTerm attribute is set
+%           0 otherwise
 
 %  Filename    :   EventAssignment_isSetSBOTerm.m
 %  Description :

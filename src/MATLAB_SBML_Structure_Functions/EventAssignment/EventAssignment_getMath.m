@@ -1,10 +1,10 @@
 function math = EventAssignment_getMath(SBMLEventAssignment)
 %
 % EventAssignment_getMath
-%    takes an SBML EventAssignment structure
+%       takes an SBML EventAssignment structure
 %
-%    returns
-%      the value of the math attribute
+%       and returns
+%           the value of the math attribute
 
 %  Filename    :   EventAssignment_getMath.m
 %  Description :

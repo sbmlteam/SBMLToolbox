@@ -1,10 +1,10 @@
 function SBMLInitialAssignment = InitialAssignment_unsetSBOTerm(SBMLInitialAssignment)
 %
 % InitialAssignment_getSBOTerm
-%    takes an SBML InitialAssignment structure
+%       takes an SBML InitialAssignment structure
 %
-%    returns
-%      the InitialAssignment with the value for the sboTerm attribute unset
+%       and returns
+%           the InitialAssignment with the value for the sboTerm attribute unset
 
 %  Filename    :   InitialAssignment_unsetSBOTerm.m
 %  Description :

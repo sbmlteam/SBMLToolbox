@@ -1,11 +1,11 @@
 function SBMLFunctionDefinition = FunctionDefinition_setMath(SBMLFunctionDefinition, math)
 %
 % FunctionDefinition_setMath
-%    takes an SBML FunctionDefinition structure
+%       takes an SBML FunctionDefinition structure
 %    and the math to be set
 %
-%    returns
-%      the FunctionDefinition with the new value for the math attribute
+%       and returns
+%           the FunctionDefinition with the new value for the math attribute
 
 %  Filename    :   FunctionDefinition_setMath.m
 %  Description :

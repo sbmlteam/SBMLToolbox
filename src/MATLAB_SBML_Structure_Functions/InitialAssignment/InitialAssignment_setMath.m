@@ -1,11 +1,11 @@
 function SBMLInitialAssignment = InitialAssignment_setMath(SBMLInitialAssignment, math)
 %
 % InitialAssignment_setMath
-%    takes an SBML InitialAssignment structure
+%       takes an SBML InitialAssignment structure
 %    and the math to be set
 %
-%    returns
-%      the InitialAssignment with the new value for the math attribute
+%       and returns
+%           the InitialAssignment with the new value for the math attribute
 
 %  Filename    :   InitialAssignment_setMath.m
 %  Description :

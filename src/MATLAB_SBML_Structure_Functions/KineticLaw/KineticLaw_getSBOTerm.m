@@ -1,10 +1,10 @@
 function sboTerm = KineticLaw_getSBOTerm(SBMLKineticLaw)
 %
 % KineticLaw_getSBOTerm
-%    takes an SBML KineticLaw structure
+%       takes an SBML KineticLaw structure
 %
-%    returns
-%      the value of the sboTerm attribute
+%       and returns
+%           the value of the sboTerm attribute
 
 %  Filename    :   KineticLaw_getSBOTerm.m
 %  Description :

@@ -1,10 +1,10 @@
 function SBMLFunctionDefinition = FunctionDefinition_unsetMath(SBMLFunctionDefinition)
 %
 % FunctionDefinition_getMath
-%    takes an SBML FunctionDefinition structure
+%       takes an SBML FunctionDefinition structure
 %
-%    returns
-%      the FunctionDefinition with the value for the math attribute unset
+%       and returns
+%           the FunctionDefinition with the value for the math attribute unset
 
 %  Filename    :   FunctionDefinition_unsetMath.m
 %  Description :

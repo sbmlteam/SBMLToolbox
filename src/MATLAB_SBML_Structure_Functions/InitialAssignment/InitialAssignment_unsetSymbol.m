@@ -1,10 +1,10 @@
 function SBMLInitialAssignment = InitialAssignment_unsetSymbol(SBMLInitialAssignment)
 %
 % InitialAssignment_getSymbol
-%    takes an SBML InitialAssignment structure
+%       takes an SBML InitialAssignment structure
 %
-%    returns
-%      the InitialAssignment with the value for the symbol attribute unset
+%       and returns
+%           the InitialAssignment with the value for the symbol attribute unset
 
 %  Filename    :   InitialAssignment_unsetSymbol.m
 %  Description :
