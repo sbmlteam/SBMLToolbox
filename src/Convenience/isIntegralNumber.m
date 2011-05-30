@@ -1,10 +1,11 @@
 function value = isIntegralNumber(number)
-% isIntegralNumber takes a number n 
+% isIntegralNumber 
+%       takes a number
 %       and returns 
 %           1 if it is an integer 
 %           0 otherwise (maybe of MATLAB type double)
 %
-%       NOTE: MATLAB's 'isinteger' function only returns true if the number 
+%    NOTE: MATLAB's 'isinteger' function only returns true if the number 
 %       has been declared as an int; whereas the default type for numbers 
 %       in MATLAB is double
 %

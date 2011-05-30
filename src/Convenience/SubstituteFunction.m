@@ -6,20 +6,22 @@ function Formula = SubstituteFunction(OriginalFormula, SBMLFunctionDefinition)
 %       and returns 
 %           the formula with the function substituted
 %       or  an empty string if the id of the functionDefinition is not in the
-%       originalFormula
+%           originalFormula
 %
 %
-%   EXAMPLE:
-%           fD = SBMLFunmctionDefinition 
+%    EXAMPLE:
+%          Consider fD to be an SBMLFunctionDefinition 
 %               with id = 'g' and math = 'lambda(x,x+0.5)' 
 %
-%           formula = SubstituteFormula('g(y)', fD)
+%          formula = SubstituteFormula('g(y)', fD)
 %           
-%                   = 'y+0.5'
+%          formula = 'y+0.5'
 %
-%           formula = SubstituteFormula('h(y)', fD)
+%    OR
+%          formula = SubstituteFormula('h(y)', fD)
 %           
-%                   = ''
+%          formula = ''
+%
 
 
 %  Filename    :   SubstituteFunction.m

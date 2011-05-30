@@ -3,17 +3,18 @@ function value = Substitute(original_formula, model)
 %       takes 
 %           1) a string representation of a formula 
 %           2) the SBMLModel structure
+%
 %       and returns 
 %           the value calculated when all variables are substituted
 %
+%    EXAMPLE:
+%          Consider m to be an SBMLModel containing a species with 
+%                     id = 'g' and initialConcentration = '3' 
 %
-%   EXAMPLE:
-%           m = SBMLModel with species
-%               with id = 'g' and initialConcentration = 3' 
-%
-%           value = Substitute('g*2', m)
+%          value = Substitute('g*2', m)
 %           
-%                   = 6
+%          value = 6
+%
 
 %  Filename    :   Substitute.m
 %  Description : 

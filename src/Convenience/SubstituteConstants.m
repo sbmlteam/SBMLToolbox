@@ -8,13 +8,14 @@ function subsFormula = SubstituteConstants(OriginalFormula, SBMLModel)
 %           within the model substituted
 %
 %
-%   EXAMPLE:
-%           m = SBMLModel with constant parameter
+%    EXAMPLE:
+%          Consider m to be an SBMLModel containing a parameter
 %               with id = 'g' and value = 3' 
 %
-%           subsFormula = SubstituteConstants('2 * g * S1', SBMLModel)
+%          subsFormula = SubstituteConstants('2 * g * S1', SBMLModel)
 %           
-%                   = '2 * 3 * S1'
+%          subsFormula = '2 * 3 * S1'
+%
 
 %
 %  Filename    : SubstituteConstants.m

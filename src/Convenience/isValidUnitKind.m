@@ -1,8 +1,13 @@
 function value = isValidUnitKind(kind)%
-% isValidUnitKind takes a string representing a unit kind 
+% isValidUnitKind 
+%       takes a string representing a unit kind 
+%
 %       and returns 
 %           1 if it is valid 
 %           0 otherwise
+%
+%    NOTE: This is identical to the function CheckValidUnitKind
+%
 
 
 %  Filename    :   isValidUnitKind.m
