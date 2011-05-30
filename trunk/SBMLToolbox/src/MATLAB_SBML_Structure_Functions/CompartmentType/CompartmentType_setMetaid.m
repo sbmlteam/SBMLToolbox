@@ -1,11 +1,11 @@
 function SBMLCompartmentType = CompartmentType_setMetaid(SBMLCompartmentType, metaid)
 %
 % CompartmentType_setMetaid
-%    takes an SBML CompartmentType structure
+%       takes an SBML CompartmentType structure
 %    and the metaid to be set
 %
-%    returns
-%      the CompartmentType with the new value for the metaid attribute
+%       and returns
+%           the CompartmentType with the new value for the metaid attribute
 
 %  Filename    :   CompartmentType_setMetaid.m
 %  Description :

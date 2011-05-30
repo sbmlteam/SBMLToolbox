@@ -1,11 +1,11 @@
 function SBMLCompartment = Compartment_setVolume(SBMLCompartment, volume)
 %
 % Compartment_setVolume
-%    takes an SBML Compartment structure
+%       takes an SBML Compartment structure
 %    and the volume to be set
 %
-%    returns
-%      the Compartment with the new value for the volume attribute
+%       and returns
+%           the Compartment with the new value for the volume attribute
 
 %  Filename    :   Compartment_setVolume.m
 %  Description :

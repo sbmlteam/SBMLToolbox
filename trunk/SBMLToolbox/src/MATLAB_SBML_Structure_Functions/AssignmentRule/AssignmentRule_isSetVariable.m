@@ -1,11 +1,11 @@
 function value = AssignmentRule_isSetVariable(SBMLAssignmentRule)
 %
 % AssignmentRule_isSetVariable
-%    takes an SBML AssignmentRule structure
+%       takes an SBML AssignmentRule structure
 %
-%    returns
-%      1 if the value for the variable attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the variable attribute is set
+%           0 otherwise
 
 %  Filename    :   AssignmentRule_isSetVariable.m
 %  Description :

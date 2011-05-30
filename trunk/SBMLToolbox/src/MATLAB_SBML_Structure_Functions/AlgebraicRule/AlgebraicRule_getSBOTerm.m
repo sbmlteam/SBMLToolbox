@@ -1,10 +1,10 @@
 function sboTerm = AlgebraicRule_getSBOTerm(SBMLAlgebraicRule)
 %
 % AlgebraicRule_getSBOTerm
-%    takes an SBML AlgebraicRule structure
+%       takes an SBML AlgebraicRule structure
 %
-%    returns
-%      the value of the sboTerm attribute
+%       and returns
+%           the value of the sboTerm attribute
 
 %  Filename    :   AlgebraicRule_getSBOTerm.m
 %  Description :

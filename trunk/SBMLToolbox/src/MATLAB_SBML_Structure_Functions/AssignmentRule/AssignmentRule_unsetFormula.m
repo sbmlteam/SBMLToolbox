@@ -1,10 +1,10 @@
 function SBMLAssignmentRule = AssignmentRule_unsetFormula(SBMLAssignmentRule)
 %
 % AssignmentRule_getFormula
-%    takes an SBML AssignmentRule structure
+%       takes an SBML AssignmentRule structure
 %
-%    returns
-%      the AssignmentRule with the value for the formula attribute unset
+%       and returns
+%           the AssignmentRule with the value for the formula attribute unset
 
 %  Filename    :   AssignmentRule_unsetFormula.m
 %  Description :

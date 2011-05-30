@@ -1,10 +1,10 @@
 function eventAssignment = Event_getListOfEventAssignments(SBMLEvent)
 %
 % Event_getListOfEventAssignments
-%    takes an SBML Event structure
+%       takes an SBML Event structure
 %
-%    returns
-%      the array of structures of the eventAssignment elements
+%       and returns
+%           the array of structures of the eventAssignment elements
 
 %  Filename    :   Event_getListOfEventAssignments.m
 %  Description :

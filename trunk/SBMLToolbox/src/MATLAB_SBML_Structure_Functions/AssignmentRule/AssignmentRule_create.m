@@ -1,14 +1,14 @@
 function AssignmentRule = AssignmentRule_create(varargin)
 %
 % AssignmentRule_create
-%    takes an SBML level (optional)
+%       takes an SBML level (optional)
 %    and   an SBML version (optional)
 %
-%    returns
-%      an MATLAB_SBML AssignmentRule structure of the appropriate
+%       and returns
+%           an MATLAB_SBML AssignmentRule structure of the appropriate
 %           level and version
 %
-% NOTE: the optional level and version preserve backwards compatability
+%    NOTE: the optional level and version preserve backwards compatability
 %         if version is missing the default values will be L1V2; L2V4 or L3V1
 %         if neither argument is supplied the default values will be L3V1
 

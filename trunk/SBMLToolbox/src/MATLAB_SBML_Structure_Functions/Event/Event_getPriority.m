@@ -1,10 +1,10 @@
 function priority = Event_getPriority(SBMLEvent)
 %
 % Event_getPriority
-%    takes an SBML Event structure
+%       takes an SBML Event structure
 %
-%    returns
-%      the value of the priority attribute
+%       and returns
+%           the value of the priority attribute
 
 %  Filename    :   Event_getPriority.m
 %  Description :

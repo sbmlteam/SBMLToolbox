@@ -1,10 +1,10 @@
 function SBMLDelay = Delay_unsetMetaid(SBMLDelay)
 %
 % Delay_getMetaid
-%    takes an SBML Delay structure
+%       takes an SBML Delay structure
 %
-%    returns
-%      the Delay with the value for the metaid attribute unset
+%       and returns
+%           the Delay with the value for the metaid attribute unset
 
 %  Filename    :   Delay_unsetMetaid.m
 %  Description :

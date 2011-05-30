@@ -1,10 +1,10 @@
 function SBMLCompartment = Compartment_unsetSpatialDimensions(SBMLCompartment)
 %
 % Compartment_getSpatialDimensions
-%    takes an SBML Compartment structure
+%       takes an SBML Compartment structure
 %
-%    returns
-%      the Compartment with the value for the spatialDimensions attribute unset
+%       and returns
+%           the Compartment with the value for the spatialDimensions attribute unset
 
 %  Filename    :   Compartment_unsetSpatialDimensions.m
 %  Description :

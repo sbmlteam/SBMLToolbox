@@ -1,10 +1,10 @@
 function useValuesFromTriggerTime = Event_getUseValuesFromTriggerTime(SBMLEvent)
 %
 % Event_getUseValuesFromTriggerTime
-%    takes an SBML Event structure
+%       takes an SBML Event structure
 %
-%    returns
-%      the value of the useValuesFromTriggerTime attribute
+%       and returns
+%           the value of the useValuesFromTriggerTime attribute
 
 %  Filename    :   Event_getUseValuesFromTriggerTime.m
 %  Description :

@@ -1,10 +1,10 @@
 function id = Event_getId(SBMLEvent)
 %
 % Event_getId
-%    takes an SBML Event structure
+%       takes an SBML Event structure
 %
-%    returns
-%      the value of the id attribute
+%       and returns
+%           the value of the id attribute
 
 %  Filename    :   Event_getId.m
 %  Description :

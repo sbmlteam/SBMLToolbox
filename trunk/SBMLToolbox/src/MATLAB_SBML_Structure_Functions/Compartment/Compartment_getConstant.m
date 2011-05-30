@@ -1,10 +1,10 @@
 function constant = Compartment_getConstant(SBMLCompartment)
 %
 % Compartment_getConstant
-%    takes an SBML Compartment structure
+%       takes an SBML Compartment structure
 %
-%    returns
-%      the value of the constant attribute
+%       and returns
+%           the value of the constant attribute
 
 %  Filename    :   Compartment_getConstant.m
 %  Description :

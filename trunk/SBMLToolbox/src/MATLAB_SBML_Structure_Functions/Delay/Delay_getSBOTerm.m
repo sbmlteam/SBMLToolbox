@@ -1,10 +1,10 @@
 function sboTerm = Delay_getSBOTerm(SBMLDelay)
 %
 % Delay_getSBOTerm
-%    takes an SBML Delay structure
+%       takes an SBML Delay structure
 %
-%    returns
-%      the value of the sboTerm attribute
+%       and returns
+%           the value of the sboTerm attribute
 
 %  Filename    :   Delay_getSBOTerm.m
 %  Description :

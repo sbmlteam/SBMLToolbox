@@ -1,10 +1,10 @@
 function metaid = Constraint_getMetaid(SBMLConstraint)
 %
 % Constraint_getMetaid
-%    takes an SBML Constraint structure
+%       takes an SBML Constraint structure
 %
-%    returns
-%      the value of the metaid attribute
+%       and returns
+%           the value of the metaid attribute
 
 %  Filename    :   Constraint_getMetaid.m
 %  Description :

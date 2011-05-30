@@ -1,10 +1,10 @@
 function SBMLAssignmentRule = AssignmentRule_unsetVariable(SBMLAssignmentRule)
 %
 % AssignmentRule_getVariable
-%    takes an SBML AssignmentRule structure
+%       takes an SBML AssignmentRule structure
 %
-%    returns
-%      the AssignmentRule with the value for the variable attribute unset
+%       and returns
+%           the AssignmentRule with the value for the variable attribute unset
 
 %  Filename    :   AssignmentRule_unsetVariable.m
 %  Description :

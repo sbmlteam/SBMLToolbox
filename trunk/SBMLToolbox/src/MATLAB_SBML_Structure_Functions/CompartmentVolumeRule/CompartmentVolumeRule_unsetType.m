@@ -1,10 +1,10 @@
 function SBMLCompartmentVolumeRule = CompartmentVolumeRule_unsetType(SBMLCompartmentVolumeRule)
 %
 % CompartmentVolumeRule_getType
-%    takes an SBML CompartmentVolumeRule structure
+%       takes an SBML CompartmentVolumeRule structure
 %
-%    returns
-%      the CompartmentVolumeRule with the value for the type attribute unset
+%       and returns
+%           the CompartmentVolumeRule with the value for the type attribute unset
 
 %  Filename    :   CompartmentVolumeRule_unsetType.m
 %  Description :

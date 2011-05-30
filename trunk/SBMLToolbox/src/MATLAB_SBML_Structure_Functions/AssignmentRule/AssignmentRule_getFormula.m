@@ -1,10 +1,10 @@
 function formula = AssignmentRule_getFormula(SBMLAssignmentRule)
 %
 % AssignmentRule_getFormula
-%    takes an SBML AssignmentRule structure
+%       takes an SBML AssignmentRule structure
 %
-%    returns
-%      the value of the formula attribute
+%       and returns
+%           the value of the formula attribute
 
 %  Filename    :   AssignmentRule_getFormula.m
 %  Description :

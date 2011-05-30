@@ -1,10 +1,10 @@
 function math = Constraint_getMath(SBMLConstraint)
 %
 % Constraint_getMath
-%    takes an SBML Constraint structure
+%       takes an SBML Constraint structure
 %
-%    returns
-%      the value of the math attribute
+%       and returns
+%           the value of the math attribute
 
 %  Filename    :   Constraint_getMath.m
 %  Description :

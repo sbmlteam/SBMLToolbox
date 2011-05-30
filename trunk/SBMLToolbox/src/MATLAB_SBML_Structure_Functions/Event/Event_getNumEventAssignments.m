@@ -1,10 +1,10 @@
 function num = Event_getNumEventAssignments(SBMLEvent)
 %
 % Event_getNumEventAssignments
-%    takes an SBML Event structure
+%       takes an SBML Event structure
 %
-%    returns
-%      the number of eventAssignment elements
+%       and returns
+%           the number of eventAssignment elements
 
 %  Filename    :   Event_getNumEventAssignments.m
 %  Description :

@@ -1,11 +1,11 @@
 function SBMLEvent = Event_setTrigger(SBMLEvent, trigger)
 %
 % Event_setTrigger
-%    takes an SBML Event structure
+%       takes an SBML Event structure
 %    and the trigger to be set
 %
-%    returns
-%      the Event with the new value for the trigger attribute
+%       and returns
+%           the Event with the new value for the trigger attribute
 
 %  Filename    :   Event_setTrigger.m
 %  Description :

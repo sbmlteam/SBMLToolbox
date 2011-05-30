@@ -1,11 +1,11 @@
 function SBMLCompartment = Compartment_setSpatialDimensions(SBMLCompartment, spatialDimensions)
 %
 % Compartment_setSpatialDimensions
-%    takes an SBML Compartment structure
+%       takes an SBML Compartment structure
 %    and the spatialDimensions to be set
 %
-%    returns
-%      the Compartment with the new value for the spatialDimensions attribute
+%       and returns
+%           the Compartment with the new value for the spatialDimensions attribute
 
 %  Filename    :   Compartment_setSpatialDimensions.m
 %  Description :

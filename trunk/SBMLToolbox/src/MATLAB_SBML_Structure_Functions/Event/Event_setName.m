@@ -1,11 +1,11 @@
 function SBMLEvent = Event_setName(SBMLEvent, name)
 %
 % Event_setName
-%    takes an SBML Event structure
+%       takes an SBML Event structure
 %    and the name to be set
 %
-%    returns
-%      the Event with the new value for the name attribute
+%       and returns
+%           the Event with the new value for the name attribute
 
 %  Filename    :   Event_setName.m
 %  Description :

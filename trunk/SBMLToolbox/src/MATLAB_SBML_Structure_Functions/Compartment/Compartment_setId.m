@@ -1,11 +1,11 @@
 function SBMLCompartment = Compartment_setId(SBMLCompartment, id)
 %
 % Compartment_setId
-%    takes an SBML Compartment structure
+%       takes an SBML Compartment structure
 %    and the id to be set
 %
-%    returns
-%      the Compartment with the new value for the id attribute
+%       and returns
+%           the Compartment with the new value for the id attribute
 
 %  Filename    :   Compartment_setId.m
 %  Description :

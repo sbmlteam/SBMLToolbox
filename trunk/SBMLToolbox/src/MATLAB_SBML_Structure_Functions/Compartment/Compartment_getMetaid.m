@@ -1,10 +1,10 @@
 function metaid = Compartment_getMetaid(SBMLCompartment)
 %
 % Compartment_getMetaid
-%    takes an SBML Compartment structure
+%       takes an SBML Compartment structure
 %
-%    returns
-%      the value of the metaid attribute
+%       and returns
+%           the value of the metaid attribute
 
 %  Filename    :   Compartment_getMetaid.m
 %  Description :

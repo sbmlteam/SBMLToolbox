@@ -1,10 +1,10 @@
 function type = CompartmentVolumeRule_getType(SBMLCompartmentVolumeRule)
 %
 % CompartmentVolumeRule_getType
-%    takes an SBML CompartmentVolumeRule structure
+%       takes an SBML CompartmentVolumeRule structure
 %
-%    returns
-%      the value of the type attribute
+%       and returns
+%           the value of the type attribute
 
 %  Filename    :   CompartmentVolumeRule_getType.m
 %  Description :

@@ -1,10 +1,10 @@
 function compartmentType = Compartment_getCompartmentType(SBMLCompartment)
 %
 % Compartment_getCompartmentType
-%    takes an SBML Compartment structure
+%       takes an SBML Compartment structure
 %
-%    returns
-%      the value of the compartmentType attribute
+%       and returns
+%           the value of the compartmentType attribute
 
 %  Filename    :   Compartment_getCompartmentType.m
 %  Description :

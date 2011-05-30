@@ -1,10 +1,10 @@
 function metaid = AssignmentRule_getMetaid(SBMLAssignmentRule)
 %
 % AssignmentRule_getMetaid
-%    takes an SBML AssignmentRule structure
+%       takes an SBML AssignmentRule structure
 %
-%    returns
-%      the value of the metaid attribute
+%       and returns
+%           the value of the metaid attribute
 
 %  Filename    :   AssignmentRule_getMetaid.m
 %  Description :

@@ -1,11 +1,11 @@
 function SBMLEvent = Event_addEventAssignment(SBMLEvent, SBMLEventAssignment)
 %
 % Event_addEventAssignment(SBMLEvent, SBMLEventAssignment)
-%    takes an SBML Event structure
+%       takes an SBML Event structure
 %    and an SBML EventAssignment structure
 %
-%    returns
-%      the Event with the EventAssignment element added
+%       and returns
+%           the Event with the EventAssignment element added
 
 %  Filename    :   Event_addEventAssignment.m
 %  Description :

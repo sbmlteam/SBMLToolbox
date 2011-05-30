@@ -1,11 +1,11 @@
 function SBMLEvent = Event_setTimeUnits(SBMLEvent, timeUnits)
 %
 % Event_setTimeUnits
-%    takes an SBML Event structure
+%       takes an SBML Event structure
 %    and the timeUnits to be set
 %
-%    returns
-%      the Event with the new value for the timeUnits attribute
+%       and returns
+%           the Event with the new value for the timeUnits attribute
 
 %  Filename    :   Event_setTimeUnits.m
 %  Description :

@@ -1,11 +1,11 @@
 function SBMLAssignmentRule = AssignmentRule_setMetaid(SBMLAssignmentRule, metaid)
 %
 % AssignmentRule_setMetaid
-%    takes an SBML AssignmentRule structure
+%       takes an SBML AssignmentRule structure
 %    and the metaid to be set
 %
-%    returns
-%      the AssignmentRule with the new value for the metaid attribute
+%       and returns
+%           the AssignmentRule with the new value for the metaid attribute
 
 %  Filename    :   AssignmentRule_setMetaid.m
 %  Description :

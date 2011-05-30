@@ -1,11 +1,11 @@
 function value = Event_isSetTrigger(SBMLEvent)
 %
 % Event_isSetTrigger
-%    takes an SBML Event structure
+%       takes an SBML Event structure
 %
-%    returns
-%      1 if the value for the trigger attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the trigger attribute is set
+%           0 otherwise
 
 %  Filename    :   Event_isSetTrigger.m
 %  Description :

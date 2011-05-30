@@ -1,11 +1,11 @@
 function value = Constraint_isSetMetaid(SBMLConstraint)
 %
 % Constraint_isSetMetaid
-%    takes an SBML Constraint structure
+%       takes an SBML Constraint structure
 %
-%    returns
-%      1 if the value for the metaid attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the metaid attribute is set
+%           0 otherwise
 
 %  Filename    :   Constraint_isSetMetaid.m
 %  Description :

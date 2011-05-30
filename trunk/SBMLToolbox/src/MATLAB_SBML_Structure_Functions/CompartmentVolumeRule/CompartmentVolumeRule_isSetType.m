@@ -1,11 +1,11 @@
 function value = CompartmentVolumeRule_isSetType(SBMLCompartmentVolumeRule)
 %
 % CompartmentVolumeRule_isSetType
-%    takes an SBML CompartmentVolumeRule structure
+%       takes an SBML CompartmentVolumeRule structure
 %
-%    returns
-%      1 if the value for the type attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the type attribute is set
+%           0 otherwise
 
 %  Filename    :   CompartmentVolumeRule_isSetType.m
 %  Description :

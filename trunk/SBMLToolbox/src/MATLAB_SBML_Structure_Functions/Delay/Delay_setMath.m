@@ -1,11 +1,11 @@
 function SBMLDelay = Delay_setMath(SBMLDelay, math)
 %
 % Delay_setMath
-%    takes an SBML Delay structure
+%       takes an SBML Delay structure
 %    and the math to be set
 %
-%    returns
-%      the Delay with the new value for the math attribute
+%       and returns
+%           the Delay with the new value for the math attribute
 
 %  Filename    :   Delay_setMath.m
 %  Description :

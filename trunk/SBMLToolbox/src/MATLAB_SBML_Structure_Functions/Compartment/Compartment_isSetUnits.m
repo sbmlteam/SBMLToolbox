@@ -1,11 +1,11 @@
 function value = Compartment_isSetUnits(SBMLCompartment)
 %
 % Compartment_isSetUnits
-%    takes an SBML Compartment structure
+%       takes an SBML Compartment structure
 %
-%    returns
-%      1 if the value for the units attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the units attribute is set
+%           0 otherwise
 
 %  Filename    :   Compartment_isSetUnits.m
 %  Description :

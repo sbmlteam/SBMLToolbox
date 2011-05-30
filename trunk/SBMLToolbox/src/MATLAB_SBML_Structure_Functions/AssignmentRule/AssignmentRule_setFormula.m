@@ -1,11 +1,11 @@
 function SBMLAssignmentRule = AssignmentRule_setFormula(SBMLAssignmentRule, formula)
 %
 % AssignmentRule_setFormula
-%    takes an SBML AssignmentRule structure
+%       takes an SBML AssignmentRule structure
 %    and the formula to be set
 %
-%    returns
-%      the AssignmentRule with the new value for the formula attribute
+%       and returns
+%           the AssignmentRule with the new value for the formula attribute
 
 %  Filename    :   AssignmentRule_setFormula.m
 %  Description :

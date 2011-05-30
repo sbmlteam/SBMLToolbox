@@ -1,10 +1,10 @@
 function SBMLEvent = Event_unsetMetaid(SBMLEvent)
 %
 % Event_getMetaid
-%    takes an SBML Event structure
+%       takes an SBML Event structure
 %
-%    returns
-%      the Event with the value for the metaid attribute unset
+%       and returns
+%           the Event with the value for the metaid attribute unset
 
 %  Filename    :   Event_unsetMetaid.m
 %  Description :

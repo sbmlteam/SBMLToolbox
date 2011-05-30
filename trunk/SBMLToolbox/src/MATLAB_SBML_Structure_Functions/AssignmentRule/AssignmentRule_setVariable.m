@@ -1,11 +1,11 @@
 function SBMLAssignmentRule = AssignmentRule_setVariable(SBMLAssignmentRule, variable)
 %
 % AssignmentRule_setVariable
-%    takes an SBML AssignmentRule structure
+%       takes an SBML AssignmentRule structure
 %    and the variable to be set
 %
-%    returns
-%      the AssignmentRule with the new value for the variable attribute
+%       and returns
+%           the AssignmentRule with the new value for the variable attribute
 
 %  Filename    :   AssignmentRule_setVariable.m
 %  Description :

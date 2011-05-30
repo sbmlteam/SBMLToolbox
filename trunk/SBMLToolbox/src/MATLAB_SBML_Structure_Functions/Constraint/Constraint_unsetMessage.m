@@ -1,10 +1,10 @@
 function SBMLConstraint = Constraint_unsetMessage(SBMLConstraint)
 %
 % Constraint_getMessage
-%    takes an SBML Constraint structure
+%       takes an SBML Constraint structure
 %
-%    returns
-%      the Constraint with the value for the message attribute unset
+%       and returns
+%           the Constraint with the value for the message attribute unset
 
 %  Filename    :   Constraint_unsetMessage.m
 %  Description :

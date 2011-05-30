@@ -1,11 +1,11 @@
 function SBMLCompartment = Compartment_setOutside(SBMLCompartment, outside)
 %
 % Compartment_setOutside
-%    takes an SBML Compartment structure
+%       takes an SBML Compartment structure
 %    and the outside to be set
 %
-%    returns
-%      the Compartment with the new value for the outside attribute
+%       and returns
+%           the Compartment with the new value for the outside attribute
 
 %  Filename    :   Compartment_setOutside.m
 %  Description :

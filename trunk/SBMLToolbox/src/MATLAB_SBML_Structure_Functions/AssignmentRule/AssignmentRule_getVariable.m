@@ -1,10 +1,10 @@
 function variable = AssignmentRule_getVariable(SBMLAssignmentRule)
 %
 % AssignmentRule_getVariable
-%    takes an SBML AssignmentRule structure
+%       takes an SBML AssignmentRule structure
 %
-%    returns
-%      the value of the variable attribute
+%       and returns
+%           the value of the variable attribute
 
 %  Filename    :   AssignmentRule_getVariable.m
 %  Description :

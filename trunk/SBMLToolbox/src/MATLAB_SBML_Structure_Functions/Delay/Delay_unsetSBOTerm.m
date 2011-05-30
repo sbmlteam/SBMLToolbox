@@ -1,10 +1,10 @@
 function SBMLDelay = Delay_unsetSBOTerm(SBMLDelay)
 %
 % Delay_getSBOTerm
-%    takes an SBML Delay structure
+%       takes an SBML Delay structure
 %
-%    returns
-%      the Delay with the value for the sboTerm attribute unset
+%       and returns
+%           the Delay with the value for the sboTerm attribute unset
 
 %  Filename    :   Delay_unsetSBOTerm.m
 %  Description :

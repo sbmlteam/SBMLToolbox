@@ -1,10 +1,10 @@
 function SBMLAssignmentRule = AssignmentRule_unsetMetaid(SBMLAssignmentRule)
 %
 % AssignmentRule_getMetaid
-%    takes an SBML AssignmentRule structure
+%       takes an SBML AssignmentRule structure
 %
-%    returns
-%      the AssignmentRule with the value for the metaid attribute unset
+%       and returns
+%           the AssignmentRule with the value for the metaid attribute unset
 
 %  Filename    :   AssignmentRule_unsetMetaid.m
 %  Description :

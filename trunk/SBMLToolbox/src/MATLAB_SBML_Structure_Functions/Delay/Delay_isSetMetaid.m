@@ -1,11 +1,11 @@
 function value = Delay_isSetMetaid(SBMLDelay)
 %
 % Delay_isSetMetaid
-%    takes an SBML Delay structure
+%       takes an SBML Delay structure
 %
-%    returns
-%      1 if the value for the metaid attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the metaid attribute is set
+%           0 otherwise
 
 %  Filename    :   Delay_isSetMetaid.m
 %  Description :

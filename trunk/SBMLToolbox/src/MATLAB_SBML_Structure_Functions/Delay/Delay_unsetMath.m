@@ -1,10 +1,10 @@
 function SBMLDelay = Delay_unsetMath(SBMLDelay)
 %
 % Delay_getMath
-%    takes an SBML Delay structure
+%       takes an SBML Delay structure
 %
-%    returns
-%      the Delay with the value for the math attribute unset
+%       and returns
+%           the Delay with the value for the math attribute unset
 
 %  Filename    :   Delay_unsetMath.m
 %  Description :

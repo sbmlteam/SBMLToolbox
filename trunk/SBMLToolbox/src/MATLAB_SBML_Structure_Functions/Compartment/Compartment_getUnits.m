@@ -1,10 +1,10 @@
 function units = Compartment_getUnits(SBMLCompartment)
 %
 % Compartment_getUnits
-%    takes an SBML Compartment structure
+%       takes an SBML Compartment structure
 %
-%    returns
-%      the value of the units attribute
+%       and returns
+%           the value of the units attribute
 
 %  Filename    :   Compartment_getUnits.m
 %  Description :

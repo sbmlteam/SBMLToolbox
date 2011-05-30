@@ -1,10 +1,10 @@
 function SBMLAssignmentRule = AssignmentRule_unsetSBOTerm(SBMLAssignmentRule)
 %
 % AssignmentRule_getSBOTerm
-%    takes an SBML AssignmentRule structure
+%       takes an SBML AssignmentRule structure
 %
-%    returns
-%      the AssignmentRule with the value for the sboTerm attribute unset
+%       and returns
+%           the AssignmentRule with the value for the sboTerm attribute unset
 
 %  Filename    :   AssignmentRule_unsetSBOTerm.m
 %  Description :

@@ -1,11 +1,11 @@
 function value = Constraint_isSetMath(SBMLConstraint)
 %
 % Constraint_isSetMath
-%    takes an SBML Constraint structure
+%       takes an SBML Constraint structure
 %
-%    returns
-%      1 if the value for the math attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the math attribute is set
+%           0 otherwise
 
 %  Filename    :   Constraint_isSetMath.m
 %  Description :

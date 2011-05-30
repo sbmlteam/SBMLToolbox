@@ -1,11 +1,11 @@
 function value = Event_isSetMetaid(SBMLEvent)
 %
 % Event_isSetMetaid
-%    takes an SBML Event structure
+%       takes an SBML Event structure
 %
-%    returns
-%      1 if the value for the metaid attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the metaid attribute is set
+%           0 otherwise
 
 %  Filename    :   Event_isSetMetaid.m
 %  Description :

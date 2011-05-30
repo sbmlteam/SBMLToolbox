@@ -1,11 +1,11 @@
 function value = CompartmentType_isSetId(SBMLCompartmentType)
 %
 % CompartmentType_isSetId
-%    takes an SBML CompartmentType structure
+%       takes an SBML CompartmentType structure
 %
-%    returns
-%      1 if the value for the id attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the id attribute is set
+%           0 otherwise
 
 %  Filename    :   CompartmentType_isSetId.m
 %  Description :

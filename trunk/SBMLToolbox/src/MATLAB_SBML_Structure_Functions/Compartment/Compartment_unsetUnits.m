@@ -1,10 +1,10 @@
 function SBMLCompartment = Compartment_unsetUnits(SBMLCompartment)
 %
 % Compartment_getUnits
-%    takes an SBML Compartment structure
+%       takes an SBML Compartment structure
 %
-%    returns
-%      the Compartment with the value for the units attribute unset
+%       and returns
+%           the Compartment with the value for the units attribute unset
 
 %  Filename    :   Compartment_unsetUnits.m
 %  Description :

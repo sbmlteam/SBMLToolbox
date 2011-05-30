@@ -1,11 +1,11 @@
 function SBMLCompartment = Compartment_setName(SBMLCompartment, name)
 %
 % Compartment_setName
-%    takes an SBML Compartment structure
+%       takes an SBML Compartment structure
 %    and the name to be set
 %
-%    returns
-%      the Compartment with the new value for the name attribute
+%       and returns
+%           the Compartment with the new value for the name attribute
 
 %  Filename    :   Compartment_setName.m
 %  Description :

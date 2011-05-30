@@ -1,11 +1,11 @@
 function value = CompartmentVolumeRule_isSetFormula(SBMLCompartmentVolumeRule)
 %
 % CompartmentVolumeRule_isSetFormula
-%    takes an SBML CompartmentVolumeRule structure
+%       takes an SBML CompartmentVolumeRule structure
 %
-%    returns
-%      1 if the value for the formula attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the formula attribute is set
+%           0 otherwise
 
 %  Filename    :   CompartmentVolumeRule_isSetFormula.m
 %  Description :
