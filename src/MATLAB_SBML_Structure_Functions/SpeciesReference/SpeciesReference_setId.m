@@ -1,11 +1,11 @@
 function SBMLSpeciesReference = SpeciesReference_setId(SBMLSpeciesReference, id)
 %
 % SpeciesReference_setId
-%    takes an SBML SpeciesReference structure
+%       takes an SBML SpeciesReference structure
 %    and the id to be set
 %
-%    returns
-%      the SpeciesReference with the new value for the id attribute
+%       and returns
+%           the SpeciesReference with the new value for the id attribute
 
 %  Filename    :   SpeciesReference_setId.m
 %  Description :

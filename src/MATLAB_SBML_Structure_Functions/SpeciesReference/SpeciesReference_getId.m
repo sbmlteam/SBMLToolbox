@@ -1,10 +1,10 @@
 function id = SpeciesReference_getId(SBMLSpeciesReference)
 %
 % SpeciesReference_getId
-%    takes an SBML SpeciesReference structure
+%       takes an SBML SpeciesReference structure
 %
-%    returns
-%      the value of the id attribute
+%       and returns
+%           the value of the id attribute
 
 %  Filename    :   SpeciesReference_getId.m
 %  Description :

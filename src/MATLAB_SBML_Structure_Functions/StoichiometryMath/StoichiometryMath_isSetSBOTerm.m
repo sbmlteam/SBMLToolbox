@@ -1,11 +1,11 @@
 function value = StoichiometryMath_isSetSBOTerm(SBMLStoichiometryMath)
 %
 % StoichiometryMath_isSetSBOTerm
-%    takes an SBML StoichiometryMath structure
+%       takes an SBML StoichiometryMath structure
 %
-%    returns
-%      1 if the value for the sboTerm attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the sboTerm attribute is set
+%           0 otherwise
 
 %  Filename    :   StoichiometryMath_isSetSBOTerm.m
 %  Description :

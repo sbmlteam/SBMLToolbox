@@ -1,10 +1,10 @@
 function SBMLSpeciesType = SpeciesType_unsetMetaid(SBMLSpeciesType)
 %
 % SpeciesType_getMetaid
-%    takes an SBML SpeciesType structure
+%       takes an SBML SpeciesType structure
 %
-%    returns
-%      the SpeciesType with the value for the metaid attribute unset
+%       and returns
+%           the SpeciesType with the value for the metaid attribute unset
 
 %  Filename    :   SpeciesType_unsetMetaid.m
 %  Description :

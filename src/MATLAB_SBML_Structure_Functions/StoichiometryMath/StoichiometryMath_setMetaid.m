@@ -1,11 +1,11 @@
 function SBMLStoichiometryMath = StoichiometryMath_setMetaid(SBMLStoichiometryMath, metaid)
 %
 % StoichiometryMath_setMetaid
-%    takes an SBML StoichiometryMath structure
+%       takes an SBML StoichiometryMath structure
 %    and the metaid to be set
 %
-%    returns
-%      the StoichiometryMath with the new value for the metaid attribute
+%       and returns
+%           the StoichiometryMath with the new value for the metaid attribute
 
 %  Filename    :   StoichiometryMath_setMetaid.m
 %  Description :

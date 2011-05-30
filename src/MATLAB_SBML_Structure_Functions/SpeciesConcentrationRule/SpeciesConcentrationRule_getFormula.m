@@ -1,10 +1,10 @@
 function formula = SpeciesConcentrationRule_getFormula(SBMLSpeciesConcentrationRule)
 %
 % SpeciesConcentrationRule_getFormula
-%    takes an SBML SpeciesConcentrationRule structure
+%       takes an SBML SpeciesConcentrationRule structure
 %
-%    returns
-%      the value of the formula attribute
+%       and returns
+%           the value of the formula attribute
 
 %  Filename    :   SpeciesConcentrationRule_getFormula.m
 %  Description :

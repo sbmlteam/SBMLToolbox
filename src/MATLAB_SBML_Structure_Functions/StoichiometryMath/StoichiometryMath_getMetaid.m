@@ -1,10 +1,10 @@
 function metaid = StoichiometryMath_getMetaid(SBMLStoichiometryMath)
 %
 % StoichiometryMath_getMetaid
-%    takes an SBML StoichiometryMath structure
+%       takes an SBML StoichiometryMath structure
 %
-%    returns
-%      the value of the metaid attribute
+%       and returns
+%           the value of the metaid attribute
 
 %  Filename    :   StoichiometryMath_getMetaid.m
 %  Description :

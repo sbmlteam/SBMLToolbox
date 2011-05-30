@@ -1,10 +1,10 @@
 function constant = SpeciesReference_getConstant(SBMLSpeciesReference)
 %
 % SpeciesReference_getConstant
-%    takes an SBML SpeciesReference structure
+%       takes an SBML SpeciesReference structure
 %
-%    returns
-%      the value of the constant attribute
+%       and returns
+%           the value of the constant attribute
 
 %  Filename    :   SpeciesReference_getConstant.m
 %  Description :

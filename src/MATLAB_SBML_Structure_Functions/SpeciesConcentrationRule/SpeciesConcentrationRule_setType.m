@@ -1,11 +1,11 @@
 function SBMLSpeciesConcentrationRule = SpeciesConcentrationRule_setType(SBMLSpeciesConcentrationRule, type)
 %
 % SpeciesConcentrationRule_setType
-%    takes an SBML SpeciesConcentrationRule structure
+%       takes an SBML SpeciesConcentrationRule structure
 %    and the type to be set
 %
-%    returns
-%      the SpeciesConcentrationRule with the new value for the type attribute
+%       and returns
+%           the SpeciesConcentrationRule with the new value for the type attribute
 
 %  Filename    :   SpeciesConcentrationRule_setType.m
 %  Description :

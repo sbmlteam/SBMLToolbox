@@ -1,11 +1,11 @@
 function SBMLSpeciesReference = SpeciesReference_setDenominator(SBMLSpeciesReference, denominator)
 %
 % SpeciesReference_setDenominator
-%    takes an SBML SpeciesReference structure
+%       takes an SBML SpeciesReference structure
 %    and the denominator to be set
 %
-%    returns
-%      the SpeciesReference with the new value for the denominator attribute
+%       and returns
+%           the SpeciesReference with the new value for the denominator attribute
 
 %  Filename    :   SpeciesReference_setDenominator.m
 %  Description :

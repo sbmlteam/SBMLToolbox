@@ -1,11 +1,11 @@
 function SBMLSpeciesReference = SpeciesReference_setMetaid(SBMLSpeciesReference, metaid)
 %
 % SpeciesReference_setMetaid
-%    takes an SBML SpeciesReference structure
+%       takes an SBML SpeciesReference structure
 %    and the metaid to be set
 %
-%    returns
-%      the SpeciesReference with the new value for the metaid attribute
+%       and returns
+%           the SpeciesReference with the new value for the metaid attribute
 
 %  Filename    :   SpeciesReference_setMetaid.m
 %  Description :

@@ -1,10 +1,10 @@
 function SBMLStoichiometryMath = StoichiometryMath_unsetSBOTerm(SBMLStoichiometryMath)
 %
 % StoichiometryMath_getSBOTerm
-%    takes an SBML StoichiometryMath structure
+%       takes an SBML StoichiometryMath structure
 %
-%    returns
-%      the StoichiometryMath with the value for the sboTerm attribute unset
+%       and returns
+%           the StoichiometryMath with the value for the sboTerm attribute unset
 
 %  Filename    :   StoichiometryMath_unsetSBOTerm.m
 %  Description :

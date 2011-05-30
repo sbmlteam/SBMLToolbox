@@ -1,10 +1,10 @@
 function stoichiometry = SpeciesReference_getStoichiometry(SBMLSpeciesReference)
 %
 % SpeciesReference_getStoichiometry
-%    takes an SBML SpeciesReference structure
+%       takes an SBML SpeciesReference structure
 %
-%    returns
-%      the value of the stoichiometry attribute
+%       and returns
+%           the value of the stoichiometry attribute
 
 %  Filename    :   SpeciesReference_getStoichiometry.m
 %  Description :

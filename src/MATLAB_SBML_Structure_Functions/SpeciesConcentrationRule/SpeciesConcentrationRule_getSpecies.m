@@ -1,10 +1,10 @@
 function species = SpeciesConcentrationRule_getSpecies(SBMLSpeciesConcentrationRule)
 %
 % SpeciesConcentrationRule_getSpecies
-%    takes an SBML SpeciesConcentrationRule structure
+%       takes an SBML SpeciesConcentrationRule structure
 %
-%    returns
-%      the value of the species attribute
+%       and returns
+%           the value of the species attribute
 
 %  Filename    :   SpeciesConcentrationRule_getSpecies.m
 %  Description :

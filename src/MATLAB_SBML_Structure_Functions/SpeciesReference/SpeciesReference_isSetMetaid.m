@@ -1,11 +1,11 @@
 function value = SpeciesReference_isSetMetaid(SBMLSpeciesReference)
 %
 % SpeciesReference_isSetMetaid
-%    takes an SBML SpeciesReference structure
+%       takes an SBML SpeciesReference structure
 %
-%    returns
-%      1 if the value for the metaid attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the metaid attribute is set
+%           0 otherwise
 
 %  Filename    :   SpeciesReference_isSetMetaid.m
 %  Description :
