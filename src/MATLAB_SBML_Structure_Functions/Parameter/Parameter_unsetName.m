@@ -1,10 +1,10 @@
 function SBMLParameter = Parameter_unsetName(SBMLParameter)
 %
 % Parameter_getName
-%    takes an SBML Parameter structure
+%       takes an SBML Parameter structure
 %
-%    returns
-%      the Parameter with the value for the name attribute unset
+%       and returns
+%           the Parameter with the value for the name attribute unset
 
 %  Filename    :   Parameter_unsetName.m
 %  Description :

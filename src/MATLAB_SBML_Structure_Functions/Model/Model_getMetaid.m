@@ -1,10 +1,10 @@
 function metaid = Model_getMetaid(SBMLModel)
 %
 % Model_getMetaid
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      the value of the metaid attribute
+%       and returns
+%           the value of the metaid attribute
 
 %  Filename    :   Model_getMetaid.m
 %  Description :

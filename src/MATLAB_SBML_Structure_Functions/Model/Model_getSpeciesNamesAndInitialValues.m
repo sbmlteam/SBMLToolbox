@@ -4,7 +4,7 @@ function varargout = Model_getSpeciesNamesAndInitialValues(SBMLModel)
 %           1) an array of character names of all species within the model 
 %           2) an array of the initial concentration values of each species
 %
-% NOTE: if the initial concentrations are not set then the value NaN is used
+%    NOTE: if the initial concentrations are not set then the value NaN is used
 
 %  Filename    :   Model_getSpeciesNamesAndInitialValues.m
 %  Description :

@@ -1,11 +1,11 @@
 function value = Model_isSetTimeUnits(SBMLModel)
 %
 % Model_isSetTimeUnits
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      1 if the value for the timeUnits attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the timeUnits attribute is set
+%           0 otherwise
 
 %  Filename    :   Model_isSetTimeUnits.m
 %  Description :

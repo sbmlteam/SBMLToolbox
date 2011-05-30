@@ -1,10 +1,10 @@
 function num = Model_getNumFunctionDefinitions(SBMLModel)
 %
 % Model_getNumFunctionDefinitions
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      the number of functionDefinition elements
+%       and returns
+%           the number of functionDefinition elements
 
 %  Filename    :   Model_getNumFunctionDefinitions.m
 %  Description :

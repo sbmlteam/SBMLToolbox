@@ -1,10 +1,10 @@
 function SBMLLocalParameter = LocalParameter_unsetName(SBMLLocalParameter)
 %
 % LocalParameter_getName
-%    takes an SBML LocalParameter structure
+%       takes an SBML LocalParameter structure
 %
-%    returns
-%      the LocalParameter with the value for the name attribute unset
+%       and returns
+%           the LocalParameter with the value for the name attribute unset
 
 %  Filename    :   LocalParameter_unsetName.m
 %  Description :

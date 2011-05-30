@@ -1,10 +1,10 @@
 function SBML_level = Model_getSBML_level(SBMLModel)
 %
 % Model_getSBML_level
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      the value of the SBML_level attribute
+%       and returns
+%           the value of the SBML_level attribute
 
 %  Filename    :   Model_getSBML_level.m
 %  Description :

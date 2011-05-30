@@ -1,11 +1,11 @@
 function value = ModifierSpeciesReference_isSetMetaid(SBMLModifierSpeciesReference)
 %
 % ModifierSpeciesReference_isSetMetaid
-%    takes an SBML ModifierSpeciesReference structure
+%       takes an SBML ModifierSpeciesReference structure
 %
-%    returns
-%      1 if the value for the metaid attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the metaid attribute is set
+%           0 otherwise
 
 %  Filename    :   ModifierSpeciesReference_isSetMetaid.m
 %  Description :

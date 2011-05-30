@@ -1,11 +1,11 @@
 function SBMLModel = Model_setSBOTerm(SBMLModel, sboTerm)
 %
 % Model_setSBOTerm
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %    and the sboTerm to be set
 %
-%    returns
-%      the Model with the new value for the sboTerm attribute
+%       and returns
+%           the Model with the new value for the sboTerm attribute
 
 %  Filename    :   Model_setSBOTerm.m
 %  Description :

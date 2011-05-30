@@ -1,11 +1,11 @@
 function SBMLModel = Model_setLengthUnits(SBMLModel, lengthUnits)
 %
 % Model_setLengthUnits
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %    and the lengthUnits to be set
 %
-%    returns
-%      the Model with the new value for the lengthUnits attribute
+%       and returns
+%           the Model with the new value for the lengthUnits attribute
 
 %  Filename    :   Model_setLengthUnits.m
 %  Description :

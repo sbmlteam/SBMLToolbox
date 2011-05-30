@@ -1,11 +1,11 @@
 function value = LocalParameter_isSetName(SBMLLocalParameter)
 %
 % LocalParameter_isSetName
-%    takes an SBML LocalParameter structure
+%       takes an SBML LocalParameter structure
 %
-%    returns
-%      1 if the value for the name attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the name attribute is set
+%           0 otherwise
 
 %  Filename    :   LocalParameter_isSetName.m
 %  Description :

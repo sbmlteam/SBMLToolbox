@@ -1,11 +1,11 @@
 function SBMLParameterRule = ParameterRule_setType(SBMLParameterRule, type)
 %
 % ParameterRule_setType
-%    takes an SBML ParameterRule structure
+%       takes an SBML ParameterRule structure
 %    and the type to be set
 %
-%    returns
-%      the ParameterRule with the new value for the type attribute
+%       and returns
+%           the ParameterRule with the new value for the type attribute
 
 %  Filename    :   ParameterRule_setType.m
 %  Description :

@@ -1,10 +1,10 @@
 function conversionFactor = Model_getConversionFactor(SBMLModel)
 %
 % Model_getConversionFactor
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      the value of the conversionFactor attribute
+%       and returns
+%           the value of the conversionFactor attribute
 
 %  Filename    :   Model_getConversionFactor.m
 %  Description :

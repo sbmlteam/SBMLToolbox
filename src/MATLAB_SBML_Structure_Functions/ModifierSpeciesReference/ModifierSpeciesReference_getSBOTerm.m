@@ -1,10 +1,10 @@
 function sboTerm = ModifierSpeciesReference_getSBOTerm(SBMLModifierSpeciesReference)
 %
 % ModifierSpeciesReference_getSBOTerm
-%    takes an SBML ModifierSpeciesReference structure
+%       takes an SBML ModifierSpeciesReference structure
 %
-%    returns
-%      the value of the sboTerm attribute
+%       and returns
+%           the value of the sboTerm attribute
 
 %  Filename    :   ModifierSpeciesReference_getSBOTerm.m
 %  Description :

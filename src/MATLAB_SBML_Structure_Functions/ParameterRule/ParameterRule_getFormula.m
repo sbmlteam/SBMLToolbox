@@ -1,10 +1,10 @@
 function formula = ParameterRule_getFormula(SBMLParameterRule)
 %
 % ParameterRule_getFormula
-%    takes an SBML ParameterRule structure
+%       takes an SBML ParameterRule structure
 %
-%    returns
-%      the value of the formula attribute
+%       and returns
+%           the value of the formula attribute
 
 %  Filename    :   ParameterRule_getFormula.m
 %  Description :

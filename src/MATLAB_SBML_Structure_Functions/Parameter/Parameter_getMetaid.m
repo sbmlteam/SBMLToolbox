@@ -1,10 +1,10 @@
 function metaid = Parameter_getMetaid(SBMLParameter)
 %
 % Parameter_getMetaid
-%    takes an SBML Parameter structure
+%       takes an SBML Parameter structure
 %
-%    returns
-%      the value of the metaid attribute
+%       and returns
+%           the value of the metaid attribute
 
 %  Filename    :   Parameter_getMetaid.m
 %  Description :

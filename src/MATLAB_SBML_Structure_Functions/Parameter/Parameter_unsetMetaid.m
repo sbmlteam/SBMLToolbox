@@ -1,10 +1,10 @@
 function SBMLParameter = Parameter_unsetMetaid(SBMLParameter)
 %
 % Parameter_getMetaid
-%    takes an SBML Parameter structure
+%       takes an SBML Parameter structure
 %
-%    returns
-%      the Parameter with the value for the metaid attribute unset
+%       and returns
+%           the Parameter with the value for the metaid attribute unset
 
 %  Filename    :   Parameter_unsetMetaid.m
 %  Description :

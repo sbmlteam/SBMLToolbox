@@ -1,11 +1,11 @@
 function value = Model_isSetSBML_level(SBMLModel)
 %
 % Model_isSetSBML_level
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      1 if the value for the SBML_level attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the SBML_level attribute is set
+%           0 otherwise
 
 %  Filename    :   Model_isSetSBML_level.m
 %  Description :

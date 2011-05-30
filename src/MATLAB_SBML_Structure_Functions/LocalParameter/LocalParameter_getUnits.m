@@ -1,10 +1,10 @@
 function units = LocalParameter_getUnits(SBMLLocalParameter)
 %
 % LocalParameter_getUnits
-%    takes an SBML LocalParameter structure
+%       takes an SBML LocalParameter structure
 %
-%    returns
-%      the value of the units attribute
+%       and returns
+%           the value of the units attribute
 
 %  Filename    :   LocalParameter_getUnits.m
 %  Description :

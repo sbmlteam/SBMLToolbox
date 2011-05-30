@@ -1,11 +1,11 @@
 function SBMLModel = Model_setMetaid(SBMLModel, metaid)
 %
 % Model_setMetaid
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %    and the metaid to be set
 %
-%    returns
-%      the Model with the new value for the metaid attribute
+%       and returns
+%           the Model with the new value for the metaid attribute
 
 %  Filename    :   Model_setMetaid.m
 %  Description :

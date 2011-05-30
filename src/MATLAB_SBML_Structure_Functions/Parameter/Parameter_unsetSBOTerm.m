@@ -1,10 +1,10 @@
 function SBMLParameter = Parameter_unsetSBOTerm(SBMLParameter)
 %
 % Parameter_getSBOTerm
-%    takes an SBML Parameter structure
+%       takes an SBML Parameter structure
 %
-%    returns
-%      the Parameter with the value for the sboTerm attribute unset
+%       and returns
+%           the Parameter with the value for the sboTerm attribute unset
 
 %  Filename    :   Parameter_unsetSBOTerm.m
 %  Description :

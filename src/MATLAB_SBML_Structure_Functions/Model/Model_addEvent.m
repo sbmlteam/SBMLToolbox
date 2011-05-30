@@ -1,11 +1,11 @@
 function SBMLModel = Model_addEvent(SBMLModel, SBMLEvent)
 %
 % Model_addEvent(SBMLModel, SBMLEvent)
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %    and an SBML Event structure
 %
-%    returns
-%      the Model with the Event element added
+%       and returns
+%           the Model with the Event element added
 
 %  Filename    :   Model_addEvent.m
 %  Description :

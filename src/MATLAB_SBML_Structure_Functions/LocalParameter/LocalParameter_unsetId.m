@@ -1,10 +1,10 @@
 function SBMLLocalParameter = LocalParameter_unsetId(SBMLLocalParameter)
 %
 % LocalParameter_getId
-%    takes an SBML LocalParameter structure
+%       takes an SBML LocalParameter structure
 %
-%    returns
-%      the LocalParameter with the value for the id attribute unset
+%       and returns
+%           the LocalParameter with the value for the id attribute unset
 
 %  Filename    :   LocalParameter_unsetId.m
 %  Description :

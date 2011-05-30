@@ -1,10 +1,10 @@
 function SBMLModel = Model_unsetTimeUnits(SBMLModel)
 %
 % Model_getTimeUnits
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      the Model with the value for the timeUnits attribute unset
+%       and returns
+%           the Model with the value for the timeUnits attribute unset
 
 %  Filename    :   Model_unsetTimeUnits.m
 %  Description :

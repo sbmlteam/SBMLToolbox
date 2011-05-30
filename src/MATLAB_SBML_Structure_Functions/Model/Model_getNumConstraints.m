@@ -1,10 +1,10 @@
 function num = Model_getNumConstraints(SBMLModel)
 %
 % Model_getNumConstraints
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      the number of constraint elements
+%       and returns
+%           the number of constraint elements
 
 %  Filename    :   Model_getNumConstraints.m
 %  Description :

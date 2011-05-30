@@ -1,10 +1,10 @@
 function name = Model_getName(SBMLModel)
 %
 % Model_getName
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      the value of the name attribute
+%       and returns
+%           the value of the name attribute
 
 %  Filename    :   Model_getName.m
 %  Description :

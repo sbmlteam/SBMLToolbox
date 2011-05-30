@@ -1,10 +1,10 @@
 function SBMLLocalParameter = LocalParameter_unsetUnits(SBMLLocalParameter)
 %
 % LocalParameter_getUnits
-%    takes an SBML LocalParameter structure
+%       takes an SBML LocalParameter structure
 %
-%    returns
-%      the LocalParameter with the value for the units attribute unset
+%       and returns
+%           the LocalParameter with the value for the units attribute unset
 
 %  Filename    :   LocalParameter_unsetUnits.m
 %  Description :

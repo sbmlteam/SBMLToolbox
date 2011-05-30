@@ -1,11 +1,11 @@
 function value = Model_isSetSBML_version(SBMLModel)
 %
 % Model_isSetSBML_version
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      1 if the value for the SBML_version attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the SBML_version attribute is set
+%           0 otherwise
 
 %  Filename    :   Model_isSetSBML_version.m
 %  Description :

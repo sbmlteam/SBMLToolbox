@@ -1,10 +1,10 @@
 function SBMLModel = Model_unsetVolumeUnits(SBMLModel)
 %
 % Model_getVolumeUnits
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      the Model with the value for the volumeUnits attribute unset
+%       and returns
+%           the Model with the value for the volumeUnits attribute unset
 
 %  Filename    :   Model_unsetVolumeUnits.m
 %  Description :

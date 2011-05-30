@@ -1,10 +1,10 @@
 function SBMLModel = Model_unsetConversionFactor(SBMLModel)
 %
 % Model_getConversionFactor
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      the Model with the value for the conversionFactor attribute unset
+%       and returns
+%           the Model with the value for the conversionFactor attribute unset
 
 %  Filename    :   Model_unsetConversionFactor.m
 %  Description :

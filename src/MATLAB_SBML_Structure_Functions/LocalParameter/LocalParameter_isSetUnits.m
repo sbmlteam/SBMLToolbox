@@ -1,11 +1,11 @@
 function value = LocalParameter_isSetUnits(SBMLLocalParameter)
 %
 % LocalParameter_isSetUnits
-%    takes an SBML LocalParameter structure
+%       takes an SBML LocalParameter structure
 %
-%    returns
-%      1 if the value for the units attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the units attribute is set
+%           0 otherwise
 
 %  Filename    :   LocalParameter_isSetUnits.m
 %  Description :

@@ -1,11 +1,11 @@
 function SBMLModel = Model_setVolumeUnits(SBMLModel, volumeUnits)
 %
 % Model_setVolumeUnits
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %    and the volumeUnits to be set
 %
-%    returns
-%      the Model with the new value for the volumeUnits attribute
+%       and returns
+%           the Model with the new value for the volumeUnits attribute
 
 %  Filename    :   Model_setVolumeUnits.m
 %  Description :

@@ -1,11 +1,11 @@
 function SBMLModel = Model_addFunctionDefinition(SBMLModel, SBMLFunctionDefinition)
 %
 % Model_addFunctionDefinition(SBMLModel, SBMLFunctionDefinition)
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %    and an SBML FunctionDefinition structure
 %
-%    returns
-%      the Model with the FunctionDefinition element added
+%       and returns
+%           the Model with the FunctionDefinition element added
 
 %  Filename    :   Model_addFunctionDefinition.m
 %  Description :

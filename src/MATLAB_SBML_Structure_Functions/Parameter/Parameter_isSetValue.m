@@ -1,11 +1,11 @@
 function value = Parameter_isSetValue(SBMLParameter)
 %
 % Parameter_isSetValue
-%    takes an SBML Parameter structure
+%       takes an SBML Parameter structure
 %
-%    returns
-%      1 if the value for the value attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the value attribute is set
+%           0 otherwise
 
 %  Filename    :   Parameter_isSetValue.m
 %  Description :

@@ -1,10 +1,10 @@
 function SBMLLocalParameter = LocalParameter_unsetSBOTerm(SBMLLocalParameter)
 %
 % LocalParameter_getSBOTerm
-%    takes an SBML LocalParameter structure
+%       takes an SBML LocalParameter structure
 %
-%    returns
-%      the LocalParameter with the value for the sboTerm attribute unset
+%       and returns
+%           the LocalParameter with the value for the sboTerm attribute unset
 
 %  Filename    :   LocalParameter_unsetSBOTerm.m
 %  Description :

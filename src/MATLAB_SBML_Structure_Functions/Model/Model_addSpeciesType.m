@@ -1,11 +1,11 @@
 function SBMLModel = Model_addSpeciesType(SBMLModel, SBMLSpeciesType)
 %
 % Model_addSpeciesType(SBMLModel, SBMLSpeciesType)
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %    and an SBML SpeciesType structure
 %
-%    returns
-%      the Model with the SpeciesType element added
+%       and returns
+%           the Model with the SpeciesType element added
 
 %  Filename    :   Model_addSpeciesType.m
 %  Description :

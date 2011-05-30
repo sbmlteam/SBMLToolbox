@@ -1,10 +1,10 @@
 function num = Model_getNumReactions(SBMLModel)
 %
 % Model_getNumReactions
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      the number of reaction elements
+%       and returns
+%           the number of reaction elements
 
 %  Filename    :   Model_getNumReactions.m
 %  Description :

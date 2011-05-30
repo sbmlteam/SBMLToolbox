@@ -1,10 +1,10 @@
 function SBMLParameterRule = ParameterRule_unsetType(SBMLParameterRule)
 %
 % ParameterRule_getType
-%    takes an SBML ParameterRule structure
+%       takes an SBML ParameterRule structure
 %
-%    returns
-%      the ParameterRule with the value for the type attribute unset
+%       and returns
+%           the ParameterRule with the value for the type attribute unset
 
 %  Filename    :   ParameterRule_unsetType.m
 %  Description :

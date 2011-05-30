@@ -1,11 +1,11 @@
 function SBMLLocalParameter = LocalParameter_setId(SBMLLocalParameter, id)
 %
 % LocalParameter_setId
-%    takes an SBML LocalParameter structure
+%       takes an SBML LocalParameter structure
 %    and the id to be set
 %
-%    returns
-%      the LocalParameter with the new value for the id attribute
+%       and returns
+%           the LocalParameter with the new value for the id attribute
 
 %  Filename    :   LocalParameter_setId.m
 %  Description :

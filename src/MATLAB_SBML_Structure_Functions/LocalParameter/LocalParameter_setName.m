@@ -1,11 +1,11 @@
 function SBMLLocalParameter = LocalParameter_setName(SBMLLocalParameter, name)
 %
 % LocalParameter_setName
-%    takes an SBML LocalParameter structure
+%       takes an SBML LocalParameter structure
 %    and the name to be set
 %
-%    returns
-%      the LocalParameter with the new value for the name attribute
+%       and returns
+%           the LocalParameter with the new value for the name attribute
 
 %  Filename    :   LocalParameter_setName.m
 %  Description :

@@ -1,10 +1,10 @@
 function volumeUnits = Model_getVolumeUnits(SBMLModel)
 %
 % Model_getVolumeUnits
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      the value of the volumeUnits attribute
+%       and returns
+%           the value of the volumeUnits attribute
 
 %  Filename    :   Model_getVolumeUnits.m
 %  Description :

@@ -1,10 +1,10 @@
 function constraint = Model_getListOfConstraints(SBMLModel)
 %
 % Model_getListOfConstraints
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      the array of structures of the constraint elements
+%       and returns
+%           the array of structures of the constraint elements
 
 %  Filename    :   Model_getListOfConstraints.m
 %  Description :

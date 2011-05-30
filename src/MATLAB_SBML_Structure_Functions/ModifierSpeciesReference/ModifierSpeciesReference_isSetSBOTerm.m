@@ -1,11 +1,11 @@
 function value = ModifierSpeciesReference_isSetSBOTerm(SBMLModifierSpeciesReference)
 %
 % ModifierSpeciesReference_isSetSBOTerm
-%    takes an SBML ModifierSpeciesReference structure
+%       takes an SBML ModifierSpeciesReference structure
 %
-%    returns
-%      1 if the value for the sboTerm attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the sboTerm attribute is set
+%           0 otherwise
 
 %  Filename    :   ModifierSpeciesReference_isSetSBOTerm.m
 %  Description :

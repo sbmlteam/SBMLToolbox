@@ -1,11 +1,11 @@
 function SBMLParameter = Parameter_setId(SBMLParameter, id)
 %
 % Parameter_setId
-%    takes an SBML Parameter structure
+%       takes an SBML Parameter structure
 %    and the id to be set
 %
-%    returns
-%      the Parameter with the new value for the id attribute
+%       and returns
+%           the Parameter with the new value for the id attribute
 
 %  Filename    :   Parameter_setId.m
 %  Description :

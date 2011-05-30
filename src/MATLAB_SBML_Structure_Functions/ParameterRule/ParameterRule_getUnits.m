@@ -1,10 +1,10 @@
 function units = ParameterRule_getUnits(SBMLParameterRule)
 %
 % ParameterRule_getUnits
-%    takes an SBML ParameterRule structure
+%       takes an SBML ParameterRule structure
 %
-%    returns
-%      the value of the units attribute
+%       and returns
+%           the value of the units attribute
 
 %  Filename    :   ParameterRule_getUnits.m
 %  Description :

@@ -1,11 +1,11 @@
 function rule = Model_getRule(SBMLModel, index)
 %
 % Model_getRule
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %    and an index
 %
-%    returns
-%      the value of the rule element at the indexed position
+%       and returns
+%           the value of the rule element at the indexed position
 
 %  Filename    :   Model_getRule.m
 %  Description :

@@ -1,10 +1,10 @@
 function reaction = Model_getListOfReactions(SBMLModel)
 %
 % Model_getListOfReactions
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      the array of structures of the reaction elements
+%       and returns
+%           the array of structures of the reaction elements
 
 %  Filename    :   Model_getListOfReactions.m
 %  Description :

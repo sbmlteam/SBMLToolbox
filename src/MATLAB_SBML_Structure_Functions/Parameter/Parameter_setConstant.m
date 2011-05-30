@@ -1,11 +1,11 @@
 function SBMLParameter = Parameter_setConstant(SBMLParameter, constant)
 %
 % Parameter_setConstant
-%    takes an SBML Parameter structure
+%       takes an SBML Parameter structure
 %    and the constant to be set
 %
-%    returns
-%      the Parameter with the new value for the constant attribute
+%       and returns
+%           the Parameter with the new value for the constant attribute
 
 %  Filename    :   Parameter_setConstant.m
 %  Description :

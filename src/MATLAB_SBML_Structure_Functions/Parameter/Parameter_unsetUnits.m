@@ -1,10 +1,10 @@
 function SBMLParameter = Parameter_unsetUnits(SBMLParameter)
 %
 % Parameter_getUnits
-%    takes an SBML Parameter structure
+%       takes an SBML Parameter structure
 %
-%    returns
-%      the Parameter with the value for the units attribute unset
+%       and returns
+%           the Parameter with the value for the units attribute unset
 
 %  Filename    :   Parameter_unsetUnits.m
 %  Description :

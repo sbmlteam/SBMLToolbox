@@ -1,10 +1,10 @@
 function SBMLModel = Model_unsetSubstanceUnits(SBMLModel)
 %
 % Model_getSubstanceUnits
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      the Model with the value for the substanceUnits attribute unset
+%       and returns
+%           the Model with the value for the substanceUnits attribute unset
 
 %  Filename    :   Model_unsetSubstanceUnits.m
 %  Description :

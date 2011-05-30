@@ -1,11 +1,11 @@
 function event = Model_getEvent(SBMLModel, index)
 %
 % Model_getEvent
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %    and an index
 %
-%    returns
-%      the value of the event element at the indexed position
+%       and returns
+%           the value of the event element at the indexed position
 
 %  Filename    :   Model_getEvent.m
 %  Description :
