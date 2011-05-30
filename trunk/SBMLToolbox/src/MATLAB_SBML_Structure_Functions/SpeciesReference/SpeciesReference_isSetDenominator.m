@@ -1,11 +1,11 @@
 function value = SpeciesReference_isSetDenominator(SBMLSpeciesReference)
 %
 % SpeciesReference_isSetDenominator
-%    takes an SBML SpeciesReference structure
+%       takes an SBML SpeciesReference structure
 %
-%    returns
-%      1 if the value for the denominator attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the denominator attribute is set
+%           0 otherwise
 
 %  Filename    :   SpeciesReference_isSetDenominator.m
 %  Description :

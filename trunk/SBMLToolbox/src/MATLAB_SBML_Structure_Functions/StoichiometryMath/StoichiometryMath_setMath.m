@@ -1,11 +1,11 @@
 function SBMLStoichiometryMath = StoichiometryMath_setMath(SBMLStoichiometryMath, math)
 %
 % StoichiometryMath_setMath
-%    takes an SBML StoichiometryMath structure
+%       takes an SBML StoichiometryMath structure
 %    and the math to be set
 %
-%    returns
-%      the StoichiometryMath with the new value for the math attribute
+%       and returns
+%           the StoichiometryMath with the new value for the math attribute
 
 %  Filename    :   StoichiometryMath_setMath.m
 %  Description :

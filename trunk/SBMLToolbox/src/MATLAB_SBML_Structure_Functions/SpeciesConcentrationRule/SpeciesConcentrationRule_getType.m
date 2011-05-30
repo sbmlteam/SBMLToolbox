@@ -1,10 +1,10 @@
 function type = SpeciesConcentrationRule_getType(SBMLSpeciesConcentrationRule)
 %
 % SpeciesConcentrationRule_getType
-%    takes an SBML SpeciesConcentrationRule structure
+%       takes an SBML SpeciesConcentrationRule structure
 %
-%    returns
-%      the value of the type attribute
+%       and returns
+%           the value of the type attribute
 
 %  Filename    :   SpeciesConcentrationRule_getType.m
 %  Description :

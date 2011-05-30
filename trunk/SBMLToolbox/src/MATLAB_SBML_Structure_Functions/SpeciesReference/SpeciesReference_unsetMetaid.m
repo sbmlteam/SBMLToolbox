@@ -1,10 +1,10 @@
 function SBMLSpeciesReference = SpeciesReference_unsetMetaid(SBMLSpeciesReference)
 %
 % SpeciesReference_getMetaid
-%    takes an SBML SpeciesReference structure
+%       takes an SBML SpeciesReference structure
 %
-%    returns
-%      the SpeciesReference with the value for the metaid attribute unset
+%       and returns
+%           the SpeciesReference with the value for the metaid attribute unset
 
 %  Filename    :   SpeciesReference_unsetMetaid.m
 %  Description :

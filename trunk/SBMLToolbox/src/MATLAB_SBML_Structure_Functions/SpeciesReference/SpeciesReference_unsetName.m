@@ -1,10 +1,10 @@
 function SBMLSpeciesReference = SpeciesReference_unsetName(SBMLSpeciesReference)
 %
 % SpeciesReference_getName
-%    takes an SBML SpeciesReference structure
+%       takes an SBML SpeciesReference structure
 %
-%    returns
-%      the SpeciesReference with the value for the name attribute unset
+%       and returns
+%           the SpeciesReference with the value for the name attribute unset
 
 %  Filename    :   SpeciesReference_unsetName.m
 %  Description :

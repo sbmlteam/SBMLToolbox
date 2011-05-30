@@ -1,10 +1,10 @@
 function species = SpeciesReference_getSpecies(SBMLSpeciesReference)
 %
 % SpeciesReference_getSpecies
-%    takes an SBML SpeciesReference structure
+%       takes an SBML SpeciesReference structure
 %
-%    returns
-%      the value of the species attribute
+%       and returns
+%           the value of the species attribute
 
 %  Filename    :   SpeciesReference_getSpecies.m
 %  Description :

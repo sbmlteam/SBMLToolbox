@@ -1,11 +1,11 @@
 function SBMLSpeciesType = SpeciesType_setName(SBMLSpeciesType, name)
 %
 % SpeciesType_setName
-%    takes an SBML SpeciesType structure
+%       takes an SBML SpeciesType structure
 %    and the name to be set
 %
-%    returns
-%      the SpeciesType with the new value for the name attribute
+%       and returns
+%           the SpeciesType with the new value for the name attribute
 
 %  Filename    :   SpeciesType_setName.m
 %  Description :

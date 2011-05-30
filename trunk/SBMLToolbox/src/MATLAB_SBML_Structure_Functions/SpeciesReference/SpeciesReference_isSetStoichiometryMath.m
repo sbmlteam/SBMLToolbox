@@ -1,11 +1,11 @@
 function value = SpeciesReference_isSetStoichiometryMath(SBMLSpeciesReference)
 %
 % SpeciesReference_isSetStoichiometryMath
-%    takes an SBML SpeciesReference structure
+%       takes an SBML SpeciesReference structure
 %
-%    returns
-%      1 if the value for the stoichiometryMath attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the stoichiometryMath attribute is set
+%           0 otherwise
 
 %  Filename    :   SpeciesReference_isSetStoichiometryMath.m
 %  Description :

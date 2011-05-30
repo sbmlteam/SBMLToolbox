@@ -3,11 +3,11 @@ function [SBMLfieldnames, nNumberFields] = getCompartmentFieldnames(level, ...
 
 %
 % getCompartmentFieldnames
-%    takes an SBML level
+%       takes an SBML level
 %     and  an SBML version
 %
-%    returns
-%      1) an array fieldnames for the Compartment structure of the appropriate
+%       and returns
+%           1) an array fieldnames for the Compartment structure of the appropriate
 %                  level and version
 %      2) the number of fieldnames expected
 

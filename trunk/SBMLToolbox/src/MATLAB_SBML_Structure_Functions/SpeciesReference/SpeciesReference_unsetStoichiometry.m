@@ -1,10 +1,10 @@
 function SBMLSpeciesReference = SpeciesReference_unsetStoichiometry(SBMLSpeciesReference)
 %
 % SpeciesReference_getStoichiometry
-%    takes an SBML SpeciesReference structure
+%       takes an SBML SpeciesReference structure
 %
-%    returns
-%      the SpeciesReference with the value for the stoichiometry attribute unset
+%       and returns
+%           the SpeciesReference with the value for the stoichiometry attribute unset
 
 %  Filename    :   SpeciesReference_unsetStoichiometry.m
 %  Description :

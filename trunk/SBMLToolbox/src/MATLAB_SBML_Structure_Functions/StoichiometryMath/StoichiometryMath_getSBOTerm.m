@@ -1,10 +1,10 @@
 function sboTerm = StoichiometryMath_getSBOTerm(SBMLStoichiometryMath)
 %
 % StoichiometryMath_getSBOTerm
-%    takes an SBML StoichiometryMath structure
+%       takes an SBML StoichiometryMath structure
 %
-%    returns
-%      the value of the sboTerm attribute
+%       and returns
+%           the value of the sboTerm attribute
 
 %  Filename    :   StoichiometryMath_getSBOTerm.m
 %  Description :

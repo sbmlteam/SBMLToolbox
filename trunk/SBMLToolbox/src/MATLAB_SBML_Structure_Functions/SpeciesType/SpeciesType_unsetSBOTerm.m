@@ -1,10 +1,10 @@
 function SBMLSpeciesType = SpeciesType_unsetSBOTerm(SBMLSpeciesType)
 %
 % SpeciesType_getSBOTerm
-%    takes an SBML SpeciesType structure
+%       takes an SBML SpeciesType structure
 %
-%    returns
-%      the SpeciesType with the value for the sboTerm attribute unset
+%       and returns
+%           the SpeciesType with the value for the sboTerm attribute unset
 
 %  Filename    :   SpeciesType_unsetSBOTerm.m
 %  Description :

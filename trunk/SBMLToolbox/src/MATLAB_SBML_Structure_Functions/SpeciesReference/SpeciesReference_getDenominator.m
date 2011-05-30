@@ -1,10 +1,10 @@
 function denominator = SpeciesReference_getDenominator(SBMLSpeciesReference)
 %
 % SpeciesReference_getDenominator
-%    takes an SBML SpeciesReference structure
+%       takes an SBML SpeciesReference structure
 %
-%    returns
-%      the value of the denominator attribute
+%       and returns
+%           the value of the denominator attribute
 
 %  Filename    :   SpeciesReference_getDenominator.m
 %  Description :

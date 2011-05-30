@@ -1,10 +1,10 @@
 function math = StoichiometryMath_getMath(SBMLStoichiometryMath)
 %
 % StoichiometryMath_getMath
-%    takes an SBML StoichiometryMath structure
+%       takes an SBML StoichiometryMath structure
 %
-%    returns
-%      the value of the math attribute
+%       and returns
+%           the value of the math attribute
 
 %  Filename    :   StoichiometryMath_getMath.m
 %  Description :

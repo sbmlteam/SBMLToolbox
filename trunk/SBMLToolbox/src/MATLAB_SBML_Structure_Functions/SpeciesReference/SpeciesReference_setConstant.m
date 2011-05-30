@@ -1,11 +1,11 @@
 function SBMLSpeciesReference = SpeciesReference_setConstant(SBMLSpeciesReference, constant)
 %
 % SpeciesReference_setConstant
-%    takes an SBML SpeciesReference structure
+%       takes an SBML SpeciesReference structure
 %    and the constant to be set
 %
-%    returns
-%      the SpeciesReference with the new value for the constant attribute
+%       and returns
+%           the SpeciesReference with the new value for the constant attribute
 
 %  Filename    :   SpeciesReference_setConstant.m
 %  Description :

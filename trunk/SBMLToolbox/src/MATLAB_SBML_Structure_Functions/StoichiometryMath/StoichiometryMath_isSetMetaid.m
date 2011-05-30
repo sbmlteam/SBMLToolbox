@@ -1,11 +1,11 @@
 function value = StoichiometryMath_isSetMetaid(SBMLStoichiometryMath)
 %
 % StoichiometryMath_isSetMetaid
-%    takes an SBML StoichiometryMath structure
+%       takes an SBML StoichiometryMath structure
 %
-%    returns
-%      1 if the value for the metaid attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the metaid attribute is set
+%           0 otherwise
 
 %  Filename    :   StoichiometryMath_isSetMetaid.m
 %  Description :

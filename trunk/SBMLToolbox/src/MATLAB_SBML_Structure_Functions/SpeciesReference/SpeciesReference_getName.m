@@ -1,10 +1,10 @@
 function name = SpeciesReference_getName(SBMLSpeciesReference)
 %
 % SpeciesReference_getName
-%    takes an SBML SpeciesReference structure
+%       takes an SBML SpeciesReference structure
 %
-%    returns
-%      the value of the name attribute
+%       and returns
+%           the value of the name attribute
 
 %  Filename    :   SpeciesReference_getName.m
 %  Description :

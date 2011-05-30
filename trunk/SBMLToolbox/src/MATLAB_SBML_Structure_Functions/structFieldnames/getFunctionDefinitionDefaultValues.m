@@ -1,11 +1,11 @@
 function [defaultValues] = getFunctionDefinitionDefaultValues(level, version)
 %
 % getFunctionDefinitionDefaultValues
-%    takes an SBML level
+%       takes an SBML level
 %    and   an SBML version
 %
-%    returns
-%      1) the default values for the structure represents
+%       and returns
+%           1) the default values for the structure represents
 %           an MATLAB_SBML FunctionDefinition structure of the appropriate
 %           level and version
 %

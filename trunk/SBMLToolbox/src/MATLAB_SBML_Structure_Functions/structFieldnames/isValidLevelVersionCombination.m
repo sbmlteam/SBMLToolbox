@@ -1,10 +1,10 @@
 function valid = isValidLevelVersionCombination(level, version)
 %
 % isValidLevelVersionCombination
-%    takes an SBML level
+%       takes an SBML level
 %    and   an SBML version
 %
-%    returns
+%       and returns
 %      a flag indicating whether the level and version represent a valid
 %      SBML combination supported by this software
 %

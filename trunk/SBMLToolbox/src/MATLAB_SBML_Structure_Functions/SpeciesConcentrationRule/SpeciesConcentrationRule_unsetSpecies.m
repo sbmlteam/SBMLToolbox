@@ -1,10 +1,10 @@
 function SBMLSpeciesConcentrationRule = SpeciesConcentrationRule_unsetSpecies(SBMLSpeciesConcentrationRule)
 %
 % SpeciesConcentrationRule_getSpecies
-%    takes an SBML SpeciesConcentrationRule structure
+%       takes an SBML SpeciesConcentrationRule structure
 %
-%    returns
-%      the SpeciesConcentrationRule with the value for the species attribute unset
+%       and returns
+%           the SpeciesConcentrationRule with the value for the species attribute unset
 
 %  Filename    :   SpeciesConcentrationRule_unsetSpecies.m
 %  Description :

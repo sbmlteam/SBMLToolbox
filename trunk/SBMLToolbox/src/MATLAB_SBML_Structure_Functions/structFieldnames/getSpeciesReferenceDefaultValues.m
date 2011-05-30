@@ -1,11 +1,11 @@
 function [defaultValues] = getSpeciesReferenceDefaultValues(level, version)
 %
 % getSpeciesReferenceDefaultValues
-%    takes an SBML level
+%       takes an SBML level
 %    and   an SBML version
 %
-%    returns
-%      1) the default values for the structure represents
+%       and returns
+%           1) the default values for the structure represents
 %           an MATLAB_SBML SpeciesReference structure of the appropriate
 %           level and version
 %

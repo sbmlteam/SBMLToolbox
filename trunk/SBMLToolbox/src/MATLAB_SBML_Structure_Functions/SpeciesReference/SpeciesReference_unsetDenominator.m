@@ -1,10 +1,10 @@
 function SBMLSpeciesReference = SpeciesReference_unsetDenominator(SBMLSpeciesReference)
 %
 % SpeciesReference_getDenominator
-%    takes an SBML SpeciesReference structure
+%       takes an SBML SpeciesReference structure
 %
-%    returns
-%      the SpeciesReference with the value for the denominator attribute unset
+%       and returns
+%           the SpeciesReference with the value for the denominator attribute unset
 
 %  Filename    :   SpeciesReference_unsetDenominator.m
 %  Description :
