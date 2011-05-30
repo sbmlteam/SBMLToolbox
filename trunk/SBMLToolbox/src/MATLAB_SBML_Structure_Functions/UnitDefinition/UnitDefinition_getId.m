@@ -1,10 +1,10 @@
 function id = UnitDefinition_getId(SBMLUnitDefinition)
 %
 % UnitDefinition_getId
-%    takes an SBML UnitDefinition structure
+%       takes an SBML UnitDefinition structure
 %
-%    returns
-%      the value of the id attribute
+%       and returns
+%           the value of the id attribute
 
 %  Filename    :   UnitDefinition_getId.m
 %  Description :

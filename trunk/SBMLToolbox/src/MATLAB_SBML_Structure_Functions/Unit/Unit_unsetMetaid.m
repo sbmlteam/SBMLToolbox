@@ -1,10 +1,10 @@
 function SBMLUnit = Unit_unsetMetaid(SBMLUnit)
 %
 % Unit_getMetaid
-%    takes an SBML Unit structure
+%       takes an SBML Unit structure
 %
-%    returns
-%      the Unit with the value for the metaid attribute unset
+%       and returns
+%           the Unit with the value for the metaid attribute unset
 
 %  Filename    :   Unit_unsetMetaid.m
 %  Description :

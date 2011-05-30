@@ -1,10 +1,10 @@
 function SBMLUnit = Unit_unsetKind(SBMLUnit)
 %
 % Unit_getKind
-%    takes an SBML Unit structure
+%       takes an SBML Unit structure
 %
-%    returns
-%      the Unit with the value for the kind attribute unset
+%       and returns
+%           the Unit with the value for the kind attribute unset
 
 %  Filename    :   Unit_unsetKind.m
 %  Description :

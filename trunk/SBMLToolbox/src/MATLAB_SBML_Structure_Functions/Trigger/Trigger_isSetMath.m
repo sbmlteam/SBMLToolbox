@@ -1,11 +1,11 @@
 function value = Trigger_isSetMath(SBMLTrigger)
 %
 % Trigger_isSetMath
-%    takes an SBML Trigger structure
+%       takes an SBML Trigger structure
 %
-%    returns
-%      1 if the value for the math attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the math attribute is set
+%           0 otherwise
 
 %  Filename    :   Trigger_isSetMath.m
 %  Description :

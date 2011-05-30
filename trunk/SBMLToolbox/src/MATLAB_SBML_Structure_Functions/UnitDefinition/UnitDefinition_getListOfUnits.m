@@ -1,10 +1,10 @@
 function unit = UnitDefinition_getListOfUnits(SBMLUnitDefinition)
 %
 % UnitDefinition_getListOfUnits
-%    takes an SBML UnitDefinition structure
+%       takes an SBML UnitDefinition structure
 %
-%    returns
-%      the array of structures of the unit elements
+%       and returns
+%           the array of structures of the unit elements
 
 %  Filename    :   UnitDefinition_getListOfUnits.m
 %  Description :

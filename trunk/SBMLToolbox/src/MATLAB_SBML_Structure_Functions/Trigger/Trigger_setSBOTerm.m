@@ -1,11 +1,11 @@
 function SBMLTrigger = Trigger_setSBOTerm(SBMLTrigger, sboTerm)
 %
 % Trigger_setSBOTerm
-%    takes an SBML Trigger structure
+%       takes an SBML Trigger structure
 %    and the sboTerm to be set
 %
-%    returns
-%      the Trigger with the new value for the sboTerm attribute
+%       and returns
+%           the Trigger with the new value for the sboTerm attribute
 
 %  Filename    :   Trigger_setSBOTerm.m
 %  Description :

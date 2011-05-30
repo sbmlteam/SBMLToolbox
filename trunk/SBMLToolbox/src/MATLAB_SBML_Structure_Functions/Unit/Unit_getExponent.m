@@ -1,10 +1,10 @@
 function exponent = Unit_getExponent(SBMLUnit)
 %
 % Unit_getExponent
-%    takes an SBML Unit structure
+%       takes an SBML Unit structure
 %
-%    returns
-%      the value of the exponent attribute
+%       and returns
+%           the value of the exponent attribute
 
 %  Filename    :   Unit_getExponent.m
 %  Description :

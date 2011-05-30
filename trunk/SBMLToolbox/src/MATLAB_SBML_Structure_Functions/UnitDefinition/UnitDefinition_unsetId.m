@@ -1,10 +1,10 @@
 function SBMLUnitDefinition = UnitDefinition_unsetId(SBMLUnitDefinition)
 %
 % UnitDefinition_getId
-%    takes an SBML UnitDefinition structure
+%       takes an SBML UnitDefinition structure
 %
-%    returns
-%      the UnitDefinition with the value for the id attribute unset
+%       and returns
+%           the UnitDefinition with the value for the id attribute unset
 
 %  Filename    :   UnitDefinition_unsetId.m
 %  Description :

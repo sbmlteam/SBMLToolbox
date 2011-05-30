@@ -1,11 +1,11 @@
 function SBMLTrigger = Trigger_setMetaid(SBMLTrigger, metaid)
 %
 % Trigger_setMetaid
-%    takes an SBML Trigger structure
+%       takes an SBML Trigger structure
 %    and the metaid to be set
 %
-%    returns
-%      the Trigger with the new value for the metaid attribute
+%       and returns
+%           the Trigger with the new value for the metaid attribute
 
 %  Filename    :   Trigger_setMetaid.m
 %  Description :

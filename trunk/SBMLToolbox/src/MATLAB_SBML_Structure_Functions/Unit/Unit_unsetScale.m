@@ -1,10 +1,10 @@
 function SBMLUnit = Unit_unsetScale(SBMLUnit)
 %
 % Unit_unsetScale
-%    takes an SBML Unit structure
+%       takes an SBML Unit structure
 %
-%    returns
-%      the Unit with the value for the scale attribute unset
+%       and returns
+%           the Unit with the value for the scale attribute unset
 
 %  Filename    :   Unit_unsetOffset.m
 %  Description :

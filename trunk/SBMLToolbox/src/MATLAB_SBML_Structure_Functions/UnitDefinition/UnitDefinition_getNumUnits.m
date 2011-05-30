@@ -1,10 +1,10 @@
 function num = UnitDefinition_getNumUnits(SBMLUnitDefinition)
 %
 % UnitDefinition_getNumUnits
-%    takes an SBML UnitDefinition structure
+%       takes an SBML UnitDefinition structure
 %
-%    returns
-%      the number of unit elements
+%       and returns
+%           the number of unit elements
 
 %  Filename    :   UnitDefinition_getNumUnits.m
 %  Description :

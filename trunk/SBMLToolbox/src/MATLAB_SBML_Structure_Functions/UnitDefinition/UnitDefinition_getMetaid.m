@@ -1,10 +1,10 @@
 function metaid = UnitDefinition_getMetaid(SBMLUnitDefinition)
 %
 % UnitDefinition_getMetaid
-%    takes an SBML UnitDefinition structure
+%       takes an SBML UnitDefinition structure
 %
-%    returns
-%      the value of the metaid attribute
+%       and returns
+%           the value of the metaid attribute
 
 %  Filename    :   UnitDefinition_getMetaid.m
 %  Description :

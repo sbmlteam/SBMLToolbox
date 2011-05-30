@@ -1,10 +1,10 @@
 function SBMLUnit = Unit_unsetExponent(SBMLUnit)
 %
 % Unit_getExponent
-%    takes an SBML Unit structure
+%       takes an SBML Unit structure
 %
-%    returns
-%      the Unit with the value for the exponent attribute unset
+%       and returns
+%           the Unit with the value for the exponent attribute unset
 
 %  Filename    :   Unit_unsetExponent.m
 %  Description :
