@@ -1,10 +1,10 @@
 function SBMLModel = Model_unsetExtentUnits(SBMLModel)
 %
 % Model_getExtentUnits
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      the Model with the value for the extentUnits attribute unset
+%       and returns
+%           the Model with the value for the extentUnits attribute unset
 
 %  Filename    :   Model_unsetExtentUnits.m
 %  Description :

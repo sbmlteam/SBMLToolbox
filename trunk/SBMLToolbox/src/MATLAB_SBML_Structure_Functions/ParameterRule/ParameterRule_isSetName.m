@@ -1,11 +1,11 @@
 function value = ParameterRule_isSetName(SBMLParameterRule)
 %
 % ParameterRule_isSetName
-%    takes an SBML ParameterRule structure
+%       takes an SBML ParameterRule structure
 %
-%    returns
-%      1 if the value for the name attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the name attribute is set
+%           0 otherwise
 
 %  Filename    :   ParameterRule_isSetName.m
 %  Description :

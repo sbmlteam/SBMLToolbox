@@ -1,11 +1,11 @@
 function reaction = Model_getReaction(SBMLModel, index)
 %
 % Model_getReaction
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %    and an index
 %
-%    returns
-%      the value of the reaction element at the indexed position
+%       and returns
+%           the value of the reaction element at the indexed position
 
 %  Filename    :   Model_getReaction.m
 %  Description :

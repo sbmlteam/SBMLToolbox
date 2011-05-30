@@ -1,10 +1,10 @@
 function num = Model_getNumSpeciesTypes(SBMLModel)
 %
 % Model_getNumSpeciesTypes
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      the number of speciesType elements
+%       and returns
+%           the number of speciesType elements
 
 %  Filename    :   Model_getNumSpeciesTypes.m
 %  Description :

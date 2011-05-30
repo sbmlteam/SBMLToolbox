@@ -1,10 +1,10 @@
 function value = Parameter_getValue(SBMLParameter)
 %
 % Parameter_getValue
-%    takes an SBML Parameter structure
+%       takes an SBML Parameter structure
 %
-%    returns
-%      the value of the value attribute
+%       and returns
+%           the value of the value attribute
 
 %  Filename    :   Parameter_getValue.m
 %  Description :

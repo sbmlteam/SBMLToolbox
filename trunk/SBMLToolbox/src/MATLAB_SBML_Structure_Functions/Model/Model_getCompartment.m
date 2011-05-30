@@ -1,11 +1,11 @@
 function compartment = Model_getCompartment(SBMLModel, index)
 %
 % Model_getCompartment
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %    and an index
 %
-%    returns
-%      the value of the compartment element at the indexed position
+%       and returns
+%           the value of the compartment element at the indexed position
 
 %  Filename    :   Model_getCompartment.m
 %  Description :

@@ -1,11 +1,11 @@
 function constraint = Model_getConstraint(SBMLModel, index)
 %
 % Model_getConstraint
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %    and an index
 %
-%    returns
-%      the value of the constraint element at the indexed position
+%       and returns
+%           the value of the constraint element at the indexed position
 
 %  Filename    :   Model_getConstraint.m
 %  Description :

@@ -1,10 +1,10 @@
 function name = ParameterRule_getName(SBMLParameterRule)
 %
 % ParameterRule_getName
-%    takes an SBML ParameterRule structure
+%       takes an SBML ParameterRule structure
 %
-%    returns
-%      the value of the name attribute
+%       and returns
+%           the value of the name attribute
 
 %  Filename    :   ParameterRule_getName.m
 %  Description :

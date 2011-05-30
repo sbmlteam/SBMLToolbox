@@ -1,11 +1,11 @@
 function value = Parameter_isSetId(SBMLParameter)
 %
 % Parameter_isSetId
-%    takes an SBML Parameter structure
+%       takes an SBML Parameter structure
 %
-%    returns
-%      1 if the value for the id attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the id attribute is set
+%           0 otherwise
 
 %  Filename    :   Parameter_isSetId.m
 %  Description :

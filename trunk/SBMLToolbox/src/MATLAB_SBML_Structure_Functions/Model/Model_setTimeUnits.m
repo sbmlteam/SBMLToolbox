@@ -1,11 +1,11 @@
 function SBMLModel = Model_setTimeUnits(SBMLModel, timeUnits)
 %
 % Model_setTimeUnits
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %    and the timeUnits to be set
 %
-%    returns
-%      the Model with the new value for the timeUnits attribute
+%       and returns
+%           the Model with the new value for the timeUnits attribute
 
 %  Filename    :   Model_setTimeUnits.m
 %  Description :

@@ -1,11 +1,11 @@
 function functionDefinition = Model_getFunctionDefinition(SBMLModel, index)
 %
 % Model_getFunctionDefinition
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %    and an index
 %
-%    returns
-%      the value of the functionDefinition element at the indexed position
+%       and returns
+%           the value of the functionDefinition element at the indexed position
 
 %  Filename    :   Model_getFunctionDefinition.m
 %  Description :

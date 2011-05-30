@@ -1,11 +1,11 @@
 function value = Model_isSetMetaid(SBMLModel)
 %
 % Model_isSetMetaid
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      1 if the value for the metaid attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the metaid attribute is set
+%           0 otherwise
 
 %  Filename    :   Model_isSetMetaid.m
 %  Description :

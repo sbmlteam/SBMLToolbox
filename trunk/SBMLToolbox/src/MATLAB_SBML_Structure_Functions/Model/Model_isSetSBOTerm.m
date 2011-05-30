@@ -1,11 +1,11 @@
 function value = Model_isSetSBOTerm(SBMLModel)
 %
 % Model_isSetSBOTerm
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      1 if the value for the sboTerm attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the sboTerm attribute is set
+%           0 otherwise
 
 %  Filename    :   Model_isSetSBOTerm.m
 %  Description :

@@ -1,10 +1,10 @@
 function SBMLParameterRule = ParameterRule_unsetUnits(SBMLParameterRule)
 %
 % ParameterRule_getUnits
-%    takes an SBML ParameterRule structure
+%       takes an SBML ParameterRule structure
 %
-%    returns
-%      the ParameterRule with the value for the units attribute unset
+%       and returns
+%           the ParameterRule with the value for the units attribute unset
 
 %  Filename    :   ParameterRule_unsetUnits.m
 %  Description :

@@ -1,10 +1,10 @@
 function id = LocalParameter_getId(SBMLLocalParameter)
 %
 % LocalParameter_getId
-%    takes an SBML LocalParameter structure
+%       takes an SBML LocalParameter structure
 %
-%    returns
-%      the value of the id attribute
+%       and returns
+%           the value of the id attribute
 
 %  Filename    :   LocalParameter_getId.m
 %  Description :

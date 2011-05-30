@@ -1,10 +1,10 @@
 function SBMLLocalParameter = LocalParameter_unsetMetaid(SBMLLocalParameter)
 %
 % LocalParameter_getMetaid
-%    takes an SBML LocalParameter structure
+%       takes an SBML LocalParameter structure
 %
-%    returns
-%      the LocalParameter with the value for the metaid attribute unset
+%       and returns
+%           the LocalParameter with the value for the metaid attribute unset
 
 %  Filename    :   LocalParameter_unsetMetaid.m
 %  Description :

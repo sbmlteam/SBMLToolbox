@@ -1,10 +1,10 @@
 function SBML_version = Model_getSBML_version(SBMLModel)
 %
 % Model_getSBML_version
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      the value of the SBML_version attribute
+%       and returns
+%           the value of the SBML_version attribute
 
 %  Filename    :   Model_getSBML_version.m
 %  Description :

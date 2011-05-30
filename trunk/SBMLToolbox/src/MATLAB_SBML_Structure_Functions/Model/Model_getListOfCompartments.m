@@ -1,10 +1,10 @@
 function compartment = Model_getListOfCompartments(SBMLModel)
 %
 % Model_getListOfCompartments
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      the array of structures of the compartment elements
+%       and returns
+%           the array of structures of the compartment elements
 
 %  Filename    :   Model_getListOfCompartments.m
 %  Description :

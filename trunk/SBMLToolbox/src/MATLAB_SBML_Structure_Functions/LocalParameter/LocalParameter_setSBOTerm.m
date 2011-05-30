@@ -1,11 +1,11 @@
 function SBMLLocalParameter = LocalParameter_setSBOTerm(SBMLLocalParameter, sboTerm)
 %
 % LocalParameter_setSBOTerm
-%    takes an SBML LocalParameter structure
+%       takes an SBML LocalParameter structure
 %    and the sboTerm to be set
 %
-%    returns
-%      the LocalParameter with the new value for the sboTerm attribute
+%       and returns
+%           the LocalParameter with the new value for the sboTerm attribute
 
 %  Filename    :   LocalParameter_setSBOTerm.m
 %  Description :

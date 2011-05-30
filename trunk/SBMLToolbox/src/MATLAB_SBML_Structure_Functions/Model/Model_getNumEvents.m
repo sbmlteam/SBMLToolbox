@@ -1,10 +1,10 @@
 function num = Model_getNumEvents(SBMLModel)
 %
 % Model_getNumEvents
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      the number of event elements
+%       and returns
+%           the number of event elements
 
 %  Filename    :   Model_getNumEvents.m
 %  Description :

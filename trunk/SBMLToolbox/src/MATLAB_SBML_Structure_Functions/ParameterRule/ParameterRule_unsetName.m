@@ -1,10 +1,10 @@
 function SBMLParameterRule = ParameterRule_unsetName(SBMLParameterRule)
 %
 % ParameterRule_getName
-%    takes an SBML ParameterRule structure
+%       takes an SBML ParameterRule structure
 %
-%    returns
-%      the ParameterRule with the value for the name attribute unset
+%       and returns
+%           the ParameterRule with the value for the name attribute unset
 
 %  Filename    :   ParameterRule_unsetName.m
 %  Description :

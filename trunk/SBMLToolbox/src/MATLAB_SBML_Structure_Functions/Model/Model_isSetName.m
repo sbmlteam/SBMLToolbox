@@ -1,11 +1,11 @@
 function value = Model_isSetName(SBMLModel)
 %
 % Model_isSetName
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      1 if the value for the name attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the name attribute is set
+%           0 otherwise
 
 %  Filename    :   Model_isSetName.m
 %  Description :

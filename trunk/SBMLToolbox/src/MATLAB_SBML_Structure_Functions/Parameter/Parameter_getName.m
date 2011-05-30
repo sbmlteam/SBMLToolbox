@@ -1,10 +1,10 @@
 function name = Parameter_getName(SBMLParameter)
 %
 % Parameter_getName
-%    takes an SBML Parameter structure
+%       takes an SBML Parameter structure
 %
-%    returns
-%      the value of the name attribute
+%       and returns
+%           the value of the name attribute
 
 %  Filename    :   Parameter_getName.m
 %  Description :

@@ -1,10 +1,10 @@
 function value = LocalParameter_getValue(SBMLLocalParameter)
 %
 % LocalParameter_getValue
-%    takes an SBML LocalParameter structure
+%       takes an SBML LocalParameter structure
 %
-%    returns
-%      the value of the value attribute
+%       and returns
+%           the value of the value attribute
 
 %  Filename    :   LocalParameter_getValue.m
 %  Description :

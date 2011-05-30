@@ -1,11 +1,11 @@
 function value = LocalParameter_isSetSBOTerm(SBMLLocalParameter)
 %
 % LocalParameter_isSetSBOTerm
-%    takes an SBML LocalParameter structure
+%       takes an SBML LocalParameter structure
 %
-%    returns
-%      1 if the value for the sboTerm attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the sboTerm attribute is set
+%           0 otherwise
 
 %  Filename    :   LocalParameter_isSetSBOTerm.m
 %  Description :

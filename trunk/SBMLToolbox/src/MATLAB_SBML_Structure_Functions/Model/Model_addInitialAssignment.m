@@ -1,11 +1,11 @@
 function SBMLModel = Model_addInitialAssignment(SBMLModel, SBMLInitialAssignment)
 %
 % Model_addInitialAssignment(SBMLModel, SBMLInitialAssignment)
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %    and an SBML InitialAssignment structure
 %
-%    returns
-%      the Model with the InitialAssignment element added
+%       and returns
+%           the Model with the InitialAssignment element added
 
 %  Filename    :   Model_addInitialAssignment.m
 %  Description :

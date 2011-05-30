@@ -1,11 +1,11 @@
 function SBMLParameter = Parameter_setMetaid(SBMLParameter, metaid)
 %
 % Parameter_setMetaid
-%    takes an SBML Parameter structure
+%       takes an SBML Parameter structure
 %    and the metaid to be set
 %
-%    returns
-%      the Parameter with the new value for the metaid attribute
+%       and returns
+%           the Parameter with the new value for the metaid attribute
 
 %  Filename    :   Parameter_setMetaid.m
 %  Description :

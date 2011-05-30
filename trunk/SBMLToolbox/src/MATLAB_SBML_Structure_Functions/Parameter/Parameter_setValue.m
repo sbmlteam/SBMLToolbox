@@ -1,11 +1,11 @@
 function SBMLParameter = Parameter_setValue(SBMLParameter, value)
 %
 % Parameter_setValue
-%    takes an SBML Parameter structure
+%       takes an SBML Parameter structure
 %    and the value to be set
 %
-%    returns
-%      the Parameter with the new value for the value attribute
+%       and returns
+%           the Parameter with the new value for the value attribute
 
 %  Filename    :   Parameter_setValue.m
 %  Description :

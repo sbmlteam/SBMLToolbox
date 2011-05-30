@@ -1,10 +1,10 @@
 function name = ModifierSpeciesReference_getName(SBMLModifierSpeciesReference)
 %
 % ModifierSpeciesReference_getName
-%    takes an SBML ModifierSpeciesReference structure
+%       takes an SBML ModifierSpeciesReference structure
 %
-%    returns
-%      the value of the name attribute
+%       and returns
+%           the value of the name attribute
 
 %  Filename    :   ModifierSpeciesReference_getName.m
 %  Description :

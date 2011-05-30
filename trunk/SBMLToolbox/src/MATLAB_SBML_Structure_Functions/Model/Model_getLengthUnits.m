@@ -1,10 +1,10 @@
 function lengthUnits = Model_getLengthUnits(SBMLModel)
 %
 % Model_getLengthUnits
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      the value of the lengthUnits attribute
+%       and returns
+%           the value of the lengthUnits attribute
 
 %  Filename    :   Model_getLengthUnits.m
 %  Description :

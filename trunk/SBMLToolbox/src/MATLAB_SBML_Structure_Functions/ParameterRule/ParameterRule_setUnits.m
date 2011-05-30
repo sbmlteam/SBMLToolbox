@@ -1,11 +1,11 @@
 function SBMLParameterRule = ParameterRule_setUnits(SBMLParameterRule, units)
 %
 % ParameterRule_setUnits
-%    takes an SBML ParameterRule structure
+%       takes an SBML ParameterRule structure
 %    and the units to be set
 %
-%    returns
-%      the ParameterRule with the new value for the units attribute
+%       and returns
+%           the ParameterRule with the new value for the units attribute
 
 %  Filename    :   ParameterRule_setUnits.m
 %  Description :

@@ -1,10 +1,10 @@
 function sboTerm = Parameter_getSBOTerm(SBMLParameter)
 %
 % Parameter_getSBOTerm
-%    takes an SBML Parameter structure
+%       takes an SBML Parameter structure
 %
-%    returns
-%      the value of the sboTerm attribute
+%       and returns
+%           the value of the sboTerm attribute
 
 %  Filename    :   Parameter_getSBOTerm.m
 %  Description :

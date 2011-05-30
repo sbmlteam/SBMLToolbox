@@ -1,11 +1,11 @@
 function SBMLModel = Model_addReaction(SBMLModel, SBMLReaction)
 %
 % Model_addReaction(SBMLModel, SBMLReaction)
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %    and an SBML Reaction structure
 %
-%    returns
-%      the Model with the Reaction element added
+%       and returns
+%           the Model with the Reaction element added
 
 %  Filename    :   Model_addReaction.m
 %  Description :

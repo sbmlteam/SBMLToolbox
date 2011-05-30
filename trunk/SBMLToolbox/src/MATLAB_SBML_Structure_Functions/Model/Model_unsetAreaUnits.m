@@ -1,10 +1,10 @@
 function SBMLModel = Model_unsetAreaUnits(SBMLModel)
 %
 % Model_getAreaUnits
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      the Model with the value for the areaUnits attribute unset
+%       and returns
+%           the Model with the value for the areaUnits attribute unset
 
 %  Filename    :   Model_unsetAreaUnits.m
 %  Description :

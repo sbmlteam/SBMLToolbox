@@ -1,10 +1,10 @@
 function parameter = Model_getListOfParameters(SBMLModel)
 %
 % Model_getListOfParameters
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      the array of structures of the parameter elements
+%       and returns
+%           the array of structures of the parameter elements
 
 %  Filename    :   Model_getListOfParameters.m
 %  Description :

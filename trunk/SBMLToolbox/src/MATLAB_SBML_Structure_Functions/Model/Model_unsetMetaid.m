@@ -1,10 +1,10 @@
 function SBMLModel = Model_unsetMetaid(SBMLModel)
 %
 % Model_getMetaid
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      the Model with the value for the metaid attribute unset
+%       and returns
+%           the Model with the value for the metaid attribute unset
 
 %  Filename    :   Model_unsetMetaid.m
 %  Description :

@@ -1,11 +1,11 @@
 function value = Model_isSetSubstanceUnits(SBMLModel)
 %
 % Model_isSetSubstanceUnits
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      1 if the value for the substanceUnits attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the substanceUnits attribute is set
+%           0 otherwise
 
 %  Filename    :   Model_isSetSubstanceUnits.m
 %  Description :

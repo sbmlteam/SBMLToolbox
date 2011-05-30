@@ -1,11 +1,11 @@
 function SBMLModifierSpeciesReference = ModifierSpeciesReference_setSpecies(SBMLModifierSpeciesReference, species)
 %
 % ModifierSpeciesReference_setSpecies
-%    takes an SBML ModifierSpeciesReference structure
+%       takes an SBML ModifierSpeciesReference structure
 %    and the species to be set
 %
-%    returns
-%      the ModifierSpeciesReference with the new value for the species attribute
+%       and returns
+%           the ModifierSpeciesReference with the new value for the species attribute
 
 %  Filename    :   ModifierSpeciesReference_setSpecies.m
 %  Description :

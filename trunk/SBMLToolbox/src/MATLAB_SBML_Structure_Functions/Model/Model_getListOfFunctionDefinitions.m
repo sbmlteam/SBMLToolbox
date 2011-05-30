@@ -1,10 +1,10 @@
 function functionDefinition = Model_getListOfFunctionDefinitions(SBMLModel)
 %
 % Model_getListOfFunctionDefinitions
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      the array of structures of the functionDefinition elements
+%       and returns
+%           the array of structures of the functionDefinition elements
 
 %  Filename    :   Model_getListOfFunctionDefinitions.m
 %  Description :

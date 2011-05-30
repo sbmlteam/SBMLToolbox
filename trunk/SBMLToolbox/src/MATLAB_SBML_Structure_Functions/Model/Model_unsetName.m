@@ -1,10 +1,10 @@
 function SBMLModel = Model_unsetName(SBMLModel)
 %
 % Model_getName
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      the Model with the value for the name attribute unset
+%       and returns
+%           the Model with the value for the name attribute unset
 
 %  Filename    :   Model_unsetName.m
 %  Description :

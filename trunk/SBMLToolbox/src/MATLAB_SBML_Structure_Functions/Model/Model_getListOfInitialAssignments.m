@@ -1,10 +1,10 @@
 function initialAssignment = Model_getListOfInitialAssignments(SBMLModel)
 %
 % Model_getListOfInitialAssignments
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      the array of structures of the initialAssignment elements
+%       and returns
+%           the array of structures of the initialAssignment elements
 
 %  Filename    :   Model_getListOfInitialAssignments.m
 %  Description :

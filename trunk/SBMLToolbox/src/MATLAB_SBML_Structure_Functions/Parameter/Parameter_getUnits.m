@@ -1,10 +1,10 @@
 function units = Parameter_getUnits(SBMLParameter)
 %
 % Parameter_getUnits
-%    takes an SBML Parameter structure
+%       takes an SBML Parameter structure
 %
-%    returns
-%      the value of the units attribute
+%       and returns
+%           the value of the units attribute
 
 %  Filename    :   Parameter_getUnits.m
 %  Description :

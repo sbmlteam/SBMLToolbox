@@ -1,10 +1,10 @@
 function SBMLParameterRule = ParameterRule_unsetFormula(SBMLParameterRule)
 %
 % ParameterRule_getFormula
-%    takes an SBML ParameterRule structure
+%       takes an SBML ParameterRule structure
 %
-%    returns
-%      the ParameterRule with the value for the formula attribute unset
+%       and returns
+%           the ParameterRule with the value for the formula attribute unset
 
 %  Filename    :   ParameterRule_unsetFormula.m
 %  Description :

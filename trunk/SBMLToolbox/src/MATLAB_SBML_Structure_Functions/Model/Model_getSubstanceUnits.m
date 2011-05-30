@@ -1,10 +1,10 @@
 function substanceUnits = Model_getSubstanceUnits(SBMLModel)
 %
 % Model_getSubstanceUnits
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      the value of the substanceUnits attribute
+%       and returns
+%           the value of the substanceUnits attribute
 
 %  Filename    :   Model_getSubstanceUnits.m
 %  Description :

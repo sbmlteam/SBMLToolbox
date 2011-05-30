@@ -1,10 +1,10 @@
 function SBMLModel = Model_unsetId(SBMLModel)
 %
 % Model_getId
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      the Model with the value for the id attribute unset
+%       and returns
+%           the Model with the value for the id attribute unset
 
 %  Filename    :   Model_unsetId.m
 %  Description :

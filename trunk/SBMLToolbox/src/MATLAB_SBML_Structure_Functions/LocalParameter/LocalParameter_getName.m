@@ -1,10 +1,10 @@
 function name = LocalParameter_getName(SBMLLocalParameter)
 %
 % LocalParameter_getName
-%    takes an SBML LocalParameter structure
+%       takes an SBML LocalParameter structure
 %
-%    returns
-%      the value of the name attribute
+%       and returns
+%           the value of the name attribute
 
 %  Filename    :   LocalParameter_getName.m
 %  Description :

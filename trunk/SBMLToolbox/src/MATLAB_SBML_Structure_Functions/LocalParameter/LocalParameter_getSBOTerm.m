@@ -1,10 +1,10 @@
 function sboTerm = LocalParameter_getSBOTerm(SBMLLocalParameter)
 %
 % LocalParameter_getSBOTerm
-%    takes an SBML LocalParameter structure
+%       takes an SBML LocalParameter structure
 %
-%    returns
-%      the value of the sboTerm attribute
+%       and returns
+%           the value of the sboTerm attribute
 
 %  Filename    :   LocalParameter_getSBOTerm.m
 %  Description :

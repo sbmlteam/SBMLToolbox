@@ -1,10 +1,10 @@
 function num = Model_getNumRules(SBMLModel)
 %
 % Model_getNumRules
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      the number of rule elements
+%       and returns
+%           the number of rule elements
 
 %  Filename    :   Model_getNumRules.m
 %  Description :

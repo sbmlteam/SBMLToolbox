@@ -1,10 +1,10 @@
 function areaUnits = Model_getAreaUnits(SBMLModel)
 %
 % Model_getAreaUnits
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      the value of the areaUnits attribute
+%       and returns
+%           the value of the areaUnits attribute
 
 %  Filename    :   Model_getAreaUnits.m
 %  Description :

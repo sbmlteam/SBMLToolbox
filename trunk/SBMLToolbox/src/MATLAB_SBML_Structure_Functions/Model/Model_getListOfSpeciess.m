@@ -1,10 +1,10 @@
 function species = Model_getListOfSpeciess(SBMLModel)
 %
 % Model_getListOfSpeciess
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      the array of structures of the species elements
+%       and returns
+%           the array of structures of the species elements
 
 %  Filename    :   Model_getListOfSpeciess.m
 %  Description :

@@ -1,10 +1,10 @@
 function SBMLModel = Model_unsetSBOTerm(SBMLModel)
 %
 % Model_getSBOTerm
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      the Model with the value for the sboTerm attribute unset
+%       and returns
+%           the Model with the value for the sboTerm attribute unset
 
 %  Filename    :   Model_unsetSBOTerm.m
 %  Description :

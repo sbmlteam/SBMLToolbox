@@ -1,10 +1,10 @@
 function metaid = LocalParameter_getMetaid(SBMLLocalParameter)
 %
 % LocalParameter_getMetaid
-%    takes an SBML LocalParameter structure
+%       takes an SBML LocalParameter structure
 %
-%    returns
-%      the value of the metaid attribute
+%       and returns
+%           the value of the metaid attribute
 
 %  Filename    :   LocalParameter_getMetaid.m
 %  Description :

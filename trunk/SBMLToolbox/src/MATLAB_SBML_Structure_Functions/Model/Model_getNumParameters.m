@@ -1,10 +1,10 @@
 function num = Model_getNumParameters(SBMLModel)
 %
 % Model_getNumParameters
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      the number of parameter elements
+%       and returns
+%           the number of parameter elements
 
 %  Filename    :   Model_getNumParameters.m
 %  Description :

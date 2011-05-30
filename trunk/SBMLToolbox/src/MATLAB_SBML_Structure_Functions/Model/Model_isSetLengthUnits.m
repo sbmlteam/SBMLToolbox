@@ -1,11 +1,11 @@
 function value = Model_isSetLengthUnits(SBMLModel)
 %
 % Model_isSetLengthUnits
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %
-%    returns
-%      1 if the value for the lengthUnits attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the lengthUnits attribute is set
+%           0 otherwise
 
 %  Filename    :   Model_isSetLengthUnits.m
 %  Description :

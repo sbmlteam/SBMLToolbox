@@ -1,11 +1,11 @@
 function value = Parameter_isSetMetaid(SBMLParameter)
 %
 % Parameter_isSetMetaid
-%    takes an SBML Parameter structure
+%       takes an SBML Parameter structure
 %
-%    returns
-%      1 if the value for the metaid attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the metaid attribute is set
+%           0 otherwise
 
 %  Filename    :   Parameter_isSetMetaid.m
 %  Description :

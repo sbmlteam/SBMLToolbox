@@ -1,10 +1,10 @@
 function SBMLModifierSpeciesReference = ModifierSpeciesReference_unsetMetaid(SBMLModifierSpeciesReference)
 %
 % ModifierSpeciesReference_getMetaid
-%    takes an SBML ModifierSpeciesReference structure
+%       takes an SBML ModifierSpeciesReference structure
 %
-%    returns
-%      the ModifierSpeciesReference with the value for the metaid attribute unset
+%       and returns
+%           the ModifierSpeciesReference with the value for the metaid attribute unset
 
 %  Filename    :   ModifierSpeciesReference_unsetMetaid.m
 %  Description :

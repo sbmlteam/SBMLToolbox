@@ -1,11 +1,11 @@
 function SBMLModel = Model_addCompartmentType(SBMLModel, SBMLCompartmentType)
 %
 % Model_addCompartmentType(SBMLModel, SBMLCompartmentType)
-%    takes an SBML Model structure
+%       takes an SBML Model structure
 %    and an SBML CompartmentType structure
 %
-%    returns
-%      the Model with the CompartmentType element added
+%       and returns
+%           the Model with the CompartmentType element added
 
 %  Filename    :   Model_addCompartmentType.m
 %  Description :

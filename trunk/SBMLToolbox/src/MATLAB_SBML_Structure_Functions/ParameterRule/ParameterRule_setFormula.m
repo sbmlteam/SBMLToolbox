@@ -1,11 +1,11 @@
 function SBMLParameterRule = ParameterRule_setFormula(SBMLParameterRule, formula)
 %
 % ParameterRule_setFormula
-%    takes an SBML ParameterRule structure
+%       takes an SBML ParameterRule structure
 %    and the formula to be set
 %
-%    returns
-%      the ParameterRule with the new value for the formula attribute
+%       and returns
+%           the ParameterRule with the new value for the formula attribute
 
 %  Filename    :   ParameterRule_setFormula.m
 %  Description :

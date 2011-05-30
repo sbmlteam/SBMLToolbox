@@ -1,10 +1,10 @@
 function type = ParameterRule_getType(SBMLParameterRule)
 %
 % ParameterRule_getType
-%    takes an SBML ParameterRule structure
+%       takes an SBML ParameterRule structure
 %
-%    returns
-%      the value of the type attribute
+%       and returns
+%           the value of the type attribute
 
 %  Filename    :   ParameterRule_getType.m
 %  Description :

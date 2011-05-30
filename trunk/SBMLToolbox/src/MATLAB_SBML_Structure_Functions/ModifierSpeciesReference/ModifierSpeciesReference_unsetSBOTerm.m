@@ -1,10 +1,10 @@
 function SBMLModifierSpeciesReference = ModifierSpeciesReference_unsetSBOTerm(SBMLModifierSpeciesReference)
 %
 % ModifierSpeciesReference_getSBOTerm
-%    takes an SBML ModifierSpeciesReference structure
+%       takes an SBML ModifierSpeciesReference structure
 %
-%    returns
-%      the ModifierSpeciesReference with the value for the sboTerm attribute unset
+%       and returns
+%           the ModifierSpeciesReference with the value for the sboTerm attribute unset
 
 %  Filename    :   ModifierSpeciesReference_unsetSBOTerm.m
 %  Description :

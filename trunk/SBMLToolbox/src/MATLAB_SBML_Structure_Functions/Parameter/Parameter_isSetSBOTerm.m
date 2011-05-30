@@ -1,11 +1,11 @@
 function value = Parameter_isSetSBOTerm(SBMLParameter)
 %
 % Parameter_isSetSBOTerm
-%    takes an SBML Parameter structure
+%       takes an SBML Parameter structure
 %
-%    returns
-%      1 if the value for the sboTerm attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the sboTerm attribute is set
+%           0 otherwise
 
 %  Filename    :   Parameter_isSetSBOTerm.m
 %  Description :
