@@ -1,10 +1,10 @@
 function SBMLKineticLaw = KineticLaw_unsetMetaid(SBMLKineticLaw)
 %
 % KineticLaw_getMetaid
-%    takes an SBML KineticLaw structure
+%       takes an SBML KineticLaw structure
 %
-%    returns
-%      the KineticLaw with the value for the metaid attribute unset
+%       and returns
+%           the KineticLaw with the value for the metaid attribute unset
 
 %  Filename    :   KineticLaw_unsetMetaid.m
 %  Description :

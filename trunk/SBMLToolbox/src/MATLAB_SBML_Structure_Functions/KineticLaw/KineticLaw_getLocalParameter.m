@@ -1,11 +1,11 @@
 function localParameter = KineticLaw_getLocalParameter(SBMLKineticLaw, index)
 %
 % KineticLaw_getLocalParameter
-%    takes an SBML KineticLaw structure
+%       takes an SBML KineticLaw structure
 %    and an index
 %
-%    returns
-%      the value of the localParameter element at the indexed position
+%       and returns
+%           the value of the localParameter element at the indexed position
 
 %  Filename    :   KineticLaw_getLocalParameter.m
 %  Description :

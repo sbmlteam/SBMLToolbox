@@ -1,10 +1,10 @@
 function id = FunctionDefinition_getId(SBMLFunctionDefinition)
 %
 % FunctionDefinition_getId
-%    takes an SBML FunctionDefinition structure
+%       takes an SBML FunctionDefinition structure
 %
-%    returns
-%      the value of the id attribute
+%       and returns
+%           the value of the id attribute
 
 %  Filename    :   FunctionDefinition_getId.m
 %  Description :

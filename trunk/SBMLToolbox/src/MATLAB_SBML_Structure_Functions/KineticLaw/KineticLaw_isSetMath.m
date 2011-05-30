@@ -1,11 +1,11 @@
 function value = KineticLaw_isSetMath(SBMLKineticLaw)
 %
 % KineticLaw_isSetMath
-%    takes an SBML KineticLaw structure
+%       takes an SBML KineticLaw structure
 %
-%    returns
-%      1 if the value for the math attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the math attribute is set
+%           0 otherwise
 
 %  Filename    :   KineticLaw_isSetMath.m
 %  Description :

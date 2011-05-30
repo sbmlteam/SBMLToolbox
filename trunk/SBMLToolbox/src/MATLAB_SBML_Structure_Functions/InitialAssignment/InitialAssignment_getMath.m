@@ -1,10 +1,10 @@
 function math = InitialAssignment_getMath(SBMLInitialAssignment)
 %
 % InitialAssignment_getMath
-%    takes an SBML InitialAssignment structure
+%       takes an SBML InitialAssignment structure
 %
-%    returns
-%      the value of the math attribute
+%       and returns
+%           the value of the math attribute
 
 %  Filename    :   InitialAssignment_getMath.m
 %  Description :

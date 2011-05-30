@@ -1,11 +1,11 @@
 function value = InitialAssignment_isSetMetaid(SBMLInitialAssignment)
 %
 % InitialAssignment_isSetMetaid
-%    takes an SBML InitialAssignment structure
+%       takes an SBML InitialAssignment structure
 %
-%    returns
-%      1 if the value for the metaid attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the metaid attribute is set
+%           0 otherwise
 
 %  Filename    :   InitialAssignment_isSetMetaid.m
 %  Description :

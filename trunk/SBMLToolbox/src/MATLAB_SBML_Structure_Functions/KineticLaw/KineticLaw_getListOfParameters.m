@@ -1,10 +1,10 @@
 function parameter = KineticLaw_getListOfParameters(SBMLKineticLaw)
 %
 % KineticLaw_getListOfParameters
-%    takes an SBML KineticLaw structure
+%       takes an SBML KineticLaw structure
 %
-%    returns
-%      the array of structures of the parameter elements
+%       and returns
+%           the array of structures of the parameter elements
 
 %  Filename    :   KineticLaw_getListOfParameters.m
 %  Description :

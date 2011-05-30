@@ -1,10 +1,10 @@
 function variable = EventAssignment_getVariable(SBMLEventAssignment)
 %
 % EventAssignment_getVariable
-%    takes an SBML EventAssignment structure
+%       takes an SBML EventAssignment structure
 %
-%    returns
-%      the value of the variable attribute
+%       and returns
+%           the value of the variable attribute
 
 %  Filename    :   EventAssignment_getVariable.m
 %  Description :

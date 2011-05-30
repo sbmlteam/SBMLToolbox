@@ -1,10 +1,10 @@
 function sboTerm = EventAssignment_getSBOTerm(SBMLEventAssignment)
 %
 % EventAssignment_getSBOTerm
-%    takes an SBML EventAssignment structure
+%       takes an SBML EventAssignment structure
 %
-%    returns
-%      the value of the sboTerm attribute
+%       and returns
+%           the value of the sboTerm attribute
 
 %  Filename    :   EventAssignment_getSBOTerm.m
 %  Description :

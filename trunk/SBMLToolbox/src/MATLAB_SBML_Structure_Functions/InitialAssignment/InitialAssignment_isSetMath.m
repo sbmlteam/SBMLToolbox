@@ -1,11 +1,11 @@
 function value = InitialAssignment_isSetMath(SBMLInitialAssignment)
 %
 % InitialAssignment_isSetMath
-%    takes an SBML InitialAssignment structure
+%       takes an SBML InitialAssignment structure
 %
-%    returns
-%      1 if the value for the math attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the math attribute is set
+%           0 otherwise
 
 %  Filename    :   InitialAssignment_isSetMath.m
 %  Description :

@@ -1,11 +1,11 @@
 function value = InitialAssignment_isSetSBOTerm(SBMLInitialAssignment)
 %
 % InitialAssignment_isSetSBOTerm
-%    takes an SBML InitialAssignment structure
+%       takes an SBML InitialAssignment structure
 %
-%    returns
-%      1 if the value for the sboTerm attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the sboTerm attribute is set
+%           0 otherwise
 
 %  Filename    :   InitialAssignment_isSetSBOTerm.m
 %  Description :

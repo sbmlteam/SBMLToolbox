@@ -1,10 +1,10 @@
 function SBMLKineticLaw = KineticLaw_unsetTimeUnits(SBMLKineticLaw)
 %
 % KineticLaw_getTimeUnits
-%    takes an SBML KineticLaw structure
+%       takes an SBML KineticLaw structure
 %
-%    returns
-%      the KineticLaw with the value for the timeUnits attribute unset
+%       and returns
+%           the KineticLaw with the value for the timeUnits attribute unset
 
 %  Filename    :   KineticLaw_unsetTimeUnits.m
 %  Description :

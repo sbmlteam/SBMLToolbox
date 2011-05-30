@@ -1,10 +1,10 @@
 function SBMLEventAssignment = EventAssignment_unsetSBOTerm(SBMLEventAssignment)
 %
 % EventAssignment_getSBOTerm
-%    takes an SBML EventAssignment structure
+%       takes an SBML EventAssignment structure
 %
-%    returns
-%      the EventAssignment with the value for the sboTerm attribute unset
+%       and returns
+%           the EventAssignment with the value for the sboTerm attribute unset
 
 %  Filename    :   EventAssignment_unsetSBOTerm.m
 %  Description :

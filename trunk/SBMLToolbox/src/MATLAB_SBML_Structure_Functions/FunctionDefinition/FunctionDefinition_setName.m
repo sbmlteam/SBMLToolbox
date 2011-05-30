@@ -1,11 +1,11 @@
 function SBMLFunctionDefinition = FunctionDefinition_setName(SBMLFunctionDefinition, name)
 %
 % FunctionDefinition_setName
-%    takes an SBML FunctionDefinition structure
+%       takes an SBML FunctionDefinition structure
 %    and the name to be set
 %
-%    returns
-%      the FunctionDefinition with the new value for the name attribute
+%       and returns
+%           the FunctionDefinition with the new value for the name attribute
 
 %  Filename    :   FunctionDefinition_setName.m
 %  Description :

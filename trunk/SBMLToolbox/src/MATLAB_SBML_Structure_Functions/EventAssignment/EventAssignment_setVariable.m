@@ -1,11 +1,11 @@
 function SBMLEventAssignment = EventAssignment_setVariable(SBMLEventAssignment, variable)
 %
 % EventAssignment_setVariable
-%    takes an SBML EventAssignment structure
+%       takes an SBML EventAssignment structure
 %    and the variable to be set
 %
-%    returns
-%      the EventAssignment with the new value for the variable attribute
+%       and returns
+%           the EventAssignment with the new value for the variable attribute
 
 %  Filename    :   EventAssignment_setVariable.m
 %  Description :

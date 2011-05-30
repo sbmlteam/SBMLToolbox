@@ -1,11 +1,11 @@
 function SBMLKineticLaw = KineticLaw_setSubstanceUnits(SBMLKineticLaw, substanceUnits)
 %
 % KineticLaw_setSubstanceUnits
-%    takes an SBML KineticLaw structure
+%       takes an SBML KineticLaw structure
 %    and the substanceUnits to be set
 %
-%    returns
-%      the KineticLaw with the new value for the substanceUnits attribute
+%       and returns
+%           the KineticLaw with the new value for the substanceUnits attribute
 
 %  Filename    :   KineticLaw_setSubstanceUnits.m
 %  Description :

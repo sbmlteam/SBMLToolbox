@@ -1,10 +1,10 @@
 function SBMLEventAssignment = EventAssignment_unsetMetaid(SBMLEventAssignment)
 %
 % EventAssignment_getMetaid
-%    takes an SBML EventAssignment structure
+%       takes an SBML EventAssignment structure
 %
-%    returns
-%      the EventAssignment with the value for the metaid attribute unset
+%       and returns
+%           the EventAssignment with the value for the metaid attribute unset
 
 %  Filename    :   EventAssignment_unsetMetaid.m
 %  Description :

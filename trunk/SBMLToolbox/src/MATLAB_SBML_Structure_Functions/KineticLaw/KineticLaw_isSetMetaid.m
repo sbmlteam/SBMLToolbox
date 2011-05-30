@@ -1,11 +1,11 @@
 function value = KineticLaw_isSetMetaid(SBMLKineticLaw)
 %
 % KineticLaw_isSetMetaid
-%    takes an SBML KineticLaw structure
+%       takes an SBML KineticLaw structure
 %
-%    returns
-%      1 if the value for the metaid attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the metaid attribute is set
+%           0 otherwise
 
 %  Filename    :   KineticLaw_isSetMetaid.m
 %  Description :

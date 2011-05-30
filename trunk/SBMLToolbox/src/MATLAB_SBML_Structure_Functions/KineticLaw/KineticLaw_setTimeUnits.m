@@ -1,11 +1,11 @@
 function SBMLKineticLaw = KineticLaw_setTimeUnits(SBMLKineticLaw, timeUnits)
 %
 % KineticLaw_setTimeUnits
-%    takes an SBML KineticLaw structure
+%       takes an SBML KineticLaw structure
 %    and the timeUnits to be set
 %
-%    returns
-%      the KineticLaw with the new value for the timeUnits attribute
+%       and returns
+%           the KineticLaw with the new value for the timeUnits attribute
 
 %  Filename    :   KineticLaw_setTimeUnits.m
 %  Description :

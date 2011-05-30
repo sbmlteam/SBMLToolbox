@@ -1,10 +1,10 @@
 function timeUnits = KineticLaw_getTimeUnits(SBMLKineticLaw)
 %
 % KineticLaw_getTimeUnits
-%    takes an SBML KineticLaw structure
+%       takes an SBML KineticLaw structure
 %
-%    returns
-%      the value of the timeUnits attribute
+%       and returns
+%           the value of the timeUnits attribute
 
 %  Filename    :   KineticLaw_getTimeUnits.m
 %  Description :

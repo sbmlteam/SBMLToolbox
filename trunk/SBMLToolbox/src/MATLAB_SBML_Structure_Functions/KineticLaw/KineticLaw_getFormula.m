@@ -1,10 +1,10 @@
 function formula = KineticLaw_getFormula(SBMLKineticLaw)
 %
 % KineticLaw_getFormula
-%    takes an SBML KineticLaw structure
+%       takes an SBML KineticLaw structure
 %
-%    returns
-%      the value of the formula attribute
+%       and returns
+%           the value of the formula attribute
 
 %  Filename    :   KineticLaw_getFormula.m
 %  Description :

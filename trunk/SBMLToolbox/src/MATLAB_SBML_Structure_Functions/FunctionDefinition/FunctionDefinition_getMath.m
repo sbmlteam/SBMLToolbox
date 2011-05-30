@@ -1,10 +1,10 @@
 function math = FunctionDefinition_getMath(SBMLFunctionDefinition)
 %
 % FunctionDefinition_getMath
-%    takes an SBML FunctionDefinition structure
+%       takes an SBML FunctionDefinition structure
 %
-%    returns
-%      the value of the math attribute
+%       and returns
+%           the value of the math attribute
 
 %  Filename    :   FunctionDefinition_getMath.m
 %  Description :
