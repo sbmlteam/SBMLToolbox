@@ -1,11 +1,11 @@
 function value = Species_isSetSpatialSizeUnits(SBMLSpecies)
 %
 % Species_isSetSpatialSizeUnits
-%    takes an SBML Species structure
+%       takes an SBML Species structure
 %
-%    returns
-%      1 if the value for the spatialSizeUnits attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the spatialSizeUnits attribute is set
+%           0 otherwise
 
 %  Filename    :   Species_isSetSpatialSizeUnits.m
 %  Description :

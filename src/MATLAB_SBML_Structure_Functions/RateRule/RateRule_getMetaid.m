@@ -1,10 +1,10 @@
 function metaid = RateRule_getMetaid(SBMLRateRule)
 %
 % RateRule_getMetaid
-%    takes an SBML RateRule structure
+%       takes an SBML RateRule structure
 %
-%    returns
-%      the value of the metaid attribute
+%       and returns
+%           the value of the metaid attribute
 
 %  Filename    :   RateRule_getMetaid.m
 %  Description :

@@ -1,10 +1,10 @@
 function SBMLSpecies = Species_unsetId(SBMLSpecies)
 %
 % Species_getId
-%    takes an SBML Species structure
+%       takes an SBML Species structure
 %
-%    returns
-%      the Species with the value for the id attribute unset
+%       and returns
+%           the Species with the value for the id attribute unset
 
 %  Filename    :   Species_unsetId.m
 %  Description :

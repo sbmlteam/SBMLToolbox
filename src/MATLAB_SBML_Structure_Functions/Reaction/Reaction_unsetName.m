@@ -1,10 +1,10 @@
 function SBMLReaction = Reaction_unsetName(SBMLReaction)
 %
 % Reaction_getName
-%    takes an SBML Reaction structure
+%       takes an SBML Reaction structure
 %
-%    returns
-%      the Reaction with the value for the name attribute unset
+%       and returns
+%           the Reaction with the value for the name attribute unset
 
 %  Filename    :   Reaction_unsetName.m
 %  Description :

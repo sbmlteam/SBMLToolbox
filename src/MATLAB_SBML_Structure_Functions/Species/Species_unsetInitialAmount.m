@@ -1,10 +1,10 @@
 function SBMLSpecies = Species_unsetInitialAmount(SBMLSpecies)
 %
 % Species_getInitialAmount
-%    takes an SBML Species structure
+%       takes an SBML Species structure
 %
-%    returns
-%      the Species with the value for the initialAmount attribute unset
+%       and returns
+%           the Species with the value for the initialAmount attribute unset
 
 %  Filename    :   Species_unsetInitialAmount.m
 %  Description :

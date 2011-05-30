@@ -1,10 +1,10 @@
 function initialConcentration = Species_getInitialConcentration(SBMLSpecies)
 %
 % Species_getInitialConcentration
-%    takes an SBML Species structure
+%       takes an SBML Species structure
 %
-%    returns
-%      the value of the initialConcentration attribute
+%       and returns
+%           the value of the initialConcentration attribute
 
 %  Filename    :   Species_getInitialConcentration.m
 %  Description :

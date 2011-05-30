@@ -1,10 +1,10 @@
 function SBMLPriority = Priority_unsetMetaid(SBMLPriority)
 %
 % Priority_getMetaid
-%    takes an SBML Priority structure
+%       takes an SBML Priority structure
 %
-%    returns
-%      the Priority with the value for the metaid attribute unset
+%       and returns
+%           the Priority with the value for the metaid attribute unset
 
 %  Filename    :   Priority_unsetMetaid.m
 %  Description :

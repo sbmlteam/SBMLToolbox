@@ -1,11 +1,11 @@
 function SBMLSpecies = Species_setConversionFactor(SBMLSpecies, conversionFactor)
 %
 % Species_setConversionFactor
-%    takes an SBML Species structure
+%       takes an SBML Species structure
 %    and the conversionFactor to be set
 %
-%    returns
-%      the Species with the new value for the conversionFactor attribute
+%       and returns
+%           the Species with the new value for the conversionFactor attribute
 
 %  Filename    :   Species_setConversionFactor.m
 %  Description :

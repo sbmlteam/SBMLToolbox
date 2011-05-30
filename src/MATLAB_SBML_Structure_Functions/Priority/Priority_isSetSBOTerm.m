@@ -1,11 +1,11 @@
 function value = Priority_isSetSBOTerm(SBMLPriority)
 %
 % Priority_isSetSBOTerm
-%    takes an SBML Priority structure
+%       takes an SBML Priority structure
 %
-%    returns
-%      1 if the value for the sboTerm attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the sboTerm attribute is set
+%           0 otherwise
 
 %  Filename    :   Priority_isSetSBOTerm.m
 %  Description :

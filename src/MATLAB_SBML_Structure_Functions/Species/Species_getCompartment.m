@@ -1,10 +1,10 @@
 function compartment = Species_getCompartment(SBMLSpecies)
 %
 % Species_getCompartment
-%    takes an SBML Species structure
+%       takes an SBML Species structure
 %
-%    returns
-%      the value of the compartment attribute
+%       and returns
+%           the value of the compartment attribute
 
 %  Filename    :   Species_getCompartment.m
 %  Description :

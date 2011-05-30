@@ -1,11 +1,11 @@
 function value = Species_isSetCharge(SBMLSpecies)
 %
 % Species_isSetCharge
-%    takes an SBML Species structure
+%       takes an SBML Species structure
 %
-%    returns
-%      1 if the value for the charge attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the charge attribute is set
+%           0 otherwise
 
 %  Filename    :   Species_isSetCharge.m
 %  Description :

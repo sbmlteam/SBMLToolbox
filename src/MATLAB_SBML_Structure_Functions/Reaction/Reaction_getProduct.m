@@ -1,11 +1,11 @@
 function product = Reaction_getProduct(SBMLReaction, index)
 %
 % Reaction_getProduct
-%    takes an SBML Reaction structure
+%       takes an SBML Reaction structure
 %    and an index
 %
-%    returns
-%      the value of the product element at the indexed position
+%       and returns
+%           the value of the product element at the indexed position
 
 %  Filename    :   Reaction_getProduct.m
 %  Description :

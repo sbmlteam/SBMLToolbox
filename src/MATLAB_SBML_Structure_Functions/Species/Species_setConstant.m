@@ -1,11 +1,11 @@
 function SBMLSpecies = Species_setConstant(SBMLSpecies, constant)
 %
 % Species_setConstant
-%    takes an SBML Species structure
+%       takes an SBML Species structure
 %    and the constant to be set
 %
-%    returns
-%      the Species with the new value for the constant attribute
+%       and returns
+%           the Species with the new value for the constant attribute
 
 %  Filename    :   Species_setConstant.m
 %  Description :

@@ -1,10 +1,10 @@
 function sboTerm = Reaction_getSboTerm(SBMLReaction)
 %
 % Reaction_getSboTerm
-%    takes an SBML Reaction structure
+%       takes an SBML Reaction structure
 %
-%    returns
-%      the value of the sboTerm attribute
+%       and returns
+%           the value of the sboTerm attribute
 
 %  Filename    :   Reaction_getSboTerm.m
 %  Description :

@@ -1,10 +1,10 @@
 function kineticLaw = Reaction_getKineticLaw(SBMLReaction)
 %
 % Reaction_getKineticLaw
-%    takes an SBML Reaction structure
+%       takes an SBML Reaction structure
 %
-%    returns
-%      the value of the kineticLaw attribute
+%       and returns
+%           the value of the kineticLaw attribute
 
 %  Filename    :   Reaction_getKineticLaw.m
 %  Description :

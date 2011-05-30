@@ -1,10 +1,10 @@
 function boundaryCondition = Species_getBoundaryCondition(SBMLSpecies)
 %
 % Species_getBoundaryCondition
-%    takes an SBML Species structure
+%       takes an SBML Species structure
 %
-%    returns
-%      the value of the boundaryCondition attribute
+%       and returns
+%           the value of the boundaryCondition attribute
 
 %  Filename    :   Species_getBoundaryCondition.m
 %  Description :

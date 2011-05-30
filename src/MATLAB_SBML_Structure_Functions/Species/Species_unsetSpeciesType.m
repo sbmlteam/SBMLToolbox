@@ -1,10 +1,10 @@
 function SBMLSpecies = Species_unsetSpeciesType(SBMLSpecies)
 %
 % Species_getSpeciesType
-%    takes an SBML Species structure
+%       takes an SBML Species structure
 %
-%    returns
-%      the Species with the value for the speciesType attribute unset
+%       and returns
+%           the Species with the value for the speciesType attribute unset
 
 %  Filename    :   Species_unsetSpeciesType.m
 %  Description :

@@ -1,10 +1,10 @@
 function units = Species_getUnits(SBMLSpecies)
 %
 % Species_getUnits
-%    takes an SBML Species structure
+%       takes an SBML Species structure
 %
-%    returns
-%      the value of the units attribute
+%       and returns
+%           the value of the units attribute
 
 %  Filename    :   Species_getUnits.m
 %  Description :

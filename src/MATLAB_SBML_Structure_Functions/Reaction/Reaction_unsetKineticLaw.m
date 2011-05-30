@@ -1,10 +1,10 @@
 function SBMLReaction = Reaction_unsetKineticLaw(SBMLReaction)
 %
 % Reaction_getKineticLaw
-%    takes an SBML Reaction structure
+%       takes an SBML Reaction structure
 %
-%    returns
-%      the Reaction with the value for the kineticLaw attribute unset
+%       and returns
+%           the Reaction with the value for the kineticLaw attribute unset
 
 %  Filename    :   Reaction_unsetKineticLaw.m
 %  Description :

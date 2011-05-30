@@ -1,11 +1,11 @@
 function SBMLReaction = Reaction_setSboTerm(SBMLReaction, sboTerm)
 %
 % Reaction_setSboTerm
-%    takes an SBML Reaction structure
+%       takes an SBML Reaction structure
 %    and the sboTerm to be set
 %
-%    returns
-%      the Reaction with the new value for the sboTerm attribute
+%       and returns
+%           the Reaction with the new value for the sboTerm attribute
 
 %  Filename    :   Reaction_setSboTerm.m
 %  Description :

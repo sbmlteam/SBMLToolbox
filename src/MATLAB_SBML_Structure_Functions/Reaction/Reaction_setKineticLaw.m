@@ -1,11 +1,11 @@
 function SBMLReaction = Reaction_setKineticLaw(SBMLReaction, kineticLaw)
 %
 % Reaction_setKineticLaw
-%    takes an SBML Reaction structure
+%       takes an SBML Reaction structure
 %    and the kineticLaw to be set
 %
-%    returns
-%      the Reaction with the new value for the kineticLaw attribute
+%       and returns
+%           the Reaction with the new value for the kineticLaw attribute
 
 %  Filename    :   Reaction_setKineticLaw.m
 %  Description :

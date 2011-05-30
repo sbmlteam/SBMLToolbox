@@ -1,11 +1,11 @@
 function value = Reaction_isSetCompartment(SBMLReaction)
 %
 % Reaction_isSetCompartment
-%    takes an SBML Reaction structure
+%       takes an SBML Reaction structure
 %
-%    returns
-%      1 if the value for the compartment attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the compartment attribute is set
+%           0 otherwise
 
 %  Filename    :   Reaction_isSetCompartment.m
 %  Description :

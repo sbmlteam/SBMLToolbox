@@ -1,10 +1,10 @@
 function metaid = Species_getMetaid(SBMLSpecies)
 %
 % Species_getMetaid
-%    takes an SBML Species structure
+%       takes an SBML Species structure
 %
-%    returns
-%      the value of the metaid attribute
+%       and returns
+%           the value of the metaid attribute
 
 %  Filename    :   Species_getMetaid.m
 %  Description :

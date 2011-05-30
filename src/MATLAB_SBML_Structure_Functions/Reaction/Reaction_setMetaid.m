@@ -1,11 +1,11 @@
 function SBMLReaction = Reaction_setMetaid(SBMLReaction, metaid)
 %
 % Reaction_setMetaid
-%    takes an SBML Reaction structure
+%       takes an SBML Reaction structure
 %    and the metaid to be set
 %
-%    returns
-%      the Reaction with the new value for the metaid attribute
+%       and returns
+%           the Reaction with the new value for the metaid attribute
 
 %  Filename    :   Reaction_setMetaid.m
 %  Description :

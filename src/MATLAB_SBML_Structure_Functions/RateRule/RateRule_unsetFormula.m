@@ -1,10 +1,10 @@
 function SBMLRateRule = RateRule_unsetFormula(SBMLRateRule)
 %
 % RateRule_getFormula
-%    takes an SBML RateRule structure
+%       takes an SBML RateRule structure
 %
-%    returns
-%      the RateRule with the value for the formula attribute unset
+%       and returns
+%           the RateRule with the value for the formula attribute unset
 
 %  Filename    :   RateRule_unsetFormula.m
 %  Description :

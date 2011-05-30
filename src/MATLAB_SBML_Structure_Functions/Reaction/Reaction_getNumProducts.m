@@ -1,10 +1,10 @@
 function num = Reaction_getNumProducts(SBMLReaction)
 %
 % Reaction_getNumProducts
-%    takes an SBML Reaction structure
+%       takes an SBML Reaction structure
 %
-%    returns
-%      the number of product elements
+%       and returns
+%           the number of product elements
 
 %  Filename    :   Reaction_getNumProducts.m
 %  Description :

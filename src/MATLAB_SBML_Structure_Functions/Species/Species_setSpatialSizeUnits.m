@@ -1,11 +1,11 @@
 function SBMLSpecies = Species_setSpatialSizeUnits(SBMLSpecies, spatialSizeUnits)
 %
 % Species_setSpatialSizeUnits
-%    takes an SBML Species structure
+%       takes an SBML Species structure
 %    and the spatialSizeUnits to be set
 %
-%    returns
-%      the Species with the new value for the spatialSizeUnits attribute
+%       and returns
+%           the Species with the new value for the spatialSizeUnits attribute
 
 %  Filename    :   Species_setSpatialSizeUnits.m
 %  Description :

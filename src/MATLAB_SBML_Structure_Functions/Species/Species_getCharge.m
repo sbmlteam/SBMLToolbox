@@ -1,10 +1,10 @@
 function charge = Species_getCharge(SBMLSpecies)
 %
 % Species_getCharge
-%    takes an SBML Species structure
+%       takes an SBML Species structure
 %
-%    returns
-%      the value of the charge attribute
+%       and returns
+%           the value of the charge attribute
 
 %  Filename    :   Species_getCharge.m
 %  Description :

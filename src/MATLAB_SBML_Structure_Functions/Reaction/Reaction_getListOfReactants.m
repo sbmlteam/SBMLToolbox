@@ -1,10 +1,10 @@
 function reactant = Reaction_getListOfReactants(SBMLReaction)
 %
 % Reaction_getListOfReactants
-%    takes an SBML Reaction structure
+%       takes an SBML Reaction structure
 %
-%    returns
-%      the array of structures of the reactant elements
+%       and returns
+%           the array of structures of the reactant elements
 
 %  Filename    :   Reaction_getListOfReactants.m
 %  Description :

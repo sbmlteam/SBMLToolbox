@@ -1,11 +1,11 @@
 function SBMLRateRule = RateRule_setSBOTerm(SBMLRateRule, sboTerm)
 %
 % RateRule_setSBOTerm
-%    takes an SBML RateRule structure
+%       takes an SBML RateRule structure
 %    and the sboTerm to be set
 %
-%    returns
-%      the RateRule with the new value for the sboTerm attribute
+%       and returns
+%           the RateRule with the new value for the sboTerm attribute
 
 %  Filename    :   RateRule_setSBOTerm.m
 %  Description :

@@ -1,10 +1,10 @@
 function variable = RateRule_getVariable(SBMLRateRule)
 %
 % RateRule_getVariable
-%    takes an SBML RateRule structure
+%       takes an SBML RateRule structure
 %
-%    returns
-%      the value of the variable attribute
+%       and returns
+%           the value of the variable attribute
 
 %  Filename    :   RateRule_getVariable.m
 %  Description :

@@ -1,10 +1,10 @@
 function SBMLSpecies = Species_unsetConversionFactor(SBMLSpecies)
 %
 % Species_getConversionFactor
-%    takes an SBML Species structure
+%       takes an SBML Species structure
 %
-%    returns
-%      the Species with the value for the conversionFactor attribute unset
+%       and returns
+%           the Species with the value for the conversionFactor attribute unset
 
 %  Filename    :   Species_unsetConversionFactor.m
 %  Description :

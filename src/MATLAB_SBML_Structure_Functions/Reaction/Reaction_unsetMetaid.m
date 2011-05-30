@@ -1,10 +1,10 @@
 function SBMLReaction = Reaction_unsetMetaid(SBMLReaction)
 %
 % Reaction_getMetaid
-%    takes an SBML Reaction structure
+%       takes an SBML Reaction structure
 %
-%    returns
-%      the Reaction with the value for the metaid attribute unset
+%       and returns
+%           the Reaction with the value for the metaid attribute unset
 
 %  Filename    :   Reaction_unsetMetaid.m
 %  Description :

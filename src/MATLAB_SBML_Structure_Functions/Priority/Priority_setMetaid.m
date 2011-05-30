@@ -1,11 +1,11 @@
 function SBMLPriority = Priority_setMetaid(SBMLPriority, metaid)
 %
 % Priority_setMetaid
-%    takes an SBML Priority structure
+%       takes an SBML Priority structure
 %    and the metaid to be set
 %
-%    returns
-%      the Priority with the new value for the metaid attribute
+%       and returns
+%           the Priority with the new value for the metaid attribute
 
 %  Filename    :   Priority_setMetaid.m
 %  Description :
