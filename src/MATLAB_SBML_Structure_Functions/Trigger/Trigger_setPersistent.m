@@ -1,11 +1,11 @@
 function SBMLTrigger = Trigger_setPersistent(SBMLTrigger, persistentValue)
 %
 % Trigger_setPersistent
-%    takes an SBML Trigger structure
+%       takes an SBML Trigger structure
 %    and the persistent to be set
 %
-%    returns
-%      the Trigger with the new value for the persistent attribute
+%       and returns
+%           the Trigger with the new value for the persistent attribute
 
 %  Filename    :   Trigger_setPersistent.m
 %  Description :

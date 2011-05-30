@@ -1,10 +1,10 @@
 function SBMLUnit = Unit_unsetSBOTerm(SBMLUnit)
 %
 % Unit_getSBOTerm
-%    takes an SBML Unit structure
+%       takes an SBML Unit structure
 %
-%    returns
-%      the Unit with the value for the sboTerm attribute unset
+%       and returns
+%           the Unit with the value for the sboTerm attribute unset
 
 %  Filename    :   Unit_unsetSBOTerm.m
 %  Description :

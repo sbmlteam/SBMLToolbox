@@ -1,11 +1,11 @@
 function SBMLTrigger = Trigger_setMath(SBMLTrigger, math)
 %
 % Trigger_setMath
-%    takes an SBML Trigger structure
+%       takes an SBML Trigger structure
 %    and the math to be set
 %
-%    returns
-%      the Trigger with the new value for the math attribute
+%       and returns
+%           the Trigger with the new value for the math attribute
 
 %  Filename    :   Trigger_setMath.m
 %  Description :

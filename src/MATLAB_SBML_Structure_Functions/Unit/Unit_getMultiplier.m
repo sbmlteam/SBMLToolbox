@@ -1,10 +1,10 @@
 function multiplier = Unit_getMultiplier(SBMLUnit)
 %
 % Unit_getMultiplier
-%    takes an SBML Unit structure
+%       takes an SBML Unit structure
 %
-%    returns
-%      the value of the multiplier attribute
+%       and returns
+%           the value of the multiplier attribute
 
 %  Filename    :   Unit_getMultiplier.m
 %  Description :

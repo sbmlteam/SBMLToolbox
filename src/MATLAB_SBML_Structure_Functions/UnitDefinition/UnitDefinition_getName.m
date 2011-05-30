@@ -1,10 +1,10 @@
 function name = UnitDefinition_getName(SBMLUnitDefinition)
 %
 % UnitDefinition_getName
-%    takes an SBML UnitDefinition structure
+%       takes an SBML UnitDefinition structure
 %
-%    returns
-%      the value of the name attribute
+%       and returns
+%           the value of the name attribute
 
 %  Filename    :   UnitDefinition_getName.m
 %  Description :

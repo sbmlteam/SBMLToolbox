@@ -1,11 +1,11 @@
 function SBMLUnit = Unit_setMultiplier(SBMLUnit, multiplier)
 %
 % Unit_setMultiplier
-%    takes an SBML Unit structure
+%       takes an SBML Unit structure
 %    and the multiplier to be set
 %
-%    returns
-%      the Unit with the new value for the multiplier attribute
+%       and returns
+%           the Unit with the new value for the multiplier attribute
 
 %  Filename    :   Unit_setMultiplier.m
 %  Description :

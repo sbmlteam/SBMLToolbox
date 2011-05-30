@@ -1,11 +1,11 @@
 function SBMLUnit = Unit_setSBOTerm(SBMLUnit, sboTerm)
 %
 % Unit_setSBOTerm
-%    takes an SBML Unit structure
+%       takes an SBML Unit structure
 %    and the sboTerm to be set
 %
-%    returns
-%      the Unit with the new value for the sboTerm attribute
+%       and returns
+%           the Unit with the new value for the sboTerm attribute
 
 %  Filename    :   Unit_setSBOTerm.m
 %  Description :

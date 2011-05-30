@@ -1,10 +1,10 @@
 function sboTerm = UnitDefinition_getSBOTerm(SBMLUnitDefinition)
 %
 % UnitDefinition_getSBOTerm
-%    takes an SBML UnitDefinition structure
+%       takes an SBML UnitDefinition structure
 %
-%    returns
-%      the value of the sboTerm attribute
+%       and returns
+%           the value of the sboTerm attribute
 
 %  Filename    :   UnitDefinition_getSBOTerm.m
 %  Description :

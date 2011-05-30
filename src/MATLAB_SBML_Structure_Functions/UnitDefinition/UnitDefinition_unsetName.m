@@ -1,10 +1,10 @@
 function SBMLUnitDefinition = UnitDefinition_unsetName(SBMLUnitDefinition)
 %
 % UnitDefinition_getName
-%    takes an SBML UnitDefinition structure
+%       takes an SBML UnitDefinition structure
 %
-%    returns
-%      the UnitDefinition with the value for the name attribute unset
+%       and returns
+%           the UnitDefinition with the value for the name attribute unset
 
 %  Filename    :   UnitDefinition_unsetName.m
 %  Description :

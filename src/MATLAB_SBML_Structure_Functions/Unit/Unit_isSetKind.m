@@ -1,11 +1,11 @@
 function value = Unit_isSetKind(SBMLUnit)
 %
 % Unit_isSetKind
-%    takes an SBML Unit structure
+%       takes an SBML Unit structure
 %
-%    returns
-%      1 if the value for the kind attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the kind attribute is set
+%           0 otherwise
 
 %  Filename    :   Unit_isSetKind.m
 %  Description :

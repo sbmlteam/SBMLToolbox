@@ -1,11 +1,11 @@
 function unit = UnitDefinition_getUnit(SBMLUnitDefinition, index)
 %
 % UnitDefinition_getUnit
-%    takes an SBML UnitDefinition structure
+%       takes an SBML UnitDefinition structure
 %    and an index
 %
-%    returns
-%      the value of the unit element at the indexed position
+%       and returns
+%           the value of the unit element at the indexed position
 
 %  Filename    :   UnitDefinition_getUnit.m
 %  Description :

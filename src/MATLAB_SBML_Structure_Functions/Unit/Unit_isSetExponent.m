@@ -1,11 +1,11 @@
 function value = Unit_isSetExponent(SBMLUnit)
 %
 % Unit_isSetExponent
-%    takes an SBML Unit structure
+%       takes an SBML Unit structure
 %
-%    returns
-%      1 if the value for the exponent attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the exponent attribute is set
+%           0 otherwise
 
 %  Filename    :   Unit_isSetExponent.m
 %  Description :

@@ -1,10 +1,10 @@
 function persistentValue = Trigger_getPersistent(SBMLTrigger)
 %
 % Trigger_getPersistent
-%    takes an SBML Trigger structure
+%       takes an SBML Trigger structure
 %
-%    returns
-%      the value of the persistent attribute
+%       and returns
+%           the value of the persistent attribute
 
 %  Filename    :   Trigger_getPersistent.m
 %  Description :

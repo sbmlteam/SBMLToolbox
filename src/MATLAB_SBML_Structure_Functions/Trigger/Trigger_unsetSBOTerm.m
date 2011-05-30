@@ -1,10 +1,10 @@
 function SBMLTrigger = Trigger_unsetSBOTerm(SBMLTrigger)
 %
 % Trigger_getSBOTerm
-%    takes an SBML Trigger structure
+%       takes an SBML Trigger structure
 %
-%    returns
-%      the Trigger with the value for the sboTerm attribute unset
+%       and returns
+%           the Trigger with the value for the sboTerm attribute unset
 
 %  Filename    :   Trigger_unsetSBOTerm.m
 %  Description :

@@ -1,11 +1,11 @@
 function SBMLUnit = Unit_setKind(SBMLUnit, kind)
 %
 % Unit_setKind
-%    takes an SBML Unit structure
+%       takes an SBML Unit structure
 %    and the kind to be set
 %
-%    returns
-%      the Unit with the new value for the kind attribute
+%       and returns
+%           the Unit with the new value for the kind attribute
 
 %  Filename    :   Unit_setKind.m
 %  Description :

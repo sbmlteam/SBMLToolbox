@@ -1,10 +1,10 @@
 function metaid = Trigger_getMetaid(SBMLTrigger)
 %
 % Trigger_getMetaid
-%    takes an SBML Trigger structure
+%       takes an SBML Trigger structure
 %
-%    returns
-%      the value of the metaid attribute
+%       and returns
+%           the value of the metaid attribute
 
 %  Filename    :   Trigger_getMetaid.m
 %  Description :

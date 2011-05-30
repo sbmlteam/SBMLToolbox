@@ -1,11 +1,11 @@
 function SBMLUnit = Unit_setScale(SBMLUnit, scale)
 %
 % Unit_setScale
-%    takes an SBML Unit structure
+%       takes an SBML Unit structure
 %    and the scale to be set
 %
-%    returns
-%      the Unit with the new value for the scale attribute
+%       and returns
+%           the Unit with the new value for the scale attribute
 
 %  Filename    :   Unit_setScale.m
 %  Description :

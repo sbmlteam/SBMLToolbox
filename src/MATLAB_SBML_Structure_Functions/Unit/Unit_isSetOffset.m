@@ -1,11 +1,11 @@
 function value = Unit_isSetOffset(SBMLUnit)
 %
 % Unit_isSetOffset
-%    takes an SBML Unit structure
+%       takes an SBML Unit structure
 %
-%    returns
-%      1 if the value for the offset attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the offset attribute is set
+%           0 otherwise
 
 %  Filename    :   Unit_isSetOffset.m
 %  Description :

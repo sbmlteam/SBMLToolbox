@@ -1,11 +1,11 @@
 function SBMLTrigger = Trigger_setInitialValue(SBMLTrigger, initialValue)
 %
 % Trigger_setInitialValue
-%    takes an SBML Trigger structure
+%       takes an SBML Trigger structure
 %    and the initialValue to be set
 %
-%    returns
-%      the Trigger with the new value for the initialValue attribute
+%       and returns
+%           the Trigger with the new value for the initialValue attribute
 
 %  Filename    :   Trigger_setInitialValue.m
 %  Description :

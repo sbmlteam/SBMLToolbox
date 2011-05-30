@@ -1,10 +1,10 @@
 function SBMLUnit = Unit_unsetOffset(SBMLUnit)
 %
 % Unit_getOffset
-%    takes an SBML Unit structure
+%       takes an SBML Unit structure
 %
-%    returns
-%      the Unit with the value for the offset attribute unset
+%       and returns
+%           the Unit with the value for the offset attribute unset
 
 %  Filename    :   Unit_unsetOffset.m
 %  Description :

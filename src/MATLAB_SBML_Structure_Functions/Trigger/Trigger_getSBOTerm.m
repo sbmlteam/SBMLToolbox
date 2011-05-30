@@ -1,10 +1,10 @@
 function sboTerm = Trigger_getSBOTerm(SBMLTrigger)
 %
 % Trigger_getSBOTerm
-%    takes an SBML Trigger structure
+%       takes an SBML Trigger structure
 %
-%    returns
-%      the value of the sboTerm attribute
+%       and returns
+%           the value of the sboTerm attribute
 
 %  Filename    :   Trigger_getSBOTerm.m
 %  Description :

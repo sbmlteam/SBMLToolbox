@@ -1,10 +1,10 @@
 function initialValue = Trigger_getInitialValue(SBMLTrigger)
 %
 % Trigger_getInitialValue
-%    takes an SBML Trigger structure
+%       takes an SBML Trigger structure
 %
-%    returns
-%      the value of the initialValue attribute
+%       and returns
+%           the value of the initialValue attribute
 
 %  Filename    :   Trigger_getInitialValue.m
 %  Description :

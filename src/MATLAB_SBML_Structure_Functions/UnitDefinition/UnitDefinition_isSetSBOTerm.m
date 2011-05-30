@@ -1,11 +1,11 @@
 function value = UnitDefinition_isSetSBOTerm(SBMLUnitDefinition)
 %
 % UnitDefinition_isSetSBOTerm
-%    takes an SBML UnitDefinition structure
+%       takes an SBML UnitDefinition structure
 %
-%    returns
-%      1 if the value for the sboTerm attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the sboTerm attribute is set
+%           0 otherwise
 
 %  Filename    :   UnitDefinition_isSetSBOTerm.m
 %  Description :

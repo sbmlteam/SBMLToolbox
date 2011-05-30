@@ -1,11 +1,11 @@
 function value = Unit_isSetScale(SBMLUnit)
 %
 % Unit_isSetScale
-%    takes an SBML Unit structure
+%       takes an SBML Unit structure
 %
-%    returns
-%      1 if the value for the scale attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the scale attribute is set
+%           0 otherwise
 
 %  Filename    :   Unit_isSetScale.m
 %  Description :
