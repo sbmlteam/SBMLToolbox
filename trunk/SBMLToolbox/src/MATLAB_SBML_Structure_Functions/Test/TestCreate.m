@@ -34,6 +34,7 @@ numTests = 0;
 
 warning('off', 'Warn:InvalidLV');
 
+disp('Testing create functions');
 
 typecodes =  {'SBML_ALGEBRAIC_RULE', 'SBML_ASSIGNMENT_RULE', ...
   'SBML_COMPARTMENT', 'SBML_COMPARTMENT_TYPE', 'SBML_COMPARTMENT_VOLUME_RULE', ...
