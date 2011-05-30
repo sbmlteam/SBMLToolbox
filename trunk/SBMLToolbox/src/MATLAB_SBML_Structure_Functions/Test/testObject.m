@@ -44,7 +44,7 @@ function [fail, num, message] = testObject(obj, attributes, component, fail, num
 % 6 int - always set
 % 7 boolean - no issetvalue
 % 8 L1RuleType - always set
-% 9 another structure -ignore
+% 9 another structure - test add functions
 % 10 SBMLlevel/version - always set - ignore
 
 
