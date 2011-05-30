@@ -41,7 +41,7 @@ function SBMLReaction = Reaction_unsetKineticLaw(SBMLReaction)
 [level, version] = GetLevelVersion(SBMLReaction);
 
 if isfield(SBMLReaction, 'kineticLaw')
-	SBMLReaction.kineticLaw = NaN;
+	SBMLReaction.kineticLaw = [];
 else
 	error('kineticLaw not an attribute on SBML L%dV%d Reaction', level, version);
 end;

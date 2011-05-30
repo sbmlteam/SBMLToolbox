@@ -42,7 +42,7 @@ function value = Reaction_isSetKineticLaw(SBMLReaction)
 [level, version] = GetLevelVersion(SBMLReaction);
 
 if isfield(SBMLReaction, 'kineticLaw')
-	value = SBMLReaction.isSetKineticLaw;
+	value = ~isempty(SBMLReaction.kineticLaw);
 else
 	error('isSetKineticLaw not an attribute on SBML L%dV%d Reaction', level, version);
 end;

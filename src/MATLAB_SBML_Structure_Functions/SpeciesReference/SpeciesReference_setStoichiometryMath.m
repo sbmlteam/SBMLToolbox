@@ -40,10 +40,22 @@ function SBMLSpeciesReference = SpeciesReference_setStoichiometryMath(SBMLSpecie
 %get level and version and check the input arguments are appropriate
 
 [level, version] = GetLevelVersion(SBMLSpeciesReference);
+if isstruct(stoichiometryMath)
+  [sm_level, sm_version] = GetLevelVersion(stoichiometryMath);
+
+  if level ~= sm_level
+    error('mismatch in levels');
+  elseif version ~= sm_version
+    error('mismatch in versions');
+  end;
+end;
 
 if isfield(SBMLSpeciesReference, 'stoichiometryMath')
-	if ~ischar(stoichiometryMath)
+	if (level == 2 && version < 3) && ~ischar(stoichiometryMath)
 		error('stoichiometryMath must be character array') ;
+  elseif (((level == 2 && version > 2) || level > 2) ...
+      && ~isValid(stoichiometryMath, level, version))
+    error('stoichiometryMath must be an SBML StoichiometryMath structure');
 	else
 		SBMLSpeciesReference.stoichiometryMath = stoichiometryMath;
 	end;

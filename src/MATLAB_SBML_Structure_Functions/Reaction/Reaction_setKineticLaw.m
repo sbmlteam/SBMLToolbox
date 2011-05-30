@@ -40,13 +40,22 @@ function SBMLReaction = Reaction_setKineticLaw(SBMLReaction, kineticLaw)
 %get level and version and check the input arguments are appropriate
 
 [level, version] = GetLevelVersion(SBMLReaction);
+if isstruct(kineticLaw)
+  [kl_level, kl_version] = GetLevelVersion(kineticLaw);
+
+  if level ~= kl_level
+    error('mismatch in levels');
+  elseif version ~= kl_version
+    error('mismatch in versions');
+  end;
+end;
 
 if isfield(SBMLReaction, 'kineticLaw')
-	if ~isnumeric(kineticLaw)
-		error('kineticLaw must be numeric') ;
-	else
-		SBMLReaction.kineticLaw = kineticLaw;
-	end;
+  if ~isValid(kineticLaw, level, version)
+    error('KineticLaw must ba an SBML KineticLaw');
+  else
+    SBMLReaction.kineticLaw = kineticLaw;
+  end;
 else
 	error('kineticLaw not an attribute on SBML L%dV%d Reaction', level, version);
 end;

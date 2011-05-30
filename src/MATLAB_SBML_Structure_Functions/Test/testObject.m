@@ -61,8 +61,10 @@ end;
 
 for i = 1:length(attributes)
   switch (attributes{i}{2})
-    case {7, 9}
+    case 7
       f = 0;
+    case 9
+      [f, m] = testEmpty(component, attributes{i}{1}, obj);
     case {4, 6, 8, 10}
       [f, m] = testAlwaysSet(component, attributes{i}{1}, obj);
     otherwise
@@ -88,6 +90,29 @@ for i = 1:length(attributes)
     end;
   end;
 end;
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function [fail, message] = testEmpty(component, attribute, obj)
+
+message = {};
+singles = {'KineticLaw', 'Trigger', 'Delay', 'Priority', 'StoichiometryMath'};
+
+if isIn(singles, attribute)
+  fhandle = sprintf('%s_isSet%s', component, attribute);
+else
+  fhandle = sprintf('%s_getNum%ss', component, attribute);
+end;
+
+result = feval(fhandle, obj);
+
+if result == 0
+  fail = 0;
+else
+  fail = 1;
+  message{1} = sprintf('%s should return 0', fhandle);
+end;
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [fail, message] = testIsNotSet(component, attribute, obj)
@@ -130,7 +155,10 @@ testL1RuleType = 'rate';
 message = {};
 fail = 0;
 
-if (type == 9 || type == 10) % another structure/ level/version
+if (type == 9)
+  [fail, message] = testAdd(component, attribute, obj);
+  return;
+elseif (type == 10) % level/version
   return;
 end;
 
@@ -242,3 +270,96 @@ if result ~= 0
   m = sprintf('%s_unset%s failed', component, attribute);
   message{length(message)+1} = m;
 end;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function [fail, message] = testAdd(component, attribute, obj)
+
+fail = 0;
+message = {};
+
+singles = {'KineticLaw', 'Trigger', 'Delay', 'Priority', 'StoichiometryMath'};
+if isIn(singles, attribute)
+  single = 1;
+else
+  single = 0;
+end;
+
+if strcmp(attribute, 'Rule')
+  fhandle_create = 'AlgebraicRule_create';
+elseif strcmp(attribute, 'Product') || strcmp(attribute, 'Reactant')
+  fhandle_create = 'SpeciesReference_create';
+elseif strcmp(attribute, 'Modifier')
+  fhandle_create = 'ModifierSpeciesReference_create';
+else
+  fhandle_create = sprintf('%s_create', attribute);
+end;
+fhandle_get = sprintf('%s_get%s', component, attribute);
+if single == 1
+  fhandle_set = sprintf('%s_set%s', component, attribute);
+  fhandle_isset = sprintf('%s_isSet%s', component, attribute);
+  fhandle_unset = sprintf('%s_unset%s', component, attribute);
+else
+  fhandle_set = sprintf('%s_add%s', component, attribute);
+  fhandle_isset = sprintf('%s_getNum%ss', component, attribute);
+  fhandle_getLO = sprintf('%s_getListOf%ss', component, attribute);
+end;
+
+if strcmp(obj.typecode, 'SBML_MODEL')
+  newObj = feval(fhandle_create, obj.SBML_level, obj.SBML_version);
+else
+  newObj = feval(fhandle_create, obj.level, obj.version);
+end;
+
+% add new obj and check is now set
+obj = feval(fhandle_set, obj, newObj);
+
+result = feval(fhandle_isset, obj);
+
+if result == 1
+  fail = 0;
+else
+  fail = 1;
+  message{1} = sprintf('%s failed', fhandle_set);
+end;
+
+% get the obj and test
+
+if single == 1
+  returnObj = feval(fhandle_get, obj);
+else
+  returnObj = feval(fhandle_get, obj, 1);
+end;
+
+if areIdentical(returnObj, newObj)
+  fail = 0;
+else
+  fail = 1;
+  message{1} = sprintf('%s failed', fhandle_set);
+end;  
+
+
+% test unset single obj
+if single
+  obj = feval(fhandle_unset, obj);
+  result = feval(fhandle_isset, obj);
+  if result == 0
+    fail = 0;
+  else
+    fail = 1;
+    message{1} = sprintf('%s failed', fhandle_unset);
+  end;
+else
+  obj = feval(fhandle_set, obj, newObj);  
+  lo = feval(fhandle_getLO, obj);
+  result = length(lo);
+  if result == 2
+    fail = 0;
+  else
+    fail = 1;
+    message{1} = sprintf('%s failed', fhandle_getLO);
+  end;
+end;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function value = isIn(array, thing)
+
+value = sum(ismember(array, thing));

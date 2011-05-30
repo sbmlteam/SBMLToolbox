@@ -41,7 +41,11 @@ function SBMLSpeciesReference = SpeciesReference_unsetStoichiometryMath(SBMLSpec
 [level, version] = GetLevelVersion(SBMLSpeciesReference);
 
 if isfield(SBMLSpeciesReference, 'stoichiometryMath')
-	SBMLSpeciesReference.stoichiometryMath = '';
+  if (level == 2 && version < 3)
+    SBMLSpeciesReference.stoichiometryMath = '';
+  else
+    SBMLSpeciesReference.stoichiometryMath = [];
+  end;    
 else
 	error('stoichiometryMath not an attribute on SBML L%dV%d SpeciesReference', level, version);
 end;
