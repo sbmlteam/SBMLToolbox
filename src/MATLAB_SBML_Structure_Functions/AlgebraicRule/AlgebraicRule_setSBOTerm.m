@@ -1,11 +1,12 @@
 function SBMLAlgebraicRule = AlgebraicRule_setSBOTerm(SBMLAlgebraicRule, sboTerm)
 %
 % AlgebraicRule_setSBOTerm
-%    takes an SBML AlgebraicRule structure
-%    and the sboTerm to be set
+%       takes 
+%           1) an SBML AlgebraicRule structure
+%           2) an integer representing the sboTerm to be set
 %
-%    returns
-%      the AlgebraicRule with the new value for the sboTerm attribute
+%       and returns
+%           the AlgebraicRule with the new value for the sboTerm attribute
 
 %  Filename    :   AlgebraicRule_setSBOTerm.m
 %  Description :

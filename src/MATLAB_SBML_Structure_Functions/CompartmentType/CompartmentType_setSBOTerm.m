@@ -1,11 +1,11 @@
 function SBMLCompartmentType = CompartmentType_setSBOTerm(SBMLCompartmentType, sboTerm)
 %
 % CompartmentType_setSBOTerm
-%    takes an SBML CompartmentType structure
+%       takes an SBML CompartmentType structure
 %    and the sboTerm to be set
 %
-%    returns
-%      the CompartmentType with the new value for the sboTerm attribute
+%       and returns
+%           the CompartmentType with the new value for the sboTerm attribute
 
 %  Filename    :   CompartmentType_setSBOTerm.m
 %  Description :

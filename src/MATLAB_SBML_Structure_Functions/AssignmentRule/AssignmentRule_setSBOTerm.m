@@ -1,11 +1,11 @@
 function SBMLAssignmentRule = AssignmentRule_setSBOTerm(SBMLAssignmentRule, sboTerm)
 %
 % AssignmentRule_setSBOTerm
-%    takes an SBML AssignmentRule structure
+%       takes an SBML AssignmentRule structure
 %    and the sboTerm to be set
 %
-%    returns
-%      the AssignmentRule with the new value for the sboTerm attribute
+%       and returns
+%           the AssignmentRule with the new value for the sboTerm attribute
 
 %  Filename    :   AssignmentRule_setSBOTerm.m
 %  Description :

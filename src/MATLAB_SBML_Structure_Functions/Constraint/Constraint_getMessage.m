@@ -1,10 +1,10 @@
 function message = Constraint_getMessage(SBMLConstraint)
 %
 % Constraint_getMessage
-%    takes an SBML Constraint structure
+%       takes an SBML Constraint structure
 %
-%    returns
-%      the value of the message attribute
+%       and returns
+%           the value of the message attribute
 
 %  Filename    :   Constraint_getMessage.m
 %  Description :

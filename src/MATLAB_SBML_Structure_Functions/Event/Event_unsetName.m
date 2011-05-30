@@ -1,10 +1,10 @@
 function SBMLEvent = Event_unsetName(SBMLEvent)
 %
 % Event_getName
-%    takes an SBML Event structure
+%       takes an SBML Event structure
 %
-%    returns
-%      the Event with the value for the name attribute unset
+%       and returns
+%           the Event with the value for the name attribute unset
 
 %  Filename    :   Event_unsetName.m
 %  Description :

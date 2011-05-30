@@ -1,10 +1,10 @@
 function name = CompartmentType_getName(SBMLCompartmentType)
 %
 % CompartmentType_getName
-%    takes an SBML CompartmentType structure
+%       takes an SBML CompartmentType structure
 %
-%    returns
-%      the value of the name attribute
+%       and returns
+%           the value of the name attribute
 
 %  Filename    :   CompartmentType_getName.m
 %  Description :

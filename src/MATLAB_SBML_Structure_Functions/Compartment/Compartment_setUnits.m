@@ -1,11 +1,11 @@
 function SBMLCompartment = Compartment_setUnits(SBMLCompartment, units)
 %
 % Compartment_setUnits
-%    takes an SBML Compartment structure
+%       takes an SBML Compartment structure
 %    and the units to be set
 %
-%    returns
-%      the Compartment with the new value for the units attribute
+%       and returns
+%           the Compartment with the new value for the units attribute
 
 %  Filename    :   Compartment_setUnits.m
 %  Description :

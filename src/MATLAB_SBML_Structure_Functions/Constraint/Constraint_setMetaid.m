@@ -1,11 +1,11 @@
 function SBMLConstraint = Constraint_setMetaid(SBMLConstraint, metaid)
 %
 % Constraint_setMetaid
-%    takes an SBML Constraint structure
+%       takes an SBML Constraint structure
 %    and the metaid to be set
 %
-%    returns
-%      the Constraint with the new value for the metaid attribute
+%       and returns
+%           the Constraint with the new value for the metaid attribute
 
 %  Filename    :   Constraint_setMetaid.m
 %  Description :

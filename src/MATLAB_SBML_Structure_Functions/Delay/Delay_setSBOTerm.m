@@ -1,11 +1,11 @@
 function SBMLDelay = Delay_setSBOTerm(SBMLDelay, sboTerm)
 %
 % Delay_setSBOTerm
-%    takes an SBML Delay structure
+%       takes an SBML Delay structure
 %    and the sboTerm to be set
 %
-%    returns
-%      the Delay with the new value for the sboTerm attribute
+%       and returns
+%           the Delay with the new value for the sboTerm attribute
 
 %  Filename    :   Delay_setSBOTerm.m
 %  Description :

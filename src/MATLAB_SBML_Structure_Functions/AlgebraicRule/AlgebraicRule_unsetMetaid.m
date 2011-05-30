@@ -1,10 +1,10 @@
 function SBMLAlgebraicRule = AlgebraicRule_unsetMetaid(SBMLAlgebraicRule)
 %
 % AlgebraicRule_getMetaid
-%    takes an SBML AlgebraicRule structure
+%       takes an SBML AlgebraicRule structure
 %
-%    returns
-%      the AlgebraicRule with the value for the metaid attribute unset
+%       and returns
+%           the AlgebraicRule with the value for the metaid attribute unset
 
 %  Filename    :   AlgebraicRule_unsetMetaid.m
 %  Description :

@@ -1,10 +1,10 @@
 function SBMLEvent = Event_unsetTimeUnits(SBMLEvent)
 %
 % Event_getTimeUnits
-%    takes an SBML Event structure
+%       takes an SBML Event structure
 %
-%    returns
-%      the Event with the value for the timeUnits attribute unset
+%       and returns
+%           the Event with the value for the timeUnits attribute unset
 
 %  Filename    :   Event_unsetTimeUnits.m
 %  Description :

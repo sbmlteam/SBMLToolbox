@@ -1,10 +1,10 @@
 function SBMLAlgebraicRule = AlgebraicRule_unsetFormula(SBMLAlgebraicRule)
 %
 % AlgebraicRule_getFormula
-%    takes an SBML AlgebraicRule structure
+%       takes an SBML AlgebraicRule structure
 %
-%    returns
-%      the AlgebraicRule with the value for the formula attribute unset
+%       and returns
+%           the AlgebraicRule with the value for the formula attribute unset
 
 %  Filename    :   AlgebraicRule_unsetFormula.m
 %  Description :

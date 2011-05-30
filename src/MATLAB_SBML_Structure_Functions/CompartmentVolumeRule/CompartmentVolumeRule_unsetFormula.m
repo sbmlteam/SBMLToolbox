@@ -1,10 +1,10 @@
 function SBMLCompartmentVolumeRule = CompartmentVolumeRule_unsetFormula(SBMLCompartmentVolumeRule)
 %
 % CompartmentVolumeRule_getFormula
-%    takes an SBML CompartmentVolumeRule structure
+%       takes an SBML CompartmentVolumeRule structure
 %
-%    returns
-%      the CompartmentVolumeRule with the value for the formula attribute unset
+%       and returns
+%           the CompartmentVolumeRule with the value for the formula attribute unset
 
 %  Filename    :   CompartmentVolumeRule_unsetFormula.m
 %  Description :

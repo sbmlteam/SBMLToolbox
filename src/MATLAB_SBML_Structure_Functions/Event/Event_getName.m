@@ -1,10 +1,10 @@
 function name = Event_getName(SBMLEvent)
 %
 % Event_getName
-%    takes an SBML Event structure
+%       takes an SBML Event structure
 %
-%    returns
-%      the value of the name attribute
+%       and returns
+%           the value of the name attribute
 
 %  Filename    :   Event_getName.m
 %  Description :

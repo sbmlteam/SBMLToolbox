@@ -1,11 +1,11 @@
 function value = Compartment_isSetSpatialDimensions(SBMLCompartment)
 %
 % Compartment_isSetSpatialDimensions
-%    takes an SBML Compartment structure
+%       takes an SBML Compartment structure
 %
-%    returns
-%      1 if the value for the spatialDimensions attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the spatialDimensions attribute is set
+%           0 otherwise
 
 %  Filename    :   Compartment_isSetSpatialDimensions.m
 %  Description :

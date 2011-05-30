@@ -1,10 +1,10 @@
 function math = Delay_getMath(SBMLDelay)
 %
 % Delay_getMath
-%    takes an SBML Delay structure
+%       takes an SBML Delay structure
 %
-%    returns
-%      the value of the math attribute
+%       and returns
+%           the value of the math attribute
 
 %  Filename    :   Delay_getMath.m
 %  Description :

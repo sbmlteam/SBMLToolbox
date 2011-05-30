@@ -1,11 +1,11 @@
 function SBMLCompartment = Compartment_setSize(SBMLCompartment, size)
 %
 % Compartment_setSize
-%    takes an SBML Compartment structure
+%       takes an SBML Compartment structure
 %    and the size to be set
 %
-%    returns
-%      the Compartment with the new value for the size attribute
+%       and returns
+%           the Compartment with the new value for the size attribute
 
 %  Filename    :   Compartment_setSize.m
 %  Description :

@@ -1,10 +1,10 @@
 function delay = Event_getDelay(SBMLEvent)
 %
 % Event_getDelay
-%    takes an SBML Event structure
+%       takes an SBML Event structure
 %
-%    returns
-%      the value of the delay attribute
+%       and returns
+%           the value of the delay attribute
 
 %  Filename    :   Event_getDelay.m
 %  Description :

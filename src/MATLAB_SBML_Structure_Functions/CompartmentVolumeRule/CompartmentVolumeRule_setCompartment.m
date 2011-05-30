@@ -1,11 +1,11 @@
 function SBMLCompartmentVolumeRule = CompartmentVolumeRule_setCompartment(SBMLCompartmentVolumeRule, compartment)
 %
 % CompartmentVolumeRule_setCompartment
-%    takes an SBML CompartmentVolumeRule structure
+%       takes an SBML CompartmentVolumeRule structure
 %    and the compartment to be set
 %
-%    returns
-%      the CompartmentVolumeRule with the new value for the compartment attribute
+%       and returns
+%           the CompartmentVolumeRule with the new value for the compartment attribute
 
 %  Filename    :   CompartmentVolumeRule_setCompartment.m
 %  Description :

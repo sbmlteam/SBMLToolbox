@@ -1,10 +1,10 @@
 function sboTerm = Constraint_getSBOTerm(SBMLConstraint)
 %
 % Constraint_getSBOTerm
-%    takes an SBML Constraint structure
+%       takes an SBML Constraint structure
 %
-%    returns
-%      the value of the sboTerm attribute
+%       and returns
+%           the value of the sboTerm attribute
 
 %  Filename    :   Constraint_getSBOTerm.m
 %  Description :

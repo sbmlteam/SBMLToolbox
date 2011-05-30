@@ -1,10 +1,10 @@
 function SBMLConstraint = Constraint_unsetSBOTerm(SBMLConstraint)
 %
 % Constraint_getSBOTerm
-%    takes an SBML Constraint structure
+%       takes an SBML Constraint structure
 %
-%    returns
-%      the Constraint with the value for the sboTerm attribute unset
+%       and returns
+%           the Constraint with the value for the sboTerm attribute unset
 
 %  Filename    :   Constraint_unsetSBOTerm.m
 %  Description :

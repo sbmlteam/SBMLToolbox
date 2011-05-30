@@ -1,11 +1,11 @@
 function value = CompartmentType_isSetMetaid(SBMLCompartmentType)
 %
 % CompartmentType_isSetMetaid
-%    takes an SBML CompartmentType structure
+%       takes an SBML CompartmentType structure
 %
-%    returns
-%      1 if the value for the metaid attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the metaid attribute is set
+%           0 otherwise
 
 %  Filename    :   CompartmentType_isSetMetaid.m
 %  Description :

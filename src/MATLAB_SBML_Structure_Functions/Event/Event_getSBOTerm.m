@@ -1,10 +1,10 @@
 function sboTerm = Event_getSBOTerm(SBMLEvent)
 %
 % Event_getSBOTerm
-%    takes an SBML Event structure
+%       takes an SBML Event structure
 %
-%    returns
-%      the value of the sboTerm attribute
+%       and returns
+%           the value of the sboTerm attribute
 
 %  Filename    :   Event_getSBOTerm.m
 %  Description :

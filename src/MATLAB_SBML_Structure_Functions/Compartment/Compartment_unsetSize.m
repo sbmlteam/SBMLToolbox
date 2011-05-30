@@ -1,10 +1,10 @@
 function SBMLCompartment = Compartment_unsetSize(SBMLCompartment)
 %
 % Compartment_getSize
-%    takes an SBML Compartment structure
+%       takes an SBML Compartment structure
 %
-%    returns
-%      the Compartment with the value for the size attribute unset
+%       and returns
+%           the Compartment with the value for the size attribute unset
 
 %  Filename    :   Compartment_unsetSize.m
 %  Description :

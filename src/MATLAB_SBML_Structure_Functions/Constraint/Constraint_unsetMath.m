@@ -1,10 +1,10 @@
 function SBMLConstraint = Constraint_unsetMath(SBMLConstraint)
 %
 % Constraint_getMath
-%    takes an SBML Constraint structure
+%       takes an SBML Constraint structure
 %
-%    returns
-%      the Constraint with the value for the math attribute unset
+%       and returns
+%           the Constraint with the value for the math attribute unset
 
 %  Filename    :   Constraint_unsetMath.m
 %  Description :

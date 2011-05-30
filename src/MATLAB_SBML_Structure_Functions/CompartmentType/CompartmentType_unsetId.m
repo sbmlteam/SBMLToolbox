@@ -1,10 +1,10 @@
 function SBMLCompartmentType = CompartmentType_unsetId(SBMLCompartmentType)
 %
 % CompartmentType_getId
-%    takes an SBML CompartmentType structure
+%       takes an SBML CompartmentType structure
 %
-%    returns
-%      the CompartmentType with the value for the id attribute unset
+%       and returns
+%           the CompartmentType with the value for the id attribute unset
 
 %  Filename    :   CompartmentType_unsetId.m
 %  Description :

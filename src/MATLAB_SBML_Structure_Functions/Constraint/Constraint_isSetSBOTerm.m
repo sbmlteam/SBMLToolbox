@@ -1,11 +1,11 @@
 function value = Constraint_isSetSBOTerm(SBMLConstraint)
 %
 % Constraint_isSetSBOTerm
-%    takes an SBML Constraint structure
+%       takes an SBML Constraint structure
 %
-%    returns
-%      1 if the value for the sboTerm attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the sboTerm attribute is set
+%           0 otherwise
 
 %  Filename    :   Constraint_isSetSBOTerm.m
 %  Description :

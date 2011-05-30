@@ -1,10 +1,10 @@
 function SBMLConstraint = Constraint_unsetMetaid(SBMLConstraint)
 %
 % Constraint_getMetaid
-%    takes an SBML Constraint structure
+%       takes an SBML Constraint structure
 %
-%    returns
-%      the Constraint with the value for the metaid attribute unset
+%       and returns
+%           the Constraint with the value for the metaid attribute unset
 
 %  Filename    :   Constraint_unsetMetaid.m
 %  Description :

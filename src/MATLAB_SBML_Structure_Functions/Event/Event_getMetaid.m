@@ -1,10 +1,10 @@
 function metaid = Event_getMetaid(SBMLEvent)
 %
 % Event_getMetaid
-%    takes an SBML Event structure
+%       takes an SBML Event structure
 %
-%    returns
-%      the value of the metaid attribute
+%       and returns
+%           the value of the metaid attribute
 
 %  Filename    :   Event_getMetaid.m
 %  Description :

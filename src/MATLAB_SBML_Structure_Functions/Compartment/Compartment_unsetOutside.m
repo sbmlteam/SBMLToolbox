@@ -1,10 +1,10 @@
 function SBMLCompartment = Compartment_unsetOutside(SBMLCompartment)
 %
 % Compartment_getOutside
-%    takes an SBML Compartment structure
+%       takes an SBML Compartment structure
 %
-%    returns
-%      the Compartment with the value for the outside attribute unset
+%       and returns
+%           the Compartment with the value for the outside attribute unset
 
 %  Filename    :   Compartment_unsetOutside.m
 %  Description :

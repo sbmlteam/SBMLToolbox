@@ -1,11 +1,11 @@
 function SBMLDelay = Delay_setMetaid(SBMLDelay, metaid)
 %
 % Delay_setMetaid
-%    takes an SBML Delay structure
+%       takes an SBML Delay structure
 %    and the metaid to be set
 %
-%    returns
-%      the Delay with the new value for the metaid attribute
+%       and returns
+%           the Delay with the new value for the metaid attribute
 
 %  Filename    :   Delay_setMetaid.m
 %  Description :

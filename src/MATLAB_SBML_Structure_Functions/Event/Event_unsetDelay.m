@@ -1,10 +1,10 @@
 function SBMLEvent = Event_unsetDelay(SBMLEvent)
 %
 % Event_getDelay
-%    takes an SBML Event structure
+%       takes an SBML Event structure
 %
-%    returns
-%      the Event with the value for the delay attribute unset
+%       and returns
+%           the Event with the value for the delay attribute unset
 
 %  Filename    :   Event_unsetDelay.m
 %  Description :

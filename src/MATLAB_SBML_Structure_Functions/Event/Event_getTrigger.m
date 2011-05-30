@@ -1,10 +1,10 @@
 function trigger = Event_getTrigger(SBMLEvent)
 %
 % Event_getTrigger
-%    takes an SBML Event structure
+%       takes an SBML Event structure
 %
-%    returns
-%      the value of the trigger attribute
+%       and returns
+%           the value of the trigger attribute
 
 %  Filename    :   Event_getTrigger.m
 %  Description :

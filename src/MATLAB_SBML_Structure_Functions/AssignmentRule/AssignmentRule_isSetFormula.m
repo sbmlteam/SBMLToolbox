@@ -1,11 +1,11 @@
 function value = AssignmentRule_isSetFormula(SBMLAssignmentRule)
 %
 % AssignmentRule_isSetFormula
-%    takes an SBML AssignmentRule structure
+%       takes an SBML AssignmentRule structure
 %
-%    returns
-%      1 if the value for the formula attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the formula attribute is set
+%           0 otherwise
 
 %  Filename    :   AssignmentRule_isSetFormula.m
 %  Description :

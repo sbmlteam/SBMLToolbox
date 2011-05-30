@@ -1,10 +1,10 @@
 function volume = Compartment_getVolume(SBMLCompartment)
 %
 % Compartment_getVolume
-%    takes an SBML Compartment structure
+%       takes an SBML Compartment structure
 %
-%    returns
-%      the value of the volume attribute
+%       and returns
+%           the value of the volume attribute
 
 %  Filename    :   Compartment_getVolume.m
 %  Description :

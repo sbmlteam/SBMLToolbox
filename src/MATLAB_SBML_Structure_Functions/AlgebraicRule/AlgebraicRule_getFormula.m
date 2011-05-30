@@ -1,10 +1,10 @@
 function formula = AlgebraicRule_getFormula(SBMLAlgebraicRule)
 %
 % AlgebraicRule_getFormula
-%    takes an SBML AlgebraicRule structure
+%       takes an SBML AlgebraicRule structure
 %
-%    returns
-%      the value of the formula attribute
+%       and returns
+%           the value of the formula attribute
 
 %  Filename    :   AlgebraicRule_getFormula.m
 %  Description :

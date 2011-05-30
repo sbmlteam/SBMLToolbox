@@ -1,11 +1,11 @@
 function value = Compartment_isSetOutside(SBMLCompartment)
 %
 % Compartment_isSetOutside
-%    takes an SBML Compartment structure
+%       takes an SBML Compartment structure
 %
-%    returns
-%      1 if the value for the outside attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the outside attribute is set
+%           0 otherwise
 
 %  Filename    :   Compartment_isSetOutside.m
 %  Description :

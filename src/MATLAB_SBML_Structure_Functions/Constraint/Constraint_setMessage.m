@@ -1,11 +1,11 @@
 function SBMLConstraint = Constraint_setMessage(SBMLConstraint, message)
 %
 % Constraint_setMessage
-%    takes an SBML Constraint structure
+%       takes an SBML Constraint structure
 %    and the message to be set
 %
-%    returns
-%      the Constraint with the new value for the message attribute
+%       and returns
+%           the Constraint with the new value for the message attribute
 
 %  Filename    :   Constraint_setMessage.m
 %  Description :

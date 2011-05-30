@@ -1,11 +1,11 @@
 function value = Compartment_isSetVolume(SBMLCompartment)
 %
 % Compartment_isSetVolume
-%    takes an SBML Compartment structure
+%       takes an SBML Compartment structure
 %
-%    returns
-%      1 if the value for the volume attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the volume attribute is set
+%           0 otherwise
 
 %  Filename    :   Compartment_isSetVolume.m
 %  Description :

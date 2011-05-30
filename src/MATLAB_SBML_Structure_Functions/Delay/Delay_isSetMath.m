@@ -1,11 +1,11 @@
 function value = Delay_isSetMath(SBMLDelay)
 %
 % Delay_isSetMath
-%    takes an SBML Delay structure
+%       takes an SBML Delay structure
 %
-%    returns
-%      1 if the value for the math attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the math attribute is set
+%           0 otherwise
 
 %  Filename    :   Delay_isSetMath.m
 %  Description :

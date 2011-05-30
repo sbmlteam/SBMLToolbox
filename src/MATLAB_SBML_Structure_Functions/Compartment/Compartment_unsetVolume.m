@@ -1,10 +1,10 @@
 function SBMLCompartment = Compartment_unsetVolume(SBMLCompartment)
 %
 % Compartment_getVolume
-%    takes an SBML Compartment structure
+%       takes an SBML Compartment structure
 %
-%    returns
-%      the Compartment with the value for the volume attribute unset
+%       and returns
+%           the Compartment with the value for the volume attribute unset
 
 %  Filename    :   Compartment_unsetVolume.m
 %  Description :

@@ -1,10 +1,10 @@
 function SBMLEvent = Event_unsetPriority(SBMLEvent)
 %
 % Event_getPriority
-%    takes an SBML Event structure
+%       takes an SBML Event structure
 %
-%    returns
-%      the Event with the value for the priority attribute unset
+%       and returns
+%           the Event with the value for the priority attribute unset
 
 %  Filename    :   Event_unsetPriority.m
 %  Description :

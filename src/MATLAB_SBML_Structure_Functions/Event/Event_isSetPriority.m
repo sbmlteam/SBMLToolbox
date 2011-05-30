@@ -1,11 +1,11 @@
 function value = Event_isSetPriority(SBMLEvent)
 %
 % Event_isSetPriority
-%    takes an SBML Event structure
+%       takes an SBML Event structure
 %
-%    returns
-%      1 if the value for the priority attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the priority attribute is set
+%           0 otherwise
 
 %  Filename    :   Event_isSetPriority.m
 %  Description :

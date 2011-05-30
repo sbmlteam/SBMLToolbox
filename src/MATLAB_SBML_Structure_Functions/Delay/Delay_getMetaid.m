@@ -1,10 +1,10 @@
 function metaid = Delay_getMetaid(SBMLDelay)
 %
 % Delay_getMetaid
-%    takes an SBML Delay structure
+%       takes an SBML Delay structure
 %
-%    returns
-%      the value of the metaid attribute
+%       and returns
+%           the value of the metaid attribute
 
 %  Filename    :   Delay_getMetaid.m
 %  Description :

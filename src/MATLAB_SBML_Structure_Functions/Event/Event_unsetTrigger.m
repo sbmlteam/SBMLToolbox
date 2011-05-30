@@ -1,10 +1,10 @@
 function SBMLEvent = Event_unsetTrigger(SBMLEvent)
 %
 % Event_getTrigger
-%    takes an SBML Event structure
+%       takes an SBML Event structure
 %
-%    returns
-%      the Event with the value for the trigger attribute unset
+%       and returns
+%           the Event with the value for the trigger attribute unset
 
 %  Filename    :   Event_unsetTrigger.m
 %  Description :

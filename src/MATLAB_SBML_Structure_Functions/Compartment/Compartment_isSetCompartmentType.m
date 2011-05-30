@@ -1,11 +1,11 @@
 function value = Compartment_isSetCompartmentType(SBMLCompartment)
 %
 % Compartment_isSetCompartmentType
-%    takes an SBML Compartment structure
+%       takes an SBML Compartment structure
 %
-%    returns
-%      1 if the value for the compartmentType attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the compartmentType attribute is set
+%           0 otherwise
 
 %  Filename    :   Compartment_isSetCompartmentType.m
 %  Description :

@@ -1,10 +1,10 @@
 function SBMLCompartment = Compartment_unsetSBOTerm(SBMLCompartment)
 %
 % Compartment_getSBOTerm
-%    takes an SBML Compartment structure
+%       takes an SBML Compartment structure
 %
-%    returns
-%      the Compartment with the value for the sboTerm attribute unset
+%       and returns
+%           the Compartment with the value for the sboTerm attribute unset
 
 %  Filename    :   Compartment_unsetSBOTerm.m
 %  Description :

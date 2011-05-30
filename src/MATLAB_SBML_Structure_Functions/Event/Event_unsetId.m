@@ -1,10 +1,10 @@
 function SBMLEvent = Event_unsetId(SBMLEvent)
 %
 % Event_getId
-%    takes an SBML Event structure
+%       takes an SBML Event structure
 %
-%    returns
-%      the Event with the value for the id attribute unset
+%       and returns
+%           the Event with the value for the id attribute unset
 
 %  Filename    :   Event_unsetId.m
 %  Description :

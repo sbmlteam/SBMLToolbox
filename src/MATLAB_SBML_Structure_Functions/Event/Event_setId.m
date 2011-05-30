@@ -1,11 +1,11 @@
 function SBMLEvent = Event_setId(SBMLEvent, id)
 %
 % Event_setId
-%    takes an SBML Event structure
+%       takes an SBML Event structure
 %    and the id to be set
 %
-%    returns
-%      the Event with the new value for the id attribute
+%       and returns
+%           the Event with the new value for the id attribute
 
 %  Filename    :   Event_setId.m
 %  Description :

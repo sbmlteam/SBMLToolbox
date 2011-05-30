@@ -1,11 +1,11 @@
 function value = Constraint_isSetMessage(SBMLConstraint)
 %
 % Constraint_isSetMessage
-%    takes an SBML Constraint structure
+%       takes an SBML Constraint structure
 %
-%    returns
-%      1 if the value for the message attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the message attribute is set
+%           0 otherwise
 
 %  Filename    :   Constraint_isSetMessage.m
 %  Description :

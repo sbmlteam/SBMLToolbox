@@ -1,11 +1,11 @@
 function value = AlgebraicRule_isSetFormula(SBMLAlgebraicRule)
 %
 % AlgebraicRule_isSetFormula
-%    takes an SBML AlgebraicRule structure
+%       takes an SBML AlgebraicRule structure
 %
-%    returns
-%      1 if the value for the formula attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the formula attribute is set
+%           0 otherwise
 
 %  Filename    :   AlgebraicRule_isSetFormula.m
 %  Description :

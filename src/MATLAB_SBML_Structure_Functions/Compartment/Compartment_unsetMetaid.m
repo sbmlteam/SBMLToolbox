@@ -1,10 +1,10 @@
 function SBMLCompartment = Compartment_unsetMetaid(SBMLCompartment)
 %
 % Compartment_getMetaid
-%    takes an SBML Compartment structure
+%       takes an SBML Compartment structure
 %
-%    returns
-%      the Compartment with the value for the metaid attribute unset
+%       and returns
+%           the Compartment with the value for the metaid attribute unset
 
 %  Filename    :   Compartment_unsetMetaid.m
 %  Description :

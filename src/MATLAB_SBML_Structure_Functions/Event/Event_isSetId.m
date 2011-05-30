@@ -1,11 +1,11 @@
 function value = Event_isSetId(SBMLEvent)
 %
 % Event_isSetId
-%    takes an SBML Event structure
+%       takes an SBML Event structure
 %
-%    returns
-%      1 if the value for the id attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the id attribute is set
+%           0 otherwise
 
 %  Filename    :   Event_isSetId.m
 %  Description :

@@ -1,11 +1,11 @@
 function value = Delay_isSetSBOTerm(SBMLDelay)
 %
 % Delay_isSetSBOTerm
-%    takes an SBML Delay structure
+%       takes an SBML Delay structure
 %
-%    returns
-%      1 if the value for the sboTerm attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the sboTerm attribute is set
+%           0 otherwise
 
 %  Filename    :   Delay_isSetSBOTerm.m
 %  Description :

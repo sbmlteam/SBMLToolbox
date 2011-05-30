@@ -1,11 +1,11 @@
 function SBMLEvent = Event_setSBOTerm(SBMLEvent, sboTerm)
 %
 % Event_setSBOTerm
-%    takes an SBML Event structure
+%       takes an SBML Event structure
 %    and the sboTerm to be set
 %
-%    returns
-%      the Event with the new value for the sboTerm attribute
+%       and returns
+%           the Event with the new value for the sboTerm attribute
 
 %  Filename    :   Event_setSBOTerm.m
 %  Description :

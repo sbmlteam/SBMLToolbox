@@ -1,10 +1,10 @@
 function SBMLEvent = Event_unsetSBOTerm(SBMLEvent)
 %
 % Event_getSBOTerm
-%    takes an SBML Event structure
+%       takes an SBML Event structure
 %
-%    returns
-%      the Event with the value for the sboTerm attribute unset
+%       and returns
+%           the Event with the value for the sboTerm attribute unset
 
 %  Filename    :   Event_unsetSBOTerm.m
 %  Description :
