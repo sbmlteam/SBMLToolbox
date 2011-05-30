@@ -1,7 +1,10 @@
 function y = RemoveDuplicates(FullArray)
-% RemoveDuplicates takes any array 
+% RemoveDuplicates 
+%       takes any array 
+%
 %       and returns 
 %           the array with any duplicates removed
+%
 
 %
 %  Filename    : RemoveDuplicates.m

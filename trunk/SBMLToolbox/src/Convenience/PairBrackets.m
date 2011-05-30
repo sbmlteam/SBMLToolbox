@@ -1,18 +1,19 @@
 function pairs = PairBrackets(formula)
-% PairBrackets takes a string 
+% PairBrackets 
+%       takes a string 
+%
 %       and returns 
 %           an array of indices of each pair of brackets
 %               ordered from the opening bracket index
 %
-%----------------------------------------------------------------
-% EXAMPLE:
-%       pairs = PairBrackets('(a+((b*c)/(a+b)))')
+%    EXAMPLE:
+%          pairs = PairBrackets('(a+((b*c)/(a+b)))')
 %
-%       pairs = 
-%                   1   17
-%                   4   16
-%                   5    9
-%                   11  15
+%          pairs = 
+%                      1   17
+%                      4   16
+%                      5    9
+%                      11  15
 %
 
 

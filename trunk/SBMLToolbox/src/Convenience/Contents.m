@@ -1,41 +1,81 @@
 % toolbox\Convenience
 %
-% This directory contains functions useful to the simulation of an SBML model
-%
-% isIntegralNumber 
-%       takes a number n 
-%       and returns 
-%           1 if it is an integer 
-%           0 otherwise (may of MATLAB type double)
-%
-% isValidUnitKind 
+% CheckValidUnitKind 
 %       takes a string representing a unit kind 
+%
 %       and returns 
 %           1 if it is valid 
 %           0 otherwise
 %
-% LoseWhiteSpace            
+%    NOTE: This is identical to the function isValidUnitKind
+%
+%
+% LoseWhiteSpace 
 %       takes an array of characters 
+%
 %       and returns 
 %           the array with any white space removed
 %
-% PairBrackets              
+%    EXAMPLE:
+%          y = LoseWhiteSpace('     exa  mp le')
+%
+%          y = 'example'
+%
+%
+% PairBrackets 
 %       takes a string 
+%
 %       and returns 
 %           an array of indices of each pair of brackets
 %               ordered from the opening bracket index
 %
-% RemoveDuplicates          
+%    EXAMPLE:
+%          pairs = PairBrackets('(a+((b*c)/(a+b)))')
+%
+%          pairs = 
+%                      1   17
+%                      4   16
+%                      5    9
+%                      11  15
+%
+%
+% Rearrange
+%       takes 
+%           1) a char array representing a formula
+%           2) a char array representing a variable
+%
+%       and returns 
+%           the formula rearranged in terms of x
+%
+%    EXAMPLE:    
+%          output   =   Rearrange('X + Y - Z', 'X')
+%
+%          output   =   '-Y+Z'
+%
+%
+% RemoveDuplicates 
 %       takes any array 
+%
 %       and returns 
 %           the array with any duplicates removed
+%
 %
 % Substitute 
 %       takes 
 %           1) a string representation of a formula 
 %           2) the SBMLModel structure
+%
 %       and returns 
 %           the value calculated when all variables are substituted
+%
+%    EXAMPLE:
+%          Consider m to be an SBMLModel containing a species with 
+%                     id = 'g' and initialConcentration = '3' 
+%
+%          value = Substitute('g*2', m)
+%           
+%          value = 6
+%
 %
 % SubstituteConstants 
 %       takes 
@@ -45,30 +85,101 @@
 %           a string representing the formula with the ids of any constants
 %           within the model substituted
 %
+%
+%    EXAMPLE:
+%          Consider m to be an SBMLModel containing a parameter
+%               with id = 'g' and value = 3' 
+%
+%          subsFormula = SubstituteConstants('2 * g * S1', SBMLModel)
+%           
+%          subsFormula = '2 * 3 * S1'
+%
+%
 % SubstituteFunction 
 %       takes 
 %           1) a string representation of a formula 
 %           2) the SBMLFunctionDefinition structure defining the formula
 %       and returns 
 %           the formula with the function substituted
+%       or  an empty string if the id of the functionDefinition is not in the
+%           originalFormula
+%
+%
+%    EXAMPLE:
+%          Consider fD to be an SBMLFunctionDefinition 
+%               with id = 'g' and math = 'lambda(x,x+0.5)' 
+%
+%          formula = SubstituteFormula('g(y)', fD)
+%           
+%          formula = 'y+0.5'
+%
+%    OR
+%          formula = SubstituteFormula('h(y)', fD)
+%           
+%          formula = ''
+%
+%
+% isIntegralNumber 
+%       takes a number
+%       and returns 
+%           1 if it is an integer 
+%           0 otherwise (maybe of MATLAB type double)
+%
+%    NOTE: MATLAB's 'isinteger' function only returns true if the number 
+%       has been declared as an int; whereas the default type for numbers 
+%       in MATLAB is double
+%
+%
+% isValidUnitKind 
+%       takes a string representing a unit kind 
+%
+%       and returns 
+%           1 if it is valid 
+%           0 otherwise
+%
+%    NOTE: This is identical to the function CheckValidUnitKind
+%
+%
+% matchName
+%       takes a math expression and the name of a variable
+%
+%       and returns
+%           the index of the starting point of 'name' in the 'expression'
+%
+%    NOTE: This differs from the 'strfind' function in that it checks
+%       that the name is used as a variable.
+%
+%    EXAMPLE:
+%          y = matchName('f*g', 'g')
+%
+%          y = 3
+%
+%    OR
+%          y = matchName('f*g_1', 'g')
+%
+%          y = 0
+%
+%
 % testmember 
 %       takes 
-%           1) a value 
+%           1) a value
 %           2) an array of values 
+%
 %       and returns 
 %           1 if value is a member of the array 
 %           0 otherwise
 % 
-% NOTE: this function is necessary for octave to emulate the MATLAB
+%    NOTE: this function is necessary for octave to emulate the MATLAB
 %       functionality of the 'ismember' function
+%
+%
+
 
 %  Filename    :   Contents.m
-%  Description : 
+%  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  Organization:   University of Hertfordshire STRI
-%  Created     :   12-Feb-2005
-%  Revision    :   $Id$
-%  Source      :   $Source v $
+%  $Id$
+%  $Source v $
 %
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
@@ -92,7 +203,5 @@
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
-
-
 
 

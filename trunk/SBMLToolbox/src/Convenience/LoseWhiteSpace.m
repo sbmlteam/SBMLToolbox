@@ -1,12 +1,14 @@
 function y = LoseWhiteSpace(charArray)
-% LoseWhiteSpace takes an array of characters 
+% LoseWhiteSpace 
+%       takes an array of characters 
+%
 %       and returns 
 %           the array with any white space removed
 %
-%----------------------------------------------------------------
-% EXAMPLE:
-%           y = LoseWhiteSpace('     exa  mp le')
-%           y = 'example'
+%    EXAMPLE:
+%          y = LoseWhiteSpace('     exa  mp le')
+%
+%          y = 'example'
 %
 
 

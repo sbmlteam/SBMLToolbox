@@ -1,8 +1,13 @@
-function value = CheckValidUnitKind(kind)%
-% CheckValidUnitKind takes a string representing a unit kind 
+function value = CheckValidUnitKind(kind)
+% CheckValidUnitKind 
+%       takes a string representing a unit kind 
+%
 %       and returns 
 %           1 if it is valid 
 %           0 otherwise
+%
+%    NOTE: This is identical to the function isValidUnitKind
+%
 
 
 %  Filename    :   CheckValidUnitKind.m
@@ -37,14 +42,5 @@ function value = CheckValidUnitKind(kind)%
 %----------------------------------------------------------------------- -->
 
 
-UNIT_KIND_STRINGS = {'ampere', 'becquerel', 'candela', 'Celsius', 'coulomb', 'dimensionless', 'farad',...
-  'gram', 'gray', 'henry', 'hertz', 'item', 'joule', 'katal', 'kelvin', 'kilogram', 'liter', 'litre',...
-  'lumen', 'lux', 'meter', 'metre', 'mole', 'newton', 'ohm', 'pascal', 'radian', 'second', 'siemens',...
-  'sievert', 'steradian', 'tesla', 'volt', 'watt', 'weber', '(Invalid UnitKind)'};
+value = isValidUnitKind(kind);
 
-
-value = 0;
-
-if (ismember(kind, UNIT_KIND_STRINGS))
-    value = 1;
-end;

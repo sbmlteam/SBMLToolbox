@@ -1,11 +1,16 @@
 function y = testmember (num, array)
-% testmember takes a value and an array of values 
+% testmember 
+%       takes 
+%           1) a value
+%           2) an array of values 
+%
 %       and returns 
 %           1 if value is a member of the array 
 %           0 otherwise
 % 
-% NOTE: this function is necessary for octave to emulate the MATLAB
+%    NOTE: this function is necessary for octave to emulate the MATLAB
 %       functionality of the 'ismember' function
+%
 
 
 %  Filename    :   testmember.m

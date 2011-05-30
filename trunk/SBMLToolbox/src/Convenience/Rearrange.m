@@ -1,14 +1,17 @@
 function output = Rearrange(formula, x)
-% Rearrange(formula, x)
-%         takes a char array representing a formula
-%         and   a char array representing a variable
+% Rearrange
+%       takes 
+%           1) a char array representing a formula
+%           2) a char array representing a variable
 %
-% and returns the formula rearranged in terms of x
+%       and returns 
+%           the formula rearranged in terms of x
 %
-%--------------------------------------------------------------------------
-% EXAMPLE:    output   =   Rearrange('X + Y - Z', 'X')
-%                      =   '-Y+Z'
-%--------------------------------------------------------------------------
+%    EXAMPLE:    
+%          output   =   Rearrange('X + Y - Z', 'X')
+%
+%          output   =   '-Y+Z'
+%
 
 %  Filename    : Rearrange.m
 %  Description : rearranges the formula
