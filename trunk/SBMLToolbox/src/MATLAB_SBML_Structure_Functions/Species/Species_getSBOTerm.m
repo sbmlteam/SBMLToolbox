@@ -1,10 +1,10 @@
 function sboTerm = Species_getSBOTerm(SBMLSpecies)
 %
 % Species_getSBOTerm
-%    takes an SBML Species structure
+%       takes an SBML Species structure
 %
-%    returns
-%      the value of the sboTerm attribute
+%       and returns
+%           the value of the sboTerm attribute
 
 %  Filename    :   Species_getSBOTerm.m
 %  Description :

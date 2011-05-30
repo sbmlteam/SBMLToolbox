@@ -1,11 +1,11 @@
 function value = RateRule_isSetVariable(SBMLRateRule)
 %
 % RateRule_isSetVariable
-%    takes an SBML RateRule structure
+%       takes an SBML RateRule structure
 %
-%    returns
-%      1 if the value for the variable attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the variable attribute is set
+%           0 otherwise
 
 %  Filename    :   RateRule_isSetVariable.m
 %  Description :

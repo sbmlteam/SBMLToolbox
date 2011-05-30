@@ -1,11 +1,11 @@
 function value = Species_isSetHasOnlySubstanceUnits(SBMLSpecies)
 %
 % Species_isSetHasOnlySubstanceUnits
-%    takes an SBML Species structure
+%       takes an SBML Species structure
 %
-%    returns
-%      1 if the value for the hasOnlySubstanceUnits attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the hasOnlySubstanceUnits attribute is set
+%           0 otherwise
 
 %  Filename    :   Species_isSetHasOnlySubstanceUnits.m
 %  Description :

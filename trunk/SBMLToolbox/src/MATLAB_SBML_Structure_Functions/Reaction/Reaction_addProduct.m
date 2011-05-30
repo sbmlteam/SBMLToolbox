@@ -1,11 +1,11 @@
 function SBMLReaction = Reaction_addProduct(SBMLReaction, SBMLProduct)
 %
 % Reaction_addProduct(SBMLReaction, SBMLProduct)
-%    takes an SBML Reaction structure
+%       takes an SBML Reaction structure
 %    and an SBML Product structure
 %
-%    returns
-%      the Reaction with the Product element added
+%       and returns
+%           the Reaction with the Product element added
 
 %  Filename    :   Reaction_addProduct.m
 %  Description :

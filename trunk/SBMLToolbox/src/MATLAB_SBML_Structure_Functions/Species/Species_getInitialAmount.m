@@ -1,10 +1,10 @@
 function initialAmount = Species_getInitialAmount(SBMLSpecies)
 %
 % Species_getInitialAmount
-%    takes an SBML Species structure
+%       takes an SBML Species structure
 %
-%    returns
-%      the value of the initialAmount attribute
+%       and returns
+%           the value of the initialAmount attribute
 
 %  Filename    :   Species_getInitialAmount.m
 %  Description :

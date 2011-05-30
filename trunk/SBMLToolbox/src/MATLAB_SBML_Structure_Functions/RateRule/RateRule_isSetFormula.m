@@ -1,11 +1,11 @@
 function value = RateRule_isSetFormula(SBMLRateRule)
 %
 % RateRule_isSetFormula
-%    takes an SBML RateRule structure
+%       takes an SBML RateRule structure
 %
-%    returns
-%      1 if the value for the formula attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the formula attribute is set
+%           0 otherwise
 
 %  Filename    :   RateRule_isSetFormula.m
 %  Description :

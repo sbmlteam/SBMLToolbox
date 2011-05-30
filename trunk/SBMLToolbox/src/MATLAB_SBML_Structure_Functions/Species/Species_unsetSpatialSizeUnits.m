@@ -1,10 +1,10 @@
 function SBMLSpecies = Species_unsetSpatialSizeUnits(SBMLSpecies)
 %
 % Species_getSpatialSizeUnits
-%    takes an SBML Species structure
+%       takes an SBML Species structure
 %
-%    returns
-%      the Species with the value for the spatialSizeUnits attribute unset
+%       and returns
+%           the Species with the value for the spatialSizeUnits attribute unset
 
 %  Filename    :   Species_unsetSpatialSizeUnits.m
 %  Description :

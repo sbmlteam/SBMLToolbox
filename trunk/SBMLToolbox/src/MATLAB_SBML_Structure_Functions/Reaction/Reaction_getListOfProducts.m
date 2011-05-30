@@ -1,10 +1,10 @@
 function product = Reaction_getListOfProducts(SBMLReaction)
 %
 % Reaction_getListOfProducts
-%    takes an SBML Reaction structure
+%       takes an SBML Reaction structure
 %
-%    returns
-%      the array of structures of the product elements
+%       and returns
+%           the array of structures of the product elements
 
 %  Filename    :   Reaction_getListOfProducts.m
 %  Description :

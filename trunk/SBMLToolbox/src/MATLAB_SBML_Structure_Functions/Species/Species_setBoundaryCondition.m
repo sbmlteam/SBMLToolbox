@@ -1,11 +1,11 @@
 function SBMLSpecies = Species_setBoundaryCondition(SBMLSpecies, boundaryCondition)
 %
 % Species_setBoundaryCondition
-%    takes an SBML Species structure
+%       takes an SBML Species structure
 %    and the boundaryCondition to be set
 %
-%    returns
-%      the Species with the new value for the boundaryCondition attribute
+%       and returns
+%           the Species with the new value for the boundaryCondition attribute
 
 %  Filename    :   Species_setBoundaryCondition.m
 %  Description :

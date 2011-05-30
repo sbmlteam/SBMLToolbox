@@ -1,10 +1,10 @@
 function metaid = Reaction_getMetaid(SBMLReaction)
 %
 % Reaction_getMetaid
-%    takes an SBML Reaction structure
+%       takes an SBML Reaction structure
 %
-%    returns
-%      the value of the metaid attribute
+%       and returns
+%           the value of the metaid attribute
 
 %  Filename    :   Reaction_getMetaid.m
 %  Description :

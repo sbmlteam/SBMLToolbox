@@ -1,11 +1,11 @@
 function value = Reaction_isSetId(SBMLReaction)
 %
 % Reaction_isSetId
-%    takes an SBML Reaction structure
+%       takes an SBML Reaction structure
 %
-%    returns
-%      1 if the value for the id attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the id attribute is set
+%           0 otherwise
 
 %  Filename    :   Reaction_isSetId.m
 %  Description :

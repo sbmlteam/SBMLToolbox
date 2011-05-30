@@ -1,11 +1,11 @@
 function SBMLSpecies = Species_setCompartment(SBMLSpecies, compartment)
 %
 % Species_setCompartment
-%    takes an SBML Species structure
+%       takes an SBML Species structure
 %    and the compartment to be set
 %
-%    returns
-%      the Species with the new value for the compartment attribute
+%       and returns
+%           the Species with the new value for the compartment attribute
 
 %  Filename    :   Species_setCompartment.m
 %  Description :

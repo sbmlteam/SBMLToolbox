@@ -1,11 +1,11 @@
 function value = Species_isSetInitialConcentration(SBMLSpecies)
 %
 % Species_isSetInitialConcentration
-%    takes an SBML Species structure
+%       takes an SBML Species structure
 %
-%    returns
-%      1 if the value for the initialConcentration attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the initialConcentration attribute is set
+%           0 otherwise
 
 %  Filename    :   Species_isSetInitialConcentration.m
 %  Description :

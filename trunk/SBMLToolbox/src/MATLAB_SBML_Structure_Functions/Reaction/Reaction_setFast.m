@@ -1,11 +1,11 @@
 function SBMLReaction = Reaction_setFast(SBMLReaction, fast)
 %
 % Reaction_setFast
-%    takes an SBML Reaction structure
+%       takes an SBML Reaction structure
 %    and the fast to be set
 %
-%    returns
-%      the Reaction with the new value for the fast attribute
+%       and returns
+%           the Reaction with the new value for the fast attribute
 
 %  Filename    :   Reaction_setFast.m
 %  Description :

@@ -1,10 +1,10 @@
 function id = Reaction_getId(SBMLReaction)
 %
 % Reaction_getId
-%    takes an SBML Reaction structure
+%       takes an SBML Reaction structure
 %
-%    returns
-%      the value of the id attribute
+%       and returns
+%           the value of the id attribute
 
 %  Filename    :   Reaction_getId.m
 %  Description :

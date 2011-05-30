@@ -1,11 +1,11 @@
 function value = Priority_isSetMetaid(SBMLPriority)
 %
 % Priority_isSetMetaid
-%    takes an SBML Priority structure
+%       takes an SBML Priority structure
 %
-%    returns
-%      1 if the value for the metaid attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the metaid attribute is set
+%           0 otherwise
 
 %  Filename    :   Priority_isSetMetaid.m
 %  Description :

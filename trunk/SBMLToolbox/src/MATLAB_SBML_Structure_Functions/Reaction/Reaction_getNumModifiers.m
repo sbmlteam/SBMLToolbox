@@ -1,10 +1,10 @@
 function num = Reaction_getNumModifiers(SBMLReaction)
 %
 % Reaction_getNumModifiers
-%    takes an SBML Reaction structure
+%       takes an SBML Reaction structure
 %
-%    returns
-%      the number of modifier elements
+%       and returns
+%           the number of modifier elements
 
 %  Filename    :   Reaction_getNumModifiers.m
 %  Description :

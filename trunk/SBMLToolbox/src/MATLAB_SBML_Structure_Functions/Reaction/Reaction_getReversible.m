@@ -1,10 +1,10 @@
 function reversible = Reaction_getReversible(SBMLReaction)
 %
 % Reaction_getReversible
-%    takes an SBML Reaction structure
+%       takes an SBML Reaction structure
 %
-%    returns
-%      the value of the reversible attribute
+%       and returns
+%           the value of the reversible attribute
 
 %  Filename    :   Reaction_getReversible.m
 %  Description :

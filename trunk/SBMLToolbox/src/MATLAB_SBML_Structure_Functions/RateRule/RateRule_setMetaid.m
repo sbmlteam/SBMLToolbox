@@ -1,11 +1,11 @@
 function SBMLRateRule = RateRule_setMetaid(SBMLRateRule, metaid)
 %
 % RateRule_setMetaid
-%    takes an SBML RateRule structure
+%       takes an SBML RateRule structure
 %    and the metaid to be set
 %
-%    returns
-%      the RateRule with the new value for the metaid attribute
+%       and returns
+%           the RateRule with the new value for the metaid attribute
 
 %  Filename    :   RateRule_setMetaid.m
 %  Description :

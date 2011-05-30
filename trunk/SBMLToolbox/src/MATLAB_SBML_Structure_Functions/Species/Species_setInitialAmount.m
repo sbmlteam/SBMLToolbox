@@ -1,11 +1,11 @@
 function SBMLSpecies = Species_setInitialAmount(SBMLSpecies, initialAmount)
 %
 % Species_setInitialAmount
-%    takes an SBML Species structure
+%       takes an SBML Species structure
 %    and the initialAmount to be set
 %
-%    returns
-%      the Species with the new value for the initialAmount attribute
+%       and returns
+%           the Species with the new value for the initialAmount attribute
 
 %  Filename    :   Species_setInitialAmount.m
 %  Description :

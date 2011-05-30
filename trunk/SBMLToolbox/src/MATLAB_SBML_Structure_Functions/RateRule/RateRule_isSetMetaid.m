@@ -1,11 +1,11 @@
 function value = RateRule_isSetMetaid(SBMLRateRule)
 %
 % RateRule_isSetMetaid
-%    takes an SBML RateRule structure
+%       takes an SBML RateRule structure
 %
-%    returns
-%      1 if the value for the metaid attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the metaid attribute is set
+%           0 otherwise
 
 %  Filename    :   RateRule_isSetMetaid.m
 %  Description :

@@ -1,10 +1,10 @@
 function fast = Reaction_getFast(SBMLReaction)
 %
 % Reaction_getFast
-%    takes an SBML Reaction structure
+%       takes an SBML Reaction structure
 %
-%    returns
-%      the value of the fast attribute
+%       and returns
+%           the value of the fast attribute
 
 %  Filename    :   Reaction_getFast.m
 %  Description :

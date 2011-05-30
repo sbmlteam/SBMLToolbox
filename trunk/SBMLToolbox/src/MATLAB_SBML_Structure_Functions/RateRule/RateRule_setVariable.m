@@ -1,11 +1,11 @@
 function SBMLRateRule = RateRule_setVariable(SBMLRateRule, variable)
 %
 % RateRule_setVariable
-%    takes an SBML RateRule structure
+%       takes an SBML RateRule structure
 %    and the variable to be set
 %
-%    returns
-%      the RateRule with the new value for the variable attribute
+%       and returns
+%           the RateRule with the new value for the variable attribute
 
 %  Filename    :   RateRule_setVariable.m
 %  Description :

@@ -1,10 +1,10 @@
 function math = Priority_getMath(SBMLPriority)
 %
 % Priority_getMath
-%    takes an SBML Priority structure
+%       takes an SBML Priority structure
 %
-%    returns
-%      the value of the math attribute
+%       and returns
+%           the value of the math attribute
 
 %  Filename    :   Priority_getMath.m
 %  Description :

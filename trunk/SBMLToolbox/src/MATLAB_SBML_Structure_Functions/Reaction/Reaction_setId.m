@@ -1,11 +1,11 @@
 function SBMLReaction = Reaction_setId(SBMLReaction, id)
 %
 % Reaction_setId
-%    takes an SBML Reaction structure
+%       takes an SBML Reaction structure
 %    and the id to be set
 %
-%    returns
-%      the Reaction with the new value for the id attribute
+%       and returns
+%           the Reaction with the new value for the id attribute
 
 %  Filename    :   Reaction_setId.m
 %  Description :

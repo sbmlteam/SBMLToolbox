@@ -1,10 +1,10 @@
 function SBMLSpecies = Species_unsetUnits(SBMLSpecies)
 %
 % Species_getUnits
-%    takes an SBML Species structure
+%       takes an SBML Species structure
 %
-%    returns
-%      the Species with the value for the units attribute unset
+%       and returns
+%           the Species with the value for the units attribute unset
 
 %  Filename    :   Species_unsetUnits.m
 %  Description :

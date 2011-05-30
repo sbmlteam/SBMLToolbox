@@ -1,11 +1,11 @@
 function SBMLSpecies = Species_setCharge(SBMLSpecies, charge)
 %
 % Species_setCharge
-%    takes an SBML Species structure
+%       takes an SBML Species structure
 %    and the charge to be set
 %
-%    returns
-%      the Species with the new value for the charge attribute
+%       and returns
+%           the Species with the new value for the charge attribute
 
 %  Filename    :   Species_setCharge.m
 %  Description :

@@ -1,10 +1,10 @@
 function SBMLSpecies = Species_unsetSubstanceUnits(SBMLSpecies)
 %
 % Species_getSubstanceUnits
-%    takes an SBML Species structure
+%       takes an SBML Species structure
 %
-%    returns
-%      the Species with the value for the substanceUnits attribute unset
+%       and returns
+%           the Species with the value for the substanceUnits attribute unset
 
 %  Filename    :   Species_unsetSubstanceUnits.m
 %  Description :

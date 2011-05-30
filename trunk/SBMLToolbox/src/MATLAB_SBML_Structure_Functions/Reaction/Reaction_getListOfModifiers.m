@@ -1,10 +1,10 @@
 function modifier = Reaction_getListOfModifiers(SBMLReaction)
 %
 % Reaction_getListOfModifiers
-%    takes an SBML Reaction structure
+%       takes an SBML Reaction structure
 %
-%    returns
-%      the array of structures of the modifier elements
+%       and returns
+%           the array of structures of the modifier elements
 
 %  Filename    :   Reaction_getListOfModifiers.m
 %  Description :

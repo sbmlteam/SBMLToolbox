@@ -1,10 +1,10 @@
 function sboTerm = Priority_getSBOTerm(SBMLPriority)
 %
 % Priority_getSBOTerm
-%    takes an SBML Priority structure
+%       takes an SBML Priority structure
 %
-%    returns
-%      the value of the sboTerm attribute
+%       and returns
+%           the value of the sboTerm attribute
 
 %  Filename    :   Priority_getSBOTerm.m
 %  Description :

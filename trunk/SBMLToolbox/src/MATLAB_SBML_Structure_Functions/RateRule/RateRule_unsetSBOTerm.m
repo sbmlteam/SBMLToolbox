@@ -1,10 +1,10 @@
 function SBMLRateRule = RateRule_unsetSBOTerm(SBMLRateRule)
 %
 % RateRule_getSBOTerm
-%    takes an SBML RateRule structure
+%       takes an SBML RateRule structure
 %
-%    returns
-%      the RateRule with the value for the sboTerm attribute unset
+%       and returns
+%           the RateRule with the value for the sboTerm attribute unset
 
 %  Filename    :   RateRule_unsetSBOTerm.m
 %  Description :

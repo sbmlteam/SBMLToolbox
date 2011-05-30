@@ -1,10 +1,10 @@
 function conversionFactor = Species_getConversionFactor(SBMLSpecies)
 %
 % Species_getConversionFactor
-%    takes an SBML Species structure
+%       takes an SBML Species structure
 %
-%    returns
-%      the value of the conversionFactor attribute
+%       and returns
+%           the value of the conversionFactor attribute
 
 %  Filename    :   Species_getConversionFactor.m
 %  Description :

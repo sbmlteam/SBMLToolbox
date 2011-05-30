@@ -1,10 +1,10 @@
 function SBMLPriority = Priority_unsetMath(SBMLPriority)
 %
 % Priority_getMath
-%    takes an SBML Priority structure
+%       takes an SBML Priority structure
 %
-%    returns
-%      the Priority with the value for the math attribute unset
+%       and returns
+%           the Priority with the value for the math attribute unset
 
 %  Filename    :   Priority_unsetMath.m
 %  Description :

@@ -1,11 +1,11 @@
 function value = Reaction_isSetReversible(SBMLReaction)
 %
 % Reaction_isSetReversible
-%    takes an SBML Reaction structure
+%       takes an SBML Reaction structure
 %
-%    returns
-%      1 if the value for the reversible attribute is set
-%      0 otherwise
+%       and returns
+%           1 if the value for the reversible attribute is set
+%           0 otherwise
 
 %  Filename    :   Reaction_isSetReversible.m
 %  Description :

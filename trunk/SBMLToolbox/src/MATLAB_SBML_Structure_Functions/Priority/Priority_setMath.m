@@ -1,11 +1,11 @@
 function SBMLPriority = Priority_setMath(SBMLPriority, math)
 %
 % Priority_setMath
-%    takes an SBML Priority structure
+%       takes an SBML Priority structure
 %    and the math to be set
 %
-%    returns
-%      the Priority with the new value for the math attribute
+%       and returns
+%           the Priority with the new value for the math attribute
 
 %  Filename    :   Priority_setMath.m
 %  Description :

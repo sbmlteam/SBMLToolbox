@@ -1,10 +1,10 @@
 function metaid = Priority_getMetaid(SBMLPriority)
 %
 % Priority_getMetaid
-%    takes an SBML Priority structure
+%       takes an SBML Priority structure
 %
-%    returns
-%      the value of the metaid attribute
+%       and returns
+%           the value of the metaid attribute
 
 %  Filename    :   Priority_getMetaid.m
 %  Description :
