@@ -80,7 +80,7 @@ switch number_out
             case 3
                 [a] = feval(fhandle, varargin{4}, varargin{5}, varargin{6});
         end;
-        fail = fail + ~isempty(a);
+        fail = fail + ~testEquality(a);
     case 1
         switch number_in
             case 1
@@ -90,7 +90,7 @@ switch number_out
             case 3
                 [a] = feval(fhandle, varargin{4}, varargin{5}, varargin{6});
         end;
-        fail = fail + ~isequal(a, varargin{start_out});
+        fail = fail + ~testEquality(a, varargin{start_out});
     case 2
         switch number_in
             case 1
@@ -100,8 +100,8 @@ switch number_out
             case 3
                 [a] = feval(fhandle, varargin{4}, varargin{5}, varargin{6});
         end;
-        fail = fail + ~isequal(a, varargin{start_out});
-        fail = fail + ~isequal(b, varargin{start_out+1});
+        fail = fail + ~testEquality(a, varargin{start_out});
+        fail = fail + ~testEquality(b, varargin{start_out+1});
     case 3
         switch number_in
             case 1
@@ -111,9 +111,9 @@ switch number_out
             case 3
                 [a] = feval(fhandle, varargin{4}, varargin{5}, varargin{6});
         end;
-        fail = fail + ~isequal(a, varargin{start_out});
-        fail = fail + ~isequal(b, varargin{start_out+1});
-        fail = fail + ~isequal(c, varargin{start_out+2});
+        fail = fail + ~testEquality(a, varargin{start_out});
+        fail = fail + ~testEquality(b, varargin{start_out+1});
+        fail = fail + ~testEquality(c, varargin{start_out+2});
     otherwise
         error('too many output');
 end;
@@ -122,5 +122,27 @@ if (fail > 0)
     y = 1;
 end;
 
+function y = testEquality(array1, array2)
+
+y = isequal(array1, array2);
+
+if y == 1
+  return;
+elseif length(array1) ~= length(array2)
+  y = 0;
+  return;
+else
+  y = 1;
+  i = 1;
+  % check whether we are dealing with a nan which will always fail equality
+  while (y == 1 && i <= length(array1))
+    if isnan(array1(i))
+      y = isnan(array2(i));
+    else
+      y = isequal(array1(i), array2(i));
+    end;
+    i = i + 1;
+  end;
+end;
 
 
