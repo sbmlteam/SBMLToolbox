@@ -43,7 +43,7 @@ function rule = Model_getRule(SBMLModel, index)
 
 if isfield(SBMLModel, 'rule')
 	if index <= length(SBMLModel.rule)
-		rule = SBMLModel.rule;
+		rule = SBMLModel.rule(index);
 	else
 		error('index is out of range');
 	end;

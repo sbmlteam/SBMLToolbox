@@ -43,7 +43,7 @@ function constraint = Model_getConstraint(SBMLModel, index)
 
 if isfield(SBMLModel, 'constraint')
 	if index <= length(SBMLModel.constraint)
-		constraint = SBMLModel.constraint;
+		constraint = SBMLModel.constraint(index);
 	else
 		error('index is out of range');
 	end;

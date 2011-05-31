@@ -43,7 +43,7 @@ function functionDefinition = Model_getFunctionDefinition(SBMLModel, index)
 
 if isfield(SBMLModel, 'functionDefinition')
 	if index <= length(SBMLModel.functionDefinition)
-		functionDefinition = SBMLModel.functionDefinition;
+		functionDefinition = SBMLModel.functionDefinition(index);
 	else
 		error('index is out of range');
 	end;

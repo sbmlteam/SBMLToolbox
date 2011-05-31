@@ -43,7 +43,7 @@ function parameter = KineticLaw_getParameter(SBMLKineticLaw, index)
 
 if isfield(SBMLKineticLaw, 'parameter')
 	if index <= length(SBMLKineticLaw.parameter)
-		parameter = SBMLKineticLaw.parameter;
+		parameter = SBMLKineticLaw.parameter(index);
 	else
 		error('index is out of range');
 	end;

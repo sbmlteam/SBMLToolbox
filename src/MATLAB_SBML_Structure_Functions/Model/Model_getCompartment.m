@@ -43,7 +43,7 @@ function compartment = Model_getCompartment(SBMLModel, index)
 
 if isfield(SBMLModel, 'compartment')
 	if index <= length(SBMLModel.compartment)
-		compartment = SBMLModel.compartment;
+		compartment = SBMLModel.compartment(index);
 	else
 		error('index is out of range');
 	end;

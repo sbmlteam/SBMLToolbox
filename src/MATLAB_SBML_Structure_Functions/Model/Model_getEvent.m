@@ -43,7 +43,7 @@ function event = Model_getEvent(SBMLModel, index)
 
 if isfield(SBMLModel, 'event')
 	if index <= length(SBMLModel.event)
-		event = SBMLModel.event;
+		event = SBMLModel.event(index);
 	else
 		error('index is out of range');
 	end;
