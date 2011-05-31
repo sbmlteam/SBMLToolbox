@@ -59,7 +59,7 @@ cd ..;
 cd MATLAB_SBML_Structure_Functions;
 cd Test;
 disp('Performing tests in MATLAB_SBML_Structure_Functions directory');
-TestCreate;
+testStructures;
 cd ..;
 
 cd ..;
