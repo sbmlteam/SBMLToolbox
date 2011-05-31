@@ -45,7 +45,7 @@ if isfield(SBMLReaction, 'modifier')
 	if (~isIntegralNumber(index) || index <= 0)
 		error('index must be a positive integer');
 	elseif index <= length(SBMLReaction.modifier)
-		modifier = SBMLReaction.modifier;
+		modifier = SBMLReaction.modifier(index);
 	else
 		error('index is out of range');
 	end;

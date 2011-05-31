@@ -43,7 +43,7 @@ function unit = UnitDefinition_getUnit(SBMLUnitDefinition, index)
 
 if isfield(SBMLUnitDefinition, 'unit')
 	if index <= length(SBMLUnitDefinition.unit)
-		unit = SBMLUnitDefinition.unit;
+		unit = SBMLUnitDefinition.unit(index);
 	else
 		error('index is out of range');
 	end;

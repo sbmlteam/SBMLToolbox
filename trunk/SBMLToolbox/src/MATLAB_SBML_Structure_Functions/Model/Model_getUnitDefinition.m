@@ -43,7 +43,7 @@ function unitDefinition = Model_getUnitDefinition(SBMLModel, index)
 
 if isfield(SBMLModel, 'unitDefinition')
 	if index <= length(SBMLModel.unitDefinition)
-		unitDefinition = SBMLModel.unitDefinition;
+		unitDefinition = SBMLModel.unitDefinition(index);
 	else
 		error('index is out of range');
 	end;

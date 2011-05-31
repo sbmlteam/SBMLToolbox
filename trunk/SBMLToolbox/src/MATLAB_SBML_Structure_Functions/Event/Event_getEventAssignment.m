@@ -45,7 +45,7 @@ if isfield(SBMLEvent, 'eventAssignment')
 	if (~isIntegralNumber(index) || index <= 0)
 		error('index must be a positive integer');
 	elseif index <= length(SBMLEvent.eventAssignment)
-		eventAssignment = SBMLEvent.eventAssignment;
+		eventAssignment = SBMLEvent.eventAssignment(index);
 	else
 		error('index is out of range');
 	end;

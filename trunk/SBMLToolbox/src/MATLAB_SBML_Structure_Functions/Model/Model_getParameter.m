@@ -43,7 +43,7 @@ function parameter = Model_getParameter(SBMLModel, index)
 
 if isfield(SBMLModel, 'parameter')
 	if index <= length(SBMLModel.parameter)
-		parameter = SBMLModel.parameter;
+		parameter = SBMLModel.parameter(index);
 	else
 		error('index is out of range');
 	end;

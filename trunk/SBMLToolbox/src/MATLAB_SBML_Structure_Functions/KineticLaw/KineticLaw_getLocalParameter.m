@@ -43,7 +43,7 @@ function localParameter = KineticLaw_getLocalParameter(SBMLKineticLaw, index)
 
 if isfield(SBMLKineticLaw, 'localParameter')
 	if index <= length(SBMLKineticLaw.localParameter)
-		localParameter = SBMLKineticLaw.localParameter;
+		localParameter = SBMLKineticLaw.localParameter(index);
 	else
 		error('index is out of range');
 	end;

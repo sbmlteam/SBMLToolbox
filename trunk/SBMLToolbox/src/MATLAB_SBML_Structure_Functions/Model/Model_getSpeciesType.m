@@ -43,7 +43,7 @@ function speciesType = Model_getSpeciesType(SBMLModel, index)
 
 if isfield(SBMLModel, 'speciesType')
 	if index <= length(SBMLModel.speciesType)
-		speciesType = SBMLModel.speciesType;
+		speciesType = SBMLModel.speciesType(index);
 	else
 		error('index is out of range');
 	end;

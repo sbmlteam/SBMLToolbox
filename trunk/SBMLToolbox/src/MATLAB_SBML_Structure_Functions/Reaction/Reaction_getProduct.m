@@ -45,7 +45,7 @@ if isfield(SBMLReaction, 'product')
 	if (~isIntegralNumber(index) || index <= 0)
 		error('index must be a positive integer');
 	elseif index <= length(SBMLReaction.product)
-		product = SBMLReaction.product;
+		product = SBMLReaction.product(index);
 	else
 		error('index is out of range');
 	end;
