@@ -131,6 +131,10 @@ if y == 1
 elseif length(array1) ~= length(array2)
   y = 0;
   return;
+elseif issparse(array1)
+  array1_full = full(array1);
+  array2_full = full(array2);
+  y = testEquality(array1_full, array2_full);
 else
   y = 1;
   i = 1;
