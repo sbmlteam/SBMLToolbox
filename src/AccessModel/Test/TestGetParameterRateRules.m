@@ -44,3 +44,11 @@ Parameter = {'t', 'k', 'k1', 'v1', 'v2', 'v3'};
 rules = {'0', '0', '0', '0', 'v1/t', '0'};
 
 fail = TestFunction('GetParameterRateRules', 1, 2, m, Parameter, rules);
+
+m = TranslateSBML('../../Test/test-data/l3v1core.xml');
+
+names = {'p', 'p1', 'p2', 'p3', 'x', 'd'};
+values = {'0', '0', '0', 'p1/p', '0', '0'};
+
+fail = fail + TestFunction('GetParameterRateRules', 1, 2, m, names, values);
+

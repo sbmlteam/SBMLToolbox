@@ -43,21 +43,21 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 2;
+test = test + 3;
 fail = TestGetAllParameters;
 if (fail > 0)
     disp('GetAllParameters failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 2;
+test = test + 3;
 fail = TestGetAllParametersUnique;
 if (fail > 0)
     disp('GetAllParametersUnique failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 3;
+test = test + 4;
 fail = TestGetGlobalParameters;
 if (fail > 0)
     disp('GetGlobalParameters failed');
@@ -71,7 +71,7 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 1;
+test = test + 2;
 fail = TestGetParameterFromReactionUnique;
 if (fail > 0)
     disp('GetParameterFromReactionUnique failed');
@@ -113,7 +113,7 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 2;
+test = test + 3;
 fail = TestGetStoichiometryMatrix;
 if (fail > 0)
     disp('GetStoichiometryMatrix failed');
@@ -148,21 +148,21 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 3;
+test = test + 4;
 fail = TestGetStoichiometrySparse;
 if (fail > 0)
     disp('GetStoichiometrySparse failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 3;
+test = test + 4;
 fail = TestGetVaryingParameters;
 if (fail > 0)
     disp('GetVaryingParameters failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 1;
+test = test + 2;
 fail = TestGetParameterAssignmentRules;
 if (fail > 0)
     disp('GetParametersAssignmentRules failed');
@@ -170,7 +170,7 @@ end;
 Totalfail = Totalfail + fail;
 
 
-test = test + 1;
+test = test + 2;
 fail = TestGetParameterRateRules;
 if (fail > 0)
     disp('GetParametersRateRules failed');
@@ -178,7 +178,7 @@ end;
 Totalfail = Totalfail + fail;
 
 
-test = test + 1;
+test = test + 2;
 fail = TestGetParameterAlgebraicRules;
 if (fail > 0)
     disp('GetParametersAlgebraicRules failed');

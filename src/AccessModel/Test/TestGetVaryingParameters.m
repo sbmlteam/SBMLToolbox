@@ -44,10 +44,10 @@ values = [2, 3, 18, 3, 3, 3, 3  ];
 
 fail = fail + TestFunction('GetVaryingParameters', 1, 2, m, names, values);
 
-% m = TranslateSBML('../../Test/test-data/l3v1core.xml');
-% 
-% names = {'p', 'p1', 'p2', 'p3', 'x'};
-% values = [2, 2, 2, 2, 2 ];
-% 
-% fail = fail + TestFunction('GetVaryingParameters', 1, 2, m, names, values);
+m = TranslateSBML('../../Test/test-data/l3v1core.xml');
+
+names = {'p', 'p1', 'p2', 'p3'};
+values = [2, 4, 4, 2 ];
+
+fail = fail + TestFunction('GetVaryingParameters', 1, 2, m, names, values);
 

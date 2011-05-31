@@ -50,3 +50,11 @@ matrix = [-1, 0; 1, -1; 0, 0; 0, 0; 0, 1];
 species = {'S1', 'S2', 'S3', 'X', 'S4'};
 
 fail = TestFunction('GetStoichiometryMatrix', 1, 2, m, matrix, species);
+
+m = TranslateSBML('../../Test/test-data/l3v1core.xml');
+
+matrix = [NaN; 0; 1];
+species = {'s', 's1', 's2'};
+
+fail = TestFunction('GetStoichiometryMatrix', 1, 2, m, matrix, species);
+

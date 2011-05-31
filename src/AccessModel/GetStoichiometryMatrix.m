@@ -92,7 +92,7 @@ for i = 1:NumSpecies
                     error('GetStoichiometryMatrix(SBMLModel)\n%s', 'stoichiometry has been entered as a formula');
                 end;
                 if ((SBMLModel.SBML_level == 2 && SBMLModel.SBML_version > 1) ...
-                    || SBMLModel.SBML_version == 3)
+                    || SBMLModel.SBML_level == 3)
                   denominator = 1.0;
                 else
                   denominator = double(SBMLModel.reaction(j).product(SpeciesRole(4)).denominator);
