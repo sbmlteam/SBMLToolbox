@@ -47,3 +47,11 @@ names = {'k_R2'};
 values = 0.1;
 
 fail = TestFunction('GetParameterFromReactionUnique', 1, 2, r, names, values);
+
+m = TranslateSBML('../../Test/test-data/l3v1core.xml');
+r = m.reaction(1);
+
+names = {'k_r'};
+values = 9;
+
+fail = fail + TestFunction('GetParameterFromReactionUnique', 1, 2, r, names, values);

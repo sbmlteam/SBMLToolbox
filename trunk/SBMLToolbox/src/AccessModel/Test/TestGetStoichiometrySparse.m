@@ -39,27 +39,41 @@ function fail = TestGetStoichiometrySparse
 
 m = TranslateSBML('../../Test/test-data/algebraicRules.xml');
 
-matrix = [-1, 0; 1, -1; 0, 1; 0, 0];
+matrix = sparse(zeros(5,2));
+matrix(1,1) = -1;
+matrix(2,1) = 1;
+matrix(2,2) = -1;
+matrix(5,2) = 1;
 
 fail = TestFunction('GetStoichiometrySparse', 1, 1, m, matrix);
 
 m = TranslateSBML('../../Test/test-data/initialAssignments.xml');
 
-matrix = [-1, 0; 1, -1; 0, 1; 0, 0];
+matrix1 = sparse(zeros(5,2));
+matrix1(1,1) = -1;
+matrix1(2,1) = 1;
+matrix1(2,2) = -1;
+matrix1(5,2) = 1;
 
-fail = TestFunction('GetStoichiometrySparse', 1, 1, m, matrix);
+fail = fail + TestFunction('GetStoichiometrySparse', 1, 1, m, matrix1);
 
 m = TranslateSBML('../../Test/test-data/sparseStoichiometry.xml');
 
-matrix = sparse(zeros(12,4));
-matrix(1,1) = -1;
-matrix(2,2) = -1;
-matrix(11,3) = -1;
-matrix(5,4) = -1;
-matrix(2,1) = 1;
-matrix(3,2) = 1;
-matrix(12,3) = 1;
-matrix(6,4) = 1;
+matrix2 = sparse(zeros(12,4));
+matrix2(1,1) = -1;
+matrix2(2,2) = -1;
+matrix2(11,3) = -1;
+matrix2(5,4) = -1;
+matrix2(2,1) = 1;
+matrix2(3,2) = 1;
+matrix2(12,3) = 1;
+matrix2(6,4) = 1;
 
-fail = TestFunction('GetStoichiometrySparse', 1, 1, m, matrix);
+fail = fail + TestFunction('GetStoichiometrySparse', 1, 1, m, matrix2);
+
+m = TranslateSBML('../../Test/test-data/l3v1core.xml');
+
+matrix3 = [NaN; 0; 1];
+
+fail = fail + TestFunction('GetStoichiometrySparse', 1, 1, m, matrix3);
 
