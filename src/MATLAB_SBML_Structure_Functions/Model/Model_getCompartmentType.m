@@ -42,7 +42,9 @@ function compartmentType = Model_getCompartmentType(SBMLModel, index)
 [level, version] = GetLevelVersion(SBMLModel);
 
 if isfield(SBMLModel, 'compartmentType')
-	if index <= length(SBMLModel.compartmentType)
+	if (~isIntegralNumber(index) || index <= 0)
+		error('index must be a positive integer');
+  elseif index <= length(SBMLModel.compartmentType)
 		compartmentType = SBMLModel.compartmentType(index);
 	else
 		error('index is out of range');

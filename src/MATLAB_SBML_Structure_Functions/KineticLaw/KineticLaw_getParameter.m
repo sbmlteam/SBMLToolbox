@@ -42,7 +42,9 @@ function parameter = KineticLaw_getParameter(SBMLKineticLaw, index)
 [level, version] = GetLevelVersion(SBMLKineticLaw);
 
 if isfield(SBMLKineticLaw, 'parameter')
-	if index <= length(SBMLKineticLaw.parameter)
+	if (~isIntegralNumber(index) || index <= 0)
+		error('index must be a positive integer');
+  elseif index <= length(SBMLKineticLaw.parameter)
 		parameter = SBMLKineticLaw.parameter(index);
 	else
 		error('index is out of range');

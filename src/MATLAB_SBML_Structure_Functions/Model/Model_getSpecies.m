@@ -42,7 +42,9 @@ function species = Model_getSpecies(SBMLModel, index)
 [level, version] = GetLevelVersion(SBMLModel);
 
 if isfield(SBMLModel, 'species')
-	if index <= length(SBMLModel.species)
+	if (~isIntegralNumber(index) || index <= 0)
+		error('index must be a positive integer');
+  elseif index <= length(SBMLModel.species)
 		species = SBMLModel.species(index);
 	else
 		error('index is out of range');

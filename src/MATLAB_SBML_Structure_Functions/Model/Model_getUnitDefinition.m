@@ -42,7 +42,9 @@ function unitDefinition = Model_getUnitDefinition(SBMLModel, index)
 [level, version] = GetLevelVersion(SBMLModel);
 
 if isfield(SBMLModel, 'unitDefinition')
-	if index <= length(SBMLModel.unitDefinition)
+	if (~isIntegralNumber(index) || index <= 0)
+		error('index must be a positive integer');
+  elseif index <= length(SBMLModel.unitDefinition)
 		unitDefinition = SBMLModel.unitDefinition(index);
 	else
 		error('index is out of range');

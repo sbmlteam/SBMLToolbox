@@ -42,7 +42,9 @@ function constraint = Model_getConstraint(SBMLModel, index)
 [level, version] = GetLevelVersion(SBMLModel);
 
 if isfield(SBMLModel, 'constraint')
-	if index <= length(SBMLModel.constraint)
+	if (~isIntegralNumber(index) || index <= 0)
+		error('index must be a positive integer');
+  elseif index <= length(SBMLModel.constraint)
 		constraint = SBMLModel.constraint(index);
 	else
 		error('index is out of range');
