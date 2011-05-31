@@ -82,15 +82,18 @@ end;
 % this replaces all rules in the original formula
 formula = original_formula;
 rule_applied = 1;
-iterations_left = length(model.rule) + 1;
+iterations_left = Model_getNumAssignmentRules(model) + 1;
 while rule_applied > 0 && iterations_left > 0
     rule_applied = 0;
     for rule = model.rule
+      if (strcmp(rule.typecode, 'SBML_ASSIGNMENT_RULE') ...
+          || (isfield(rule, 'type') && strcmp(rule.type, 'scalar')))
         str = formula;
         exp = strcat('\<',rule.variable,'\>');
         repstr = rule.formula;
         formula = regexprep(str,exp,repstr);
         rule_applied = rule_applied + strcmp(str, formula)==false;
+      end;
     end
     iterations_left = iterations_left - 1;
 end
