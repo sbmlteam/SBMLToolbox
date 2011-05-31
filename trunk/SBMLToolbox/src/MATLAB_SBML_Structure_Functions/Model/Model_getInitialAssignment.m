@@ -42,7 +42,9 @@ function initialAssignment = Model_getInitialAssignment(SBMLModel, index)
 [level, version] = GetLevelVersion(SBMLModel);
 
 if isfield(SBMLModel, 'initialAssignment')
-	if index <= length(SBMLModel.initialAssignment)
+	if (~isIntegralNumber(index) || index <= 0)
+		error('index must be a positive integer');
+  elseif index <= length(SBMLModel.initialAssignment)
 		initialAssignment = SBMLModel.initialAssignment(index);
 	else
 		error('index is out of range');

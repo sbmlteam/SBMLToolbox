@@ -42,7 +42,9 @@ function localParameter = KineticLaw_getLocalParameter(SBMLKineticLaw, index)
 [level, version] = GetLevelVersion(SBMLKineticLaw);
 
 if isfield(SBMLKineticLaw, 'localParameter')
-	if index <= length(SBMLKineticLaw.localParameter)
+	if (~isIntegralNumber(index) || index <= 0)
+		error('index must be a positive integer');
+  elseif index <= length(SBMLKineticLaw.localParameter)
 		localParameter = SBMLKineticLaw.localParameter(index);
 	else
 		error('index is out of range');

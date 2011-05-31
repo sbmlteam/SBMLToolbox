@@ -42,7 +42,9 @@ function parameter = Model_getParameter(SBMLModel, index)
 [level, version] = GetLevelVersion(SBMLModel);
 
 if isfield(SBMLModel, 'parameter')
-	if index <= length(SBMLModel.parameter)
+	if (~isIntegralNumber(index) || index <= 0)
+		error('index must be a positive integer');
+  elseif index <= length(SBMLModel.parameter)
 		parameter = SBMLModel.parameter(index);
 	else
 		error('index is out of range');

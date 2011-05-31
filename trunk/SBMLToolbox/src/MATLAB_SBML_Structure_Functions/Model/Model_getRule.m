@@ -42,7 +42,9 @@ function rule = Model_getRule(SBMLModel, index)
 [level, version] = GetLevelVersion(SBMLModel);
 
 if isfield(SBMLModel, 'rule')
-	if index <= length(SBMLModel.rule)
+	if (~isIntegralNumber(index) || index <= 0)
+		error('index must be a positive integer');
+  elseif index <= length(SBMLModel.rule)
 		rule = SBMLModel.rule(index);
 	else
 		error('index is out of range');
