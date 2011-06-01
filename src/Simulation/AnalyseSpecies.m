@@ -56,8 +56,8 @@ if (~isSBML_Model(SBMLModel))
     error('AnalyseSpecies(SBMLModel)\n%s', 'argument must be an SBMLModel structure');
 end;
 
-[name, KineticLaw] = Model_determineRateLawsFromReactions(SBMLModel);
-[n, RateRule] = Model_determineRateLawsFromRules(SBMLModel);
+[name, KineticLaw] = GetRateLawsFromReactions(SBMLModel);
+[n, RateRule] = GetRateLawsFromRules(SBMLModel);
 [n, AssignRule] = GetSpeciesAssignmentRules(SBMLModel);
 [n, AlgRules] = GetSpeciesAlgebraicRules(SBMLModel);
 [n, Values] = GetSpecies(SBMLModel);
@@ -66,6 +66,7 @@ end;
 for i = 1:length(SBMLModel.species)
     Species(i).Name = name(i);
 
+    % species Type
     if (SBMLModel.SBML_level == 2 && SBMLModel.SBML_version  > 1)
       if exist('OCTAVE_VERSION')
         if isempty(SBMLModel.species(i).speciesType)
@@ -78,38 +79,39 @@ for i = 1:length(SBMLModel.species)
       end;
     end;
     
+    % boundary condition and constant
     bc = SBMLModel.species(i).boundaryCondition;
-    if (SBMLModel.SBML_level == 2)
+    if (SBMLModel.SBML_level > 1)
         const = SBMLModel.species(i).constant;
     else
         const = 0;
     end;
-
-    
     Species(i).constant = const;
     Species(i).boundaryCondition = bc;
 
+    %initial value / amount/ concentration
     Species(i).initialValue = Values(i);
     
-    if (SBMLModel.SBML_level == 2)
-        comp = Model_getCompartmentById(SBMLModel, SBMLModel.species(i).compartment);
-        if (comp.spatialDimensions == 0)
-          Species(i).is0Dcompartment = 1;
-        else
-          Species(i).is0Dcompartment = 0;
-        end;
+    if (SBMLModel.SBML_level > 1)
+      comp = Model_getCompartmentById(SBMLModel, SBMLModel.species(i).compartment);
+      if (comp.spatialDimensions == 0)
+        Species(i).is0Dcompartment = 1;
+      else
+        Species(i).is0Dcompartment = 0;
+      end;
+      
       if (SBMLModel.species(i).isSetInitialConcentration == 0 ...
-        && SBMLModel.species(i).isSetInitialAmount == 0)
+                        && SBMLModel.species(i).isSetInitialAmount == 0)
         % value is set by rule/assignment thus will be concentration
-        % unless the compartment is 0D
-        comp = Model_getCompartmentById(SBMLModel, SBMLModel.species(i).compartment);
-        if (comp.spatialDimensions == 0)
+        % unless the compartment is 0D or species hasOnlySubstanceUnits
+        if (comp.spatialDimensions == 0 ...
+            || SBMLModel.species(i).hasOnlySubstanceUnits == 1)
           Species(i).isConcentration = 0;
         else
           Species(i).isConcentration = 1;
         end;
       elseif (SBMLModel.species(i).isSetInitialAmount == 1)
-        % initial value given as amount
+        % species has a value given as amount
         % but if overridden by assignment it will be in conc
         if (abs(SBMLModel.species(i).initialAmount - Values(i)) > 1e-16)
           Species(i).isConcentration = 1;
@@ -117,10 +119,24 @@ for i = 1:length(SBMLModel.species)
           Species(i).isConcentration = 0;
         end;
       else
-        Species(i).isConcentration = 1;
+        % here species has a value given as concentration
+        % if comp is 0D or species hasOnlySubstanceUnits this is not
+        % correct and needs to be converted
+        if (comp.spatialDimensions == 0 ...
+            || SBMLModel.species(i).hasOnlySubstanceUnits == 1)
+          Species(i).isConcentration = 0;
+          if isnan(comp.size)
+            Species(i).initialvalue = NaN;
+          else
+            Species(i).initialValue = Values(i)/comp.size;
+          end;
+        else
+          Species(i).isConcentration = 1;
+        end;
       end;
     else 
-        Species(i).isConcentration = 0;
+      % level 1 species were in amounts
+      Species(i).isConcentration = 0;
     end;
     Species(i).compartment = SBMLModel.species(i).compartment;
     
@@ -156,7 +172,11 @@ for i = 1:length(SBMLModel.species)
         Species(i).AlgebraicRule = AlgRules(i);
     end;
 
-    if ((Species(i).constant == 0) && (Species(i).ChangedByReaction == 0) && (Species(i).ChangedByRateRule == 0) && (Species(i).ChangedByAssignmentRule == 0))
+    if ((Species(i).constant == 0) ...
+        && (Species(i).ChangedByReaction == 0) ...
+        && (Species(i).ChangedByRateRule == 0) ...
+        && (Species(i).ChangedByAssignmentRule == 0))
+       
         if (Species(i).InAlgebraicRule == 1)
             Species(i).ConvertedToAssignRule = 1;
             Rule = Species(i).AlgebraicRule{1};
@@ -177,7 +197,9 @@ for i = 1:length(SBMLModel.species)
             Species(i).ConvertedToAssignRule = 0;
             Species(i).ConvertedRule = '';
         end;
-    elseif ((isnan(Species(i).initialValue)) && (Species(i).InAlgebraicRule == 1) && (Species(i).ChangedByAssignmentRule == 0))
+    elseif ((isnan(Species(i).initialValue)) ...
+      && (Species(i).InAlgebraicRule == 1) ...
+      && (Species(i).ChangedByAssignmentRule == 0))
         error ('The model is over parameterised and the simulation cannot make decisions regarding rules');
     
     else
