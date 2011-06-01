@@ -309,3 +309,62 @@ output_4(1).ConvertedToAssignRule = 0;
 output_4(1).ConvertedRule = '';
 
 fail = fail + TestFunction('AnalyseSpecies', 1, 1, m, output_4);
+
+m = TranslateSBML('../../Test/test-data/l3v1core.xml');
+
+output_5(1).Name = {'s'};
+output_5(1).constant = 0;
+output_5(1).boundaryCondition = 0;
+output_5(1).initialValue = 0;
+output_5(1).is0Dcompartment = 0;
+output_5(1).isConcentration = 0;
+output_5(1).compartment = 'a';
+output_5(1).ChangedByReaction = 1;
+output_5(1).KineticLaw = {' - (s*p) * (s*k_r/p)'};
+output_5(1).ChangedByRateRule = 0;
+output_5(1).RateRule = '';
+output_5(1).ChangedByAssignmentRule = 0;
+output_5(1).AssignmentRule = '';
+output_5(1).InAlgebraicRule = 0;
+output_5(1).AlgebraicRule = '';
+output_5(1).ConvertedToAssignRule = 0;
+output_5(1).ConvertedRule = '';
+
+output_5(2).Name = {'s1'};
+output_5(2).constant = 1;
+output_5(2).boundaryCondition = 1;
+output_5(2).initialValue = 2.2;
+output_5(2).is0Dcompartment = 0;
+output_5(2).isConcentration = 0;
+output_5(2).compartment = 'a';
+output_5(2).ChangedByReaction = 0;
+output_5(2).KineticLaw = '';
+output_5(2).ChangedByRateRule = 0;
+output_5(2).RateRule = '';
+output_5(2).ChangedByAssignmentRule = 0;
+output_5(2).AssignmentRule = '';
+output_5(2).InAlgebraicRule = 0;
+output_5(2).AlgebraicRule = '';
+output_5(2).ConvertedToAssignRule = 0;
+output_5(2).ConvertedRule = '';
+
+output_5(3).Name = {'s2'};
+output_5(3).constant = 0;
+output_5(3).boundaryCondition = 0;
+output_5(3).initialValue = NaN;
+output_5(3).is0Dcompartment = 0;
+output_5(3).isConcentration = 1;
+output_5(3).compartment = 'a';
+output_5(3).ChangedByReaction = 1;
+output_5(3).KineticLaw = {' + (s*k_r/p)'};
+output_5(3).ChangedByRateRule = 0;
+output_5(3).RateRule = '';
+output_5(3).ChangedByAssignmentRule = 0;
+output_5(3).AssignmentRule = '';
+output_5(3).InAlgebraicRule = 0;
+output_5(3).AlgebraicRule = '';
+output_5(3).ConvertedToAssignRule = 0;
+output_5(3).ConvertedRule = '';
+
+fail = fail + TestFunction('AnalyseSpecies', 1, 1, m, output_5);
+
