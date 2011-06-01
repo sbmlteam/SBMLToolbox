@@ -59,7 +59,7 @@ for i = 1:NumSpecies
     %determine which reactions it occurs within
     for j = 1:NumReactions
 
-        SpeciesRole = Species_determineRoleInReaction(SBMLModel.species(i), SBMLModel.reaction(j));
+        SpeciesRole = DetermineSpeciesRoleInReaction(SBMLModel.species(i), SBMLModel.reaction(j));
 
         if (sum(SpeciesRole) == 0)
             % not in this reaction
