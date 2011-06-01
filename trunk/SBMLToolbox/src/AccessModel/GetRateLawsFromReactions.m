@@ -75,7 +75,7 @@ for i = 1:NumberSpecies
         %determine which reactions it occurs within
         for j = 1:NumReactions
 
-            SpeciesRole = Species_determineRoleInReaction(SBMLModel.species(i), SBMLModel.reaction(j));
+            SpeciesRole = DetermineSpeciesRoleInReaction(SBMLModel.species(i), SBMLModel.reaction(j));
             
             if (SBMLModel.SBML_level < 3)
                kineticLawMath = SBMLModel.reaction(j).kineticLaw.formula;
