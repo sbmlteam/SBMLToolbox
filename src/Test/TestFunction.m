@@ -140,10 +140,30 @@ else
   i = 1;
   % check whether we are dealing with a nan which will always fail equality
   while (y == 1 && i <= length(array1))
-    if isnan(array1(i))
-      y = isnan(array2(i));
+    if ~isstruct(array1)
+      if isnan(array1(i))
+        y = isnan(array2(i));
+      else
+        y = isequal(array1(i), array2(i));
+      end;
     else
-      y = isequal(array1(i), array2(i));
+      fields = fieldnames(array1(i));
+      j = 1;
+      while( y == 1 && j <= length(fields))
+        ff1 = getfield(array1(i), fields{j});
+        ff2 = getfield(array2(i), fields{j});
+        if (iscell(ff1))
+          ff1 = ff1{1};
+          ff2 = ff2{1};
+        end;
+        if isnan(ff1)
+          y = isnan(ff2);
+        else
+          y = isequal(ff1, ff2);
+        end;       
+        j = j+1;
+      end;
+      
     end;
     i = i + 1;
   end;
