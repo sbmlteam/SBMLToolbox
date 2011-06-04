@@ -234,8 +234,11 @@ for i = 1:NumberSpecies
         RateLaws{i} = output;
     end;
     
-end; % for NumSpecies
+end; % for NumberSpecies
 
+if NumberSpecies == 0
+  RateLaws = {};
+end;
 
 
 

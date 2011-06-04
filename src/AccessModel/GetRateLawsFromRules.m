@@ -97,3 +97,8 @@ for i = 1:NumberSpecies
     end;
     
 end; % for NumSpecies
+
+if NumberSpecies == 0
+  RateLaws = {};
+end;
+
