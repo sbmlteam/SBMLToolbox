@@ -57,19 +57,19 @@ end;
 
 % -------------------------------------------------------------
 % check that we can deal with the model
-for i=1:length(SBMLModel.parameter)
-  if (SBMLModel.parameter(i).constant == 0)
-    error('WriteODEFunction(SBMLModel, (optional) filename)\n%s', 'Cannot deal with varying parameters');
-  end;
-end;
+% for i=1:length(SBMLModel.parameter)
+%   if (SBMLModel.parameter(i).constant == 0)
+%     error('WriteODEFunction(SBMLModel, (optional) filename)\n%s', 'Cannot deal with varying parameters');
+%   end;
+% end;
 for i=1:length(SBMLModel.compartment)
   if (SBMLModel.compartment(i).constant == 0)
     error('WriteODEFunction(SBMLModel, (optional) filename)\n%s', 'Cannot deal with varying compartments');
   end;
 end;
-if (length(SBMLModel.species) == 0)
-    error('WriteODEFunction(SBMLModel, (optional) filename)\n%s', 'Cannot deal with models with no species');
-end;  
+% if (length(SBMLModel.species) == 0)
+%     error('WriteODEFunction(SBMLModel, (optional) filename)\n%s', 'Cannot deal with models with no species');
+% end;  
 for i=1:length(SBMLModel.event)
   if (~isempty(SBMLModel.event(i).delay))
     error('WriteODEFunction(SBMLModel, (optional) filename)\n%s', 'Cannot deal with delayed events');
@@ -88,12 +88,23 @@ end;
 % get information from the model
 
 [ParameterNames, ParameterValues] = GetAllParametersUnique(SBMLModel);
+[VarParams, VarInitValues] = GetVaryingParameters(SBMLModel);
+NumberParams = length(VarParams);
 NumberSpecies = length(SBMLModel.species);
-Species = AnalyseSpecies(SBMLModel);
-Speciesnames = GetSpecies(SBMLModel);
-[CompartmentNames, CompartmentValues] = GetCompartments(SBMLModel);
+if NumberSpecies > 0
+  Species = AnalyseSpecies(SBMLModel);
+  Speciesnames = GetSpecies(SBMLModel);
+end;
+if NumberParams > 0
+  Parameters = AnalyseVaryingParameters(SBMLModel);
+end;
+if length(SBMLModel.compartment) > 0
+  [CompartmentNames, CompartmentValues] = GetCompartments(SBMLModel);
+else
+  CompartmentNames = [];
+end;
 
-if (SBMLModel.SBML_level == 2)
+if (SBMLModel.SBML_level > 1)
     NumEvents = length(SBMLModel.event);
     NumFuncs = length(SBMLModel.functionDefinition);
 
@@ -108,7 +119,8 @@ if (SBMLModel.SBML_level == 2)
     else
         timeVariable = 'time';
     end;
-    if (SBMLModel.SBML_version > 1)
+    if ((SBMLModel.SBML_level == 2 &&SBMLModel.SBML_version > 1) || ...
+        (SBMLModel.SBML_level > 2))
       if (length(SBMLModel.constraint) > 0)
         error('Cannot deal with constraints.');
       end;
@@ -158,11 +170,11 @@ fileID = fopen(fileName, 'w');
 fprintf(fileID, '%% function %s takes\n', Name);
 fprintf(fileID, '%%\n');
 fprintf(fileID, '%% either\t1) no arguments\n');
-fprintf(fileID, '%%       \t    and returns a vector of the initial species concentrations\n');
+fprintf(fileID, '%%       \t    and returns a vector of the initial values\n');
 fprintf(fileID, '%%\n');
 fprintf(fileID, '%% or    \t2) time - the elapsed time since the beginning of the reactions\n');
-fprintf(fileID, '%%       \t   x_values    - vector of the current concentrations of the species\n');
-fprintf(fileID, '%%       \t    and returns a vector of the rate of change of concentration of each of the species\n');
+fprintf(fileID, '%%       \t   x_values    - vector of the current values of the variables\n');
+fprintf(fileID, '%%       \t    and returns a vector of the rate of change of value of each of the variables\n');
 fprintf(fileID, '%%\n');
 fprintf(fileID, '%% %s can be used with MATLABs odeN functions as \n', Name);
 fprintf(fileID, '%%\n');
@@ -170,19 +182,22 @@ fprintf(fileID, '%%\t[t,x] = ode23(@%s, [0, t_end], %s)\n', Name, Name);
 fprintf(fileID, '%%\n');
 fprintf(fileID, '%%\t\t\twhere  t_end is the end time of the simulation\n');
 fprintf(fileID, '%%\n');
-fprintf(fileID, '%%The species in this model are related to the output vectors with the following indices\n');
-fprintf(fileID, '%%\tIndex\tSpecies name\n');
+fprintf(fileID, '%%The variables in this model are related to the output vectors with the following indices\n');
+fprintf(fileID, '%%\tIndex\tVariable name\n');
 for i = 1:NumberSpecies
     fprintf(fileID, '%%\t  %u  \t  %s\n', i, char(Species(i).Name));
 end;
+for i = 1:NumberParams
+    fprintf(fileID, '%%\t  %u  \t  %s\n', i+NumberSpecies, char(VarParams{i}));
+end;
 fprintf(fileID, '%%\n');
 
-% write the species concentration vector
+% write the variable vector
 fprintf(fileID, '%%--------------------------------------------------------\n');
 fprintf(fileID, '%% output vector\n\n');
 
 
-fprintf(fileID, 'xdot = zeros(%u, 1);\n', NumberSpecies);
+fprintf(fileID, 'xdot = zeros(%u, 1);\n', NumberSpecies+NumberParams);
 
 % write the compartment values
 fprintf(fileID, '\n%%--------------------------------------------------------\n');
@@ -202,7 +217,7 @@ end;
 
 % write the initial concentration values for the species
 fprintf(fileID, '\n%%--------------------------------------------------------\n');
-fprintf(fileID, '%% initial species values - these may be overridden by assignment rules\n');
+fprintf(fileID, '%% initial values of variables - these may be overridden by assignment rules\n');
 fprintf(fileID, '%% NOTE: any use of initialAssignments has been considered in calculating the initial values\n\n');
 
 fprintf(fileID, 'if (nargin == 0)\n');
@@ -213,7 +228,7 @@ fprintf(fileID, 'if (nargin == 0)\n');
 fprintf(fileID, '\n\t%% initial time\n');
 fprintf(fileID, '\t%s = 0;\n', timeVariable);
 
-fprintf(fileID, '\n\t%% initial concentrations\n');
+fprintf(fileID, '\n\t%% initial values\n');
 
 for i = 1:NumberSpecies
   if (Species(i).isConcentration == 1)
@@ -225,11 +240,18 @@ for i = 1:NumberSpecies
   end;
 end;
 
+for i = 1:NumberParams
+  fprintf(fileID, '\t%s = %g;\n', char(Parameters(i).Name), Parameters(i).initialValue);
+end;
+
 fprintf(fileID, '\nelse\n');
 
-fprintf(fileID, '\t%% floating species concentrations\n');
+fprintf(fileID, '\t%% floating variable values\n');
 for i = 1:NumberSpecies
     fprintf(fileID, '\t%s = x_values(%u);\n', char(Species(i).Name), i);
+end;
+for i = 1:NumberParams
+    fprintf(fileID, '\t%s = x_values(%u);\n', char(Parameters(i).Name), i+NumberSpecies);
 end;
 
 fprintf(fileID, '\nend;\n');
@@ -255,12 +277,18 @@ for i = 1:NumberSpecies
     end;
 end;
 
+for i = 1:NumberParams
+    if (Parameters(i).ConvertedToAssignRule == 1)
+        fprintf(fileID, '%s = %s;\n', char(Parameters(i).Name), Parameters(i).ConvertedRule);
+    end;
+end;
+
 % write code to calculate concentration values
 fprintf(fileID, '\n%%--------------------------------------------------------\n');
 fprintf(fileID, '%% calculate concentration values\n\n');
 
 fprintf(fileID, 'if (nargin == 0)\n');
-fprintf(fileID, '\n\t%% initial concentrations\n');
+fprintf(fileID, '\n\t%% initial values\n');
 
 % need to catch any initial concentrations that are not set
 % and case where an initial concentration is set but is incosistent with a
@@ -292,9 +320,29 @@ for i = 1:NumberSpecies
    end;
 end; % for NumSpecies
 
+% parameters
+for i = 1:NumberParams
+
+    if (Parameters(i).ChangedByAssignmentRule == 0)
+
+        % not set by rule - use value given
+        if (isnan(Parameters(i).initialValue))                      
+            error('WriteODEFunction(SBMLModel)\n%s', 'parameter not provided or assigned by rule');
+        else
+           fprintf(fileID, '\txdot(%u) = %g;\n', i+NumberSpecies, Parameters(i).initialValue);
+        end;
+    else
+
+        % initial concentration set by rule
+        fprintf(fileID, '\txdot(%u) = %s;\n',  i+NumberSpecies, char(Parameters(i).Name));
+
+   end;
+end; % for NumParams
+
+
 fprintf(fileID, '\nelse\n');
 
-fprintf(fileID, '\n\t%% species concentration rate equations\n');
+fprintf(fileID, '\n\t%% rate equations\n');
 NeedToOrderArray = 0;
 for i = 1:NumberSpecies
 
@@ -365,14 +413,55 @@ for i = 1:NumberSpecies
     end;
 end; % for Numspecies
 
+for i = 1:NumberParams
+
+    if (Parameters(i).ChangedByRateRule == 1)
+       Array{i+NumberSpecies} = sprintf('\txdot(%u) = %s;\n', i+NumberSpecies, char(Parameters(i).RateRule));
+
+    elseif (Parameters(i).ChangedByAssignmentRule == 1)
+        if (isempty(strfind(char(Parameters(i).AssignmentRule), 'piecewise')))
+            DifferentiatedRule = DifferentiateRule(char(Parameters(i).AssignmentRule), VarParams, SBMLModel);
+            Array{i+NumberSpecies} = sprintf('\txdot(%u) = %s;\n', i+NumberSpecies, char(DifferentiatedRule));
+            NeedToOrderArray = 1;
+        else
+          
+          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+          
+          %%%% TO DO NESTED PIECEWISE
+          
+            Args = DealWithPiecewise(char(Parameters(i).AssignmentRule));
+
+            DiffRule1 = DifferentiateRule(char(Args{1}), VarParams, SBMLModel);
+            DiffRule2 = DifferentiateRule(char(Args{3}), VarParams, SBMLModel);
+            Array{i+NumberSpecies} = sprintf('\tif (%s) \n\t\txdot(%d) = %s;\n\telse\n\t\txdot(%u) = %s;\n\tend;\n', ...
+              Args{2}, i+NumberSpecies, char(DiffRule1), i+NumberSpecies, char(DiffRule2));
+       %     NeedToOrderArray = 1;
+        end;
+
+    elseif (Parameters(i).ConvertedToAssignRule == 1)
+        % here no rate law has been provided by either kinetic law or rate
+        % rule - need to check whether the species is in an
+        % algebraic rule which may impact on the rate
+        DifferentiatedRule = DifferentiateRule(char(Parameters(i).ConvertedRule), VarParams, SBMLModel);
+        Array{i+NumberSpecies} = sprintf('\txdot(%u) = %s;\n', i+NumberSpecies, char(DifferentiatedRule));
+        NeedToOrderArray = 1;
+    else
+        % not set by anything
+        Array{i+NumberSpecies} = sprintf('\txdot(%u) = 0;\n', i+NumberSpecies);
+
+    end;
+end; % for Numparams
+
 % need to check that assignments are made in appropriate order
 % deals with rules that have been differentiated where xdot may occur on
 % both sides of an equation
 if (NeedToOrderArray == 1)
     Array = OrderArray(Array);
 end;
-for i = 1:NumberSpecies
+if (NumberSpecies + NumberParams) > 0
+for i = 1:length(Array)
     fprintf(fileID, '%s', Array{i});
+end;
 end;
 
 

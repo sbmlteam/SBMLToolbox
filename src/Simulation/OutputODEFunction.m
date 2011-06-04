@@ -87,6 +87,18 @@ if ((length(Time_limit) ~= 1) || (~isnumeric(Time_limit)))
     error('OutputODEFunction(SBMLModel, time)\n%s', 'third argument must be a single real number indicating a time limit');
 end;
 
+%--------------------------------------------------------------
+% get variables from the model
+[VarParams, VarInitValues] = GetVaryingParameters(SBMLModel);
+NumberParams = length(VarParams);
+
+[SpeciesNames, SpeciesValues] = GetSpecies(SBMLModel);
+NumberSpecies = length(SBMLModel.species);
+
+VarNames = [SpeciesNames, VarParams];
+VarValues = [SpeciesValues, VarInitValues];
+NumVars = NumberSpecies + NumberParams;
+
 %---------------------------------------------------------------
 % get the name/id of the model
 
@@ -144,7 +156,7 @@ AbsTol = RelTol * 1e-4;
 
 options = odeset('RelTol', RelTol, 'AbsTol', AbsTol);
 % if there are events
-if ((SBMLModel.SBML_level == 2) && (length(SBMLModel.event) ~= 0))
+if ((SBMLModel.SBML_level > 1) && (length(SBMLModel.event) ~= 0))
     eventName = strcat(Name, '_events');
     afterEvent = strcat(Name, '_eventAssign');
     eventHandle = str2func(eventName);
@@ -179,14 +191,14 @@ if ((SBMLModel.SBML_level == 2) && (length(SBMLModel.event) ~= 0))
 
 
         [len, wid] = size(SpeciesCourseA);
-        for i = 1:length(SBMLModel.species)
+        for i = 1:NumVars
             SpeciesValues(i) = SpeciesCourseA(len, i);
         end;
 
         if (TimeCourseA(end) ~= Time_span(end))
 
             TimeCourseA = TimeCourseA(1:length(TimeCourseA)-1);
-            for i = 1:length(SBMLModel.species)
+            for i = 1:NumVars
                 SpeciesCourseB(:,i) = SpeciesCourseA(1:len-1, i);
             end;
         else
@@ -202,7 +214,7 @@ if ((SBMLModel.SBML_level == 2) && (length(SBMLModel.event) ~= 0))
         if (~isempty(Time_span))
             SpeciesValues = feval(AfterEventHandle, eventTime, SpeciesValues, eventNo);
             [t,NewValues, eventTime, ab, eventNo] = ode45(fhandle, [eventTime, Time_span(1)], SpeciesValues, options);
-            for i = 1:length(SBMLModel.species)
+            for i = 1:NumVars
                 InitConds(i) = NewValues(length(NewValues), i);
             end;
         end;
@@ -246,7 +258,7 @@ if (fail && ~exist('OCTAVE_VERSION'))
     TimeCourse = [];
     SpeciesCourse = [];
     % if there are events
-    if ((SBMLModel.SBML_level == 2) && (length(SBMLModel.event) ~= 0))
+    if ((SBMLModel.SBML_level > 1) && (length(SBMLModel.event) ~= 0))
         while ((~isempty(Time_span)) && (Time_span(1) < Time_span(end)))
 
             [TimeCourseA, SpeciesCourseA] = ode23s(fhandle, Time_span, InitConds, options);
@@ -270,14 +282,14 @@ if (fail && ~exist('OCTAVE_VERSION'))
 
             % keep copy of event time
             eventTime = TimeCourseA(end);
-            for i = 1:length(SBMLModel.species)
+            for i = 1:NumVars
                 SpeciesValues(i) = SpeciesCourseA(length(SpeciesCourseA), i);
             end;
 
             if (TimeCourseA(end) ~= Time_span(end))
 
                 TimeCourseA = TimeCourseA(1:length(TimeCourseA)-1);
-                for i = 1:length(SBMLModel.species)
+                for i = 1:NumVars
                     SpeciesCourseB(:,i) = SpeciesCourseA(1:length(SpeciesCourseA)-1, i);
                 end;
             else
@@ -293,7 +305,7 @@ if (fail && ~exist('OCTAVE_VERSION'))
             if (~isempty(Time_span))
                 SpeciesValues = feval(AfterEventHandle, eventTime, SpeciesValues);
                 [t,NewValues] = ode23s(fhandle, [eventTime, Time_span(1)], SpeciesValues, options);
-                for i = 1:length(SBMLModel.species)
+                for i = 1:NumVars
                     InitConds(i) = NewValues(length(NewValues), i);
                 end;
             end;
@@ -314,6 +326,12 @@ if (fail && ~exist('OCTAVE_VERSION'))
 end;
 
 Species = GetSpecies(SBMLModel);
+NumSpecies = length(Species);
+
+Params = GetVaryingParameters(SBMLModel);
+NumParams = length(Params);
+
+Species = [Species, Params];
 
 %--------------------------------------------------------------
 % dont even try and plot from octave
@@ -380,10 +398,6 @@ end;
 if (~fail)
      if ((nargin > 4) && (varargin{5} == 1))
         %------------------------------------------------------------
-        % get the character strings for each species name
-         [Speciesnames] = GetSpecies(SBMLModel);
-
-        %---------------------------------------------------------------
         fileName = strcat(Name, '.csv');
       
         %--------------------------------------------------------------------
@@ -394,7 +408,7 @@ if (~fail)
         % write the header
         fprintf(fileID,  'time');
         for i = 1: length(Species)
-            fprintf(fileID, ',%s', Speciesnames{i});
+            fprintf(fileID, ',%s', Species{i});
         end;
         fprintf(fileID, '\n');
 
@@ -402,7 +416,7 @@ if (~fail)
         for i = 1:length(TimeCourse)
             fprintf(fileID, '%0.5g', TimeCourse(i));
 
-            for j = 1:length(Species)
+            for j = 1:NumSpecies
               if (outAmt == 1)
                 % not necessarily the size given
                 [compartments, comp_values] = GetCompartments(SBMLModel);
@@ -422,8 +436,11 @@ if (~fail)
                 fprintf(fileID, ',%1.16g', SpeciesCourse(i,j));
               end;
             end;
-            fprintf(fileID, '\n');
 
+            for j = NumSpecies+1:NumSpecies+NumParams
+                fprintf(fileID, ',%1.16g', SpeciesCourse(i,j));
+            end;
+            fprintf(fileID, '\n');
         end;
 
         fclose(fileID);

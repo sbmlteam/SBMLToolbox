@@ -43,11 +43,21 @@ end;
 % -------------------------------------------------------------
 
 % get information from the model
+% get information from the model
 [ParameterNames, ParameterValues] = GetAllParametersUnique(SBMLModel);
+[VarParams, VarInitValues] = GetVaryingParameters(SBMLModel);
+NumberParams = length(VarParams);
+
 [SpeciesNames, SpeciesValues] = GetSpecies(SBMLModel);
 NumberSpecies = length(SBMLModel.species);
+
+VarNames = [SpeciesNames, VarParams];
+VarValues = [SpeciesValues, VarInitValues];
+NumberVars = NumberSpecies + NumberParams;
+
 NumFuncs = length(SBMLModel.functionDefinition);
 Species = AnalyseSpecies(SBMLModel);
+Params = AnalyseVaryingParameters(SBMLModel);
 
 %---------------------------------------------------------------
 % get the name/id of the model
@@ -84,7 +94,7 @@ fileName = strcat(Name, '.m');
 fileID = fopen(fileName, 'w');
 
 % write the function declaration
-fprintf(fileID,  'function Values = %s(%s, SpeciesValues, eventNo)\n', Name, timeVariable);
+fprintf(fileID,  'function Values = %s(%s, VarValues, eventNo)\n', Name, timeVariable);
 
 % need to add comments to output file
 fprintf(fileID, '%% function %s takes\n', Name);
@@ -113,9 +123,9 @@ end;
 
 % write the current species concentrations
 fprintf(fileID, '\n%%--------------------------------------------------------\n');
-fprintf(fileID, '%% floating species concentrations\n');
-for i = 1:NumberSpecies
-    fprintf(fileID, '%s = SpeciesValues(%u);\n', SpeciesNames{i}, i);
+fprintf(fileID, '%% floating variables\n');
+for i = 1:NumberVars
+    fprintf(fileID, '%s = VarValues(%u);\n', VarNames{i}, i);
 end;
 
 % write the event assignments
@@ -128,12 +138,11 @@ for i = 1:length(SBMLModel.event)
   for j = 1:length(SBMLModel.event(i).eventAssignment)
     % if a variable being assigned occurs in the math of a subsequent event
     % assignment the value should be the original
-    % at present only species are dealt with !
     assignment = SBMLModel.event(i).eventAssignment(j).math;
-    for s=1:NumberSpecies
-      if (~isempty(strfind(SBMLModel.event(i).eventAssignment(j).math, SpeciesNames{s})))
-        speciesV = sprintf('SpeciesValues(%u)', s);
-        assignment = strrep(assignment, SpeciesNames{s}, speciesV);
+    for s=1:NumberVars
+      if (~isempty(strfind(SBMLModel.event(i).eventAssignment(j).math, VarNames{s})))
+        speciesV = sprintf('VarValues(%u)', s);
+        assignment = strrep(assignment, VarNames{s}, speciesV);
       end;
     end;
     fprintf(fileID, '\t\t%s = %s;\n', SBMLModel.event(i).eventAssignment(j).variable, assignment);
@@ -161,13 +170,18 @@ for i = 1:NumberSpecies
         fprintf(fileID, '%s = %s;\n', char(Species(i).Name), Species(i).ConvertedRule);
     end;
 end;
+for i = 1:NumberParams
+    if (Params(i).ConvertedToAssignRule == 1)
+        fprintf(fileID, '%s = %s;\n', char(Params(i).Name), Params(i).ConvertedRule);
+    end;
+end;
 
 
 % output values
 fprintf(fileID, '\n%%--------------------------------------------------------\n');
 fprintf(fileID, '%% output values\n\n');
-for i = 1:NumberSpecies
-    fprintf(fileID, 'Values(%u) = %s;\n', i, SpeciesNames{i});
+for i = 1:NumberVars
+    fprintf(fileID, 'Values(%u) = %s;\n', i, VarNames{i});
 end;
 
 % put in any function definitions
