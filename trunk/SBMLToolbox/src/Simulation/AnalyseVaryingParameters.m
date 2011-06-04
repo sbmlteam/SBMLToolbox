@@ -50,6 +50,11 @@ if (~isSBML_Model(SBMLModel))
         'argument must be an SBMLModel structure');
 end;
 
+if length(SBMLModel.parameter) == 0
+  VaryingParameters = [];
+  return;
+end;
+  
 [names, Values] = GetVaryingParameters(SBMLModel);
 [n, AssignRule] = GetParameterAssignmentRules(SBMLModel);
 [n, RateRule]   = GetParameterRateRules(SBMLModel);
