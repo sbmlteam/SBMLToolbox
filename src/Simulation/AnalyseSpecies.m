@@ -56,6 +56,11 @@ if (~isSBML_Model(SBMLModel))
     error('AnalyseSpecies(SBMLModel)\n%s', 'argument must be an SBMLModel structure');
 end;
 
+if length(SBMLModel.species) == 0
+  Species = [];
+  return;
+end;
+
 [name, KineticLaw] = GetRateLawsFromReactions(SBMLModel);
 [n, RateRule] = GetRateLawsFromRules(SBMLModel);
 [n, AssignRule] = GetSpeciesAssignmentRules(SBMLModel);
