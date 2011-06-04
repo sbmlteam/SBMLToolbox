@@ -49,7 +49,7 @@ function index = matchName(expr, name)
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
 
-operators = '+-*/^)';
+operators = '+-*/^,)';
 maxSize = length(expr);
 tempIndex = strfind(expr, name);
 index = [];
