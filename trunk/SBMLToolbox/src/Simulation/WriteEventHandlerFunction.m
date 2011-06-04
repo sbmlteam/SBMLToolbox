@@ -43,8 +43,15 @@ end;
 
 % get information from the model
 [ParameterNames, ParameterValues] = GetAllParametersUnique(SBMLModel);
+[VarParams, VarInitValues] = GetVaryingParameters(SBMLModel);
+NumberParams = length(VarParams);
+
 [SpeciesNames, SpeciesValues] = GetSpecies(SBMLModel);
 NumberSpecies = length(SBMLModel.species);
+
+VarNames = [SpeciesNames, VarParams];
+VarValues = [SpeciesValues, VarInitValues];
+NumberVars = NumberSpecies + NumberParams;
 
 %---------------------------------------------------------------
 % get the name/id of the model
@@ -72,10 +79,10 @@ else
     timeVariable = 'time';
 end;
 
-if (min(SpeciesValues) == 0)
+if (min(VarValues) == 0)
   degree = 1;
 else
-  degree = round(log10(min(SpeciesValues)));
+  degree = round(log10(min(VarValues)));
 end;
 tol = 1e-10 * power(10, degree);
 
@@ -121,9 +128,9 @@ end;
 
 % write the current species concentrations
 fprintf(fileID, '\n%%--------------------------------------------------------\n');
-fprintf(fileID, '%% floating species concentrations\n');
-for i = 1:NumberSpecies
-    fprintf(fileID, '%s = y(%u);\n', SpeciesNames{i}, i);
+fprintf(fileID, '%% floating variables\n');
+for i = 1:NumberVars
+    fprintf(fileID, '%s = y(%u);\n', VarNames{i}, i);
 end;
 
 % write the events
