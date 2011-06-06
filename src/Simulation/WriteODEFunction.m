@@ -323,7 +323,7 @@ end; % for NumSpecies
 % parameters
 for i = 1:NumberParams
 
-    if (Parameters(i).ChangedByAssignmentRule == 0)
+    if (Parameters(i).ChangedByAssignmentRule == 0  && Parameters(i).ConvertedToAssignRule == 0)
 
         % not set by rule - use value given
         if (isnan(Parameters(i).initialValue))                      
