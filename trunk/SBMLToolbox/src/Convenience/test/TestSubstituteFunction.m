@@ -85,3 +85,19 @@ result = 's+(a*b)';
 
 fail = fail + TestFunction('SubstituteFunction', 2, 1, formula, fd, result);
 
+formula = 'f(a, f1(b))';
+result = '(a*f1(b))';
+
+fail = fail + TestFunction('SubstituteFunction', 2, 1, formula, fd, result);
+
+formula = 'f1(a, f(b, c))';
+result = 'f1(a,(b*c))';
+
+fail = fail + TestFunction('SubstituteFunction', 2, 1, formula, fd, result);
+
+
+formula = 'f(x, f(a,d))';
+result = '(x*(a*d))';
+
+fail = fail + TestFunction('SubstituteFunction', 2, 1, formula, fd, result);
+

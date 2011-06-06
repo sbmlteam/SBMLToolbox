@@ -75,51 +75,31 @@ end;
 
 OriginalFormula = LoseWhiteSpace(OriginalFormula);
 
-startPoint = strfind(OriginalFormula, SBMLFunctionDefinition.id);
+startPoint = matchFunctionName(OriginalFormula, SBMLFunctionDefinition.id);
 if (isempty(startPoint))
   Formula = '';
   return;
-else
-  funcName = '';
-  j = startPoint;
-  c = OriginalFormula(j);
-  while (~strcmp(c, '('))
-    funcName = strcat(funcName, c);
-    j = j + 1;
-    c = OriginalFormula(j);
-  end;
-  
-  if (~isequal(funcName, SBMLFunctionDefinition.id))
-    Formula = '';
-    return;
-  end;
 end;
 
 ElementsOfFuncDef = GetArgumentsFromLambdaFunction(SBMLFunctionDefinition.math);
 
 % get the arguments of the application of the formula
-StartFunctionInFormula = findstr(OriginalFormula, SBMLFunctionDefinition.id);
+Formula = '';
+index = length(startPoint);
+StartFunctionInFormula = startPoint(index);
 
-j = StartFunctionInFormula + length(SBMLFunctionDefinition.id) + 1;
-c = OriginalFormula(j);
-element = '';
-NoElements = 1;
-ElementsInFormula = {};
-while (~strcmp(c, ')'))
-    if (strcmp(c, ','))
-        ElementsInFormula{NoElements} = element;
-        element = '';
-        NoElements = NoElements + 1;
-    else
-        element = strcat(element, c);
-    end;
-    
-    j = j + 1;
-    c = OriginalFormula(j);
+j = StartFunctionInFormula + length(SBMLFunctionDefinition.id);
+pairs = PairBrackets(OriginalFormula);
+for i=1:length(pairs)
+  if (pairs(i, 1) == j)
+    endPt = pairs(i, 2);
+    break;
+  end;
 end;
-ElementsInFormula{NoElements} = element;
+[NoElements, ElementsInFormula] = GetElementsOfFunction(OriginalFormula(j:endPt));
+
 OriginalFunction = '';
-for i = StartFunctionInFormula:j
+for i = StartFunctionInFormula:endPt
     OriginalFunction = strcat(OriginalFunction, OriginalFormula(i));
 end;
 
@@ -148,3 +128,32 @@ for i = 1:NoElements
 end;
 
 Formula = strrep(OriginalFormula, OriginalFunction, FuncFormula);
+
+% if the function occurred more than once
+if (index - 1) > 0
+  Formula = SubstituteFunction(Formula, SBMLFunctionDefinition);
+end;
+
+
+
+function [NoElements, ElementsInFormula] = GetElementsOfFunction(OriginalFormula);
+
+j = 2;
+c = OriginalFormula(j);
+element = '';
+NoElements = 1;
+ElementsInFormula = {};
+while (j < length(OriginalFormula))
+    if (strcmp(c, ','))
+        ElementsInFormula{NoElements} = element;
+        element = '';
+        NoElements = NoElements + 1;
+    else
+        element = strcat(element, c);
+    end;
+    
+    j = j + 1;
+    c = OriginalFormula(j);
+end;
+ElementsInFormula{NoElements} = element;
+
