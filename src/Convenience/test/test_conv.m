@@ -71,7 +71,7 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 6;
+test = test + 9;
 fail = TestSubstituteFunction;
 if (fail > 0)
     disp('SubstituteFunction failed');

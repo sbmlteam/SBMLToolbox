@@ -1,6 +1,6 @@
-function index = matchName(expr, name)
+function index = matchFunctionName(expr, name)
 % matchName
-%       takes a math expression and the name of a variable
+%       takes a math expression and the name of a function
 %
 %       and returns
 %           the index of the starting point of 'name' in the 'expression'
@@ -9,12 +9,12 @@ function index = matchName(expr, name)
 %       that the name is used as a variable.
 %
 %    EXAMPLE:
-%          y = matchName('f*g', 'g')
+%          y = matchFunctionName('f*g', 'g')
 %
-%          y = 3
+%          y = ''
 %
 %    OR
-%          y = matchName('f*g_1', 'g')
+%          y = matchFunctionName('add(d,g_1)', 'add')
 %
 %          y = 0
 %
@@ -49,7 +49,7 @@ function index = matchName(expr, name)
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
 
-operators = '+-*/^,)';
+operators = '(';
 maxSize = length(expr);
 tempIndex = strfind(expr, name);
 index = [];
@@ -62,8 +62,6 @@ if ~isempty(tempIndex)
       if ismember(followChar, operators)
         index = [index, tempIndex(i)];    
       end;
-    else
-      index = [index, tempIndex(i)];
     end;
   end;
 end;
