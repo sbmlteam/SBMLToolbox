@@ -55,8 +55,6 @@ if ~isnan(value)
 end
 
 % put everything in MATLAB and evaluate the formule
-% (I'm not sure if all cases are handled, for instance if size is not set
-% of compartment, should then be the volume taken?)
 [Species, speciesValues] = GetSpecies(model);
 [Parameters, paramValues] = GetAllParameters(model);
 [Compartments, compValues] = GetCompartments(model);
