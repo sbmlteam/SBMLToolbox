@@ -44,7 +44,7 @@ function functionDefinition = Model_getFunctionDefinitionById(SBMLModel, id)
 % check that input is correct
 if (~isSBML_Model(SBMLModel))
     error(sprintf('%s\n%s', 'Model_getFunctionDefinitionById(SBMLModel, id)', 'first argument must be an SBML model structure'));
-elseif (SBMLModel.SBML_level ~= 2)
+elseif (SBMLModel.SBML_level == 1)
     error(sprintf('%s\n%s', 'Model_getFunctionDefinitionById(SBMLModel, id)', 'no function definitions in a level 1 model'));   
 elseif (~ischar(id))
     error(sprintf('%s\n%s', 'Model_getFunctionDefinitionById(SBMLModel, id)', 'second argument must be a string'));
