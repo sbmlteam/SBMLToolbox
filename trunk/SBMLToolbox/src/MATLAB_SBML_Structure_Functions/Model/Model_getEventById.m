@@ -46,7 +46,7 @@ if (~isSBML_Model(SBMLModel))
     error(sprintf('%s\n%s', 'Model_getEventById(SBMLModel, id)', 'first argument must be an SBML model structure'));
 elseif (~ischar(id))
     error(sprintf('%s\n%s', 'Model_getEventById(SBMLModel, id)', 'second argument must be a string'));
-elseif (SBMLModel.SBML_level ~= 2)
+elseif (SBMLModel.SBML_level == 1)
     error(sprintf('%s\n%s', 'Model_getEventById(SBMLModel, id)', 'no events in a level 1 model'));   
 end;
 
