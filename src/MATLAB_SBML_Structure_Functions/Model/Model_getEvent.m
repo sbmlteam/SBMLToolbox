@@ -53,3 +53,9 @@ else
 	error('event not an element on SBML L%dV%d Model', level, version);
 end;
 
+%if level and version fields are not on returned object add them
+if ~isfield(event, 'level')
+  event.level = level;
+  event.version = version;
+end;
+

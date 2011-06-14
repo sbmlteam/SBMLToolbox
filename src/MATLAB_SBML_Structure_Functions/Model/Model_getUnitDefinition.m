@@ -53,3 +53,9 @@ else
 	error('unitDefinition not an element on SBML L%dV%d Model', level, version);
 end;
 
+%if level and version fields are not on returned object add them
+if ~isfield(unitDefinition, 'level')
+  unitDefinition.level = level;
+  unitDefinition.version = version;
+end;
+

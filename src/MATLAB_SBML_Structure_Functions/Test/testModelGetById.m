@@ -75,8 +75,12 @@ fail = fail + ~areIdentical(Model_getRule(m, 3), ...
                             Model_getRateRuleByVariable(m, 'p3'));
 fail = fail + ~areIdentical(Model_getReaction(m, 1), ...
                             Model_getReactionById(m, 'r'));
+fail = fail + ~areIdentical(Model_getEvent(m, 1), ...
+                            Model_getEventById(m, 'w'));
+fail = fail + ~areIdentical(Model_getConstraint(m, 1), ...
+                            Model_getConstraint(m, 1));
 
-num = 15;
+num = 17;
 
 disp(sprintf('Number tests: %d', num));
 disp(sprintf('Number fails: %d', fail));

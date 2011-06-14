@@ -55,6 +55,12 @@ functionDefinition = [];
 for i = 1:length(SBMLModel.functionDefinition)
     if (strcmp(id, SBMLModel.functionDefinition(i).id))
         functionDefinition = SBMLModel.functionDefinition(i);
-        return;
+        break;
     end;
+end;
+
+%if level and version fields are not on returned object add them
+if ~isfield(functionDefinition, 'level')
+  functionDefinition.level = SBMLModel.SBML_level;
+  functionDefinition.version = SBMLModel.SBML_version;
 end;

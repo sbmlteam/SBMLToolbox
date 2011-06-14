@@ -55,6 +55,12 @@ species = [];
 for i = 1:length(SBMLModel.species)
     if (strcmp(id, SBMLModel.species(i).id))
         species = SBMLModel.species(i);
-        return;
+        break;
     end;
+end;
+
+%if level and version fields are not on returned object add them
+if ~isfield(species, 'level')
+  species.level = SBMLModel.SBML_level;
+  species.version = SBMLModel.SBML_version;
 end;

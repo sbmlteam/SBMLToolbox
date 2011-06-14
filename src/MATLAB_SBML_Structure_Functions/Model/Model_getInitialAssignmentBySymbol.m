@@ -57,6 +57,12 @@ initialAssignment = [];
 for i = 1:length(SBMLModel.initialAssignment)
     if (strcmp(symbol, SBMLModel.initialAssignment(i).symbol))
         initialAssignment = SBMLModel.initialAssignment(i);
-        return;
+        break;
     end;
+end;
+
+%if level and version fields are not on returned object add them
+if ~isfield(initialAssignment, 'level')
+  initialAssignment.level = SBMLModel.SBML_level;
+  initialAssignment.version = SBMLModel.SBML_version;
 end;

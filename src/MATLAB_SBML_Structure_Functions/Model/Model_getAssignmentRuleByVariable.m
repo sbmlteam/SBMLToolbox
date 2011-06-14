@@ -58,7 +58,13 @@ for i = 1:length(SBMLModel.rule)
   if (isSBML_AssignmentRule(SBMLModel.rule(i), sbmlLevel, sbmlVersion))
     if (strcmp(variable, AssignmentRule_getVariable(SBMLModel.rule(i))))
       rule = SBMLModel.rule(i);
-      return;
+        break;
     end;
+end;
   end;
+
+%if level and version fields are not on returned object add them
+if ~isfield(rule, 'level')
+  rule.level = SBMLModel.SBML_level;
+  rule.version = SBMLModel.SBML_version;
 end;

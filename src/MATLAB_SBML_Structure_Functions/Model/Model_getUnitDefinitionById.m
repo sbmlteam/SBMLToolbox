@@ -55,6 +55,12 @@ unitDefinition = [];
 for i = 1:length(SBMLModel.unitDefinition)
     if (strcmp(id, SBMLModel.unitDefinition(i).id))
         unitDefinition = SBMLModel.unitDefinition(i);
-        return;
+        break;
     end;
+end;
+
+%if level and version fields are not on returned object add them
+if ~isfield(unitDefinition, 'level')
+  unitDefinition.level = SBMLModel.SBML_level;
+  unitDefinition.version = SBMLModel.SBML_version;
 end;
