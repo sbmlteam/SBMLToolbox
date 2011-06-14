@@ -53,3 +53,9 @@ else
 	error('reaction not an element on SBML L%dV%d Model', level, version);
 end;
 
+%if level and version fields are not on returned object add them
+if ~isfield(reaction, 'level')
+  reaction.level = level;
+  reaction.version = version;
+end;
+

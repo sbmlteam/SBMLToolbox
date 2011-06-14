@@ -55,6 +55,12 @@ compartment = [];
 for i = 1:length(SBMLModel.compartment)
     if (strcmp(id, SBMLModel.compartment(i).id))
         compartment = SBMLModel.compartment(i);
-        return;
+        break;
     end;
+end;
+
+%if level and version fields are not on returned object add them
+if ~isfield(compartment, 'level')
+  compartment.level = SBMLModel.SBML_level;
+  compartment.version = SBMLModel.SBML_version;
 end;

@@ -53,3 +53,9 @@ else
 	error('constraint not an element on SBML L%dV%d Model', level, version);
 end;
 
+%if level and version fields are not on returned object add them
+if ~isfield(constraint, 'level')
+  constraint.level = level;
+  constraint.version = version;
+end;
+

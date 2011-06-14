@@ -55,6 +55,12 @@ reaction = [];
 for i = 1:length(SBMLModel.reaction)
     if (strcmp(id, SBMLModel.reaction(i).id))
         reaction = SBMLModel.reaction(i);
-        return;
+        break;
     end;
+end;
+
+%if level and version fields are not on returned object add them
+if ~isfield(reaction, 'level')
+  reaction.level = SBMLModel.SBML_level;
+  reaction.version = SBMLModel.SBML_version;
 end;

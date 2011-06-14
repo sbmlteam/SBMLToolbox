@@ -53,3 +53,9 @@ else
 	error('rule not an element on SBML L%dV%d Model', level, version);
 end;
 
+%if level and version fields are not on returned object add them
+if ~isfield(rule, 'level')
+  rule.level = level;
+  rule.version = version;
+end;
+

@@ -53,3 +53,9 @@ else
 	error('species not an element on SBML L%dV%d Model', level, version);
 end;
 
+%if level and version fields are not on returned object add them
+if ~isfield(species, 'level')
+  species.level = level;
+  species.version = version;
+end;
+

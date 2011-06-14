@@ -55,6 +55,12 @@ event = [];
 for i = 1:length(SBMLModel.event)
     if (strcmp(id, SBMLModel.event(i).id))
         event = SBMLModel.event(i);
-        return;
+        break;
     end;
+end;
+
+%if level and version fields are not on returned object add them
+if ~isfield(event, 'level')
+  event.level = SBMLModel.SBML_level;
+  event.version = SBMLModel.SBML_version;
 end;
