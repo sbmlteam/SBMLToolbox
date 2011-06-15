@@ -42,7 +42,7 @@ function initialAssignment = Model_getInitialAssignmentBySymbol(SBMLModel, symbo
 
 
 % check that input is correct
-if (~isSBML_Model(SBMLModel))
+if (~isValidSBML_Model(SBMLModel))
     error(sprintf('%s\n%s', 'Model_getInitialAssignmentBySymbol(SBMLModel, symbol)', 'first argument must be an SBML model structure'));
 elseif (~ischar(symbol))
     error(sprintf('%s\n%s', 'Model_getInitialAssignmentBySymbol(SBMLModel, symbol)', 'second argument must be a string'));

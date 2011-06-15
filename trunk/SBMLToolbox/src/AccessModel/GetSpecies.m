@@ -41,7 +41,7 @@ function varargout = GetSpecies(SBMLModel)
 %----------------------------------------------------------------------- -->
 
 % check input is an SBML model
-if (~isSBML_Model(SBMLModel))
+if (~isValidSBML_Model(SBMLModel))
     error('GetSpecies(SBMLModel)\n%s', 'input must be an SBMLModel structure');
 end;
 

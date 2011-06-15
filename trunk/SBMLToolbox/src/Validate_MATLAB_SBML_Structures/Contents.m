@@ -11,7 +11,7 @@
 %
 % Functions include
 %
-% isSBML_Model(SBMLStructure) 
+% isValidSBML_Model(SBMLStructure) 
 %   identifies the level from the model structure
 %
 % isSBML_AlgebraicRule(SBMLStructure,Level, (optional) Version)

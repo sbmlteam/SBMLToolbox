@@ -72,7 +72,7 @@ handles.output = hObject;
 
 % check that input argument is an SBML Model 
 Model = varargin{1};
-bSBML = isSBML_Model(Model);
+bSBML = isValidSBML_Model(Model);
 if (~bSBML)
     error('Input argument is not a SBML Model');
 end;

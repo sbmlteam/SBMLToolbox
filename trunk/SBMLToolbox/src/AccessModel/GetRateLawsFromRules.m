@@ -40,7 +40,7 @@ function [Species, RateLaws] = GetRateLawsFromRules(SBMLModel)
 
 
 % check input is an SBML model
-if (~isSBML_Model(SBMLModel))
+if (~isValidSBML_Model(SBMLModel))
     error('GetRateLawsFromRules(SBMLModel)\n%s', 'input must be an SBMLModel structure');
 end;
 

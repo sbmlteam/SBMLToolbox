@@ -52,7 +52,7 @@ function Species = AnalyseSpecies(SBMLModel)
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
 
-if (~isSBML_Model(SBMLModel))
+if (~isValidSBML_Model(SBMLModel))
     error('AnalyseSpecies(SBMLModel)\n%s', 'argument must be an SBMLModel structure');
 end;
 

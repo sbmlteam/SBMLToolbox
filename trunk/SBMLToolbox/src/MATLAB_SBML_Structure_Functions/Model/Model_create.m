@@ -84,7 +84,7 @@ if (num > 0)
 
 %check correct structure
 
-	if ~isSBML_Model(Model)
+	if ~isValidSBML_Model(Model)
 		Model = struct();
 		warning('Warn:BadStruct', 'Failed to create Model');
 	end;

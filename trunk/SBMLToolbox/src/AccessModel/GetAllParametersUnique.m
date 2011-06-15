@@ -45,7 +45,7 @@ function varargout = GetAllParametersUnique(SBMLModel)
 %----------------------------------------------------------------------- -->
 
 % check input is an SBML model
-if (~isSBML_Model(SBMLModel))
+if (~isValidSBML_Model(SBMLModel))
     error('GetAllParametersUnique(SBMLModel)\n%s', 'input must be an SBMLModel structure');
 end;
 

@@ -41,7 +41,7 @@ function array = Model_getListOfByTypecode(SBMLModel, SBMLTypecode)
 
 
 % check that input is correct
-if (~isSBML_Model(SBMLModel))
+if (~isValidSBML_Model(SBMLModel))
     error(sprintf('%s\n%s', 'Model_getListOfByTypecode(SBMLModel, SBMLTypecode)', 'first argument must be an SBML model structure'));
 elseif (~CheckTypecode(SBMLTypecode))
     error(sprintf('%s\n%s', 'Model_getListOfByTypecode(SBMLModel, SBMLTypecode)', 'second argument must be a string representing an SBML typecode'));   

@@ -36,7 +36,7 @@ function WriteEventAssignmentFunction(SBMLModel, Name)
 
 
 % check input is an SBML model
-if (~isSBML_Model(SBMLModel))
+if (~isValidSBML_Model(SBMLModel))
     error('WriteEventAssignmentFunction(SBMLModel)\n%s', 'argument must be an SBMLModel structure');
 end;
 

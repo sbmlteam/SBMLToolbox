@@ -51,7 +51,7 @@ switch (nargin)
 end;
 
 % check input is an SBML model
-if (~isSBML_Model(SBMLModel))
+if (~isValidSBML_Model(SBMLModel))
     error('WriteODEFunction(SBMLModel, (optional) filename)\n%s', 'first argument must be an SBMLModel structure');
 end;
 

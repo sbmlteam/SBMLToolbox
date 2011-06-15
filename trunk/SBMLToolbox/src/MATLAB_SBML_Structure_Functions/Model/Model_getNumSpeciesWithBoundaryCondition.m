@@ -41,7 +41,7 @@ function number = Model_getNumSpeciesWithBoundaryCondition(SBMLModel)
 
 
 % check that input is correct
-if (~isSBML_Model(SBMLModel))
+if (~isValidSBML_Model(SBMLModel))
     error(sprintf('%s\n%s', 'Model_getNumSpeciesWithBoundaryCondition(SBMLModel)', 'argument must be an SBML model structure'));
 end;
 

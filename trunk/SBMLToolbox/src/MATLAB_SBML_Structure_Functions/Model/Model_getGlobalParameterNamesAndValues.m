@@ -36,7 +36,7 @@ function varargout = Model_getGlobalParameterNamesAndValues(SBMLModel)
 
 
 % check input is an SBML model
-if (~isSBML_Model(SBMLModel))
+if (~isValidSBML_Model(SBMLModel))
     error('Model_getGlobalParameterNamesAndValues(SBMLModel)\n%s', 'input must be an SBMLModel structure');
 end;
 

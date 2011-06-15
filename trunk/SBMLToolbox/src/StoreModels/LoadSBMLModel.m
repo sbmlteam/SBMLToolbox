@@ -154,7 +154,7 @@ if (bInt == 1)
             end;
         end;
         
-        if(isSBML_Model(Model) == 0)
+        if(isValidSBML_Model(Model) == 0)
             error('Structure read from file is not a valid sbml model');
         end;
     end;
@@ -246,7 +246,7 @@ else
    end;
     
     % check that model returned is an sbml model
-    if (~isSBML_Model(Model))
+    if (~isValidSBML_Model(Model))
         error('Structure read from file is not a valid sbml model');
     end;
 end;

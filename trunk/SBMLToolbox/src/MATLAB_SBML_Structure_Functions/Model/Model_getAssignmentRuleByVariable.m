@@ -42,7 +42,7 @@ function rule = Model_getAssignmentRuleByVariable(SBMLModel, variable)
 
 
 % check that input is correct
-if (~isSBML_Model(SBMLModel))
+if (~isValidSBML_Model(SBMLModel))
     error(sprintf('%s\n%s', 'Model_getAssignmentRuleByVariable(SBMLModel, variable)', 'first argument must be an SBML model structure'));
 elseif (~ischar(variable))
     error(sprintf('%s\n%s', 'Model_getAssignmentRuleByVariable(SBMLModel, variable)', 'second argument must be a string'));
