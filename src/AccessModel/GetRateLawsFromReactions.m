@@ -77,6 +77,12 @@ for i = 1:NumberSpecies
 
             SpeciesRole = DetermineSpeciesRoleInReaction(SBMLModel.species(i), SBMLModel.reaction(j));
             
+            %--------------------------------------------------------------
+            % check that reaction has a kinetic law
+            if (isempty(SBMLModel.reaction(j).kineticLaw))
+                error('GetRateLawsFromReactions(SBMLModel)\n%s', 'NO KINETIC LAW SUPPLIED');
+            end;
+            %--------------------------------------------------------------
             if (SBMLModel.SBML_level < 3)
                kineticLawMath = SBMLModel.reaction(j).kineticLaw.formula;
             else
@@ -246,7 +252,7 @@ end;
 function y = Substitute(InitialCharArray, ReplacementParams, Formula)
 % Allowed = {'(',')','*','/','+','-','^', ' ', ','};
 if exist('OCTAVE_VERSION')
-  [g,b,c,e] = regexp(Formula, '[,+-/*\^()]');
+  [g,b,c,e] = regexp(Formula, '[,+/*\^()-]');
   len = length(Formula);
   a{1} = Formula(1:b(1)-1);
   for i=2:length(b)
@@ -255,7 +261,7 @@ if exist('OCTAVE_VERSION')
   i = length(b)+1;
   a{i} = Formula(b(i-1)+1:len);
 else
-  [a,b,c,d,e] = regexp(Formula, '[,+-*/()]', 'split');
+  [a,b,c,d,e] = regexp(Formula, '[,+*/()-]', 'split');
 end;
 
 num = length(a);

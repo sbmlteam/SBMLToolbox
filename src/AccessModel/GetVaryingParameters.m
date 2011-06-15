@@ -102,7 +102,7 @@ end;
 %--------------------------------------------------------------------------
 % assign output
 
-if (NumParams ~= 0)
+if (count ~= 1)
     varargout{1} = CharArray;
     varargout{2} = Values;
 else

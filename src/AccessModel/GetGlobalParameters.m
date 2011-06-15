@@ -70,6 +70,23 @@ for i = 1:NumParams
     % put the value into the array
     Values(i) = SBMLModel.parameter(i).value;
     
+   % might be an initial assignment in l2v2
+    if ((SBMLModel.SBML_level == 2 && SBMLModel.SBML_version > 1) ...
+        || SBMLModel.SBML_level == 3)
+      IA = Model_getInitialAssignmentBySymbol(SBMLModel, name);
+      if (~isempty(IA))
+        % remove this from the substtution
+        newSBMLModel = SBMLModel;
+        newSBMLModel.parameter(i) = [];
+        for fd = 1:Model_getNumFunctionDefinitions(SBMLModel)
+          newFormula = SubstituteFunction(IA.math, Model_getFunctionDefinition(SBMLModel, fd));
+          if (~isempty(newFormula))
+           IA.math = newFormula;
+          end;
+        end;
+        Values(i) = Substitute(IA.math, newSBMLModel);  
+      end;
+    end;
      % might be set by assignment rule
     AR = Model_getAssignmentRuleByVariable(SBMLModel, name);
     if (~isempty(AR))
@@ -82,23 +99,6 @@ for i = 1:NumParams
           end;
         end;
         Values(i) = Substitute(AR.formula, newSBMLModel);  
-    end;
-   % might be an initial assignment in l2v2
-    if ((SBMLModel.SBML_level == 2 && SBMLModel.SBML_version > 1) ...
-        || SBMLModel.SBML_level == 3)
-      IA = Model_getInitialAssignmentBySymbol(SBMLModel, name);
-      if (~isempty(IA))
-    % remove this from the substtution
-    newSBMLModel = SBMLModel;
-    newSBMLModel.parameter(i) = [];
-        for fd = 1:Model_getNumFunctionDefinitions(SBMLModel)
-          newFormula = SubstituteFunction(IA.math, Model_getFunctionDefinition(SBMLModel, fd));
-          if (~isempty(newFormula))
-           IA.math = newFormula;
-          end;
-        end;
-        Values(i) = Substitute(IA.math, newSBMLModel);  
-      end;
     end;
 end;
 
