@@ -53,6 +53,14 @@ VarNames = [SpeciesNames, VarParams];
 VarValues = [SpeciesValues, VarInitValues];
 NumberVars = NumberSpecies + NumberParams;
 
+arrayVariable = 'var1';
+if ismember(arrayVariable, VarNames)
+  arrayVariable = 'xyz_var1';
+end;
+if ismember(arrayVariable, VarNames)
+  error ('Unbelievable clash of variable names between model and event handling functions');
+end;
+
 %---------------------------------------------------------------
 % get the name/id of the model
 
@@ -95,7 +103,8 @@ fileName = strcat(Name, '.m');
 fileID = fopen(fileName, 'w');
 
 % write the function declaration
-fprintf(fileID,  'function [value,isterminal,direction] = %s(%s, y)\n', Name, timeVariable);
+fprintf(fileID,  'function [value,isterminal,direction] = %s(%s, %s)\n', ...
+                                             Name, timeVariable, arrayVariable);
 
 % need to add comments to output file
 fprintf(fileID, '%% function %s takes\n', Name);
@@ -130,7 +139,7 @@ end;
 fprintf(fileID, '\n%%--------------------------------------------------------\n');
 fprintf(fileID, '%% floating variables\n');
 for i = 1:NumberVars
-    fprintf(fileID, '%s = y(%u);\n', VarNames{i}, i);
+    fprintf(fileID, '%s = %s(%u);\n', VarNames{i}, arrayVariable, i);
 end;
 
 % write the events
