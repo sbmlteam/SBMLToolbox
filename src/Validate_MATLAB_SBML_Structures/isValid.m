@@ -1,15 +1,83 @@
 function y = isValid(varargin)
+%
+% isValid
+%    takes a MATLAB_SBML structure
+%          an SBML level (optional)
+%    and   an SBML version (optional)
+%
+%    returns
+%      1) a flag indicating whether the structure represents
+%           an MATLAB_SBML structure of the appropriate
+%           level and version
+%
+% The fields present in MATLAB_SBML Model structure of the appropriate
+% level and version can be found using getFieldnames(typecode, level, version)
+%
+% NOTE: isValid determines the type of structure and validates it
+% accordingly
+
+%  Filename    :   isValid.m
+%  Description :
+%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
+%  $Id: isSBML_Model.m 13924 2011-06-15 14:55:05Z sarahkeating $
+%  $Source v $
+%
+%<!---------------------------------------------------------------------------
+% This file is part of SBMLToolbox.  Please visit http://sbml.org for more
+% information about SBML, and the latest version of SBMLToolbox.
+%
+% Copyright (C) 2009-2011 jointly by the following organizations: 
+%     1. California Institute of Technology, Pasadena, CA, USA
+%     2. EMBL European Bioinformatics Institute (EBML-EBI), Hinxton, UK
+%
+% Copyright (C) 2006-2008 jointly by the following organizations: 
+%     1. California Institute of Technology, Pasadena, CA, USA
+%     2. University of Hertfordshire, Hatfield, UK
+%
+% Copyright (C) 2003-2005 jointly by the following organizations: 
+%     1. California Institute of Technology, Pasadena, CA, USA 
+%     2. Japan Science and Technology Agency, Japan
+%     3. University of Hertfordshire, Hatfield, UK
+%
+% SBMLToolbox is free software; you can redistribute it and/or modify it
+% under the terms of the GNU Lesser General Public License as published by
+% the Free Software Foundation.  A copy of the license agreement is provided
+% in the file named "LICENSE.txt" included with this software distribution.
+%----------------------------------------------------------------------- -->
 
 if (nargin < 1)
   error('need input argument');
 end;
-sbml_struct = varargin{1};
+
+switch nargin
+  case 1
+    sbml_struct = varargin{1};
+    level = 3;
+    version = 1;
+  case 2
+    sbml_struct = varargin{1};
+    level = varargin{2};
+    version = 1;
+  case 3
+    sbml_struct = varargin{1};
+    level = varargin{2};
+    version = varargin{3};
+  otherwise
+    error('too many input arguments');
+end;
+
+if (length(sbml_struct) > 1)
+	error('cannot deal with arrays of structures');
+end;
 
 
 if ~isstruct(sbml_struct) || isempty(fieldnames(sbml_struct))
   y = 0;
   return;
 end;
+
+isValidLevelVersionCombination(level, version);
+
 
 typecode = sbml_struct.typecode;
 
@@ -84,10 +152,10 @@ if (nargin == 1)
        || feval(fhandle, sbml_struct, 2, 4) ...
        || feval(fhandle, sbml_struct, 3, 1)); 
   end;
-elseif (nargin == 3)
+else 
   if strcmp(typecode, 'SBML_MODEL')
     y = feval(fhandle, sbml_struct);
   else
-    y = feval(fhandle, sbml_struct, varargin{2}, varargin{3});
+    y = feval(fhandle, sbml_struct, level, version);
   end;
 end;

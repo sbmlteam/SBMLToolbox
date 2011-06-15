@@ -56,26 +56,7 @@ else
   version = 1;
 end;
 
-if (level < 1 || level > 3)
-	error('current SBML levels are 1, 2 or 3');
-end;
-
-if (level == 1)
-	if (version < 1 || version > 2)
-		error('SBMLToolbox supports versions 1-2 of SBML Level 1');
-	end;
-
-elseif (level == 2)
-	if (version < 1 || version > 4)
-		error('SBMLToolbox supports versions 1-4 of SBML Level 2');
-	end;
-
-elseif (level == 3)
-	if (version ~= 1)
-		error('SBMLToolbox supports only version 1 of SBML Level 3');
-	end;
-
-end;
+isValidLevelVersionCombination(level, version);
 
 message = '';
 
