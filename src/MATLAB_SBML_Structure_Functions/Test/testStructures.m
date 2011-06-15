@@ -34,6 +34,7 @@ fail = 0;
 fail = fail + TestCreate();
 fail = fail + testComponents();
 fail = fail + testModelGetById();
+fail = fail + testModelGetByNum();
 
 y = fail;
 

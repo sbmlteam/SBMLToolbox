@@ -60,7 +60,7 @@ for i = 1:length(SBMLModel.compartmentType)
 end;
 
 %if level and version fields are not on returned object add them
-if ~isfield(compartmentType, 'level')
+if ~isempty(compartmentType) && ~isfield(compartmentType, 'level')
   compartmentType.level = SBMLModel.SBML_level;
   compartmentType.version = SBMLModel.SBML_version;
 end;

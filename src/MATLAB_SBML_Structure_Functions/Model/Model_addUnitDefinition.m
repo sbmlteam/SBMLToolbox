@@ -53,6 +53,9 @@ if isfield(SBMLModel, 'unitDefinition')
 	if index == 0
 		SBMLModel.unitDefinition = SBMLUnitDefinition;
 	else
+    if ~isfield(SBMLModel.unitDefinition(1), 'level')
+      SBMLModel = propagateLevelVersion(SBMLModel);
+    end;
 		SBMLModel.unitDefinition(index+1) = SBMLUnitDefinition;
 	end;
 else

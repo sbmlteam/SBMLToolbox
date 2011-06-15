@@ -53,6 +53,9 @@ if isfield(SBMLModel, 'compartment')
 	if index == 0
 		SBMLModel.compartment = SBMLCompartment;
 	else
+    if ~isfield(SBMLModel.compartment(1), 'level')
+      SBMLModel = propagateLevelVersion(SBMLModel);
+    end;
 		SBMLModel.compartment(index+1) = SBMLCompartment;
 	end;
 else

@@ -53,6 +53,9 @@ if isfield(SBMLModel, 'reaction')
 	if index == 0
 		SBMLModel.reaction = SBMLReaction;
 	else
+    if ~isfield(SBMLModel.reaction(1), 'level')
+      SBMLModel = propagateLevelVersion(SBMLModel);
+    end;
 		SBMLModel.reaction(index+1) = SBMLReaction;
 	end;
 else

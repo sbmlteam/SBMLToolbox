@@ -48,11 +48,16 @@ elseif version ~= functionDefinition_version
 	error('mismatch in versions');
 end;
 
+
+
 if isfield(SBMLModel, 'functionDefinition')
 	index = length(SBMLModel.functionDefinition);
 	if index == 0
 		SBMLModel.functionDefinition = SBMLFunctionDefinition;
-	else
+  else
+    if ~isfield(SBMLModel.functionDefinition(1), 'level')
+      SBMLModel = propagateLevelVersion(SBMLModel);
+    end;
 		SBMLModel.functionDefinition(index+1) = SBMLFunctionDefinition;
 	end;
 else

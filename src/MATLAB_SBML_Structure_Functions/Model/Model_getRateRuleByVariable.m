@@ -64,7 +64,7 @@ for i = 1:length(SBMLModel.rule)
 end;
 
 %if level and version fields are not on returned object add them
-if ~isfield(rule, 'level')
+if ~isempty(rule) && ~isfield(rule, 'level')
   rule.level = SBMLModel.SBML_level;
   rule.version = SBMLModel.SBML_version;
 end;

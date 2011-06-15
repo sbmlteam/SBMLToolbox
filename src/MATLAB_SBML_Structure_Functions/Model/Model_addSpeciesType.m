@@ -53,6 +53,9 @@ if isfield(SBMLModel, 'speciesType')
 	if index == 0
 		SBMLModel.speciesType = SBMLSpeciesType;
 	else
+    if ~isfield(SBMLModel.speciesType(1), 'level')
+      SBMLModel = propagateLevelVersion(SBMLModel);
+    end;
 		SBMLModel.speciesType(index+1) = SBMLSpeciesType;
 	end;
 else

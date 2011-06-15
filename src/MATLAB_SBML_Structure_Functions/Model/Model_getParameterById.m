@@ -60,7 +60,7 @@ for i = 1:length(SBMLModel.parameter)
 end;
 
 %if level and version fields are not on returned object add them
-if ~isfield(parameter, 'level')
+if ~isempty(parameter) && ~isfield(parameter, 'level')
   parameter.level = SBMLModel.SBML_level;
   parameter.version = SBMLModel.SBML_version;
 end;

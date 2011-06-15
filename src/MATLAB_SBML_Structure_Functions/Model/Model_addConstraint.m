@@ -53,6 +53,9 @@ if isfield(SBMLModel, 'constraint')
 	if index == 0
 		SBMLModel.constraint = SBMLConstraint;
 	else
+    if ~isfield(SBMLModel.constraint(1), 'level')
+      SBMLModel = propagateLevelVersion(SBMLModel);
+    end;
 		SBMLModel.constraint(index+1) = SBMLConstraint;
 	end;
 else

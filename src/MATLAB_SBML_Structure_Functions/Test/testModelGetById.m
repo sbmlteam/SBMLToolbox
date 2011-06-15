@@ -80,7 +80,23 @@ fail = fail + ~areIdentical(Model_getEvent(m, 1), ...
 fail = fail + ~areIdentical(Model_getConstraint(m, 1), ...
                             Model_getConstraint(m, 1));
 
-num = 17;
+
+fail = fail + ~isempty(Model_getFunctionDefinitionById(m, 'xxx'));
+fail = fail + ~isempty(Model_getUnitDefinitionById(m, 'xxx'));
+fail = fail + ~isempty(Model_getCompartmentById(m, 'xxx'));
+fail = fail + ~isempty(Model_getSpeciesById(m, 'xxx'));
+fail = fail + ~isempty(Model_getCompartmentTypeById(m, 'xxx'));
+fail = fail + ~isempty(Model_getSpeciesTypeById(m, 'xxx'));
+fail = fail + ~isempty(Model_getParameterById(m, 'xxx'));
+fail = fail + ~isempty(Model_getInitialAssignmentBySymbol(m, 'xxx'));
+fail = fail + ~isempty(Model_getReactionById(m, 'xxx'));
+fail = fail + ~isempty(Model_getEventById(m, 'xxx'));
+fail = fail + ~isempty(Model_getAssignmentRuleByVariable(m, 'xxx'));
+fail = fail + ~isempty(Model_getRateRuleByVariable(m, 'xxx'));
+
+
+
+num = 29;
 
 disp(sprintf('Number tests: %d', num));
 disp(sprintf('Number fails: %d', fail));
