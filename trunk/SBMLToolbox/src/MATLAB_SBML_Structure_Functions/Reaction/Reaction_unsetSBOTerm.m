@@ -1,12 +1,12 @@
-function SBMLReaction = Reaction_unsetSboTerm(SBMLReaction)
+function SBMLReaction = Reaction_unsetSBOTerm(SBMLReaction)
 %
-% Reaction_getSboTerm
+% Reaction_getSBOTerm
 %       takes an SBML Reaction structure
 %
 %       and returns
 %           the Reaction with the value for the sboTerm attribute unset
 
-%  Filename    :   Reaction_unsetSboTerm.m
+%  Filename    :   Reaction_unsetSBOTerm.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
 %  $Id: $

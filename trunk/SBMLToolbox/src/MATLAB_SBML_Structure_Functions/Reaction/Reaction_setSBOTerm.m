@@ -1,13 +1,13 @@
-function SBMLReaction = Reaction_setSboTerm(SBMLReaction, sboTerm)
+function SBMLReaction = Reaction_setSBOTerm(SBMLReaction, sboTerm)
 %
-% Reaction_setSboTerm
+% Reaction_setSBOTerm
 %       takes an SBML Reaction structure
 %    and the sboTerm to be set
 %
 %       and returns
 %           the Reaction with the new value for the sboTerm attribute
 
-%  Filename    :   Reaction_setSboTerm.m
+%  Filename    :   Reaction_setSBOTerm.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
 %  $Id$
