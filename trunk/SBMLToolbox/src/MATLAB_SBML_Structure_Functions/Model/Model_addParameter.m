@@ -53,6 +53,9 @@ if isfield(SBMLModel, 'parameter')
 	if index == 0
 		SBMLModel.parameter = SBMLParameter;
 	else
+    if ~isfield(SBMLModel.parameter(1), 'level')
+      SBMLModel = propagateLevelVersion(SBMLModel);
+    end;
 		SBMLModel.parameter(index+1) = SBMLParameter;
 	end;
 else

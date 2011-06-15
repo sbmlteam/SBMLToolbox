@@ -60,7 +60,7 @@ for i = 1:length(SBMLModel.species)
 end;
 
 %if level and version fields are not on returned object add them
-if ~isfield(species, 'level')
+if ~isempty(species) && ~isfield(species, 'level')
   species.level = SBMLModel.SBML_level;
   species.version = SBMLModel.SBML_version;
 end;

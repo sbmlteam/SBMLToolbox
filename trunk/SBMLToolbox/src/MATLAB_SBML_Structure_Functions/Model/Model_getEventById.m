@@ -60,7 +60,7 @@ for i = 1:length(SBMLModel.event)
 end;
 
 %if level and version fields are not on returned object add them
-if ~isfield(event, 'level')
+if ~isempty(event) && ~isfield(event, 'level')
   event.level = SBMLModel.SBML_level;
   event.version = SBMLModel.SBML_version;
 end;

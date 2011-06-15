@@ -62,7 +62,7 @@ for i = 1:length(SBMLModel.initialAssignment)
 end;
 
 %if level and version fields are not on returned object add them
-if ~isfield(initialAssignment, 'level')
+if ~isempty(initialAssignment) && ~isfield(initialAssignment, 'level')
   initialAssignment.level = SBMLModel.SBML_level;
   initialAssignment.version = SBMLModel.SBML_version;
 end;

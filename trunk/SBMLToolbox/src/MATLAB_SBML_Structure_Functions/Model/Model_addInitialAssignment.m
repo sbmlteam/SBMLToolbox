@@ -53,6 +53,9 @@ if isfield(SBMLModel, 'initialAssignment')
 	if index == 0
 		SBMLModel.initialAssignment = SBMLInitialAssignment;
 	else
+    if ~isfield(SBMLModel.initialAssignment(1), 'level')
+      SBMLModel = propagateLevelVersion(SBMLModel);
+    end;
 		SBMLModel.initialAssignment(index+1) = SBMLInitialAssignment;
 	end;
 else

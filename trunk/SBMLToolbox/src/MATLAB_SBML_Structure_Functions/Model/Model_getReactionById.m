@@ -60,7 +60,7 @@ for i = 1:length(SBMLModel.reaction)
 end;
 
 %if level and version fields are not on returned object add them
-if ~isfield(reaction, 'level')
+if ~isempty(reaction) && ~isfield(reaction, 'level')
   reaction.level = SBMLModel.SBML_level;
   reaction.version = SBMLModel.SBML_version;
 end;

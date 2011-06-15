@@ -60,7 +60,7 @@ for i = 1:length(SBMLModel.functionDefinition)
 end;
 
 %if level and version fields are not on returned object add them
-if ~isfield(functionDefinition, 'level')
+if ~isempty(functionDefinition) && ~isfield(functionDefinition, 'level')
   functionDefinition.level = SBMLModel.SBML_level;
   functionDefinition.version = SBMLModel.SBML_version;
 end;

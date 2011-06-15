@@ -53,6 +53,9 @@ if isfield(SBMLModel, 'rule')
 	if index == 0
 		SBMLModel.rule = SBMLRule;
 	else
+    if ~isfield(SBMLModel.rule(1), 'level')
+      SBMLModel = propagateLevelVersion(SBMLModel);
+    end;
 		SBMLModel.rule(index+1) = SBMLRule;
 	end;
 else

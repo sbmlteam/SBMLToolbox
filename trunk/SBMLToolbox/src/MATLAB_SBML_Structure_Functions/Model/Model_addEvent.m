@@ -53,6 +53,9 @@ if isfield(SBMLModel, 'event')
 	if index == 0
 		SBMLModel.event = SBMLEvent;
 	else
+    if ~isfield(SBMLModel.event(1), 'level')
+      SBMLModel = propagateLevelVersion(SBMLModel);
+    end;
 		SBMLModel.event(index+1) = SBMLEvent;
 	end;
 else
