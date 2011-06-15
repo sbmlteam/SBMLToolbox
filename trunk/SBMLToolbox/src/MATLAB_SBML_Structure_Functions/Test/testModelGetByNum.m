@@ -97,7 +97,7 @@ num = 11;
 
 disp(sprintf('Number tests: %d', num));
 disp(sprintf('Number fails: %d', fail));
-disp(sprintf('Pass rate: %d%', ((num-fail)/num)*100));
+disp(sprintf('Pass rate: %d%%', ((num-fail)/num)*100));
 
 
 
