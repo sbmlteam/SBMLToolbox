@@ -42,7 +42,7 @@ function parameter = Model_getParameterById(SBMLModel, id)
 
 
 % check that input is correct
-if (~isSBML_Model(SBMLModel))
+if (~isValidSBML_Model(SBMLModel))
     error(sprintf('%s\n%s', 'Model_getParameterById(SBMLModel, id)', 'first argument must be an SBML model structure'));
 elseif (~ischar(id))
     error(sprintf('%s\n%s', 'Model_getParameterById(SBMLModel, id)', 'second argument must be a string'));

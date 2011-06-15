@@ -40,7 +40,7 @@ function number = Model_getNumSpecies(SBMLModel)
 
 
 % check that input is correct
-if (~isSBML_Model(SBMLModel))
+if (~isValidSBML_Model(SBMLModel))
     error(sprintf('%s\n%s', 'Model_getNumSpecies(SBMLModel)', 'argument must be an SBML model structure'));
 end;
 

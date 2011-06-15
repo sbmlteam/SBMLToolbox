@@ -40,7 +40,7 @@ function varargout = GetCompartments(SBMLModel)
 %----------------------------------------------------------------------- -->
 
 % check input is an SBML model
-if (~isSBML_Model(SBMLModel))
+if (~isValidSBML_Model(SBMLModel))
     error('GetCompartments(SBMLModel)\n%s', 'input must be an SBMLModel structure');
 end;
 

@@ -40,7 +40,7 @@ function [Species, AssignmentRules] = GetSpeciesAssignmentRules(SBMLModel)
 
 
 % check input is an SBML model
-if (~isSBML_Model(SBMLModel))
+if (~isValidSBML_Model(SBMLModel))
     error('GetSpeciesAssignmentRules(SBMLModel)\n%s', 'input must be an SBMLModel structure');
 end;
 

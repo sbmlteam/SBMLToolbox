@@ -37,7 +37,7 @@ function model = propagateLevelVersion(SBMLModel)
 
 
 %get level and version and check the input arguments are appropriate
-if ~isSBML_Model(SBMLModel)
+if ~isValidSBML_Model(SBMLModel)
   error('first argument must be an SBMLModel structure');
 end;
 

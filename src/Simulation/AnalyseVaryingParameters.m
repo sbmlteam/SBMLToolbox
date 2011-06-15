@@ -45,7 +45,7 @@ function VaryingParameters = AnalyseVaryingParameters(SBMLModel)
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
 
-if (~isSBML_Model(SBMLModel))
+if (~isValidSBML_Model(SBMLModel))
     error('AnalyseVaryingParameters(SBMLModel)\n%s', ...
         'argument must be an SBMLModel structure');
 end;

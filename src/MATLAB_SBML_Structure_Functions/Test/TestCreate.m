@@ -33,6 +33,9 @@ fail = 0;
 numTests = 0;
 
 warning('off', 'Warn:InvalidLV');
+if exist('OCTAVE_VERSION')
+  warning('off', 'Octave:divide-by-zero');
+end;
 
 disp('Testing create functions');
 

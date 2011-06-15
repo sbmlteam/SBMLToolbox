@@ -7,7 +7,7 @@ function S=GetStoichiometrySparse(model)
 % a.batagov@ucl.ac.uk: Arsen Batagov (2006)
 
 % check input is an SBML model
-if (~isSBML_Model(model))
+if (~isValidSBML_Model(model))
     error('GetStoichiometrySparse(model)\n%s', 'input must be an SBMLModel structure');
 end;
 

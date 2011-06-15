@@ -37,7 +37,7 @@ function SaveSBMLModel(SBMLModel)
 
 
 bSBML = 0;
-bSBML = isSBML_Model(SBMLModel);
+bSBML = isValidSBML_Model(SBMLModel);
 
 % find the only copy of SBML_Models.mat
 Path = which ('SBML_Models.mat');

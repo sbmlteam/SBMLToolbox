@@ -69,7 +69,7 @@ switch (typecode)
   case 'SBML_UNIT_DEFINITION'
     fhandle = str2func('isSBML_UnitDefinition');
   otherwise
-    fhandle = str2func('isSBML_Model');
+    fhandle = str2func('isValidSBML_Model');
 end;
 
 if (nargin == 1)

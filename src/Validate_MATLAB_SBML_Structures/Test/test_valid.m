@@ -235,7 +235,7 @@ test = test + 6;
 
 fail = 0;
 
-pass = isSBML_Model(m);
+pass = isValidSBML_Model(m);
 if (pass == 0)
     fail = fail + 1;
     disp('l1v1 Model failed');
@@ -289,7 +289,7 @@ test = test + 10;
 
 fail = 0;
 
-pass = isSBML_Model(m);
+pass = isValidSBML_Model(m);
 if (pass == 0)
     fail = fail + 1;
     disp('l1v2 Model failed');
@@ -368,7 +368,7 @@ test = test + 11;
 
 fail = 0;
 
-pass = isSBML_Model(m);
+pass = isValidSBML_Model(m);
 if (pass == 0)
     fail = fail + 1;
     disp('l2v1 Model failed');
@@ -457,7 +457,7 @@ test = test + 15;
 
 fail = 0;
 
-pass = isSBML_Model(m);
+pass = isValidSBML_Model(m);
 if (pass == 0)
     fail = fail + 1;
     disp('l2v2 Model failed');
@@ -570,7 +570,7 @@ test = test + 15;
 
 fail = 0;
 
-pass = isSBML_Model(m);
+pass = isValidSBML_Model(m);
 if (pass == 0)
     fail = fail + 1;
     disp('l2v3 Model failed');
@@ -683,7 +683,7 @@ test = test + 15;
 
 fail = 0;
 
-pass = isSBML_Model(m);
+pass = isValidSBML_Model(m);
 if (pass == 0)
     fail = fail + 1;
     disp('l2v4 Model failed');
@@ -794,7 +794,7 @@ test = test + 15;
 
 fail = 0;
 
-pass = isSBML_Model(m);
+pass = isValidSBML_Model(m);
 if (pass == 0)
     fail = fail + 1;
     disp('l3v1 Model failed');
