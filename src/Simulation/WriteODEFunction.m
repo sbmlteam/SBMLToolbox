@@ -104,6 +104,10 @@ else
   CompartmentNames = [];
 end;
 
+if (NumberParams + NumberSpecies) == 0
+  error('Cannot detect any variables');
+end;
+
 if (SBMLModel.SBML_level > 1)
     NumEvents = length(SBMLModel.event);
     NumFuncs = length(SBMLModel.functionDefinition);
