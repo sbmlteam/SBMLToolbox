@@ -47,11 +47,26 @@ function value = Substitute(original_formula, model)
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
 % This function was radically improved by Pieter Pareit
+if (model.SBML_level > 1 && ~isempty(model.time_symbol))
+    assert(exist(model.time_symbol,'var')==false);
+    assignin('caller',model.time_symbol,0);
+end
 
-% handle easy case
+% handle easy case where formula can be calculated without variables
+
+
+
 value = str2double(original_formula);
 if ~isnan(value)
     return;
+else
+  try
+    value = evalin('caller', original_formula);
+    if ~isnan(value)
+      return;
+    end;
+  catch
+  end;
 end
 
 % put everything in MATLAB and evaluate the formule
@@ -59,10 +74,10 @@ end
 [Parameters, paramValues] = GetAllParameters(model);
 [Compartments, compValues] = GetCompartments(model);
 
-if (model.SBML_level > 1 && ~isempty(model.time_symbol))
-    assert(exist(model.time_symbol,'var')==false);
-    assignin('caller',model.time_symbol,0);
-end
+% if (model.SBML_level > 1 && ~isempty(model.time_symbol))
+%     assert(exist(model.time_symbol,'var')==false);
+%     assignin('caller',model.time_symbol,0);
+% end
 
 for i = 1:length(Species)
     assert(exist(Species{i},'var')==false);
@@ -96,6 +111,22 @@ while rule_applied > 0 && iterations_left > 0
     iterations_left = iterations_left - 1;
 end
 assert(rule_applied == 0, ...
+    'Substitute(): Cyclic dependency of rules dedected');
+
+ia_applied = 1;
+iterations_left = Model_getNumInitialAssignments(model) + 1;
+while ia_applied > 0 && iterations_left > 0
+    ia_applied = 0;
+    for rule = model.initialAssignment
+        str = formula;
+        exp = strcat('\<',rule.symbol,'\>');
+        repstr = rule.math;
+        formula = regexprep(str,exp,repstr);
+        ia_applied = ia_applied + strcmp(str, formula)==false;
+    end
+    iterations_left = iterations_left - 1;
+end
+assert(ia_applied == 0, ...
     'Substitute(): Cyclic dependency of rules dedected');
 
 try
