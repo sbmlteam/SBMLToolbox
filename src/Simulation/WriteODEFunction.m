@@ -74,6 +74,15 @@ for i=1:length(SBMLModel.event)
   if (~isempty(SBMLModel.event(i).delay))
     error('WriteODEFunction(SBMLModel, (optional) filename)\n%s', 'Cannot deal with delayed events');
   end;
+  if SBMLModel.SBML_level > 2
+    if (~isempty(SBMLModel.event(i).priority))
+      error('WriteODEFunction(SBMLModel, (optional) filename)\n%s', 'Cannot deal with event priorities');
+    end;
+    if (~isempty(SBMLModel.event(i).trigger) &&  ...
+        (SBMLModel.event(i).trigger.initialValue == 1 || SBMLModel.event(i).trigger.persistent == 1))
+      error('WriteODEFunction(SBMLModel, (optional) filename)\n%s', 'Cannot deal with persistent trigger');
+    end;
+  end;
 end;
 for i=1:length(SBMLModel.reaction)
   if (SBMLModel.reaction(i).fast == 1)
