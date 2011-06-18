@@ -50,8 +50,9 @@ if (~isValidSBML_Model(SBMLModel))
         'argument must be an SBMLModel structure');
 end;
 
+VaryingParameters = [];
+
 if length(SBMLModel.parameter) == 0
-  VaryingParameters = [];
   return;
 end;
   
