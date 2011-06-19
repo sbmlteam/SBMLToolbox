@@ -62,6 +62,17 @@ end;
 %     error('WriteODEFunction(SBMLModel, (optional) filename)\n%s', 'Cannot deal with varying parameters');
 %   end;
 % end;
+if SBMLModel.SBML_level > 2
+  if ~isempty(SBMLModel.conversionFactor)
+    error('WriteODEFunction(SBMLModel, (optional) filename)\n%s', 'Cannot deal with conversion factors');
+  end;
+  for i=1:length(SBMLModel.species)
+    if ~isempty(SBMLModel.species(i).conversionFactor)
+      error('WriteODEFunction(SBMLModel, (optional) filename)\n%s', 'Cannot deal with conversion factors');
+    end;
+  end;
+end;
+
 for i=1:length(SBMLModel.compartment)
   if (SBMLModel.compartment(i).constant == 0)
     error('WriteODEFunction(SBMLModel, (optional) filename)\n%s', 'Cannot deal with varying compartments');
