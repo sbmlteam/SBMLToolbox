@@ -155,7 +155,7 @@ for i = 1:NumberSpecies
                     elseif ((SBMLModel.SBML_level == 3) && (isnan(stoichiometry)))
                         if (~isempty(SBMLModel.reaction(j).product(SpeciesRole(4)).id))
                           rule = Model_getAssignmentRuleByVariable(SBMLModel, SBMLModel.reaction(j).product(SpeciesRole(4)).id);
-                          output = sprintf('%s - (%s) * (%s)', output, rule.formula, formula);
+                          output = sprintf('%s + (%s) * (%s)', output, rule.formula, formula);
                         else
                           error ('Cannot determine stoichiometry');
                         end;
