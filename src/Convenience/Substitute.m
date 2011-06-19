@@ -71,7 +71,7 @@ end
 
 % put everything in MATLAB and evaluate the formule
 [Species, speciesValues] = GetSpecies(model);
-[Parameters, paramValues] = GetAllParameters(model);
+[Parameters, paramValues] = GetAllParametersUnique(model);
 [Compartments, compValues] = GetCompartments(model);
 
 % if (model.SBML_level > 1 && ~isempty(model.time_symbol))
@@ -113,21 +113,23 @@ end
 assert(rule_applied == 0, ...
     'Substitute(): Cyclic dependency of rules dedected');
 
-ia_applied = 1;
-iterations_left = Model_getNumInitialAssignments(model) + 1;
-while ia_applied > 0 && iterations_left > 0
-    ia_applied = 0;
-    for rule = model.initialAssignment
-        str = formula;
-        exp = strcat('\<',rule.symbol,'\>');
-        repstr = rule.math;
-        formula = regexprep(str,exp,repstr);
-        ia_applied = ia_applied + strcmp(str, formula)==false;
+  if model.SBML_level > 2 || (model.SBML_level == 2 && model.SBML_version > 1)
+    ia_applied = 1;
+    iterations_left = Model_getNumInitialAssignments(model) + 1;
+    while ia_applied > 0 && iterations_left > 0
+        ia_applied = 0;
+        for rule = model.initialAssignment
+            str = formula;
+            exp = strcat('\<',rule.symbol,'\>');
+            repstr = rule.math;
+            formula = regexprep(str,exp,repstr);
+            ia_applied = ia_applied + strcmp(str, formula)==false;
+        end
+        iterations_left = iterations_left - 1;
     end
-    iterations_left = iterations_left - 1;
-end
-assert(ia_applied == 0, ...
-    'Substitute(): Cyclic dependency of rules dedected');
+    assert(ia_applied == 0, ...
+        'Substitute(): Cyclic dependency of rules dedected');
+  end;
 
 try
     value = evalin('caller',formula);
