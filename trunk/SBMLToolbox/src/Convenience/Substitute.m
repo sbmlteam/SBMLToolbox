@@ -105,6 +105,13 @@ while rule_applied > 0 && iterations_left > 0
         exp = strcat('\<',rule.variable,'\>');
         repstr = rule.formula;
         formula = regexprep(str,exp,repstr);
+        for fd = 1:Model_getNumFunctionDefinitions(model)
+          newFormula = SubstituteFunction(formula, Model_getFunctionDefinition(model, fd));
+          if ~isempty(newFormula)
+            formula = newFormula;
+          end;
+        end;
+
         rule_applied = rule_applied + strcmp(str, formula)==false;
       end;
     end
@@ -123,6 +130,13 @@ assert(rule_applied == 0, ...
             exp = strcat('\<',rule.symbol,'\>');
             repstr = rule.math;
             formula = regexprep(str,exp,repstr);
+            for fd = 1:Model_getNumFunctionDefinitions(model)
+              newFormula = SubstituteFunction(formula, Model_getFunctionDefinition(model, fd));
+              if ~isempty(newFormula)
+                formula = newFormula;
+              end;
+            end;
+
             ia_applied = ia_applied + strcmp(str, formula)==false;
         end
         iterations_left = iterations_left - 1;
