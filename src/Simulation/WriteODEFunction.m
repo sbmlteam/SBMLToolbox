@@ -755,7 +755,7 @@ TempArray2 = {};
 
 % put any formula withoutxdot on RHS into new array
 for i = 1:length(Array)
-    if (length(strfind(Array{i}, 'xdot'))> 1)
+    if (length(strfind(Array{i}, 'xdot'))> 2)
         % xdot occurs more than once
         % put in temp array
         TempArray{TempArrayIndex} = Array{i};
@@ -764,6 +764,22 @@ for i = 1:length(Array)
         % update
         TempArrayIndex = TempArrayIndex + 1;
         NumberInTempArray = NumberInTempArray + 1;
+
+    elseif (length(strfind(Array{i}, 'xdot'))==2)
+        % if it is piecewise it will be of form if x xdot() = else xdot()
+        % so xdot will occur twice but not necessarily on RHS
+        if (length(strfind(Array{i}, 'if (')) == 1 ...
+            && strfind(Array{i}, 'if (') < 3)
+          % put in New array
+          NewArray{NewArrayIndex} = Array{i};
+          NewArrayIndices(NewArrayIndex) = i;
+
+          % update
+          NewArrayIndex = NewArrayIndex + 1;
+          NumberInNewArray = NumberInNewArray + 1;
+        else
+          error('cannot deal with this function %s', Array{i});
+        end;
 
     else
         % no xdot on RHS
