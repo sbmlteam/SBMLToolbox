@@ -103,6 +103,24 @@ end;
 if (length(SBMLModel.compartment) > 1)
   error('WriteODEFunction(SBMLModel, (optional) filename)\n%s', 'Cannot deal with multiple compartments');
 end;
+if (SBMLModel.SBML_level > 1 && ~isempty(SBMLModel.time_symbol))
+  for i=1:length(SBMLModel.rule)
+    if (strcmp(SBMLModel.rule(i).typecode, 'SBML_ASSIGNMENT_RULE'))
+      if (~isempty(strfind(SBMLModel.rule(i).formula, SBMLModel.time_symbol)))
+        error('Cannot deal with time in an assignment rule');
+      end;
+    end;
+  end;
+end;
+if (SBMLModel.SBML_level > 1 && ~isempty(SBMLModel.delay_symbol))
+  for i=1:length(SBMLModel.rule)
+    if (strcmp(SBMLModel.rule(i).typecode, 'SBML_ASSIGNMENT_RULE'))
+      if (~isempty(strfind(SBMLModel.rule(i).formula, SBMLModel.delay_symbol)))
+        error('Cannot deal with delay in an assignment rule');
+      end;
+    end;
+  end;
+end;
 
 %--------------------------------------------------------------
 % get information from the model
