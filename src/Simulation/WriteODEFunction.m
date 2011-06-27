@@ -778,7 +778,13 @@ for i = 1:length(Array)
           NewArrayIndex = NewArrayIndex + 1;
           NumberInNewArray = NumberInNewArray + 1;
         else
-          error('cannot deal with this function %s', Array{i});
+          TempArray{TempArrayIndex} = Array{i};
+          TempArrayIndices(TempArrayIndex) = i;
+
+          % update
+          TempArrayIndex = TempArrayIndex + 1;
+          NumberInTempArray = NumberInTempArray + 1;
+%          error('cannot deal with this function %s', Array{i});
         end;
 
     else
