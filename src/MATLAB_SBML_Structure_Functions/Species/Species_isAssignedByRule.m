@@ -48,18 +48,21 @@ end;
 [sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
 
 if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-  error('Species_isAssignedByRule(SBMLSpecies, SBMLRules)\n%s', 'first argument must be an SBMLSpecies structure');
+  error('Species_isAssignedByRule(SBMLSpecies, SBMLRules)\n%s', ...
+    'first argument must be an SBMLSpecies structure');
 end;
 
 
 NumRules = length(SBMLRules);
 
 if (NumRules < 1)
-    error('Species_isAssignedByRule(SBMLSpecies, SBMLRules)\n%s', 'SBMLRule structure is empty');
+    error('Species_isAssignedByRule(SBMLSpecies, SBMLRules)\n%s', ...
+      'SBMLRule structure is empty');
 else
     for i = 1:NumRules
         if (~isSBML_Rule(SBMLRules(i), sbmlLevel, sbmlVersion))
-            error('Species_isAssignedByRule(SBMLSpecies, SBMLRules)\n%s', 'second argument must be an array of SBMLRule structures');
+            error('Species_isAssignedByRule(SBMLSpecies, SBMLRules)\n%s', ...
+              'second argument must be an array of SBMLRule structures');
         end;
     end;
 end;
@@ -85,7 +88,8 @@ for i = 1:NumRules
             y = i;
             return;
         end;
-    elseif ((strcmp(SBMLRules(i).typecode, 'SBML_SPECIES_CONCENTRATION_RULE')) & (strcmp(SBMLRules(i).type, 'scalar')))
+    elseif ((strcmp(SBMLRules(i).typecode, 'SBML_SPECIES_CONCENTRATION_RULE')) ...
+        && (strcmp(SBMLRules(i).type, 'scalar')))
         if (strcmp(SBMLRules(i).species, name))
             y = i;
             return;

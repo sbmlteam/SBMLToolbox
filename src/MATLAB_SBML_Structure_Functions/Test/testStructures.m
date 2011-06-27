@@ -35,6 +35,7 @@ fail = fail + TestCreate();
 fail = fail + testComponents();
 fail = fail + testModelGetById();
 fail = fail + testModelGetByNum();
+fail = fail + testIsInRules();
 
 y = fail;
 

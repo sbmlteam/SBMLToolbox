@@ -1,15 +1,14 @@
-function y = Parameter_isAssignedByRule(SBMLParameter, SBMLRules)
-% Parameter_isAssignedByRule takes an SBMLParameter structure and an array of SBMLRule structures
+function y = Compartment_isInAlgebraicRule(SBMLCompartment, SBMLRules)
+% Compartment_isInAlgebraicRule takes an SBMLCompartment structure and an array of SBMLRule structures
 % and returns
-%             0 if the Parameter is not assigned by a rule
-%             n if the Parameter occurs as the Parameter field of a Parameter_CONCENTRATION_RULE
-%                                  or as the variable field of an ASSIGNMENT_RULE
-%     where n refers to the index of the matched rule in the array
+%             0 if the Compartment is not in an algebraic rule
+%             [n1, n2] if the Compartment occurs as within a rule
+%     where n1, n2 refers to the index of the matched rule in the array
 
-%  Filename    :   Parameter_isAssignedByRule.m
+%  Filename    :   Compartment_isInAlgebraicRule.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: Parameter_isAssignedByRule.m 13259 2011-03-21 05:40:36Z mhucka $
+%  $Id: Compartment_isInAlgebraicRule.m 13259 2011-03-21 05:40:36Z mhucka $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -40,28 +39,29 @@ y = 0;
 
 %-------------------------------------------------------------------
 % check input arguments are as expected
-if (~isstruct(SBMLParameter))
+
+if (~isstruct(SBMLCompartment))
     error(sprintf('%s', ...
-      'argument must be an SBML Parameter structure'));
+      'argument must be an SBML Compartment structure'));
 end;
  
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLParameter);
+[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLCompartment);
 
-if (~isSBML_Parameter(SBMLParameter, sbmlLevel, sbmlVersion))
-  error('Parameter_isAssignedByRule(SBMLParameter, SBMLRules)\n%s', ...
-    'first argument must be an SBMLParameter structure');
+if (~isSBML_Compartment(SBMLCompartment, sbmlLevel, sbmlVersion))
+  error('Compartment_isInAlgebraicRule(SBMLCompartment, SBMLRules)\n%s', ...
+    'first argument must be an SBMLCompartment structure');
 end;
 
 
 NumRules = length(SBMLRules);
 
 if (NumRules < 1)
-    error('Parameter_isAssignedByRule(SBMLParameter, SBMLRules)\n%s', ...
+    error('Compartment_isInAlgebraicRule(SBMLCompartment, SBMLRules)\n%s', ...
       'SBMLRule structure is empty');
 else
     for i = 1:NumRules
         if (~isSBML_Rule(SBMLRules(i), sbmlLevel, sbmlVersion))
-            error('Parameter_isAssignedByRule(SBMLParameter, SBMLRules)\n%s', ...
+            error('Compartment_isInAlgebraicRule(SBMLCompartment, SBMLRules)\n%s', ...
               'second argument must be an array of SBMLRule structures');
         end;
     end;
@@ -69,31 +69,27 @@ end;
 
 %--------------------------------------------------------------------------
 
-% loop through each rule and check whether the Parameter is assigned by it
-%determine the name or id of the Parameter
+% loop through each rule and check whether the Compartment occurs
+%determine the name or id of the Compartment
 if (sbmlLevel == 1)
-    name = SBMLParameter.name;
+    name = SBMLCompartment.name;
 else
-    if (isempty(SBMLParameter.id))
-        name = SBMLParameter.name;
+    if (isempty(SBMLCompartment.id))
+        name = SBMLCompartment.name;
     else
-        name = SBMLParameter.id;
+        name = SBMLCompartment.id;
     end;
 end;
 
+y = [];
 for i = 1:NumRules
-    if (strcmp(SBMLRules(i).typecode, 'SBML_ASSIGNMENT_RULE'))
-        if (strcmp(SBMLRules(i).variable, name))
-            % once found return as cannot occur more than once
-            y = i;
-            return;
-        end;
-    elseif ((strcmp(SBMLRules(i).typecode, 'SBML_PARAMETER_RULE')) ...
-        && (strcmp(SBMLRules(i).type, 'scalar')))
-        if (strcmp(SBMLRules(i).parameter, name))
-            y = i;
-            return;
-        end;
+    index = matchName(SBMLRules(i).formula, name);
+    if (~isempty(index) && strcmp(SBMLRules(i).typecode, 'SBML_ALGEBRAIC_RULE'))
+        y = [y;i];
     end;
+end;
+
+if isempty(y)
+  y = 0;
 end;
 
