@@ -60,45 +60,6 @@ SBMLModel = varargin{1};
 if (~isValidSBML_Model(SBMLModel))
     error('OutputODEFunction(SBMLModel)\n%s', 'first argument must be an SBMLModel structure');
 end;
-%------------------------------------------------------------
-% calculate values to use in iterative process
-if (nargin > 2)
-    Time_limit = varargin{3};
-else
-    Time_limit = 10;
-end;
-
-if (nargin > 3)
-    delta_t = Time_limit/varargin{4};
-    Time_span = [0:delta_t:Time_limit];
-    Number_points = length(Time_span);
-else
-    Time_span = [0, Time_limit];
-end;
-
-outAmt = 0;
-if (nargin > 6)
-  if (varargin{7} == 1)
-    outAmt = 1;
-  end;
-end;
-% check third argument
-if ((length(Time_limit) ~= 1) || (~isnumeric(Time_limit)))
-    error('OutputODEFunction(SBMLModel, time)\n%s', 'third argument must be a single real number indicating a time limit');
-end;
-
-%--------------------------------------------------------------
-% get variables from the model
-[VarParams, VarInitValues] = GetVaryingParameters(SBMLModel);
-NumberParams = length(VarParams);
-
-[SpeciesNames, SpeciesValues] = GetSpecies(SBMLModel);
-NumberSpecies = length(SBMLModel.species);
-
-VarNames = [SpeciesNames, VarParams];
-VarValues = [SpeciesValues, VarInitValues];
-NumVars = NumberSpecies + NumberParams;
-
 %---------------------------------------------------------------
 % get the name/id of the model
 
@@ -139,6 +100,45 @@ if (fId == -1)
 else
     fclose(fId);
 end;
+
+%------------------------------------------------------------
+% calculate values to use in iterative process
+if (nargin > 2)
+    Time_limit = varargin{3};
+else
+    Time_limit = 10;
+end;
+
+if (nargin > 3)
+    delta_t = Time_limit/varargin{4};
+    Time_span = [0:delta_t:Time_limit];
+    Number_points = length(Time_span);
+else
+    Time_span = [0, Time_limit];
+end;
+
+outAmt = 0;
+if (nargin > 6)
+  if (varargin{7} == 1)
+    outAmt = 1;
+  end;
+end;
+% check third argument
+if ((length(Time_limit) ~= 1) || (~isnumeric(Time_limit)))
+    error('OutputODEFunction(SBMLModel, time)\n%s', 'third argument must be a single real number indicating a time limit');
+end;
+
+%--------------------------------------------------------------
+% get variables from the model
+[VarParams, VarInitValues] = GetVaryingParameters(SBMLModel);
+NumberParams = length(VarParams);
+
+[SpeciesNames, SpeciesValues] = GetSpecies(SBMLModel);
+NumberSpecies = length(SBMLModel.species);
+
+VarNames = [SpeciesNames, VarParams];
+VarValues = [SpeciesValues, VarInitValues];
+NumVars = NumberSpecies + NumberParams;
 
 %---------------------------------------------------------------
 % get function handle
