@@ -70,7 +70,7 @@ if (length(brackets)>1)
   for b=1:num
     group{b} = f(brackets(1): brackets(2));
     if (sum(ismember(group{b}, x)) > 0)
-      error('Cannot deal with formula in this form');
+      error('Cannot deal with formula in this form: %s', f);
     end;
     newvar{b} = strcat('var', num2str(b));
     f = strrep(f, group{b}, newvar{b});
@@ -304,7 +304,7 @@ if (VarIndex < MultIndex)
 end;
 
 if ((DivIndex < MultIndex) ||(VarIndex < MultIndex) || (VarIndex > DivIndex)) 
-    error('Cannot deal with formula in this form');
+    error('Cannot deal with formula in this form: %s', element);
 end;
 
 n = '';
