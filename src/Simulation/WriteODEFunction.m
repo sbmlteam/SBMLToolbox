@@ -510,6 +510,17 @@ end;
 
 fprintf(fileID, '\nend;\n');
 
+% -----------------------------------------------------------------
+
+if (NumEvents > 0)
+% write two additional files for events
+
+    WriteEventHandlerFunction(SBMLModel, Name);
+    WriteEventAssignmentFunction(SBMLModel, Name);
+
+end;
+
+% ------------------------------------------------------------------
 % put in any function definitions
 
 if (NumFuncs > 0)
@@ -541,16 +552,6 @@ end;
 
 
 fclose(fileID);
-
-% -----------------------------------------------------------------
-
-if (NumEvents > 0)
-% write two additional files for events
-
-    WriteEventHandlerFunction(SBMLModel, Name);
-    WriteEventAssignmentFunction(SBMLModel, Name);
-
-end;
 
 
 %--------------------------------------------------------------------------
