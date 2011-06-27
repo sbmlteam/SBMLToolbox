@@ -251,7 +251,8 @@ openBracket = strfind(Trigger, '(');
 comma = strfind(Trigger, ',');
 closeBracket = strfind(Trigger, ')');
 
-if (isempty(openBracket) || (length(comma)~=0 && comma(1) < openBracket(1)) || (length(closeBracket)~=0 && closeBracket(1) < openBracket(1)))
+if (isempty(openBracket) || (length(comma)~=0 && comma(1) < openBracket(1)) ...
+    || (length(closeBracket)~=0 && closeBracket(1) < openBracket(1)))
     % simple case where no nesting 
     if (length(comma)~=0 && comma(1) < closeBracket(1))
         % terminated by comma
@@ -269,20 +270,20 @@ if (isempty(openBracket) || (length(comma)~=0 && comma(1) < openBracket(1)) || (
     end;
 else
     % nested case
-    Func = Trigger(1:openBracket-1);
+    func = Trigger(1:openBracket-1);
     Trigger = Trigger(openBracket+1:length(Trigger));
     [subfunc, Trigger] = ParseNumericFunction(Trigger);
-    Func = sprintf('%s(%s', Func, subfunc);
+    func = sprintf('%s(%s', func, subfunc);
     Trigger = LoseLeadingWhiteSpace(Trigger);
     comma = strfind(Trigger, ',');
     
     while (length(comma) ~= 0 && comma(1) == 1)
         [subfunc, Trigger] = ParseNumericFunction(Trigger);
-        Func = sprintf('%s,%s', Func, subfunc);
+        func = sprintf('%s,%s', func, subfunc);
         Trigger = LoseLeadingWhiteSpace(Trigger);
         comma = strfind(Trigger, ',');
     end
-    Func=sprintf('%s)',Func);
+    func=sprintf('%s)',func);
     closeBracket=strfind(Trigger, ')');
     Trigger = Trigger(closeBracket(1)+1:length(Trigger));
 end;    
