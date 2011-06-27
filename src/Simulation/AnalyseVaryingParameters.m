@@ -303,7 +303,7 @@ if (isempty(DivIndex))
 end;
 
 if ((DivIndex < MultIndex) ||(VarIndex < MultIndex) || (VarIndex > DivIndex)) 
-    error('Cannot deal with formula in this form');
+    error('Cannot deal with formula in this form: %s', element);
 end;
 
 n = '';
