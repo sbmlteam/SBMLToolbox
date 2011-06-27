@@ -48,18 +48,21 @@ end;
 [sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLSpecies);
 
 if (~isSBML_Species(SBMLSpecies, sbmlLevel, sbmlVersion))
-  error('Species_isInAlgebraicRule(SBMLSpecies, SBMLRules)\n%s', 'first argument must be an SBMLSpecies structure');
+  error('Species_isInAlgebraicRule(SBMLSpecies, SBMLRules)\n%s', ...
+    'first argument must be an SBMLSpecies structure');
 end;
 
 
 NumRules = length(SBMLRules);
 
 if (NumRules < 1)
-    error('Species_isInAlgebraicRule(SBMLSpecies, SBMLRules)\n%s', 'SBMLRule structure is empty');
+    error('Species_isInAlgebraicRule(SBMLSpecies, SBMLRules)\n%s', ...
+      'SBMLRule structure is empty');
 else
     for i = 1:NumRules
         if (~isSBML_Rule(SBMLRules(i), sbmlLevel, sbmlVersion))
-            error('Species_isInAlgebraicRule(SBMLSpecies, SBMLRules)\n%s', 'second argument must be an array of SBMLRule structures');
+            error('Species_isInAlgebraicRule(SBMLSpecies, SBMLRules)\n%s', ...
+              'second argument must be an array of SBMLRule structures');
         end;
     end;
 end;
@@ -80,9 +83,13 @@ end;
 
 y = [];
 for i = 1:NumRules
-    index = strfind(SBMLRules(i).formula, name);
-    if (~isempty(index))
+    index = matchName(SBMLRules(i).formula, name);
+    if (~isempty(index) && strcmp(SBMLRules(i).typecode, 'SBML_ALGEBRAIC_RULE'))
         y = [y;i];
     end;
+end;
+
+if isempty(y)
+  y = 0;
 end;
 

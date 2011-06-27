@@ -49,18 +49,21 @@ end;
 [sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLParameter);
 
 if (~isSBML_Parameter(SBMLParameter, sbmlLevel, sbmlVersion))
-  error('Parameter_isAssignedByRateRule(SBMLParameter, SBMLRules)\n%s', 'first argument must be an SBMLParameter structure');
+  error('Parameter_isAssignedByRateRule(SBMLParameter, SBMLRules)\n%s', ...
+    'first argument must be an SBMLParameter structure');
 end;
 
 
 NumRules = length(SBMLRules);
 
 if (NumRules < 1)
-    error('Parameter_isAssignedByRateRule(SBMLParameter, SBMLRules)\n%s', 'SBMLRule structure is empty');
+    error('Parameter_isAssignedByRateRule(SBMLParameter, SBMLRules)\n%s', ...
+      'SBMLRule structure is empty');
 else
     for i = 1:NumRules
         if (~isSBML_Rule(SBMLRules(i), sbmlLevel, sbmlVersion))
-            error('Parameter_isAssignedByRateRule(SBMLParameter, SBMLRules)\n%s', 'second argument must be an array of SBMLRule structures');
+            error('Parameter_isAssignedByRateRule(SBMLParameter, SBMLRules)\n%s', ...
+              'second argument must be an array of SBMLRule structures');
         end;
     end;
 end;
@@ -86,8 +89,9 @@ for i = 1:NumRules
             y = i;
             return;
         end;
-    elseif ((strcmp(SBMLRules(i).typecode, 'SBML_PARAMETER_RULE')) & (strcmp(SBMLRules(i).type, 'rate')))
-        if (strcmp(SBMLRules(i).Parameter, name))
+    elseif ((strcmp(SBMLRules(i).typecode, 'SBML_PARAMETER_RULE')) ...
+        && (strcmp(SBMLRules(i).type, 'rate')))
+        if (strcmp(SBMLRules(i).parameter, name))
             y = i;
             return;
         end;

@@ -48,18 +48,21 @@ end;
 [sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLParameter);
 
 if (~isSBML_Parameter(SBMLParameter, sbmlLevel, sbmlVersion))
-  error('Parameter_isInAlgebraicRule(SBMLParameter, SBMLRules)\n%s', 'first argument must be an SBMLParameter structure');
+  error('Parameter_isInAlgebraicRule(SBMLParameter, SBMLRules)\n%s', ...
+    'first argument must be an SBMLParameter structure');
 end;
 
 
 NumRules = length(SBMLRules);
 
 if (NumRules < 1)
-    error('Parameter_isInAlgebraicRule(SBMLParameter, SBMLRules)\n%s', 'SBMLRule structure is empty');
+    error('Parameter_isInAlgebraicRule(SBMLParameter, SBMLRules)\n%s', ...
+      'SBMLRule structure is empty');
 else
     for i = 1:NumRules
         if (~isSBML_Rule(SBMLRules(i), sbmlLevel, sbmlVersion))
-            error('Parameter_isInAlgebraicRule(SBMLParameter, SBMLRules)\n%s', 'second argument must be an array of SBMLRule structures');
+            error('Parameter_isInAlgebraicRule(SBMLParameter, SBMLRules)\n%s', ...
+              'second argument must be an array of SBMLRule structures');
         end;
     end;
 end;
@@ -81,8 +84,12 @@ end;
 y = [];
 for i = 1:NumRules
     index = matchName(SBMLRules(i).formula, name);
-    if (~isempty(index))
+    if (~isempty(index) && strcmp(SBMLRules(i).typecode, 'SBML_ALGEBRAIC_RULE'))
         y = [y;i];
     end;
+end;
+
+if isempty(y)
+  y = 0;
 end;
 
