@@ -146,26 +146,52 @@ for i = 1:NumberSpecies
                     else
                         stoichiometry = SBMLModel.reaction(j).product(SpeciesRole(4)).stoichiometry/double(SBMLModel.reaction(j).product(SpeciesRole(4)).denominator);
                     end;
+                    
                     if ((SBMLModel.SBML_level == 2) && (~isempty(SBMLModel.reaction(j).product(SpeciesRole(4)).stoichiometryMath)))
                       if (SBMLModel.SBML_version < 3)   
                          output = sprintf('%s + (%s) * (%s)', output, SBMLModel.reaction(j).product(SpeciesRole(4)).stoichiometryMath, formula);
                       else
                          output = sprintf('%s + (%s) * (%s)', output, SBMLModel.reaction(j).product(SpeciesRole(4)).stoichiometryMath.math, formula);
                       end;
-                    elseif ((SBMLModel.SBML_level == 3) && (isnan(stoichiometry)))
+                    elseif (SBMLModel.SBML_level == 3)
+                      % level 3 stoichiometry may be assigned by
+                      % rule/initialAssignment which will override any
+                      % stoichiometry value
                         if (~isempty(SBMLModel.reaction(j).product(SpeciesRole(4)).id))
                           rule = Model_getAssignmentRuleByVariable(SBMLModel, SBMLModel.reaction(j).product(SpeciesRole(4)).id);
-                          output = sprintf('%s + (%s) * (%s)', output, rule.formula, formula);
-                        else
+                          rrule = Model_getRateRuleByVariable(SBMLModel, SBMLModel.reaction(j).product(SpeciesRole(4)).id);
+                          ia = Model_getInitialAssignmentBySymbol(SBMLModel, SBMLModel.reaction(j).product(SpeciesRole(4)).id);
+                          if ~isempty(rule)
+                            output = sprintf('%s + (%s) * (%s)', output, rule.formula, formula);
+                          elseif ~isempty(ia)
+                            output = sprintf('%s + (%s) * (%s)', output, ia.math, formula);
+                          elseif ~isempty(rrule)
+                            error('Cannot deal with stoichiometry in a rate rule');
+                          elseif ~isnan(stoichiometry)
+                            if (stoichiometry == 1)
+                                output = sprintf('%s + (%s)', output, formula);
+                            else
+                                output = sprintf('%s + %u * (%s)', output, stoichiometry, formula);
+                            end;
+                          else
+                            error('Cannot determine stoichiometry');
+                          end;                          
+                        elseif isnan(stoichiometry)
                           error ('Cannot determine stoichiometry');
+                        else
+                          if (stoichiometry == 1)
+                              output = sprintf('%s + (%s)', output, formula);
+                          else
+                              output = sprintf('%s + %u * (%s)', output, stoichiometry, formula);
+                          end;
                         end;
                     else
-                    % if stoichiometry = 1 no need to include it in formula
-                    if (stoichiometry == 1)
-                        output = sprintf('%s + (%s)', output, formula);
-                    else
-                        output = sprintf('%s + %u * (%s)', output, stoichiometry, formula);
-                    end;
+                      % if stoichiometry = 1 no need to include it in formula
+                      if (stoichiometry == 1)
+                          output = sprintf('%s + (%s)', output, formula);
+                      else
+                          output = sprintf('%s + %u * (%s)', output, stoichiometry, formula);
+                      end;
                          
                     end;
                     NoProducts = NoProducts - 1;
@@ -199,20 +225,45 @@ for i = 1:NumberSpecies
                        else
                          output = sprintf('%s - (%s) * (%s)', output, SBMLModel.reaction(j).reactant(SpeciesRole(5)).stoichiometryMath.math, formula);
                        end;
-                    elseif ((SBMLModel.SBML_level == 3) && (isnan(stoichiometry)))
+                    elseif (SBMLModel.SBML_level == 3)
+                      % level 3 stoichiometry may be assigned by
+                      % rule/initialAssignment which will override any
+                      % stoichiometry value
                         if (~isempty(SBMLModel.reaction(j).reactant(SpeciesRole(5)).id))
                           rule = Model_getAssignmentRuleByVariable(SBMLModel, SBMLModel.reaction(j).reactant(SpeciesRole(5)).id);
-                          output = sprintf('%s - (%s) * (%s)', output, rule.formula, formula);
-                        else
+                          rrule = Model_getRateRuleByVariable(SBMLModel, SBMLModel.reaction(j).reactant(SpeciesRole(5)).id);
+                          ia = Model_getInitialAssignmentBySymbol(SBMLModel, SBMLModel.reaction(j).reactant(SpeciesRole(5)).id);
+                          if ~isempty(rule)
+                            output = sprintf('%s - (%s) * (%s)', output, rule.formula, formula);
+                          elseif ~isempty(ia)
+                            output = sprintf('%s - (%s) * (%s)', output, ia.math, formula);
+                          elseif ~isempty(rrule)
+                            error('Cannot deal with stoichiometry in a rate rule');
+                          elseif ~isnan(stoichiometry)
+                            if (stoichiometry == 1)
+                                output = sprintf('%s - (%s)', output, formula);
+                            else
+                                output = sprintf('%s - %u * (%s)', output, stoichiometry, formula);
+                            end;
+                          else
+                            error('Cannot determine stoichiometry');
+                          end;                          
+                        elseif isnan(stoichiometry)
                           error ('Cannot determine stoichiometry');
+                        else
+                          if (stoichiometry == 1)
+                              output = sprintf('%s - (%s)', output, formula);
+                          else
+                              output = sprintf('%s - %u * (%s)', output, stoichiometry, formula);
+                          end;
                         end;
                     else
-                    % if stoichiometry = 1 no need to include it in formula
-                    if (stoichiometry == 1)
-                        output = sprintf('%s - (%s)', output, formula);
-                    else
-                        output = sprintf('%s - %u * (%s)', output, stoichiometry, formula);
-                    end;
+                      % if stoichiometry = 1 no need to include it in formula
+                      if (stoichiometry == 1)
+                          output = sprintf('%s - (%s)', output, formula);
+                      else
+                          output = sprintf('%s - %u * (%s)', output, stoichiometry, formula);
+                      end;
 
                          
                     end;
