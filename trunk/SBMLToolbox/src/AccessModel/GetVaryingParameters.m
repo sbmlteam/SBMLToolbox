@@ -1,22 +1,22 @@
 function varargout = GetVaryingParameters(SBMLModel)
-% GetVaryingParameters takes an SBMLModel 
-% and returns 
-%           1) an array of character names representing all parameters 
-%               that vary within the model 
-%       
+% [names, values] = GetVaryingParameters(SBMLModel)
+% 
+% takes 
+% 
+% 1. SBMLModel; an SBML Model structure
+% 
+% returns 
+%           
+% 1. an array of strings representing the ids of any non-constant parameters 
+%              within the model 
+% 2. an array of the values of each of these parameter
 %
+% *NOTE:* the value returned will be (in order)
+%
+%   - determined from assignmentRules/initialAssignments where appropriate
+%   - the attribute 'value' for the given parameter
+%   - NaN; if the value is not specified in any way within the model
 
-%--------------------------------------------------------------------------
-%
-%  Filename    : GetVaryingParameters.m
-%  Description : takes a SBMLModel and returns an array of character names representing all parameters 
-%                   and an array of the values of each parameter
-%  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
-%  Organization: University of Hertfordshire STRC
-%  Created     : 2004-02-02
-%  Revision    : $Id: GetAllParameters.m 7155 2008-06-26 20:24:00Z mhucka $
-%  Source      : $Source $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

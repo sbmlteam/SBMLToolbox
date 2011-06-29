@@ -1,20 +1,19 @@
 function [Parameter, RateRules] = GetParameterRateRules(SBMLModel)
-% GetParameterRateRules takes an SBMLModel 
-% and returns
-%             1) an array of Parameter names
-%             2) an array of the character representation of the
-%                   Rate rule used to assign value to each Parameter 
+% [parameters, raterules] = GetParameterRateRules((SBMLModel)
+% 
+% takes 
+% 
+% 1. SBMLModel; an SBML Model structure 
+% 
+% returns
+%
+% 1. an array of strings representing the ids of all parameters
+% 2. an array of 
+%
+%  - the character representation of the rate rule used to 
+%    assign value to a given parameter 
+%  - '0' if the parameter is not assigned by a rule
 
-%--------------------------------------------------------------------------
-%
-%  Filename    : GetParameterRateRules.m
-%  Description : takes a SBMLModel and returns Rates
-%  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
-%  Organization: University of Hertfordshire STRC
-%  Created     : 2004-12-06
-%  Revision    : $Id: GetParameterRateRules.m 13259 2011-03-21 05:40:36Z mhucka $
-%  Source      : $Source $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

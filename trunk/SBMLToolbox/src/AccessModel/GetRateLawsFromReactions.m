@@ -1,20 +1,31 @@
 function [Species, RateLaws] = GetRateLawsFromReactions(SBMLModel)
-% GetRateLawsFromReactions takes an SBMLModel 
-% and returns
-%             1) an array of species names
-%             2) an array of the character representation of the rate laws
-%                   for each species
+% [species, rateLaws] = GetRateLawsFromReactions(SBMLModel)
+% 
+% takes 
+% 
+% 1. SBMLModel; an SBML Model structure 
+%
+% returns
+%
+% 1. an array of strings representing the ids of all species
+% 2. an array of 
+% 
+%  - the character representation of the rate law established from any reactions
+%    that determines the particular species
+%  - '0' if the particular species is not a reactant/product in any reaction
+%
+% *EXAMPLE:*
+%
+%      model has 4 species (s1, s2, s3, s4) 
+%            and 2 reactions; s1 -> s2 with kineticLaw 'k1*s1'
+%                             s2 -> s3 with kineticLaw 'k2*s2'
+% 
+%           [species, rateLaws] = GetRateLawsFromReactions(model)
+%                   
+%                    species     = ['s1', 's2', 's3', 's4']
+%                    rateLaws = {'-k1*s1', 'k1*s1-k2*s2', 'k2*s2', '0'}
+%
 
-%--------------------------------------------------------------------------
-%
-%  Filename    : GetRateLawsFromReactions.m
-%  Description : takes a SBMLModel and returns rate laws
-%  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
-%  Organization: University of Hertfordshire STRC
-%  Created     : 2004-11-09
-%  Revision    : $Id$
-%  Source      : $Source $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

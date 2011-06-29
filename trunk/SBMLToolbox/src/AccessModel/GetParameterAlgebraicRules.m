@@ -1,20 +1,32 @@
 function [Parameter, AlgebraicRules] = GetParameterAlgebraicRules(SBMLModel)
-% GetParameterAlgebraicRules takes an SBMLModel 
-% and returns
-%             1) an array of Parameter names
-%             2) an array of the character representation of each algebraic
-%                   rule the Parameter appears in
+% [parameters, algebraicRules] = GetParameterAlgebraicRules(SBMLModel)
+% 
+% takes
+% 
+% 1. SBMLModel; an SBML Model structure
+% 
+% returns 
+% 
+% 1. an array of strings representing the ids of all parameters
+% 2. an array of 
+%
+%  - the character representation of each algebraic
+%    rule the parameter appears in 
+%  - '0' if the particular parameter is not in an algebraic rule
+%
+% *EXAMPLE:*
+%
+%      model has 3 parameters (k1, k2, k3) 
+%            and 2 algebraic rules with formula 'k2+7' and 'k2-k3'
+% 
+%           [parameters, algebraicRules] = GetParameterAlgebraicRules(model)
+%                   
+%                    parameters     = ['k1', 'k2', 'k3']
+%                    algebraicRules = {'0', ['k2+7', 'k2-k3'], ['k2-k3']}
+%
+% 
+% 
 
-%--------------------------------------------------------------------------
-%
-%  Filename    : GetParameterAlgebraicRules.m
-%  Description : takes a SBMLModel and returns assignments
-%  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
-%  Organization: University of Hertfordshire STRC
-%  Created     : 2004-12-06
-%  Revision    : $Id: GetParameterAlgebraicRules.m 13259 2011-03-21 05:40:36Z mhucka $
-%  Source      : $Source $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

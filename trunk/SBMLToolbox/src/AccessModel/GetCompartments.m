@@ -1,21 +1,21 @@
 function varargout = GetCompartments(SBMLModel)
-% GetCompartments takes a SBMLModel 
-% and returns 
-%           1) an array of character names of all compartments within the model 
-%           2) an array of the size/volume values of each compartment
+% [names, values] = GetCompartments(SBMLModel)
+% 
+% takes
+% 
+% 1. SBMLModel; an SBML Model structure 
 %
+% returns 
+% 
+% 1. an array of strings representing the ids of all compartments within the model 
+% 2. an array of the size/volume values of each compartment
+% 
+% *NOTE:* the value returned will be (in order)
+%
+%   - determined from assignmentRules/initialAssignments where appropriate
+%   - the attribute 'size' ('volume' in L1) for the given compartment
+%   - NaN; if the value is not specified in any way within the model
 
-%--------------------------------------------------------------------------
-%
-%  Filename    : GetCompartments.m
-%  Description : takes a SBMLModel and returns an array of character names representing all compartments 
-%                   and an array of the initial values of each compartment
-%  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
-%  Organization: University of Hertfordshire STRC
-%  Created     : 2004-02-02
-%  Revision    : $Id$
-%  Source      : $Source $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

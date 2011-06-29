@@ -1,10 +1,30 @@
 function S=GetStoichiometrySparse(model)
+% S = GetStoichiometrySparse(SBMLModel)
+% 
+% takes 
+% 
+% 1. SBMLModel; an SBML Model structure
+% 
+% returns 
+% 
+% 1. a sparse stoichiometry matrix produced from the reactions/species
+% 
+% *NOTE:* This function was contributed by: Arsen Batagov (2006)
+
+%<!---------------------------------------------------------------------------
+% This file is part of SBMLToolbox.  Please visit http://sbml.org for more
+% information about SBML, and the latest version of SBMLToolbox.
 %
-% S = GetStoichiometrySparse(MODEL)
-% Returns the sparse stoichiometry matrix S from an SBML MODEL.
-%
-% SBML Toolbox 2.02, MATLAB 7
-% a.batagov@ucl.ac.uk: Arsen Batagov (2006)
+% Copyright 2005-2007 California Institute of Technology.
+% Copyright 2002-2005 California Institute of Technology and
+%                     Japan Science and Technology Corporation.
+% 
+% This library is free software; you can redistribute it and/or modify it
+% under the terms of the GNU Lesser General Public License as published by
+% the Free Software Foundation.  A copy of the license agreement is provided
+% in the file named "LICENSE.txt" included with this software distribution.
+% and also available online as http://sbml.org/software/sbmltoolbox/license.html
+%----------------------------------------------------------------------- -->
 
 % check input is an SBML model
 if (~isValidSBML_Model(model))

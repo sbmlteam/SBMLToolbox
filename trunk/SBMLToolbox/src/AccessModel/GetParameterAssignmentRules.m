@@ -1,20 +1,19 @@
 function [Parameter, AssignmentRules] = GetParameterAssignmentRules(SBMLModel)
-% GetParameterAssignmentRules takes an SBMLModel 
-% and returns
-%             1) an array of Parameter names
-%             2) an array of the character representation of the
-%                   Assignment rule used to assign value to each Parameter 
+% [parameters, assignmentRules] = GetParameterAssignmentRules(SBMLModel) 
+% 
+% takes 
+% 
+% 1. SBMLModel; an SBML Model structure 
+% 
+% returns
+% 
+% 1. an array of strings representing the ids of all parameters
+% 2. an array of 
+%
+%  - the character representation of the assignment rule used to 
+%    assign value to a given parameter 
+%  - '0' if the parameter is not assigned by a rule
 
-%--------------------------------------------------------------------------
-%
-%  Filename    : GetParameterAssignmentRules.m
-%  Description : takes a SBMLModel and returns Assignments
-%  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
-%  Organization: University of Hertfordshire STRC
-%  Created     : 2004-12-06
-%  Revision    : $Id: GetParameterAssignmentRules.m 13259 2011-03-21 05:40:36Z mhucka $
-%  Source      : $Source $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

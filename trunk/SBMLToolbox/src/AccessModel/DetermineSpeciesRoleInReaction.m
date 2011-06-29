@@ -1,34 +1,32 @@
 function y = DetermineSpeciesRoleInReaction(SBMLSpecies, SBMLReaction)
-% DetermineSpeciesRoleInReaction(SBMLSpecies, SBMLReaction)takes a SBML species and  reaction
-% and determines where the species takes part in the reaction
+% array = DetermineSpeciesRoleInReaction(SBMLSpecies, SBMLReaction)
+% 
+% takes 
+% 
+% 1. SBMLSpecies; an SBML species structure
+% 2. SBMLReaction; an SBML reaction structure
+% 
+% returns   
+% 
+% 1. an array with five elements `[isProduct, isReactant, isModifier, 
+% positionInProductList, positionInReactantList]` indicting 
+% whether the species is a product, reactant or modifier and recording 
+% the position in the list of products/reactants
+% 
+% or 
+% 
+% 1. array = 0   if the species is NOT part of the reaction
 %
-% returns   0   if species is NOT part of the reaction
-% or        an array indicting whether the species is a product,
-%                   reactant or modifier
-%           and recording the position in the list of products/reactants
-%
-%           [isProduct, isReactant, isModifier, positionInProductList,
-%           positionInReactantList]
-%
-%--------------------------------------------------------------------------
-% EXAMPLE:    y   =   DetermineSpeciesRoleInReaction(s, r)
-%                 =   0                 if s is not in r
-%                 =   [1, 0, 0, 2, 0]   if s is product no 2 in r 
-%                 =   [0, 1, 0, 0, 1]   if s is reactant no 1 in r
-%                 =   [0, 0, 1, 0, 0]   if s is a modifier in r
-%                 =   [1, 1, 0, 1, 2]   if s is product no 1 
-%                                           and reactant no 2 in r
-%--------------------------------------------------------------------------
+% 
+% *EXAMPLE:*    
+%  
+%              y   =   DetermineSpeciesRoleInReaction(s, r)
+%                  =   0                 if s is not in r
+%                  =   [1, 0, 0, 2, 0]   if s is product no 2 in r 
+%                  =   [0, 1, 0, 0, 1]   if s is reactant no 1 in r
+%                  =   [0, 0, 1, 0, 0]   if s is a modifier in r
+%                  =   [1, 1, 0, 1, 2]   if s is product no 1 and reactant no 2 in r
 
-%  Filename    : DetermineSpeciesRoleInReaction.m
-%  Description : DetermineSpeciesRoleInReaction(SBMLSpecies, SBMLReaction)takes a SBML species and  reaction
-%               and determines where the species takes part in the reaction
-%  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
-%  Organization: University of Hertfordshire STRC
-%  Created     : 2005-01-12
-%  Revision    : $Id$
-%  Source      : $Source $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

@@ -1,20 +1,19 @@
 function [Species, AssignmentRules] = GetSpeciesAssignmentRules(SBMLModel)
-% GetSpeciesAssignmentRules takes an SBMLModel 
-% and returns
-%             1) an array of species names
-%             2) an array of the character representation of the
-%                   assignment rule used to assign value to each species 
+% [species, assignmentRules] = GetSpeciesAssignmentRules(SBMLModel) 
+% 
+% takes 
+% 
+% 1. SBMLModel; an SBML Model structure 
+% 
+% returns
+% 
+% 1. an array of strings representing the ids of all species
+% 2. an array of 
+%
+%  - the character representation of the assignment rule used to 
+%    assign value to a given species 
+%  - '0' if the species is not assigned by a rule
 
-%--------------------------------------------------------------------------
-%
-%  Filename    : GetSpeciesAssignmentRules.m
-%  Description : takes a SBMLModel and returns assignments
-%  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
-%  Organization: University of Hertfordshire STRC
-%  Created     : 2004-12-06
-%  Revision    : $Id$
-%  Source      : $Source $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
