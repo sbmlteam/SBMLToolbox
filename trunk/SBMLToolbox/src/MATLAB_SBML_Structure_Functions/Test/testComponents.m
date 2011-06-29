@@ -1,15 +1,5 @@
 function [fail] = testComponents()
-%
-% testComponents
-%
-%    returns
-%      the number of fails
-%  Filename    :   testComponents.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
+
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -32,6 +22,8 @@ function [fail] = testComponents()
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 fail = 0;
