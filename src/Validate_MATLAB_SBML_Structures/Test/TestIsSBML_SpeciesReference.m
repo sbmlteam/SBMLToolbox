@@ -1,11 +1,5 @@
 function fail = TestIsSBML_SpeciesReference
 
-%  Filename    :   TestIsSBML_SpeciesReference.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -28,6 +22,8 @@ function fail = TestIsSBML_SpeciesReference
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 sr_l1 = struct('typecode', {'SBML_SPECIES_REFERENCE'}, 'notes', {''}, 'annotation', {''},'species', ...
