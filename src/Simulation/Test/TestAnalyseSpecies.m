@@ -1,32 +1,5 @@
 function fail = TestAnalyseSpecies
-% AnalyseSpecies takes a MATLAB_SBML model structure and outputs a
-% structure detailing the species and how they are manipulated within the
-% model
-% 
-% the structure fields are
-%     Name
-%     constant
-%     boundaryCondition
-%     initialValue
-%     isConcentration
-%     compartment
-%     ChangedByReaction
-%     KineticLaw
-%     ChangedByRateRule
-%     RateRule
-%     ChangedByAssignmentRule
-%     AssignmentRule
-%     InAlgebraicRule
-%     AlgebraicRule
-%     ConvertedToAssignRule
-%     ConvertedRule
 
-%  Filename    :   TestAnalyseSpecies.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -49,6 +22,8 @@ function fail = TestAnalyseSpecies
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 

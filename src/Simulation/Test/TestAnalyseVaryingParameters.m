@@ -1,26 +1,5 @@
 function fail = TestAnalyseVaryingParameters
-% AnalyseVaryingParameters takes a MATLAB_SBML model structure and outputs a
-% structure detailing the VaryingParameters and how they are manipulated within the
-% model
-% 
-% the structure fields are
-%     Name
-%     initialValue
-%     ChangedByRateRule
-%     RateRule
-%     ChangedByAssignmentRule
-%     AssignmentRule
-%     InAlgebraicRule
-%     AlgebraicRule
-%     ConvertedToAssignRule
-%     ConvertedRule
 
-%  Filename    :   TestAnalyseVaryingParameters.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: TestAnalyseVaryingParameters.m 13259 2011-03-21 05:40:36Z mhucka $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -43,6 +22,8 @@ function fail = TestAnalyseVaryingParameters
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 
