@@ -1,16 +1,40 @@
 function varargout = GetStoichiometryMatrix(SBMLModel)
-% GetStoichiometryMatrix takes an SBML model 
-% and returns 
-%       1) stoichiometry matrix
-%       2) an array of character names of all species within the model 
+% [matrix, species] = GetStoichiometryMatrix(SBMLModel)
+% 
+% takes 
+% 
+% 1. SBMLModel; an SBML Model structure
+% 
+% returns 
+% 
+% 1. the stoichiometry matrix produced from the reactions/species
+% 2. an array of strings representing the ids of all species within the model 
 %           (in the order in which the matrix deals with them)
+%
+% *EXAMPLE:*
+%
+%      model has 5 species (s1, s2, s3, s4, s5) 
+%            and 3 reactions: s1 -> s2
+%                             s3 -> s5
+%                             2s1 -> s5
+% 
+%           [matrix, species] = GetRateLawsFromReactions(model)
+% 
+%                    matrix = -1   0  -2
+%                              1   0   0
+%                              0  -1   0
+%                              0   1   1
+%                    species     = ['s1', 's2', 's3', 's5']
+%
+%             (species s4 does not play a role in any reaction)
+%
 
 %--------------------------------------------------------------------------
 
 %
 %  Filename    : GetStoichiometryMatrix.m
-%  Description : takes a SBMLModel and returns the stoichiometry matrix
-%                   and an array of character names representing all species 
+%  Description : takes 1. SBMLModel; an SBML Model structure and returns the stoichiometry matrix
+%                   and an array of strings representing the ids of all species 
 %  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
 %  Organization: University of Hertfordshire STRC
 %  Created     : 2004-02-02

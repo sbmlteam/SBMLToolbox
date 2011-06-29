@@ -1,20 +1,19 @@
 function [Species, RateLaws] = GetRateLawsFromRules(SBMLModel)
-% GetRateLawsFromRules takes an SBMLModel 
-% and returns
-%             1) an array of species names
-%             2) an array of the character representation of the rate laws
-%                   for each species from rules
+% [species, rateLaws] = GetRateLawsFromRules(SBMLModel)
+% 
+% takes 
+% 
+% 1. SBMLModel; an SBML Model structure 
+% 
+% returns
+%
+% 1. an array of strings representing the ids of all species
+% 2. an array of 
+% 
+%  - the character representation of the rateRule that determines
+%    the particular species
+%  - '0' if the particular species is not assigned by a rateRule
 
-%--------------------------------------------------------------------------
-%
-%  Filename    : GetRateLawsFromRules.m
-%  Description : takes a SBMLModel and returns rate laws
-%  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
-%  Organization: University of Hertfordshire STRC
-%  Created     : 2004-11-12
-%  Revision    : $Id$
-%  Source      : $Source $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

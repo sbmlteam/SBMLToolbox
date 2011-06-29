@@ -1,22 +1,22 @@
 function varargout = GetGlobalParameters(SBMLModel)
-% GetGlobalParameters takes a SBMLModel 
-% and returns 
-%           1) an array of character names representing 
-%               all global parameters within the model 
-%           2) an array of the values of each parameter
+% [names, values] = GetGlobalParameters(SBMLModel)
+% 
+% takes
+% 
+% 1. SBMLModel; an SBML Model structure
+% 
+% returns 
+% 
+% 1. an array of strings representing the ids of 
+%                all global parameters within the model 
+% 2. an array of the values of each parameter
+% 
+% *NOTE:* the value returned will be (in order)
 %
+%   - determined from assignmentRules/initialAssignments where appropriate
+%   - the attribute 'value' for the given parameter
+%   - NaN; if the value is not specified in any way within the model
 
-%--------------------------------------------------------------------------
-%
-%  Filename    : GetGlobalParameters.m
-%  Description : takes a SBMLModel and returns an array of character names representing all global parameters 
-%                   and an array of the values of each parameter
-%  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
-%  Organization: University of Hertfordshire STRC
-%  Created     : 2004-02-02
-%  Revision    : $Id$
-%  Source      : $Source $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

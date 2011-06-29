@@ -1,7 +1,14 @@
 function y = IsSpeciesInReaction(SBMLSpecies, SBMLReaction)
-% IsSpeciesInReaction takes an SBML species and an SBML reaction
-% and returns
-%       the number of times the species occurs within the reaction
+% num = IsSpeciesInReaction(SBMLSpecies, SBMLReaction)
+% 
+% takes 
+% 
+% 1. SBMLSpecies; an SBML Species structure
+% 2. SBMLReaction; an SBML Reaction structure
+% 
+% returns
+%
+% 1. the number of times the species occurs within the reaction
 
 
 %  Filename    : IsSpeciesInReaction.m

@@ -1,26 +1,35 @@
 function varargout = GetAllParametersUnique(SBMLModel)
-% GetAllParametersUnique takes a SBMLModel 
-% and returns 
-%           1) an array of character names representing all parameters 
-%               (both global and embedded) within the model 
-%               with reaction names appended to the names of parameters
+% [names, values] = GetAllParametersUnique(SBMLModel)
+% 
+% takes 
+% 
+% 1. SBMLModel; an SBML model structure
+% 
+% returns 
+% 
+% 1. an array of strings representing the ids of all parameters 
+%               (both global and embedded) within the model.
+%               _Note:_ reaction names are appended to the names of parameters
 %               declared within a reaction
-%           2) an array of the values of each parameter
+% 2. an array of the values of each parameter
 %
+% *NOTE:* the value returned will be (in order)
+%
+%   - determined from assignmentRules/initialAssignments where appropriate
+%   - the attribute 'value' for the given parameter
+%   - NaN; if the value is not specified in any way within the model
+%
+% *EXAMPLE:*
+% 
+%      model has 1 parameter k1 
+%            and reaction R1 that lists a local parameter k1
+%
+%           [names, values] = GetAllParametersUnique(model)
+%                   
+%                     names = [k1, k1_R1]
+%                    values = [2, 1.5]
+% 
 
-%--------------------------------------------------------------------------
-%
-%  Filename    : GetAllParametersUnique.m
-%  Description : takes a SBMLModel and returns an array of character names representing all parameters 
-%                   parameters declared within reactions have teh reaction
-%                   name appended
-%                   and an array of the values of each parameter
-%  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
-%  Organization: University of Hertfordshire STRC
-%  Created     : 2004-02-02
-%  Revision    : $Id$
-%  Source      : $Source $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

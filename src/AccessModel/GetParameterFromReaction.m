@@ -1,22 +1,17 @@
 function varargout = GetParameterFromReaction(SBMLReaction)
-% GetParameterFromReaction takes a SBMLReaction 
-% and returns 
-%           1) an array of character names representing all parameters defined 
-%               within the kinetic law of the reaction 
-%           2) an array of the values of each parameter
-%
+% [names, values] = GetParameterFromReaction(SBMLReaction)
+% 
+% takes 
+% 
+% 1. SBMLReaction; an SBML Reaction structure
+% 
+% returns 
+% 
+% 1. an array of strings representing the ids of all parameters defined 
+%                within the kinetic law of the reaction 
+% 2. an array of the values of each parameter
+% 
 
-%--------------------------------------------------------------------------
-%
-%  Filename    : GetParameterFromReaction.m
-%  Description : takes a SBML reaction and returns an array of character names representing the parameters 
-%                   and an array of the values of each parameter
-%  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
-%  Organization: University of Hertfordshire STRC
-%  Created     : 2004-02-02
-%  Revision    : $Id$
-%  Source      : $Source $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

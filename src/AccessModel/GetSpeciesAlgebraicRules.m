@@ -1,20 +1,33 @@
 function [Species, AlgebraicRules] = GetSpeciesAlgebraicRules(SBMLModel)
-% GetSpeciesAlgebraicRules takes an SBMLModel 
-% and returns
-%             1) an array of species names
-%             2) an array of the character representation of each algebraic
-%                   rule the species appears in
+% [names, values] = GetSpeciesAlgebraicRules(SBMLModel)
+% 
+% takes
+% 
+% 1. SBMLModel; an SBML Model structure
+% 
+% returns 
+% 
+% 1. an array of strings representing the ids of all species
+% 2. an array of 
+%
+%  - the character representation of each algebraic
+%    rule the species appears in 
+%  - '0' if the particular species is not in an algebraic rule
+%
+% *EXAMPLE:*
+%
+%      model has 3 species (s1, s2, s3) 
+%            and 2 algebraic rules with formula 's2+7' and 's2-s3'
+% 
+%           [species, algebraicRules] = GetSpeciesAlgebraicRules(model)
+%                   
+%                    species     = ['s1', 's2', 's3']
+%                    algebraicRules = {'0', ['s2+7', 's2-s3'], ['k2-k3']}
+%
+% 
+% 
 
-%--------------------------------------------------------------------------
-%
-%  Filename    : GetSpeciesAlgebraicRules.m
-%  Description : takes a SBMLModel and returns assignments
-%  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
-%  Organization: University of Hertfordshire STRC
-%  Created     : 2004-12-06
-%  Revision    : $Id$
-%  Source      : $Source $
-%
+
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
