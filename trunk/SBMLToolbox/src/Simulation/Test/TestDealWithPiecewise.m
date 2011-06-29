@@ -1,23 +1,5 @@
 function fail = TestDealWithPiecewise
-%
-%   DealWithPiecewise 
-%             takes a string representation of a formula that contains the MathML piecewise function 
-%
-%             and returns 
-%               an array of the three components of the piecewise function
-%               which can then be written as an if else statement
-%     
-%   EXAMPLE:
-%           elements = DealWithPiecewise('piecewise(le(s2,4),1.5,0.05)')
-%
-%                    =  'le(s2,4)'  '1.5'   '0.05'
 
-%  Filename    :   TestDealWithPiecewise.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -40,6 +22,8 @@ function fail = TestDealWithPiecewise
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 
