@@ -1,28 +1,5 @@
 function fail = TestSubstituteConstants
-% SubstituteConstants 
-%       takes 
-%           1) a string representation of a formula 
-%           2) the SBMLModel structure
-%       and returns 
-%           a string representing the formula with the ids of any constants
-%           within the model substituted
-%
-%
-%   EXAMPLE:
-%           m = SBMLModel with constant parameter
-%               with id = 'g' and value = 3' 
-%
-%           subsFormula = SubstituteConstants('2 * g * S1', SBMLModel)
-%           
-%                   = '2 * 3 * S1'
 
-
-%  Filename    :   TestSubstituteConstants.m
-%  Description : 
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  Revision    :   $Id: TestSubstitute.m 7155 2008-06-26 20:24:00Z mhucka $
-%  Source      :   $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -45,6 +22,8 @@ function fail = TestSubstituteConstants
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 m = TranslateSBML('../../Test/test-data/initialAssignments.xml');

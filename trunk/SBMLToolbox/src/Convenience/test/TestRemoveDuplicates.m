@@ -1,15 +1,5 @@
 function fail = TestRemoveDuplicates
-% RemoveDuplicates takes any array and returns it with any duplicates removed
 
-
-%  Filename    :   TestRemoveDuplicates.m
-%  Description : 
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  Organization:   University of Hertfordshire STRI
-%  Created     :   04-Oct-2005
-%  Revision    :   $Id$
-%  Source      :   $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -32,6 +22,8 @@ function fail = TestRemoveDuplicates
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 input1 = [1, 3, 4, 3, 1, 5];

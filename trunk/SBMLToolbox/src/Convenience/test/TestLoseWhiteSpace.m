@@ -1,22 +1,5 @@
 function fail = TestLoseWhiteSpace
-% LoseWhiteSpace(charArray) takes an array of characters
-% and returns the array with any white space removed
-%
-%----------------------------------------------------------------
-% EXAMPLE:
-%           y = LoseWhiteSpace('     exa  mp le')
-%           y = 'example'
-%
 
-
-%  Filename    :   TestLoseWhiteSpace.m
-%  Description : 
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  Organization:   University of Hertfordshire STRI
-%  Created     :   04-Oct-2005
-%  Revision    :   $Id$
-%  Source      :   $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -39,6 +22,8 @@ function fail = TestLoseWhiteSpace
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 input = '    exa mp le  ';

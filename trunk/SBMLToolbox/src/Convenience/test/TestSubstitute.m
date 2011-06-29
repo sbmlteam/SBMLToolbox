@@ -1,29 +1,5 @@
 function fail = TestSubstitute
-% Substitute 
-%       takes 
-%           1) a string representation of a formula 
-%           2) the SBMLModel structure
-%       and returns 
-%           the value calculated when all variables are substituted
-%
-%
-%   EXAMPLE:
-%           m = SBMLModel with species
-%               with id = 'g' and initialConcentration = 3' 
-%
-%           value = Substitute('g*2', m)
-%           
-%                   = 6
 
-
-%  Filename    :   TestSubstitute.m
-%  Description : 
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  Organization:   University of Hertfordshire STRI
-%  Created     :   04-Oct-2005
-%  Revision    :   $Id$
-%  Source      :   $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -46,6 +22,8 @@ function fail = TestSubstitute
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 m = TranslateSBML('../../Test/test-data/initialAssignments.xml');

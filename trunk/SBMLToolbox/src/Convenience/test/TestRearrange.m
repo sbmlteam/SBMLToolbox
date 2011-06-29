@@ -1,23 +1,5 @@
 function fail = TestRearrange
-% Rearrange(formula, x)
-%         takes a char array representing a formula
-%         and   a char array representing a variable
-%
-% and returns the formula rearranged in terms of x
-%
-%--------------------------------------------------------------------------
-% EXAMPLE:    output   =   Rearrange('X + Y - Z', 'X')
-%                      =   '-Y+Z'
-%--------------------------------------------------------------------------
 
-%  Filename    :   TestRearrange.m
-%  Description : 
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  Organization:   University of Hertfordshire STRI
-%  Created     :   04-Oct-2005
-%  Revision    :   $Id$
-%  Source      :   $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -40,6 +22,8 @@ function fail = TestRearrange
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 formula = 'a+b';
