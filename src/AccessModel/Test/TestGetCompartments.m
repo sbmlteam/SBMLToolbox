@@ -1,19 +1,5 @@
 function fail = TestGetCompartments
-% GetCompartments takes a SBMLModel 
-% and returns 
-%           1) an array of character names of all compartments within the model 
-%           2) an array of the initial concentration values of each comparment
-%
 
-
-%  Filename    :   TestGetCompartments.m
-%  Description : 
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  Organization:   University of Hertfordshire STRI
-%  Created     :   30-Nov-2005
-%  Revision    :   $Id$
-%  Source      :   $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -36,6 +22,14 @@ function fail = TestGetCompartments
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
 
 
 m = TranslateSBML('../../Test/test-data/l1v1.xml');

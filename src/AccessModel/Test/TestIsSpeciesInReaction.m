@@ -1,20 +1,5 @@
 function fail = TestIsSpeciesInReaction
-% IsSpeciesInReaction(SBMLSpecies, SBMLReaction)takes an SBML species and  reaction
-% and determines where the species takes part in the reaction
-%
-% returns   0   if species is NOT part of the reaction
-% or        n   if the species is part of the reaction
-%               where n is the number of times it occurs
 
-
-%  Filename    :   TestIsSpeciesInReaction.m
-%  Description : 
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  Organization:   University of Hertfordshire STRI
-%  Created     :   04-Oct-2005
-%  Revision    :   $Id$
-%  Source      :   $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -37,6 +22,14 @@ function fail = TestIsSpeciesInReaction
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
 
 
 m = TranslateSBML('../../Test/test-data/algebraicRules.xml');
