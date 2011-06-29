@@ -3,7 +3,7 @@
 % This directory contains functions to simulate an SBML model
 %
 %   AnalyseSpecies  
-%       takes an SBMLModel
+%       takes 1. SBMLModel; an SBML Model structure
 %       and returns
 %           structure detailing the species and 
 %               how they are manipulated within the model
@@ -15,7 +15,7 @@
 %           an array of the three components of the piecewise function 
 % 
 %   DisplayODEFunction             
-%       takes an SBMLModel and a number of optional arguments 
+%       takes 1. SBMLModel; an SBML Model structure and a number of optional arguments 
 %       and plots the results of the ode45 solver 
 %
 %   GetArgumentsFromLambdaFunction 
@@ -25,13 +25,13 @@
 %           an array of the components of the lambda function
 %
 %   OutputAnalyticalSolution             
-%       takes an SBMLModel and a number of optional arguments 
+%       takes 1. SBMLModel; an SBML Model structure and a number of optional arguments 
 %       and according to flags 
 %       plots the results of the analytical solution
 %       outputs the data as a csv file 
 %
 %   OutputODEFunction             
-%       takes an SBMLModel and a number of optional arguments 
+%       takes 1. SBMLModel; an SBML Model structure and a number of optional arguments 
 %       and according to flags 
 %       plots the results of the ode45 solver/outputs the data as a csv file 
 %
@@ -50,17 +50,17 @@
 %    NOTE: This function requires the MATLAB Symbolic Toolbox
 %
 %   WriteEventAssignmentFunction   
-%       takes an SBMLModel
+%       takes 1. SBMLModel; an SBML Model structure
 %       and outputs 
 %           a file defining a function that assigns values following an event
 %
 %   WriteEventHandlerFunction      
-%       takes an SBMLModel
+%       takes 1. SBMLModel; an SBML Model structure
 %       and outputs 
 %           a file defining a function that handles an event 
 %
 %   WriteODEFunction               
-%       takes an SBMLModel and anoptional arguments 
+%       takes 1. SBMLModel; an SBML Model structure and anoptional arguments 
 %       and outputs 
 %           a file defining a function for use with MATLABs ode solvers
 

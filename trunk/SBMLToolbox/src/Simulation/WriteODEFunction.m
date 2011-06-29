@@ -82,6 +82,9 @@ end;
 %     error('WriteODEFunction(SBMLModel, (optional) filename)\n%s', 'Cannot deal with models with no species');
 % end;  
 for i=1:length(SBMLModel.event)
+  if exist('OCTAVE_VERSION') && length(SBMLModel.event) > 0
+    error('Octave cannot deal with events');
+  end;
   if (~isempty(SBMLModel.event(i).delay))
     error('WriteODEFunction(SBMLModel, (optional) filename)\n%s', 'Cannot deal with delayed events');
   end;
@@ -106,7 +109,7 @@ end;
 if (SBMLModel.SBML_level > 1 && ~isempty(SBMLModel.time_symbol))
   for i=1:length(SBMLModel.rule)
     if (strcmp(SBMLModel.rule(i).typecode, 'SBML_ASSIGNMENT_RULE'))
-      if (~isempty(strfind(SBMLModel.rule(i).formula, SBMLModel.time_symbol)))
+      if (~isempty(matchName(SBMLModel.rule(i).formula, SBMLModel.time_symbol)))
         error('Cannot deal with time in an assignment rule');
       end;
     end;
@@ -115,12 +118,13 @@ end;
 if (SBMLModel.SBML_level > 1 && ~isempty(SBMLModel.delay_symbol))
   for i=1:length(SBMLModel.rule)
     if (strcmp(SBMLModel.rule(i).typecode, 'SBML_ASSIGNMENT_RULE'))
-      if (~isempty(strfind(SBMLModel.rule(i).formula, SBMLModel.delay_symbol)))
+      if (~isempty(matchName(SBMLModel.rule(i).formula, SBMLModel.delay_symbol)))
         error('Cannot deal with delay in an assignment rule');
       end;
     end;
   end;
 end;
+
 
 %--------------------------------------------------------------
 % get information from the model
@@ -202,11 +206,11 @@ fileID = fopen(fileName, 'w');
 
 % write the function declaration
 % if no events and using octave
-% if (exist('OCTAVE_VERSION') && NumEvents == 0)
-%   fprintf(fileID,  'function xdot = %s(x_values, %s)\n', Name, timeVariable);
-% else
+if (exist('OCTAVE_VERSION') && NumEvents == 0)
+  fprintf(fileID,  'function xdot = %s(x_values, %s)\n', Name, timeVariable);
+else
   fprintf(fileID,  'function xdot = %s(%s, x_values)\n', Name, timeVariable);
-% end;
+end;
 
 % need to add comments to output file
 fprintf(fileID, '%% function %s takes\n', Name);
@@ -390,7 +394,7 @@ for i = 1:NumberSpecies
 
     if (Species(i).ChangedByReaction == 1)
         % need to look for piecewise functions
-        if (isempty(strfind(char(Species(i).KineticLaw), 'piecewise')))
+        if (isempty(matchFunctionName(char(Species(i).KineticLaw), 'piecewise')))
              if (Species(i).is0Dcompartment == 0)
                 Array{i} = sprintf('\txdot(%u) = (%s)/%s;\n', i, char(Species(i).KineticLaw), Species(i).compartment);
             else
@@ -419,7 +423,7 @@ for i = 1:NumberSpecies
         %%% Checking for a piecewise in the assignment rule and
         %%% handling it
         %%% Change made by Sumant Turlapati, Entelos, Inc. on June 8th, 2005
-        if (isempty(strfind(char(Species(i).AssignmentRule), 'piecewise')))
+        if (isempty(matchFunctionName(char(Species(i).AssignmentRule), 'piecewise')))
             DifferentiatedRule = DifferentiateRule(char(Species(i).AssignmentRule), Speciesnames, SBMLModel);
             Array{i} = sprintf('\txdot(%u) = %s;\n', i, char(DifferentiatedRule));
             NeedToOrderArray = 1;
@@ -461,7 +465,7 @@ for i = 1:NumberParams
        Array{i+NumberSpecies} = sprintf('\txdot(%u) = %s;\n', i+NumberSpecies, char(Parameters(i).RateRule));
 
     elseif (Parameters(i).ChangedByAssignmentRule == 1)
-        if (isempty(strfind(char(Parameters(i).AssignmentRule), 'piecewise')))
+        if (isempty(matchFunctionName(char(Parameters(i).AssignmentRule), 'piecewise')))
             DifferentiatedRule = DifferentiateRule(char(Parameters(i).AssignmentRule), VarParams, SBMLModel);
             Array{i+NumberSpecies} = sprintf('\txdot(%u) = %s;\n', i+NumberSpecies, char(DifferentiatedRule));
             NeedToOrderArray = 1;
@@ -540,7 +544,7 @@ if (NumFuncs > 0)
                 fprintf(fileID, '%s, ', Elements{j});
             end;
         end;
-        if (isempty(strfind(Elements{end}, 'piecewise')))
+        if (isempty(matchFunctionName(Elements{end}, 'piecewise')))
           fprintf(fileID, ')\n\nreturnValue = %s;\n\n\n', Elements{end});
         else
           pw = WriteOutPiecewise('returnValue', Elements{end});
@@ -563,7 +567,7 @@ y = '';
 
 switch (SBMLRule.typecode)
     case 'SBML_ASSIGNMENT_RULE'
-        if (isempty(strfind(char(SBMLRule.formula), 'piecewise')))
+        if (isempty(matchFunctionName(char(SBMLRule.formula), 'piecewise')))
             y = sprintf('%s = %s;', SBMLRule.variable, SBMLRule.formula);
         else
             var = sprintf('%s', SBMLRule.variable);
@@ -584,12 +588,12 @@ end;
 function formula = DifferentiateRule(f, SpeciesNames, model)
 
 if (model.SBML_level > 1 && ~isempty(model.time_symbol))
-  if (~isempty(strfind(f, model.time_symbol)))
+  if (~isempty(matchName(f, model.time_symbol)))
     error('Cannot deal with time in an assignment rule');
   end;
 end;
 
-if (~isempty(strfind(f, 'piecewise')))
+if (~isempty(matchFunctionName(f, 'piecewise')))
   error('Cannot deal with nested piecewise in an assignment rule');
 end;
 
@@ -597,7 +601,7 @@ end;
 % need to get rid of it first
 for i=1:length(model.functionDefinition)
   id = model.functionDefinition(i).id;
-  if (~isempty(strfind(f, id)))
+  if (~isempty(matchFunctionName(f, id)))
     f = SubstituteFunction(f, model.functionDefinition(i));
     % remove surrounding  brackets
     if (strcmp(f(1), '(') && strcmp(f(end), ')'))
@@ -655,7 +659,7 @@ for i = 1:NoElements
     found = 0;
     for j = 1:length(SpeciesNames)
         %     j = 1;
-        A = strfind(Elements{i}, SpeciesNames{j});
+        A = matchName(Elements{i}, SpeciesNames{j});
         if (~isempty(A))
           if (length(Elements{i}) == length(SpeciesNames{j}))
             found = 1; % exact match
@@ -875,14 +879,14 @@ end;
 
 Text1{1} = sprintf('\n\tif (%s)', Arguments{2});
 
-if (strfind(Arguments{1}, 'piecewise'))
+if (matchFunctionName(Arguments{1}, 'piecewise'))
     Text1{2} = WriteOutPiecewise(var, Arguments{1});
 else
     Text1{2} = sprintf('\n\t\t%s = %s;', var, Arguments{1});
 end;
 Text1{3} = sprintf('\n\telse');
 
-if (strfind('piecewise', Arguments{3}))
+if (matchFunctionName('piecewise', Arguments{3}))
     Text1{4} = WriteOutPiecewise(var, Arguments{3});
 else
     Text1{4} = sprintf('\n\t\t%s = %s;\n\tend;\n', var, Arguments{3});

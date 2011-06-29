@@ -190,7 +190,7 @@ for i = 1:length(SBMLModel.species)
             % function
             FunctionIds = Model_getFunctionIds(SBMLModel);
             for f = 1:length(FunctionIds)
-                if (strfind(char(Rule), FunctionIds{f}))
+                if (matchFunctionName(char(Rule), FunctionIds{f}))
                     Rule = SubstituteFunction(char(Rule), SBMLModel.functionDefinition(f));
                 end;
                 
@@ -222,7 +222,7 @@ function form = SubsAssignmentRules(SBMLModel, rule)
 form = rule;
 % bracket the species to be replaced
 for i = 1:length(species)
-    if (strfind(rule, species{i}))
+    if (matchName(rule, species{i}))
         if (~strcmp(AssignRule{i}, '0'))
             form = strrep(form, species{i}, strcat('(', species{i}, ')'));
         end;
@@ -230,7 +230,7 @@ for i = 1:length(species)
 end;
 
 for i = 1:length(species)
-    if (strfind(rule, species{i}))
+    if (matchName(rule, species{i}))
         if (~strcmp(AssignRule{i}, '0'))
             form = strrep(form, species{i}, AssignRule{i});
         end;
@@ -288,7 +288,7 @@ Elements{NumElements} = element;
 output = '';
 lhs = 1;
 for i = 1:NumElements
-    if (strfind(Elements{i}, x))
+    if (matchName(Elements{i}, x))
         % element contains x
         LHSElements{lhs} = Elements{i};
 
@@ -380,7 +380,7 @@ if (strcmp(element, x))
     return;
 end;
 
-VarIndex = strfind(element, x);
+VarIndex = matchName(element, x);
 MultIndex = strfind(element, '*');
 DivIndex = strfind(element, '/');
 

@@ -155,7 +155,7 @@ Elements{ElementNumber} = element;
 % what if there is smething before or after the piecewise bit 
 before = '';
 after = '';
-pw = strfind(OriginalFormula, 'piecewise');
+pw = matchFunctionName(OriginalFormula, 'piecewise');
 if (pw(1) ~= 1)
   before = OriginalFormula(1:pw(1)-1);
 end;
