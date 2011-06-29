@@ -1,19 +1,5 @@
 function fail = TestGetParameterRateRules
-% GetParameterRateRules takes an SBMLModel 
-% and returns
-%             1) an array of Parameter names
-%             2) an array of the character representation of the
-%             concentration for each Parameter assigned by rules
 
-
-%  Filename    :   TestGetParameterRateRules.m
-%  Description : 
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  Organization:   University of Hertfordshire STRI
-%  Created     :   04-Oct-2005
-%  Revision    :   $Id: TestGetParameterRateRules.m 13259 2011-03-21 05:40:36Z mhucka $
-%  Source      :   $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -36,6 +22,14 @@ function fail = TestGetParameterRateRules
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
 
 
 m = TranslateSBML('../../Test/test-data/varyingParameters.xml');

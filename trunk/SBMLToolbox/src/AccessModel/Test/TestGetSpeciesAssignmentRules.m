@@ -1,19 +1,5 @@
 function fail = TestGetSpeciesAssignmentRules
-% GetSpeciesAssignmentRules takes an SBMLModel 
-% and returns
-%             1) an array of species names
-%             2) an array of the character representation of the
-%             concentration for each species assigned by rules
 
-
-%  Filename    :   TestGetSpeciesAssignmentRules.m
-%  Description : 
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  Organization:   University of Hertfordshire STRI
-%  Created     :   04-Oct-2005
-%  Revision    :   $Id$
-%  Source      :   $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -36,6 +22,14 @@ function fail = TestGetSpeciesAssignmentRules
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
 
 
 m = TranslateSBML('../../Test/test-data/algebraicRules.xml');
