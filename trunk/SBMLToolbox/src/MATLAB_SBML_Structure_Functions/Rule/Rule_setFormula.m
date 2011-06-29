@@ -1,13 +1,11 @@
 function SBMLRule = Rule_setFormula(SBMLRule, formula)
 %
-%   Rule_setFormula 
-%             takes  1) an SBMLRule structure 
-%             and    2) a string representing the formula to be set
+% Rule_setFormula
+%       takes an SBML Rule structure
+%    and the formula to be set
 %
-%             and returns 
-%               the rule with the formula set
-%
-%       SBMLRule = Rule_setFormula(SBMLRule, 'formula')
+%       and returns
+%           the Rule with the new value for the formula attribute
 
 %  Filename    :   Rule_setFormula.m
 %  Description :
@@ -39,19 +37,17 @@ function SBMLRule = Rule_setFormula(SBMLRule, formula)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLRule))
-  error(sprintf('%s', ...
-    'first argument must be an SBML Rule structure'));
+[level, version] = GetLevelVersion(SBMLRule);
+
+if isfield(SBMLRule, 'formula')
+	if ~ischar(formula)
+		error('formula must be character array') ;
+	else
+		SBMLRule.formula = formula;
+	end;
+else
+	error('formula not an attribute on SBML L%dV%d Rule', level, version);
 end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLRule);
 
-if (~isSBML_Rule(SBMLRule, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Rule_setFormula(SBMLRule, formula)', 'first argument must be an SBML rule structure'));
-elseif (~ischar(formula))
-    error(sprintf('Rule_setFormula(SBMLRule, formula)\n%s', 'second argument must be a string representing the formula of the rule'));
-end;
-
-SBMLRule.formula = formula;
