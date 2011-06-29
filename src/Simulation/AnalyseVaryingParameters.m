@@ -104,7 +104,7 @@ for i = 1:length(SBMLModel.parameter)
             % function
             FunctionIds = Model_getFunctionIds(SBMLModel);
             for f = 1:length(FunctionIds)
-                if (strfind(char(Rule), FunctionIds{f}))
+                if (matchFunctionName(char(Rule), FunctionIds{f}))
                     Rule = SubstituteFunction(char(Rule), SBMLModel.functionDefinition(f));
                 end;
                 
@@ -198,7 +198,7 @@ Elements{NumElements} = element;
 output = '';
 lhs = 1;
 for i = 1:NumElements
-    if (strfind(Elements{i}, x))
+    if (matchName(Elements{i}, x))
         % element contains x
         LHSElements{lhs} = Elements{i};
 
@@ -290,7 +290,7 @@ if (strcmp(element, x))
     return;
 end;
 
-VarIndex = strfind(element, x);
+VarIndex = matchName(element, x);
 MultIndex = strfind(element, '*');
 DivIndex = strfind(element, '/');
 

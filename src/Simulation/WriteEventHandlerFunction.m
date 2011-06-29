@@ -1,5 +1,5 @@
 function WriteEventHandlerFunction(SBMLModel, Name)
-% WriteEventHandlerFunction takes an SBMLModel
+% WriteEventHandlerFunction takes 1. SBMLModel; an SBML Model structure
 % and outputs 
 %       a file defining a function that handles an avent
 %       (for use with the event option in MATLABs ode solvers)

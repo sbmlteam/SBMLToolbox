@@ -154,7 +154,12 @@ if (RelTol > 1e-6)
 end;
 AbsTol = RelTol * 1e-4;
 
-options = odeset('RelTol', RelTol, 'AbsTol', AbsTol);
+if exist('OCTAVE_VERSION')
+  lsode_options('relative tolerance', RelTol);
+  lsode_options('absolute tolerance', AbsTol);
+else
+  options = odeset('RelTol', RelTol, 'AbsTol', AbsTol);
+end;
 % if there are events
 if ((SBMLModel.SBML_level > 1) && (length(SBMLModel.event) ~= 0))
     eventName = strcat(Name, '_events');
@@ -228,13 +233,13 @@ if ((SBMLModel.SBML_level > 1) && (length(SBMLModel.event) ~= 0))
         SpeciesCourseB = [];
     end;
 else
-%     % if no events
-%   if exist('OCTAVE_VERSION')
-%     SpeciesCourse = lsode(fhandle, InitConds, Time_span);
-%     TimeCourse = Time_span;
-%   else
+    % if no events
+  if exist('OCTAVE_VERSION')
+    SpeciesCourse = lsode(fhandle, InitConds, Time_span);
+    TimeCourse = Time_span;
+  else
     [TimeCourse, SpeciesCourse] = ode45(fhandle, Time_span, InitConds, options);
-%   end;
+  end;
 end;
 
 %check whether solution is feasible and if not use a stiff equation solver

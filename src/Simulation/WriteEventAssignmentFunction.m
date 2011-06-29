@@ -1,5 +1,5 @@
 function WriteEventAssignmentFunction(SBMLModel, Name)
-% WriteEventAssignmentFunction takes an SBMLModel
+% WriteEventAssignmentFunction takes 1. SBMLModel; an SBML Model structure
 % and outputs 
 %       a file defining a function that assigns values 
 %           following an event 
@@ -140,7 +140,7 @@ for i = 1:length(SBMLModel.event)
     % assignment the value should be the original
     assignment = SBMLModel.event(i).eventAssignment(j).math;
     for s=1:NumberVars
-      if (~isempty(strfind(SBMLModel.event(i).eventAssignment(j).math, VarNames{s})))
+      if (~isempty(matchName(SBMLModel.event(i).eventAssignment(j).math, VarNames{s})))
         speciesV = sprintf('VarValues(%u)', s);
         assignment = strrep(assignment, VarNames{s}, speciesV);
       end;
@@ -219,7 +219,7 @@ y = '';
 
 switch (SBMLRule.typecode)
     case 'SBML_ASSIGNMENT_RULE'
-        if (isempty(strfind(char(SBMLRule.formula), 'piecewise')))
+        if (isempty(matchFunctionName(char(SBMLRule.formula), 'piecewise')))
             y = sprintf('%s = %s;', SBMLRule.variable, SBMLRule.formula);
         else
             var = sprintf('%s', SBMLRule.variable);
@@ -247,7 +247,7 @@ end;
 
 Text1{1} = sprintf('\n\tif (%s)', Arguments{2});
 
-if (strfind(Arguments{1}, 'piecewise'))
+if (matchFunctionName(Arguments{1}, 'piecewise'))
     Text1{2} = WriteOutPiecewise(var, Arguments{1});
 else
     Text1{2} = sprintf('\n\t\t%s = %s;', var, Arguments{1});
