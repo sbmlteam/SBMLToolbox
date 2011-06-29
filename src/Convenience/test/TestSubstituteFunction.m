@@ -1,32 +1,5 @@
 function fail = TestSubstituteFunction
-%
-%   SubstituteFunction 
-%             takes  1) a string representation of a formula 
-%             and    2) an SBMLFunctionDefinition structure defining the formula
-%
-%             and returns 
-%               the formula with the function substituted
-%
-%       NOTE: the OriginalFormula must contain the id of the
-%       functionDefinition
-%
-%   EXAMPLE:
-%           fD = SBMLFunmctionDefinition 
-%               with id = 'g' and math = 'lambda(x,x+0.5)' 
-%
-%           formula = SubstituteFormula('g(y)', fD)
-%           
-%                   = 'y+0.5'
 
-
-%  Filename    :   TestSubstituteFunction.m
-%  Description : 
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  Organization:   University of Hertfordshire STRI
-%  Created     :   04-Oct-2005
-%  Revision    :   $Id$
-%  Source      :   $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -49,6 +22,8 @@ function fail = TestSubstituteFunction
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 m = TranslateSBML('../../Test/test-data/species.xml');

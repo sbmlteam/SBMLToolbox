@@ -1,20 +1,5 @@
 function fail = TestisValidUnitKind
-%   isValidUnitKind 
-%             takes a string representing a unit kind
-%             and returns 1 if it is valid 0 otherwise
-%
-%
-%       value = isValidUnitKind('kind')
 
-
-%  Filename    :   TestisValidUnitKind.m
-%  Description : 
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  Organization:   University of Hertfordshire STRI
-%  Created     :   04-Oct-2005
-%  Revision    :   $Id$
-%  Source      :   $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -37,6 +22,8 @@ function fail = TestisValidUnitKind
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 m = TranslateSBML('../../Test/test-data/l1v1.xml');
