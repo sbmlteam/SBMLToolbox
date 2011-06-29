@@ -1,12 +1,10 @@
 function formula = Rule_getFormula(SBMLRule)
 %
-%   Rule_getFormula 
-%             takes an SBMLRule structure 
+% Rule_getFormula
+%       takes an SBML Rule structure
 %
-%             and returns 
-%               the formula of the rule as a string
-%
-%       formula = Rule_getFormula(SBMLRule)
+%       and returns
+%           the value of the formula attribute
 
 %  Filename    :   Rule_getFormula.m
 %  Description :
@@ -38,17 +36,13 @@ function formula = Rule_getFormula(SBMLRule)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLRule))
-  error(sprintf('%s', ...
-    'first argument must be an SBML Rule structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLRule);
+[level, version] = GetLevelVersion(SBMLRule);
 
-if (~isSBML_Rule(SBMLRule, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Rule_getFormula(SBMLRule)', 'argument must be an SBML rule structure'));
+if isfield(SBMLRule, 'formula')
+	formula = SBMLRule.formula;
+else
+	error('formula not an attribute on SBML L%dV%d Rule', level, version);
 end;
 
-formula = SBMLRule.formula;

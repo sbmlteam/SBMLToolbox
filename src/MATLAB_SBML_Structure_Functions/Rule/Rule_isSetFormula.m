@@ -1,13 +1,11 @@
 function value = Rule_isSetFormula(SBMLRule)
 %
-%   Rule_isSetFormula 
-%             takes an SBMLRule structure 
+% Rule_isSetFormula
+%       takes an SBML Rule structure
 %
-%             and returns 
-%               1 if the formula has been set 
-%               0 otherwise
-%
-%       value = Rule_isSetFormula(SBMLRule)
+%       and returns
+%           1 if the value for the formula attribute is set
+%           0 otherwise
 
 %  Filename    :   Rule_isSetFormula.m
 %  Description :
@@ -39,17 +37,13 @@ function value = Rule_isSetFormula(SBMLRule)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLRule))
-  error(sprintf('%s', ...
-    'first argument must be an SBML Rule structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLRule);
+[level, version] = GetLevelVersion(SBMLRule);
 
-if (~isSBML_Rule(SBMLRule, sbmlLevel, sbmlVersion))
-    error(sprintf('%s\n%s', 'Rule_isSetFormula(SBMLRule)', 'argument must be an SBML rule structure'));
+if isfield(SBMLRule, 'formula')
+	value = ~isempty(SBMLRule.formula);
+else
+	error('formula not an attribute on SBML L%dV%d Rule', level, version);
 end;
 
-value = ~isempty(SBMLRule.formula);

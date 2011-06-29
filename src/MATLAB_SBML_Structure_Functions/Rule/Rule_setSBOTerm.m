@@ -1,13 +1,11 @@
 function SBMLRule = Rule_setSBOTerm(SBMLRule, sboTerm)
 %
-%   Rule_setSBOTerm 
-%             takes  1) an SBMLRule structure 
-%             and    2) an integer representing the sboTerm to be set
+% Rule_setSBOTerm
+%       takes an SBML Rule structure
+%    and the sboTerm to be set
 %
-%             and returns 
-%               the compartment with the sboTerm set
-%
-%       SBMLRule = Rule_setSBOTerm(SBMLRule, sboTerm)
+%       and returns
+%           the Rule with the new value for the sboTerm attribute
 
 %  Filename    :   Rule_setSBOTerm.m
 %  Description :
@@ -39,27 +37,17 @@ function SBMLRule = Rule_setSBOTerm(SBMLRule, sboTerm)
 %----------------------------------------------------------------------- -->
 
 
+%get level and version and check the input arguments are appropriate
 
-% check that input is correct
-if (~isstruct(SBMLRule))
-  error(sprintf('%s', ...
-    'first argument must be an SBML Rule structure'));
-end;
- 
-[sbmlLevel, sbmlVersion] = GetLevelVersion(SBMLRule);
+[level, version] = GetLevelVersion(SBMLRule);
 
-if (~isSBML_Rule(SBMLRule, sbmlLevel, sbmlVersion))
-  error(sprintf('%s\n%s', ...
-    'Rule_setSBOTerm(SBMLRule, sboTerm)', ...
-    'first argument must be an SBML Rule structure'));
-elseif (~isIntegralNumber(sboTerm))
-    error(sprintf('%s\n%s', ...
-      'Rule_setSBOTerm(SBMLRule, sboTerm)', ...
-      'second argument must be an integer representing the sboTerm'));
-elseif (sbmlLevel ~= 2 || sbmlVersion == 1)
-    error(sprintf('%s\n%s', ...
-      'Rule_setSBOTerm(SBMLRule, sboTerm)',  ...
-      'sboTerm field only in level 2 version 3 model'));    
+if isfield(SBMLRule, 'sboTerm')
+	if ~isIntegralNumber(sboTerm)
+		error('sboTerm must be an integer') ;
+	else
+		SBMLRule.sboTerm = sboTerm;
+	end;
+else
+	error('sboTerm not an attribute on SBML L%dV%d Rule', level, version);
 end;
 
-SBMLRule.sboTerm = sboTerm;

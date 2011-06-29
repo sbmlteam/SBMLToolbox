@@ -1,15 +1,15 @@
-function sboTerm = Rule_getSBOTerm(SBMLRule)
+function SBMLRule = Rule_unsetSBOTerm(SBMLRule)
 %
 % Rule_getSBOTerm
 %       takes an SBML Rule structure
 %
 %       and returns
-%           the value of the sboTerm attribute
+%           the Rule with the value for the sboTerm attribute unset
 
-%  Filename    :   Rule_getSBOTerm.m
+%  Filename    :   Rule_unsetSBOTerm.m
 %  Description :
 %  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
+%  $Id: $
 %  $Source v $
 %
 %<!---------------------------------------------------------------------------
@@ -41,7 +41,7 @@ function sboTerm = Rule_getSBOTerm(SBMLRule)
 [level, version] = GetLevelVersion(SBMLRule);
 
 if isfield(SBMLRule, 'sboTerm')
-	sboTerm = SBMLRule.sboTerm;
+	SBMLRule.sboTerm = -1;
 else
 	error('sboTerm not an attribute on SBML L%dV%d Rule', level, version);
 end;
