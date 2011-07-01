@@ -1,27 +1,26 @@
 function [valid, message] = isSBML_Species(varargin)
+% [valid, message] = isSBML_Species(SBMLSpecies, level, version(optional))
 %
-% isSBML_Species
-%    takes a MATLAB_SBML structure
-%          an SBML level
-%    and optionally an SBML version
+% takes
 %
-%    returns
-%      1) a flag indicating whether the structure represents
-%           an MATLAB_SBML Species structure of the appropriate
-%           level and version
-%      2) a message string explaining any failure
+% 1. SBMLSpecies; an SBML Species structure
+% 2. level; an integer representing an SBML level
+% 3. version (optional); an integer representing an SBML version
 %
-% NOTE: the optional version defaults to a value of 1 
+% returns
 %
-% The fields present in MATLAB_SBML Species structure of the appropriate
+% 1. valid = 
+%   - 1, if the structure represents
+%        a MATLAB_SBML Species structure of the appropriate
+%        level and version
+%   - 0, otherwise
+% 2. a message explaining any failure
+%
+% *NOTE:* the optional version defaults to a value of 1
+%
+% *NOTE:* The fields present in a MATLAB_SBML Species structure of the appropriate
 % level and version can be found using getSpeciesFieldnames(level, version)
 
-%  Filename    :   isSBML_Species.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -44,6 +43,8 @@ function [valid, message] = isSBML_Species(varargin)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 %check the input arguments are appropriate
