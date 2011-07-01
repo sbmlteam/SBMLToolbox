@@ -1,20 +1,20 @@
 function y = RemoveDuplicates(FullArray)
-% RemoveDuplicates 
-%       takes any array 
+% newArray = RemoveDuplicates(array) 
+% 
+% takes
+% 
+% 1. array; any array
+% 
+% returns
+% 
+% 1. the array with any duplicate entries removed  
 %
-%       and returns 
-%           the array with any duplicates removed
-%
+% *EXAMPLE:*
+% 
+%               newArray = RemoveDuplicates([2, 3, 4, 3, 2, 5])
+%               newArray = [2, 3, 4, 5]
+%               
 
-%
-%  Filename    : RemoveDuplicates.m
-%  Description : takes any array and returns it with any duplicates removed
-%  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
-%  Organization: University of Hertfordshire STRC
-%  Created     : 2004-02-02
-%  Revision    : $Id$
-%  Source      : $Source $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

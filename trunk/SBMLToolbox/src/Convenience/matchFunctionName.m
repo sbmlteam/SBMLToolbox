@@ -1,31 +1,38 @@
 function index = matchFunctionName(expr, name)
-% matchName
-%       takes a math expression and the name of a function
+% index = matchFunctionName(expression, name)
+% 
+% takes
+% 
+% 1. expression; a string representation of a math expression
+% 2. name; a string representing the name of a function
+% 
+% returns
+% 
+% 1. the index of the starting point of 'name' in the 'expression'
 %
-%       and returns
-%           the index of the starting point of 'name' in the 'expression'
+% *EXAMPLE:*
 %
-%    NOTE: This differs from the 'strfind' function in that it checks
-%       that the name is used as a variable.
+%          index = matchFunctionName('f*g', 'g')
 %
-%    EXAMPLE:
-%          y = matchFunctionName('f*g', 'g')
+%          index = []
 %
-%          y = ''
+%    
+%          index = matchFunctionName('add(d,g_1)', 'add')
 %
-%    OR
-%          y = matchFunctionName('add(d,g_1)', 'add')
+%          index = 0
+% 
 %
-%          y = 0
+%          index = matchFunctionName('add(add(a,b), c)', 'add')
+%            
+%          index = [1, 5]
+% 
+%       
+%
+% *NOTE:* This differs from the 'strfind' function in that it checks
+%       that the name is used as a function call.
 %
 
 
-%  Filename    :   Contents.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

@@ -1,23 +1,20 @@
 function value = isValidUnitKind(kind)%
-% isValidUnitKind 
-%       takes a string representing a unit kind 
+% y = isValidUnitKind(kind)
+% 
+% takes 
+% 
+% 1. kind; a string representing a unit kind 
 %
-%       and returns 
-%           1 if it is valid 
-%           0 otherwise
+% returns 
 %
-%    NOTE: This is identical to the function CheckValidUnitKind
+% 1. y =
+%  - 1 if the string represents a valid unit kind 
+%  - 0 otherwise
+%
+% *NOTE:* This is identical to the function CheckValidUnitKind
 %
 
 
-%  Filename    :   isValidUnitKind.m
-%  Description : 
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  Organization:   University of Hertfordshire STRI
-%  Created     :   09-Feb-2005
-%  Revision    :   $Id$
-%  Source      :   $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

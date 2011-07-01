@@ -1,25 +1,22 @@
 function y = LoseWhiteSpace(charArray)
-% LoseWhiteSpace 
-%       takes an array of characters 
+% newArray = LoseWhiteSpace(charArray)
+% 
+% takes 
+% 
+% 1. charArray; an array of characters 
+% 
+% returns 
+% 
+% 1. the array with any white space removed
+% 
+% *EXAMPLE:*
 %
-%       and returns 
-%           the array with any white space removed
+%          newArray = LoseWhiteSpace('     exa  mp le')
 %
-%    EXAMPLE:
-%          y = LoseWhiteSpace('     exa  mp le')
-%
-%          y = 'example'
+%          newArray = 'example'
 %
 
 
-%  Filename    :   LoseWhiteSpace.m
-%  Description : 
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  Organization:   University of Hertfordshire STRI
-%  Created     :   11-Feb-2005
-%  Revision    :   $Id$
-%  Source      :   $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

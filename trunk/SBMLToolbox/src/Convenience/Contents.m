@@ -1,186 +1,148 @@
 % toolbox\Convenience
 %
-% CheckValidUnitKind 
-%       takes a string representing a unit kind 
+% The Convenience folder contains a number of convenience functions for
+% checking information or manipulating math expressions.
 %
-%       and returns 
-%           1 if it is valid 
-%           0 otherwise
+%==============================
+% y = CheckValidUnitKind(kind)
+%==============================
+% takes 
+% 1. kind; a string representing a unit kind 
+% returns 
+% 1. y =
+%  - 1 if the string represents a valid unit kind 
+%  - 0 otherwise
 %
-%    NOTE: This is identical to the function isValidUnitKind
+%======================================
+% newArray = LoseWhiteSpace(charArray)
+%======================================
+% takes 
+% 1. charArray; an array of characters 
+% returns 
+% 1. the array with any white space removed
 %
+%===================================
+% pairs = PairBrackets(expression) 
+%===================================
+% takes
+% 1. expression; a string representation of a math expression
+% returns
+% 1. an array of the indices of each pair of brackets ordered from the opening bracket index
 %
-% LoseWhiteSpace 
-%       takes an array of characters 
+%======================================
+% output = Rearrange(expression, name)
+%======================================
+% takes
+% 1. expression; a string representation of a math expression
+% 2. name; a string representing the name of a variable
+% returns
+% 1. the expression rearranged in terms of the variable
 %
-%       and returns 
-%           the array with any white space removed
+%=====================================
+% newArray = RemoveDuplicates(array) 
+%=====================================
+% takes
+% 1. array; any array
+% returns
+% 1. the array with any duplicate entries removed  
 %
-%    EXAMPLE:
-%          y = LoseWhiteSpace('     exa  mp le')
+%============================================
+% value = Substitute(expression, SBMLModel) 
+%============================================
+% takes
+% 1. expression; a string representation of a math expression
+% 2. SBMLModel; an SBML Model structure
+% returns
+% 1. the value of the expression when all variables within the model have
+% been substituted
 %
-%          y = 'example'
+%=============================================================
+% newExpression = SubstituteConstants(expression, SBMLModel) 
+%=============================================================
+% takes
+% 1. expression; a string representation of a math expression
+% 2. SBMLModel; an SBML Model structure
+% returns
+% 1. the string representation of the expression when all constants within the model have
+% been substituted
 %
+%=========================================================================
+% newExpression = SubstituteFunction(expression, SBMLFunctionDefinition) 
+%=========================================================================
+% takes
+% 1. expression; a string representation of a math expression
+% 2. SBMLFunctionDefinition; an SBML FunctionDefinition structure
+% returns
+% 1. newExpression
+%  - the string representation of the expression when any instances of the functionDefinition have
+% been substituted
+%  - an empty string if the functiondefinition is not in the original
+%  expression
 %
-% PairBrackets 
-%       takes a string 
+%==============================
+% y = isIntegralNumber(number)
+%==============================
+% takes
+% 1. number; any number
+% returns
+% 1. y = 
+% - 1 if the number represents an integer 
+% - 0 otherwise 
 %
-%       and returns 
-%           an array of indices of each pair of brackets
-%               ordered from the opening bracket index
+%===========================
+% y = isValidUnitKind(kind)
+%===========================
+% takes 
+% 1. kind; a string representing a unit kind 
+% returns 
+% 1. y =
+%  - 1 if the string represents a valid unit kind 
+%  - 0 otherwise
 %
-%    EXAMPLE:
-%          pairs = PairBrackets('(a+((b*c)/(a+b)))')
+%=============================================
+% index = matchFunctionName(expression, name)
+%=============================================
+% takes
+% 1. expression; a string representation of a math expression
+% 2. name; a string representing the name of a function
+% returns
+% 1. the index of the starting point of 'name' in the 'expression'
 %
-%          pairs = 
-%                      1   17
-%                      4   16
-%                      5    9
-%                      11  15
+%=====================================
+% index = matchName(expression, name)
+%=====================================
+% takes
+% 1. expression; a string representation of a math expression
+% 2. name; a string representing the name of a variable
+% returns
+% 1. the index of the starting point of 'name' in the 'expression'
 %
+%=========================================
+% value = piecewise(value1, test, value2)
+%=========================================
+% takes
+% 1. value1; the value to return if the test is true
+% 2. test; a boolean test that will return true or false
+% 3. value2; the value to return if the test is false
+% returns
+% 1. value = 
+%   - value1, if test returns true
+%   - value2, if test returns false
+%     
 %
-% Rearrange
-%       takes 
-%           1) a char array representing a formula
-%           2) a char array representing a variable
-%
-%       and returns 
-%           the formula rearranged in terms of x
-%
-%    EXAMPLE:    
-%          output   =   Rearrange('X + Y - Z', 'X')
-%
-%          output   =   '-Y+Z'
-%
-%
-% RemoveDuplicates 
-%       takes any array 
-%
-%       and returns 
-%           the array with any duplicates removed
-%
-%
-% Substitute 
-%       takes 
-%           1) a string representation of a formula 
-%           2) the SBMLModel structure
-%
-%       and returns 
-%           the value calculated when all variables are substituted
-%
-%    EXAMPLE:
-%          Consider m to be an SBMLModel containing a species with 
-%                     id = 'g' and initialConcentration = '3' 
-%
-%          value = Substitute('g*2', m)
-%           
-%          value = 6
-%
-%
-% SubstituteConstants 
-%       takes 
-%           1) a string representation of a formula 
-%           2) the SBMLModel structure
-%       and returns 
-%           a string representing the formula with the ids of any constants
-%           within the model substituted
-%
-%
-%    EXAMPLE:
-%          Consider m to be an SBMLModel containing a parameter
-%               with id = 'g' and value = 3' 
-%
-%          subsFormula = SubstituteConstants('2 * g * S1', SBMLModel)
-%           
-%          subsFormula = '2 * 3 * S1'
-%
-%
-% SubstituteFunction 
-%       takes 
-%           1) a string representation of a formula 
-%           2) the SBMLFunctionDefinition structure defining the formula
-%       and returns 
-%           the formula with the function substituted
-%       or  an empty string if the id of the functionDefinition is not in the
-%           originalFormula
-%
-%
-%    EXAMPLE:
-%          Consider fD to be an SBMLFunctionDefinition 
-%               with id = 'g' and math = 'lambda(x,x+0.5)' 
-%
-%          formula = SubstituteFormula('g(y)', fD)
-%           
-%          formula = 'y+0.5'
-%
-%    OR
-%          formula = SubstituteFormula('h(y)', fD)
-%           
-%          formula = ''
-%
-%
-% isIntegralNumber 
-%       takes a number
-%       and returns 
-%           1 if it is an integer 
-%           0 otherwise (maybe of MATLAB type double)
-%
-%    NOTE: MATLAB's 'isinteger' function only returns true if the number 
-%       has been declared as an int; whereas the default type for numbers 
-%       in MATLAB is double
-%
-%
-% isValidUnitKind 
-%       takes a string representing a unit kind 
-%
-%       and returns 
-%           1 if it is valid 
-%           0 otherwise
-%
-%    NOTE: This is identical to the function CheckValidUnitKind
-%
-%
-% matchName
-%       takes a math expression and the name of a variable
-%
-%       and returns
-%           the index of the starting point of 'name' in the 'expression'
-%
-%    NOTE: This differs from the 'strfind' function in that it checks
-%       that the name is used as a variable.
-%
-%    EXAMPLE:
-%          y = matchName('f*g', 'g')
-%
-%          y = 3
-%
-%    OR
-%          y = matchName('f*g_1', 'g')
-%
-%          y = 0
-%
-%
-% testmember 
-%       takes 
-%           1) a value
-%           2) an array of values 
-%
-%       and returns 
-%           1 if value is a member of the array 
-%           0 otherwise
-% 
-%    NOTE: this function is necessary for octave to emulate the MATLAB
-%       functionality of the 'ismember' function
-%
+%==============================
+% y = testmember(value, array)
+%==============================
+% takes 
+% 1. value; any number/string
+% 2. array; an array of objects 
+% returns 
+% 1. y = 
+%   - 1 if value is a member of the array 
+%   - 0 otherwise
 %
 
 
-%  Filename    :   Contents.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
