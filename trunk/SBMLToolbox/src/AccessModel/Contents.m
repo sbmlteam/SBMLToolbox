@@ -1,6 +1,7 @@
 % toolbox\AccessModel
 %
-% write info here 
+% The AccessModel folder contains a number of functions that derive 
+% information from the MATLAB_SBML structures.
 %
 %===================================================================
 % array = DetermineSpeciesRoleInReaction(SBMLSpecies, SBMLReaction)
