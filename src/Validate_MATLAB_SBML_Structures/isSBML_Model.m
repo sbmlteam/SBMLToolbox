@@ -1,23 +1,22 @@
 function [valid, message] = isSBML_Model(SBMLStructure)
+% [valid, message] = isSBML_Model(SBMLModel)
 %
-% isSBML_Model
-%    takes a MATLAB_SBML structure
+% takes
 %
-%    returns
-%      1) a flag indicating whether the structure represents
-%           an MATLAB_SBML Model structure of the appropriate
-%           level and version
-%      2) a message string explaining any failure
+% 1. SBMLModel; an SBML Model structure
 %
-% The fields present in MATLAB_SBML Model structure of the appropriate
+% returns
+%
+% 1. valid = 
+%   - 1, if the structure represents
+%        a MATLAB_SBML Model structure of the appropriate
+%        level and version
+%   - 0, otherwise
+% 2. a message explaining any failure
+%
+% *NOTE:* The fields present in a MATLAB_SBML Model structure of the appropriate
 % level and version can be found using getModelFieldnames(level, version)
 
-%  Filename    :   isSBML_Model.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -40,6 +39,8 @@ function [valid, message] = isSBML_Model(SBMLStructure)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 [valid, message] = isValidSBML_Model(SBMLStructure);

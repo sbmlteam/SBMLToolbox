@@ -1,27 +1,28 @@
 function y = isValid(varargin)
+% [valid, message] = isValid(SBMLStruct, level(optional), version(optional))
 %
-% isValid
-%    takes a MATLAB_SBML structure
-%          an SBML level (optional)
-%    and   an SBML version (optional)
+% takes
 %
-%    returns
-%      1) a flag indicating whether the structure represents
-%           an MATLAB_SBML structure of the appropriate
-%           level and version
+% 1. SBMLStruct; an SBML  structure
+% 2. level (optional); an integer representing an SBML level
+% 3. version (optional); an integer representing an SBML version
 %
-% The fields present in MATLAB_SBML Model structure of the appropriate
+% returns
+%
+% 1. valid = 
+%   - 1, if the structure represents
+%        a MATLAB_SBML structure of the appropriate
+%        level and version
+%   - 0, otherwise
+% 2. a message explaining any failure
+%
+% *NOTE:* the optional level defaults to a value of 3
+%
+% *NOTE:* the optional version defaults to a value of 1
+%
+% *NOTE:* The fields present in a MATLAB_SBML  structure of the appropriate
 % level and version can be found using getFieldnames(typecode, level, version)
-%
-% NOTE: isValid determines the type of structure and validates it
-% accordingly
 
-%  Filename    :   isValid.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: isSBML_Model.m 13924 2011-06-15 14:55:05Z sarahkeating $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -44,6 +45,8 @@ function y = isValid(varargin)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 if (nargin < 1)
   error('need input argument');
