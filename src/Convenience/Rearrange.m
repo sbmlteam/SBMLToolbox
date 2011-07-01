@@ -1,26 +1,22 @@
 function output = Rearrange(formula, x)
-% Rearrange
-%       takes 
-%           1) a char array representing a formula
-%           2) a char array representing a variable
+% output = Rearrange(expression, name)
+% 
+% takes
+% 
+% 1. expression; a string representation of a math expression
+% 2. name; a string representing the name of a variable
+% 
+% returns
+% 
+% 1. the expression rearranged in terms of the variable
 %
-%       and returns 
-%           the formula rearranged in terms of x
+% *EXAMPLE:*
 %
-%    EXAMPLE:    
 %          output   =   Rearrange('X + Y - Z', 'X')
 %
 %          output   =   '-Y+Z'
 %
 
-%  Filename    : Rearrange.m
-%  Description : rearranges the formula
-%  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
-%  Organization: University of Hertfordshire STRC
-%  Created     : 2005-01-12
-%  Revision    : $Id$
-%  Source      : $Source $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -130,7 +126,7 @@ end;
 output = '';
 lhs = 1;
 for i = 1:NumElements
-    if (strfind(Elements{i}, x))
+    if (matchName(Elements{i}, x))
         % element contains x
         LHSElements{lhs} = Elements{i};
 
@@ -258,7 +254,7 @@ if (length(multipliers) > 2)
   error('Too many multipliers');
 end;
 
-VarIndex = strfind(element, x);
+VarIndex = matchName(element, x);
 if (isempty(multipliers))
   MultIndex = 1;
 else
@@ -388,7 +384,7 @@ if (~IsSingleBracketed(denominator))
 end;
 
 % if x is now part of the nominator dont invert
-if (strfind(nominator, x))
+if (matchName(nominator, x))
   if (sum(ismember(nominator, operators)) > 0)
     if (IsSingleBracketed(nominator))
       y = strcat(nominator, '/');
@@ -465,7 +461,7 @@ function y = SwapMultiplier(formula, x)
 % x will occur before both
 % * will occur before /
 
-index = strfind(formula, x);
+index = matchName(formula, x);
 start = index(1);
 
 index = strfind(formula, '*');

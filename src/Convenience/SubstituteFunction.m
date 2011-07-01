@@ -1,15 +1,21 @@
 function Formula = SubstituteFunction(OriginalFormula, SBMLFunctionDefinition)
-% SubstituteFunction 
-%       takes 
-%           1) a string representation of a formula 
-%           2) the SBMLFunctionDefinition structure defining the formula
-%       and returns 
-%           the formula with the function substituted
-%       or  an empty string if the id of the functionDefinition is not in the
-%           originalFormula
+% newExpression = SubstituteFunction(expression, SBMLFunctionDefinition) 
 %
+% takes
+% 
+% 1. expression; a string representation of a math expression
+% 2. SBMLFunctionDefinition; an SBML FunctionDefinition structure
+% 
+% returns
+% 
+% 1. newExpression
+%  - the string representation of the expression when any instances of the functionDefinition have
+% been substituted
+%  - an empty string if the functiondefinition is not in the original
+%  expression
 %
-%    EXAMPLE:
+% *EXAMPLE:*
+%
 %          Consider fD to be an SBMLFunctionDefinition 
 %               with id = 'g' and math = 'lambda(x,x+0.5)' 
 %
@@ -17,21 +23,13 @@ function Formula = SubstituteFunction(OriginalFormula, SBMLFunctionDefinition)
 %           
 %          formula = 'y+0.5'
 %
-%    OR
+%    
 %          formula = SubstituteFormula('h(y)', fD)
 %           
 %          formula = ''
 %
 
 
-%  Filename    :   SubstituteFunction.m
-%  Description : 
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  Organization:   University of Hertfordshire STRI
-%  Created     :   11-Feb-2005
-%  Revision    :   $Id$
-%  Source      :   $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

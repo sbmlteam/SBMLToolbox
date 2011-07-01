@@ -1,26 +1,22 @@
 function y = testmember (num, array)
-% testmember 
-%       takes 
-%           1) a value
-%           2) an array of values 
-%
-%       and returns 
-%           1 if value is a member of the array 
-%           0 otherwise
+% y = testmember(value, array)
 % 
-%    NOTE: this function is necessary for octave to emulate the MATLAB
+% takes 
+%
+% 1. value; any number/string
+% 2. array; an array of objects 
+% 
+% returns 
+% 
+% 1. y = 
+%   - 1 if value is a member of the array 
+%   - 0 otherwise
+% 
+% *NOTE:* this function is necessary for octave to emulate the MATLAB
 %       functionality of the 'ismember' function
 %
 
 
-%  Filename    :   testmember.m
-%  Description : 
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  Organization:  
-%  Created     :   
-%  Revision    :   $Id$
-%  Source      :   $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

@@ -1,31 +1,37 @@
 function index = matchName(expr, name)
-% matchName
-%       takes a math expression and the name of a variable
+% index = matchName(expression, name)
+% 
+% takes
+% 
+% 1. expression; a string representation of a math expression
+% 2. name; a string representing the name of a variable
+% 
+% returns
+% 
+% 1. the index of the starting point of 'name' in the 'expression'
 %
-%       and returns
-%           the index of the starting point of 'name' in the 'expression'
 %
-%    NOTE: This differs from the 'strfind' function in that it checks
+% *EXAMPLE:*
+%
+%          index = matchName('f*g', 'g')
+%
+%          index = 3
+%
+%    
+%          index = matchName('f*g_1', 'g')
+%
+%          index = []
+%
+%
+%          index = matchName('f*g(a,g)', 'g')
+%
+%          index = 7
+%
+%
+% *NOTE:* This differs from the 'strfind' function in that it checks
 %       that the name is used as a variable.
-%
-%    EXAMPLE:
-%          y = matchName('f*g', 'g')
-%
-%          y = 3
-%
-%    OR
-%          y = matchName('f*g_1', 'g')
-%
-%          y = 0
-%
 
 
-%  Filename    :   Contents.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -57,7 +63,7 @@ if ~isempty(tempIndex)
   % we found name - but is is followed by a math symbol
   for i=1:length(tempIndex)
     followIndex = tempIndex(i) + length(name);
-    if (followIndex < maxSize)
+    if (followIndex <= maxSize)
       followChar = expr(followIndex);
       if ismember(followChar, operators)
         index = [index, tempIndex(i)];    

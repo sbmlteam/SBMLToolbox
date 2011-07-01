@@ -1,34 +1,26 @@
 function subsFormula = SubstituteConstants(OriginalFormula, SBMLModel)
-% SubstituteConstants 
-%       takes 
-%           1) a string representation of a formula 
-%           2) the SBMLModel structure
-%       and returns 
-%           a string representing the formula with the ids of any constants
-%           within the model substituted
+% newExpression = SubstituteConstants(expression, SBMLModel) 
 %
+% takes
+% 
+% 1. expression; a string representation of a math expression
+% 2. SBMLModel; an SBML Model structure
+% 
+% returns
+% 
+% 1. the string representation of the expression when all constants within the model have
+% been substituted
 %
-%    EXAMPLE:
+% *EXAMPLE:*
+%
 %          Consider m to be an SBMLModel containing a parameter
-%               with id = 'g' and value = 3' 
+%               with id = 'g', constant = '1' and value = 3' 
 %
-%          subsFormula = SubstituteConstants('2 * g * S1', SBMLModel)
+%          newExpression = SubstituteConstants('2 * g * S1', SBMLModel)
 %           
-%          subsFormula = '2 * 3 * S1'
+%          newExpression = '2 * 3 * S1'
 %
 
-%
-%  Filename    : SubstituteConstants.m
-%  Description :  SubstituteConstants takes 
-%           1) a string representation of a formula 
-%           2) the SBMLModel structure
-%       and returns 
-%           a string representing the formula with the ids of any constants
-%           within the model substituted
-%  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
-%  $Id: ASTNode.h 8088 2008-08-21 14:32:27Z mhucka $
-%  $HeadURL: https://sbml.svn.sourceforge.net/svnroot/sbml/trunk/libsbml/src/math/ASTNode.h $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

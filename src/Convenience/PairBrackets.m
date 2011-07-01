@@ -1,12 +1,16 @@
 function pairs = PairBrackets(formula)
-% PairBrackets 
-%       takes a string 
+% pairs = PairBrackets(expression) 
+% 
+% takes
+% 
+% 1. expression; a string representation of a math expression
+% 
+% returns
+% 
+% 1. an array of the indices of each pair of brackets ordered from the opening bracket index
 %
-%       and returns 
-%           an array of indices of each pair of brackets
-%               ordered from the opening bracket index
+% *EXAMPLE:*
 %
-%    EXAMPLE:
 %          pairs = PairBrackets('(a+((b*c)/(a+b)))')
 %
 %          pairs = 
@@ -17,14 +21,6 @@ function pairs = PairBrackets(formula)
 %
 
 
-%  Filename    :   PairBrackets.m
-%  Description : 
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  Organization:   University of Hertfordshire STRI
-%  Created     :   11-Feb-2005
-%  Revision    :   $Id$
-%  Source      :   $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

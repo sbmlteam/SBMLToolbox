@@ -1,24 +1,34 @@
 function value = isIntegralNumber(number)
-% isIntegralNumber 
-%       takes a number
-%       and returns 
-%           1 if it is an integer 
-%           0 otherwise (maybe of MATLAB type double)
+% y = isIntegralNumber(number)
+% 
+% takes
+% 
+% 1. number; any number
+% 
+% returns
+% 
+% 1. y = 
+% - 1 if the number represents an integer 
+% - 0 otherwise 
 %
-%    NOTE: MATLAB's 'isinteger' function only returns true if the number 
-%       has been declared as an int; whereas the default type for numbers 
-%       in MATLAB is double
+% *EXAMPLE:*
+%   
+%               y = isIntegralNumber(int32(3))
+%               y = 1
+%               
+%               y = isIntegralNumber(double(3.2))
+%               y = 0
+%               
+%               y = isIntegralNumber(double(3))
+%               y = 1
+%                         
+% *NOTE:* The inbuilt 'isinteger' function only returns true if the number 
+%  has been declared as having an integer type; whereas the default type for numbers 
+%  in MATLAB is double. This function will return '1' if the number
+%  represents an integer.
 %
 
 
-%  Filename    :   isIntegralNumber.m
-%  Description : 
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  Organization:   University of Hertfordshire STRI
-%  Created     :   09-Feb-2005
-%  Revision    :   $Id$
-%  Source      :   $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

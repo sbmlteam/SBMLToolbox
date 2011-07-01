@@ -1,13 +1,18 @@
 function value = Substitute(original_formula, model)
-% Substitute 
-%       takes 
-%           1) a string representation of a formula 
-%           2) the SBMLModel structure
+% value = Substitute(expression, SBMLModel) 
 %
-%       and returns 
-%           the value calculated when all variables are substituted
+% takes
+% 
+% 1. expression; a string representation of a math expression
+% 2. SBMLModel; an SBML Model structure
+% 
+% returns
+% 
+% 1. the value of the expression when all variables within the model have
+% been substituted
 %
-%    EXAMPLE:
+% *EXAMPLE:*
+%
 %          Consider m to be an SBMLModel containing a species with 
 %                     id = 'g' and initialConcentration = '3' 
 %
@@ -16,14 +21,6 @@ function value = Substitute(original_formula, model)
 %          value = 6
 %
 
-%  Filename    :   Substitute.m
-%  Description : 
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  Organization:   University of Hertfordshire STRI
-%  Created     :   11-Feb-2005
-%  Revision    :   $Id$
-%  Source      :   $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
