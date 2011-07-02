@@ -12,6 +12,9 @@ for i=1:length(Objects)
   writeDoc(Objects{i});
 end;
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 function writeDoc(obj)
 
 name = strcat(lower(obj), '.html');
@@ -21,8 +24,12 @@ fOut = fopen(name, 'w');
 
 fprintf(fOut, '<LINK href=\"style.css\" rel=\"stylesheet\" type="text/css\">\n');
 
+% write the Object name as header with an anchor
 fprintf(fOut, '\n\n<a name=\"%s\"></a>\n', obj);
 fprintf(fOut, '<h3> %s </h3>\n', obj);
+
+% get the typecode for the object and write it out
+% double check we have got it since not every object exists in every level/version
 values = getDefaultValues(obj, 2, 4);
 if isempty(values)
   values = getDefaultValues(obj, 1, 2);
@@ -31,8 +38,13 @@ if isempty(values)
   values = getDefaultValues(obj, 3, 1);
 end;
 fprintf(fOut, '<p>typecode = %s</p><br/>', values{1});
+
+% create the outer table with the level/version headers
 writeOutertable(fOut);
+
 fprintf(fOut, '\t<tr>\n');
+
+% inside this outer table inside each column write the table for the appropriate level/version 
 fprintf(fOut, '\t\t<td>\n');
 writeTable(fOut, obj, 1, 1);
 fprintf(fOut, '\t\t</td>\n');
@@ -54,12 +66,17 @@ fprintf(fOut, '\t\t</td>\n');
 fprintf(fOut, '\t\t<td>\n');
 writeTable(fOut, obj, 3, 1);
 fprintf(fOut, '\t\t</td>\n');
+
+
+% close the outer table
 fprintf(fOut, '\t</tr>\n');
 fprintf(fOut, '</table>\n');
 fprintf(fOut, '</center>\n');
 
 fclose(fOut);
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% write the top of the outer table with level/version headers
 function writeOutertable(fout)
 
 fprintf(fout, '<center>\n\n<table class=\"borderless-table sm-padding\" width=\"90%%\">\n');
@@ -72,6 +89,8 @@ fprintf(fout, '\t\t<td>SBML Level 2 Version 4</td>\n');
 fprintf(fout, '\t\t<td>SBML Level 3 Version 1</td>\n');
 fprintf(fout, '\t</tr>\n');
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% write the table for the given level and version
 function writeTable(fout, obj, l, v)
 
 [fieldnames, num] = getFieldnames(obj, l, v);
@@ -97,6 +116,8 @@ end;
 fprintf(fout, '\t\t\t\t</table>\n');
 fprintf(fout, '\t\t\t</center>\n');
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% produce appropriate type information from the default value
 function type = getType(value)
 
 if ischar(value)
@@ -109,6 +130,8 @@ elseif isinteger(value) && value > 0
   type = 'integer';
 elseif isnan(value)
   type = 'double';
+elseif isempty(value)
+  type = 'array of structures';
 else
   type = 'double';
 end;
