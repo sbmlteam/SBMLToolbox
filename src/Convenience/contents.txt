@@ -1,0 +1,363 @@
+###CONVENIENCE
+
+
+Put info here.
+
+Function are:
+
+----------
+
+####y = CheckValidUnitKind(kind)
+
+takes 
+
+1. kind; a string representing a unit kind 
+
+returns 
+
+1. y =
+ - 1 if the string represents a valid unit kind 
+ - 0 otherwise
+
+*NOTE:* This is identical to the function isValidUnitKind
+
+
+
+------------------------------
+
+####newArray = LoseWhiteSpace(charArray)
+
+takes 
+
+1. charArray; an array of characters 
+
+returns 
+
+1. the array with any white space removed
+
+*EXAMPLE:*
+
+         newArray = LoseWhiteSpace('     exa  mp le')
+
+         newArray = 'example'
+
+
+
+------------------------------
+
+####pairs = PairBrackets(expression) 
+
+takes
+
+1. expression; a string representation of a math expression
+
+returns
+
+1. an array of the indices of each pair of brackets ordered from the opening bracket index
+
+*EXAMPLE:*
+
+         pairs = PairBrackets('(a+((b*c)/(a+b)))')
+
+         pairs = 
+                     1   17
+                     4   16
+                     5    9
+                     11  15
+
+
+
+------------------------------
+
+####output = Rearrange(expression, name)
+
+takes
+
+1. expression; a string representation of a math expression
+2. name; a string representing the name of a variable
+
+returns
+
+1. the expression rearranged in terms of the variable
+
+*EXAMPLE:*
+
+         output   =   Rearrange('X + Y - Z', 'X')
+
+         output   =   '-Y+Z'
+
+
+
+------------------------------
+
+####newArray = RemoveDuplicates(array) 
+
+takes
+
+1. array; any array
+
+returns
+
+1. the array with any duplicate entries removed  
+
+*EXAMPLE:*
+
+              newArray = RemoveDuplicates([2, 3, 4, 3, 2, 5])
+              newArray = [2, 3, 4, 5]
+              
+
+
+------------------------------
+
+####value = Substitute(expression, SBMLModel) 
+
+takes
+
+1. expression; a string representation of a math expression
+2. SBMLModel; an SBML Model structure
+
+returns
+
+1. the value of the expression when all variables within the model have
+been substituted
+
+*EXAMPLE:*
+
+         Consider m to be an SBMLModel containing a species with 
+                    id = 'g' and initialConcentration = '3' 
+
+         value = Substitute('g*2', m)
+          
+         value = 6
+
+
+
+------------------------------
+
+####newExpression = SubstituteConstants(expression, SBMLModel) 
+
+takes
+
+1. expression; a string representation of a math expression
+2. SBMLModel; an SBML Model structure
+
+returns
+
+1. the string representation of the expression when all constants within the model have
+been substituted
+
+*EXAMPLE:*
+
+         Consider m to be an SBMLModel containing a parameter
+              with id = 'g', constant = '1' and value = 3' 
+
+         newExpression = SubstituteConstants('2 * g * S1', SBMLModel)
+          
+         newExpression = '2 * 3 * S1'
+
+
+
+------------------------------
+
+####newExpression = SubstituteFunction(expression, SBMLFunctionDefinition) 
+
+takes
+
+1. expression; a string representation of a math expression
+2. SBMLFunctionDefinition; an SBML FunctionDefinition structure
+
+returns
+
+1. newExpression
+ - the string representation of the expression when any instances of the functionDefinition have
+been substituted
+ - an empty string if the functiondefinition is not in the original
+ expression
+
+*EXAMPLE:*
+
+         Consider fD to be an SBMLFunctionDefinition 
+              with id = 'g' and math = 'lambda(x,x+0.5)' 
+
+         formula = SubstituteFormula('g(y)', fD)
+          
+         formula = 'y+0.5'
+
+   
+         formula = SubstituteFormula('h(y)', fD)
+          
+         formula = ''
+
+
+
+------------------------------
+
+####y = isIntegralNumber(number)
+
+takes
+
+1. number; any number
+
+returns
+
+1. y = 
+- 1 if the number represents an integer 
+- 0 otherwise 
+
+*EXAMPLE:*
+  
+              y = isIntegralNumber(int32(3))
+              y = 1
+              
+              y = isIntegralNumber(double(3.2))
+              y = 0
+              
+              y = isIntegralNumber(double(3))
+              y = 1
+                        
+*NOTE:* The inbuilt 'isinteger' function only returns true if the number 
+ has been declared as having an integer type; whereas the default type for numbers 
+ in MATLAB is double. This function will return '1' if the number
+ represents an integer.
+
+
+
+------------------------------
+
+####y = isValidUnitKind(kind)
+
+takes 
+
+1. kind; a string representing a unit kind 
+
+returns 
+
+1. y =
+ - 1 if the string represents a valid unit kind 
+ - 0 otherwise
+
+*NOTE:* This is identical to the function CheckValidUnitKind
+
+
+
+------------------------------
+
+####index = matchFunctionName(expression, name)
+
+takes
+
+1. expression; a string representation of a math expression
+2. name; a string representing the name of a function
+
+returns
+
+1. the index of the starting point of 'name' in the 'expression'
+
+*EXAMPLE:*
+
+         index = matchFunctionName('f*g', 'g')
+
+         index = []
+
+   
+         index = matchFunctionName('add(d,g_1)', 'add')
+
+         index = 0
+
+
+         index = matchFunctionName('add(add(a,b), c)', 'add')
+           
+         index = [1, 5]
+
+      
+
+*NOTE:* This differs from the 'strfind' function in that it checks
+      that the name is used as a function call.
+
+
+
+------------------------------
+
+####index = matchName(expression, name)
+
+takes
+
+1. expression; a string representation of a math expression
+2. name; a string representing the name of a variable
+
+returns
+
+1. the index of the starting point of 'name' in the 'expression'
+
+
+*EXAMPLE:*
+
+         index = matchName('f*g', 'g')
+
+         index = 3
+
+   
+         index = matchName('f*g_1', 'g')
+
+         index = []
+
+
+         index = matchName('f*g(a,g)', 'g')
+
+         index = 7
+
+
+*NOTE:* This differs from the 'strfind' function in that it checks
+      that the name is used as a variable.
+
+
+------------------------------
+
+####value = piecewise(value1, test, value2)
+
+takes
+
+1. value1; the value to return if the test is true
+2. test; a boolean test that will return true or false
+3. value2; the value to return if the test is false
+
+returns
+
+1. value = 
+  - value1, if test returns true
+  - value2, if test returns false
+    
+*EXAMPLE:*
+
+              value = piecewise(3, 1<2, 4)
+              value = 3
+              
+              value = piecewise(3, 1>2, 4)
+              value = 4
+              
+*NOTE:* This function provides the functionality of the MathML 'piecewise' function              
+
+
+
+------------------------------
+
+####y = testmember(value, array)
+
+takes 
+
+1. value; any number/string
+2. array; an array of objects 
+
+returns 
+
+1. y = 
+  - 1 if value is a member of the array 
+  - 0 otherwise
+
+*NOTE:* this function is necessary for octave to emulate the MATLAB
+      functionality of the 'ismember' function
+
+
+
+------------------------------
+
