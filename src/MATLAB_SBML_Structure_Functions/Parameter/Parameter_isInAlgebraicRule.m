@@ -1,15 +1,16 @@
 function y = Parameter_isInAlgebraicRule(SBMLParameter, SBMLRules)
-% Parameter_isInAlgebraicRule takes an SBMLParameter structure and an array of SBMLRule structures
-% and returns
-%             0 if the Parameter is not in an algebraic rule
-%             [n1, n2] if the Parameter occurs as within a rule
-%     where n1, n2 refers to the index of the matched rule in the array
-
-%  Filename    :   Parameter_isInAlgebraicRule.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: Parameter_isInAlgebraicRule.m 13259 2011-03-21 05:40:36Z mhucka $
-%  $Source v $
+% y = Parameter_isInAlgebraicRule(SBMLParameter, SBMLRules)
+%
+% takes
+%
+% 1. SBMLParameter; an SBML Parameter structure
+% 2. SBMLRules; the array of rules from an SBML Model structure
+%
+% returns
+%
+% y = 
+%   - an array of the indices of any algebraicRules the id of the Parameter appears in 
+%   - 0 if the Parameter appears in no algebraicRules 
 %
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
@@ -33,6 +34,10 @@ function y = Parameter_isInAlgebraicRule(SBMLParameter, SBMLRules)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
 
  
 y = 0;

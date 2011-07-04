@@ -1,18 +1,16 @@
 function SBMLParameter = Parameter_setUnits(SBMLParameter, units)
+% SBMLParameter = Parameter_setUnits(SBMLParameter, units)
 %
-% Parameter_setUnits
-%       takes an SBML Parameter structure
-%    and the units to be set
+% takes
 %
-%       and returns
-%           the Parameter with the new value for the units attribute
+% 1. SBMLParameter; an SBML Parameter structure
+% 2. units; a string representing the units to be set
+%
+% returns
+%
+% 1. the SBML Parameter structure with the new value for the units attribute
+%
 
-%  Filename    :   Parameter_setUnits.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -35,6 +33,10 @@ function SBMLParameter = Parameter_setUnits(SBMLParameter, units)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
 
 
 %get level and version and check the input arguments are appropriate

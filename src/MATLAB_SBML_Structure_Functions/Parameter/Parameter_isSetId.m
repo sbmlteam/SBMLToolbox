@@ -1,18 +1,17 @@
 function value = Parameter_isSetId(SBMLParameter)
+% value = Parameter_isSetId(SBMLParameter)
 %
-% Parameter_isSetId
-%       takes an SBML Parameter structure
+% takes
 %
-%       and returns
-%           1 if the value for the id attribute is set
-%           0 otherwise
+% 1. SBMLParameter; an SBML Parameter structure
+%
+% returns
+%
+% 1. value = 
+%  - 1 if the id attribute is set
+%  - 0 otherwise
+%
 
-%  Filename    :   Parameter_isSetId.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -35,6 +34,10 @@ function value = Parameter_isSetId(SBMLParameter)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
 
 
 %get level and version and check the input arguments are appropriate

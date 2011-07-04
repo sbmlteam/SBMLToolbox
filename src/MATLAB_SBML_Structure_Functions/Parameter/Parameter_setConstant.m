@@ -1,18 +1,16 @@
 function SBMLParameter = Parameter_setConstant(SBMLParameter, constant)
+% SBMLParameter = Parameter_setConstant(SBMLParameter, constant)
 %
-% Parameter_setConstant
-%       takes an SBML Parameter structure
-%    and the constant to be set
+% takes
 %
-%       and returns
-%           the Parameter with the new value for the constant attribute
+% 1. SBMLParameter; an SBML Parameter structure
+% 2. constant; an integer (0/1) representing the value of constant to be set
+%
+% returns
+%
+% 1. the SBML Parameter structure with the new value for the constant attribute
+%
 
-%  Filename    :   Parameter_setConstant.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -35,6 +33,10 @@ function SBMLParameter = Parameter_setConstant(SBMLParameter, constant)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
 
 
 %get level and version and check the input arguments are appropriate
