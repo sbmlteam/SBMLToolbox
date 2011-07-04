@@ -1,28 +1,192 @@
-% toolbox\MATLAB_SBML_Structure_Functions\UNITDEFINITION
+% toolbox\MATLAB_SBML_Structure_Functions\UnitDefinition
 %
-% Files
-%   UnitDefinition_addUnit        - UnitDefinition_addUnit 
-%   UnitDefinition_create         - UnitDefinition_create 
-%   UnitDefinition_getId          - UnitDefinition_getId 
-%   UnitDefinition_getListOfUnits - UnitDefinition_getListOfUnits 
-%   UnitDefinition_getName        - UnitDefinition_getName 
-%   UnitDefinition_getNumUnits    - UnitDefinition_getNumUnits 
-%   UnitDefinition_getSBOTerm     - UnitDefinition_getSBOTerm 
-%   UnitDefinition_getUnit        - UnitDefinition_getUnit 
-%   UnitDefinition_isSetId        - UnitDefinition_isSetId 
-%   UnitDefinition_isSetName      - UnitDefinition_isSetName 
-%   UnitDefinition_moveIdToName   - UnitDefinition_moveIdToName 
-%   UnitDefinition_moveNameToId   - UnitDefinition_moveNameToId 
-%   UnitDefinition_setId          - UnitDefinition_setId 
-%   UnitDefinition_setName        - UnitDefinition_setName 
-%   UnitDefinition_setSBOTerm     - UnitDefinition_setSBOTerm 
+% The functions allow users to create and work with the SBML UnitDefinition structure. 
+%
+%===========================================================================
+% SBMLUnitDefinition = UnitDefinition_addUnit(SBMLUnitDefinition, SBMLUnit)
+%===========================================================================
+% takes
+% 1. SBMLUnitDefinition; an SBML UnitDefinition structure
+% 2. SBMLUnit; an SBML Unit structure
+% returns
+% 1. the SBML UnitDefinition structure with the SBML Unit structure added
+%
+%===========================================================================
+% UnitDefinition = UnitDefinition_create(level(optional), version(optional)
+%===========================================================================
+% takes
+% 1. level; an integer representing an SBML level (optional)
+% 2. version; an integer representing an SBML version (optional)
+% returns
+% 1. a MATLAB_SBML UnitDefinition structure of the appropriate level and version
+%
+%===============================================
+% id = UnitDefinition_getId(SBMLUnitDefinition)
+%===============================================
+% takes
+% 1. SBMLUnitDefinition; an SBML UnitDefinition structure
+% returns
+% 1. the value of the id attribute
+%
+%==========================================================
+% unit = UnitDefinition_getListOfUnits(SBMLUnitDefinition)
+%==========================================================
+% takes
+% 1. SBMLUnitDefinition; an SBML UnitDefinition structure
+% returns
+% 1. an array of the unit structures
+%
+%=======================================================
+% metaid = UnitDefinition_getMetaid(SBMLUnitDefinition)
+%=======================================================
+% takes
+% 1. SBMLUnitDefinition; an SBML UnitDefinition structure
+% returns
+% 1. the value of the metaid attribute
+%
+%===================================================
+% name = UnitDefinition_getName(SBMLUnitDefinition)
+%===================================================
+% takes
+% 1. SBMLUnitDefinition; an SBML UnitDefinition structure
+% returns
+% 1. the value of the name attribute
+%
+%===========================================================
+% numUnits = UnitDefinition_getNumUnits(SBMLUnitDefinition)
+%===========================================================
+% takes
+% 1. SBMLUnitDefinition; an SBML UnitDefinition structure
+% returns
+% 1. the value of the numUnits attribute
+%
+%=========================================================
+% sboTerm = UnitDefinition_getSBOTerm(SBMLUnitDefinition)
+%=========================================================
+% takes
+% 1. SBMLUnitDefinition; an SBML UnitDefinition structure
+% returns
+% 1. the value of the sboTerm attribute
+%
+%==========================================================
+% unit = UnitDefinition_getUnit(SBMLUnitDefinition, index)
+%==========================================================
+% takes
+% 1. SBMLUnitDefinition; an SBML UnitDefinition structure
+% 2. index; an integer representing the index of SBML Unit structure
+% returns
+% 1. the SBML Unit structure at the indexed position
+%
+%====================================================
+% value = UnitDefinition_isSetId(SBMLUnitDefinition)
+%====================================================
+% takes
+% 1. SBMLUnitDefinition; an SBML UnitDefinition structure
+% returns
+% 1. value = 
+%  - 1 if the id attribute is set
+%  - 0 otherwise
+%
+%========================================================
+% value = UnitDefinition_isSetMetaid(SBMLUnitDefinition)
+%========================================================
+% takes
+% 1. SBMLUnitDefinition; an SBML UnitDefinition structure
+% returns
+% 1. value = 
+%  - 1 if the metaid attribute is set
+%  - 0 otherwise
+%
+%======================================================
+% value = UnitDefinition_isSetName(SBMLUnitDefinition)
+%======================================================
+% takes
+% 1. SBMLUnitDefinition; an SBML UnitDefinition structure
+% returns
+% 1. value = 
+%  - 1 if the name attribute is set
+%  - 0 otherwise
+%
+%=========================================================
+% value = UnitDefinition_isSetSBOTerm(SBMLUnitDefinition)
+%=========================================================
+% takes
+% 1. SBMLUnitDefinition; an SBML UnitDefinition structure
+% returns
+% 1. value = 
+%  - 1 if the sboTerm attribute is set
+%  - 0 otherwise
+%
+%===================================================================
+% SBMLUnitDefinition = UnitDefinition_setId(SBMLUnitDefinition, id)
+%===================================================================
+% takes
+% 1. SBMLUnitDefinition; an SBML UnitDefinition structure
+% 2. id; a string representing the id to be set
+% returns
+% 1. the SBML UnitDefinition structure with the new value for the id attribute
+%
+%===========================================================================
+% SBMLUnitDefinition = UnitDefinition_setMetaid(SBMLUnitDefinition, metaid)
+%===========================================================================
+% takes
+% 1. SBMLUnitDefinition; an SBML UnitDefinition structure
+% 2. metaid; a string representing the metaid to be set
+% returns
+% 1. the SBML UnitDefinition structure with the new value for the metaid attribute
+%
+%=======================================================================
+% SBMLUnitDefinition = UnitDefinition_setName(SBMLUnitDefinition, name)
+%=======================================================================
+% takes
+% 1. SBMLUnitDefinition; an SBML UnitDefinition structure
+% 2. name; a string representing the name to be set
+% returns
+% 1. the SBML UnitDefinition structure with the new value for the name attribute
+%
+%=============================================================================
+% SBMLUnitDefinition = UnitDefinition_setSBOTerm(SBMLUnitDefinition, sboTerm)
+%=============================================================================
+% takes
+% 1. SBMLUnitDefinition; an SBML UnitDefinition structure
+% 2. sboTerm; an integer representing the sboTerm to be set
+% returns
+% 1. the SBML UnitDefinition structure with the new value for the sboTerm attribute
+%
+%=================================================================
+% SBMLUnitDefinition = UnitDefinition_unsetId(SBMLUnitDefinition)
+%=================================================================
+% takes
+% 1. SBMLUnitDefinition; an SBML UnitDefinition structure
+% returns
+% 1. the SBML UnitDefinition structure with the id attribute unset
+%
+%=====================================================================
+% SBMLUnitDefinition = UnitDefinition_unsetMetaid(SBMLUnitDefinition)
+%=====================================================================
+% takes
+% 1. SBMLUnitDefinition; an SBML UnitDefinition structure
+% returns
+% 1. the SBML UnitDefinition structure with the metaid attribute unset
+%
+%===================================================================
+% SBMLUnitDefinition = UnitDefinition_unsetName(SBMLUnitDefinition)
+%===================================================================
+% takes
+% 1. SBMLUnitDefinition; an SBML UnitDefinition structure
+% returns
+% 1. the SBML UnitDefinition structure with the name attribute unset
+%
+%======================================================================
+% SBMLUnitDefinition = UnitDefinition_unsetSBOTerm(SBMLUnitDefinition)
+%======================================================================
+% takes
+% 1. SBMLUnitDefinition; an SBML UnitDefinition structure
+% returns
+% 1. the SBML UnitDefinition structure with the sboTerm attribute unset
+%
 
-%  Filename    :   Contents.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
+
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -45,4 +209,5 @@
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
 

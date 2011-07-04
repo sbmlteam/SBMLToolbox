@@ -1,18 +1,16 @@
 function SBMLUnitDefinition = UnitDefinition_addUnit(SBMLUnitDefinition, SBMLUnit)
+% SBMLUnitDefinition = UnitDefinition_addUnit(SBMLUnitDefinition, SBMLUnit)
 %
-% UnitDefinition_addUnit(SBMLUnitDefinition, SBMLUnit)
-%       takes an SBML UnitDefinition structure
-%    and an SBML Unit structure
+% takes
 %
-%       and returns
-%           the UnitDefinition with the Unit element added
+% 1. SBMLUnitDefinition; an SBML UnitDefinition structure
+% 2. SBMLUnit; an SBML Unit structure
+%
+% returns
+%
+% 1. the SBML UnitDefinition structure with the SBML Unit structure added
+%
 
-%  Filename    :   UnitDefinition_addUnit.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -35,6 +33,8 @@ function SBMLUnitDefinition = UnitDefinition_addUnit(SBMLUnitDefinition, SBMLUni
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 %get level and version and check the input arguments are appropriate
