@@ -1,18 +1,16 @@
 function SBMLModel = Model_setExtentUnits(SBMLModel, extentUnits)
+% SBMLModel = Model_setExtentUnits(SBMLModel, extentUnits)
 %
-% Model_setExtentUnits
-%       takes an SBML Model structure
-%    and the extentUnits to be set
+% takes
 %
-%       and returns
-%           the Model with the new value for the extentUnits attribute
+% 1. SBMLModel; an SBML Model structure
+% 2. extentUnits; a string representing the extentUnits to be set
+%
+% returns
+%
+% 1. the SBML Model structure with the new value for the extentUnits attribute
+%
 
-%  Filename    :   Model_setExtentUnits.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -35,6 +33,30 @@ function SBMLModel = Model_setExtentUnits(SBMLModel, extentUnits)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 %get level and version and check the input arguments are appropriate

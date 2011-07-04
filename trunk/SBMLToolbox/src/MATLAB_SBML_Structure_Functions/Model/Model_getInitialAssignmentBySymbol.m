@@ -1,21 +1,16 @@
 function initialAssignment = Model_getInitialAssignmentBySymbol(SBMLModel, symbol)
+% initialAssignment = Model_getInitialAssignmentBySymbol(SBMLModel, symbol)
 %
-%   Model_getInitialAssignmentBySymbol 
-%             takes  1) an SBMLModel structure 
-%             and    2) a string representing the symbol of the initialAssignment to be found
+% takes
 %
-%             and returns 
-%               the initialAssignment structure with the matching symbol 
-%               or an empty structure if no such initialAssignment exists
-%               
-%       initialAssignment = Model_getInitialAssignmentBySymbol(SBMLModel, 'symbol')
+% 1. SBMLModel; an SBML Model structure
+% 2. symbol; a string representing the symbol of SBML InitialAssignment structure
+%
+% returns
+%
+% 1. the SBML InitialAssignment structure that has this symbol
+%
 
-%  Filename    :   Model_getInitialAssignmentBySymbol.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -38,6 +33,30 @@ function initialAssignment = Model_getInitialAssignmentBySymbol(SBMLModel, symbo
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

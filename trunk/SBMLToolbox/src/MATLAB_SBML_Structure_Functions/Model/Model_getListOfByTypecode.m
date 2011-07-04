@@ -1,20 +1,16 @@
 function array = Model_getListOfByTypecode(SBMLModel, SBMLTypecode)
+% listOf = Model_getListOfByTypecode(SBMLModel, typecode)
 %
-%   Model_getListOfByTypecode 
-%             takes  1) an SBMLModel structure 
-%             and    2) a string representing an SBMLTypecode
+% takes
 %
-%             and returns 
-%               an array of SBML structures of the given type defined within the model
+% 1. SBMLModel; an SBML Model structure
+% 2. typecode; a string representing the typecode of SBML ListOf structure
 %
-%       array = Model_getListOfByTypecode(SBMLModel, 'SBMLTypecode')
+% returns
+%
+% 1. the SBML ListOf structure that has this typecode
+%
 
-%  Filename    :   Model_getListOfByTypecode.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -37,6 +33,30 @@ function array = Model_getListOfByTypecode(SBMLModel, SBMLTypecode)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,19 +1,15 @@
 function species = Model_getListOfSpecies(SBMLModel)
+% species = Model_getListOfSpecies(SBMLModel)
 %
-%   Model_getListOfSpecies 
-%             takes an SBMLModel structure 
+% takes
 %
-%             and returns 
-%               an array of SBML species structures defined within the model
+% 1. SBMLModel; an SBML Model structure
 %
-%       species = Model_getListOfSpecies(SBMLModel)
+% returns
+%
+% 1. an array of the species structures
+%
 
-%  Filename    :   Model_getListOfSpecies.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -36,6 +32,30 @@ function species = Model_getListOfSpecies(SBMLModel)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

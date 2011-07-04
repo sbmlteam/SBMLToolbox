@@ -1,21 +1,16 @@
 function unitDefinition = Model_getUnitDefinitionById(SBMLModel, id)
+% unitDefinition = Model_getUnitDefinitionById(SBMLModel, id)
 %
-%   Model_getUnitDefinitionById 
-%             takes  1) an SBMLModel structure 
-%             and    2) a string representing the id of the unit definition to be found
+% takes
 %
-%             and returns 
-%               the unit definition structure with the matching id 
-%               or an empty structure if no such unit definition exists
-%               
-%       unitDefinition = Model_getUnitDefinitionById(SBMLModel, 'id')
+% 1. SBMLModel; an SBML Model structure
+% 2. id; a string representing the id of SBML UnitDefinition structure
+%
+% returns
+%
+% 1. the SBML UnitDefinition structure that has this id
+%
 
-%  Filename    :   Model_getUnitDefinitionById.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -38,6 +33,30 @@ function unitDefinition = Model_getUnitDefinitionById(SBMLModel, id)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

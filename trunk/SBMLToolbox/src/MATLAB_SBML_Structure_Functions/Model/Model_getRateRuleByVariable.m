@@ -1,21 +1,16 @@
 function rule = Model_getRateRuleByVariable(SBMLModel, variable)
+% rateRule = Model_getRateRuleByVariable(SBMLModel, variable)
 %
-%   Model_getRateRuleByVariable 
-%             takes  1) an SBMLModel structure 
-%             and    2) a string variable
+% takes
 %
-%             and returns 
-%               the assignment rule structure defined within the model
-%               that assigns value to the variable given
+% 1. SBMLModel; an SBML Model structure
+% 2. variable; a string representing the variable of SBML RateRule structure
 %
-%       rule = Model_getRateRuleByVariable(SBMLModel, variable)
+% returns
+%
+% 1. the SBML RateRule structure that has this variable
+%
 
-%  Filename    :   Model_getRateRuleByVariable.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id:  Exp $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -38,6 +33,30 @@ function rule = Model_getRateRuleByVariable(SBMLModel, variable)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
