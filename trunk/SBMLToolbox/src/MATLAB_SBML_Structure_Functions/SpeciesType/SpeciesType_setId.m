@@ -1,18 +1,16 @@
 function SBMLSpeciesType = SpeciesType_setId(SBMLSpeciesType, id)
+% SBMLSpeciesType = SpeciesType_setId(SBMLSpeciesType, id)
 %
-% SpeciesType_setId
-%       takes an SBML SpeciesType structure
-%    and the id to be set
+% takes
 %
-%       and returns
-%           the SpeciesType with the new value for the id attribute
+% 1. SBMLSpeciesType; an SBML SpeciesType structure
+% 2. id; a string representing the id to be set
+%
+% returns
+%
+% 1. the SBML SpeciesType structure with the new value for the id attribute
+%
 
-%  Filename    :   SpeciesType_setId.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -35,6 +33,8 @@ function SBMLSpeciesType = SpeciesType_setId(SBMLSpeciesType, id)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 %get level and version and check the input arguments are appropriate
