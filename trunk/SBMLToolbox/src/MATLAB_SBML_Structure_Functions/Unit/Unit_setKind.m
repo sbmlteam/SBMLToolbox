@@ -1,18 +1,16 @@
 function SBMLUnit = Unit_setKind(SBMLUnit, kind)
+% SBMLUnit = Unit_setKind(SBMLUnit, kind)
 %
-% Unit_setKind
-%       takes an SBML Unit structure
-%    and the kind to be set
+% takes
 %
-%       and returns
-%           the Unit with the new value for the kind attribute
+% 1. SBMLUnit; an SBML Unit structure
+% 2. kind; a string representing the kind to be set
+%
+% returns
+%
+% 1. the SBML Unit structure with the new value for the kind attribute
+%
 
-%  Filename    :   Unit_setKind.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -35,6 +33,8 @@ function SBMLUnit = Unit_setKind(SBMLUnit, kind)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 %get level and version and check the input arguments are appropriate
