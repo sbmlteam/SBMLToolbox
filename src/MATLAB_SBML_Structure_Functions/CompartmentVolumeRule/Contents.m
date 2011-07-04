@@ -1,16 +1,123 @@
-% toolbox\MATLAB_SBML_Structure_Functions\COMPARTMENTVOLUMERULE
+% toolbox\MATLAB_SBML_Structure_Functions\CompartmentVolumeRule
 %
-% Files
-%   CompartmentVolumeRule_create           - CompartmentVolumeRule_create 
-%   CompartmentVolumeRule_getCompartment   - CompartmentVolumeRule_getCompartment 
-%   CompartmentVolumeRule_isSetCompartment - CompartmentVolumeRule_isSetCompartment 
+% The functions allow users to create and work with the SBML CompartmentVolumeRule structure. 
+%
+%=========================================================================================
+% CompartmentVolumeRule = CompartmentVolumeRule_create(level(optional), version(optional)
+%=========================================================================================
+% takes
+% 1. level; an integer representing an SBML level (optional)
+% 2. version; an integer representing an SBML version (optional)
+% returns
+% 1. a MATLAB_SBML CompartmentVolumeRule structure of the appropriate level and version
+%
+%===============================================================================
+% compartment = CompartmentVolumeRule_getCompartment(SBMLCompartmentVolumeRule)
+%===============================================================================
+% takes
+% 1. SBMLCompartmentVolumeRule; an SBML CompartmentVolumeRule structure
+% returns
+% 1. the value of the compartment attribute
+%
+%=======================================================================
+% formula = CompartmentVolumeRule_getFormula(SBMLCompartmentVolumeRule)
+%=======================================================================
+% takes
+% 1. SBMLCompartmentVolumeRule; an SBML CompartmentVolumeRule structure
+% returns
+% 1. the value of the formula attribute
+%
+%=================================================================
+% type = CompartmentVolumeRule_getType(SBMLCompartmentVolumeRule)
+%=================================================================
+% takes
+% 1. SBMLCompartmentVolumeRule; an SBML CompartmentVolumeRule structure
+% returns
+% 1. the value of the type attribute
+%
+%===========================================================================
+% value = CompartmentVolumeRule_isSetCompartment(SBMLCompartmentVolumeRule)
+%===========================================================================
+% takes
+% 1. SBMLCompartmentVolumeRule; an SBML CompartmentVolumeRule structure
+% returns
+% 1. value = 
+%  - 1 if the compartment attribute is set
+%  - 0 otherwise
+%
+%=======================================================================
+% value = CompartmentVolumeRule_isSetFormula(SBMLCompartmentVolumeRule)
+%=======================================================================
+% takes
+% 1. SBMLCompartmentVolumeRule; an SBML CompartmentVolumeRule structure
+% returns
+% 1. value = 
+%  - 1 if the formula attribute is set
+%  - 0 otherwise
+%
+%====================================================================
+% value = CompartmentVolumeRule_isSetType(SBMLCompartmentVolumeRule)
+%====================================================================
+% takes
+% 1. SBMLCompartmentVolumeRule; an SBML CompartmentVolumeRule structure
+% returns
+% 1. value = 
+%  - 1 if the type attribute is set
+%  - 0 otherwise
+%
+%==========================================================================================================
+% SBMLCompartmentVolumeRule = CompartmentVolumeRule_setCompartment(SBMLCompartmentVolumeRule, compartment)
+%==========================================================================================================
+% takes
+% 1. SBMLCompartmentVolumeRule; an SBML CompartmentVolumeRule structure
+% 2. compartment; a string representing the compartment to be set
+% returns
+% 1. the SBML CompartmentVolumeRule structure with the new value for the compartment attribute
+%
+%==================================================================================================
+% SBMLCompartmentVolumeRule = CompartmentVolumeRule_setFormula(SBMLCompartmentVolumeRule, formula)
+%==================================================================================================
+% takes
+% 1. SBMLCompartmentVolumeRule; an SBML CompartmentVolumeRule structure
+% 2. formula; a string representing the formula to be set
+% returns
+% 1. the SBML CompartmentVolumeRule structure with the new value for the formula attribute
+%
+%============================================================================================
+% SBMLCompartmentVolumeRule = CompartmentVolumeRule_setType(SBMLCompartmentVolumeRule, type)
+%============================================================================================
+% takes
+% 1. SBMLCompartmentVolumeRule; an SBML CompartmentVolumeRule structure
+% 2. type; a string representing the type to be set
+% returns
+% 1. the SBML CompartmentVolumeRule structure with the new value for the type attribute
+%
+%===============================================================================================
+% SBMLCompartmentVolumeRule = CompartmentVolumeRule_unsetCompartment(SBMLCompartmentVolumeRule)
+%===============================================================================================
+% takes
+% 1. SBMLCompartmentVolumeRule; an SBML CompartmentVolumeRule structure
+% returns
+% 1. the SBML CompartmentVolumeRule structure with the compartment attribute unset
+%
+%===========================================================================================
+% SBMLCompartmentVolumeRule = CompartmentVolumeRule_unsetFormula(SBMLCompartmentVolumeRule)
+%===========================================================================================
+% takes
+% 1. SBMLCompartmentVolumeRule; an SBML CompartmentVolumeRule structure
+% returns
+% 1. the SBML CompartmentVolumeRule structure with the formula attribute unset
+%
+%========================================================================================
+% SBMLCompartmentVolumeRule = CompartmentVolumeRule_unsetType(SBMLCompartmentVolumeRule)
+%========================================================================================
+% takes
+% 1. SBMLCompartmentVolumeRule; an SBML CompartmentVolumeRule structure
+% returns
+% 1. the SBML CompartmentVolumeRule structure with the type attribute unset
+%
 
-%  Filename    :   Contents.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
+
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -33,4 +140,5 @@
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
 
