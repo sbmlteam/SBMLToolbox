@@ -1,4 +1,4 @@
-###MATLAB_SBML_STRUCTURE_FUNCTIONS\KINETICLAW
+###MATLAB SBML STRUCTURE FUNCTIONS\KINETICLAW
 
 
 The functions allow users to create and work with the SBML KineticLaw structure.
@@ -48,9 +48,10 @@ returns
 
 1. a MATLAB_SBML KineticLaw structure of the appropriate level and version
 
-*NOTE:* the optional level and version preserve backwards compatibility
-  a missing version argument will default to L1V2; L2V4 or L3V1
-  missing both arguments will default to L3V1
+*NOTE:* the optional level and version preserve backwards compatibility: 
+   
+   - a missing version argument will default to L1V2; L2V4 or L3V1
+   - missing both arguments will default to L3V1
 
 
 ------------------------------

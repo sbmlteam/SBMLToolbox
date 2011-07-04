@@ -1,4 +1,4 @@
-###MATLAB_SBML_STRUCTURE_FUNCTIONS\PRIORITY
+###MATLAB SBML STRUCTURE FUNCTIONS\PRIORITY
 
 
 The functions allow users to create and work with the SBML Priority structure.
@@ -18,9 +18,10 @@ returns
 
 1. a MATLAB_SBML Priority structure of the appropriate level and version
 
-*NOTE:* the optional level and version preserve backwards compatibility
-  a missing version argument will default to L1V2; L2V4 or L3V1
-  missing both arguments will default to L3V1
+*NOTE:* the optional level and version preserve backwards compatibility: 
+   
+   - a missing version argument will default to L1V2; L2V4 or L3V1
+   - missing both arguments will default to L3V1
 
 
 ------------------------------

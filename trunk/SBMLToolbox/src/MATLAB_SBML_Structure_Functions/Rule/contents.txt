@@ -1,4 +1,4 @@
-###MATLAB_SBML_STRUCTURE_FUNCTIONS\RULE
+###MATLAB SBML STRUCTURE FUNCTIONS\RULE
 
 
 The functions allow users to create and work with the SBML Rule structure.
