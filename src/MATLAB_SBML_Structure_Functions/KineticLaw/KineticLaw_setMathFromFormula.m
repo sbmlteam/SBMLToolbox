@@ -1,19 +1,16 @@
 function SBMLKineticLaw = KineticLaw_setMathFromFormula(SBMLKineticLaw)
+% SBMLKineticLaw = KineticLaw_setMathFromFormula(SBMLKineticLaw, mathFromFormula)
 %
-%   KineticLaw_setMathFromFormula 
-%             takes an SBMLKineticLaw structure 
+% takes
 %
-%             and returns 
-%               the model with math set to the formula field 
+% 1. SBMLKineticLaw; an SBML KineticLaw structure
+% 2. mathFromFormula; string representing the math expression mathFromFormula to be set
 %
-%       SBMLKineticLaw = KineticLaw_setMathFromFormula(SBMLKineticLaw)
+% returns
+%
+% 1. the SBML KineticLaw structure with the new value for the mathFromFormula attribute
+%
 
-%  Filename    :   KineticLaw_setMathFromFormula.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -36,6 +33,10 @@ function SBMLKineticLaw = KineticLaw_setMathFromFormula(SBMLKineticLaw)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
 
 
 
