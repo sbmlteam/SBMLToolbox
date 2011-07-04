@@ -1,17 +1,15 @@
 function timeUnits = KineticLaw_getTimeUnits(SBMLKineticLaw)
+% timeUnits = KineticLaw_getTimeUnits(SBMLKineticLaw)
 %
-% KineticLaw_getTimeUnits
-%       takes an SBML KineticLaw structure
+% takes
 %
-%       and returns
-%           the value of the timeUnits attribute
+% 1. SBMLKineticLaw; an SBML KineticLaw structure
+%
+% returns
+%
+% 1. the value of the timeUnits attribute
+%
 
-%  Filename    :   KineticLaw_getTimeUnits.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -34,6 +32,10 @@ function timeUnits = KineticLaw_getTimeUnits(SBMLKineticLaw)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
 
 
 %get level and version and check the input arguments are appropriate

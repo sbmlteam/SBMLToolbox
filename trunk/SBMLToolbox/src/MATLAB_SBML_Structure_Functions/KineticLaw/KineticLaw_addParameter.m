@@ -1,18 +1,16 @@
 function SBMLKineticLaw = KineticLaw_addParameter(SBMLKineticLaw, SBMLParameter)
+% SBMLKineticLaw = KineticLaw_addParameter(SBMLKineticLaw, SBMLParameter)
 %
-% KineticLaw_addParameter(SBMLKineticLaw, SBMLParameter)
-%       takes an SBML KineticLaw structure
-%    and an SBML Parameter structure
+% takes
 %
-%       and returns
-%           the KineticLaw with the Parameter element added
+% 1. SBMLKineticLaw; an SBML KineticLaw structure
+% 2. SBMLParameter; an SBML Parameter structure
+%
+% returns
+%
+% 1. the SBML KineticLaw structure with the SBML Parameter structure added
+%
 
-%  Filename    :   KineticLaw_addParameter.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -35,6 +33,10 @@ function SBMLKineticLaw = KineticLaw_addParameter(SBMLKineticLaw, SBMLParameter)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
 
 
 %get level and version and check the input arguments are appropriate
