@@ -1,18 +1,17 @@
 function value = InitialAssignment_isSetMath(SBMLInitialAssignment)
+% value = InitialAssignment_isSetMath(SBMLInitialAssignment)
 %
-% InitialAssignment_isSetMath
-%       takes an SBML InitialAssignment structure
+% takes
 %
-%       and returns
-%           1 if the value for the math attribute is set
-%           0 otherwise
+% 1. SBMLInitialAssignment; an SBML InitialAssignment structure
+%
+% returns
+%
+% 1. value = 
+%  - 1 if the math attribute is set
+%  - 0 otherwise
+%
 
-%  Filename    :   InitialAssignment_isSetMath.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -35,6 +34,8 @@ function value = InitialAssignment_isSetMath(SBMLInitialAssignment)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 %get level and version and check the input arguments are appropriate
