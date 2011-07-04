@@ -1,18 +1,16 @@
 function SBMLModifierSpeciesReference = ModifierSpeciesReference_setName(SBMLModifierSpeciesReference, name)
+% SBMLModifierSpeciesReference = ModifierSpeciesReference_setName(SBMLModifierSpeciesReference, name)
 %
-% ModifierSpeciesReference_setName
-%       takes an SBML ModifierSpeciesReference structure
-%    and the name to be set
+% takes
 %
-%       and returns
-%           the ModifierSpeciesReference with the new value for the name attribute
+% 1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+% 2. name; a string representing the name to be set
+%
+% returns
+%
+% 1. the SBML ModifierSpeciesReference structure with the new value for the name attribute
+%
 
-%  Filename    :   ModifierSpeciesReference_setName.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -35,6 +33,8 @@ function SBMLModifierSpeciesReference = ModifierSpeciesReference_setName(SBMLMod
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 %get level and version and check the input arguments are appropriate

@@ -1,17 +1,15 @@
 function SBMLModifierSpeciesReference = ModifierSpeciesReference_unsetSBOTerm(SBMLModifierSpeciesReference)
+% SBMLModifierSpeciesReference = ModifierSpeciesReference_unsetSBOTerm(SBMLModifierSpeciesReference)
 %
-% ModifierSpeciesReference_getSBOTerm
-%       takes an SBML ModifierSpeciesReference structure
+% takes
 %
-%       and returns
-%           the ModifierSpeciesReference with the value for the sboTerm attribute unset
+% 1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+%
+% returns
+%
+% 1. the SBML ModifierSpeciesReference structure with the sboTerm attribute unset
+%
 
-%  Filename    :   ModifierSpeciesReference_unsetSBOTerm.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -34,6 +32,8 @@ function SBMLModifierSpeciesReference = ModifierSpeciesReference_unsetSBOTerm(SB
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 %get level and version and check the input arguments are appropriate
