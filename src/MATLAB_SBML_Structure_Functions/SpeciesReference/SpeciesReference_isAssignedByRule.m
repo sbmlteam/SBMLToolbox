@@ -1,17 +1,16 @@
 function y = SpeciesReference_isAssignedByRule(SBMLSpeciesReference, SBMLRules)
-% SpeciesReference_isAssignedByRule takes an SBMLSpeciesReference structure and an array of SBMLRule structures
-% and returns
-%             0 if the SpeciesReference is not assigned by a rate rule
-%             n if the SpeciesReference occurs as the SpeciesReference field of a
-%             PARAMETER_RULE
-%                                  or as the variable field of an RATE_RULE
-%     where n refers to the index of the matched rule in the array
-
-%  Filename    :   SpeciesReference_isAssignedByRateRule.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: SpeciesReference_isAssignedByRule.m 13259 2011-03-21 05:40:36Z mhucka $
-%  $Source v $
+% y = SpeciesReference_isAssignedByRule(SBMLSpeciesReference, SBMLRules)
+%
+% takes
+%
+% 1. SBMLSpeciesReference; an SBML SpeciesReference structure
+% 2. SBMLRules; the array of rules from an SBML Model structure
+%
+% returns
+%
+% y = 
+%   - the index of the assignmentRule used to assigned value to the SpeciesReference
+%   - 0 if the SpeciesReference is not assigned by assignmentRule 
 %
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
@@ -35,6 +34,10 @@ function y = SpeciesReference_isAssignedByRule(SBMLSpeciesReference, SBMLRules)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
 
  
 y = 0;
