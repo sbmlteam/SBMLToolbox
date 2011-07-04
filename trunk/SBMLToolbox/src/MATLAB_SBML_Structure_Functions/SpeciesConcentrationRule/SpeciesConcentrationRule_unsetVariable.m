@@ -1,17 +1,15 @@
 function SBMLSpeciesConcentrationRule = SpeciesConcentrationRule_unsetVariable(SBMLSpeciesConcentrationRule)
+% SBMLSpeciesConcentrationRule = SpeciesConcentrationRule_unsetVariable(SBMLSpeciesConcentrationRule)
 %
-% SpeciesConcentrationRule_getVariable
-%       takes an SBML SpeciesConcentrationRule structure
+% takes
 %
-%       and returns
-%           the SpeciesConcentrationRule with the value for the variable attribute unset
+% 1. SBMLSpeciesConcentrationRule; an SBML SpeciesConcentrationRule structure
+%
+% returns
+%
+% 1. the SBML SpeciesConcentrationRule structure with the variable attribute unset
+%
 
-%  Filename    :   SpeciesConcentrationRule_unsetVariable.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -34,6 +32,8 @@ function SBMLSpeciesConcentrationRule = SpeciesConcentrationRule_unsetVariable(S
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 %get level and version and check the input arguments are appropriate
