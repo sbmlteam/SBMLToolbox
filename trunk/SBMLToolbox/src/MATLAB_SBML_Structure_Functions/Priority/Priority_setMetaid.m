@@ -1,18 +1,16 @@
 function SBMLPriority = Priority_setMetaid(SBMLPriority, metaid)
+% SBMLPriority = Priority_setMetaid(SBMLPriority, metaid)
 %
-% Priority_setMetaid
-%       takes an SBML Priority structure
-%    and the metaid to be set
+% takes
 %
-%       and returns
-%           the Priority with the new value for the metaid attribute
+% 1. SBMLPriority; an SBML Priority structure
+% 2. metaid; a string representing the metaid to be set
+%
+% returns
+%
+% 1. the SBML Priority structure with the new value for the metaid attribute
+%
 
-%  Filename    :   Priority_setMetaid.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -35,6 +33,8 @@ function SBMLPriority = Priority_setMetaid(SBMLPriority, metaid)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 %get level and version and check the input arguments are appropriate
