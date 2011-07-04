@@ -1,17 +1,15 @@
 function SBMLCompartmentType = CompartmentType_unsetMetaid(SBMLCompartmentType)
+% SBMLCompartmentType = CompartmentType_unsetMetaid(SBMLCompartmentType)
 %
-% CompartmentType_getMetaid
-%       takes an SBML CompartmentType structure
+% takes
 %
-%       and returns
-%           the CompartmentType with the value for the metaid attribute unset
+% 1. SBMLCompartmentType; an SBML CompartmentType structure
+%
+% returns
+%
+% 1. the SBML CompartmentType structure with the metaid attribute unset
+%
 
-%  Filename    :   CompartmentType_unsetMetaid.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -34,6 +32,8 @@ function SBMLCompartmentType = CompartmentType_unsetMetaid(SBMLCompartmentType)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 %get level and version and check the input arguments are appropriate
