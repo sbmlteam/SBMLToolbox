@@ -1,17 +1,15 @@
 function SBMLCompartmentVolumeRule = CompartmentVolumeRule_unsetFormula(SBMLCompartmentVolumeRule)
+% SBMLCompartmentVolumeRule = CompartmentVolumeRule_unsetFormula(SBMLCompartmentVolumeRule)
 %
-% CompartmentVolumeRule_getFormula
-%       takes an SBML CompartmentVolumeRule structure
+% takes
 %
-%       and returns
-%           the CompartmentVolumeRule with the value for the formula attribute unset
+% 1. SBMLCompartmentVolumeRule; an SBML CompartmentVolumeRule structure
+%
+% returns
+%
+% 1. the SBML CompartmentVolumeRule structure with the formula attribute unset
+%
 
-%  Filename    :   CompartmentVolumeRule_unsetFormula.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -34,6 +32,8 @@ function SBMLCompartmentVolumeRule = CompartmentVolumeRule_unsetFormula(SBMLComp
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 %get level and version and check the input arguments are appropriate

@@ -1,19 +1,16 @@
 function SBMLAlgebraicRule = AlgebraicRule_setMetaid(SBMLAlgebraicRule, metaid)
+% SBMLAlgebraicRule = AlgebraicRule_setMetaid(SBMLAlgebraicRule, metaid)
 %
-% AlgebraicRule_setMetaid
-%       takes 
-%           1) an SBML AlgebraicRule structure
-%           2) the metaid to be set
+% takes
 %
-%       and returns
-%           the AlgebraicRule with the new value for the metaid attribute
+% 1. SBMLAlgebraicRule; an SBML AlgebraicRule structure
+% 2. metaid; a string representing the metaid to be set
+%
+% returns
+%
+% 1. the SBML AlgebraicRule structure with the new value for the metaid attribute
+%
 
-%  Filename    :   AlgebraicRule_setMetaid.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -36,6 +33,8 @@ function SBMLAlgebraicRule = AlgebraicRule_setMetaid(SBMLAlgebraicRule, metaid)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 %get level and version and check the input arguments are appropriate
