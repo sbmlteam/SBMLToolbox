@@ -1,18 +1,16 @@
 function SBMLCompartment = Compartment_setSBOTerm(SBMLCompartment, sboTerm)
+% SBMLCompartment = Compartment_setSBOTerm(SBMLCompartment, sboTerm)
 %
-% Compartment_setSBOTerm
-%       takes an SBML Compartment structure
-%    and the sboTerm to be set
+% takes
 %
-%       and returns
-%           the Compartment with the new value for the sboTerm attribute
+% 1. SBMLCompartment; an SBML Compartment structure
+% 2. sboTerm; an integer representing the sboTerm to be set
+%
+% returns
+%
+% 1. the SBML Compartment structure with the new value for the sboTerm attribute
+%
 
-%  Filename    :   Compartment_setSBOTerm.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -35,6 +33,28 @@ function SBMLCompartment = Compartment_setSBOTerm(SBMLCompartment, sboTerm)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 %get level and version and check the input arguments are appropriate

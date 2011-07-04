@@ -1,16 +1,16 @@
 function y = Compartment_isAssignedByRule(SBMLCompartment, SBMLRules)
-% Compartment_isAssignedByRule takes an SBMLCompartment structure and an array of SBMLRule structures
-% and returns
-%             0 if the species is not assigned by a rule
-%             n if the species occurs as the species field of a SPECIES_CONCENTRATION_RULE
-%                                  or as the variable field of an ASSIGNMENT_RULE
-%     where n refers to the index of the matched rule in the array
-
-%  Filename    :   Compartment_isAssignedByRule.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: Compartment_isAssignedByRule.m 13259 2011-03-21 05:40:36Z mhucka $
-%  $Source v $
+% y = Compartment_isAssignedByRule(SBMLCompartment, SBMLRules)
+%
+% takes
+%
+% 1. SBMLCompartment; an SBML Compartment structure
+% 2. SBMLRules; the array of rules from an SBML Model structure
+%
+% returns
+%
+% y = 
+%   - the index of the assignmentRule used to assigned value to the Compartment
+%   - 0 if the Compartment is not assigned by assignmentRule 
 %
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
@@ -34,6 +34,32 @@ function y = Compartment_isAssignedByRule(SBMLCompartment, SBMLRules)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
  
 y = 0;

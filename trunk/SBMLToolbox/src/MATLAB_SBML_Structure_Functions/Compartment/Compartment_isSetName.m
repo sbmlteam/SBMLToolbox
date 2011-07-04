@@ -1,18 +1,17 @@
 function value = Compartment_isSetName(SBMLCompartment)
+% value = Compartment_isSetName(SBMLCompartment)
 %
-% Compartment_isSetName
-%       takes an SBML Compartment structure
+% takes
 %
-%       and returns
-%           1 if the value for the name attribute is set
-%           0 otherwise
+% 1. SBMLCompartment; an SBML Compartment structure
+%
+% returns
+%
+% 1. value = 
+%  - 1 if the name attribute is set
+%  - 0 otherwise
+%
 
-%  Filename    :   Compartment_isSetName.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -35,6 +34,28 @@ function value = Compartment_isSetName(SBMLCompartment)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 %get level and version and check the input arguments are appropriate
