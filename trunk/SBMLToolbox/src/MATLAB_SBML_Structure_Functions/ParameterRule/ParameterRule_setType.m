@@ -1,18 +1,16 @@
 function SBMLParameterRule = ParameterRule_setType(SBMLParameterRule, type)
+% SBMLParameterRule = ParameterRule_setType(SBMLParameterRule, type)
 %
-% ParameterRule_setType
-%       takes an SBML ParameterRule structure
-%    and the type to be set
+% takes
 %
-%       and returns
-%           the ParameterRule with the new value for the type attribute
+% 1. SBMLParameterRule; an SBML ParameterRule structure
+% 2. type; a string representing the type to be set
+%
+% returns
+%
+% 1. the SBML ParameterRule structure with the new value for the type attribute
+%
 
-%  Filename    :   ParameterRule_setType.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -35,6 +33,8 @@ function SBMLParameterRule = ParameterRule_setType(SBMLParameterRule, type)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 %get level and version and check the input arguments are appropriate
