@@ -1,7 +1,7 @@
 ###MATLAB_SBML_STRUCTURE_FUNCTIONS\STRUCTFIELDNAMES
 
 
-Put info here.
+These functions return the fieldnames and default values for the MATLAB_SBML structures. 
 
 Function are:
 

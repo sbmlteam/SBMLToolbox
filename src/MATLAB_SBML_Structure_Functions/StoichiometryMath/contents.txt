@@ -1,0 +1,204 @@
+###MATLAB_SBML_STRUCTURE_FUNCTIONS\STOICHIOMETRYMATH
+
+
+The functions allow users to create and work with the SBML StoichiometryMath structure.
+
+Function are:
+
+----------
+
+####StoichiometryMath = StoichiometryMath_create(level(optional), version(optional)
+
+takes
+
+1. level; an integer representing an SBML level (optional)
+2. version; an integer representing an SBML version (optional)
+
+returns
+
+1. a MATLAB_SBML StoichiometryMath structure of the appropriate level and version
+
+*NOTE:* the optional level and version preserve backwards compatibility
+  a missing version argument will default to L1V2; L2V4 or L3V1
+  missing both arguments will default to L3V1
+
+
+------------------------------
+
+####math = StoichiometryMath_getMath(SBMLStoichiometryMath)
+
+takes
+
+1. SBMLStoichiometryMath; an SBML StoichiometryMath structure
+
+returns
+
+1. the value of the math attribute
+
+
+
+------------------------------
+
+####metaid = StoichiometryMath_getMetaid(SBMLStoichiometryMath)
+
+takes
+
+1. SBMLStoichiometryMath; an SBML StoichiometryMath structure
+
+returns
+
+1. the value of the metaid attribute
+
+
+
+------------------------------
+
+####sboTerm = StoichiometryMath_getSBOTerm(SBMLStoichiometryMath)
+
+takes
+
+1. SBMLStoichiometryMath; an SBML StoichiometryMath structure
+
+returns
+
+1. the value of the sboTerm attribute
+
+
+
+------------------------------
+
+####value = StoichiometryMath_isSetMath(SBMLStoichiometryMath)
+
+takes
+
+1. SBMLStoichiometryMath; an SBML StoichiometryMath structure
+
+returns
+
+1. value = 
+ - 1 if the math attribute is set
+ - 0 otherwise
+
+
+
+------------------------------
+
+####value = StoichiometryMath_isSetMetaid(SBMLStoichiometryMath)
+
+takes
+
+1. SBMLStoichiometryMath; an SBML StoichiometryMath structure
+
+returns
+
+1. value = 
+ - 1 if the metaid attribute is set
+ - 0 otherwise
+
+
+
+------------------------------
+
+####value = StoichiometryMath_isSetSBOTerm(SBMLStoichiometryMath)
+
+takes
+
+1. SBMLStoichiometryMath; an SBML StoichiometryMath structure
+
+returns
+
+1. value = 
+ - 1 if the sboTerm attribute is set
+ - 0 otherwise
+
+
+
+------------------------------
+
+####SBMLStoichiometryMath = StoichiometryMath_setMath(SBMLStoichiometryMath, math)
+
+takes
+
+1. SBMLStoichiometryMath; an SBML StoichiometryMath structure
+2. math; string representing the math expression math to be set
+
+returns
+
+1. the SBML StoichiometryMath structure with the new value for the math attribute
+
+
+
+------------------------------
+
+####SBMLStoichiometryMath = StoichiometryMath_setMetaid(SBMLStoichiometryMath, metaid)
+
+takes
+
+1. SBMLStoichiometryMath; an SBML StoichiometryMath structure
+2. metaid; a string representing the metaid to be set
+
+returns
+
+1. the SBML StoichiometryMath structure with the new value for the metaid attribute
+
+
+
+------------------------------
+
+####SBMLStoichiometryMath = StoichiometryMath_setSBOTerm(SBMLStoichiometryMath, sboTerm)
+
+takes
+
+1. SBMLStoichiometryMath; an SBML StoichiometryMath structure
+2. sboTerm; an integer representing the sboTerm to be set
+
+returns
+
+1. the SBML StoichiometryMath structure with the new value for the sboTerm attribute
+
+
+
+------------------------------
+
+####SBMLStoichiometryMath = StoichiometryMath_unsetMath(SBMLStoichiometryMath)
+
+takes
+
+1. SBMLStoichiometryMath; an SBML StoichiometryMath structure
+
+returns
+
+1. the SBML StoichiometryMath structure with the math attribute unset
+
+
+
+------------------------------
+
+####SBMLStoichiometryMath = StoichiometryMath_unsetMetaid(SBMLStoichiometryMath)
+
+takes
+
+1. SBMLStoichiometryMath; an SBML StoichiometryMath structure
+
+returns
+
+1. the SBML StoichiometryMath structure with the metaid attribute unset
+
+
+
+------------------------------
+
+####SBMLStoichiometryMath = StoichiometryMath_unsetSBOTerm(SBMLStoichiometryMath)
+
+takes
+
+1. SBMLStoichiometryMath; an SBML StoichiometryMath structure
+
+returns
+
+1. the SBML StoichiometryMath structure with the sboTerm attribute unset
+
+
+
+------------------------------
+

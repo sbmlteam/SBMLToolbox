@@ -1,6 +1,6 @@
 % toolbox\MATLAB_SBML_Structure_Functions\SpeciesConcentrationRule
 %
-% write info here 
+% The functions allow users to create and work with the SBML SpeciesConcentrationRule structure. 
 %
 %===============================================================================================
 % SpeciesConcentrationRule = SpeciesConcentrationRule_create(level(optional), version(optional)

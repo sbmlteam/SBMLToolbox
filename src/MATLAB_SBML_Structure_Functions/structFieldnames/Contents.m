@@ -1,6 +1,7 @@
 % toolbox\MATLAB_SBML_Structure_Functions\structFieldnames
 %
-% write info here 
+% These functions return the fieldnames and default values for the
+% MATLAB_SBML structures. 
 %
 %==========================================================
 % [values] = getAlgebraicRuleDefaultValues(level, version)
