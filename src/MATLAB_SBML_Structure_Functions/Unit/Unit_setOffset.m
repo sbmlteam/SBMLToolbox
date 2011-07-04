@@ -1,18 +1,16 @@
 function SBMLUnit = Unit_setOffset(SBMLUnit, offset)
+% SBMLUnit = Unit_setOffset(SBMLUnit, offset)
 %
-% Unit_setOffset
-%       takes an SBML Unit structure
-%    and the offset to be set
+% takes
 %
-%       and returns
-%           the Unit with the new value for the offset attribute
+% 1. SBMLUnit; an SBML Unit structure
+% 2. offset; an integer representing the offset to be set
+%
+% returns
+%
+% 1. the SBML Unit structure with the new value for the offset attribute
+%
 
-%  Filename    :   Unit_setOffset.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -35,6 +33,8 @@ function SBMLUnit = Unit_setOffset(SBMLUnit, offset)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 %get level and version and check the input arguments are appropriate

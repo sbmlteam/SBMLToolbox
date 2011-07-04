@@ -1,17 +1,15 @@
 function multiplier = Unit_getMultiplier(SBMLUnit)
+% multiplier = Unit_getMultiplier(SBMLUnit)
 %
-% Unit_getMultiplier
-%       takes an SBML Unit structure
+% takes
 %
-%       and returns
-%           the value of the multiplier attribute
+% 1. SBMLUnit; an SBML Unit structure
+%
+% returns
+%
+% 1. the value of the multiplier attribute
+%
 
-%  Filename    :   Unit_getMultiplier.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -34,6 +32,8 @@ function multiplier = Unit_getMultiplier(SBMLUnit)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 %get level and version and check the input arguments are appropriate
