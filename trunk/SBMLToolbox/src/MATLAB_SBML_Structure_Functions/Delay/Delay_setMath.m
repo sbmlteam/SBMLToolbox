@@ -1,18 +1,16 @@
 function SBMLDelay = Delay_setMath(SBMLDelay, math)
+% SBMLDelay = Delay_setMath(SBMLDelay, math)
 %
-% Delay_setMath
-%       takes an SBML Delay structure
-%    and the math to be set
+% takes
 %
-%       and returns
-%           the Delay with the new value for the math attribute
+% 1. SBMLDelay; an SBML Delay structure
+% 2. math; string representing the math expression math to be set
+%
+% returns
+%
+% 1. the SBML Delay structure with the new value for the math attribute
+%
 
-%  Filename    :   Delay_setMath.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -35,6 +33,8 @@ function SBMLDelay = Delay_setMath(SBMLDelay, math)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 %get level and version and check the input arguments are appropriate
