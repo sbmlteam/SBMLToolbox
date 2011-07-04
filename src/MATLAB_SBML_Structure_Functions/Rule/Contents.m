@@ -1,17 +1,79 @@
-% toolbox\MATLAB_SBML_Structure_Functions\RULE
+% toolbox\MATLAB_SBML_Structure_Functions\Rule
 %
-% Files
-%   Rule_getFormula   - Rule_getFormula 
-%   Rule_getSBOTerm   - Rule_getSBOTerm 
-%   Rule_isSetFormula - Rule_isSetFormula 
-%   Rule_setFormula   - Rule_setFormula 
+% The functions allow users to create and work with the SBML Rule structure. 
+%
+%=====================================
+% formula = Rule_getFormula(SBMLRule)
+%=====================================
+% takes
+% 1. SBMLRule; an SBML Rule structure
+% returns
+% 1. the value of the formula attribute
+%
+%=====================================
+% sboTerm = Rule_getSBOTerm(SBMLRule)
+%=====================================
+% takes
+% 1. SBMLRule; an SBML Rule structure
+% returns
+% 1. the value of the sboTerm attribute
+%
+%=====================================
+% value = Rule_isSetFormula(SBMLRule)
+%=====================================
+% takes
+% 1. SBMLRule; an SBML Rule structure
+% returns
+% 1. value = 
+%  - 1 if the formula attribute is set
+%  - 0 otherwise
+%
+%=====================================
+% value = Rule_isSetSBOTerm(SBMLRule)
+%=====================================
+% takes
+% 1. SBMLRule; an SBML Rule structure
+% returns
+% 1. value = 
+%  - 1 if the sboTerm attribute is set
+%  - 0 otherwise
+%
+%===============================================
+% SBMLRule = Rule_setFormula(SBMLRule, formula)
+%===============================================
+% takes
+% 1. SBMLRule; an SBML Rule structure
+% 2. formula; a string representing the formula to be set
+% returns
+% 1. the SBML Rule structure with the new value for the formula attribute
+%
+%===============================================
+% SBMLRule = Rule_setSBOTerm(SBMLRule, sboTerm)
+%===============================================
+% takes
+% 1. SBMLRule; an SBML Rule structure
+% 2. sboTerm; an integer representing the sboTerm to be set
+% returns
+% 1. the SBML Rule structure with the new value for the sboTerm attribute
+%
+%========================================
+% SBMLRule = Rule_unsetFormula(SBMLRule)
+%========================================
+% takes
+% 1. SBMLRule; an SBML Rule structure
+% returns
+% 1. the SBML Rule structure with the formula attribute unset
+%
+%========================================
+% SBMLRule = Rule_unsetSBOTerm(SBMLRule)
+%========================================
+% takes
+% 1. SBMLRule; an SBML Rule structure
+% returns
+% 1. the SBML Rule structure with the sboTerm attribute unset
+%
 
-%  Filename    :   Contents.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
+
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -34,4 +96,5 @@
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
 

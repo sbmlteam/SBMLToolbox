@@ -1,17 +1,123 @@
 % toolbox\MATLAB_SBML_Structure_Functions\Priority
 %
-% Files
-%   Priority_create          - Priority_create 
-%   Priority_getMath         - Priority_getMath 
-%   Priority_getSBOTerm      - Priority_getSBOTerm 
-%   Priority_setMath         - Priority_setMath 
-
-%  Filename    :   Contents.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: Contents.m 13259 2011-03-21 05:40:36Z mhucka $
-%  $Source v $
+% The functions allow users to create and work with the SBML Priority structure. 
 %
+%===============================================================
+% Priority = Priority_create(level(optional), version(optional)
+%===============================================================
+% takes
+% 1. level; an integer representing an SBML level (optional)
+% 2. version; an integer representing an SBML version (optional)
+% returns
+% 1. a MATLAB_SBML Priority structure of the appropriate level and version
+%
+%=======================================
+% math = Priority_getMath(SBMLPriority)
+%=======================================
+% takes
+% 1. SBMLPriority; an SBML Priority structure
+% returns
+% 1. the value of the math attribute
+%
+%===========================================
+% metaid = Priority_getMetaid(SBMLPriority)
+%===========================================
+% takes
+% 1. SBMLPriority; an SBML Priority structure
+% returns
+% 1. the value of the metaid attribute
+%
+%=============================================
+% sboTerm = Priority_getSBOTerm(SBMLPriority)
+%=============================================
+% takes
+% 1. SBMLPriority; an SBML Priority structure
+% returns
+% 1. the value of the sboTerm attribute
+%
+%==========================================
+% value = Priority_isSetMath(SBMLPriority)
+%==========================================
+% takes
+% 1. SBMLPriority; an SBML Priority structure
+% returns
+% 1. value = 
+%  - 1 if the math attribute is set
+%  - 0 otherwise
+%
+%============================================
+% value = Priority_isSetMetaid(SBMLPriority)
+%============================================
+% takes
+% 1. SBMLPriority; an SBML Priority structure
+% returns
+% 1. value = 
+%  - 1 if the metaid attribute is set
+%  - 0 otherwise
+%
+%=============================================
+% value = Priority_isSetSBOTerm(SBMLPriority)
+%=============================================
+% takes
+% 1. SBMLPriority; an SBML Priority structure
+% returns
+% 1. value = 
+%  - 1 if the sboTerm attribute is set
+%  - 0 otherwise
+%
+%=====================================================
+% SBMLPriority = Priority_setMath(SBMLPriority, math)
+%=====================================================
+% takes
+% 1. SBMLPriority; an SBML Priority structure
+% 2. math; string representing the math expression math to be set
+% returns
+% 1. the SBML Priority structure with the new value for the math attribute
+%
+%=========================================================
+% SBMLPriority = Priority_setMetaid(SBMLPriority, metaid)
+%=========================================================
+% takes
+% 1. SBMLPriority; an SBML Priority structure
+% 2. metaid; a string representing the metaid to be set
+% returns
+% 1. the SBML Priority structure with the new value for the metaid attribute
+%
+%===========================================================
+% SBMLPriority = Priority_setSBOTerm(SBMLPriority, sboTerm)
+%===========================================================
+% takes
+% 1. SBMLPriority; an SBML Priority structure
+% 2. sboTerm; an integer representing the sboTerm to be set
+% returns
+% 1. the SBML Priority structure with the new value for the sboTerm attribute
+%
+%=================================================
+% SBMLPriority = Priority_unsetMath(SBMLPriority)
+%=================================================
+% takes
+% 1. SBMLPriority; an SBML Priority structure
+% returns
+% 1. the SBML Priority structure with the math attribute unset
+%
+%===================================================
+% SBMLPriority = Priority_unsetMetaid(SBMLPriority)
+%===================================================
+% takes
+% 1. SBMLPriority; an SBML Priority structure
+% returns
+% 1. the SBML Priority structure with the metaid attribute unset
+%
+%====================================================
+% SBMLPriority = Priority_unsetSBOTerm(SBMLPriority)
+%====================================================
+% takes
+% 1. SBMLPriority; an SBML Priority structure
+% returns
+% 1. the SBML Priority structure with the sboTerm attribute unset
+%
+
+
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -34,4 +140,5 @@
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
 

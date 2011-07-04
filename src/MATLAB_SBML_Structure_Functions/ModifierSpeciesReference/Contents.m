@@ -1,22 +1,193 @@
-% toolbox\MATLAB_SBML_Structure_Functions\MODIFIERSPECIESREFERENCE
+% toolbox\MATLAB_SBML_Structure_Functions\ModifierSpeciesReference
 %
-% Files
-%   ModifierSpeciesReference_create       - ModifierSpeciesReference_create 
-%   ModifierSpeciesReference_getId        - ModifierSpeciesReference_getId 
-%   ModifierSpeciesReference_getName      - ModifierSpeciesReference_getName 
-%   ModifierSpeciesReference_getSBOTerm   - ModifierSpeciesReference_getSBOTerm 
-%   ModifierSpeciesReference_getSpecies   - ModifierSpeciesReference_getSpecies 
-%   ModifierSpeciesReference_isSetSpecies - ModifierSpeciesReference_isSetSpecies 
-%   ModifierSpeciesReference_setId        - ModifierSpeciesReference_setId 
-%   ModifierSpeciesReference_setName      - ModifierSpeciesReference_setName 
-%   ModifierSpeciesReference_setSBOTerm   - ModifierSpeciesReference_setSBOTerm 
+% The functions allow users to create and work with the SBML ModifierSpeciesReference structure. 
+%
+%===============================================================================================
+% ModifierSpeciesReference = ModifierSpeciesReference_create(level(optional), version(optional)
+%===============================================================================================
+% takes
+% 1. level; an integer representing an SBML level (optional)
+% 2. version; an integer representing an SBML version (optional)
+% returns
+% 1. a MATLAB_SBML ModifierSpeciesReference structure of the appropriate level and version
+%
+%===================================================================
+% id = ModifierSpeciesReference_getId(SBMLModifierSpeciesReference)
+%===================================================================
+% takes
+% 1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+% returns
+% 1. the value of the id attribute
+%
+%===========================================================================
+% metaid = ModifierSpeciesReference_getMetaid(SBMLModifierSpeciesReference)
+%===========================================================================
+% takes
+% 1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+% returns
+% 1. the value of the metaid attribute
+%
+%=======================================================================
+% name = ModifierSpeciesReference_getName(SBMLModifierSpeciesReference)
+%=======================================================================
+% takes
+% 1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+% returns
+% 1. the value of the name attribute
+%
+%=============================================================================
+% sboTerm = ModifierSpeciesReference_getSBOTerm(SBMLModifierSpeciesReference)
+%=============================================================================
+% takes
+% 1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+% returns
+% 1. the value of the sboTerm attribute
+%
+%=============================================================================
+% species = ModifierSpeciesReference_getSpecies(SBMLModifierSpeciesReference)
+%=============================================================================
+% takes
+% 1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+% returns
+% 1. the value of the species attribute
+%
+%========================================================================
+% value = ModifierSpeciesReference_isSetId(SBMLModifierSpeciesReference)
+%========================================================================
+% takes
+% 1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+% returns
+% 1. value = 
+%  - 1 if the id attribute is set
+%  - 0 otherwise
+%
+%============================================================================
+% value = ModifierSpeciesReference_isSetMetaid(SBMLModifierSpeciesReference)
+%============================================================================
+% takes
+% 1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+% returns
+% 1. value = 
+%  - 1 if the metaid attribute is set
+%  - 0 otherwise
+%
+%==========================================================================
+% value = ModifierSpeciesReference_isSetName(SBMLModifierSpeciesReference)
+%==========================================================================
+% takes
+% 1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+% returns
+% 1. value = 
+%  - 1 if the name attribute is set
+%  - 0 otherwise
+%
+%=============================================================================
+% value = ModifierSpeciesReference_isSetSBOTerm(SBMLModifierSpeciesReference)
+%=============================================================================
+% takes
+% 1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+% returns
+% 1. value = 
+%  - 1 if the sboTerm attribute is set
+%  - 0 otherwise
+%
+%=============================================================================
+% value = ModifierSpeciesReference_isSetSpecies(SBMLModifierSpeciesReference)
+%=============================================================================
+% takes
+% 1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+% returns
+% 1. value = 
+%  - 1 if the species attribute is set
+%  - 0 otherwise
+%
+%=================================================================================================
+% SBMLModifierSpeciesReference = ModifierSpeciesReference_setId(SBMLModifierSpeciesReference, id)
+%=================================================================================================
+% takes
+% 1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+% 2. id; a string representing the id to be set
+% returns
+% 1. the SBML ModifierSpeciesReference structure with the new value for the id attribute
+%
+%=========================================================================================================
+% SBMLModifierSpeciesReference = ModifierSpeciesReference_setMetaid(SBMLModifierSpeciesReference, metaid)
+%=========================================================================================================
+% takes
+% 1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+% 2. metaid; a string representing the metaid to be set
+% returns
+% 1. the SBML ModifierSpeciesReference structure with the new value for the metaid attribute
+%
+%=====================================================================================================
+% SBMLModifierSpeciesReference = ModifierSpeciesReference_setName(SBMLModifierSpeciesReference, name)
+%=====================================================================================================
+% takes
+% 1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+% 2. name; a string representing the name to be set
+% returns
+% 1. the SBML ModifierSpeciesReference structure with the new value for the name attribute
+%
+%===========================================================================================================
+% SBMLModifierSpeciesReference = ModifierSpeciesReference_setSBOTerm(SBMLModifierSpeciesReference, sboTerm)
+%===========================================================================================================
+% takes
+% 1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+% 2. sboTerm; an integer representing the sboTerm to be set
+% returns
+% 1. the SBML ModifierSpeciesReference structure with the new value for the sboTerm attribute
+%
+%===========================================================================================================
+% SBMLModifierSpeciesReference = ModifierSpeciesReference_setSpecies(SBMLModifierSpeciesReference, species)
+%===========================================================================================================
+% takes
+% 1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+% 2. species; a string representing the species to be set
+% returns
+% 1. the SBML ModifierSpeciesReference structure with the new value for the species attribute
+%
+%===============================================================================================
+% SBMLModifierSpeciesReference = ModifierSpeciesReference_unsetId(SBMLModifierSpeciesReference)
+%===============================================================================================
+% takes
+% 1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+% returns
+% 1. the SBML ModifierSpeciesReference structure with the id attribute unset
+%
+%===================================================================================================
+% SBMLModifierSpeciesReference = ModifierSpeciesReference_unsetMetaid(SBMLModifierSpeciesReference)
+%===================================================================================================
+% takes
+% 1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+% returns
+% 1. the SBML ModifierSpeciesReference structure with the metaid attribute unset
+%
+%=================================================================================================
+% SBMLModifierSpeciesReference = ModifierSpeciesReference_unsetName(SBMLModifierSpeciesReference)
+%=================================================================================================
+% takes
+% 1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+% returns
+% 1. the SBML ModifierSpeciesReference structure with the name attribute unset
+%
+%====================================================================================================
+% SBMLModifierSpeciesReference = ModifierSpeciesReference_unsetSBOTerm(SBMLModifierSpeciesReference)
+%====================================================================================================
+% takes
+% 1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+% returns
+% 1. the SBML ModifierSpeciesReference structure with the sboTerm attribute unset
+%
+%====================================================================================================
+% SBMLModifierSpeciesReference = ModifierSpeciesReference_unsetSpecies(SBMLModifierSpeciesReference)
+%====================================================================================================
+% takes
+% 1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+% returns
+% 1. the SBML ModifierSpeciesReference structure with the species attribute unset
+%
 
-%  Filename    :   Contents.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
+
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -39,4 +210,5 @@
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
 

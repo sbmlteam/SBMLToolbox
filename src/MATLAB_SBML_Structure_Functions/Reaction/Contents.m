@@ -1,55 +1,427 @@
-% toolbox\MATLAB_SBML_Structure_Functions\REACTION
+% toolbox\MATLAB_SBML_Structure_Functions\Reaction
 %
-% Files
-%   Reaction_addModifier                      - Reaction_addModifier 
-%   Reaction_addProduct                       - Reaction_addProduct 
-%   Reaction_addReactant                      - Reaction_addReactant 
-%   Reaction_create                           - Reaction_create 
-%   Reaction_getFast                          - Reaction_getFast 
-%   Reaction_getId                            - Reaction_getId 
-%   Reaction_getKineticLaw                    - Reaction_getKineticLaw 
-%   Reaction_getListOfModifiers               - Reaction_getListOfModifiers 
-%   Reaction_getListOfProducts                - Reaction_getListOfProducts 
-%   Reaction_getListOfReactants               - Reaction_getListOfReactants 
-%   Reaction_getModifier                      - Reaction_getModifier 
-%   Reaction_getModifierById                  - Reaction_getModifierById 
-%   Reaction_getName                          - Reaction_getName 
-%   Reaction_getNumModifiers                  - Reaction_getNumModifiers 
-%   Reaction_getNumProducts                   - Reaction_getNumProducts 
-%   Reaction_getNumReactants                  - Reaction_getNumReactants 
-%   Reaction_getProduct                       - Reaction_getProduct 
-%   Reaction_getProductById                   - Reaction_getProductById 
-%   Reaction_getReactant                      - Reaction_getReactant 
-%   Reaction_getReactantById                  - Reaction_getReactantById 
-%   Reaction_getReversible                    - Reaction_getReversible 
-%   Reaction_getSBOTerm                       - Reaction_getSBOTerm 
-%   Reaction_isSetFast                        - Reaction_isSetFast 
-%   Reaction_isSetId                          - Reaction_isSetId 
-%   Reaction_isSetKineticLaw                  - Reaction_isSetKineticLaw 
-%   Reaction_isSetName                        - Reaction_isSetName 
-%   Reaction_moveIdToName                     - Reaction_moveIdToName 
-%   Reaction_moveNameToId                     - Reaction_moveNameToId 
-%   Reaction_setFast                          - Reaction_setFast 
-%   Reaction_setId                            - Reaction_setId 
-%   Reaction_setKineticLaw                    - Reaction_setKineticLaw 
-%   Reaction_setName                          - Reaction_setName 
-%   Reaction_setReversible                    - Reaction_setReversible 
-%   Reaction_setSBOTerm                       - Reaction_setSBOTerm 
-%   Reaction_unsetFast                        - Reaction_setFast 
-%   Reaction_unsetKineticLaw                  - Reaction_unsetKineticLaw 
-%   Reaction_unsetName                        - Reaction_unsetName 
+% The functions allow users to create and work with the SBML Reaction structure. 
 %
-%   ADDITIONAL TO libSBML API
+%=================================================================
+% SBMLReaction = Reaction_addModifier(SBMLReaction, SBMLModifier)
+%=================================================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% 2. SBMLModifier; an SBML Modifier structure
+% returns
+% 1. the SBML Reaction structure with the SBML Modifier structure added
 %
-%   Reaction_getParameterNamesAndValues       - Reaction_getParameterNamesAndValues takes a SBMLReaction 
-%   Reaction_getParameterUniqueNamesAndValues - Reaction_getParameterUniqueNamesAndValues takes a SBMLReaction 
+%===============================================================
+% SBMLReaction = Reaction_addProduct(SBMLReaction, SBMLProduct)
+%===============================================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% 2. SBMLProduct; an SBML Product structure
+% returns
+% 1. the SBML Reaction structure with the SBML Product structure added
+%
+%=================================================================
+% SBMLReaction = Reaction_addReactant(SBMLReaction, SBMLReactant)
+%=================================================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% 2. SBMLReactant; an SBML Reactant structure
+% returns
+% 1. the SBML Reaction structure with the SBML Reactant structure added
+%
+%===============================================================
+% Reaction = Reaction_create(level(optional), version(optional)
+%===============================================================
+% takes
+% 1. level; an integer representing an SBML level (optional)
+% 2. version; an integer representing an SBML version (optional)
+% returns
+% 1. a MATLAB_SBML Reaction structure of the appropriate level and version
+%
+%=====================================================
+% compartment = Reaction_getCompartment(SBMLReaction)
+%=====================================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% returns
+% 1. the value of the compartment attribute
+%
+%=======================================
+% fast = Reaction_getFast(SBMLReaction)
+%=======================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% returns
+% 1. the value of the fast attribute
+%
+%===================================
+% id = Reaction_getId(SBMLReaction)
+%===================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% returns
+% 1. the value of the id attribute
+%
+%===================================================
+% kineticLaw = Reaction_getKineticLaw(SBMLReaction)
+%===================================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% returns
+% 1. the SBML KineticLaw structure
+%
+%======================================================
+% modifier = Reaction_getListOfModifiers(SBMLReaction)
+%======================================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% returns
+% 1. an array of the modifier structures
+%
+%====================================================
+% product = Reaction_getListOfProducts(SBMLReaction)
+%====================================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% returns
+% 1. an array of the product structures
+%
+%======================================================
+% reactant = Reaction_getListOfReactants(SBMLReaction)
+%======================================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% returns
+% 1. an array of the reactant structures
+%
+%===========================================
+% metaid = Reaction_getMetaid(SBMLReaction)
+%===========================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% returns
+% 1. the value of the metaid attribute
+%
+%======================================================
+% modifier = Reaction_getModifier(SBMLReaction, index)
+%======================================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% 2. index; an integer representing the index of SBML Modifier structure
+% returns
+% 1. the SBML Modifier structure at the indexed position
+%
+%=======================================================
+% modifier = Reaction_getModifierById(SBMLReaction, id)
+%=======================================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% 2. id; a string representing the id of SBML Modifier structure
+% returns
+% 1. the SBML Modifier structure that has this id
+%
+%=======================================
+% name = Reaction_getName(SBMLReaction)
+%=======================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% returns
+% 1. the value of the name attribute
+%
+%==============================================
+% num = Reaction_getNumModifiers(SBMLReaction)
+%==============================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% returns
+% 1. the number of SBML Modifier structures present in the Reaction
+%
+%=============================================
+% num = Reaction_getNumProducts(SBMLReaction)
+%=============================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% returns
+% 1. the number of SBML Product structures present in the Reaction
+%
+%==============================================
+% num = Reaction_getNumReactants(SBMLReaction)
+%==============================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% returns
+% 1. the number of SBML Reactant structures present in the Reaction
+%
+%====================================================
+% product = Reaction_getProduct(SBMLReaction, index)
+%====================================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% 2. index; an integer representing the index of SBML Product structure
+% returns
+% 1. the SBML Product structure at the indexed position
+%
+%=====================================================
+% product = Reaction_getProductById(SBMLReaction, id)
+%=====================================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% 2. id; a string representing the id of SBML Product structure
+% returns
+% 1. the SBML Product structure that has this id
+%
+%======================================================
+% reactant = Reaction_getReactant(SBMLReaction, index)
+%======================================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% 2. index; an integer representing the index of SBML Reactant structure
+% returns
+% 1. the SBML Reactant structure at the indexed position
+%
+%=======================================================
+% reactant = Reaction_getReactantById(SBMLReaction, id)
+%=======================================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% 2. id; a string representing the id of SBML Reactant structure
+% returns
+% 1. the SBML Reactant structure that has this id
+%
+%===================================================
+% reversible = Reaction_getReversible(SBMLReaction)
+%===================================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% returns
+% 1. the value of the reversible attribute
+%
+%=============================================
+% sboTerm = Reaction_getSBOTerm(SBMLReaction)
+%=============================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% returns
+% 1. the value of the sboTerm attribute
+%
+%=================================================
+% value = Reaction_isSetCompartment(SBMLReaction)
+%=================================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% returns
+% 1. value = 
+%  - 1 if the compartment attribute is set
+%  - 0 otherwise
+%
+%==========================================
+% value = Reaction_isSetFast(SBMLReaction)
+%==========================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% returns
+% 1. value = 
+%  - 1 if the fast attribute is set
+%  - 0 otherwise
+%
+%========================================
+% value = Reaction_isSetId(SBMLReaction)
+%========================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% returns
+% 1. value = 
+%  - 1 if the id attribute is set
+%  - 0 otherwise
+%
+%================================================
+% value = Reaction_isSetKineticLaw(SBMLReaction)
+%================================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% returns
+% 1. value = 
+%  - 1 if the kineticLaw structure is set
+%  - 0 otherwise
+%
+%============================================
+% value = Reaction_isSetMetaid(SBMLReaction)
+%============================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% returns
+% 1. value = 
+%  - 1 if the metaid attribute is set
+%  - 0 otherwise
+%
+%==========================================
+% value = Reaction_isSetName(SBMLReaction)
+%==========================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% returns
+% 1. value = 
+%  - 1 if the name attribute is set
+%  - 0 otherwise
+%
+%================================================
+% value = Reaction_isSetReversible(SBMLReaction)
+%================================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% returns
+% 1. value = 
+%  - 1 if the reversible attribute is set
+%  - 0 otherwise
+%
+%=============================================
+% value = Reaction_isSetSBOTerm(SBMLReaction)
+%=============================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% returns
+% 1. value = 
+%  - 1 if the sboTerm attribute is set
+%  - 0 otherwise
+%
+%===================================================================
+% SBMLReaction = Reaction_setCompartment(SBMLReaction, compartment)
+%===================================================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% 2. compartment; a string representing the compartment to be set
+% returns
+% 1. the SBML Reaction structure with the new value for the compartment attribute
+%
+%=====================================================
+% SBMLReaction = Reaction_setFast(SBMLReaction, fast)
+%=====================================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% 2. fast; an integer (0/1) representing the value of fast to be set
+% returns
+% 1. the SBML Reaction structure with the new value for the fast attribute
+%
+%=================================================
+% SBMLReaction = Reaction_setId(SBMLReaction, id)
+%=================================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% 2. id; a string representing the id to be set
+% returns
+% 1. the SBML Reaction structure with the new value for the id attribute
+%
+%=====================================================================
+% SBMLReaction = Reaction_setKineticLaw(SBMLReaction, SBMLKineticLaw)
+%=====================================================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% 2. SBMLKineticLaw; an SBML KineticLaw structure
+% returns
+% 1. the SBML Reaction structure with the new value for the kineticLaw field
+%
+%=========================================================
+% SBMLReaction = Reaction_setMetaid(SBMLReaction, metaid)
+%=========================================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% 2. metaid; a string representing the metaid to be set
+% returns
+% 1. the SBML Reaction structure with the new value for the metaid attribute
+%
+%=====================================================
+% SBMLReaction = Reaction_setName(SBMLReaction, name)
+%=====================================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% 2. name; a string representing the name to be set
+% returns
+% 1. the SBML Reaction structure with the new value for the name attribute
+%
+%=================================================================
+% SBMLReaction = Reaction_setReversible(SBMLReaction, reversible)
+%=================================================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% 2. reversible; an integer (0/1) representing the value of reversible to be set
+% returns
+% 1. the SBML Reaction structure with the new value for the reversible attribute
+%
+%===========================================================
+% SBMLReaction = Reaction_setSBOTerm(SBMLReaction, sboTerm)
+%===========================================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% 2. sboTerm; an integer representing the sboTerm to be set
+% returns
+% 1. the SBML Reaction structure with the new value for the sboTerm attribute
+%
+%========================================================
+% SBMLReaction = Reaction_unsetCompartment(SBMLReaction)
+%========================================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% returns
+% 1. the SBML Reaction structure with the compartment attribute unset
+%
+%=================================================
+% SBMLReaction = Reaction_unsetFast(SBMLReaction)
+%=================================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% returns
+% 1. the SBML Reaction structure with the fast attribute unset
+%
+%===============================================
+% SBMLReaction = Reaction_unsetId(SBMLReaction)
+%===============================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% returns
+% 1. the SBML Reaction structure with the id attribute unset
+%
+%=======================================================
+% SBMLReaction = Reaction_unsetKineticLaw(SBMLReaction)
+%=======================================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% returns
+% 1. the SBML Reaction structure with the kineticLaw field unset
+%
+%===================================================
+% SBMLReaction = Reaction_unsetMetaid(SBMLReaction)
+%===================================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% returns
+% 1. the SBML Reaction structure with the metaid attribute unset
+%
+%=================================================
+% SBMLReaction = Reaction_unsetName(SBMLReaction)
+%=================================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% returns
+% 1. the SBML Reaction structure with the name attribute unset
+%
+%=======================================================
+% SBMLReaction = Reaction_unsetReversible(SBMLReaction)
+%=======================================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% returns
+% 1. the SBML Reaction structure with the reversible attribute unset
+%
+%====================================================
+% SBMLReaction = Reaction_unsetSBOTerm(SBMLReaction)
+%====================================================
+% takes
+% 1. SBMLReaction; an SBML Reaction structure
+% returns
+% 1. the SBML Reaction structure with the sboTerm attribute unset
+%
 
-%  Filename    :   Contents.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
+
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -72,4 +444,5 @@
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
 
