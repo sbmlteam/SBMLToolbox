@@ -1,19 +1,18 @@
 function [level, version] = GetLevelVersion(SBMLStructure)
+% [level, version] = GetLevelVersion(SBMLStructure) 
+% 
+% takes 
+% 
+% 1. SBMLStructure; any SBML structure
+% 
+% returns 
+% 
+% 1. the SBML level corresponding to this structure
+% 2. the SBML version corresponding to this structure
 %
-%   GetLevelVersion 
-%             takes an SBMLStructure
-%
-%             and returns 
-%               the sbml level and version 
-%
-%       [level, version] = GetLevelVersion(SBMLStructure)
+% *NOTE:* it is not always possible to uniquely determine the level/version from a
+% structure. The most recent SBML level/version that matches will be reported.
 
-%  Filename    :   GetLevelVersion.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
