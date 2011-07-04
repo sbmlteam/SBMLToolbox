@@ -1,17 +1,15 @@
 function SBMLInitialAssignment = InitialAssignment_unsetMetaid(SBMLInitialAssignment)
+% SBMLInitialAssignment = InitialAssignment_unsetMetaid(SBMLInitialAssignment)
 %
-% InitialAssignment_getMetaid
-%       takes an SBML InitialAssignment structure
+% takes
 %
-%       and returns
-%           the InitialAssignment with the value for the metaid attribute unset
+% 1. SBMLInitialAssignment; an SBML InitialAssignment structure
+%
+% returns
+%
+% 1. the SBML InitialAssignment structure with the metaid attribute unset
+%
 
-%  Filename    :   InitialAssignment_unsetMetaid.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -34,6 +32,8 @@ function SBMLInitialAssignment = InitialAssignment_unsetMetaid(SBMLInitialAssign
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 %get level and version and check the input arguments are appropriate
