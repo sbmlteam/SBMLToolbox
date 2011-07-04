@@ -1,31 +1,47 @@
 % toolbox\MATLAB_SBML_Structure_Functions
 %
-%  GetLevelVersion 
-%             takes an SBMLStructure
-%             and returns 
-%                1) the sbml level
-%                2 the sbml version 
+% General functions for working with MATLAB_SBML structures.
 %
-% This directory also contains functions that allow the user to
-%               manipulate MATLAB_SBML structures.
+%==================================
+% level = GetLevel(SBMLStructure) 
+%==================================
+% takes 
+% 1. SBMLStructure; any SBML structure
+% returns 
+% 1. the SBML level corresponding to this structure
 %
-% Each subfolder contains functions relating to that component of the model
+%====================================================
+% [level, version] = GetLevelVersion(SBMLStructure) 
+%====================================================
+% takes 
+% 1. SBMLStructure; any SBML structure
+% returns 
+% 1. the SBML level corresponding to this structure
+% 2. the SBML version corresponding to this structure
 %
-%  e.g. toolbox\MATLAB_SBML_Structure_Functions\Compartment
-%           contains functions of the form Compartment_getXXX etc 
-%           that act on an SBMLCompartment structure
+%=========================================================
+% SBMLStructure = Object_create(typecode, level, version)
+%=========================================================
+% takes
+% 1. typecode; a string representing the type of object being queried
+% 2. level; an integer representing an SBML level
+% 3. version; an integer representing an SBML version
+% returns
+% 1. an SBML structure representing the given typecode, level and version
 %
-% The majority of functions mimic their equivalent with in the libSBML API
+%====================================================
+% identical = areIdentical(SBMLStruct1, SBMLStruct2)
+%====================================================
+% takes
+% 1. SBMLStruct1; any SBML structure
+% 2. SBMLStruct2; any SBML structure
+% returns
+% 1. identical = 
+%   - 1 if the structures are identical i.e. contain same fields and the same values
+%   - 0 otherwise
 %
-% Additional functions are highlighted in the help for the relevant
-% directory.
 
-%  Filename    :   Contents.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
+
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

@@ -1,19 +1,17 @@
 function level = GetLevel(SBMLStructure)
+% level = GetLevel(SBMLStructure) 
+% 
+% takes 
+% 
+% 1. SBMLStructure; any SBML structure
+% 
+% returns 
+% 
+% 1. the SBML level corresponding to this structure
 %
-%   GetLevel
-%             takes an SBMLStructure
-%
-%             and returns 
-%               the sbml level 
-%
-%       level = GetLevel(SBMLStructure)
+% *NOTE:* it is not always possible to uniquely determine the level from a
+% structure. The most recent SBML level that matches will be reported.
 
-%  Filename    :   GetLevel.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: GetLevelVersion.m 13259 2011-03-21 05:40:36Z mhucka $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

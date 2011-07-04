@@ -1,24 +1,17 @@
 function SBMLObject = Object_create(typecode, level, version)
+% SBMLStructure = Object_create(typecode, level, version)
+%
+% takes
+%
+% 1. typecode; a string representing the type of object being queried
+% 2. level; an integer representing an SBML level
+% 3. version; an integer representing an SBML version
+%
+% returns
+%
+% 1. an SBML structure representing the given typecode, level and version
+%
 
-%
-%   Object_create 
-%             optionally takes an SBML level
-%             optionally takes an SBML version
-%
-%             and returns 
-%               a compartment structure of the required level and version
-%               (default level = 3 version = 1)
-%
-%       Compartment = Compartment_create
-%    OR Compartment = Compartment_create(sbmlLevel)
-%    OR Compartment = Compartment_create(sbmlLevel, sbmlVersion)
-
-%  Filename    :   Compartment_create.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: Compartment_create.m 13259 2011-03-21 05:40:36Z mhucka $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
