@@ -1,18 +1,16 @@
 function SBMLEvent = Event_setTimeUnits(SBMLEvent, timeUnits)
+% SBMLEvent = Event_setTimeUnits(SBMLEvent, timeUnits)
 %
-% Event_setTimeUnits
-%       takes an SBML Event structure
-%    and the timeUnits to be set
+% takes
 %
-%       and returns
-%           the Event with the new value for the timeUnits attribute
+% 1. SBMLEvent; an SBML Event structure
+% 2. timeUnits; a string representing the timeUnits to be set
+%
+% returns
+%
+% 1. the SBML Event structure with the new value for the timeUnits attribute
+%
 
-%  Filename    :   Event_setTimeUnits.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -35,6 +33,12 @@ function SBMLEvent = Event_setTimeUnits(SBMLEvent, timeUnits)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
+
+
 
 
 %get level and version and check the input arguments are appropriate

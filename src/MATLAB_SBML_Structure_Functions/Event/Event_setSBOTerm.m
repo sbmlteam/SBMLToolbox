@@ -1,18 +1,16 @@
 function SBMLEvent = Event_setSBOTerm(SBMLEvent, sboTerm)
+% SBMLEvent = Event_setSBOTerm(SBMLEvent, sboTerm)
 %
-% Event_setSBOTerm
-%       takes an SBML Event structure
-%    and the sboTerm to be set
+% takes
 %
-%       and returns
-%           the Event with the new value for the sboTerm attribute
+% 1. SBMLEvent; an SBML Event structure
+% 2. sboTerm; an integer representing the sboTerm to be set
+%
+% returns
+%
+% 1. the SBML Event structure with the new value for the sboTerm attribute
+%
 
-%  Filename    :   Event_setSBOTerm.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -35,6 +33,12 @@ function SBMLEvent = Event_setSBOTerm(SBMLEvent, sboTerm)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
+
+
 
 
 %get level and version and check the input arguments are appropriate
