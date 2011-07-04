@@ -1,17 +1,15 @@
 function SBMLParameter = Parameter_unsetMetaid(SBMLParameter)
+% SBMLParameter = Parameter_unsetMetaid(SBMLParameter)
 %
-% Parameter_getMetaid
-%       takes an SBML Parameter structure
+% takes
 %
-%       and returns
-%           the Parameter with the value for the metaid attribute unset
+% 1. SBMLParameter; an SBML Parameter structure
+%
+% returns
+%
+% 1. the SBML Parameter structure with the metaid attribute unset
+%
 
-%  Filename    :   Parameter_unsetMetaid.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -34,6 +32,10 @@ function SBMLParameter = Parameter_unsetMetaid(SBMLParameter)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
 
 
 %get level and version and check the input arguments are appropriate

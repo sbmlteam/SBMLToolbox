@@ -1,18 +1,16 @@
 function SBMLParameter = Parameter_setValue(SBMLParameter, value)
+% SBMLParameter = Parameter_setValue(SBMLParameter, value)
 %
-% Parameter_setValue
-%       takes an SBML Parameter structure
-%    and the value to be set
+% takes
 %
-%       and returns
-%           the Parameter with the new value for the value attribute
+% 1. SBMLParameter; an SBML Parameter structure
+% 2. value; number representing the value of value to be set
+%
+% returns
+%
+% 1. the SBML Parameter structure with the new value for the value attribute
+%
 
-%  Filename    :   Parameter_setValue.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -35,6 +33,10 @@ function SBMLParameter = Parameter_setValue(SBMLParameter, value)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
 
 
 %get level and version and check the input arguments are appropriate
