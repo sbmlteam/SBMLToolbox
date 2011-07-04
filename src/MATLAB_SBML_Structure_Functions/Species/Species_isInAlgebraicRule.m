@@ -1,15 +1,16 @@
 function y = Species_isInAlgebraicRule(SBMLSpecies, SBMLRules)
-% Species_isInAlgebraicRule takes an SBMLSpecies structure and an array of SBMLRule structures
-% and returns
-%             0 if the species is not in an algebraic rule
-%             [n1, n2] if the species occurs as within a rule
-%     where n1, n2 refers to the index of the matched rule in the array
-
-%  Filename    :   Species_isInAlgebraicRule.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
+% y = Species_isInAlgebraicRule(SBMLSpecies, SBMLRules)
+%
+% takes
+%
+% 1. SBMLSpecies; an SBML Species structure
+% 2. SBMLRules; the array of rules from an SBML Model structure
+%
+% returns
+%
+% y = 
+%   - an array of the indices of any algebraicRules the id of the Species appears in 
+%   - 0 if the Species appears in no algebraicRules 
 %
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
@@ -33,6 +34,10 @@ function y = Species_isInAlgebraicRule(SBMLSpecies, SBMLRules)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
 
  
 y = 0;
