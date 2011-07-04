@@ -1,22 +1,18 @@
 function [SBMLfieldnames, nNumberFields] = getUnitFieldnames(level, ...
                                                              version)
+% [fieldnames, num] = getUnitFieldnames(level, version)
+%
+% takes
+%
+% 1. level; an integer representing an SBML level
+% 2. version; an integer representing an SBML version
+%
+% returns
+%
+% 1. an array of fieldnames for an SBML Unit structure of the given level and version
+% 2. the number of fieldnames
+%
 
-%
-% getUnitFieldnames
-%       takes an SBML level
-%     and  an SBML version
-%
-%       and returns
-%           1) an array fieldnames for the Unit structure of the appropriate
-%                  level and version
-%      2) the number of fieldnames expected
-
-%  Filename    :   getUnitFieldnames.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -39,6 +35,14 @@ function [SBMLfieldnames, nNumberFields] = getUnitFieldnames(level, ...
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
 
 
 if (~isValidLevelVersionCombination(level, version))

@@ -1,23 +1,18 @@
 function [defaultValues] = getInitialAssignmentDefaultValues(level, version)
+% [values] = getInitialAssignmentDefaultValues(level, version)
 %
-% getInitialAssignmentDefaultValues
-%       takes an SBML level
-%    and   an SBML version
+% takes
 %
-%       and returns
-%           1) the default values for the structure represents
-%           an MATLAB_SBML InitialAssignment structure of the appropriate
-%           level and version
+% 1. level; an integer representing an SBML level
+% 2. version; an integer representing an SBML version
 %
-% The fields present in MATLAB_SBML InitialAssignment structure of the appropriate
-% level and version can be found using getInitialAssignmentFieldnames(level, version)
+% returns
+%
+% 1. an array of default values for an SBML InitialAssignment structure of the given level and version
+%
+% *NOTE:* The corresponding fields present in an SBML InitialAssignment structure can be found using
+%   the function `getInitialAssignmentFieldnames`
 
-%  Filename    :   getInitialAssignmentDefaultValues.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -40,6 +35,14 @@ function [defaultValues] = getInitialAssignmentDefaultValues(level, version)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
 
 
 %check the input arguments are appropriate

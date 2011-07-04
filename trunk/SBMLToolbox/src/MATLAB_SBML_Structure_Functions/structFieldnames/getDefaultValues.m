@@ -1,18 +1,19 @@
 function [defaultValues] = getDefaultValues(typecode, level, version)
+% [values] = getDefaultValues(typecode, level, version)
 %
-%   getDefaultValues
-%             takes the typecode, level and version
+% takes
 %
-%             and returns 
-%               the default values for the MATLAB_SBML structure 
+% 1. typecode; a string representing the type of object being queried
+% 2. level; an integer representing an SBML level
+% 3. version; an integer representing an SBML version
 %
+% returns
+%
+% 1. an array of default values for an SBML structure of the given typecode, level and version
+%
+% *NOTE:* The corresponding fields present in an SBML  structure can be found using
+%   the function `getFieldnames`
 
-%  Filename    :   getDefaultValues.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id:  $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -35,6 +36,14 @@ function [defaultValues] = getDefaultValues(typecode, level, version)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
 
 
 
