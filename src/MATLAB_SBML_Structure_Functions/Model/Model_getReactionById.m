@@ -1,21 +1,16 @@
 function reaction = Model_getReactionById(SBMLModel, id)
+% reaction = Model_getReactionById(SBMLModel, id)
 %
-%   Model_getReactionById 
-%             takes  1) an SBMLModel structure 
-%             and    2) a string representing the id of the reaction to be found
+% takes
 %
-%             and returns 
-%               the reaction structure with the matching id 
-%               or an empty structure if no such reaction exists
-%               
-%       reaction = Model_getReactionById(SBMLModel, 'id')
+% 1. SBMLModel; an SBML Model structure
+% 2. id; a string representing the id of SBML Reaction structure
+%
+% returns
+%
+% 1. the SBML Reaction structure that has this id
+%
 
-%  Filename    :   Model_getReactionById.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -38,6 +33,30 @@ function reaction = Model_getReactionById(SBMLModel, id)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

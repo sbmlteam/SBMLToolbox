@@ -1,18 +1,16 @@
 function initialAssignment = Model_getInitialAssignment(SBMLModel, index)
+% initialAssignment = Model_getInitialAssignment(SBMLModel, index)
 %
-% Model_getInitialAssignment
-%       takes an SBML Model structure
-%    and an index
+% takes
 %
-%       and returns
-%           the value of the initialAssignment element at the indexed position
+% 1. SBMLModel; an SBML Model structure
+% 2. index; an integer representing the index of SBML InitialAssignment structure
+%
+% returns
+%
+% 1. the SBML InitialAssignment structure at the indexed position
+%
 
-%  Filename    :   Model_getInitialAssignment.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -35,6 +33,30 @@ function initialAssignment = Model_getInitialAssignment(SBMLModel, index)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 %get level and version and check the input arguments are appropriate

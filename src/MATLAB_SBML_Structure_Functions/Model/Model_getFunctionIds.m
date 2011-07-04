@@ -1,20 +1,15 @@
 function FunctionIds = Model_getFunctionIds(SBMLModel)
+% functionIds = Model_getFunctionIds(SBMLModel)
 %
-%   Model_getFunctionIds 
-%             takes  an SBMLModel structure 
+% takes
 %
-%             and returns 
-%               an array of the ids of all functionDefinitions within the
-%               model
+% 1. SBMLModel; an SBML Model structure
 %
-%       FunctionIds = Model_getFunctionIds(SBMLModel)
+% returns
+%
+% 1. the value of the functionIds attribute
+%
 
-%  Filename    :   Model_getFunctionIds.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -37,6 +32,30 @@ function FunctionIds = Model_getFunctionIds(SBMLModel)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

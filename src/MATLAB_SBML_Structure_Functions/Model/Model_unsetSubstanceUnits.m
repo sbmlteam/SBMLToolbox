@@ -1,17 +1,15 @@
 function SBMLModel = Model_unsetSubstanceUnits(SBMLModel)
+% SBMLModel = Model_unsetSubstanceUnits(SBMLModel)
 %
-% Model_getSubstanceUnits
-%       takes an SBML Model structure
+% takes
 %
-%       and returns
-%           the Model with the value for the substanceUnits attribute unset
+% 1. SBMLModel; an SBML Model structure
+%
+% returns
+%
+% 1. the SBML Model structure with the substanceUnits attribute unset
+%
 
-%  Filename    :   Model_unsetSubstanceUnits.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -34,6 +32,30 @@ function SBMLModel = Model_unsetSubstanceUnits(SBMLModel)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 %get level and version and check the input arguments are appropriate

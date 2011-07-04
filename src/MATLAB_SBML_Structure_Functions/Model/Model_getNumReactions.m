@@ -1,17 +1,15 @@
 function num = Model_getNumReactions(SBMLModel)
+% num = Model_getNumReactions(SBMLModel)
 %
-% Model_getNumReactions
-%       takes an SBML Model structure
+% takes
 %
-%       and returns
-%           the number of reaction elements
+% 1. SBMLModel; an SBML Model structure
+%
+% returns
+%
+% 1. the number of SBML Reaction structures present in the Model
+%
 
-%  Filename    :   Model_getNumReactions.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -34,6 +32,30 @@ function num = Model_getNumReactions(SBMLModel)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 %get level and version and check the input arguments are appropriate
