@@ -1,17 +1,15 @@
 function name = Reaction_getName(SBMLReaction)
+% name = Reaction_getName(SBMLReaction)
 %
-% Reaction_getName
-%       takes an SBML Reaction structure
+% takes
 %
-%       and returns
-%           the value of the name attribute
+% 1. SBMLReaction; an SBML Reaction structure
+%
+% returns
+%
+% 1. the value of the name attribute
+%
 
-%  Filename    :   Reaction_getName.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -34,6 +32,10 @@ function name = Reaction_getName(SBMLReaction)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
 
 
 %get level and version and check the input arguments are appropriate

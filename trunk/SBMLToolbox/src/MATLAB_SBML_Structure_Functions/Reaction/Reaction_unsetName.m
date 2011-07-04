@@ -1,17 +1,15 @@
 function SBMLReaction = Reaction_unsetName(SBMLReaction)
+% SBMLReaction = Reaction_unsetName(SBMLReaction)
 %
-% Reaction_getName
-%       takes an SBML Reaction structure
+% takes
 %
-%       and returns
-%           the Reaction with the value for the name attribute unset
+% 1. SBMLReaction; an SBML Reaction structure
+%
+% returns
+%
+% 1. the SBML Reaction structure with the name attribute unset
+%
 
-%  Filename    :   Reaction_unsetName.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -34,6 +32,10 @@ function SBMLReaction = Reaction_unsetName(SBMLReaction)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
 
 
 %get level and version and check the input arguments are appropriate
