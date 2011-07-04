@@ -1,17 +1,18 @@
 function model = propagateLevelVersion(SBMLModel)
+% SBMLModel = propagateLevelVersion(SBMLModel)
 %
-% propagateLevelVersion
-%       takes an SBML Model structure
+% takes
 %
-%       and returns
-%           the model with level and version fields on all substructures
+% 1. SBMLModel; an SBML Model structure
+% 
+% returns 
+% 
+% 1. the SBML Model structure with level and version fields added to all
+% sub structures
+%
+% *NOTE:* This function facilitates keeping track of the level and version
+% of sub objects within a model
 
-%  Filename    :   propagateLevelVersion.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: Model_getCompartment.m 13858 2011-05-31 16:10:51Z sarahkeating $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -34,6 +35,14 @@ function model = propagateLevelVersion(SBMLModel)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
 
 
 %get level and version and check the input arguments are appropriate

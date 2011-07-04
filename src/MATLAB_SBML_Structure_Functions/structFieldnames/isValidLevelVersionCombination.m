@@ -1,20 +1,19 @@
 function valid = isValidLevelVersionCombination(level, version)
+% valid = isValidLevelVersionCombination(level, version)
 %
-% isValidLevelVersionCombination
-%       takes an SBML level
-%    and   an SBML version
+% takes
 %
-%       and returns
-%      a flag indicating whether the level and version represent a valid
-%      SBML combination supported by this software
+% 1. level; an integer representing an SBML level
+% 2. version; an integer representing an SBML version
 %
+% returns
+%
+% 1. valid = 1 if the level and version combinbation represent a valid
+%   specification of SBML supported by SBMLToolbox
+%
+% *NOTE:* This function causes an error if the level/version arguments do
+% not represent a valid supported SBML format
 
-%  Filename    :   isValidLevelVersionCombination.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -37,6 +36,14 @@ function valid = isValidLevelVersionCombination(level, version)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
 
 
 valid = 1;

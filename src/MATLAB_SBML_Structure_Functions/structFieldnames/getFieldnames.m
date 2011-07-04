@@ -1,19 +1,20 @@
 function [SBMLfieldnames, nNumberFields] = getFieldnames(typecode, ...
                                                          level, version)
+% [fieldnames, num] = getFieldnames(typecode, level, version)
 %
-%   getFieldnames
-%             takes the typecode, level and version
+% takes
 %
-%             and returns 
-%               the fieldnames for the MATLAB_SBML structure 
+% 1. typecode; a string representing the type of object being queried
+% 2. level; an integer representing an SBML level
+% 3. version; an integer representing an SBML version
+%
+% returns
+%
+% 1. an array of fieldnames for an SBML structure of the given typecode, level and version
+% 2. the number of fieldnames
 %
 
-%  Filename    :   getFieldnames.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id:  $
-%  $Source v $
-%
+
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -36,6 +37,14 @@ function [SBMLfieldnames, nNumberFields] = getFieldnames(typecode, ...
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
 
 
 
