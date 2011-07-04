@@ -1,17 +1,15 @@
 function name = ParameterRule_getName(SBMLParameterRule)
+% name = ParameterRule_getName(SBMLParameterRule)
 %
-% ParameterRule_getName
-%       takes an SBML ParameterRule structure
+% takes
 %
-%       and returns
-%           the value of the name attribute
+% 1. SBMLParameterRule; an SBML ParameterRule structure
+%
+% returns
+%
+% 1. the value of the name attribute
+%
 
-%  Filename    :   ParameterRule_getName.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -34,6 +32,8 @@ function name = ParameterRule_getName(SBMLParameterRule)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 %get level and version and check the input arguments are appropriate

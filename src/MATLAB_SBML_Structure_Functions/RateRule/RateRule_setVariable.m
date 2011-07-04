@@ -1,18 +1,16 @@
 function SBMLRateRule = RateRule_setVariable(SBMLRateRule, variable)
+% SBMLRateRule = RateRule_setVariable(SBMLRateRule, variable)
 %
-% RateRule_setVariable
-%       takes an SBML RateRule structure
-%    and the variable to be set
+% takes
 %
-%       and returns
-%           the RateRule with the new value for the variable attribute
+% 1. SBMLRateRule; an SBML RateRule structure
+% 2. variable; a string representing the variable to be set
+%
+% returns
+%
+% 1. the SBML RateRule structure with the new value for the variable attribute
+%
 
-%  Filename    :   RateRule_setVariable.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -35,6 +33,8 @@ function SBMLRateRule = RateRule_setVariable(SBMLRateRule, variable)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 %get level and version and check the input arguments are appropriate

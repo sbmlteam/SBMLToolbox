@@ -1,17 +1,15 @@
 function SBMLPriority = Priority_unsetSBOTerm(SBMLPriority)
+% SBMLPriority = Priority_unsetSBOTerm(SBMLPriority)
 %
-% Priority_getSBOTerm
-%       takes an SBML Priority structure
+% takes
 %
-%       and returns
-%           the Priority with the value for the sboTerm attribute unset
+% 1. SBMLPriority; an SBML Priority structure
+%
+% returns
+%
+% 1. the SBML Priority structure with the sboTerm attribute unset
+%
 
-%  Filename    :   Priority_unsetSBOTerm.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -34,6 +32,8 @@ function SBMLPriority = Priority_unsetSBOTerm(SBMLPriority)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 %get level and version and check the input arguments are appropriate
