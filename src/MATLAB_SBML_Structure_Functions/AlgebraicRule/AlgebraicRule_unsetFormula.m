@@ -1,17 +1,15 @@
 function SBMLAlgebraicRule = AlgebraicRule_unsetFormula(SBMLAlgebraicRule)
+% SBMLAlgebraicRule = AlgebraicRule_unsetFormula(SBMLAlgebraicRule)
 %
-% AlgebraicRule_getFormula
-%       takes an SBML AlgebraicRule structure
+% takes
 %
-%       and returns
-%           the AlgebraicRule with the value for the formula attribute unset
+% 1. SBMLAlgebraicRule; an SBML AlgebraicRule structure
+%
+% returns
+%
+% 1. the SBML AlgebraicRule structure with the formula attribute unset
+%
 
-%  Filename    :   AlgebraicRule_unsetFormula.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -34,6 +32,8 @@ function SBMLAlgebraicRule = AlgebraicRule_unsetFormula(SBMLAlgebraicRule)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 %get level and version and check the input arguments are appropriate

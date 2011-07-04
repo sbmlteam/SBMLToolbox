@@ -1,18 +1,16 @@
 function SBMLAssignmentRule = AssignmentRule_setVariable(SBMLAssignmentRule, variable)
+% SBMLAssignmentRule = AssignmentRule_setVariable(SBMLAssignmentRule, variable)
 %
-% AssignmentRule_setVariable
-%       takes an SBML AssignmentRule structure
-%    and the variable to be set
+% takes
 %
-%       and returns
-%           the AssignmentRule with the new value for the variable attribute
+% 1. SBMLAssignmentRule; an SBML AssignmentRule structure
+% 2. variable; a string representing the variable to be set
+%
+% returns
+%
+% 1. the SBML AssignmentRule structure with the new value for the variable attribute
+%
 
-%  Filename    :   AssignmentRule_setVariable.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -35,6 +33,8 @@ function SBMLAssignmentRule = AssignmentRule_setVariable(SBMLAssignmentRule, var
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 %get level and version and check the input arguments are appropriate
