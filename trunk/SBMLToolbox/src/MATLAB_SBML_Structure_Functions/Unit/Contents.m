@@ -1,26 +1,263 @@
-% toolbox\MATLAB_SBML_Structure_Functions\UNIT
+% toolbox\MATLAB_SBML_Structure_Functions\Unit
 %
-% Files
-%   Unit_create        - Unit_create 
-%   Unit_getExponent   - Unit_getExponent 
-%   Unit_getKind       - Unit_getKind 
-%   Unit_getMultiplier - Unit_getMultiplier 
-%   Unit_getOffset     - Unit_getOffset 
-%   Unit_getSBOTerm    - Unit_getSBOTerm 
-%   Unit_getScale      - Unit_getScale 
-%   Unit_isSetKind     - Unit_isSetKind 
-%   Unit_setExponent   - Unit_setExponent 
-%   Unit_setKind       - Unit_setKind 
-%   Unit_setMultiplier - Unit_setMultiplier 
-%   Unit_setOffset     - Unit_setOffset 
-%   Unit_setSBOTerm    - Unit_setSBOTerm 
+% The functions allow users to create and work with the SBML Unit structure. 
+%
+%=======================================================
+% Unit = Unit_create(level(optional), version(optional)
+%=======================================================
+% takes
+% 1. level; an integer representing an SBML level (optional)
+% 2. version; an integer representing an SBML version (optional)
+% returns
+% 1. a MATLAB_SBML Unit structure of the appropriate level and version
+%
+%=======================================
+% exponent = Unit_getExponent(SBMLUnit)
+%=======================================
+% takes
+% 1. SBMLUnit; an SBML Unit structure
+% returns
+% 1. the value of the exponent attribute
+%
+%===============================
+% kind = Unit_getKind(SBMLUnit)
+%===============================
+% takes
+% 1. SBMLUnit; an SBML Unit structure
+% returns
+% 1. the value of the kind attribute
+%
+%===================================
+% metaid = Unit_getMetaid(SBMLUnit)
+%===================================
+% takes
+% 1. SBMLUnit; an SBML Unit structure
+% returns
+% 1. the value of the metaid attribute
+%
+%===========================================
+% multiplier = Unit_getMultiplier(SBMLUnit)
+%===========================================
+% takes
+% 1. SBMLUnit; an SBML Unit structure
+% returns
+% 1. the value of the multiplier attribute
+%
+%===================================
+% offset = Unit_getOffset(SBMLUnit)
+%===================================
+% takes
+% 1. SBMLUnit; an SBML Unit structure
+% returns
+% 1. the value of the offset attribute
+%
+%=====================================
+% sboTerm = Unit_getSBOTerm(SBMLUnit)
+%=====================================
+% takes
+% 1. SBMLUnit; an SBML Unit structure
+% returns
+% 1. the value of the sboTerm attribute
+%
+%=================================
+% scale = Unit_getScale(SBMLUnit)
+%=================================
+% takes
+% 1. SBMLUnit; an SBML Unit structure
+% returns
+% 1. the value of the scale attribute
+%
+%======================================
+% value = Unit_isSetExponent(SBMLUnit)
+%======================================
+% takes
+% 1. SBMLUnit; an SBML Unit structure
+% returns
+% 1. value = 
+%  - 1 if the exponent attribute is set
+%  - 0 otherwise
+%
+%==================================
+% value = Unit_isSetKind(SBMLUnit)
+%==================================
+% takes
+% 1. SBMLUnit; an SBML Unit structure
+% returns
+% 1. value = 
+%  - 1 if the kind attribute is set
+%  - 0 otherwise
+%
+%====================================
+% value = Unit_isSetMetaid(SBMLUnit)
+%====================================
+% takes
+% 1. SBMLUnit; an SBML Unit structure
+% returns
+% 1. value = 
+%  - 1 if the metaid attribute is set
+%  - 0 otherwise
+%
+%========================================
+% value = Unit_isSetMultiplier(SBMLUnit)
+%========================================
+% takes
+% 1. SBMLUnit; an SBML Unit structure
+% returns
+% 1. value = 
+%  - 1 if the multiplier attribute is set
+%  - 0 otherwise
+%
+%====================================
+% value = Unit_isSetOffset(SBMLUnit)
+%====================================
+% takes
+% 1. SBMLUnit; an SBML Unit structure
+% returns
+% 1. value = 
+%  - 1 if the offset attribute is set
+%  - 0 otherwise
+%
+%=====================================
+% value = Unit_isSetSBOTerm(SBMLUnit)
+%=====================================
+% takes
+% 1. SBMLUnit; an SBML Unit structure
+% returns
+% 1. value = 
+%  - 1 if the sboTerm attribute is set
+%  - 0 otherwise
+%
+%===================================
+% value = Unit_isSetScale(SBMLUnit)
+%===================================
+% takes
+% 1. SBMLUnit; an SBML Unit structure
+% returns
+% 1. value = 
+%  - 1 if the scale attribute is set
+%  - 0 otherwise
+%
+%=================================================
+% SBMLUnit = Unit_setExponent(SBMLUnit, exponent)
+%=================================================
+% takes
+% 1. SBMLUnit; an SBML Unit structure
+% 2. exponent; number representing the value of exponent to be set
+% returns
+% 1. the SBML Unit structure with the new value for the exponent attribute
+%
+%=========================================
+% SBMLUnit = Unit_setKind(SBMLUnit, kind)
+%=========================================
+% takes
+% 1. SBMLUnit; an SBML Unit structure
+% 2. kind; a string representing the kind to be set
+% returns
+% 1. the SBML Unit structure with the new value for the kind attribute
+%
+%=============================================
+% SBMLUnit = Unit_setMetaid(SBMLUnit, metaid)
+%=============================================
+% takes
+% 1. SBMLUnit; an SBML Unit structure
+% 2. metaid; a string representing the metaid to be set
+% returns
+% 1. the SBML Unit structure with the new value for the metaid attribute
+%
+%=====================================================
+% SBMLUnit = Unit_setMultiplier(SBMLUnit, multiplier)
+%=====================================================
+% takes
+% 1. SBMLUnit; an SBML Unit structure
+% 2. multiplier; number representing the value of multiplier to be set
+% returns
+% 1. the SBML Unit structure with the new value for the multiplier attribute
+%
+%=============================================
+% SBMLUnit = Unit_setOffset(SBMLUnit, offset)
+%=============================================
+% takes
+% 1. SBMLUnit; an SBML Unit structure
+% 2. offset; an integer representing the offset to be set
+% returns
+% 1. the SBML Unit structure with the new value for the offset attribute
+%
+%===============================================
+% SBMLUnit = Unit_setSBOTerm(SBMLUnit, sboTerm)
+%===============================================
+% takes
+% 1. SBMLUnit; an SBML Unit structure
+% 2. sboTerm; an integer representing the sboTerm to be set
+% returns
+% 1. the SBML Unit structure with the new value for the sboTerm attribute
+%
+%===========================================
+% SBMLUnit = Unit_setScale(SBMLUnit, scale)
+%===========================================
+% takes
+% 1. SBMLUnit; an SBML Unit structure
+% 2. scale; number representing the value of scale to be set
+% returns
+% 1. the SBML Unit structure with the new value for the scale attribute
+%
+%=========================================
+% SBMLUnit = Unit_unsetExponent(SBMLUnit)
+%=========================================
+% takes
+% 1. SBMLUnit; an SBML Unit structure
+% returns
+% 1. the SBML Unit structure with the exponent attribute unset
+%
+%=====================================
+% SBMLUnit = Unit_unsetKind(SBMLUnit)
+%=====================================
+% takes
+% 1. SBMLUnit; an SBML Unit structure
+% returns
+% 1. the SBML Unit structure with the kind attribute unset
+%
+%=======================================
+% SBMLUnit = Unit_unsetMetaid(SBMLUnit)
+%=======================================
+% takes
+% 1. SBMLUnit; an SBML Unit structure
+% returns
+% 1. the SBML Unit structure with the metaid attribute unset
+%
+%===========================================
+% SBMLUnit = Unit_unsetMultiplier(SBMLUnit)
+%===========================================
+% takes
+% 1. SBMLUnit; an SBML Unit structure
+% returns
+% 1. the SBML Unit structure with the multiplier attribute unset
+%
+%=======================================
+% SBMLUnit = Unit_unsetOffset(SBMLUnit)
+%=======================================
+% takes
+% 1. SBMLUnit; an SBML Unit structure
+% returns
+% 1. the SBML Unit structure with the offset attribute unset
+%
+%========================================
+% SBMLUnit = Unit_unsetSBOTerm(SBMLUnit)
+%========================================
+% takes
+% 1. SBMLUnit; an SBML Unit structure
+% returns
+% 1. the SBML Unit structure with the sboTerm attribute unset
+%
+%======================================
+% SBMLUnit = Unit_unsetScale(SBMLUnit)
+%======================================
+% takes
+% 1. SBMLUnit; an SBML Unit structure
+% returns
+% 1. the SBML Unit structure with the scale attribute unset
+%
 
-%  Filename    :   Contents.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
+
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -43,4 +280,5 @@
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
 

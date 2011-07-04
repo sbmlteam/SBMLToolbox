@@ -1,17 +1,15 @@
 function unit = UnitDefinition_getListOfUnits(SBMLUnitDefinition)
+% unit = UnitDefinition_getListOfUnits(SBMLUnitDefinition)
 %
-% UnitDefinition_getListOfUnits
-%       takes an SBML UnitDefinition structure
+% takes
 %
-%       and returns
-%           the array of structures of the unit elements
+% 1. SBMLUnitDefinition; an SBML UnitDefinition structure
+%
+% returns
+%
+% 1. an array of the unit structures
+%
 
-%  Filename    :   UnitDefinition_getListOfUnits.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -34,6 +32,8 @@ function unit = UnitDefinition_getListOfUnits(SBMLUnitDefinition)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 %get level and version and check the input arguments are appropriate
