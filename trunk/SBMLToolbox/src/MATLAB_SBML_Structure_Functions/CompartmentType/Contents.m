@@ -1,19 +1,158 @@
-% toolbox\MATLAB_SBML_Structure_Functions\COMPARTMENTTYPE
+% toolbox\MATLAB_SBML_Structure_Functions\CompartmentType
 %
-% Files
-%   CompartmentType_create               - CompartmentType_create 
-%   CompartmentType_getId                - CompartmentType_getId 
-%   CompartmentType_getName              - CompartmentType_getName 
-%   CompartmentType_getSBOTerm           - CompartmentType_getSBOTerm 
-%   CompartmentType_setId                - CompartmentType_setId 
-%   CompartmentType_setName              - CompartmentType_setName 
+% The functions allow users to create and work with the SBML CompartmentType structure. 
+%
+%=============================================================================
+% CompartmentType = CompartmentType_create(level(optional), version(optional)
+%=============================================================================
+% takes
+% 1. level; an integer representing an SBML level (optional)
+% 2. version; an integer representing an SBML version (optional)
+% returns
+% 1. a MATLAB_SBML CompartmentType structure of the appropriate level and version
+%
+%=================================================
+% id = CompartmentType_getId(SBMLCompartmentType)
+%=================================================
+% takes
+% 1. SBMLCompartmentType; an SBML CompartmentType structure
+% returns
+% 1. the value of the id attribute
+%
+%=========================================================
+% metaid = CompartmentType_getMetaid(SBMLCompartmentType)
+%=========================================================
+% takes
+% 1. SBMLCompartmentType; an SBML CompartmentType structure
+% returns
+% 1. the value of the metaid attribute
+%
+%=====================================================
+% name = CompartmentType_getName(SBMLCompartmentType)
+%=====================================================
+% takes
+% 1. SBMLCompartmentType; an SBML CompartmentType structure
+% returns
+% 1. the value of the name attribute
+%
+%===========================================================
+% sboTerm = CompartmentType_getSBOTerm(SBMLCompartmentType)
+%===========================================================
+% takes
+% 1. SBMLCompartmentType; an SBML CompartmentType structure
+% returns
+% 1. the value of the sboTerm attribute
+%
+%======================================================
+% value = CompartmentType_isSetId(SBMLCompartmentType)
+%======================================================
+% takes
+% 1. SBMLCompartmentType; an SBML CompartmentType structure
+% returns
+% 1. value = 
+%  - 1 if the id attribute is set
+%  - 0 otherwise
+%
+%==========================================================
+% value = CompartmentType_isSetMetaid(SBMLCompartmentType)
+%==========================================================
+% takes
+% 1. SBMLCompartmentType; an SBML CompartmentType structure
+% returns
+% 1. value = 
+%  - 1 if the metaid attribute is set
+%  - 0 otherwise
+%
+%========================================================
+% value = CompartmentType_isSetName(SBMLCompartmentType)
+%========================================================
+% takes
+% 1. SBMLCompartmentType; an SBML CompartmentType structure
+% returns
+% 1. value = 
+%  - 1 if the name attribute is set
+%  - 0 otherwise
+%
+%===========================================================
+% value = CompartmentType_isSetSBOTerm(SBMLCompartmentType)
+%===========================================================
+% takes
+% 1. SBMLCompartmentType; an SBML CompartmentType structure
+% returns
+% 1. value = 
+%  - 1 if the sboTerm attribute is set
+%  - 0 otherwise
+%
+%======================================================================
+% SBMLCompartmentType = CompartmentType_setId(SBMLCompartmentType, id)
+%======================================================================
+% takes
+% 1. SBMLCompartmentType; an SBML CompartmentType structure
+% 2. id; a string representing the id to be set
+% returns
+% 1. the SBML CompartmentType structure with the new value for the id attribute
+%
+%==============================================================================
+% SBMLCompartmentType = CompartmentType_setMetaid(SBMLCompartmentType, metaid)
+%==============================================================================
+% takes
+% 1. SBMLCompartmentType; an SBML CompartmentType structure
+% 2. metaid; a string representing the metaid to be set
+% returns
+% 1. the SBML CompartmentType structure with the new value for the metaid attribute
+%
+%==========================================================================
+% SBMLCompartmentType = CompartmentType_setName(SBMLCompartmentType, name)
+%==========================================================================
+% takes
+% 1. SBMLCompartmentType; an SBML CompartmentType structure
+% 2. name; a string representing the name to be set
+% returns
+% 1. the SBML CompartmentType structure with the new value for the name attribute
+%
+%================================================================================
+% SBMLCompartmentType = CompartmentType_setSBOTerm(SBMLCompartmentType, sboTerm)
+%================================================================================
+% takes
+% 1. SBMLCompartmentType; an SBML CompartmentType structure
+% 2. sboTerm; an integer representing the sboTerm to be set
+% returns
+% 1. the SBML CompartmentType structure with the new value for the sboTerm attribute
+%
+%====================================================================
+% SBMLCompartmentType = CompartmentType_unsetId(SBMLCompartmentType)
+%====================================================================
+% takes
+% 1. SBMLCompartmentType; an SBML CompartmentType structure
+% returns
+% 1. the SBML CompartmentType structure with the id attribute unset
+%
+%========================================================================
+% SBMLCompartmentType = CompartmentType_unsetMetaid(SBMLCompartmentType)
+%========================================================================
+% takes
+% 1. SBMLCompartmentType; an SBML CompartmentType structure
+% returns
+% 1. the SBML CompartmentType structure with the metaid attribute unset
+%
+%======================================================================
+% SBMLCompartmentType = CompartmentType_unsetName(SBMLCompartmentType)
+%======================================================================
+% takes
+% 1. SBMLCompartmentType; an SBML CompartmentType structure
+% returns
+% 1. the SBML CompartmentType structure with the name attribute unset
+%
+%=========================================================================
+% SBMLCompartmentType = CompartmentType_unsetSBOTerm(SBMLCompartmentType)
+%=========================================================================
+% takes
+% 1. SBMLCompartmentType; an SBML CompartmentType structure
+% returns
+% 1. the SBML CompartmentType structure with the sboTerm attribute unset
+%
 
-%  Filename    :   Contents.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
+
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -36,4 +175,5 @@
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
 
