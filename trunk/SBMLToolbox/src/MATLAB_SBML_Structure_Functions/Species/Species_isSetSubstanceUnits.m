@@ -1,18 +1,17 @@
 function value = Species_isSetSubstanceUnits(SBMLSpecies)
+% value = Species_isSetSubstanceUnits(SBMLSpecies)
 %
-% Species_isSetSubstanceUnits
-%       takes an SBML Species structure
+% takes
 %
-%       and returns
-%           1 if the value for the substanceUnits attribute is set
-%           0 otherwise
+% 1. SBMLSpecies; an SBML Species structure
+%
+% returns
+%
+% 1. value = 
+%  - 1 if the substanceUnits attribute is set
+%  - 0 otherwise
+%
 
-%  Filename    :   Species_isSetSubstanceUnits.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -35,6 +34,10 @@ function value = Species_isSetSubstanceUnits(SBMLSpecies)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
 
 
 %get level and version and check the input arguments are appropriate

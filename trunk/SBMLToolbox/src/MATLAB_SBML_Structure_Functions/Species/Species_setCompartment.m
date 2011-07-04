@@ -1,18 +1,16 @@
 function SBMLSpecies = Species_setCompartment(SBMLSpecies, compartment)
+% SBMLSpecies = Species_setCompartment(SBMLSpecies, compartment)
 %
-% Species_setCompartment
-%       takes an SBML Species structure
-%    and the compartment to be set
+% takes
 %
-%       and returns
-%           the Species with the new value for the compartment attribute
+% 1. SBMLSpecies; an SBML Species structure
+% 2. compartment; a string representing the compartment to be set
+%
+% returns
+%
+% 1. the SBML Species structure with the new value for the compartment attribute
+%
 
-%  Filename    :   Species_setCompartment.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -35,6 +33,10 @@ function SBMLSpecies = Species_setCompartment(SBMLSpecies, compartment)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
 
 
 %get level and version and check the input arguments are appropriate

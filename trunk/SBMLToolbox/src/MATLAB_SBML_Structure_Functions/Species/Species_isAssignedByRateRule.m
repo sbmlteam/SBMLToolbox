@@ -1,17 +1,16 @@
 function y = Species_isAssignedByRateRule(SBMLSpecies, SBMLRules)
-% Species_isAssignedByRule takes an SBMLSpecies structure and an array of SBMLRule structures
-% and returns
-%             0 if the Species is not assigned by a rate rule
-%             n if the Species occurs as the Species field of a
-%             PARAMETER_RULE
-%                                  or as the variable field of an RATE_RULE
-%     where n refers to the index of the matched rule in the array
-
-%  Filename    :   Species_isAssignedByRateRule.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: Species_isAssignedByRule.m 13259 2011-03-21 05:40:36Z mhucka $
-%  $Source v $
+% y = Species_isAssignedByRateRule(SBMLSpecies, SBMLRules)
+%
+% takes
+%
+% 1. SBMLSpecies; an SBML Species structure
+% 2. SBMLRules; the array of rules from an SBML Model structure
+%
+% returns
+%
+% y = 
+%   - the index of the rateRule used to assigned value to the Species
+%   - 0 if the Species is not assigned by rateRule 
 %
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
@@ -35,6 +34,10 @@ function y = Species_isAssignedByRateRule(SBMLSpecies, SBMLRules)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
 
  
 y = 0;

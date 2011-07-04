@@ -1,18 +1,16 @@
 function SBMLSpecies = Species_setSpeciesType(SBMLSpecies, speciesType)
+% SBMLSpecies = Species_setSpeciesType(SBMLSpecies, speciesType)
 %
-% Species_setSpeciesType
-%       takes an SBML Species structure
-%    and the speciesType to be set
+% takes
 %
-%       and returns
-%           the Species with the new value for the speciesType attribute
+% 1. SBMLSpecies; an SBML Species structure
+% 2. speciesType; a string representing the speciesType to be set
+%
+% returns
+%
+% 1. the SBML Species structure with the new value for the speciesType attribute
+%
 
-%  Filename    :   Species_setSpeciesType.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -35,6 +33,10 @@ function SBMLSpecies = Species_setSpeciesType(SBMLSpecies, speciesType)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
 
 
 %get level and version and check the input arguments are appropriate
