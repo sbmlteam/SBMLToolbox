@@ -1,18 +1,16 @@
 function SBMLReaction = Reaction_addProduct(SBMLReaction, SBMLProduct)
+% SBMLReaction = Reaction_addProduct(SBMLReaction, SBMLProduct)
 %
-% Reaction_addProduct(SBMLReaction, SBMLProduct)
-%       takes an SBML Reaction structure
-%    and an SBML Product structure
+% takes
 %
-%       and returns
-%           the Reaction with the Product element added
+% 1. SBMLReaction; an SBML Reaction structure
+% 2. SBMLProduct; an SBML Product structure
+%
+% returns
+%
+% 1. the SBML Reaction structure with the SBML Product structure added
+%
 
-%  Filename    :   Reaction_addProduct.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -35,6 +33,10 @@ function SBMLReaction = Reaction_addProduct(SBMLReaction, SBMLProduct)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
 
 
 %get level and version and check the input arguments are appropriate

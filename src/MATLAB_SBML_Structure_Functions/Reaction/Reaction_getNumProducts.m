@@ -1,17 +1,15 @@
 function num = Reaction_getNumProducts(SBMLReaction)
+% num = Reaction_getNumProducts(SBMLReaction)
 %
-% Reaction_getNumProducts
-%       takes an SBML Reaction structure
+% takes
 %
-%       and returns
-%           the number of product elements
+% 1. SBMLReaction; an SBML Reaction structure
+%
+% returns
+%
+% 1. the number of SBML Product structures present in the Reaction
+%
 
-%  Filename    :   Reaction_getNumProducts.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -34,6 +32,10 @@ function num = Reaction_getNumProducts(SBMLReaction)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
 
 
 %get level and version and check the input arguments are appropriate
