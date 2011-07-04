@@ -1,18 +1,16 @@
 function SBMLTrigger = Trigger_setInitialValue(SBMLTrigger, initialValue)
+% SBMLTrigger = Trigger_setInitialValue(SBMLTrigger, initialValue)
 %
-% Trigger_setInitialValue
-%       takes an SBML Trigger structure
-%    and the initialValue to be set
+% takes
 %
-%       and returns
-%           the Trigger with the new value for the initialValue attribute
+% 1. SBMLTrigger; an SBML Trigger structure
+% 2. initialValue; an integer (0/1) representing the value of initialValue to be set
+%
+% returns
+%
+% 1. the SBML Trigger structure with the new value for the initialValue attribute
+%
 
-%  Filename    :   Trigger_setInitialValue.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -35,6 +33,8 @@ function SBMLTrigger = Trigger_setInitialValue(SBMLTrigger, initialValue)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 %get level and version and check the input arguments are appropriate
