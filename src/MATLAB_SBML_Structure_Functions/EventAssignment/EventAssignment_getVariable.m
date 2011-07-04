@@ -1,17 +1,15 @@
 function variable = EventAssignment_getVariable(SBMLEventAssignment)
+% variable = EventAssignment_getVariable(SBMLEventAssignment)
 %
-% EventAssignment_getVariable
-%       takes an SBML EventAssignment structure
+% takes
 %
-%       and returns
-%           the value of the variable attribute
+% 1. SBMLEventAssignment; an SBML EventAssignment structure
+%
+% returns
+%
+% 1. the value of the variable attribute
+%
 
-%  Filename    :   EventAssignment_getVariable.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -34,6 +32,8 @@ function variable = EventAssignment_getVariable(SBMLEventAssignment)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 %get level and version and check the input arguments are appropriate
