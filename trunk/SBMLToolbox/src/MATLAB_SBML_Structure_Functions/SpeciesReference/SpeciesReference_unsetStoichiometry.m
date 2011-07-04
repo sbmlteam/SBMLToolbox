@@ -1,17 +1,15 @@
 function SBMLSpeciesReference = SpeciesReference_unsetStoichiometry(SBMLSpeciesReference)
+% SBMLSpeciesReference = SpeciesReference_unsetStoichiometry(SBMLSpeciesReference)
 %
-% SpeciesReference_getStoichiometry
-%       takes an SBML SpeciesReference structure
+% takes
 %
-%       and returns
-%           the SpeciesReference with the value for the stoichiometry attribute unset
+% 1. SBMLSpeciesReference; an SBML SpeciesReference structure
+%
+% returns
+%
+% 1. the SBML SpeciesReference structure with the stoichiometry attribute unset
+%
 
-%  Filename    :   SpeciesReference_unsetStoichiometry.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -34,6 +32,10 @@ function SBMLSpeciesReference = SpeciesReference_unsetStoichiometry(SBMLSpeciesR
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
 
 
 %get level and version and check the input arguments are appropriate

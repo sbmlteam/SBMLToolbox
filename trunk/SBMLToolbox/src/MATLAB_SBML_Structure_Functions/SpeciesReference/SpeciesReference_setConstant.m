@@ -1,18 +1,16 @@
 function SBMLSpeciesReference = SpeciesReference_setConstant(SBMLSpeciesReference, constant)
+% SBMLSpeciesReference = SpeciesReference_setConstant(SBMLSpeciesReference, constant)
 %
-% SpeciesReference_setConstant
-%       takes an SBML SpeciesReference structure
-%    and the constant to be set
+% takes
 %
-%       and returns
-%           the SpeciesReference with the new value for the constant attribute
+% 1. SBMLSpeciesReference; an SBML SpeciesReference structure
+% 2. constant; an integer (0/1) representing the value of constant to be set
+%
+% returns
+%
+% 1. the SBML SpeciesReference structure with the new value for the constant attribute
+%
 
-%  Filename    :   SpeciesReference_setConstant.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -35,6 +33,10 @@ function SBMLSpeciesReference = SpeciesReference_setConstant(SBMLSpeciesReferenc
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
+
+
 
 
 %get level and version and check the input arguments are appropriate
