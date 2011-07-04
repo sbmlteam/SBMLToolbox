@@ -1,23 +1,19 @@
 function SpeciesConcentrationRule = SpeciesConcentrationRule_create(varargin)
+% SpeciesConcentrationRule = SpeciesConcentrationRule_create(level(optional), version(optional)
 %
-% SpeciesConcentrationRule_create
-%       takes an SBML level (optional)
-%    and   an SBML version (optional)
+% takes
 %
-%       and returns
-%           an MATLAB_SBML SpeciesConcentrationRule structure of the appropriate
-%           level and version
+% 1. level; an integer representing an SBML level (optional)
+% 2. version; an integer representing an SBML version (optional)
 %
-%    NOTE: the optional level and version preserve backwards compatability
-%         if version is missing the default values will be L1V2; L2V4 or L3V1
-%         if neither argument is supplied the default values will be L3V1
+% returns
+%
+% 1. a MATLAB_SBML SpeciesConcentrationRule structure of the appropriate level and version
+%
+% *NOTE:* the optional level and version preserve backwards compatibility
+%   a missing version argument will default to L1V2; L2V4 or L3V1
+%   missing both arguments will default to L3V1
 
-%  Filename    :   SpeciesConcentrationRule_create.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -40,6 +36,8 @@ function SpeciesConcentrationRule = SpeciesConcentrationRule_create(varargin)
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 %check the input arguments are appropriate

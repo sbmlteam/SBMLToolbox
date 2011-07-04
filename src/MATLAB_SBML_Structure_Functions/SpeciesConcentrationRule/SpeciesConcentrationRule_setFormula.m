@@ -1,18 +1,16 @@
 function SBMLSpeciesConcentrationRule = SpeciesConcentrationRule_setFormula(SBMLSpeciesConcentrationRule, formula)
+% SBMLSpeciesConcentrationRule = SpeciesConcentrationRule_setFormula(SBMLSpeciesConcentrationRule, formula)
 %
-% SpeciesConcentrationRule_setFormula
-%       takes an SBML SpeciesConcentrationRule structure
-%    and the formula to be set
+% takes
 %
-%       and returns
-%           the SpeciesConcentrationRule with the new value for the formula attribute
+% 1. SBMLSpeciesConcentrationRule; an SBML SpeciesConcentrationRule structure
+% 2. formula; a string representing the formula to be set
+%
+% returns
+%
+% 1. the SBML SpeciesConcentrationRule structure with the new value for the formula attribute
+%
 
-%  Filename    :   SpeciesConcentrationRule_setFormula.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -35,6 +33,8 @@ function SBMLSpeciesConcentrationRule = SpeciesConcentrationRule_setFormula(SBML
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
+
+
 
 
 %get level and version and check the input arguments are appropriate
