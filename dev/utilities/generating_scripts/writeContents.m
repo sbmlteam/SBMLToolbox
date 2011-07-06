@@ -1,4 +1,4 @@
-function writeContents
+function writeContents()
 
 % Objects = {'AlgebraicRule', 'AssignmentRule', 'Compartment',  'CompartmentType', ...
 %    'CompartmentVolumeRule',  'Constraint',  'Delay', 'Event', 'EventAssignment', ...
@@ -29,12 +29,12 @@ while(~strcmp(a, src))
   end;
   [top, a] = fileparts(top);
 end;
-fprintf(fileTxt, '###%s\n\n\nPut info here.\n\n', upper(out));
+fprintf(fileTxt, '###%s\n\n\nwriteInfo here\n\n', upper(out));
 fprintf(fileTxt, 'Function are:\n\n----------\n\n');
 out = sprintf('%s\\%s', 'toolbox', out);
 
 
-fprintf(fileOut, '%% %s\n%%\n%% write info here \n%%\n', out);
+fprintf(fileOut, '%% %s\n%%\n%% Info here. \n%%\n', out);
 
 listfiles = dir(pwd);
 
@@ -44,9 +44,12 @@ for i=1:length(listfiles)
 %    fprintf(fileOut, '%% %s\n', listfiles(i).name);
     fIn = fopen(listfiles(i).name, 'r');
     disp(sprintf('Processing %s', listfiles(i).name));
-    %% get first two line
-    fgetl(fIn);
+    % get first two line
+    line2 = fgetl(fIn);
     line = fgetl(fIn);
+    if strfind(line2, '...')
+      line = fgetl(fIn);
+    end;
     fprintf(fileOut, '%%');
     for j=1:length(line)
       fprintf(fileOut, '=');
