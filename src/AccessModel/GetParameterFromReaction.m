@@ -1,13 +1,13 @@
 function varargout = GetParameterFromReaction(SBMLReaction)
 % [names, values] = GetParameterFromReaction(SBMLReaction)
 % 
-% takes 
+% Takes 
 % 
-% 1. SBMLReaction; an SBML Reaction structure
+% 1. SBMLReaction, an SBML Reaction structure
 % 
-% returns 
+% Returns 
 % 
-% 1. an array of strings representing the ids of all parameters defined 
+% 1. an array of strings representing the identifiers of all parameters defined 
 %                within the kinetic law of the reaction 
 % 2. an array of the values of each parameter
 % 

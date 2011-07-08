@@ -1,14 +1,14 @@
 function varargout = GetStoichiometryMatrix(SBMLModel)
 % [matrix, species] = GetStoichiometryMatrix(SBMLModel)
 % 
-% takes 
+% Takes
 % 
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 % 
-% returns 
+% Returns
 % 
 % 1. the stoichiometry matrix produced from the reactions/species
-% 2. an array of strings representing the ids of all species within the model 
+% 2. an array of strings representing the identifiers of all species within the model 
 %           (in the order in which the matrix deals with them)
 %
 % *EXAMPLE:*

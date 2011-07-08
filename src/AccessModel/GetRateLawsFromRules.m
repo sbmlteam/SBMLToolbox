@@ -1,13 +1,13 @@
 function [Species, RateLaws] = GetRateLawsFromRules(SBMLModel)
 % [species, rateLaws] = GetRateLawsFromRules(SBMLModel)
 % 
-% takes 
+% Takes
 % 
-% 1. SBMLModel; an SBML Model structure 
+% 1. SBMLModel, an SBML Model structure 
 % 
-% returns
+% Returns
 %
-% 1. an array of strings representing the ids of all species
+% 1. an array of strings representing the identifiers of all species
 % 2. an array of 
 % 
 %  - the character representation of the rateRule that determines

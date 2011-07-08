@@ -1,13 +1,13 @@
 function varargout = GetSpeciesTypes(SBMLModel)
 % names = GetSpeciesTypes(SBMLModel)
 % 
-% takes 
+% Takes
 % 
-% 1. SBMLModel; an SBML Model structure 
+% 1. SBMLModel, an SBML Model structure 
 % 
-% returns 
+% Returns
 % 
-% 1. an array of strings representing the ids of all SpeciesTypes within the model 
+% 1. an array of strings representing the identifiers of all SpeciesTypes within the model 
 %
 
 %--------------------------------------------------------------------------

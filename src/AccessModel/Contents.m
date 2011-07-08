@@ -22,7 +22,7 @@
 %================================================
 % takes 
 % 1. SBMLModel; an SBML Model structure
-% returns 
+% Returns
 % 1. an array of strings representing the ids of all parameters 
 %              (both global and embedded) within the model 
 % 2. an array of the values of each parameter
@@ -32,7 +32,7 @@
 %=====================================================
 % takes 
 % 1. SBMLModel; an SBML model structure
-% returns 
+% Returns
 % 1. an array of strings representing the ids of all parameters 
 %               (both global and embedded) within the model.
 %               _Note:_ reaction names are appended to the names of parameters
@@ -44,7 +44,7 @@
 %========================================
 % takes
 % 1. SBMLModel; an SBML Model structure
-% returns 
+% Returns
 % 1. an array of strings representing the ids of all compartmentTypes within the model 
 %
 %==============================================
@@ -52,7 +52,7 @@
 %==============================================
 % takes
 % 1. SBMLModel; an SBML Model structure 
-% returns 
+% Returns
 % 1. an array of strings representing the ids of all compartments within the model 
 % 2. an array of the size/volume values of each compartment
 %
@@ -61,7 +61,7 @@
 %==================================================
 % takes
 % 1. SBMLModel; an SBML Model structure
-% returns 
+% Returns
 % 1. an array of strings representing the ids of 
 %                all global parameters within the model 
 % 2. an array of the values of each parameter
@@ -71,7 +71,7 @@
 %======================================================================
 % takes
 % 1. SBMLModel; an SBML Model structure
-% returns 
+% Returns
 % 1. an array of strings representing the ids of all parameters
 % 2. an array of 
 %  - the character representation of each algebraic
@@ -83,7 +83,7 @@
 %=========================================================================
 % takes 
 % 1. SBMLModel; an SBML Model structure 
-% returns
+% Returns
 % 1. an array of strings representing the ids of all parameters
 % 2. an array of 
 %  - the character representation of the assignment rule used to 
@@ -95,7 +95,7 @@
 %==========================================================
 % takes 
 % 1. SBMLReaction; an SBML Reaction structure
-% returns 
+% Returns
 % 1. an array of strings representing the ids of all parameters defined 
 %                within the kinetic law of the reaction 
 % 2. an array of the values of each parameter
@@ -105,7 +105,7 @@
 %================================================================
 % takes 
 % 1. SBMLReaction; an SBML Reaction structure 
-% returns 
+% Returns
 % 1. an array of strings representing the ids of all parameters defined 
 %                within the kinetic law of the reaction with the reaction
 %                name appended
@@ -116,7 +116,7 @@
 %=============================================================
 % takes 
 % 1. SBMLModel; an SBML Model structure 
-% returns
+% Returns
 % 1. an array of strings representing the ids of all parameters
 % 2. an array of 
 %  - the character representation of the rate rule used to 
@@ -128,7 +128,7 @@
 %===========================================================
 % takes 
 % 1. SBMLModel; an SBML Model structure 
-% returns
+% Returns
 % 1. an array of strings representing the ids of all species
 % 2. an array of 
 %  - the character representation of the rate law established from any reactions
@@ -140,7 +140,7 @@
 %=======================================================
 % takes 
 % 1. SBMLModel; an SBML Model structure 
-% returns
+% Returns
 % 1. an array of strings representing the ids of all species
 % 2. an array of 
 %  - the character representation of the rateRule that determines
@@ -152,7 +152,7 @@
 %=========================================
 % takes 
 % 1. SBMLModel; an SBML Model structure 
-% returns 
+% Returns
 % 1. an array of strings representing the ids of all species within the model 
 % 2. an array of the initial concentration/amount values of each species
 %
@@ -161,7 +161,7 @@
 %=======================================================
 % takes
 % 1. SBMLModel; an SBML Model structure
-% returns 
+% Returns
 % 1. an array of strings representing the ids of all species
 % 2. an array of 
 %  - the character representation of each algebraic
@@ -173,7 +173,7 @@
 %====================================================================
 % takes 
 % 1. SBMLModel; an SBML Model structure 
-% returns
+% Returns
 % 1. an array of strings representing the ids of all species
 % 2. an array of 
 %  - the character representation of the assignment rule used to 
@@ -185,7 +185,7 @@
 %====================================
 % takes 
 % 1. SBMLModel; an SBML Model structure 
-% returns 
+% Returns
 % 1. an array of strings representing the ids of all SpeciesTypes within the model 
 %
 %=======================================================
@@ -193,7 +193,7 @@
 %=======================================================
 % takes 
 % 1. SBMLModel; an SBML Model structure
-% returns 
+% Returns
 % 1. the stoichiometry matrix produced from the reactions/species
 % 2. an array of strings representing the ids of all species within the model 
 %           (in the order in which the matrix deals with them)
@@ -203,7 +203,7 @@
 %=======================================
 % takes 
 % 1. SBMLModel; an SBML Model structure
-% returns 
+% Returns
 % 1. a sparse stoichiometry matrix produced from the reactions/species
 %
 %===================================================
@@ -211,7 +211,7 @@
 %===================================================
 % takes 
 % 1. SBMLModel; an SBML Model structure
-% returns 
+% Returns
 %           
 % 1. an array of strings representing the ids of any non-constant parameters 
 %              within the model 
@@ -223,7 +223,7 @@
 % takes 
 % 1. SBMLSpecies; an SBML Species structure
 % 2. SBMLReaction; an SBML Reaction structure
-% returns
+% Returns
 % 1. the number of times the species occurs within the reaction
 %
 

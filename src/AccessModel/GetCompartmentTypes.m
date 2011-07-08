@@ -1,13 +1,13 @@
 function varargout = GetCompartmentTypes(SBMLModel)
 % names = GetCompartmentTypes(SBMLModel)
 % 
-% takes
+% Takes
 % 
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 % 
-% returns 
+% Returns
 % 
-% 1. an array of strings representing the ids of all compartmentTypes within the model 
+% 1. an array of strings representing the identifiers of all compartmentTypes within the model 
 %
 
 %<!---------------------------------------------------------------------------

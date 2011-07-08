@@ -1,20 +1,20 @@
 function varargout = GetSpecies(SBMLModel)
 % [names, values] = GetSpecies(SBMLModel)
 % 
-% takes 
+% Takes 
 % 
-% 1. SBMLModel; an SBML Model structure 
+% 1. SBMLModel, an SBML Model structure 
 % 
-% returns 
+% Returns 
 %
-% 1. an array of strings representing the ids of all species within the model 
+% 1. an array of strings representing the identifiers of all species within the model 
 % 2. an array of the initial concentration/amount values of each species
 %
 % *NOTE:* the value returned will be (in order)
 %
 %   - determined from assignmentRules/initialAssignments where appropriate
 %   - the attribute 'initialAmount' or 'initialConcentration' for the given parameter
-%   - NaN; if the value is not specified in any way within the model
+%   - NaN, if the value is not specified in any way within the model
 
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
