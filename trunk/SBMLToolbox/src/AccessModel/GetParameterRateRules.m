@@ -1,13 +1,13 @@
 function [Parameter, RateRules] = GetParameterRateRules(SBMLModel)
 % [parameters, raterules] = GetParameterRateRules((SBMLModel)
 % 
-% takes 
+% Takes 
 % 
-% 1. SBMLModel; an SBML Model structure 
+% 1. SBMLModel, an SBML Model structure 
 % 
-% returns
+% Returns
 %
-% 1. an array of strings representing the ids of all parameters
+% 1. an array of strings representing the identifiers of all parameters
 % 2. an array of 
 %
 %  - the character representation of the rate rule used to 

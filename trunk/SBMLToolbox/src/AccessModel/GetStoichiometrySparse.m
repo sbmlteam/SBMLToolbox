@@ -1,11 +1,11 @@
 function S=GetStoichiometrySparse(model)
 % S = GetStoichiometrySparse(SBMLModel)
 % 
-% takes 
+% Takes
 % 
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 % 
-% returns 
+% Returns
 % 
 % 1. a sparse stoichiometry matrix produced from the reactions/species
 % 

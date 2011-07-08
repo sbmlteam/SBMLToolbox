@@ -1,13 +1,13 @@
 function varargout = GetAllParametersUnique(SBMLModel)
 % [names, values] = GetAllParametersUnique(SBMLModel)
 % 
-% takes 
+% Takes 
 % 
-% 1. SBMLModel; an SBML model structure
+% 1. SBMLModel, an SBML model structure
 % 
-% returns 
+% Returns 
 % 
-% 1. an array of strings representing the ids of all parameters 
+% 1. an array of strings representing the identifiers of all parameters 
 %               (both global and embedded) within the model.
 %               _Note:_ reaction names are appended to the names of parameters
 %               declared within a reaction
@@ -17,7 +17,7 @@ function varargout = GetAllParametersUnique(SBMLModel)
 %
 %   - determined from assignmentRules/initialAssignments where appropriate
 %   - the attribute 'value' for the given parameter
-%   - NaN; if the value is not specified in any way within the model
+%   - NaN, if the value is not specified in any way within the model
 %
 % *EXAMPLE:*
 % 

@@ -1,15 +1,15 @@
 function y = DetermineSpeciesRoleInReaction(SBMLSpecies, SBMLReaction)
 % array = DetermineSpeciesRoleInReaction(SBMLSpecies, SBMLReaction)
 % 
-% takes 
+% Takes 
 % 
-% 1. SBMLSpecies; an SBML species structure
-% 2. SBMLReaction; an SBML reaction structure
+% 1. SBMLSpecies, an SBML species structure
+% 2. SBMLReaction, an SBML reaction structure
 % 
-% returns   
+% Returns   
 % 
 % 1. an array with five elements `[isProduct, isReactant, isModifier, 
-% positionInProductList, positionInReactantList]` indicting 
+% positionInProductList, positionInReactantList]` indicating 
 % whether the species is a product, reactant or modifier and recording 
 % the position in the list of products/reactants
 % 
@@ -22,10 +22,10 @@ function y = DetermineSpeciesRoleInReaction(SBMLSpecies, SBMLReaction)
 %  
 %              y   =   DetermineSpeciesRoleInReaction(s, r)
 %                  =   0                 if s is not in r
-%                  =   [1, 0, 0, 2, 0]   if s is product no 2 in r 
-%                  =   [0, 1, 0, 0, 1]   if s is reactant no 1 in r
+%                  =   [1, 0, 0, 2, 0]   if s is product number 2 in rb 
+%                  =   [0, 1, 0, 0, 1]   if s is reactant number 1 in r
 %                  =   [0, 0, 1, 0, 0]   if s is a modifier in r
-%                  =   [1, 1, 0, 1, 2]   if s is product no 1 and reactant no 2 in r
+%                  =   [1, 1, 0, 1, 2]   if s is product number 1 and reactant number 2 in r
 
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more

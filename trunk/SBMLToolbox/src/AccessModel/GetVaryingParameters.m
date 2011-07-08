@@ -1,13 +1,13 @@
 function varargout = GetVaryingParameters(SBMLModel)
 % [names, values] = GetVaryingParameters(SBMLModel)
 % 
-% takes 
+% Takes 
 % 
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 % 
-% returns 
+% Returns 
 %           
-% 1. an array of strings representing the ids of any non-constant parameters 
+% 1. an array of strings representing the identifiers of any non-constant parameters 
 %              within the model 
 % 2. an array of the values of each of these parameter
 %
