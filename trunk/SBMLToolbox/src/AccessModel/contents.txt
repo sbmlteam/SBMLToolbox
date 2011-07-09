@@ -9,15 +9,15 @@ Function are:
 
 ####array = DetermineSpeciesRoleInReaction(SBMLSpecies, SBMLReaction)
 
-takes 
+Takes 
 
-1. SBMLSpecies; an SBML species structure
-2. SBMLReaction; an SBML reaction structure
+1. SBMLSpecies, an SBML species structure
+2. SBMLReaction, an SBML reaction structure
 
-returns   
+Returns   
 
 1. an array with five elements `[isProduct, isReactant, isModifier, 
-positionInProductList, positionInReactantList]` indicting 
+positionInProductList, positionInReactantList]` indicating 
 whether the species is a product, reactant or modifier and recording 
 the position in the list of products/reactants
 
@@ -30,23 +30,23 @@ or
  
              y   =   DetermineSpeciesRoleInReaction(s, r)
                  =   0                 if s is not in r
-                 =   [1, 0, 0, 2, 0]   if s is product no 2 in r 
-                 =   [0, 1, 0, 0, 1]   if s is reactant no 1 in r
+                 =   [1, 0, 0, 2, 0]   if s is product number 2 in rb 
+                 =   [0, 1, 0, 0, 1]   if s is reactant number 1 in r
                  =   [0, 0, 1, 0, 0]   if s is a modifier in r
-                 =   [1, 1, 0, 1, 2]   if s is product no 1 and reactant no 2 in r
+                 =   [1, 1, 0, 1, 2]   if s is product number 1 and reactant number 2 in r
 
 
 ------------------------------
 
 ####[names, values] = GetAllParameters(SBMLModel) 
 
-takes 
+Takes 
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns 
+Returns 
 
-1. an array of strings representing the ids of all parameters 
+1. an array of strings representing the identifiers of all parameters 
              (both global and embedded) within the model 
 2. an array of the values of each parameter
 
@@ -54,20 +54,20 @@ returns
 
   - determined from assignmentRules/initialAssignments where appropriate
   - the attribute 'value' for the given parameter
-  - NaN; if the value is not specified in any way within the model
+  - NaN, if the value is not specified in any way within the model
 
 
 ------------------------------
 
 ####[names, values] = GetAllParametersUnique(SBMLModel)
 
-takes 
+Takes 
 
-1. SBMLModel; an SBML model structure
+1. SBMLModel, an SBML model structure
 
-returns 
+Returns 
 
-1. an array of strings representing the ids of all parameters 
+1. an array of strings representing the identifiers of all parameters 
               (both global and embedded) within the model.
               _Note:_ reaction names are appended to the names of parameters
               declared within a reaction
@@ -77,7 +77,7 @@ returns
 
   - determined from assignmentRules/initialAssignments where appropriate
   - the attribute 'value' for the given parameter
-  - NaN; if the value is not specified in any way within the model
+  - NaN, if the value is not specified in any way within the model
 
 *EXAMPLE:*
 
@@ -95,13 +95,13 @@ returns
 
 ####names = GetCompartmentTypes(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns 
+Returns
 
-1. an array of strings representing the ids of all compartmentTypes within the model 
+1. an array of strings representing the identifiers of all compartmentTypes within the model 
 
 
 
@@ -109,33 +109,33 @@ returns
 
 ####[names, values] = GetCompartments(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure 
+1. SBMLModel, an SBML Model structure 
 
-returns 
+Returns 
 
-1. an array of strings representing the ids of all compartments within the model 
+1. an array of strings representing the identifiers of all compartments within the model 
 2. an array of the size/volume values of each compartment
 
 *NOTE:* the value returned will be (in order)
 
   - determined from assignmentRules/initialAssignments where appropriate
   - the attribute 'size' ('volume' in L1) for the given compartment
-  - NaN; if the value is not specified in any way within the model
+  - NaN, if the value is not specified in any way within the model
 
 
 ------------------------------
 
 ####[names, values] = GetGlobalParameters(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns 
+Returns 
 
-1. an array of strings representing the ids of 
+1. an array of strings representing the identifiers of 
                all global parameters within the model 
 2. an array of the values of each parameter
 
@@ -143,20 +143,20 @@ returns
 
   - determined from assignmentRules/initialAssignments where appropriate
   - the attribute 'value' for the given parameter
-  - NaN; if the value is not specified in any way within the model
+  - NaN, if the value is not specified in any way within the model
 
 
 ------------------------------
 
 ####[parameters, algebraicRules] = GetParameterAlgebraicRules(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns 
+Returns 
 
-1. an array of strings representing the ids of all parameters
+1. an array of strings representing the identifiers of all parameters
 2. an array of 
 
  - the character representation of each algebraic
@@ -176,18 +176,17 @@ returns
 
 
 
-
 ------------------------------
 
 ####[parameters, assignmentRules] = GetParameterAssignmentRules(SBMLModel) 
 
-takes 
+Takes 
 
-1. SBMLModel; an SBML Model structure 
+1. SBMLModel, an SBML Model structure 
 
-returns
+Returns
 
-1. an array of strings representing the ids of all parameters
+1. an array of strings representing the identifiers of all parameters
 2. an array of 
 
  - the character representation of the assignment rule used to 
@@ -199,13 +198,13 @@ returns
 
 ####[names, values] = GetParameterFromReaction(SBMLReaction)
 
-takes 
+Takes 
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 
-returns 
+Returns 
 
-1. an array of strings representing the ids of all parameters defined 
+1. an array of strings representing the identifiers of all parameters defined 
                within the kinetic law of the reaction 
 2. an array of the values of each parameter
 
@@ -215,14 +214,14 @@ returns
 
 ####[names, values] = GetParameterFromReactionUnique(SBMLReaction)
 
-takes 
+Takes
 
-1. SBMLReaction; an SBML Reaction structure 
+1. SBMLReaction, an SBML Reaction structure 
 
-returns 
+Returns
 
-1. an array of strings representing the ids of all parameters defined 
-               within the kinetic law of the reaction with the reaction
+1. an array of strings representing the identifiers of all parameters defined 
+               within the kinetic law of the reaction, with the reaction
                name appended
 2. an array of the values of each parameter
 
@@ -241,13 +240,13 @@ returns
 
 ####[parameters, raterules] = GetParameterRateRules((SBMLModel)
 
-takes 
+Takes 
 
-1. SBMLModel; an SBML Model structure 
+1. SBMLModel, an SBML Model structure 
 
-returns
+Returns
 
-1. an array of strings representing the ids of all parameters
+1. an array of strings representing the identifiers of all parameters
 2. an array of 
 
  - the character representation of the rate rule used to 
@@ -259,13 +258,13 @@ returns
 
 ####[species, rateLaws] = GetRateLawsFromReactions(SBMLModel)
 
-takes 
+Takes
 
 1. SBMLModel; an SBML Model structure 
 
-returns
+Returns
 
-1. an array of strings representing the ids of all species
+1. an array of strings representing the identifiers of all species
 2. an array of 
 
  - the character representation of the rate law established from any reactions
@@ -289,13 +288,13 @@ returns
 
 ####[species, rateLaws] = GetRateLawsFromRules(SBMLModel)
 
-takes 
+Takes
 
-1. SBMLModel; an SBML Model structure 
+1. SBMLModel, an SBML Model structure 
 
-returns
+Returns
 
-1. an array of strings representing the ids of all species
+1. an array of strings representing the identifiers of all species
 2. an array of 
 
  - the character representation of the rateRule that determines
@@ -307,33 +306,33 @@ returns
 
 ####[names, values] = GetSpecies(SBMLModel)
 
-takes 
+Takes 
 
-1. SBMLModel; an SBML Model structure 
+1. SBMLModel, an SBML Model structure 
 
-returns 
+Returns 
 
-1. an array of strings representing the ids of all species within the model 
+1. an array of strings representing the identifiers of all species within the model 
 2. an array of the initial concentration/amount values of each species
 
 *NOTE:* the value returned will be (in order)
 
   - determined from assignmentRules/initialAssignments where appropriate
   - the attribute 'initialAmount' or 'initialConcentration' for the given parameter
-  - NaN; if the value is not specified in any way within the model
+  - NaN, if the value is not specified in any way within the model
 
 
 ------------------------------
 
 ####[names, values] = GetSpeciesAlgebraicRules(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns 
+Returns
 
-1. an array of strings representing the ids of all species
+1. an array of strings representing the identifiers of all species
 2. an array of 
 
  - the character representation of each algebraic
@@ -358,13 +357,13 @@ returns
 
 ####[species, assignmentRules] = GetSpeciesAssignmentRules(SBMLModel) 
 
-takes 
+Takes
 
-1. SBMLModel; an SBML Model structure 
+1. SBMLModel, an SBML Model structure 
 
-returns
+Returns
 
-1. an array of strings representing the ids of all species
+1. an array of strings representing the identifiers of all species
 2. an array of 
 
  - the character representation of the assignment rule used to 
@@ -376,13 +375,13 @@ returns
 
 ####names = GetSpeciesTypes(SBMLModel)
 
-takes 
+Takes
 
-1. SBMLModel; an SBML Model structure 
+1. SBMLModel, an SBML Model structure 
 
-returns 
+Returns
 
-1. an array of strings representing the ids of all SpeciesTypes within the model 
+1. an array of strings representing the identifiers of all SpeciesTypes within the model 
 
 
 
@@ -390,14 +389,14 @@ returns
 
 ####[matrix, species] = GetStoichiometryMatrix(SBMLModel)
 
-takes 
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns 
+Returns
 
 1. the stoichiometry matrix produced from the reactions/species
-2. an array of strings representing the ids of all species within the model 
+2. an array of strings representing the identifiers of all species within the model 
           (in the order in which the matrix deals with them)
 
 *EXAMPLE:*
@@ -423,11 +422,11 @@ returns
 
 ####S = GetStoichiometrySparse(SBMLModel)
 
-takes 
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns 
+Returns
 
 1. a sparse stoichiometry matrix produced from the reactions/species
 
@@ -438,13 +437,13 @@ returns
 
 ####[names, values] = GetVaryingParameters(SBMLModel)
 
-takes 
+Takes 
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns 
+Returns 
           
-1. an array of strings representing the ids of any non-constant parameters 
+1. an array of strings representing the identifiers of any non-constant parameters 
              within the model 
 2. an array of the values of each of these parameter
 
@@ -459,12 +458,12 @@ returns
 
 ####num = IsSpeciesInReaction(SBMLSpecies, SBMLReaction)
 
-takes 
+Takes
 
-1. SBMLSpecies; an SBML Species structure
-2. SBMLReaction; an SBML Reaction structure
+1. SBMLSpecies, an SBML Species structure
+2. SBMLReaction, an SBML Reaction structure
 
-returns
+Returns
 
 1. the number of times the species occurs within the reaction
 

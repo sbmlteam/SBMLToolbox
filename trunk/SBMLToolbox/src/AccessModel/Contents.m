@@ -6,12 +6,12 @@
 %===================================================================
 % array = DetermineSpeciesRoleInReaction(SBMLSpecies, SBMLReaction)
 %===================================================================
-% takes 
-% 1. SBMLSpecies; an SBML species structure
-% 2. SBMLReaction; an SBML reaction structure
-% returns   
+% Takes 
+% 1. SBMLSpecies, an SBML species structure
+% 2. SBMLReaction, an SBML reaction structure
+% Returns   
 % 1. an array with five elements `[isProduct, isReactant, isModifier, 
-% positionInProductList, positionInReactantList]` indicting 
+% positionInProductList, positionInReactantList]` indicating 
 % whether the species is a product, reactant or modifier and recording 
 % the position in the list of products/reactants
 % or 
@@ -20,20 +20,20 @@
 %================================================
 % [names, values] = GetAllParameters(SBMLModel) 
 %================================================
-% takes 
-% 1. SBMLModel; an SBML Model structure
-% Returns
-% 1. an array of strings representing the ids of all parameters 
+% Takes 
+% 1. SBMLModel, an SBML Model structure
+% Returns 
+% 1. an array of strings representing the identifiers of all parameters 
 %              (both global and embedded) within the model 
 % 2. an array of the values of each parameter
 %
 %=====================================================
 % [names, values] = GetAllParametersUnique(SBMLModel)
 %=====================================================
-% takes 
-% 1. SBMLModel; an SBML model structure
-% Returns
-% 1. an array of strings representing the ids of all parameters 
+% Takes 
+% 1. SBMLModel, an SBML model structure
+% Returns 
+% 1. an array of strings representing the identifiers of all parameters 
 %               (both global and embedded) within the model.
 %               _Note:_ reaction names are appended to the names of parameters
 %               declared within a reaction
@@ -42,37 +42,37 @@
 %========================================
 % names = GetCompartmentTypes(SBMLModel)
 %========================================
-% takes
-% 1. SBMLModel; an SBML Model structure
+% Takes
+% 1. SBMLModel, an SBML Model structure
 % Returns
-% 1. an array of strings representing the ids of all compartmentTypes within the model 
+% 1. an array of strings representing the identifiers of all compartmentTypes within the model 
 %
 %==============================================
 % [names, values] = GetCompartments(SBMLModel)
 %==============================================
-% takes
-% 1. SBMLModel; an SBML Model structure 
-% Returns
-% 1. an array of strings representing the ids of all compartments within the model 
+% Takes
+% 1. SBMLModel, an SBML Model structure 
+% Returns 
+% 1. an array of strings representing the identifiers of all compartments within the model 
 % 2. an array of the size/volume values of each compartment
 %
 %==================================================
 % [names, values] = GetGlobalParameters(SBMLModel)
 %==================================================
-% takes
-% 1. SBMLModel; an SBML Model structure
-% Returns
-% 1. an array of strings representing the ids of 
+% Takes
+% 1. SBMLModel, an SBML Model structure
+% Returns 
+% 1. an array of strings representing the identifiers of 
 %                all global parameters within the model 
 % 2. an array of the values of each parameter
 %
 %======================================================================
 % [parameters, algebraicRules] = GetParameterAlgebraicRules(SBMLModel)
 %======================================================================
-% takes
-% 1. SBMLModel; an SBML Model structure
-% Returns
-% 1. an array of strings representing the ids of all parameters
+% Takes
+% 1. SBMLModel, an SBML Model structure
+% Returns 
+% 1. an array of strings representing the identifiers of all parameters
 % 2. an array of 
 %  - the character representation of each algebraic
 %    rule the parameter appears in 
@@ -81,10 +81,10 @@
 %=========================================================================
 % [parameters, assignmentRules] = GetParameterAssignmentRules(SBMLModel) 
 %=========================================================================
-% takes 
-% 1. SBMLModel; an SBML Model structure 
+% Takes 
+% 1. SBMLModel, an SBML Model structure 
 % Returns
-% 1. an array of strings representing the ids of all parameters
+% 1. an array of strings representing the identifiers of all parameters
 % 2. an array of 
 %  - the character representation of the assignment rule used to 
 %    assign value to a given parameter 
@@ -93,31 +93,31 @@
 %==========================================================
 % [names, values] = GetParameterFromReaction(SBMLReaction)
 %==========================================================
-% takes 
-% 1. SBMLReaction; an SBML Reaction structure
-% Returns
-% 1. an array of strings representing the ids of all parameters defined 
+% Takes 
+% 1. SBMLReaction, an SBML Reaction structure
+% Returns 
+% 1. an array of strings representing the identifiers of all parameters defined 
 %                within the kinetic law of the reaction 
 % 2. an array of the values of each parameter
 %
 %================================================================
 % [names, values] = GetParameterFromReactionUnique(SBMLReaction)
 %================================================================
-% takes 
-% 1. SBMLReaction; an SBML Reaction structure 
+% Takes
+% 1. SBMLReaction, an SBML Reaction structure 
 % Returns
-% 1. an array of strings representing the ids of all parameters defined 
-%                within the kinetic law of the reaction with the reaction
+% 1. an array of strings representing the identifiers of all parameters defined 
+%                within the kinetic law of the reaction, with the reaction
 %                name appended
 % 2. an array of the values of each parameter
 %
 %=============================================================
 % [parameters, raterules] = GetParameterRateRules((SBMLModel)
 %=============================================================
-% takes 
-% 1. SBMLModel; an SBML Model structure 
+% Takes 
+% 1. SBMLModel, an SBML Model structure 
 % Returns
-% 1. an array of strings representing the ids of all parameters
+% 1. an array of strings representing the identifiers of all parameters
 % 2. an array of 
 %  - the character representation of the rate rule used to 
 %    assign value to a given parameter 
@@ -126,10 +126,10 @@
 %===========================================================
 % [species, rateLaws] = GetRateLawsFromReactions(SBMLModel)
 %===========================================================
-% takes 
+% Takes
 % 1. SBMLModel; an SBML Model structure 
 % Returns
-% 1. an array of strings representing the ids of all species
+% 1. an array of strings representing the identifiers of all species
 % 2. an array of 
 %  - the character representation of the rate law established from any reactions
 %    that determines the particular species
@@ -138,10 +138,10 @@
 %=======================================================
 % [species, rateLaws] = GetRateLawsFromRules(SBMLModel)
 %=======================================================
-% takes 
-% 1. SBMLModel; an SBML Model structure 
+% Takes
+% 1. SBMLModel, an SBML Model structure 
 % Returns
-% 1. an array of strings representing the ids of all species
+% 1. an array of strings representing the identifiers of all species
 % 2. an array of 
 %  - the character representation of the rateRule that determines
 %    the particular species
@@ -150,19 +150,19 @@
 %=========================================
 % [names, values] = GetSpecies(SBMLModel)
 %=========================================
-% takes 
-% 1. SBMLModel; an SBML Model structure 
-% Returns
-% 1. an array of strings representing the ids of all species within the model 
+% Takes 
+% 1. SBMLModel, an SBML Model structure 
+% Returns 
+% 1. an array of strings representing the identifiers of all species within the model 
 % 2. an array of the initial concentration/amount values of each species
 %
 %=======================================================
 % [names, values] = GetSpeciesAlgebraicRules(SBMLModel)
 %=======================================================
-% takes
-% 1. SBMLModel; an SBML Model structure
+% Takes
+% 1. SBMLModel, an SBML Model structure
 % Returns
-% 1. an array of strings representing the ids of all species
+% 1. an array of strings representing the identifiers of all species
 % 2. an array of 
 %  - the character representation of each algebraic
 %    rule the species appears in 
@@ -171,10 +171,10 @@
 %====================================================================
 % [species, assignmentRules] = GetSpeciesAssignmentRules(SBMLModel) 
 %====================================================================
-% takes 
-% 1. SBMLModel; an SBML Model structure 
+% Takes
+% 1. SBMLModel, an SBML Model structure 
 % Returns
-% 1. an array of strings representing the ids of all species
+% 1. an array of strings representing the identifiers of all species
 % 2. an array of 
 %  - the character representation of the assignment rule used to 
 %    assign value to a given species 
@@ -183,46 +183,46 @@
 %====================================
 % names = GetSpeciesTypes(SBMLModel)
 %====================================
-% takes 
-% 1. SBMLModel; an SBML Model structure 
+% Takes
+% 1. SBMLModel, an SBML Model structure 
 % Returns
-% 1. an array of strings representing the ids of all SpeciesTypes within the model 
+% 1. an array of strings representing the identifiers of all SpeciesTypes within the model 
 %
 %=======================================================
 % [matrix, species] = GetStoichiometryMatrix(SBMLModel)
 %=======================================================
-% takes 
-% 1. SBMLModel; an SBML Model structure
+% Takes
+% 1. SBMLModel, an SBML Model structure
 % Returns
 % 1. the stoichiometry matrix produced from the reactions/species
-% 2. an array of strings representing the ids of all species within the model 
+% 2. an array of strings representing the identifiers of all species within the model 
 %           (in the order in which the matrix deals with them)
 %
 %=======================================
 % S = GetStoichiometrySparse(SBMLModel)
 %=======================================
-% takes 
-% 1. SBMLModel; an SBML Model structure
+% Takes
+% 1. SBMLModel, an SBML Model structure
 % Returns
 % 1. a sparse stoichiometry matrix produced from the reactions/species
 %
 %===================================================
 % [names, values] = GetVaryingParameters(SBMLModel)
 %===================================================
-% takes 
-% 1. SBMLModel; an SBML Model structure
-% Returns
+% Takes 
+% 1. SBMLModel, an SBML Model structure
+% Returns 
 %           
-% 1. an array of strings representing the ids of any non-constant parameters 
+% 1. an array of strings representing the identifiers of any non-constant parameters 
 %              within the model 
 % 2. an array of the values of each of these parameter
 %
 %======================================================
 % num = IsSpeciesInReaction(SBMLSpecies, SBMLReaction)
 %======================================================
-% takes 
-% 1. SBMLSpecies; an SBML Species structure
-% 2. SBMLReaction; an SBML Reaction structure
+% Takes
+% 1. SBMLSpecies, an SBML Species structure
+% 2. SBMLReaction, an SBML Reaction structure
 % Returns
 % 1. the number of times the species occurs within the reaction
 %
