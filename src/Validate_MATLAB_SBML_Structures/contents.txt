@@ -12,13 +12,13 @@ Function are:
 
 ####[valid, message] = isSBML_AlgebraicRule(SBMLAlgebraicRule, level, version(optional))
 
-takes
+Takes
 
-1. SBMLAlgebraicRule; an SBML AlgebraicRule structure
-2. level; an integer representing an SBML level
-3. version (optional); an integer representing an SBML version
+1. SBMLAlgebraicRule, an SBML AlgebraicRule structure
+2. level, an integer representing an SBML level
+3. version (optional), an integer representing an SBML version
 
-returns
+Returns
 
 1. valid = 
   - 1, if the structure represents
@@ -37,13 +37,13 @@ level and version can be found using getAlgebraicRuleFieldnames(level, version)
 
 ####[valid, message] = isSBML_AssignmentRule(SBMLAssignmentRule, level, version(optional))
 
-takes
+Takes
 
-1. SBMLAssignmentRule; an SBML AssignmentRule structure
-2. level; an integer representing an SBML level
-3. version (optional); an integer representing an SBML version
+1. SBMLAssignmentRule, an SBML AssignmentRule structure
+2. level, an integer representing an SBML level
+3. version (optional), an integer representing an SBML version
 
-returns
+Returns
 
 1. valid = 
   - 1, if the structure represents
@@ -62,13 +62,13 @@ level and version can be found using getAssignmentRuleFieldnames(level, version)
 
 ####[valid, message] = isSBML_Compartment(SBMLCompartment, level, version(optional))
 
-takes
+Takes
 
-1. SBMLCompartment; an SBML Compartment structure
-2. level; an integer representing an SBML level
-3. version (optional); an integer representing an SBML version
+1. SBMLCompartment, an SBML Compartment structure
+2. level, an integer representing an SBML level
+3. version (optional), an integer representing an SBML version
 
-returns
+Returns
 
 1. valid = 
   - 1, if the structure represents
@@ -87,13 +87,13 @@ level and version can be found using getCompartmentFieldnames(level, version)
 
 ####[valid, message] = isSBML_CompartmentType(SBMLCompartmentType, level, version(optional))
 
-takes
+Takes
 
-1. SBMLCompartmentType; an SBML CompartmentType structure
-2. level; an integer representing an SBML level
-3. version (optional); an integer representing an SBML version
+1. SBMLCompartmentType, an SBML CompartmentType structure
+2. level, an integer representing an SBML level
+3. version (optional), an integer representing an SBML version
 
-returns
+Returns
 
 1. valid = 
   - 1, if the structure represents
@@ -112,13 +112,13 @@ level and version can be found using getCompartmentTypeFieldnames(level, version
 
 ####[valid, message] = isSBML_CompartmentVolumeRule(SBMLCompartmentVolumeRule, level, version(optional))
 
-takes
+Takes
 
-1. SBMLCompartmentVolumeRule; an SBML CompartmentVolumeRule structure
-2. level; an integer representing an SBML level
-3. version (optional); an integer representing an SBML version
+1. SBMLCompartmentVolumeRule, an SBML CompartmentVolumeRule structure
+2. level, an integer representing an SBML level
+3. version (optional), an integer representing an SBML version
 
-returns
+Returns
 
 1. valid = 
   - 1, if the structure represents
@@ -137,13 +137,13 @@ level and version can be found using getCompartmentVolumeRuleFieldnames(level, v
 
 ####[valid, message] = isSBML_Constraint(SBMLConstraint, level, version(optional))
 
-takes
+Takes
 
-1. SBMLConstraint; an SBML Constraint structure
-2. level; an integer representing an SBML level
-3. version (optional); an integer representing an SBML version
+1. SBMLConstraint, an SBML Constraint structure
+2. level, an integer representing an SBML level
+3. version (optional), an integer representing an SBML version
 
-returns
+Returns
 
 1. valid = 
   - 1, if the structure represents
@@ -162,13 +162,13 @@ level and version can be found using getConstraintFieldnames(level, version)
 
 ####[valid, message] = isSBML_Delay(SBMLDelay, level, version(optional))
 
-takes
+Takes
 
-1. SBMLDelay; an SBML Delay structure
-2. level; an integer representing an SBML level
-3. version (optional); an integer representing an SBML version
+1. SBMLDelay, an SBML Delay structure
+2. level, an integer representing an SBML level
+3. version (optional), an integer representing an SBML version
 
-returns
+Returns
 
 1. valid = 
   - 1, if the structure represents
@@ -187,13 +187,13 @@ level and version can be found using getDelayFieldnames(level, version)
 
 ####[valid, message] = isSBML_Event(SBMLEvent, level, version(optional))
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
-2. level; an integer representing an SBML level
-3. version (optional); an integer representing an SBML version
+1. SBMLEvent, an SBML Event structure
+2. level, an integer representing an SBML level
+3. version (optional), an integer representing an SBML version
 
-returns
+Returns
 
 1. valid = 
   - 1, if the structure represents
@@ -212,13 +212,13 @@ level and version can be found using getEventFieldnames(level, version)
 
 ####[valid, message] = isSBML_EventAssignment(SBMLEventAssignment, level, version(optional))
 
-takes
+Takes
 
-1. SBMLEventAssignment; an SBML EventAssignment structure
-2. level; an integer representing an SBML level
-3. version (optional); an integer representing an SBML version
+1. SBMLEventAssignment, an SBML EventAssignment structure
+2. level, an integer representing an SBML level
+3. version (optional), an integer representing an SBML version
 
-returns
+Returns
 
 1. valid = 
   - 1, if the structure represents
@@ -237,13 +237,13 @@ level and version can be found using getEventAssignmentFieldnames(level, version
 
 ####[valid, message] = isSBML_FunctionDefinition(SBMLFunctionDefinition, level, version(optional))
 
-takes
+Takes
 
-1. SBMLFunctionDefinition; an SBML FunctionDefinition structure
-2. level; an integer representing an SBML level
-3. version (optional); an integer representing an SBML version
+1. SBMLFunctionDefinition, an SBML FunctionDefinition structure
+2. level, an integer representing an SBML level
+3. version (optional), an integer representing an SBML version
 
-returns
+Returns
 
 1. valid = 
   - 1, if the structure represents
@@ -262,13 +262,13 @@ level and version can be found using getFunctionDefinitionFieldnames(level, vers
 
 ####[valid, message] = isSBML_InitialAssignment(SBMLInitialAssignment, level, version(optional))
 
-takes
+Takes
 
-1. SBMLInitialAssignment; an SBML InitialAssignment structure
-2. level; an integer representing an SBML level
-3. version (optional); an integer representing an SBML version
+1. SBMLInitialAssignment, an SBML InitialAssignment structure
+2. level, an integer representing an SBML level
+3. version (optional), an integer representing an SBML version
 
-returns
+Returns
 
 1. valid = 
   - 1, if the structure represents
@@ -287,13 +287,13 @@ level and version can be found using getInitialAssignmentFieldnames(level, versi
 
 ####[valid, message] = isSBML_KineticLaw(SBMLKineticLaw, level, version(optional))
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
-2. level; an integer representing an SBML level
-3. version (optional); an integer representing an SBML version
+1. SBMLKineticLaw, an SBML KineticLaw structure
+2. level, an integer representing an SBML level
+3. version (optional), an integer representing an SBML version
 
-returns
+Returns
 
 1. valid = 
   - 1, if the structure represents
@@ -312,13 +312,13 @@ level and version can be found using getKineticLawFieldnames(level, version)
 
 ####[valid, message] = isSBML_LocalParameter(SBMLLocalParameter, level, version(optional))
 
-takes
+Takes
 
-1. SBMLLocalParameter; an SBML LocalParameter structure
-2. level; an integer representing an SBML level
-3. version (optional); an integer representing an SBML version
+1. SBMLLocalParameter, an SBML LocalParameter structure
+2. level, an integer representing an SBML level
+3. version (optional), an integer representing an SBML version
 
-returns
+Returns
 
 1. valid = 
   - 1, if the structure represents
@@ -337,11 +337,11 @@ level and version can be found using getLocalParameterFieldnames(level, version)
 
 ####[valid, message] = isSBML_Model(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. valid = 
   - 1, if the structure represents
@@ -358,13 +358,13 @@ level and version can be found using getModelFieldnames(level, version)
 
 ####[valid, message] = isSBML_ModifierSpeciesReference(SBMLModifierSpeciesReference, level, version(optional))
 
-takes
+Takes
 
-1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
-2. level; an integer representing an SBML level
-3. version (optional); an integer representing an SBML version
+1. SBMLModifierSpeciesReference, an SBML ModifierSpeciesReference structure
+2. level, an integer representing an SBML level
+3. version (optional), an integer representing an SBML version
 
-returns
+Returns
 
 1. valid = 
   - 1, if the structure represents
@@ -383,13 +383,13 @@ level and version can be found using getModifierSpeciesReferenceFieldnames(level
 
 ####[valid, message] = isSBML_Parameter(SBMLParameter, level, version(optional))
 
-takes
+Takes
 
-1. SBMLParameter; an SBML Parameter structure
-2. level; an integer representing an SBML level
-3. version (optional); an integer representing an SBML version
+1. SBMLParameter, an SBML Parameter structure
+2. level, an integer representing an SBML level
+3. version (optional), an integer representing an SBML version
 
-returns
+Returns
 
 1. valid = 
   - 1, if the structure represents
@@ -408,13 +408,13 @@ level and version can be found using getParameterFieldnames(level, version)
 
 ####[valid, message] = isSBML_ParameterRule(SBMLParameterRule, level, version(optional))
 
-takes
+Takes
 
-1. SBMLParameterRule; an SBML ParameterRule structure
-2. level; an integer representing an SBML level
-3. version (optional); an integer representing an SBML version
+1. SBMLParameterRule, an SBML ParameterRule structure
+2. level, an integer representing an SBML level
+3. version (optional), an integer representing an SBML version
 
-returns
+Returns
 
 1. valid = 
   - 1, if the structure represents
@@ -433,13 +433,13 @@ level and version can be found using getParameterRuleFieldnames(level, version)
 
 ####[valid, message] = isSBML_Priority(SBMLPriority, level, version(optional))
 
-takes
+Takes
 
-1. SBMLPriority; an SBML Priority structure
-2. level; an integer representing an SBML level
-3. version (optional); an integer representing an SBML version
+1. SBMLPriority, an SBML Priority structure
+2. level, an integer representing an SBML level
+3. version (optional), an integer representing an SBML version
 
-returns
+Returns
 
 1. valid = 
   - 1, if the structure represents
@@ -458,13 +458,13 @@ level and version can be found using getPriorityFieldnames(level, version)
 
 ####[valid, message] = isSBML_RateRule(SBMLRateRule, level, version(optional))
 
-takes
+Takes
 
-1. SBMLRateRule; an SBML RateRule structure
-2. level; an integer representing an SBML level
-3. version (optional); an integer representing an SBML version
+1. SBMLRateRule, an SBML RateRule structure
+2. level, an integer representing an SBML level
+3. version (optional), an integer representing an SBML version
 
-returns
+Returns
 
 1. valid = 
   - 1, if the structure represents
@@ -483,13 +483,13 @@ level and version can be found using getRateRuleFieldnames(level, version)
 
 ####[valid, message] = isSBML_Reaction(SBMLReaction, level, version(optional))
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
-2. level; an integer representing an SBML level
-3. version (optional); an integer representing an SBML version
+1. SBMLReaction, an SBML Reaction structure
+2. level, an integer representing an SBML level
+3. version (optional), an integer representing an SBML version
 
-returns
+Returns
 
 1. valid = 
   - 1, if the structure represents
@@ -508,13 +508,13 @@ level and version can be found using getReactionFieldnames(level, version)
 
 ####[valid, message] = isSBML_Rule(SBMLRule, level, version(optional))
 
-takes
+Takes
 
-1. SBMLRule; an SBML Rule structure
-2. level; an integer representing an SBML level
-3. version (optional); an integer representing an SBML version
+1. SBMLRule, an SBML Rule structure
+2. level, an integer representing an SBML level
+3. version (optional), an integer representing an SBML version
 
-returns
+Returns
 
 1. valid = 
   - 1, if the structure represents
@@ -533,13 +533,13 @@ level and version can be found using getRuleFieldnames(level, version)
 
 ####[valid, message] = isSBML_Species(SBMLSpecies, level, version(optional))
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
-2. level; an integer representing an SBML level
-3. version (optional); an integer representing an SBML version
+1. SBMLSpecies, an SBML Species structure
+2. level, an integer representing an SBML level
+3. version (optional), an integer representing an SBML version
 
-returns
+Returns
 
 1. valid = 
   - 1, if the structure represents
@@ -558,13 +558,13 @@ level and version can be found using getSpeciesFieldnames(level, version)
 
 ####[valid, message] = isSBML_SpeciesConcentrationRule(SBMLSpeciesConcentrationRule, level, version(optional))
 
-takes
+Takes
 
-1. SBMLSpeciesConcentrationRule; an SBML SpeciesConcentrationRule structure
-2. level; an integer representing an SBML level
-3. version (optional); an integer representing an SBML version
+1. SBMLSpeciesConcentrationRule, an SBML SpeciesConcentrationRule structure
+2. level, an integer representing an SBML level
+3. version (optional), an integer representing an SBML version
 
-returns
+Returns
 
 1. valid = 
   - 1, if the structure represents
@@ -583,13 +583,13 @@ level and version can be found using getSpeciesConcentrationRuleFieldnames(level
 
 ####[valid, message] = isSBML_SpeciesReference(SBMLSpeciesReference, level, version(optional))
 
-takes
+Takes
 
-1. SBMLSpeciesReference; an SBML SpeciesReference structure
-2. level; an integer representing an SBML level
-3. version (optional); an integer representing an SBML version
+1. SBMLSpeciesReference, an SBML SpeciesReference structure
+2. level, an integer representing an SBML level
+3. version (optional), an integer representing an SBML version
 
-returns
+Returns
 
 1. valid = 
   - 1, if the structure represents
@@ -608,13 +608,13 @@ level and version can be found using getSpeciesReferenceFieldnames(level, versio
 
 ####[valid, message] = isSBML_SpeciesType(SBMLSpeciesType, level, version(optional))
 
-takes
+Takes
 
-1. SBMLSpeciesType; an SBML SpeciesType structure
-2. level; an integer representing an SBML level
-3. version (optional); an integer representing an SBML version
+1. SBMLSpeciesType, an SBML SpeciesType structure
+2. level, an integer representing an SBML level
+3. version (optional), an integer representing an SBML version
 
-returns
+Returns
 
 1. valid = 
   - 1, if the structure represents
@@ -633,13 +633,13 @@ level and version can be found using getSpeciesTypeFieldnames(level, version)
 
 ####[valid, message] = isSBML_StoichiometryMath(SBMLStoichiometryMath, level, version(optional))
 
-takes
+Takes
 
-1. SBMLStoichiometryMath; an SBML StoichiometryMath structure
-2. level; an integer representing an SBML level
-3. version (optional); an integer representing an SBML version
+1. SBMLStoichiometryMath, an SBML StoichiometryMath structure
+2. level, an integer representing an SBML level
+3. version (optional), an integer representing an SBML version
 
-returns
+Returns
 
 1. valid = 
   - 1, if the structure represents
@@ -658,13 +658,13 @@ level and version can be found using getStoichiometryMathFieldnames(level, versi
 
 ####[valid, message] = isSBML_Trigger(SBMLTrigger, level, version(optional))
 
-takes
+Takes
 
-1. SBMLTrigger; an SBML Trigger structure
-2. level; an integer representing an SBML level
-3. version (optional); an integer representing an SBML version
+1. SBMLTrigger, an SBML Trigger structure
+2. level, an integer representing an SBML level
+3. version (optional), an integer representing an SBML version
 
-returns
+Returns
 
 1. valid = 
   - 1, if the structure represents
@@ -683,13 +683,13 @@ level and version can be found using getTriggerFieldnames(level, version)
 
 ####[valid, message] = isSBML_Unit(SBMLUnit, level, version(optional))
 
-takes
+Takes
 
-1. SBMLUnit; an SBML Unit structure
-2. level; an integer representing an SBML level
-3. version (optional); an integer representing an SBML version
+1. SBMLUnit, an SBML Unit structure
+2. level, an integer representing an SBML level
+3. version (optional), an integer representing an SBML version
 
-returns
+Returns
 
 1. valid = 
   - 1, if the structure represents
@@ -708,13 +708,13 @@ level and version can be found using getUnitFieldnames(level, version)
 
 ####[valid, message] = isSBML_UnitDefinition(SBMLUnitDefinition, level, version(optional))
 
-takes
+Takes
 
-1. SBMLUnitDefinition; an SBML UnitDefinition structure
-2. level; an integer representing an SBML level
-3. version (optional); an integer representing an SBML version
+1. SBMLUnitDefinition, an SBML UnitDefinition structure
+2. level, an integer representing an SBML level
+3. version (optional), an integer representing an SBML version
 
-returns
+Returns
 
 1. valid = 
   - 1, if the structure represents
@@ -733,13 +733,13 @@ level and version can be found using getUnitDefinitionFieldnames(level, version)
 
 ####[valid, message] = isValid(SBMLStruct, level(optional), version(optional))
 
-takes
+Takes
 
-1. SBMLStruct; an SBML  structure
-2. level (optional); an integer representing an SBML level
-3. version (optional); an integer representing an SBML version
+1. SBMLStruct, an SBML  structure
+2. level (optional), an integer representing an SBML level
+3. version (optional), an integer representing an SBML version
 
-returns
+Returns
 
 1. valid = 
   - 1, if the structure represents
@@ -760,11 +760,11 @@ level and version can be found using getFieldnames(typecode, level, version)
 
 ####[valid, message] = isSBML_Model(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. valid = 
   - 1, if the structure represents
