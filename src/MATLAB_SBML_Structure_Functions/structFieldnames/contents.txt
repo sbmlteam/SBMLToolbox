@@ -1,4 +1,4 @@
-###MATLAB SBML STRUCTURE FUNCTIONS\STRUCTFIELDNAMES
+###MATLAB_SBML_STRUCTURE_FUNCTIONS\STRUCTFIELDNAMES
 
 
 These functions return the fieldnames and default values for the MATLAB_SBML structures. 
@@ -9,12 +9,12 @@ Function are:
 
 ####[values] = getAlgebraicRuleDefaultValues(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of default values for an SBML AlgebraicRule structure of the given level and version
 
@@ -26,12 +26,12 @@ returns
 
 ####[fieldnames, num] = getAlgebraicRuleFieldnames(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of fieldnames for an SBML AlgebraicRule structure of the given level and version
 2. the number of fieldnames
@@ -42,12 +42,12 @@ returns
 
 ####[values] = getAssignmentRuleDefaultValues(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of default values for an SBML AssignmentRule structure of the given level and version
 
@@ -59,12 +59,12 @@ returns
 
 ####[fieldnames, num] = getAssignmentRuleFieldnames(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of fieldnames for an SBML AssignmentRule structure of the given level and version
 2. the number of fieldnames
@@ -75,12 +75,12 @@ returns
 
 ####[values] = getCompartmentDefaultValues(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of default values for an SBML Compartment structure of the given level and version
 
@@ -92,12 +92,12 @@ returns
 
 ####[fieldnames, num] = getCompartmentFieldnames(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of fieldnames for an SBML Compartment structure of the given level and version
 2. the number of fieldnames
@@ -108,12 +108,12 @@ returns
 
 ####[values] = getCompartmentTypeDefaultValues(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of default values for an SBML CompartmentType structure of the given level and version
 
@@ -125,12 +125,12 @@ returns
 
 ####[fieldnames, num] = getCompartmentTypeFieldnames(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of fieldnames for an SBML CompartmentType structure of the given level and version
 2. the number of fieldnames
@@ -141,12 +141,12 @@ returns
 
 ####[values] = getCompartmentVolumeRuleDefaultValues(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of default values for an SBML CompartmentVolumeRule structure of the given level and version
 
@@ -158,12 +158,12 @@ returns
 
 ####[fieldnames, num] = getCompartmentVolumeRuleFieldnames(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of fieldnames for an SBML CompartmentVolumeRule structure of the given level and version
 2. the number of fieldnames
@@ -174,12 +174,12 @@ returns
 
 ####[values] = getConstraintDefaultValues(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of default values for an SBML Constraint structure of the given level and version
 
@@ -191,12 +191,12 @@ returns
 
 ####[fieldnames, num] = getConstraintFieldnames(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of fieldnames for an SBML Constraint structure of the given level and version
 2. the number of fieldnames
@@ -207,13 +207,13 @@ returns
 
 ####[values] = getDefaultValues(typecode, level, version)
 
-takes
+Takes
 
 1. typecode; a string representing the type of object being queried
-2. level; an integer representing an SBML level
-3. version; an integer representing an SBML version
+2. level, an integer representing an SBML level
+3. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of default values for an SBML structure of the given typecode, level and version
 
@@ -225,12 +225,12 @@ returns
 
 ####[values] = getDelayDefaultValues(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of default values for an SBML Delay structure of the given level and version
 
@@ -242,12 +242,12 @@ returns
 
 ####[fieldnames, num] = getDelayFieldnames(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of fieldnames for an SBML Delay structure of the given level and version
 2. the number of fieldnames
@@ -258,12 +258,12 @@ returns
 
 ####[values] = getEventAssignmentDefaultValues(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of default values for an SBML EventAssignment structure of the given level and version
 
@@ -275,12 +275,12 @@ returns
 
 ####[fieldnames, num] = getEventAssignmentFieldnames(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of fieldnames for an SBML EventAssignment structure of the given level and version
 2. the number of fieldnames
@@ -291,12 +291,12 @@ returns
 
 ####[values] = getEventDefaultValues(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of default values for an SBML Event structure of the given level and version
 
@@ -308,12 +308,12 @@ returns
 
 ####[fieldnames, num] = getEventFieldnames(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of fieldnames for an SBML Event structure of the given level and version
 2. the number of fieldnames
@@ -324,13 +324,13 @@ returns
 
 ####[fieldnames, num] = getFieldnames(typecode, level, version)
 
-takes
+Takes
 
 1. typecode; a string representing the type of object being queried
-2. level; an integer representing an SBML level
-3. version; an integer representing an SBML version
+2. level, an integer representing an SBML level
+3. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of fieldnames for an SBML structure of the given typecode, level and version
 2. the number of fieldnames
@@ -341,12 +341,12 @@ returns
 
 ####[values] = getFunctionDefinitionDefaultValues(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of default values for an SBML FunctionDefinition structure of the given level and version
 
@@ -358,12 +358,12 @@ returns
 
 ####[fieldnames, num] = getFunctionDefinitionFieldnames(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of fieldnames for an SBML FunctionDefinition structure of the given level and version
 2. the number of fieldnames
@@ -374,12 +374,12 @@ returns
 
 ####[values] = getInitialAssignmentDefaultValues(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of default values for an SBML InitialAssignment structure of the given level and version
 
@@ -391,12 +391,12 @@ returns
 
 ####[fieldnames, num] = getInitialAssignmentFieldnames(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of fieldnames for an SBML InitialAssignment structure of the given level and version
 2. the number of fieldnames
@@ -407,12 +407,12 @@ returns
 
 ####[values] = getKineticLawDefaultValues(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of default values for an SBML KineticLaw structure of the given level and version
 
@@ -424,12 +424,12 @@ returns
 
 ####[fieldnames, num] = getKineticLawFieldnames(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of fieldnames for an SBML KineticLaw structure of the given level and version
 2. the number of fieldnames
@@ -440,12 +440,12 @@ returns
 
 ####[values] = getLocalParameterDefaultValues(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of default values for an SBML LocalParameter structure of the given level and version
 
@@ -457,12 +457,12 @@ returns
 
 ####[fieldnames, num] = getLocalParameterFieldnames(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of fieldnames for an SBML LocalParameter structure of the given level and version
 2. the number of fieldnames
@@ -473,12 +473,12 @@ returns
 
 ####[values] = getModelDefaultValues(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of default values for an SBML Model structure of the given level and version
 
@@ -490,12 +490,12 @@ returns
 
 ####[fieldnames, num] = getModelFieldnames(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of fieldnames for an SBML Model structure of the given level and version
 2. the number of fieldnames
@@ -506,12 +506,12 @@ returns
 
 ####[values] = getModifierSpeciesReferenceDefaultValues(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of default values for an SBML ModifierSpeciesReference structure of the given level and version
 
@@ -523,12 +523,12 @@ returns
 
 ####[fieldnames, num] = getModifierSpeciesReferenceFieldnames(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of fieldnames for an SBML ModifierSpeciesReference structure of the given level and version
 2. the number of fieldnames
@@ -539,12 +539,12 @@ returns
 
 ####[values] = getParameterDefaultValues(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of default values for an SBML Parameter structure of the given level and version
 
@@ -556,12 +556,12 @@ returns
 
 ####[fieldnames, num] = getParameterFieldnames(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of fieldnames for an SBML Parameter structure of the given level and version
 2. the number of fieldnames
@@ -572,12 +572,12 @@ returns
 
 ####[values] = getParameterRuleDefaultValues(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of default values for an SBML ParameterRule structure of the given level and version
 
@@ -589,12 +589,12 @@ returns
 
 ####[fieldnames, num] = getParameterRuleFieldnames(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of fieldnames for an SBML ParameterRule structure of the given level and version
 2. the number of fieldnames
@@ -605,12 +605,12 @@ returns
 
 ####[values] = getPriorityDefaultValues(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of default values for an SBML Priority structure of the given level and version
 
@@ -622,12 +622,12 @@ returns
 
 ####[fieldnames, num] = getPriorityFieldnames(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of fieldnames for an SBML Priority structure of the given level and version
 2. the number of fieldnames
@@ -638,12 +638,12 @@ returns
 
 ####[values] = getRateRuleDefaultValues(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of default values for an SBML RateRule structure of the given level and version
 
@@ -655,12 +655,12 @@ returns
 
 ####[fieldnames, num] = getRateRuleFieldnames(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of fieldnames for an SBML RateRule structure of the given level and version
 2. the number of fieldnames
@@ -671,12 +671,12 @@ returns
 
 ####[values] = getReactionDefaultValues(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of default values for an SBML Reaction structure of the given level and version
 
@@ -688,12 +688,12 @@ returns
 
 ####[fieldnames, num] = getReactionFieldnames(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of fieldnames for an SBML Reaction structure of the given level and version
 2. the number of fieldnames
@@ -704,12 +704,12 @@ returns
 
 ####[fieldnames, num] = getRuleFieldnames(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of fieldnames for an SBML Rule structure of the given level and version
 2. the number of fieldnames
@@ -720,12 +720,12 @@ returns
 
 ####[values] = getSpeciesConcentrationRuleDefaultValues(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of default values for an SBML SpeciesConcentrationRule structure of the given level and version
 
@@ -737,12 +737,12 @@ returns
 
 ####[fieldnames, num] = getSpeciesConcentrationRuleFieldnames(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of fieldnames for an SBML SpeciesConcentrationRule structure of the given level and version
 2. the number of fieldnames
@@ -753,12 +753,12 @@ returns
 
 ####[values] = getSpeciesDefaultValues(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of default values for an SBML Species structure of the given level and version
 
@@ -770,12 +770,12 @@ returns
 
 ####[fieldnames, num] = getSpeciesFieldnames(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of fieldnames for an SBML Species structure of the given level and version
 2. the number of fieldnames
@@ -786,12 +786,12 @@ returns
 
 ####[values] = getSpeciesReferenceDefaultValues(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of default values for an SBML SpeciesReference structure of the given level and version
 
@@ -803,12 +803,12 @@ returns
 
 ####[fieldnames, num] = getSpeciesReferenceFieldnames(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of fieldnames for an SBML SpeciesReference structure of the given level and version
 2. the number of fieldnames
@@ -819,12 +819,12 @@ returns
 
 ####[values] = getSpeciesTypeDefaultValues(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of default values for an SBML SpeciesType structure of the given level and version
 
@@ -836,12 +836,12 @@ returns
 
 ####[fieldnames, num] = getSpeciesTypeFieldnames(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of fieldnames for an SBML SpeciesType structure of the given level and version
 2. the number of fieldnames
@@ -852,12 +852,12 @@ returns
 
 ####[values] = getStoichiometryMathDefaultValues(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of default values for an SBML StoichiometryMath structure of the given level and version
 
@@ -869,12 +869,12 @@ returns
 
 ####[fieldnames, num] = getStoichiometryMathFieldnames(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of fieldnames for an SBML StoichiometryMath structure of the given level and version
 2. the number of fieldnames
@@ -885,12 +885,12 @@ returns
 
 ####[values] = getTriggerDefaultValues(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of default values for an SBML Trigger structure of the given level and version
 
@@ -902,12 +902,12 @@ returns
 
 ####[fieldnames, num] = getTriggerFieldnames(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of fieldnames for an SBML Trigger structure of the given level and version
 2. the number of fieldnames
@@ -918,12 +918,12 @@ returns
 
 ####[values] = getUnitDefaultValues(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of default values for an SBML Unit structure of the given level and version
 
@@ -935,12 +935,12 @@ returns
 
 ####[values] = getUnitDefinitionDefaultValues(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of default values for an SBML UnitDefinition structure of the given level and version
 
@@ -952,12 +952,12 @@ returns
 
 ####[fieldnames, num] = getUnitDefinitionFieldnames(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of fieldnames for an SBML UnitDefinition structure of the given level and version
 2. the number of fieldnames
@@ -968,12 +968,12 @@ returns
 
 ####[fieldnames, num] = getUnitFieldnames(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. an array of fieldnames for an SBML Unit structure of the given level and version
 2. the number of fieldnames
@@ -984,12 +984,12 @@ returns
 
 ####valid = isValidLevelVersionCombination(level, version)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level
-2. version; an integer representing an SBML version
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
 
-returns
+Returns
 
 1. valid = 1 if the level and version combinbation represent a valid
   specification of SBML supported by SBMLToolbox
@@ -1002,11 +1002,11 @@ not represent a valid supported SBML format
 
 ####SBMLModel = propagateLevelVersion(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns 
+Returns 
 
 1. the SBML Model structure with level and version fields added to all
 sub structures
