@@ -1,5 +1,5 @@
 function Delay = Delay_create(varargin)
-% Delay = Delay_create(level(optional), version(optional)
+% Delay = Delay_create(level(optional), version(optional) )
 %
 % Takes
 %

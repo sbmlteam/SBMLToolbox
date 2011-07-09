@@ -1,5 +1,5 @@
 function Species = Species_create(varargin)
-% Species = Species_create(level(optional), version(optional)
+% Species = Species_create(level(optional), version(optional) )
 %
 % Takes
 %

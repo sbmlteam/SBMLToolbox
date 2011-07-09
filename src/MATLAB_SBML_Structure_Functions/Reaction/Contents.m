@@ -29,9 +29,9 @@
 % Returns
 % 1. the SBML Reaction structure with the SBML Reactant structure added
 %
-%===============================================================
-% Reaction = Reaction_create(level(optional), version(optional)
-%===============================================================
+%=================================================================
+% Reaction = Reaction_create(level(optional), version(optional) )
+%=================================================================
 % Takes
 % 1. level, an integer representing an SBML level (optional)
 % 2. version, an integer representing an SBML version (optional)

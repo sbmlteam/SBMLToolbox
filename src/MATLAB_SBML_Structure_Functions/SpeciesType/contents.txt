@@ -7,7 +7,7 @@ Function are:
 
 ----------
 
-####SpeciesType = SpeciesType_create(level(optional), version(optional)
+####SpeciesType = SpeciesType_create(level(optional), version(optional) )
 
 Takes
 

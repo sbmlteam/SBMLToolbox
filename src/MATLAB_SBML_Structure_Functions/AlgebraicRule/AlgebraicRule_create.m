@@ -1,5 +1,5 @@
 function AlgebraicRule = AlgebraicRule_create(varargin)
-% AlgebraicRule = AlgebraicRule_create(level(optional), version(optional)
+% AlgebraicRule = AlgebraicRule_create(level(optional), version(optional) )
 %
 % Takes
 %

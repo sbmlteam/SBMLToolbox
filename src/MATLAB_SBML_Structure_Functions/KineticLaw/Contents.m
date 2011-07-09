@@ -20,9 +20,9 @@
 % Returns
 % 1. the SBML KineticLaw structure with the SBML Parameter structure added
 %
-%===================================================================
-% KineticLaw = KineticLaw_create(level(optional), version(optional)
-%===================================================================
+%=====================================================================
+% KineticLaw = KineticLaw_create(level(optional), version(optional) )
+%=====================================================================
 % Takes
 % 1. level, an integer representing an SBML level (optional)
 % 2. version, an integer representing an SBML version (optional)

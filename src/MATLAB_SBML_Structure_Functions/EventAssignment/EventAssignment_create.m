@@ -1,5 +1,5 @@
 function EventAssignment = EventAssignment_create(varargin)
-% EventAssignment = EventAssignment_create(level(optional), version(optional)
+% EventAssignment = EventAssignment_create(level(optional), version(optional) )
 %
 % Takes
 %

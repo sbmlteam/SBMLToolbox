@@ -7,7 +7,7 @@ Function are:
 
 ----------
 
-####RateRule = RateRule_create(level(optional), version(optional)
+####RateRule = RateRule_create(level(optional), version(optional) )
 
 Takes
 

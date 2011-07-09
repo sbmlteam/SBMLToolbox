@@ -7,7 +7,7 @@ Function are:
 
 ----------
 
-####InitialAssignment = InitialAssignment_create(level(optional), version(optional)
+####InitialAssignment = InitialAssignment_create(level(optional), version(optional) )
 
 Takes
 

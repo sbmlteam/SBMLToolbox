@@ -7,7 +7,7 @@ Function are:
 
 ----------
 
-####LocalParameter = LocalParameter_create(level(optional), version(optional)
+####LocalParameter = LocalParameter_create(level(optional), version(optional) )
 
 Takes
 

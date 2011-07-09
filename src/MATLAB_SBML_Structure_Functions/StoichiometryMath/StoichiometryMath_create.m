@@ -1,5 +1,5 @@
 function StoichiometryMath = StoichiometryMath_create(varargin)
-% StoichiometryMath = StoichiometryMath_create(level(optional), version(optional)
+% StoichiometryMath = StoichiometryMath_create(level(optional), version(optional) )
 %
 % Takes
 %

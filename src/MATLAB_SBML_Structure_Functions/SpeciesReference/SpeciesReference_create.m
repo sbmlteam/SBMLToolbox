@@ -1,5 +1,5 @@
 function SpeciesReference = SpeciesReference_create(varargin)
-% SpeciesReference = SpeciesReference_create(level(optional), version(optional)
+% SpeciesReference = SpeciesReference_create(level(optional), version(optional) )
 %
 % Takes
 %

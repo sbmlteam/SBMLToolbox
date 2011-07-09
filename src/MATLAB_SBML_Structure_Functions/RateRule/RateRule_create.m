@@ -1,5 +1,5 @@
 function RateRule = RateRule_create(varargin)
-% RateRule = RateRule_create(level(optional), version(optional)
+% RateRule = RateRule_create(level(optional), version(optional) )
 %
 % Takes
 %

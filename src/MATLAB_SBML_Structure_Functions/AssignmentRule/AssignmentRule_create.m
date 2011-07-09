@@ -1,5 +1,5 @@
 function AssignmentRule = AssignmentRule_create(varargin)
-% AssignmentRule = AssignmentRule_create(level(optional), version(optional)
+% AssignmentRule = AssignmentRule_create(level(optional), version(optional) )
 %
 % Takes
 %

@@ -11,9 +11,9 @@
 % Returns
 % 1. the SBML UnitDefinition structure with the SBML Unit structure added
 %
-%===========================================================================
-% UnitDefinition = UnitDefinition_create(level(optional), version(optional)
-%===========================================================================
+%=============================================================================
+% UnitDefinition = UnitDefinition_create(level(optional), version(optional) )
+%=============================================================================
 % Takes
 % 1. level, an integer representing an SBML level (optional)
 % 2. version, an integer representing an SBML version (optional)

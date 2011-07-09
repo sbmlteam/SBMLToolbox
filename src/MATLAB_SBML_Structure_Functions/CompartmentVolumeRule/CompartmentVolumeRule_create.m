@@ -1,5 +1,5 @@
 function CompartmentVolumeRule = CompartmentVolumeRule_create(varargin)
-% CompartmentVolumeRule = CompartmentVolumeRule_create(level(optional), version(optional)
+% CompartmentVolumeRule = CompartmentVolumeRule_create(level(optional), version(optional) )
 %
 % Takes
 %

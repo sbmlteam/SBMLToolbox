@@ -1,5 +1,5 @@
 function SpeciesType = SpeciesType_create(varargin)
-% SpeciesType = SpeciesType_create(level(optional), version(optional)
+% SpeciesType = SpeciesType_create(level(optional), version(optional) )
 %
 % Takes
 %

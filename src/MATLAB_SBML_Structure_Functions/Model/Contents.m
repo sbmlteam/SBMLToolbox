@@ -110,9 +110,9 @@
 % Returns
 % 1. the SBML Model structure with the SBML UnitDefinition structure added
 %
-%=========================================================
-% Model = Model_create(level(optional), version(optional)
-%=========================================================
+%===========================================================
+% Model = Model_create(level(optional), version(optional) )
+%===========================================================
 % Takes
 % 1. level, an integer representing an SBML level (optional)
 % 2. version, an integer representing an SBML version (optional)

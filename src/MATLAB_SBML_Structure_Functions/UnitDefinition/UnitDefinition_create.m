@@ -1,5 +1,5 @@
 function UnitDefinition = UnitDefinition_create(varargin)
-% UnitDefinition = UnitDefinition_create(level(optional), version(optional)
+% UnitDefinition = UnitDefinition_create(level(optional), version(optional) )
 %
 % Takes
 %
