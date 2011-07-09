@@ -2,12 +2,12 @@ function [SBMLfieldnames, nNumberFields] = getReactionFieldnames(level, ...
                                                                  version)
 % [fieldnames, num] = getReactionFieldnames(level, version)
 %
-% takes
+% Takes
 %
-% 1. level; an integer representing an SBML level
-% 2. version; an integer representing an SBML version
+% 1. level, an integer representing an SBML level
+% 2. version, an integer representing an SBML version
 %
-% returns
+% Returns
 %
 % 1. an array of fieldnames for an SBML Reaction structure of the given level and version
 % 2. the number of fieldnames

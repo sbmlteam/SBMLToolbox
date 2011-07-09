@@ -1,10 +1,9 @@
 function VaryingParameters = AnalyseVaryingParameters(SBMLModel)
-% AnalyseVaryingParameters takes an SBMLmodel
-% and returns
-%           structure detailing the VaryingParameters and how they are manipulated 
-%               within the model
+% AnalyseVaryingParameters takes an SBML model and returns a 
+% structure detailing the VaryingParameters and how they are
+% manipulated within the model
 % 
-% the structure fields are
+% The fields in the structure are:
 %     Name
 %     initialValue
 %     ChangedByRateRule

@@ -3,10 +3,10 @@ function identical = areIdentical(struct1, struct2)
 %
 % takes
 %
-% 1. SBMLStruct1; any SBML structure
-% 2. SBMLStruct2; any SBML structure
+% 1. SBMLStruct1, any SBML structure
+% 2. SBMLStruct2, any SBML structure
 %
-% returns
+% Returns
 %
 % 1. identical = 
 %   - 1 if the structures are identical i.e. contain same fields and the same values

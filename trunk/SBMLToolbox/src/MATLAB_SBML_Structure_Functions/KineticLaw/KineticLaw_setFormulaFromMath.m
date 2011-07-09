@@ -1,12 +1,12 @@
 function SBMLKineticLaw = KineticLaw_setFormulaFromMath(SBMLKineticLaw)
 % SBMLKineticLaw = KineticLaw_setFormulaFromMath(SBMLKineticLaw, formulaFromMath)
 %
-% takes
+% Takes
 %
-% 1. SBMLKineticLaw; an SBML KineticLaw structure
+% 1. SBMLKineticLaw, an SBML KineticLaw structure
 % 2. formulaFromMath; a string representing the formulaFromMath to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML KineticLaw structure with the new value for the formulaFromMath attribute
 %

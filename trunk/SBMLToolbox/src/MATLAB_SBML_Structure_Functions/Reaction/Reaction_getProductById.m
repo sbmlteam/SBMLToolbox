@@ -1,12 +1,12 @@
 function product = Reaction_getProductById(SBMLReaction, id)
 % product = Reaction_getProductById(SBMLReaction, id)
 %
-% takes
+% Takes
 %
-% 1. SBMLReaction; an SBML Reaction structure
+% 1. SBMLReaction, an SBML Reaction structure
 % 2. id; a string representing the id of SBML Product structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Product structure that has this id
 %

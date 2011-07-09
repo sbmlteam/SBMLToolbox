@@ -1,11 +1,11 @@
 function SBMLCompartment = Compartment_unsetName(SBMLCompartment)
 % SBMLCompartment = Compartment_unsetName(SBMLCompartment)
 %
-% takes
+% Takes
 %
-% 1. SBMLCompartment; an SBML Compartment structure
+% 1. SBMLCompartment, an SBML Compartment structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Compartment structure with the name attribute unset
 %

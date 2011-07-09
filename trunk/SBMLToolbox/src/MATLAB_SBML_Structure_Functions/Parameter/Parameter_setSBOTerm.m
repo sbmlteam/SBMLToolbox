@@ -1,12 +1,12 @@
 function SBMLParameter = Parameter_setSBOTerm(SBMLParameter, sboTerm)
 % SBMLParameter = Parameter_setSBOTerm(SBMLParameter, sboTerm)
 %
-% takes
+% Takes
 %
-% 1. SBMLParameter; an SBML Parameter structure
-% 2. sboTerm; an integer representing the sboTerm to be set
+% 1. SBMLParameter, an SBML Parameter structure
+% 2. sboTerm, an integer representing the sboTerm to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML Parameter structure with the new value for the sboTerm attribute
 %

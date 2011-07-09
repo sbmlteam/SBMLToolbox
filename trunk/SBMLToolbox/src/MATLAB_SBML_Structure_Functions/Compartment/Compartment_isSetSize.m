@@ -1,11 +1,11 @@
 function value = Compartment_isSetSize(SBMLCompartment)
 % value = Compartment_isSetSize(SBMLCompartment)
 %
-% takes
+% Takes
 %
-% 1. SBMLCompartment; an SBML Compartment structure
+% 1. SBMLCompartment, an SBML Compartment structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the size attribute is set

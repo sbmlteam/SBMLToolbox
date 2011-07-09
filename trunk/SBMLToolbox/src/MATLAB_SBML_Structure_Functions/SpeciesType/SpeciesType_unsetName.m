@@ -1,11 +1,11 @@
 function SBMLSpeciesType = SpeciesType_unsetName(SBMLSpeciesType)
 % SBMLSpeciesType = SpeciesType_unsetName(SBMLSpeciesType)
 %
-% takes
+% Takes
 %
-% 1. SBMLSpeciesType; an SBML SpeciesType structure
+% 1. SBMLSpeciesType, an SBML SpeciesType structure
 %
-% returns
+% Returns
 %
 % 1. the SBML SpeciesType structure with the name attribute unset
 %

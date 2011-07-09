@@ -1,11 +1,11 @@
 function SBMLFunctionDefinition = FunctionDefinition_unsetName(SBMLFunctionDefinition)
 % SBMLFunctionDefinition = FunctionDefinition_unsetName(SBMLFunctionDefinition)
 %
-% takes
+% Takes
 %
-% 1. SBMLFunctionDefinition; an SBML FunctionDefinition structure
+% 1. SBMLFunctionDefinition, an SBML FunctionDefinition structure
 %
-% returns
+% Returns
 %
 % 1. the SBML FunctionDefinition structure with the name attribute unset
 %

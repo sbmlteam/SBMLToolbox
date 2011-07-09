@@ -1,11 +1,11 @@
 function math = Constraint_getMath(SBMLConstraint)
 % math = Constraint_getMath(SBMLConstraint)
 %
-% takes
+% Takes
 %
-% 1. SBMLConstraint; an SBML Constraint structure
+% 1. SBMLConstraint, an SBML Constraint structure
 %
-% returns
+% Returns
 %
 % 1. the value of the math attribute
 %

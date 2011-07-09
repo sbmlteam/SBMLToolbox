@@ -1,12 +1,12 @@
 function SBMLRule = Rule_setFormula(SBMLRule, formula)
 % SBMLRule = Rule_setFormula(SBMLRule, formula)
 %
-% takes
+% Takes
 %
-% 1. SBMLRule; an SBML Rule structure
+% 1. SBMLRule, an SBML Rule structure
 % 2. formula; a string representing the formula to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML Rule structure with the new value for the formula attribute
 %

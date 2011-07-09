@@ -1,11 +1,11 @@
 function outside = Compartment_getOutside(SBMLCompartment)
 % outside = Compartment_getOutside(SBMLCompartment)
 %
-% takes
+% Takes
 %
-% 1. SBMLCompartment; an SBML Compartment structure
+% 1. SBMLCompartment, an SBML Compartment structure
 %
-% returns
+% Returns
 %
 % 1. the value of the outside attribute
 %

@@ -1,11 +1,11 @@
 function hasOnlySubstanceUnits = Species_getHasOnlySubstanceUnits(SBMLSpecies)
 % hasOnlySubstanceUnits = Species_getHasOnlySubstanceUnits(SBMLSpecies)
 %
-% takes
+% Takes
 %
-% 1. SBMLSpecies; an SBML Species structure
+% 1. SBMLSpecies, an SBML Species structure
 %
-% returns
+% Returns
 %
 % 1. the value of the hasOnlySubstanceUnits attribute
 %

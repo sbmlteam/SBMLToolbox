@@ -1,11 +1,11 @@
 function metaid = Reaction_getMetaid(SBMLReaction)
 % metaid = Reaction_getMetaid(SBMLReaction)
 %
-% takes
+% Takes
 %
-% 1. SBMLReaction; an SBML Reaction structure
+% 1. SBMLReaction, an SBML Reaction structure
 %
-% returns
+% Returns
 %
 % 1. the value of the metaid attribute
 %

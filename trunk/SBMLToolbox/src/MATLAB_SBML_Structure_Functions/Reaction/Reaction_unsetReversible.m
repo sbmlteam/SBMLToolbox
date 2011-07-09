@@ -1,11 +1,11 @@
 function SBMLReaction = Reaction_unsetReversible(SBMLReaction)
 % SBMLReaction = Reaction_unsetReversible(SBMLReaction)
 %
-% takes
+% Takes
 %
-% 1. SBMLReaction; an SBML Reaction structure
+% 1. SBMLReaction, an SBML Reaction structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Reaction structure with the reversible attribute unset
 %

@@ -1,12 +1,12 @@
 function modifier = Reaction_getModifier(SBMLReaction, index)
 % modifier = Reaction_getModifier(SBMLReaction, index)
 %
-% takes
+% Takes
 %
-% 1. SBMLReaction; an SBML Reaction structure
-% 2. index; an integer representing the index of SBML Modifier structure
+% 1. SBMLReaction, an SBML Reaction structure
+% 2. index, an integer representing the index of SBML Modifier structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Modifier structure at the indexed position
 %

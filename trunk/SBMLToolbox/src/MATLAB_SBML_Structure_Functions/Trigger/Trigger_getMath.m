@@ -1,11 +1,11 @@
 function math = Trigger_getMath(SBMLTrigger)
 % math = Trigger_getMath(SBMLTrigger)
 %
-% takes
+% Takes
 %
-% 1. SBMLTrigger; an SBML Trigger structure
+% 1. SBMLTrigger, an SBML Trigger structure
 %
-% returns
+% Returns
 %
 % 1. the value of the math attribute
 %

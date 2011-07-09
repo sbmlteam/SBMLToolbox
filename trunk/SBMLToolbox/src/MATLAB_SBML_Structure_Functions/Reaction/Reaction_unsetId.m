@@ -1,11 +1,11 @@
 function SBMLReaction = Reaction_unsetId(SBMLReaction)
 % SBMLReaction = Reaction_unsetId(SBMLReaction)
 %
-% takes
+% Takes
 %
-% 1. SBMLReaction; an SBML Reaction structure
+% 1. SBMLReaction, an SBML Reaction structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Reaction structure with the id attribute unset
 %

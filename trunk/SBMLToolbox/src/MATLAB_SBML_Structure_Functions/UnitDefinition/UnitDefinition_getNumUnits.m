@@ -1,11 +1,11 @@
 function num = UnitDefinition_getNumUnits(SBMLUnitDefinition)
 % numUnits = UnitDefinition_getNumUnits(SBMLUnitDefinition)
 %
-% takes
+% Takes
 %
-% 1. SBMLUnitDefinition; an SBML UnitDefinition structure
+% 1. SBMLUnitDefinition, an SBML UnitDefinition structure
 %
-% returns
+% Returns
 %
 % 1. the value of the numUnits attribute
 %

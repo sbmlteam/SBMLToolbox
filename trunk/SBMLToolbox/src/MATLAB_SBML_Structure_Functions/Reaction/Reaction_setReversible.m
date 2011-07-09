@@ -1,12 +1,12 @@
 function SBMLReaction = Reaction_setReversible(SBMLReaction, reversible)
 % SBMLReaction = Reaction_setReversible(SBMLReaction, reversible)
 %
-% takes
+% Takes
 %
-% 1. SBMLReaction; an SBML Reaction structure
-% 2. reversible; an integer (0/1) representing the value of reversible to be set
+% 1. SBMLReaction, an SBML Reaction structure
+% 2. reversible, an integer (0/1) representing the value of reversible to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML Reaction structure with the new value for the reversible attribute
 %

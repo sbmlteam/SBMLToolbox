@@ -17,12 +17,12 @@
 %  BuildOutput_Win32 
 %		which builds the TranslateSBML executable
 %  OutputSBML('MATLAB_SBML structure') 
-%		which takes an MATLAB_SBML structure and ouputs an sbml file
+%		which takes an MATLAB_SBML structure and ouputs an SBML file
 %
 % toolbox\AccessModel
 %
 %       This directory contains functions that allow the user to
-%       derive information from a SBML Model
+%       derive information from an SBML Model
 %
 % toolbox\AccessToSymbols
 %
@@ -50,8 +50,8 @@
 % toolbox\StoreModels
 %
 %       This directory contains functions to save and load SBML models
-%       from the data file SBML_Models.mat
-%       and functions to browse the data file
+%       from the data file SBML_Models.mat and functions to browse 
+%       the data file
 %
 % toolbox\Validate_MATLAB_SBML_Structures
 % 

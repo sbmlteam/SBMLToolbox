@@ -1,12 +1,12 @@
 function SBMLEventAssignment = EventAssignment_setMath(SBMLEventAssignment, math)
 % SBMLEventAssignment = EventAssignment_setMath(SBMLEventAssignment, math)
 %
-% takes
+% Takes
 %
-% 1. SBMLEventAssignment; an SBML EventAssignment structure
+% 1. SBMLEventAssignment, an SBML EventAssignment structure
 % 2. math; string representing the math expression math to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML EventAssignment structure with the new value for the math attribute
 %

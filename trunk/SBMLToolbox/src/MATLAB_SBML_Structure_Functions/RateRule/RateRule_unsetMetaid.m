@@ -1,11 +1,11 @@
 function SBMLRateRule = RateRule_unsetMetaid(SBMLRateRule)
 % SBMLRateRule = RateRule_unsetMetaid(SBMLRateRule)
 %
-% takes
+% Takes
 %
-% 1. SBMLRateRule; an SBML RateRule structure
+% 1. SBMLRateRule, an SBML RateRule structure
 %
-% returns
+% Returns
 %
 % 1. the SBML RateRule structure with the metaid attribute unset
 %

@@ -1,11 +1,11 @@
 function id = CompartmentType_getId(SBMLCompartmentType)
 % id = CompartmentType_getId(SBMLCompartmentType)
 %
-% takes
+% Takes
 %
-% 1. SBMLCompartmentType; an SBML CompartmentType structure
+% 1. SBMLCompartmentType, an SBML CompartmentType structure
 %
-% returns
+% Returns
 %
 % 1. the value of the id attribute
 %

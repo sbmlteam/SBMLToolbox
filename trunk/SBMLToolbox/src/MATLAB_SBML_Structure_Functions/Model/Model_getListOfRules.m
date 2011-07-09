@@ -1,11 +1,11 @@
 function rule = Model_getListOfRules(SBMLModel)
 % rule = Model_getListOfRules(SBMLModel)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 %
-% returns
+% Returns
 %
 % 1. an array of the rule structures
 %

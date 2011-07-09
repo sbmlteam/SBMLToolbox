@@ -1,11 +1,11 @@
 function num = KineticLaw_getNumParameters(SBMLKineticLaw)
 % num = KineticLaw_getNumParameters(SBMLKineticLaw)
 %
-% takes
+% Takes
 %
-% 1. SBMLKineticLaw; an SBML KineticLaw structure
+% 1. SBMLKineticLaw, an SBML KineticLaw structure
 %
-% returns
+% Returns
 %
 % 1. the number of SBML Parameter structures present in the KineticLaw
 %

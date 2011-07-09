@@ -1,11 +1,11 @@
 function num = Model_getNumUnitDefinitions(SBMLModel)
 % num = Model_getNumUnitDefinitions(SBMLModel)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 %
-% returns
+% Returns
 %
 % 1. the number of SBML UnitDefinition structures present in the Model
 %

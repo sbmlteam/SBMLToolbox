@@ -1,11 +1,11 @@
 function SBMLUnitDefinition = UnitDefinition_unsetSBOTerm(SBMLUnitDefinition)
 % SBMLUnitDefinition = UnitDefinition_unsetSBOTerm(SBMLUnitDefinition)
 %
-% takes
+% Takes
 %
-% 1. SBMLUnitDefinition; an SBML UnitDefinition structure
+% 1. SBMLUnitDefinition, an SBML UnitDefinition structure
 %
-% returns
+% Returns
 %
 % 1. the SBML UnitDefinition structure with the sboTerm attribute unset
 %

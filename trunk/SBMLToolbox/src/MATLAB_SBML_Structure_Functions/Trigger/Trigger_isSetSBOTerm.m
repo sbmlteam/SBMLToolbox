@@ -1,11 +1,11 @@
 function value = Trigger_isSetSBOTerm(SBMLTrigger)
 % value = Trigger_isSetSBOTerm(SBMLTrigger)
 %
-% takes
+% Takes
 %
-% 1. SBMLTrigger; an SBML Trigger structure
+% 1. SBMLTrigger, an SBML Trigger structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the sboTerm attribute is set

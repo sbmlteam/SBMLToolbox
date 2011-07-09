@@ -1,11 +1,11 @@
 function value = Delay_isSetSBOTerm(SBMLDelay)
 % value = Delay_isSetSBOTerm(SBMLDelay)
 %
-% takes
+% Takes
 %
-% 1. SBMLDelay; an SBML Delay structure
+% 1. SBMLDelay, an SBML Delay structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the sboTerm attribute is set

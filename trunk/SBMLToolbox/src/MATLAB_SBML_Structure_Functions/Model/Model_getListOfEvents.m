@@ -1,11 +1,11 @@
 function event = Model_getListOfEvents(SBMLModel)
 % event = Model_getListOfEvents(SBMLModel)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 %
-% returns
+% Returns
 %
 % 1. an array of the event structures
 %

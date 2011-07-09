@@ -1,11 +1,11 @@
 function value = CheckValidUnitKind(kind)
 % y = CheckValidUnitKind(kind)
 % 
-% takes 
+% Takes
 % 
-% 1. kind; a string representing a unit kind 
+% 1. kind, a string representing a unit kind 
 %
-% returns 
+% Returns 
 %
 % 1. y =
 %  - 1 if the string represents a valid unit kind 

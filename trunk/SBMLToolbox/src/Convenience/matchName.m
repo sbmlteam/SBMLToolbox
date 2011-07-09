@@ -1,12 +1,12 @@
 function index = matchName(expr, name)
 % index = matchName(expression, name)
 % 
-% takes
+% Takes
 % 
-% 1. expression; a string representation of a math expression
-% 2. name; a string representing the name of a variable
+% 1. expression, a string representation of a math expression
+% 2. name, a string representing the name of a variable
 % 
-% returns
+% Returns
 % 
 % 1. the index of the starting point of 'name' in the 'expression'
 %

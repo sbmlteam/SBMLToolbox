@@ -1,12 +1,12 @@
 function SBMLUnit = Unit_setScale(SBMLUnit, scale)
 % SBMLUnit = Unit_setScale(SBMLUnit, scale)
 %
-% takes
+% Takes
 %
-% 1. SBMLUnit; an SBML Unit structure
+% 1. SBMLUnit, an SBML Unit structure
 % 2. scale; number representing the value of scale to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML Unit structure with the new value for the scale attribute
 %

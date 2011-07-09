@@ -1,11 +1,11 @@
 function value = Unit_isSetMultiplier(SBMLUnit)
 % value = Unit_isSetMultiplier(SBMLUnit)
 %
-% takes
+% Takes
 %
-% 1. SBMLUnit; an SBML Unit structure
+% 1. SBMLUnit, an SBML Unit structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the multiplier attribute is set

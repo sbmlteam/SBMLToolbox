@@ -1,12 +1,12 @@
 function value = Substitute(original_formula, model)
 % value = Substitute(expression, SBMLModel) 
 %
-% takes
+% Takes
 % 
-% 1. expression; a string representation of a math expression
-% 2. SBMLModel; an SBML Model structure
+% 1. expression, a string representation of a math expression
+% 2. SBMLModel, an SBML Model structure
 % 
-% returns
+% Returns
 % 
 % 1. the value of the expression when all variables within the model have
 % been substituted

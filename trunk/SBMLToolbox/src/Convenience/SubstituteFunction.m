@@ -1,16 +1,16 @@
 function Formula = SubstituteFunction(OriginalFormula, SBMLFunctionDefinition)
 % newExpression = SubstituteFunction(expression, SBMLFunctionDefinition) 
 %
-% takes
+% Takes
 % 
-% 1. expression; a string representation of a math expression
-% 2. SBMLFunctionDefinition; an SBML FunctionDefinition structure
+% 1. expression, a string representation of a math expression
+% 2. SBMLFunctionDefinition, an SBML FunctionDefinition structure
 % 
-% returns
+% Returns
 % 
 % 1. newExpression
-%  - the string representation of the expression when any instances of the functionDefinition have
-% been substituted
+%  - the string representation of the expression when any instances of the 
+% functionDefinition have been substituted
 %  - an empty string if the functiondefinition is not in the original
 %  expression
 %

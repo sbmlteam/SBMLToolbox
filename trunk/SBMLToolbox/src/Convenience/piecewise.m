@@ -1,13 +1,13 @@
 function value = piecewise(val1, test, val2)
 % value = piecewise(value1, test, value2)
 % 
-% takes
+% Takes
 % 
-% 1. value1; the value to return if the test is true
-% 2. test; a boolean test that will return true or false
-% 3. value2; the value to return if the test is false
+% 1. value1, the value to return if the test is true
+% 2. test, a boolean test that will return true or false
+% 3. value2, the value to return if the test is false
 % 
-% returns
+% Returns
 % 
 % 1. value = 
 %   - value1, if test returns true
@@ -21,7 +21,7 @@ function value = piecewise(val1, test, val2)
 %               value = piecewise(3, 1>2, 4)
 %               value = 4
 %               
-% *NOTE:* This function provides the functionality of the MathML 'piecewise' function              
+% *NOTE:* This function provides the functionality of the MathML 'piecewise' function.
 % 
 
 

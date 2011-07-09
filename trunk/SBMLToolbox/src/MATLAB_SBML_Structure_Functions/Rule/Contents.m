@@ -5,25 +5,25 @@
 %=====================================
 % formula = Rule_getFormula(SBMLRule)
 %=====================================
-% takes
-% 1. SBMLRule; an SBML Rule structure
-% returns
+% Takes
+% 1. SBMLRule, an SBML Rule structure
+% Returns
 % 1. the value of the formula attribute
 %
 %=====================================
 % sboTerm = Rule_getSBOTerm(SBMLRule)
 %=====================================
-% takes
-% 1. SBMLRule; an SBML Rule structure
-% returns
+% Takes
+% 1. SBMLRule, an SBML Rule structure
+% Returns
 % 1. the value of the sboTerm attribute
 %
 %=====================================
 % value = Rule_isSetFormula(SBMLRule)
 %=====================================
-% takes
-% 1. SBMLRule; an SBML Rule structure
-% returns
+% Takes
+% 1. SBMLRule, an SBML Rule structure
+% Returns
 % 1. value = 
 %  - 1 if the formula attribute is set
 %  - 0 otherwise
@@ -31,9 +31,9 @@
 %=====================================
 % value = Rule_isSetSBOTerm(SBMLRule)
 %=====================================
-% takes
-% 1. SBMLRule; an SBML Rule structure
-% returns
+% Takes
+% 1. SBMLRule, an SBML Rule structure
+% Returns
 % 1. value = 
 %  - 1 if the sboTerm attribute is set
 %  - 0 otherwise
@@ -41,35 +41,35 @@
 %===============================================
 % SBMLRule = Rule_setFormula(SBMLRule, formula)
 %===============================================
-% takes
-% 1. SBMLRule; an SBML Rule structure
+% Takes
+% 1. SBMLRule, an SBML Rule structure
 % 2. formula; a string representing the formula to be set
-% returns
+% Returns
 % 1. the SBML Rule structure with the new value for the formula attribute
 %
 %===============================================
 % SBMLRule = Rule_setSBOTerm(SBMLRule, sboTerm)
 %===============================================
-% takes
-% 1. SBMLRule; an SBML Rule structure
-% 2. sboTerm; an integer representing the sboTerm to be set
-% returns
+% Takes
+% 1. SBMLRule, an SBML Rule structure
+% 2. sboTerm, an integer representing the sboTerm to be set
+% Returns
 % 1. the SBML Rule structure with the new value for the sboTerm attribute
 %
 %========================================
 % SBMLRule = Rule_unsetFormula(SBMLRule)
 %========================================
-% takes
-% 1. SBMLRule; an SBML Rule structure
-% returns
+% Takes
+% 1. SBMLRule, an SBML Rule structure
+% Returns
 % 1. the SBML Rule structure with the formula attribute unset
 %
 %========================================
 % SBMLRule = Rule_unsetSBOTerm(SBMLRule)
 %========================================
-% takes
-% 1. SBMLRule; an SBML Rule structure
-% returns
+% Takes
+% 1. SBMLRule, an SBML Rule structure
+% Returns
 % 1. the SBML Rule structure with the sboTerm attribute unset
 %
 

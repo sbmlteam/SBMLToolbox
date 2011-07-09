@@ -1,12 +1,12 @@
 function eventAssignment = Event_getEventAssignment(SBMLEvent, index)
 % eventAssignment = Event_getEventAssignment(SBMLEvent, index)
 %
-% takes
+% Takes
 %
-% 1. SBMLEvent; an SBML Event structure
-% 2. index; an integer representing the index of SBML EventAssignment structure
+% 1. SBMLEvent, an SBML Event structure
+% 2. index, an integer representing the index of SBML EventAssignment structure
 %
-% returns
+% Returns
 %
 % 1. the SBML EventAssignment structure at the indexed position
 %

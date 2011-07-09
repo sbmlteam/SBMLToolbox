@@ -1,12 +1,12 @@
 function SBMLFunctionDefinition = FunctionDefinition_setId(SBMLFunctionDefinition, id)
 % SBMLFunctionDefinition = FunctionDefinition_setId(SBMLFunctionDefinition, id)
 %
-% takes
+% Takes
 %
-% 1. SBMLFunctionDefinition; an SBML FunctionDefinition structure
+% 1. SBMLFunctionDefinition, an SBML FunctionDefinition structure
 % 2. id; a string representing the id to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML FunctionDefinition structure with the new value for the id attribute
 %

@@ -1,12 +1,12 @@
 function SBMLConstraint = Constraint_setSBOTerm(SBMLConstraint, sboTerm)
 % SBMLConstraint = Constraint_setSBOTerm(SBMLConstraint, sboTerm)
 %
-% takes
+% Takes
 %
-% 1. SBMLConstraint; an SBML Constraint structure
-% 2. sboTerm; an integer representing the sboTerm to be set
+% 1. SBMLConstraint, an SBML Constraint structure
+% 2. sboTerm, an integer representing the sboTerm to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML Constraint structure with the new value for the sboTerm attribute
 %

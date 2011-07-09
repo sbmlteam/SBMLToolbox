@@ -1,12 +1,12 @@
 function SBMLEvent = Event_setTrigger(SBMLEvent, trigger)
 % SBMLEvent = Event_setTrigger(SBMLEvent, SBMLTrigger)
 %
-% takes
+% Takes
 %
-% 1. SBMLEvent; an SBML Event structure
-% 2. SBMLTrigger; an SBML Trigger structure
+% 1. SBMLEvent, an SBML Event structure
+% 2. SBMLTrigger, an SBML Trigger structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Event structure with the new value for the trigger field
 %

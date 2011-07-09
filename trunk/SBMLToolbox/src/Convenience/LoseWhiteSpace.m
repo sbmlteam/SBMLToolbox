@@ -1,11 +1,11 @@
 function y = LoseWhiteSpace(charArray)
 % newArray = LoseWhiteSpace(charArray)
 % 
-% takes 
+% Takes
 % 
-% 1. charArray; an array of characters 
+% 1. charArray, an array of characters 
 % 
-% returns 
+% Returns 
 % 
 % 1. the array with any white space removed
 % 

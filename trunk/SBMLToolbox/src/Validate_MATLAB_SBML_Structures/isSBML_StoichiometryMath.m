@@ -1,13 +1,13 @@
 function [valid, message] = isSBML_StoichiometryMath(varargin)
 % [valid, message] = isSBML_StoichiometryMath(SBMLStoichiometryMath, level, version(optional))
 %
-% takes
+% Takes
 %
-% 1. SBMLStoichiometryMath; an SBML StoichiometryMath structure
-% 2. level; an integer representing an SBML level
-% 3. version (optional); an integer representing an SBML version
+% 1. SBMLStoichiometryMath, an SBML StoichiometryMath structure
+% 2. level, an integer representing an SBML level
+% 3. version (optional), an integer representing an SBML version
 %
-% returns
+% Returns
 %
 % 1. valid = 
 %   - 1, if the structure represents

@@ -1,11 +1,11 @@
 function scale = Unit_getScale(SBMLUnit)
 % scale = Unit_getScale(SBMLUnit)
 %
-% takes
+% Takes
 %
-% 1. SBMLUnit; an SBML Unit structure
+% 1. SBMLUnit, an SBML Unit structure
 %
-% returns
+% Returns
 %
 % 1. the value of the scale attribute
 %

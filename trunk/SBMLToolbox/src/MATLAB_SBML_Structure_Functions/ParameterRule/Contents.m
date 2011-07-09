@@ -5,50 +5,50 @@
 %=========================================================================
 % ParameterRule = ParameterRule_create(level(optional), version(optional)
 %=========================================================================
-% takes
-% 1. level; an integer representing an SBML level (optional)
-% 2. version; an integer representing an SBML version (optional)
-% returns
+% Takes
+% 1. level, an integer representing an SBML level (optional)
+% 2. version, an integer representing an SBML version (optional)
+% Returns
 % 1. a MATLAB_SBML ParameterRule structure of the appropriate level and version
 %
 %=======================================================
 % formula = ParameterRule_getFormula(SBMLParameterRule)
 %=======================================================
-% takes
-% 1. SBMLParameterRule; an SBML ParameterRule structure
-% returns
+% Takes
+% 1. SBMLParameterRule, an SBML ParameterRule structure
+% Returns
 % 1. the value of the formula attribute
 %
 %=================================================
 % name = ParameterRule_getName(SBMLParameterRule)
 %=================================================
-% takes
-% 1. SBMLParameterRule; an SBML ParameterRule structure
-% returns
+% Takes
+% 1. SBMLParameterRule, an SBML ParameterRule structure
+% Returns
 % 1. the value of the name attribute
 %
 %=================================================
 % type = ParameterRule_getType(SBMLParameterRule)
 %=================================================
-% takes
-% 1. SBMLParameterRule; an SBML ParameterRule structure
-% returns
+% Takes
+% 1. SBMLParameterRule, an SBML ParameterRule structure
+% Returns
 % 1. the value of the type attribute
 %
 %===================================================
 % units = ParameterRule_getUnits(SBMLParameterRule)
 %===================================================
-% takes
-% 1. SBMLParameterRule; an SBML ParameterRule structure
-% returns
+% Takes
+% 1. SBMLParameterRule, an SBML ParameterRule structure
+% Returns
 % 1. the value of the units attribute
 %
 %=======================================================
 % value = ParameterRule_isSetFormula(SBMLParameterRule)
 %=======================================================
-% takes
-% 1. SBMLParameterRule; an SBML ParameterRule structure
-% returns
+% Takes
+% 1. SBMLParameterRule, an SBML ParameterRule structure
+% Returns
 % 1. value = 
 %  - 1 if the formula attribute is set
 %  - 0 otherwise
@@ -56,9 +56,9 @@
 %====================================================
 % value = ParameterRule_isSetName(SBMLParameterRule)
 %====================================================
-% takes
-% 1. SBMLParameterRule; an SBML ParameterRule structure
-% returns
+% Takes
+% 1. SBMLParameterRule, an SBML ParameterRule structure
+% Returns
 % 1. value = 
 %  - 1 if the name attribute is set
 %  - 0 otherwise
@@ -66,9 +66,9 @@
 %====================================================
 % value = ParameterRule_isSetType(SBMLParameterRule)
 %====================================================
-% takes
-% 1. SBMLParameterRule; an SBML ParameterRule structure
-% returns
+% Takes
+% 1. SBMLParameterRule, an SBML ParameterRule structure
+% Returns
 % 1. value = 
 %  - 1 if the type attribute is set
 %  - 0 otherwise
@@ -76,9 +76,9 @@
 %=====================================================
 % value = ParameterRule_isSetUnits(SBMLParameterRule)
 %=====================================================
-% takes
-% 1. SBMLParameterRule; an SBML ParameterRule structure
-% returns
+% Takes
+% 1. SBMLParameterRule, an SBML ParameterRule structure
+% Returns
 % 1. value = 
 %  - 1 if the units attribute is set
 %  - 0 otherwise
@@ -86,69 +86,69 @@
 %==========================================================================
 % SBMLParameterRule = ParameterRule_setFormula(SBMLParameterRule, formula)
 %==========================================================================
-% takes
-% 1. SBMLParameterRule; an SBML ParameterRule structure
+% Takes
+% 1. SBMLParameterRule, an SBML ParameterRule structure
 % 2. formula; a string representing the formula to be set
-% returns
+% Returns
 % 1. the SBML ParameterRule structure with the new value for the formula attribute
 %
 %====================================================================
 % SBMLParameterRule = ParameterRule_setName(SBMLParameterRule, name)
 %====================================================================
-% takes
-% 1. SBMLParameterRule; an SBML ParameterRule structure
+% Takes
+% 1. SBMLParameterRule, an SBML ParameterRule structure
 % 2. name; a string representing the name to be set
-% returns
+% Returns
 % 1. the SBML ParameterRule structure with the new value for the name attribute
 %
 %====================================================================
 % SBMLParameterRule = ParameterRule_setType(SBMLParameterRule, type)
 %====================================================================
-% takes
-% 1. SBMLParameterRule; an SBML ParameterRule structure
+% Takes
+% 1. SBMLParameterRule, an SBML ParameterRule structure
 % 2. type; a string representing the type to be set
-% returns
+% Returns
 % 1. the SBML ParameterRule structure with the new value for the type attribute
 %
 %======================================================================
 % SBMLParameterRule = ParameterRule_setUnits(SBMLParameterRule, units)
 %======================================================================
-% takes
-% 1. SBMLParameterRule; an SBML ParameterRule structure
+% Takes
+% 1. SBMLParameterRule, an SBML ParameterRule structure
 % 2. units; a string representing the units to be set
-% returns
+% Returns
 % 1. the SBML ParameterRule structure with the new value for the units attribute
 %
 %===================================================================
 % SBMLParameterRule = ParameterRule_unsetFormula(SBMLParameterRule)
 %===================================================================
-% takes
-% 1. SBMLParameterRule; an SBML ParameterRule structure
-% returns
+% Takes
+% 1. SBMLParameterRule, an SBML ParameterRule structure
+% Returns
 % 1. the SBML ParameterRule structure with the formula attribute unset
 %
 %================================================================
 % SBMLParameterRule = ParameterRule_unsetName(SBMLParameterRule)
 %================================================================
-% takes
-% 1. SBMLParameterRule; an SBML ParameterRule structure
-% returns
+% Takes
+% 1. SBMLParameterRule, an SBML ParameterRule structure
+% Returns
 % 1. the SBML ParameterRule structure with the name attribute unset
 %
 %================================================================
 % SBMLParameterRule = ParameterRule_unsetType(SBMLParameterRule)
 %================================================================
-% takes
-% 1. SBMLParameterRule; an SBML ParameterRule structure
-% returns
+% Takes
+% 1. SBMLParameterRule, an SBML ParameterRule structure
+% Returns
 % 1. the SBML ParameterRule structure with the type attribute unset
 %
 %=================================================================
 % SBMLParameterRule = ParameterRule_unsetUnits(SBMLParameterRule)
 %=================================================================
-% takes
-% 1. SBMLParameterRule; an SBML ParameterRule structure
-% returns
+% Takes
+% 1. SBMLParameterRule, an SBML ParameterRule structure
+% Returns
 % 1. the SBML ParameterRule structure with the units attribute unset
 %
 

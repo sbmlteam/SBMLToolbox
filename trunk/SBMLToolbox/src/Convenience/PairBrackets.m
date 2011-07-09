@@ -1,13 +1,14 @@
 function pairs = PairBrackets(formula)
 % pairs = PairBrackets(expression) 
 % 
-% takes
+% Takes
 % 
-% 1. expression; a string representation of a math expression
+% 1. expression, a string representation of a math expression
 % 
-% returns
+% Returns
 % 
-% 1. an array of the indices of each pair of brackets ordered from the opening bracket index
+% 1. an array of the indices of each pair of brackets ordered from
+% the opening bracket index
 %
 % *EXAMPLE:*
 %

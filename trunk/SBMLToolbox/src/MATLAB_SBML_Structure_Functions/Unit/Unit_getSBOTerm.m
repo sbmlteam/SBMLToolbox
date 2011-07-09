@@ -1,11 +1,11 @@
 function sboTerm = Unit_getSBOTerm(SBMLUnit)
 % sboTerm = Unit_getSBOTerm(SBMLUnit)
 %
-% takes
+% Takes
 %
-% 1. SBMLUnit; an SBML Unit structure
+% 1. SBMLUnit, an SBML Unit structure
 %
-% returns
+% Returns
 %
 % 1. the value of the sboTerm attribute
 %

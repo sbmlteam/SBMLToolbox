@@ -1,12 +1,12 @@
 function compartment = Model_getCompartmentById(SBMLModel, id)
 % compartment = Model_getCompartmentById(SBMLModel, id)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 % 2. id; a string representing the id of SBML Compartment structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Compartment structure that has this id
 %

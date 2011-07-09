@@ -1,12 +1,12 @@
 function SBMLReaction = Reaction_setSBOTerm(SBMLReaction, sboTerm)
 % SBMLReaction = Reaction_setSBOTerm(SBMLReaction, sboTerm)
 %
-% takes
+% Takes
 %
-% 1. SBMLReaction; an SBML Reaction structure
-% 2. sboTerm; an integer representing the sboTerm to be set
+% 1. SBMLReaction, an SBML Reaction structure
+% 2. sboTerm, an integer representing the sboTerm to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML Reaction structure with the new value for the sboTerm attribute
 %

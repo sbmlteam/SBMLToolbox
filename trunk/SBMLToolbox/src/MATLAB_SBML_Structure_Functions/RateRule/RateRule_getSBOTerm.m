@@ -1,11 +1,11 @@
 function sboTerm = RateRule_getSBOTerm(SBMLRateRule)
 % sboTerm = RateRule_getSBOTerm(SBMLRateRule)
 %
-% takes
+% Takes
 %
-% 1. SBMLRateRule; an SBML RateRule structure
+% 1. SBMLRateRule, an SBML RateRule structure
 %
-% returns
+% Returns
 %
 % 1. the value of the sboTerm attribute
 %

@@ -1,12 +1,12 @@
 function rule = Model_getAssignmentRuleByVariable(SBMLModel, variable)
 % assignmentRule = Model_getAssignmentRuleByVariable(SBMLModel, variable)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 % 2. variable; a string representing the variable of SBML AssignmentRule structure
 %
-% returns
+% Returns
 %
 % 1. the SBML AssignmentRule structure that has this variable
 %

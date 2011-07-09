@@ -1,12 +1,12 @@
 function SBMLCompartmentType = CompartmentType_setName(SBMLCompartmentType, name)
 % SBMLCompartmentType = CompartmentType_setName(SBMLCompartmentType, name)
 %
-% takes
+% Takes
 %
-% 1. SBMLCompartmentType; an SBML CompartmentType structure
+% 1. SBMLCompartmentType, an SBML CompartmentType structure
 % 2. name; a string representing the name to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML CompartmentType structure with the new value for the name attribute
 %

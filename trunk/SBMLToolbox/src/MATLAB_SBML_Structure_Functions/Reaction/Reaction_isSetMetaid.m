@@ -1,11 +1,11 @@
 function value = Reaction_isSetMetaid(SBMLReaction)
 % value = Reaction_isSetMetaid(SBMLReaction)
 %
-% takes
+% Takes
 %
-% 1. SBMLReaction; an SBML Reaction structure
+% 1. SBMLReaction, an SBML Reaction structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the metaid attribute is set

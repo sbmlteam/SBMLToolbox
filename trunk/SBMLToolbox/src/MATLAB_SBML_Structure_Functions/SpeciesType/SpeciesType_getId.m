@@ -1,11 +1,11 @@
 function id = SpeciesType_getId(SBMLSpeciesType)
 % id = SpeciesType_getId(SBMLSpeciesType)
 %
-% takes
+% Takes
 %
-% 1. SBMLSpeciesType; an SBML SpeciesType structure
+% 1. SBMLSpeciesType, an SBML SpeciesType structure
 %
-% returns
+% Returns
 %
 % 1. the value of the id attribute
 %

@@ -6,7 +6,7 @@
 %==============================
 % y = CheckValidUnitKind(kind)
 %==============================
-% takes 
+% Takes
 % 1. kind; a string representing a unit kind 
 % returns 
 % 1. y =
@@ -16,7 +16,7 @@
 %======================================
 % newArray = LoseWhiteSpace(charArray)
 %======================================
-% takes 
+% Takes
 % 1. charArray; an array of characters 
 % returns 
 % 1. the array with any white space removed
@@ -92,7 +92,7 @@
 %===========================
 % y = isValidUnitKind(kind)
 %===========================
-% takes 
+% Takes
 % 1. kind; a string representing a unit kind 
 % returns 
 % 1. y =
@@ -133,7 +133,7 @@
 %==============================
 % y = testmember(value, array)
 %==============================
-% takes 
+% Takes
 % 1. value; any number/string
 % 2. array; an array of objects 
 % returns 

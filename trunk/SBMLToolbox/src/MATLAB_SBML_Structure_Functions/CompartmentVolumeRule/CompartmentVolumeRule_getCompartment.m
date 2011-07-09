@@ -1,11 +1,11 @@
 function compartment = CompartmentVolumeRule_getCompartment(SBMLCompartmentVolumeRule)
 % compartment = CompartmentVolumeRule_getCompartment(SBMLCompartmentVolumeRule)
 %
-% takes
+% Takes
 %
-% 1. SBMLCompartmentVolumeRule; an SBML CompartmentVolumeRule structure
+% 1. SBMLCompartmentVolumeRule, an SBML CompartmentVolumeRule structure
 %
-% returns
+% Returns
 %
 % 1. the value of the compartment attribute
 %

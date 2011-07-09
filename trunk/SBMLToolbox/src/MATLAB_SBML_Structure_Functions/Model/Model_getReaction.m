@@ -1,12 +1,12 @@
 function reaction = Model_getReaction(SBMLModel, index)
 % reaction = Model_getReaction(SBMLModel, index)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
-% 2. index; an integer representing the index of SBML Reaction structure
+% 1. SBMLModel, an SBML Model structure
+% 2. index, an integer representing the index of SBML Reaction structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Reaction structure at the indexed position
 %

@@ -1,12 +1,12 @@
 function SBMLEvent = Event_setId(SBMLEvent, id)
 % SBMLEvent = Event_setId(SBMLEvent, id)
 %
-% takes
+% Takes
 %
-% 1. SBMLEvent; an SBML Event structure
+% 1. SBMLEvent, an SBML Event structure
 % 2. id; a string representing the id to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML Event structure with the new value for the id attribute
 %

@@ -1,11 +1,11 @@
 function formula = RateRule_getFormula(SBMLRateRule)
 % formula = RateRule_getFormula(SBMLRateRule)
 %
-% takes
+% Takes
 %
-% 1. SBMLRateRule; an SBML RateRule structure
+% 1. SBMLRateRule, an SBML RateRule structure
 %
-% returns
+% Returns
 %
 % 1. the value of the formula attribute
 %

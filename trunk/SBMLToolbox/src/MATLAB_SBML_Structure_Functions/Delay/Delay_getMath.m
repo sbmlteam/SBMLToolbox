@@ -1,11 +1,11 @@
 function math = Delay_getMath(SBMLDelay)
 % math = Delay_getMath(SBMLDelay)
 %
-% takes
+% Takes
 %
-% 1. SBMLDelay; an SBML Delay structure
+% 1. SBMLDelay, an SBML Delay structure
 %
-% returns
+% Returns
 %
 % 1. the value of the math attribute
 %

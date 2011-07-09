@@ -1,15 +1,15 @@
 function subsFormula = SubstituteConstants(OriginalFormula, SBMLModel)
 % newExpression = SubstituteConstants(expression, SBMLModel) 
 %
-% takes
+% Takes
 % 
-% 1. expression; a string representation of a math expression
-% 2. SBMLModel; an SBML Model structure
+% 1. expression, a string representation of a math expression
+% 2. SBMLModel, an SBML Model structure
 % 
-% returns
+% Returns
 % 
-% 1. the string representation of the expression when all constants within the model have
-% been substituted
+% 1. the string representation of the expression when all constants within the 
+% model have been substituted
 %
 % *EXAMPLE:*
 %

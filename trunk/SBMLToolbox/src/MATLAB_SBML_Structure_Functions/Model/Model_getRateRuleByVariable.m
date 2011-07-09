@@ -1,12 +1,12 @@
 function rule = Model_getRateRuleByVariable(SBMLModel, variable)
 % rateRule = Model_getRateRuleByVariable(SBMLModel, variable)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 % 2. variable; a string representing the variable of SBML RateRule structure
 %
-% returns
+% Returns
 %
 % 1. the SBML RateRule structure that has this variable
 %

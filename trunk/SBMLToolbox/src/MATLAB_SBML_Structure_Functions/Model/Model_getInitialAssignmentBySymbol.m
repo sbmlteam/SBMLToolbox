@@ -1,12 +1,12 @@
 function initialAssignment = Model_getInitialAssignmentBySymbol(SBMLModel, symbol)
 % initialAssignment = Model_getInitialAssignmentBySymbol(SBMLModel, symbol)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 % 2. symbol; a string representing the symbol of SBML InitialAssignment structure
 %
-% returns
+% Returns
 %
 % 1. the SBML InitialAssignment structure that has this symbol
 %

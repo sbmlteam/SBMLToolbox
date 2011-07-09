@@ -1,11 +1,11 @@
 function value = KineticLaw_isSetFormula(SBMLKineticLaw)
 % value = KineticLaw_isSetFormula(SBMLKineticLaw)
 %
-% takes
+% Takes
 %
-% 1. SBMLKineticLaw; an SBML KineticLaw structure
+% 1. SBMLKineticLaw, an SBML KineticLaw structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the formula attribute is set

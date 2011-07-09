@@ -1,11 +1,11 @@
 function value = ParameterRule_isSetUnits(SBMLParameterRule)
 % value = ParameterRule_isSetUnits(SBMLParameterRule)
 %
-% takes
+% Takes
 %
-% 1. SBMLParameterRule; an SBML ParameterRule structure
+% 1. SBMLParameterRule, an SBML ParameterRule structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the units attribute is set

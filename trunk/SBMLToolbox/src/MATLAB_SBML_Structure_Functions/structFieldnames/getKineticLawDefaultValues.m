@@ -1,12 +1,12 @@
 function [defaultValues] = getKineticLawDefaultValues(level, version)
 % [values] = getKineticLawDefaultValues(level, version)
 %
-% takes
+% Takes
 %
-% 1. level; an integer representing an SBML level
-% 2. version; an integer representing an SBML version
+% 1. level, an integer representing an SBML level
+% 2. version, an integer representing an SBML version
 %
-% returns
+% Returns
 %
 % 1. an array of default values for an SBML KineticLaw structure of the given level and version
 %

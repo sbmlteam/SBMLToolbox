@@ -1,11 +1,11 @@
 function value = LocalParameter_isSetId(SBMLLocalParameter)
 % value = LocalParameter_isSetId(SBMLLocalParameter)
 %
-% takes
+% Takes
 %
-% 1. SBMLLocalParameter; an SBML LocalParameter structure
+% 1. SBMLLocalParameter, an SBML LocalParameter structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the id attribute is set

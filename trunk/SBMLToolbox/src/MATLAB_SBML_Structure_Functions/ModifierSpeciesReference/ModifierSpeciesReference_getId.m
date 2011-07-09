@@ -1,11 +1,11 @@
 function id = ModifierSpeciesReference_getId(SBMLModifierSpeciesReference)
 % id = ModifierSpeciesReference_getId(SBMLModifierSpeciesReference)
 %
-% takes
+% Takes
 %
-% 1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+% 1. SBMLModifierSpeciesReference, an SBML ModifierSpeciesReference structure
 %
-% returns
+% Returns
 %
 % 1. the value of the id attribute
 %

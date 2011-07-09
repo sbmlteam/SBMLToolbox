@@ -1,11 +1,11 @@
 function value = EventAssignment_isSetMetaid(SBMLEventAssignment)
 % value = EventAssignment_isSetMetaid(SBMLEventAssignment)
 %
-% takes
+% Takes
 %
-% 1. SBMLEventAssignment; an SBML EventAssignment structure
+% 1. SBMLEventAssignment, an SBML EventAssignment structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the metaid attribute is set

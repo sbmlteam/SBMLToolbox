@@ -1,12 +1,12 @@
 function SBMLUnitDefinition = UnitDefinition_addUnit(SBMLUnitDefinition, SBMLUnit)
 % SBMLUnitDefinition = UnitDefinition_addUnit(SBMLUnitDefinition, SBMLUnit)
 %
-% takes
+% Takes
 %
-% 1. SBMLUnitDefinition; an SBML UnitDefinition structure
-% 2. SBMLUnit; an SBML Unit structure
+% 1. SBMLUnitDefinition, an SBML UnitDefinition structure
+% 2. SBMLUnit, an SBML Unit structure
 %
-% returns
+% Returns
 %
 % 1. the SBML UnitDefinition structure with the SBML Unit structure added
 %

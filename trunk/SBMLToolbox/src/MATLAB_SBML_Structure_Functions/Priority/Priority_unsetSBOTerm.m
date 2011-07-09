@@ -1,11 +1,11 @@
 function SBMLPriority = Priority_unsetSBOTerm(SBMLPriority)
 % SBMLPriority = Priority_unsetSBOTerm(SBMLPriority)
 %
-% takes
+% Takes
 %
-% 1. SBMLPriority; an SBML Priority structure
+% 1. SBMLPriority, an SBML Priority structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Priority structure with the sboTerm attribute unset
 %

@@ -1,11 +1,11 @@
 function metaid = UnitDefinition_getMetaid(SBMLUnitDefinition)
 % metaid = UnitDefinition_getMetaid(SBMLUnitDefinition)
 %
-% takes
+% Takes
 %
-% 1. SBMLUnitDefinition; an SBML UnitDefinition structure
+% 1. SBMLUnitDefinition, an SBML UnitDefinition structure
 %
-% returns
+% Returns
 %
 % 1. the value of the metaid attribute
 %

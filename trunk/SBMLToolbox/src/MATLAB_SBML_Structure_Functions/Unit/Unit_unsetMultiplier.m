@@ -1,11 +1,11 @@
 function SBMLUnit = Unit_unsetMultiplier(SBMLUnit)
 % SBMLUnit = Unit_unsetMultiplier(SBMLUnit)
 %
-% takes
+% Takes
 %
-% 1. SBMLUnit; an SBML Unit structure
+% 1. SBMLUnit, an SBML Unit structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Unit structure with the multiplier attribute unset
 %

@@ -1,11 +1,11 @@
 function value = Species_isSetCompartment(SBMLSpecies)
 % value = Species_isSetCompartment(SBMLSpecies)
 %
-% takes
+% Takes
 %
-% 1. SBMLSpecies; an SBML Species structure
+% 1. SBMLSpecies, an SBML Species structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the compartment attribute is set

@@ -1,11 +1,11 @@
 function value = AlgebraicRule_isSetMetaid(SBMLAlgebraicRule)
 % value = AlgebraicRule_isSetMetaid(SBMLAlgebraicRule)
 %
-% takes
+% Takes
 %
-% 1. SBMLAlgebraicRule; an SBML AlgebraicRule structure
+% 1. SBMLAlgebraicRule, an SBML AlgebraicRule structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the metaid attribute is set

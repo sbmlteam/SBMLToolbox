@@ -1,11 +1,11 @@
 function SBMLTrigger = Trigger_unsetMath(SBMLTrigger)
 % SBMLTrigger = Trigger_unsetMath(SBMLTrigger)
 %
-% takes
+% Takes
 %
-% 1. SBMLTrigger; an SBML Trigger structure
+% 1. SBMLTrigger, an SBML Trigger structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Trigger structure with the math attribute unset
 %

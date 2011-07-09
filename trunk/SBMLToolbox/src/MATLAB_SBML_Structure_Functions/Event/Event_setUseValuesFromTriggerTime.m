@@ -1,12 +1,12 @@
 function SBMLEvent = Event_setUseValuesFromTriggerTime(SBMLEvent, useValuesFromTriggerTime)
 % SBMLEvent = Event_setUseValuesFromTriggerTime(SBMLEvent, useValuesFromTriggerTime)
 %
-% takes
+% Takes
 %
-% 1. SBMLEvent; an SBML Event structure
-% 2. useValuesFromTriggerTime; an integer (0/1) representing the value of useValuesFromTriggerTime to be set
+% 1. SBMLEvent, an SBML Event structure
+% 2. useValuesFromTriggerTime, an integer (0/1) representing the value of useValuesFromTriggerTime to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML Event structure with the new value for the useValuesFromTriggerTime attribute
 %

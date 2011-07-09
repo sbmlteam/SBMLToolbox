@@ -1,11 +1,11 @@
 function symbol = InitialAssignment_getSymbol(SBMLInitialAssignment)
 % symbol = InitialAssignment_getSymbol(SBMLInitialAssignment)
 %
-% takes
+% Takes
 %
-% 1. SBMLInitialAssignment; an SBML InitialAssignment structure
+% 1. SBMLInitialAssignment, an SBML InitialAssignment structure
 %
-% returns
+% Returns
 %
 % 1. the value of the symbol attribute
 %

@@ -1,11 +1,11 @@
 function metaid = ModifierSpeciesReference_getMetaid(SBMLModifierSpeciesReference)
 % metaid = ModifierSpeciesReference_getMetaid(SBMLModifierSpeciesReference)
 %
-% takes
+% Takes
 %
-% 1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+% 1. SBMLModifierSpeciesReference, an SBML ModifierSpeciesReference structure
 %
-% returns
+% Returns
 %
 % 1. the value of the metaid attribute
 %

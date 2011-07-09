@@ -1,12 +1,12 @@
 function SBMLModel = Model_setName(SBMLModel, name)
 % SBMLModel = Model_setName(SBMLModel, name)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 % 2. name; a string representing the name to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML Model structure with the new value for the name attribute
 %

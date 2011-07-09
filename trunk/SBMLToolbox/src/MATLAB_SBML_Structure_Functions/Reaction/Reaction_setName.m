@@ -1,12 +1,12 @@
 function SBMLReaction = Reaction_setName(SBMLReaction, name)
 % SBMLReaction = Reaction_setName(SBMLReaction, name)
 %
-% takes
+% Takes
 %
-% 1. SBMLReaction; an SBML Reaction structure
+% 1. SBMLReaction, an SBML Reaction structure
 % 2. name; a string representing the name to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML Reaction structure with the new value for the name attribute
 %

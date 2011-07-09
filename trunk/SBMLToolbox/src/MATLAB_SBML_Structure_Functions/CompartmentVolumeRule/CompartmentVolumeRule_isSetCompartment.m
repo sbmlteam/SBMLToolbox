@@ -1,11 +1,11 @@
 function value = CompartmentVolumeRule_isSetCompartment(SBMLCompartmentVolumeRule)
 % value = CompartmentVolumeRule_isSetCompartment(SBMLCompartmentVolumeRule)
 %
-% takes
+% Takes
 %
-% 1. SBMLCompartmentVolumeRule; an SBML CompartmentVolumeRule structure
+% 1. SBMLCompartmentVolumeRule, an SBML CompartmentVolumeRule structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the compartment attribute is set

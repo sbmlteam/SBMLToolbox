@@ -1,11 +1,11 @@
 function value = Parameter_isSetName(SBMLParameter)
 % value = Parameter_isSetName(SBMLParameter)
 %
-% takes
+% Takes
 %
-% 1. SBMLParameter; an SBML Parameter structure
+% 1. SBMLParameter, an SBML Parameter structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the name attribute is set

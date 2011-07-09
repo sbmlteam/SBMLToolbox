@@ -1,11 +1,11 @@
 function speciesType = Model_getListOfSpeciesTypes(SBMLModel)
 % speciesType = Model_getListOfSpeciesTypes(SBMLModel)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 %
-% returns
+% Returns
 %
 % 1. an array of the speciesType structures
 %

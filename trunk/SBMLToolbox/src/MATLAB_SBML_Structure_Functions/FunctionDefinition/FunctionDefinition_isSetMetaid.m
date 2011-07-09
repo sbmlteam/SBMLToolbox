@@ -1,11 +1,11 @@
 function value = FunctionDefinition_isSetMetaid(SBMLFunctionDefinition)
 % value = FunctionDefinition_isSetMetaid(SBMLFunctionDefinition)
 %
-% takes
+% Takes
 %
-% 1. SBMLFunctionDefinition; an SBML FunctionDefinition structure
+% 1. SBMLFunctionDefinition, an SBML FunctionDefinition structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the metaid attribute is set

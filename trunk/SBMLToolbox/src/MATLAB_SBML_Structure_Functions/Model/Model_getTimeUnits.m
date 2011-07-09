@@ -1,11 +1,11 @@
 function timeUnits = Model_getTimeUnits(SBMLModel)
 % timeUnits = Model_getTimeUnits(SBMLModel)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 %
-% returns
+% Returns
 %
 % 1. the value of the timeUnits attribute
 %

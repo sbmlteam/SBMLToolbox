@@ -1,11 +1,11 @@
 function value = Reaction_isSetFast(SBMLReaction)
 % value = Reaction_isSetFast(SBMLReaction)
 %
-% takes
+% Takes
 %
-% 1. SBMLReaction; an SBML Reaction structure
+% 1. SBMLReaction, an SBML Reaction structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the fast attribute is set

@@ -1,12 +1,12 @@
 function y = Species_isAssignedByRule(SBMLSpecies, SBMLRules)
 % y = Species_isAssignedByRule(SBMLSpecies, SBMLRules)
 %
-% takes
+% Takes
 %
-% 1. SBMLSpecies; an SBML Species structure
+% 1. SBMLSpecies, an SBML Species structure
 % 2. SBMLRules; the array of rules from an SBML Model structure
 %
-% returns
+% Returns
 %
 % y = 
 %   - the index of the assignmentRule used to assigned value to the Species

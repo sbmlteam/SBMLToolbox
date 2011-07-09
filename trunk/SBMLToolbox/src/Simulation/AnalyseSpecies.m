@@ -1,12 +1,10 @@
 function Species = AnalyseSpecies(SBMLModel)
-% AnalyseSpecies takes an SBMLmodel
-% and returns
-%           structure detailing the species and how they are manipulated 
-%               within the model
+% AnalyseSpecies takes an SBML model and returns a structure detailing the
+% species and how they are manipulated within the model
 % 
-% the structure fields are
+% The fields in the structure are:
 %     Name
-%     SpeciesType (L2V2)
+%     SpeciesType (SBML Level 2 Version 2 only)
 %     constant
 %     boundaryCondition
 %     initialValue

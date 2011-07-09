@@ -1,12 +1,12 @@
 function SBMLReaction = Reaction_setKineticLaw(SBMLReaction, kineticLaw)
 % SBMLReaction = Reaction_setKineticLaw(SBMLReaction, SBMLKineticLaw)
 %
-% takes
+% Takes
 %
-% 1. SBMLReaction; an SBML Reaction structure
-% 2. SBMLKineticLaw; an SBML KineticLaw structure
+% 1. SBMLReaction, an SBML Reaction structure
+% 2. SBMLKineticLaw, an SBML KineticLaw structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Reaction structure with the new value for the kineticLaw field
 %

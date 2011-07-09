@@ -1,12 +1,12 @@
 function SBMLLocalParameter = LocalParameter_setValue(SBMLLocalParameter, value)
 % SBMLLocalParameter = LocalParameter_setValue(SBMLLocalParameter, value)
 %
-% takes
+% Takes
 %
-% 1. SBMLLocalParameter; an SBML LocalParameter structure
+% 1. SBMLLocalParameter, an SBML LocalParameter structure
 % 2. value; number representing the value of value to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML LocalParameter structure with the new value for the value attribute
 %

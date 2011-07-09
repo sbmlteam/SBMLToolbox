@@ -1,12 +1,12 @@
 function parameter = KineticLaw_getParameter(SBMLKineticLaw, index)
 % parameter = KineticLaw_getParameter(SBMLKineticLaw, index)
 %
-% takes
+% Takes
 %
-% 1. SBMLKineticLaw; an SBML KineticLaw structure
-% 2. index; an integer representing the index of SBML Parameter structure
+% 1. SBMLKineticLaw, an SBML KineticLaw structure
+% 2. index, an integer representing the index of SBML Parameter structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Parameter structure at the indexed position
 %

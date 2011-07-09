@@ -5,42 +5,42 @@
 %=========================================================================
 % AlgebraicRule = AlgebraicRule_create(level(optional), version(optional)
 %=========================================================================
-% takes
-% 1. level; an integer representing an SBML level (optional)
-% 2. version; an integer representing an SBML version (optional)
-% returns
+% Takes
+% 1. level, an integer representing an SBML level (optional)
+% 2. version, an integer representing an SBML version (optional)
+% Returns
 % 1. a MATLAB_SBML AlgebraicRule structure of the appropriate level and version
 %
 %=======================================================
 % formula = AlgebraicRule_getFormula(SBMLAlgebraicRule)
 %=======================================================
-% takes
-% 1. SBMLAlgebraicRule; an SBML AlgebraicRule structure
-% returns
+% Takes
+% 1. SBMLAlgebraicRule, an SBML AlgebraicRule structure
+% Returns
 % 1. the value of the formula attribute
 %
 %=====================================================
 % metaid = AlgebraicRule_getMetaid(SBMLAlgebraicRule)
 %=====================================================
-% takes
-% 1. SBMLAlgebraicRule; an SBML AlgebraicRule structure
-% returns
+% Takes
+% 1. SBMLAlgebraicRule, an SBML AlgebraicRule structure
+% Returns
 % 1. the value of the metaid attribute
 %
 %=======================================================
 % sboTerm = AlgebraicRule_getSBOTerm(SBMLAlgebraicRule)
 %=======================================================
-% takes
-% 1. SBMLAlgebraicRule; an SBML AlgebraicRule structure
-% returns
+% Takes
+% 1. SBMLAlgebraicRule, an SBML AlgebraicRule structure
+% Returns
 % 1. the value of the sboTerm attribute
 %
 %=======================================================
 % value = AlgebraicRule_isSetFormula(SBMLAlgebraicRule)
 %=======================================================
-% takes
-% 1. SBMLAlgebraicRule; an SBML AlgebraicRule structure
-% returns
+% Takes
+% 1. SBMLAlgebraicRule, an SBML AlgebraicRule structure
+% Returns
 % 1. value = 
 %  - 1 if the formula attribute is set
 %  - 0 otherwise
@@ -48,9 +48,9 @@
 %======================================================
 % value = AlgebraicRule_isSetMetaid(SBMLAlgebraicRule)
 %======================================================
-% takes
-% 1. SBMLAlgebraicRule; an SBML AlgebraicRule structure
-% returns
+% Takes
+% 1. SBMLAlgebraicRule, an SBML AlgebraicRule structure
+% Returns
 % 1. value = 
 %  - 1 if the metaid attribute is set
 %  - 0 otherwise
@@ -58,9 +58,9 @@
 %=======================================================
 % value = AlgebraicRule_isSetSBOTerm(SBMLAlgebraicRule)
 %=======================================================
-% takes
-% 1. SBMLAlgebraicRule; an SBML AlgebraicRule structure
-% returns
+% Takes
+% 1. SBMLAlgebraicRule, an SBML AlgebraicRule structure
+% Returns
 % 1. value = 
 %  - 1 if the sboTerm attribute is set
 %  - 0 otherwise
@@ -68,52 +68,52 @@
 %==========================================================================
 % SBMLAlgebraicRule = AlgebraicRule_setFormula(SBMLAlgebraicRule, formula)
 %==========================================================================
-% takes
-% 1. SBMLAlgebraicRule; an SBML AlgebraicRule structure
+% Takes
+% 1. SBMLAlgebraicRule, an SBML AlgebraicRule structure
 % 2. formula; a string representing the formula to be set
-% returns
+% Returns
 % 1. the SBML AlgebraicRule structure with the new value for the formula attribute
 %
 %========================================================================
 % SBMLAlgebraicRule = AlgebraicRule_setMetaid(SBMLAlgebraicRule, metaid)
 %========================================================================
-% takes
-% 1. SBMLAlgebraicRule; an SBML AlgebraicRule structure
+% Takes
+% 1. SBMLAlgebraicRule, an SBML AlgebraicRule structure
 % 2. metaid; a string representing the metaid to be set
-% returns
+% Returns
 % 1. the SBML AlgebraicRule structure with the new value for the metaid attribute
 %
 %==========================================================================
 % SBMLAlgebraicRule = AlgebraicRule_setSBOTerm(SBMLAlgebraicRule, sboTerm)
 %==========================================================================
-% takes
-% 1. SBMLAlgebraicRule; an SBML AlgebraicRule structure
-% 2. sboTerm; an integer representing the sboTerm to be set
-% returns
+% Takes
+% 1. SBMLAlgebraicRule, an SBML AlgebraicRule structure
+% 2. sboTerm, an integer representing the sboTerm to be set
+% Returns
 % 1. the SBML AlgebraicRule structure with the new value for the sboTerm attribute
 %
 %===================================================================
 % SBMLAlgebraicRule = AlgebraicRule_unsetFormula(SBMLAlgebraicRule)
 %===================================================================
-% takes
-% 1. SBMLAlgebraicRule; an SBML AlgebraicRule structure
-% returns
+% Takes
+% 1. SBMLAlgebraicRule, an SBML AlgebraicRule structure
+% Returns
 % 1. the SBML AlgebraicRule structure with the formula attribute unset
 %
 %==================================================================
 % SBMLAlgebraicRule = AlgebraicRule_unsetMetaid(SBMLAlgebraicRule)
 %==================================================================
-% takes
-% 1. SBMLAlgebraicRule; an SBML AlgebraicRule structure
-% returns
+% Takes
+% 1. SBMLAlgebraicRule, an SBML AlgebraicRule structure
+% Returns
 % 1. the SBML AlgebraicRule structure with the metaid attribute unset
 %
 %===================================================================
 % SBMLAlgebraicRule = AlgebraicRule_unsetSBOTerm(SBMLAlgebraicRule)
 %===================================================================
-% takes
-% 1. SBMLAlgebraicRule; an SBML AlgebraicRule structure
-% returns
+% Takes
+% 1. SBMLAlgebraicRule, an SBML AlgebraicRule structure
+% Returns
 % 1. the SBML AlgebraicRule structure with the sboTerm attribute unset
 %
 

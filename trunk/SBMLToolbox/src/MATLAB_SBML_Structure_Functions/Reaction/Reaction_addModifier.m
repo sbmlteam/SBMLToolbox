@@ -1,12 +1,12 @@
 function SBMLReaction = Reaction_addModifier(SBMLReaction, SBMLModifier)
 % SBMLReaction = Reaction_addModifier(SBMLReaction, SBMLModifier)
 %
-% takes
+% Takes
 %
-% 1. SBMLReaction; an SBML Reaction structure
-% 2. SBMLModifier; an SBML Modifier structure
+% 1. SBMLReaction, an SBML Reaction structure
+% 2. SBMLModifier, an SBML Modifier structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Reaction structure with the SBML Modifier structure added
 %

@@ -1,11 +1,11 @@
 function name = Reaction_getName(SBMLReaction)
 % name = Reaction_getName(SBMLReaction)
 %
-% takes
+% Takes
 %
-% 1. SBMLReaction; an SBML Reaction structure
+% 1. SBMLReaction, an SBML Reaction structure
 %
-% returns
+% Returns
 %
 % 1. the value of the name attribute
 %

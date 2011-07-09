@@ -1,12 +1,12 @@
 function SBMLModifierSpeciesReference = ModifierSpeciesReference_setSBOTerm(SBMLModifierSpeciesReference, sboTerm)
 % SBMLModifierSpeciesReference = ModifierSpeciesReference_setSBOTerm(SBMLModifierSpeciesReference, sboTerm)
 %
-% takes
+% Takes
 %
-% 1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
-% 2. sboTerm; an integer representing the sboTerm to be set
+% 1. SBMLModifierSpeciesReference, an SBML ModifierSpeciesReference structure
+% 2. sboTerm, an integer representing the sboTerm to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML ModifierSpeciesReference structure with the new value for the sboTerm attribute
 %

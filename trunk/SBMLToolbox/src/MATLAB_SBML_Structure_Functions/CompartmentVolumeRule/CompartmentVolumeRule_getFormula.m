@@ -1,11 +1,11 @@
 function formula = CompartmentVolumeRule_getFormula(SBMLCompartmentVolumeRule)
 % formula = CompartmentVolumeRule_getFormula(SBMLCompartmentVolumeRule)
 %
-% takes
+% Takes
 %
-% 1. SBMLCompartmentVolumeRule; an SBML CompartmentVolumeRule structure
+% 1. SBMLCompartmentVolumeRule, an SBML CompartmentVolumeRule structure
 %
-% returns
+% Returns
 %
 % 1. the value of the formula attribute
 %

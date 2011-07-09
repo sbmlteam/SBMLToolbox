@@ -1,13 +1,13 @@
 function [valid, message] = isSBML_LocalParameter(varargin)
 % [valid, message] = isSBML_LocalParameter(SBMLLocalParameter, level, version(optional))
 %
-% takes
+% Takes
 %
-% 1. SBMLLocalParameter; an SBML LocalParameter structure
-% 2. level; an integer representing an SBML level
-% 3. version (optional); an integer representing an SBML version
+% 1. SBMLLocalParameter, an SBML LocalParameter structure
+% 2. level, an integer representing an SBML level
+% 3. version (optional), an integer representing an SBML version
 %
-% returns
+% Returns
 %
 % 1. valid = 
 %   - 1, if the structure represents

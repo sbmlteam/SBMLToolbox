@@ -1,12 +1,12 @@
 function SBMLAlgebraicRule = AlgebraicRule_setFormula(SBMLAlgebraicRule, formula)
 % SBMLAlgebraicRule = AlgebraicRule_setFormula(SBMLAlgebraicRule, formula)
 %
-% takes
+% Takes
 %
-% 1. SBMLAlgebraicRule; an SBML AlgebraicRule structure
+% 1. SBMLAlgebraicRule, an SBML AlgebraicRule structure
 % 2. formula; a string representing the formula to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML AlgebraicRule structure with the new value for the formula attribute
 %

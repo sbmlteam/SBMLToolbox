@@ -1,11 +1,11 @@
 function y = RemoveDuplicates(FullArray)
 % newArray = RemoveDuplicates(array) 
 % 
-% takes
+% Takes
 % 
-% 1. array; any array
+% 1. array, any array
 % 
-% returns
+% Returns
 % 
 % 1. the array with any duplicate entries removed  
 %

@@ -1,11 +1,11 @@
 function name = FunctionDefinition_getName(SBMLFunctionDefinition)
 % name = FunctionDefinition_getName(SBMLFunctionDefinition)
 %
-% takes
+% Takes
 %
-% 1. SBMLFunctionDefinition; an SBML FunctionDefinition structure
+% 1. SBMLFunctionDefinition, an SBML FunctionDefinition structure
 %
-% returns
+% Returns
 %
 % 1. the value of the name attribute
 %

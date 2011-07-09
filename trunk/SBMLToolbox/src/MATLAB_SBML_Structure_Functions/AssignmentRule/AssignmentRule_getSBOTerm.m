@@ -1,11 +1,11 @@
 function sboTerm = AssignmentRule_getSBOTerm(SBMLAssignmentRule)
 % sboTerm = AssignmentRule_getSBOTerm(SBMLAssignmentRule)
 %
-% takes
+% Takes
 %
-% 1. SBMLAssignmentRule; an SBML AssignmentRule structure
+% 1. SBMLAssignmentRule, an SBML AssignmentRule structure
 %
-% returns
+% Returns
 %
 % 1. the value of the sboTerm attribute
 %

@@ -1,12 +1,12 @@
 function functionDefinition = Model_getFunctionDefinitionById(SBMLModel, id)
 % functionDefinition = Model_getFunctionDefinitionById(SBMLModel, id)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 % 2. id; a string representing the id of SBML FunctionDefinition structure
 %
-% returns
+% Returns
 %
 % 1. the SBML FunctionDefinition structure that has this id
 %

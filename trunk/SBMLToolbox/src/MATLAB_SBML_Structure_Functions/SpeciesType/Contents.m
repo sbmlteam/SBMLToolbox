@@ -5,50 +5,50 @@
 %=====================================================================
 % SpeciesType = SpeciesType_create(level(optional), version(optional)
 %=====================================================================
-% takes
-% 1. level; an integer representing an SBML level (optional)
-% 2. version; an integer representing an SBML version (optional)
-% returns
+% Takes
+% 1. level, an integer representing an SBML level (optional)
+% 2. version, an integer representing an SBML version (optional)
+% Returns
 % 1. a MATLAB_SBML SpeciesType structure of the appropriate level and version
 %
 %=========================================
 % id = SpeciesType_getId(SBMLSpeciesType)
 %=========================================
-% takes
-% 1. SBMLSpeciesType; an SBML SpeciesType structure
-% returns
+% Takes
+% 1. SBMLSpeciesType, an SBML SpeciesType structure
+% Returns
 % 1. the value of the id attribute
 %
 %=================================================
 % metaid = SpeciesType_getMetaid(SBMLSpeciesType)
 %=================================================
-% takes
-% 1. SBMLSpeciesType; an SBML SpeciesType structure
-% returns
+% Takes
+% 1. SBMLSpeciesType, an SBML SpeciesType structure
+% Returns
 % 1. the value of the metaid attribute
 %
 %=============================================
 % name = SpeciesType_getName(SBMLSpeciesType)
 %=============================================
-% takes
-% 1. SBMLSpeciesType; an SBML SpeciesType structure
-% returns
+% Takes
+% 1. SBMLSpeciesType, an SBML SpeciesType structure
+% Returns
 % 1. the value of the name attribute
 %
 %===================================================
 % sboTerm = SpeciesType_getSBOTerm(SBMLSpeciesType)
 %===================================================
-% takes
-% 1. SBMLSpeciesType; an SBML SpeciesType structure
-% returns
+% Takes
+% 1. SBMLSpeciesType, an SBML SpeciesType structure
+% Returns
 % 1. the value of the sboTerm attribute
 %
 %==============================================
 % value = SpeciesType_isSetId(SBMLSpeciesType)
 %==============================================
-% takes
-% 1. SBMLSpeciesType; an SBML SpeciesType structure
-% returns
+% Takes
+% 1. SBMLSpeciesType, an SBML SpeciesType structure
+% Returns
 % 1. value = 
 %  - 1 if the id attribute is set
 %  - 0 otherwise
@@ -56,9 +56,9 @@
 %==================================================
 % value = SpeciesType_isSetMetaid(SBMLSpeciesType)
 %==================================================
-% takes
-% 1. SBMLSpeciesType; an SBML SpeciesType structure
-% returns
+% Takes
+% 1. SBMLSpeciesType, an SBML SpeciesType structure
+% Returns
 % 1. value = 
 %  - 1 if the metaid attribute is set
 %  - 0 otherwise
@@ -66,9 +66,9 @@
 %================================================
 % value = SpeciesType_isSetName(SBMLSpeciesType)
 %================================================
-% takes
-% 1. SBMLSpeciesType; an SBML SpeciesType structure
-% returns
+% Takes
+% 1. SBMLSpeciesType, an SBML SpeciesType structure
+% Returns
 % 1. value = 
 %  - 1 if the name attribute is set
 %  - 0 otherwise
@@ -76,9 +76,9 @@
 %===================================================
 % value = SpeciesType_isSetSBOTerm(SBMLSpeciesType)
 %===================================================
-% takes
-% 1. SBMLSpeciesType; an SBML SpeciesType structure
-% returns
+% Takes
+% 1. SBMLSpeciesType, an SBML SpeciesType structure
+% Returns
 % 1. value = 
 %  - 1 if the sboTerm attribute is set
 %  - 0 otherwise
@@ -86,69 +86,69 @@
 %==========================================================
 % SBMLSpeciesType = SpeciesType_setId(SBMLSpeciesType, id)
 %==========================================================
-% takes
-% 1. SBMLSpeciesType; an SBML SpeciesType structure
+% Takes
+% 1. SBMLSpeciesType, an SBML SpeciesType structure
 % 2. id; a string representing the id to be set
-% returns
+% Returns
 % 1. the SBML SpeciesType structure with the new value for the id attribute
 %
 %==================================================================
 % SBMLSpeciesType = SpeciesType_setMetaid(SBMLSpeciesType, metaid)
 %==================================================================
-% takes
-% 1. SBMLSpeciesType; an SBML SpeciesType structure
+% Takes
+% 1. SBMLSpeciesType, an SBML SpeciesType structure
 % 2. metaid; a string representing the metaid to be set
-% returns
+% Returns
 % 1. the SBML SpeciesType structure with the new value for the metaid attribute
 %
 %==============================================================
 % SBMLSpeciesType = SpeciesType_setName(SBMLSpeciesType, name)
 %==============================================================
-% takes
-% 1. SBMLSpeciesType; an SBML SpeciesType structure
+% Takes
+% 1. SBMLSpeciesType, an SBML SpeciesType structure
 % 2. name; a string representing the name to be set
-% returns
+% Returns
 % 1. the SBML SpeciesType structure with the new value for the name attribute
 %
 %====================================================================
 % SBMLSpeciesType = SpeciesType_setSBOTerm(SBMLSpeciesType, sboTerm)
 %====================================================================
-% takes
-% 1. SBMLSpeciesType; an SBML SpeciesType structure
-% 2. sboTerm; an integer representing the sboTerm to be set
-% returns
+% Takes
+% 1. SBMLSpeciesType, an SBML SpeciesType structure
+% 2. sboTerm, an integer representing the sboTerm to be set
+% Returns
 % 1. the SBML SpeciesType structure with the new value for the sboTerm attribute
 %
 %========================================================
 % SBMLSpeciesType = SpeciesType_unsetId(SBMLSpeciesType)
 %========================================================
-% takes
-% 1. SBMLSpeciesType; an SBML SpeciesType structure
-% returns
+% Takes
+% 1. SBMLSpeciesType, an SBML SpeciesType structure
+% Returns
 % 1. the SBML SpeciesType structure with the id attribute unset
 %
 %============================================================
 % SBMLSpeciesType = SpeciesType_unsetMetaid(SBMLSpeciesType)
 %============================================================
-% takes
-% 1. SBMLSpeciesType; an SBML SpeciesType structure
-% returns
+% Takes
+% 1. SBMLSpeciesType, an SBML SpeciesType structure
+% Returns
 % 1. the SBML SpeciesType structure with the metaid attribute unset
 %
 %==========================================================
 % SBMLSpeciesType = SpeciesType_unsetName(SBMLSpeciesType)
 %==========================================================
-% takes
-% 1. SBMLSpeciesType; an SBML SpeciesType structure
-% returns
+% Takes
+% 1. SBMLSpeciesType, an SBML SpeciesType structure
+% Returns
 % 1. the SBML SpeciesType structure with the name attribute unset
 %
 %=============================================================
 % SBMLSpeciesType = SpeciesType_unsetSBOTerm(SBMLSpeciesType)
 %=============================================================
-% takes
-% 1. SBMLSpeciesType; an SBML SpeciesType structure
-% returns
+% Takes
+% 1. SBMLSpeciesType, an SBML SpeciesType structure
+% Returns
 % 1. the SBML SpeciesType structure with the sboTerm attribute unset
 %
 

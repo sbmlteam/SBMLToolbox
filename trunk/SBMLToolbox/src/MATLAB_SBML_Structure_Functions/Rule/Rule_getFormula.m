@@ -1,11 +1,11 @@
 function formula = Rule_getFormula(SBMLRule)
 % formula = Rule_getFormula(SBMLRule)
 %
-% takes
+% Takes
 %
-% 1. SBMLRule; an SBML Rule structure
+% 1. SBMLRule, an SBML Rule structure
 %
-% returns
+% Returns
 %
 % 1. the value of the formula attribute
 %

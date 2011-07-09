@@ -1,11 +1,11 @@
 function num = Event_getNumEventAssignments(SBMLEvent)
 % num = Event_getNumEventAssignments(SBMLEvent)
 %
-% takes
+% Takes
 %
-% 1. SBMLEvent; an SBML Event structure
+% 1. SBMLEvent, an SBML Event structure
 %
-% returns
+% Returns
 %
 % 1. the number of SBML EventAssignment structures present in the Event
 %

@@ -1,11 +1,11 @@
 function id = Parameter_getId(SBMLParameter)
 % id = Parameter_getId(SBMLParameter)
 %
-% takes
+% Takes
 %
-% 1. SBMLParameter; an SBML Parameter structure
+% 1. SBMLParameter, an SBML Parameter structure
 %
-% returns
+% Returns
 %
 % 1. the value of the id attribute
 %

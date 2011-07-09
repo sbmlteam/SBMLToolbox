@@ -1,12 +1,12 @@
 function SBMLSpecies = Species_setSBOTerm(SBMLSpecies, sboTerm)
 % SBMLSpecies = Species_setSBOTerm(SBMLSpecies, sboTerm)
 %
-% takes
+% Takes
 %
-% 1. SBMLSpecies; an SBML Species structure
-% 2. sboTerm; an integer representing the sboTerm to be set
+% 1. SBMLSpecies, an SBML Species structure
+% 2. sboTerm, an integer representing the sboTerm to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML Species structure with the new value for the sboTerm attribute
 %

@@ -1,12 +1,12 @@
 function SBMLRateRule = RateRule_setFormula(SBMLRateRule, formula)
 % SBMLRateRule = RateRule_setFormula(SBMLRateRule, formula)
 %
-% takes
+% Takes
 %
-% 1. SBMLRateRule; an SBML RateRule structure
+% 1. SBMLRateRule, an SBML RateRule structure
 % 2. formula; a string representing the formula to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML RateRule structure with the new value for the formula attribute
 %

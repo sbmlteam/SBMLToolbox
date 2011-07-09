@@ -1,12 +1,12 @@
 function SBMLUnit = Unit_setMultiplier(SBMLUnit, multiplier)
 % SBMLUnit = Unit_setMultiplier(SBMLUnit, multiplier)
 %
-% takes
+% Takes
 %
-% 1. SBMLUnit; an SBML Unit structure
+% 1. SBMLUnit, an SBML Unit structure
 % 2. multiplier; number representing the value of multiplier to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML Unit structure with the new value for the multiplier attribute
 %

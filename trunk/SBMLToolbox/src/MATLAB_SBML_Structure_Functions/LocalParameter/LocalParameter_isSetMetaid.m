@@ -1,11 +1,11 @@
 function value = LocalParameter_isSetMetaid(SBMLLocalParameter)
 % value = LocalParameter_isSetMetaid(SBMLLocalParameter)
 %
-% takes
+% Takes
 %
-% 1. SBMLLocalParameter; an SBML LocalParameter structure
+% 1. SBMLLocalParameter, an SBML LocalParameter structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the metaid attribute is set

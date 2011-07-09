@@ -1,12 +1,12 @@
 function species = Model_getSpeciesById(SBMLModel, id)
 % species = Model_getSpeciesById(SBMLModel, id)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 % 2. id; a string representing the id of SBML Species structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Species structure that has this id
 %

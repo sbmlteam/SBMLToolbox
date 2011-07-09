@@ -1,11 +1,11 @@
 function value = Trigger_isSetMetaid(SBMLTrigger)
 % value = Trigger_isSetMetaid(SBMLTrigger)
 %
-% takes
+% Takes
 %
-% 1. SBMLTrigger; an SBML Trigger structure
+% 1. SBMLTrigger, an SBML Trigger structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the metaid attribute is set

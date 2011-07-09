@@ -1,12 +1,12 @@
 function modifier = Reaction_getModifierById(SBMLReaction, id)
 % modifier = Reaction_getModifierById(SBMLReaction, id)
 %
-% takes
+% Takes
 %
-% 1. SBMLReaction; an SBML Reaction structure
+% 1. SBMLReaction, an SBML Reaction structure
 % 2. id; a string representing the id of SBML Modifier structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Modifier structure that has this id
 %

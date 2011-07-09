@@ -1,12 +1,12 @@
 function species = Model_getSpecies(SBMLModel, index)
 % species = Model_getSpecies(SBMLModel, index)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
-% 2. index; an integer representing the index of SBML Species structure
+% 1. SBMLModel, an SBML Model structure
+% 2. index, an integer representing the index of SBML Species structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Species structure at the indexed position
 %

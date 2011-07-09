@@ -1,12 +1,12 @@
 function parameter = Model_getParameter(SBMLModel, index)
 % parameter = Model_getParameter(SBMLModel, index)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
-% 2. index; an integer representing the index of SBML Parameter structure
+% 1. SBMLModel, an SBML Model structure
+% 2. index, an integer representing the index of SBML Parameter structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Parameter structure at the indexed position
 %

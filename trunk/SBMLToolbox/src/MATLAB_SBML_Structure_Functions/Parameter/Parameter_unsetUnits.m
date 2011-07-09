@@ -1,11 +1,11 @@
 function SBMLParameter = Parameter_unsetUnits(SBMLParameter)
 % SBMLParameter = Parameter_unsetUnits(SBMLParameter)
 %
-% takes
+% Takes
 %
-% 1. SBMLParameter; an SBML Parameter structure
+% 1. SBMLParameter, an SBML Parameter structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Parameter structure with the units attribute unset
 %

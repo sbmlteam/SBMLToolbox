@@ -1,12 +1,12 @@
 function SBMLKineticLaw = KineticLaw_setMetaid(SBMLKineticLaw, metaid)
 % SBMLKineticLaw = KineticLaw_setMetaid(SBMLKineticLaw, metaid)
 %
-% takes
+% Takes
 %
-% 1. SBMLKineticLaw; an SBML KineticLaw structure
+% 1. SBMLKineticLaw, an SBML KineticLaw structure
 % 2. metaid; a string representing the metaid to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML KineticLaw structure with the new value for the metaid attribute
 %

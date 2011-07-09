@@ -1,11 +1,11 @@
 function SBMLModel = Model_unsetLengthUnits(SBMLModel)
 % SBMLModel = Model_unsetLengthUnits(SBMLModel)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Model structure with the lengthUnits attribute unset
 %
