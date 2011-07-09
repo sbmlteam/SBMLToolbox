@@ -1,11 +1,11 @@
 function model = propagateLevelVersion(SBMLModel)
 % SBMLModel = propagateLevelVersion(SBMLModel)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 % 
-% returns 
+% Returns 
 % 
 % 1. the SBML Model structure with level and version fields added to all
 % sub structures

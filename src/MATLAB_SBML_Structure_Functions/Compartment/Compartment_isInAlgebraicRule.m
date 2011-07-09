@@ -1,12 +1,12 @@
 function y = Compartment_isInAlgebraicRule(SBMLCompartment, SBMLRules)
 % y = Compartment_isInAlgebraicRule(SBMLCompartment, SBMLRules)
 %
-% takes
+% Takes
 %
-% 1. SBMLCompartment; an SBML Compartment structure
+% 1. SBMLCompartment, an SBML Compartment structure
 % 2. SBMLRules; the array of rules from an SBML Model structure
 %
-% returns
+% Returns
 %
 % y = 
 %   - an array of the indices of any algebraicRules the id of the Compartment appears in 

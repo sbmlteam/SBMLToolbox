@@ -1,12 +1,12 @@
 function SBMLPriority = Priority_setSBOTerm(SBMLPriority, sboTerm)
 % SBMLPriority = Priority_setSBOTerm(SBMLPriority, sboTerm)
 %
-% takes
+% Takes
 %
-% 1. SBMLPriority; an SBML Priority structure
-% 2. sboTerm; an integer representing the sboTerm to be set
+% 1. SBMLPriority, an SBML Priority structure
+% 2. sboTerm, an integer representing the sboTerm to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML Priority structure with the new value for the sboTerm attribute
 %

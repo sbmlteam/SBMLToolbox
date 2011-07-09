@@ -1,12 +1,12 @@
 function SBMLUnitDefinition = UnitDefinition_setId(SBMLUnitDefinition, id)
 % SBMLUnitDefinition = UnitDefinition_setId(SBMLUnitDefinition, id)
 %
-% takes
+% Takes
 %
-% 1. SBMLUnitDefinition; an SBML UnitDefinition structure
+% 1. SBMLUnitDefinition, an SBML UnitDefinition structure
 % 2. id; a string representing the id to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML UnitDefinition structure with the new value for the id attribute
 %

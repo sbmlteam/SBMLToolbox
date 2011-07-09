@@ -1,12 +1,12 @@
 function SBMLParameter = Parameter_setUnits(SBMLParameter, units)
 % SBMLParameter = Parameter_setUnits(SBMLParameter, units)
 %
-% takes
+% Takes
 %
-% 1. SBMLParameter; an SBML Parameter structure
+% 1. SBMLParameter, an SBML Parameter structure
 % 2. units; a string representing the units to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML Parameter structure with the new value for the units attribute
 %

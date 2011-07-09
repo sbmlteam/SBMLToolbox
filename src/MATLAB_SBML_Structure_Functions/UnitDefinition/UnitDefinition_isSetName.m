@@ -1,11 +1,11 @@
 function value = UnitDefinition_isSetName(SBMLUnitDefinition)
 % value = UnitDefinition_isSetName(SBMLUnitDefinition)
 %
-% takes
+% Takes
 %
-% 1. SBMLUnitDefinition; an SBML UnitDefinition structure
+% 1. SBMLUnitDefinition, an SBML UnitDefinition structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the name attribute is set

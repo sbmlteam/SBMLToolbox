@@ -1,12 +1,12 @@
 function Parameter = Parameter_create(varargin)
 % Parameter = Parameter_create(level(optional), version(optional)
 %
-% takes
+% Takes
 %
-% 1. level; an integer representing an SBML level (optional)
-% 2. version; an integer representing an SBML version (optional)
+% 1. level, an integer representing an SBML level (optional)
+% 2. version, an integer representing an SBML version (optional)
 %
-% returns
+% Returns
 %
 % 1. a MATLAB_SBML Parameter structure of the appropriate level and version
 %

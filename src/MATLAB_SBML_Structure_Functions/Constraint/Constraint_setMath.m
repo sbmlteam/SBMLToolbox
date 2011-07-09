@@ -1,12 +1,12 @@
 function SBMLConstraint = Constraint_setMath(SBMLConstraint, math)
 % SBMLConstraint = Constraint_setMath(SBMLConstraint, math)
 %
-% takes
+% Takes
 %
-% 1. SBMLConstraint; an SBML Constraint structure
+% 1. SBMLConstraint, an SBML Constraint structure
 % 2. math; string representing the math expression math to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML Constraint structure with the new value for the math attribute
 %

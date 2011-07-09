@@ -1,11 +1,11 @@
 function value = SpeciesType_isSetName(SBMLSpeciesType)
 % value = SpeciesType_isSetName(SBMLSpeciesType)
 %
-% takes
+% Takes
 %
-% 1. SBMLSpeciesType; an SBML SpeciesType structure
+% 1. SBMLSpeciesType, an SBML SpeciesType structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the name attribute is set

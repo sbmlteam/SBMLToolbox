@@ -1,12 +1,12 @@
 function Event = Event_create(varargin)
 % Event = Event_create(level(optional), version(optional)
 %
-% takes
+% Takes
 %
-% 1. level; an integer representing an SBML level (optional)
-% 2. version; an integer representing an SBML version (optional)
+% 1. level, an integer representing an SBML level (optional)
+% 2. version, an integer representing an SBML version (optional)
 %
-% returns
+% Returns
 %
 % 1. a MATLAB_SBML Event structure of the appropriate level and version
 %

@@ -1,12 +1,12 @@
 function reactant = Reaction_getReactant(SBMLReaction, index)
 % reactant = Reaction_getReactant(SBMLReaction, index)
 %
-% takes
+% Takes
 %
-% 1. SBMLReaction; an SBML Reaction structure
-% 2. index; an integer representing the index of SBML Reactant structure
+% 1. SBMLReaction, an SBML Reaction structure
+% 2. index, an integer representing the index of SBML Reactant structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Reactant structure at the indexed position
 %

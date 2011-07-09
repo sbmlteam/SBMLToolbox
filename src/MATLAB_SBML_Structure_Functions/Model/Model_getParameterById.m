@@ -1,12 +1,12 @@
 function parameter = Model_getParameterById(SBMLModel, id)
 % parameter = Model_getParameterById(SBMLModel, id)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 % 2. id; a string representing the id of SBML Parameter structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Parameter structure that has this id
 %

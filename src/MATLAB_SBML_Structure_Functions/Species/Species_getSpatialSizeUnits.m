@@ -1,11 +1,11 @@
 function spatialSizeUnits = Species_getSpatialSizeUnits(SBMLSpecies)
 % spatialSizeUnits = Species_getSpatialSizeUnits(SBMLSpecies)
 %
-% takes
+% Takes
 %
-% 1. SBMLSpecies; an SBML Species structure
+% 1. SBMLSpecies, an SBML Species structure
 %
-% returns
+% Returns
 %
 % 1. the value of the spatialSizeUnits attribute
 %

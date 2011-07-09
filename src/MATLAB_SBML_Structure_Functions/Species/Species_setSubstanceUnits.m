@@ -1,12 +1,12 @@
 function SBMLSpecies = Species_setSubstanceUnits(SBMLSpecies, substanceUnits)
 % SBMLSpecies = Species_setSubstanceUnits(SBMLSpecies, substanceUnits)
 %
-% takes
+% Takes
 %
-% 1. SBMLSpecies; an SBML Species structure
+% 1. SBMLSpecies, an SBML Species structure
 % 2. substanceUnits; a string representing the substanceUnits to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML Species structure with the new value for the substanceUnits attribute
 %

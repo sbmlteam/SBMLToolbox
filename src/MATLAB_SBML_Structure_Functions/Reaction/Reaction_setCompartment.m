@@ -1,12 +1,12 @@
 function SBMLReaction = Reaction_setCompartment(SBMLReaction, compartment)
 % SBMLReaction = Reaction_setCompartment(SBMLReaction, compartment)
 %
-% takes
+% Takes
 %
-% 1. SBMLReaction; an SBML Reaction structure
+% 1. SBMLReaction, an SBML Reaction structure
 % 2. compartment; a string representing the compartment to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML Reaction structure with the new value for the compartment attribute
 %

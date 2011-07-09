@@ -1,11 +1,11 @@
 function name = SpeciesType_getName(SBMLSpeciesType)
 % name = SpeciesType_getName(SBMLSpeciesType)
 %
-% takes
+% Takes
 %
-% 1. SBMLSpeciesType; an SBML SpeciesType structure
+% 1. SBMLSpeciesType, an SBML SpeciesType structure
 %
-% returns
+% Returns
 %
 % 1. the value of the name attribute
 %

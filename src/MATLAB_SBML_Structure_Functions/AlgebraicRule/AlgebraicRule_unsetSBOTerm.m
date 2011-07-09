@@ -1,11 +1,11 @@
 function SBMLAlgebraicRule = AlgebraicRule_unsetSBOTerm(SBMLAlgebraicRule)
 % SBMLAlgebraicRule = AlgebraicRule_unsetSBOTerm(SBMLAlgebraicRule)
 %
-% takes
+% Takes
 %
-% 1. SBMLAlgebraicRule; an SBML AlgebraicRule structure
+% 1. SBMLAlgebraicRule, an SBML AlgebraicRule structure
 %
-% returns
+% Returns
 %
 % 1. the SBML AlgebraicRule structure with the sboTerm attribute unset
 %

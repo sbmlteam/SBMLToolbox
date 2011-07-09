@@ -1,11 +1,11 @@
 function value = ParameterRule_isSetFormula(SBMLParameterRule)
 % value = ParameterRule_isSetFormula(SBMLParameterRule)
 %
-% takes
+% Takes
 %
-% 1. SBMLParameterRule; an SBML ParameterRule structure
+% 1. SBMLParameterRule, an SBML ParameterRule structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the formula attribute is set

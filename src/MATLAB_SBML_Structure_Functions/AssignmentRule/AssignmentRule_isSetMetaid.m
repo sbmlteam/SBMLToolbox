@@ -1,11 +1,11 @@
 function value = AssignmentRule_isSetMetaid(SBMLAssignmentRule)
 % value = AssignmentRule_isSetMetaid(SBMLAssignmentRule)
 %
-% takes
+% Takes
 %
-% 1. SBMLAssignmentRule; an SBML AssignmentRule structure
+% 1. SBMLAssignmentRule, an SBML AssignmentRule structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the metaid attribute is set

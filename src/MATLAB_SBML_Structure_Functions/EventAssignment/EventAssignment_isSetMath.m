@@ -1,11 +1,11 @@
 function value = EventAssignment_isSetMath(SBMLEventAssignment)
 % value = EventAssignment_isSetMath(SBMLEventAssignment)
 %
-% takes
+% Takes
 %
-% 1. SBMLEventAssignment; an SBML EventAssignment structure
+% 1. SBMLEventAssignment, an SBML EventAssignment structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the math attribute is set

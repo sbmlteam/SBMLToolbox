@@ -1,11 +1,11 @@
 function compartmentType = Model_getListOfCompartmentTypes(SBMLModel)
 % compartmentType = Model_getListOfCompartmentTypes(SBMLModel)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 %
-% returns
+% Returns
 %
 % 1. an array of the compartmentType structures
 %

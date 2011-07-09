@@ -1,11 +1,11 @@
 function value = LocalParameter_getValue(SBMLLocalParameter)
 % value = LocalParameter_getValue(SBMLLocalParameter)
 %
-% takes
+% Takes
 %
-% 1. SBMLLocalParameter; an SBML LocalParameter structure
+% 1. SBMLLocalParameter, an SBML LocalParameter structure
 %
-% returns
+% Returns
 %
 % 1. the value of the value attribute
 %

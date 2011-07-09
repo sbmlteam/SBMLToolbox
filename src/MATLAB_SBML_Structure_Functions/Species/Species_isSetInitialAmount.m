@@ -1,11 +1,11 @@
 function value = Species_isSetInitialAmount(SBMLSpecies)
 % value = Species_isSetInitialAmount(SBMLSpecies)
 %
-% takes
+% Takes
 %
-% 1. SBMLSpecies; an SBML Species structure
+% 1. SBMLSpecies, an SBML Species structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the initialAmount attribute is set

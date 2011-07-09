@@ -1,12 +1,12 @@
 function SBMLUnitDefinition = UnitDefinition_setName(SBMLUnitDefinition, name)
 % SBMLUnitDefinition = UnitDefinition_setName(SBMLUnitDefinition, name)
 %
-% takes
+% Takes
 %
-% 1. SBMLUnitDefinition; an SBML UnitDefinition structure
+% 1. SBMLUnitDefinition, an SBML UnitDefinition structure
 % 2. name; a string representing the name to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML UnitDefinition structure with the new value for the name attribute
 %

@@ -1,12 +1,12 @@
 function array = Model_getListOfByTypecode(SBMLModel, SBMLTypecode)
 % listOf = Model_getListOfByTypecode(SBMLModel, typecode)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 % 2. typecode; a string representing the typecode of SBML ListOf structure
 %
-% returns
+% Returns
 %
 % 1. the SBML ListOf structure that has this typecode
 %

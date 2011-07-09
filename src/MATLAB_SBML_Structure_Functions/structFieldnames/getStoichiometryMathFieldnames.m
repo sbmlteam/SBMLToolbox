@@ -2,12 +2,12 @@ function [SBMLfieldnames, nNumberFields] = getStoichiometryMathFieldnames(level,
                                                                           version)
 % [fieldnames, num] = getStoichiometryMathFieldnames(level, version)
 %
-% takes
+% Takes
 %
-% 1. level; an integer representing an SBML level
-% 2. version; an integer representing an SBML version
+% 1. level, an integer representing an SBML level
+% 2. version, an integer representing an SBML version
 %
-% returns
+% Returns
 %
 % 1. an array of fieldnames for an SBML StoichiometryMath structure of the given level and version
 % 2. the number of fieldnames

@@ -1,12 +1,12 @@
 function y = Compartment_isAssignedByRule(SBMLCompartment, SBMLRules)
 % y = Compartment_isAssignedByRule(SBMLCompartment, SBMLRules)
 %
-% takes
+% Takes
 %
-% 1. SBMLCompartment; an SBML Compartment structure
+% 1. SBMLCompartment, an SBML Compartment structure
 % 2. SBMLRules; the array of rules from an SBML Model structure
 %
-% returns
+% Returns
 %
 % y = 
 %   - the index of the assignmentRule used to assigned value to the Compartment

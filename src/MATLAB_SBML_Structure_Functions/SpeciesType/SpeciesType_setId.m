@@ -1,12 +1,12 @@
 function SBMLSpeciesType = SpeciesType_setId(SBMLSpeciesType, id)
 % SBMLSpeciesType = SpeciesType_setId(SBMLSpeciesType, id)
 %
-% takes
+% Takes
 %
-% 1. SBMLSpeciesType; an SBML SpeciesType structure
+% 1. SBMLSpeciesType, an SBML SpeciesType structure
 % 2. id; a string representing the id to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML SpeciesType structure with the new value for the id attribute
 %

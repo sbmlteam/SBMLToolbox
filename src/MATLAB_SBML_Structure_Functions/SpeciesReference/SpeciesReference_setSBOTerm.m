@@ -1,12 +1,12 @@
 function SBMLSpeciesReference = SpeciesReference_setSBOTerm(SBMLSpeciesReference, sboTerm)
 % SBMLSpeciesReference = SpeciesReference_setSBOTerm(SBMLSpeciesReference, sboTerm)
 %
-% takes
+% Takes
 %
-% 1. SBMLSpeciesReference; an SBML SpeciesReference structure
-% 2. sboTerm; an integer representing the sboTerm to be set
+% 1. SBMLSpeciesReference, an SBML SpeciesReference structure
+% 2. sboTerm, an integer representing the sboTerm to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML SpeciesReference structure with the new value for the sboTerm attribute
 %

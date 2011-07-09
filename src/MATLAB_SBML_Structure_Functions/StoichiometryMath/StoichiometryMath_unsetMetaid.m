@@ -1,11 +1,11 @@
 function SBMLStoichiometryMath = StoichiometryMath_unsetMetaid(SBMLStoichiometryMath)
 % SBMLStoichiometryMath = StoichiometryMath_unsetMetaid(SBMLStoichiometryMath)
 %
-% takes
+% Takes
 %
-% 1. SBMLStoichiometryMath; an SBML StoichiometryMath structure
+% 1. SBMLStoichiometryMath, an SBML StoichiometryMath structure
 %
-% returns
+% Returns
 %
 % 1. the SBML StoichiometryMath structure with the metaid attribute unset
 %

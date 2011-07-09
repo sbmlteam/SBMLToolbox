@@ -1,12 +1,12 @@
 function SBMLSpeciesReference = SpeciesReference_setStoichiometryMath(SBMLSpeciesReference, stoichiometryMath)
 % SBMLSpeciesReference = SpeciesReference_setStoichiometryMath(SBMLSpeciesReference, SBMLStoichiometryMath)
 %
-% takes
+% Takes
 %
-% 1. SBMLSpeciesReference; an SBML SpeciesReference structure
-% 2. SBMLStoichiometryMath; an SBML StoichiometryMath structure
+% 1. SBMLSpeciesReference, an SBML SpeciesReference structure
+% 2. SBMLStoichiometryMath, an SBML StoichiometryMath structure
 %
-% returns
+% Returns
 %
 % 1. the SBML SpeciesReference structure with the new value for the stoichiometryMath field
 %

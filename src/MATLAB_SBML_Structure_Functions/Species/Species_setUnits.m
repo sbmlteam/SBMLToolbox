@@ -1,12 +1,12 @@
 function SBMLSpecies = Species_setUnits(SBMLSpecies, units)
 % SBMLSpecies = Species_setUnits(SBMLSpecies, units)
 %
-% takes
+% Takes
 %
-% 1. SBMLSpecies; an SBML Species structure
+% 1. SBMLSpecies, an SBML Species structure
 % 2. units; a string representing the units to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML Species structure with the new value for the units attribute
 %

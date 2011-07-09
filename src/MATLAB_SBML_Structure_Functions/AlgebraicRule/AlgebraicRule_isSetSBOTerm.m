@@ -1,11 +1,11 @@
 function value = AlgebraicRule_isSetSBOTerm(SBMLAlgebraicRule)
 % value = AlgebraicRule_isSetSBOTerm(SBMLAlgebraicRule)
 %
-% takes
+% Takes
 %
-% 1. SBMLAlgebraicRule; an SBML AlgebraicRule structure
+% 1. SBMLAlgebraicRule, an SBML AlgebraicRule structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the sboTerm attribute is set

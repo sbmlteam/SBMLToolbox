@@ -1,11 +1,11 @@
 function metaid = AlgebraicRule_getMetaid(SBMLAlgebraicRule)
 % metaid = AlgebraicRule_getMetaid(SBMLAlgebraicRule)
 %
-% takes
+% Takes
 %
-% 1. SBMLAlgebraicRule; an SBML AlgebraicRule structure
+% 1. SBMLAlgebraicRule, an SBML AlgebraicRule structure
 %
-% returns
+% Returns
 %
 % 1. the value of the metaid attribute
 %

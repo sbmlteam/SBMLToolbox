@@ -6,36 +6,36 @@
 % level = GetLevel(SBMLStructure) 
 %==================================
 % takes 
-% 1. SBMLStructure; any SBML structure
-% returns 
+% 1. SBMLStructure, any SBML structure
+% Returns 
 % 1. the SBML level corresponding to this structure
 %
 %====================================================
 % [level, version] = GetLevelVersion(SBMLStructure) 
 %====================================================
 % takes 
-% 1. SBMLStructure; any SBML structure
-% returns 
+% 1. SBMLStructure, any SBML structure
+% Returns 
 % 1. the SBML level corresponding to this structure
 % 2. the SBML version corresponding to this structure
 %
 %=========================================================
 % SBMLStructure = Object_create(typecode, level, version)
 %=========================================================
-% takes
+% Takes
 % 1. typecode; a string representing the type of object being queried
-% 2. level; an integer representing an SBML level
-% 3. version; an integer representing an SBML version
-% returns
+% 2. level, an integer representing an SBML level
+% 3. version, an integer representing an SBML version
+% Returns
 % 1. an SBML structure representing the given typecode, level and version
 %
 %====================================================
 % identical = areIdentical(SBMLStruct1, SBMLStruct2)
 %====================================================
-% takes
-% 1. SBMLStruct1; any SBML structure
-% 2. SBMLStruct2; any SBML structure
-% returns
+% Takes
+% 1. SBMLStruct1, any SBML structure
+% 2. SBMLStruct2, any SBML structure
+% Returns
 % 1. identical = 
 %   - 1 if the structures are identical i.e. contain same fields and the same values
 %   - 0 otherwise

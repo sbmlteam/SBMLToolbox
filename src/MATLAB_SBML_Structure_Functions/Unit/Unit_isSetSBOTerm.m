@@ -1,11 +1,11 @@
 function value = Unit_isSetSBOTerm(SBMLUnit)
 % value = Unit_isSetSBOTerm(SBMLUnit)
 %
-% takes
+% Takes
 %
-% 1. SBMLUnit; an SBML Unit structure
+% 1. SBMLUnit, an SBML Unit structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the sboTerm attribute is set

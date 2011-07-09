@@ -1,12 +1,12 @@
 function y = Parameter_isAssignedByRateRule(SBMLParameter, SBMLRules)
 % y = Parameter_isAssignedByRateRule(SBMLParameter, SBMLRules)
 %
-% takes
+% Takes
 %
-% 1. SBMLParameter; an SBML Parameter structure
+% 1. SBMLParameter, an SBML Parameter structure
 % 2. SBMLRules; the array of rules from an SBML Model structure
 %
-% returns
+% Returns
 %
 % y = 
 %   - the index of the rateRule used to assigned value to the Parameter

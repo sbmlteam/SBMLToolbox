@@ -1,11 +1,11 @@
 function RateRules = Model_getListOfRateRules(SBMLModel)
 % rateRule = Model_getListOfRateRules(SBMLModel)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 %
-% returns
+% Returns
 %
 % 1. an array of the rateRule structures
 %

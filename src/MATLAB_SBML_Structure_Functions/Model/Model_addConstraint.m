@@ -1,12 +1,12 @@
 function SBMLModel = Model_addConstraint(SBMLModel, SBMLConstraint)
 % SBMLModel = Model_addConstraint(SBMLModel, SBMLConstraint)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
-% 2. SBMLConstraint; an SBML Constraint structure
+% 1. SBMLModel, an SBML Model structure
+% 2. SBMLConstraint, an SBML Constraint structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Model structure with the SBML Constraint structure added
 %

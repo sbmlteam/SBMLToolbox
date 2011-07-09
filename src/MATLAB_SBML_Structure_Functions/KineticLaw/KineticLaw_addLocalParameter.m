@@ -1,12 +1,12 @@
 function SBMLKineticLaw = KineticLaw_addLocalParameter(SBMLKineticLaw, SBMLLocalParameter)
 % SBMLKineticLaw = KineticLaw_addLocalParameter(SBMLKineticLaw, SBMLLocalParameter)
 %
-% takes
+% Takes
 %
-% 1. SBMLKineticLaw; an SBML KineticLaw structure
-% 2. SBMLLocalParameter; an SBML LocalParameter structure
+% 1. SBMLKineticLaw, an SBML KineticLaw structure
+% 2. SBMLLocalParameter, an SBML LocalParameter structure
 %
-% returns
+% Returns
 %
 % 1. the SBML KineticLaw structure with the SBML LocalParameter structure added
 %

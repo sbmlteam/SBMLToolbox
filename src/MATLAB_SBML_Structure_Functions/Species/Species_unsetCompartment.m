@@ -1,11 +1,11 @@
 function SBMLSpecies = Species_unsetCompartment(SBMLSpecies)
 % SBMLSpecies = Species_unsetCompartment(SBMLSpecies)
 %
-% takes
+% Takes
 %
-% 1. SBMLSpecies; an SBML Species structure
+% 1. SBMLSpecies, an SBML Species structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Species structure with the compartment attribute unset
 %

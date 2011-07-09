@@ -5,42 +5,42 @@
 %=========================================================
 % Delay = Delay_create(level(optional), version(optional)
 %=========================================================
-% takes
-% 1. level; an integer representing an SBML level (optional)
-% 2. version; an integer representing an SBML version (optional)
-% returns
+% Takes
+% 1. level, an integer representing an SBML level (optional)
+% 2. version, an integer representing an SBML version (optional)
+% Returns
 % 1. a MATLAB_SBML Delay structure of the appropriate level and version
 %
 %=================================
 % math = Delay_getMath(SBMLDelay)
 %=================================
-% takes
-% 1. SBMLDelay; an SBML Delay structure
-% returns
+% Takes
+% 1. SBMLDelay, an SBML Delay structure
+% Returns
 % 1. the value of the math attribute
 %
 %=====================================
 % metaid = Delay_getMetaid(SBMLDelay)
 %=====================================
-% takes
-% 1. SBMLDelay; an SBML Delay structure
-% returns
+% Takes
+% 1. SBMLDelay, an SBML Delay structure
+% Returns
 % 1. the value of the metaid attribute
 %
 %=======================================
 % sboTerm = Delay_getSBOTerm(SBMLDelay)
 %=======================================
-% takes
-% 1. SBMLDelay; an SBML Delay structure
-% returns
+% Takes
+% 1. SBMLDelay, an SBML Delay structure
+% Returns
 % 1. the value of the sboTerm attribute
 %
 %====================================
 % value = Delay_isSetMath(SBMLDelay)
 %====================================
-% takes
-% 1. SBMLDelay; an SBML Delay structure
-% returns
+% Takes
+% 1. SBMLDelay, an SBML Delay structure
+% Returns
 % 1. value = 
 %  - 1 if the math attribute is set
 %  - 0 otherwise
@@ -48,9 +48,9 @@
 %======================================
 % value = Delay_isSetMetaid(SBMLDelay)
 %======================================
-% takes
-% 1. SBMLDelay; an SBML Delay structure
-% returns
+% Takes
+% 1. SBMLDelay, an SBML Delay structure
+% Returns
 % 1. value = 
 %  - 1 if the metaid attribute is set
 %  - 0 otherwise
@@ -58,9 +58,9 @@
 %=======================================
 % value = Delay_isSetSBOTerm(SBMLDelay)
 %=======================================
-% takes
-% 1. SBMLDelay; an SBML Delay structure
-% returns
+% Takes
+% 1. SBMLDelay, an SBML Delay structure
+% Returns
 % 1. value = 
 %  - 1 if the sboTerm attribute is set
 %  - 0 otherwise
@@ -68,52 +68,52 @@
 %============================================
 % SBMLDelay = Delay_setMath(SBMLDelay, math)
 %============================================
-% takes
-% 1. SBMLDelay; an SBML Delay structure
+% Takes
+% 1. SBMLDelay, an SBML Delay structure
 % 2. math; string representing the math expression math to be set
-% returns
+% Returns
 % 1. the SBML Delay structure with the new value for the math attribute
 %
 %================================================
 % SBMLDelay = Delay_setMetaid(SBMLDelay, metaid)
 %================================================
-% takes
-% 1. SBMLDelay; an SBML Delay structure
+% Takes
+% 1. SBMLDelay, an SBML Delay structure
 % 2. metaid; a string representing the metaid to be set
-% returns
+% Returns
 % 1. the SBML Delay structure with the new value for the metaid attribute
 %
 %==================================================
 % SBMLDelay = Delay_setSBOTerm(SBMLDelay, sboTerm)
 %==================================================
-% takes
-% 1. SBMLDelay; an SBML Delay structure
-% 2. sboTerm; an integer representing the sboTerm to be set
-% returns
+% Takes
+% 1. SBMLDelay, an SBML Delay structure
+% 2. sboTerm, an integer representing the sboTerm to be set
+% Returns
 % 1. the SBML Delay structure with the new value for the sboTerm attribute
 %
 %========================================
 % SBMLDelay = Delay_unsetMath(SBMLDelay)
 %========================================
-% takes
-% 1. SBMLDelay; an SBML Delay structure
-% returns
+% Takes
+% 1. SBMLDelay, an SBML Delay structure
+% Returns
 % 1. the SBML Delay structure with the math attribute unset
 %
 %==========================================
 % SBMLDelay = Delay_unsetMetaid(SBMLDelay)
 %==========================================
-% takes
-% 1. SBMLDelay; an SBML Delay structure
-% returns
+% Takes
+% 1. SBMLDelay, an SBML Delay structure
+% Returns
 % 1. the SBML Delay structure with the metaid attribute unset
 %
 %===========================================
 % SBMLDelay = Delay_unsetSBOTerm(SBMLDelay)
 %===========================================
-% takes
-% 1. SBMLDelay; an SBML Delay structure
-% returns
+% Takes
+% 1. SBMLDelay, an SBML Delay structure
+% Returns
 % 1. the SBML Delay structure with the sboTerm attribute unset
 %
 

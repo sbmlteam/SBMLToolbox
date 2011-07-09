@@ -1,11 +1,11 @@
 function id = Model_getId(SBMLModel)
 % id = Model_getId(SBMLModel)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 %
-% returns
+% Returns
 %
 % 1. the value of the id attribute
 %

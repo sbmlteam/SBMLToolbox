@@ -1,12 +1,12 @@
 function valid = isValidLevelVersionCombination(level, version)
 % valid = isValidLevelVersionCombination(level, version)
 %
-% takes
+% Takes
 %
-% 1. level; an integer representing an SBML level
-% 2. version; an integer representing an SBML version
+% 1. level, an integer representing an SBML level
+% 2. version, an integer representing an SBML version
 %
-% returns
+% Returns
 %
 % 1. valid = 1 if the level and version combinbation represent a valid
 %   specification of SBML supported by SBMLToolbox

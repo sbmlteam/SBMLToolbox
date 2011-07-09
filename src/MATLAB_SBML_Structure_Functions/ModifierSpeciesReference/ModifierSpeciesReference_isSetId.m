@@ -1,11 +1,11 @@
 function value = ModifierSpeciesReference_isSetId(SBMLModifierSpeciesReference)
 % value = ModifierSpeciesReference_isSetId(SBMLModifierSpeciesReference)
 %
-% takes
+% Takes
 %
-% 1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+% 1. SBMLModifierSpeciesReference, an SBML ModifierSpeciesReference structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the id attribute is set

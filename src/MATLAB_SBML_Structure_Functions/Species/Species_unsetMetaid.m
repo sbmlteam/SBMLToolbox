@@ -1,11 +1,11 @@
 function SBMLSpecies = Species_unsetMetaid(SBMLSpecies)
 % SBMLSpecies = Species_unsetMetaid(SBMLSpecies)
 %
-% takes
+% Takes
 %
-% 1. SBMLSpecies; an SBML Species structure
+% 1. SBMLSpecies, an SBML Species structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Species structure with the metaid attribute unset
 %

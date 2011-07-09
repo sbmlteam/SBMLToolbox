@@ -1,12 +1,12 @@
 function SBMLFunctionDefinition = FunctionDefinition_setMetaid(SBMLFunctionDefinition, metaid)
 % SBMLFunctionDefinition = FunctionDefinition_setMetaid(SBMLFunctionDefinition, metaid)
 %
-% takes
+% Takes
 %
-% 1. SBMLFunctionDefinition; an SBML FunctionDefinition structure
+% 1. SBMLFunctionDefinition, an SBML FunctionDefinition structure
 % 2. metaid; a string representing the metaid to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML FunctionDefinition structure with the new value for the metaid attribute
 %

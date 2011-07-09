@@ -1,11 +1,11 @@
 function value = SpeciesType_isSetSBOTerm(SBMLSpeciesType)
 % value = SpeciesType_isSetSBOTerm(SBMLSpeciesType)
 %
-% takes
+% Takes
 %
-% 1. SBMLSpeciesType; an SBML SpeciesType structure
+% 1. SBMLSpeciesType, an SBML SpeciesType structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the sboTerm attribute is set

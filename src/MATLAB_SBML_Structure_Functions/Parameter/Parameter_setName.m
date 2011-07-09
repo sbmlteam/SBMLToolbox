@@ -1,12 +1,12 @@
 function SBMLParameter = Parameter_setName(SBMLParameter, name)
 % SBMLParameter = Parameter_setName(SBMLParameter, name)
 %
-% takes
+% Takes
 %
-% 1. SBMLParameter; an SBML Parameter structure
+% 1. SBMLParameter, an SBML Parameter structure
 % 2. name; a string representing the name to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML Parameter structure with the new value for the name attribute
 %

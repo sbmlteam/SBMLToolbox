@@ -1,12 +1,12 @@
 function SBMLEvent = Event_setPriority(SBMLEvent, priority)
 % SBMLEvent = Event_setPriority(SBMLEvent, SBMLPriority)
 %
-% takes
+% Takes
 %
-% 1. SBMLEvent; an SBML Event structure
-% 2. SBMLPriority; an SBML Priority structure
+% 1. SBMLEvent, an SBML Event structure
+% 2. SBMLPriority, an SBML Priority structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Event structure with the new value for the priority field
 %

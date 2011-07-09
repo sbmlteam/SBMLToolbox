@@ -1,12 +1,12 @@
 function SBMLModel = Model_setConversionFactor(SBMLModel, conversionFactor)
 % SBMLModel = Model_setConversionFactor(SBMLModel, conversionFactor)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 % 2. conversionFactor; a string representing the conversionFactor to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML Model structure with the new value for the conversionFactor attribute
 %

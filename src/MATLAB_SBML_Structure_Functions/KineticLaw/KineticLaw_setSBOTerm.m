@@ -1,12 +1,12 @@
 function SBMLKineticLaw = KineticLaw_setSBOTerm(SBMLKineticLaw, sboTerm)
 % SBMLKineticLaw = KineticLaw_setSBOTerm(SBMLKineticLaw, sboTerm)
 %
-% takes
+% Takes
 %
-% 1. SBMLKineticLaw; an SBML KineticLaw structure
-% 2. sboTerm; an integer representing the sboTerm to be set
+% 1. SBMLKineticLaw, an SBML KineticLaw structure
+% 2. sboTerm, an integer representing the sboTerm to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML KineticLaw structure with the new value for the sboTerm attribute
 %

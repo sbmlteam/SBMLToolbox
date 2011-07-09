@@ -1,12 +1,12 @@
 function compartment = Model_getCompartment(SBMLModel, index)
 % compartment = Model_getCompartment(SBMLModel, index)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
-% 2. index; an integer representing the index of SBML Compartment structure
+% 1. SBMLModel, an SBML Model structure
+% 2. index, an integer representing the index of SBML Compartment structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Compartment structure at the indexed position
 %

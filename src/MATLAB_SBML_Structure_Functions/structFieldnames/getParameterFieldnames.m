@@ -2,12 +2,12 @@ function [SBMLfieldnames, nNumberFields] = getParameterFieldnames(level, ...
                                                                   version)
 % [fieldnames, num] = getParameterFieldnames(level, version)
 %
-% takes
+% Takes
 %
-% 1. level; an integer representing an SBML level
-% 2. version; an integer representing an SBML version
+% 1. level, an integer representing an SBML level
+% 2. version, an integer representing an SBML version
 %
-% returns
+% Returns
 %
 % 1. an array of fieldnames for an SBML Parameter structure of the given level and version
 % 2. the number of fieldnames

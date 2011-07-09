@@ -1,12 +1,12 @@
 function unitDefinition = Model_getUnitDefinitionById(SBMLModel, id)
 % unitDefinition = Model_getUnitDefinitionById(SBMLModel, id)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 % 2. id; a string representing the id of SBML UnitDefinition structure
 %
-% returns
+% Returns
 %
 % 1. the SBML UnitDefinition structure that has this id
 %

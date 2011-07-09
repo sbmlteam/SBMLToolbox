@@ -1,11 +1,11 @@
 function formula = AlgebraicRule_getFormula(SBMLAlgebraicRule)
 % formula = AlgebraicRule_getFormula(SBMLAlgebraicRule)
 %
-% takes
+% Takes
 %
-% 1. SBMLAlgebraicRule; an SBML AlgebraicRule structure
+% 1. SBMLAlgebraicRule, an SBML AlgebraicRule structure
 %
-% returns
+% Returns
 %
 % 1. the value of the formula attribute
 %

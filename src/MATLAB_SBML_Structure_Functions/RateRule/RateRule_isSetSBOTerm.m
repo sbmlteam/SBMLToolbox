@@ -1,11 +1,11 @@
 function value = RateRule_isSetSBOTerm(SBMLRateRule)
 % value = RateRule_isSetSBOTerm(SBMLRateRule)
 %
-% takes
+% Takes
 %
-% 1. SBMLRateRule; an SBML RateRule structure
+% 1. SBMLRateRule, an SBML RateRule structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the sboTerm attribute is set

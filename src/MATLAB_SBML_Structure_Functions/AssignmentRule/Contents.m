@@ -5,50 +5,50 @@
 %===========================================================================
 % AssignmentRule = AssignmentRule_create(level(optional), version(optional)
 %===========================================================================
-% takes
-% 1. level; an integer representing an SBML level (optional)
-% 2. version; an integer representing an SBML version (optional)
-% returns
+% Takes
+% 1. level, an integer representing an SBML level (optional)
+% 2. version, an integer representing an SBML version (optional)
+% Returns
 % 1. a MATLAB_SBML AssignmentRule structure of the appropriate level and version
 %
 %=========================================================
 % formula = AssignmentRule_getFormula(SBMLAssignmentRule)
 %=========================================================
-% takes
-% 1. SBMLAssignmentRule; an SBML AssignmentRule structure
-% returns
+% Takes
+% 1. SBMLAssignmentRule, an SBML AssignmentRule structure
+% Returns
 % 1. the value of the formula attribute
 %
 %=======================================================
 % metaid = AssignmentRule_getMetaid(SBMLAssignmentRule)
 %=======================================================
-% takes
-% 1. SBMLAssignmentRule; an SBML AssignmentRule structure
-% returns
+% Takes
+% 1. SBMLAssignmentRule, an SBML AssignmentRule structure
+% Returns
 % 1. the value of the metaid attribute
 %
 %=========================================================
 % sboTerm = AssignmentRule_getSBOTerm(SBMLAssignmentRule)
 %=========================================================
-% takes
-% 1. SBMLAssignmentRule; an SBML AssignmentRule structure
-% returns
+% Takes
+% 1. SBMLAssignmentRule, an SBML AssignmentRule structure
+% Returns
 % 1. the value of the sboTerm attribute
 %
 %===========================================================
 % variable = AssignmentRule_getVariable(SBMLAssignmentRule)
 %===========================================================
-% takes
-% 1. SBMLAssignmentRule; an SBML AssignmentRule structure
-% returns
+% Takes
+% 1. SBMLAssignmentRule, an SBML AssignmentRule structure
+% Returns
 % 1. the value of the variable attribute
 %
 %=========================================================
 % value = AssignmentRule_isSetFormula(SBMLAssignmentRule)
 %=========================================================
-% takes
-% 1. SBMLAssignmentRule; an SBML AssignmentRule structure
-% returns
+% Takes
+% 1. SBMLAssignmentRule, an SBML AssignmentRule structure
+% Returns
 % 1. value = 
 %  - 1 if the formula attribute is set
 %  - 0 otherwise
@@ -56,9 +56,9 @@
 %========================================================
 % value = AssignmentRule_isSetMetaid(SBMLAssignmentRule)
 %========================================================
-% takes
-% 1. SBMLAssignmentRule; an SBML AssignmentRule structure
-% returns
+% Takes
+% 1. SBMLAssignmentRule, an SBML AssignmentRule structure
+% Returns
 % 1. value = 
 %  - 1 if the metaid attribute is set
 %  - 0 otherwise
@@ -66,9 +66,9 @@
 %=========================================================
 % value = AssignmentRule_isSetSBOTerm(SBMLAssignmentRule)
 %=========================================================
-% takes
-% 1. SBMLAssignmentRule; an SBML AssignmentRule structure
-% returns
+% Takes
+% 1. SBMLAssignmentRule, an SBML AssignmentRule structure
+% Returns
 % 1. value = 
 %  - 1 if the sboTerm attribute is set
 %  - 0 otherwise
@@ -76,9 +76,9 @@
 %==========================================================
 % value = AssignmentRule_isSetVariable(SBMLAssignmentRule)
 %==========================================================
-% takes
-% 1. SBMLAssignmentRule; an SBML AssignmentRule structure
-% returns
+% Takes
+% 1. SBMLAssignmentRule, an SBML AssignmentRule structure
+% Returns
 % 1. value = 
 %  - 1 if the variable attribute is set
 %  - 0 otherwise
@@ -86,69 +86,69 @@
 %=============================================================================
 % SBMLAssignmentRule = AssignmentRule_setFormula(SBMLAssignmentRule, formula)
 %=============================================================================
-% takes
-% 1. SBMLAssignmentRule; an SBML AssignmentRule structure
+% Takes
+% 1. SBMLAssignmentRule, an SBML AssignmentRule structure
 % 2. formula; a string representing the formula to be set
-% returns
+% Returns
 % 1. the SBML AssignmentRule structure with the new value for the formula attribute
 %
 %===========================================================================
 % SBMLAssignmentRule = AssignmentRule_setMetaid(SBMLAssignmentRule, metaid)
 %===========================================================================
-% takes
-% 1. SBMLAssignmentRule; an SBML AssignmentRule structure
+% Takes
+% 1. SBMLAssignmentRule, an SBML AssignmentRule structure
 % 2. metaid; a string representing the metaid to be set
-% returns
+% Returns
 % 1. the SBML AssignmentRule structure with the new value for the metaid attribute
 %
 %=============================================================================
 % SBMLAssignmentRule = AssignmentRule_setSBOTerm(SBMLAssignmentRule, sboTerm)
 %=============================================================================
-% takes
-% 1. SBMLAssignmentRule; an SBML AssignmentRule structure
-% 2. sboTerm; an integer representing the sboTerm to be set
-% returns
+% Takes
+% 1. SBMLAssignmentRule, an SBML AssignmentRule structure
+% 2. sboTerm, an integer representing the sboTerm to be set
+% Returns
 % 1. the SBML AssignmentRule structure with the new value for the sboTerm attribute
 %
 %===============================================================================
 % SBMLAssignmentRule = AssignmentRule_setVariable(SBMLAssignmentRule, variable)
 %===============================================================================
-% takes
-% 1. SBMLAssignmentRule; an SBML AssignmentRule structure
+% Takes
+% 1. SBMLAssignmentRule, an SBML AssignmentRule structure
 % 2. variable; a string representing the variable to be set
-% returns
+% Returns
 % 1. the SBML AssignmentRule structure with the new value for the variable attribute
 %
 %======================================================================
 % SBMLAssignmentRule = AssignmentRule_unsetFormula(SBMLAssignmentRule)
 %======================================================================
-% takes
-% 1. SBMLAssignmentRule; an SBML AssignmentRule structure
-% returns
+% Takes
+% 1. SBMLAssignmentRule, an SBML AssignmentRule structure
+% Returns
 % 1. the SBML AssignmentRule structure with the formula attribute unset
 %
 %=====================================================================
 % SBMLAssignmentRule = AssignmentRule_unsetMetaid(SBMLAssignmentRule)
 %=====================================================================
-% takes
-% 1. SBMLAssignmentRule; an SBML AssignmentRule structure
-% returns
+% Takes
+% 1. SBMLAssignmentRule, an SBML AssignmentRule structure
+% Returns
 % 1. the SBML AssignmentRule structure with the metaid attribute unset
 %
 %======================================================================
 % SBMLAssignmentRule = AssignmentRule_unsetSBOTerm(SBMLAssignmentRule)
 %======================================================================
-% takes
-% 1. SBMLAssignmentRule; an SBML AssignmentRule structure
-% returns
+% Takes
+% 1. SBMLAssignmentRule, an SBML AssignmentRule structure
+% Returns
 % 1. the SBML AssignmentRule structure with the sboTerm attribute unset
 %
 %=======================================================================
 % SBMLAssignmentRule = AssignmentRule_unsetVariable(SBMLAssignmentRule)
 %=======================================================================
-% takes
-% 1. SBMLAssignmentRule; an SBML AssignmentRule structure
-% returns
+% Takes
+% 1. SBMLAssignmentRule, an SBML AssignmentRule structure
+% Returns
 % 1. the SBML AssignmentRule structure with the variable attribute unset
 %
 

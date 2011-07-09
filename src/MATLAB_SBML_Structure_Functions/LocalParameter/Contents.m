@@ -5,66 +5,66 @@
 %===========================================================================
 % LocalParameter = LocalParameter_create(level(optional), version(optional)
 %===========================================================================
-% takes
-% 1. level; an integer representing an SBML level (optional)
-% 2. version; an integer representing an SBML version (optional)
-% returns
+% Takes
+% 1. level, an integer representing an SBML level (optional)
+% 2. version, an integer representing an SBML version (optional)
+% Returns
 % 1. a MATLAB_SBML LocalParameter structure of the appropriate level and version
 %
 %===============================================
 % id = LocalParameter_getId(SBMLLocalParameter)
 %===============================================
-% takes
-% 1. SBMLLocalParameter; an SBML LocalParameter structure
-% returns
+% Takes
+% 1. SBMLLocalParameter, an SBML LocalParameter structure
+% Returns
 % 1. the value of the id attribute
 %
 %=======================================================
 % metaid = LocalParameter_getMetaid(SBMLLocalParameter)
 %=======================================================
-% takes
-% 1. SBMLLocalParameter; an SBML LocalParameter structure
-% returns
+% Takes
+% 1. SBMLLocalParameter, an SBML LocalParameter structure
+% Returns
 % 1. the value of the metaid attribute
 %
 %===================================================
 % name = LocalParameter_getName(SBMLLocalParameter)
 %===================================================
-% takes
-% 1. SBMLLocalParameter; an SBML LocalParameter structure
-% returns
+% Takes
+% 1. SBMLLocalParameter, an SBML LocalParameter structure
+% Returns
 % 1. the value of the name attribute
 %
 %=========================================================
 % sboTerm = LocalParameter_getSBOTerm(SBMLLocalParameter)
 %=========================================================
-% takes
-% 1. SBMLLocalParameter; an SBML LocalParameter structure
-% returns
+% Takes
+% 1. SBMLLocalParameter, an SBML LocalParameter structure
+% Returns
 % 1. the value of the sboTerm attribute
 %
 %=====================================================
 % units = LocalParameter_getUnits(SBMLLocalParameter)
 %=====================================================
-% takes
-% 1. SBMLLocalParameter; an SBML LocalParameter structure
-% returns
+% Takes
+% 1. SBMLLocalParameter, an SBML LocalParameter structure
+% Returns
 % 1. the value of the units attribute
 %
 %=====================================================
 % value = LocalParameter_getValue(SBMLLocalParameter)
 %=====================================================
-% takes
-% 1. SBMLLocalParameter; an SBML LocalParameter structure
-% returns
+% Takes
+% 1. SBMLLocalParameter, an SBML LocalParameter structure
+% Returns
 % 1. the value of the value attribute
 %
 %====================================================
 % value = LocalParameter_isSetId(SBMLLocalParameter)
 %====================================================
-% takes
-% 1. SBMLLocalParameter; an SBML LocalParameter structure
-% returns
+% Takes
+% 1. SBMLLocalParameter, an SBML LocalParameter structure
+% Returns
 % 1. value = 
 %  - 1 if the id attribute is set
 %  - 0 otherwise
@@ -72,9 +72,9 @@
 %========================================================
 % value = LocalParameter_isSetMetaid(SBMLLocalParameter)
 %========================================================
-% takes
-% 1. SBMLLocalParameter; an SBML LocalParameter structure
-% returns
+% Takes
+% 1. SBMLLocalParameter, an SBML LocalParameter structure
+% Returns
 % 1. value = 
 %  - 1 if the metaid attribute is set
 %  - 0 otherwise
@@ -82,9 +82,9 @@
 %======================================================
 % value = LocalParameter_isSetName(SBMLLocalParameter)
 %======================================================
-% takes
-% 1. SBMLLocalParameter; an SBML LocalParameter structure
-% returns
+% Takes
+% 1. SBMLLocalParameter, an SBML LocalParameter structure
+% Returns
 % 1. value = 
 %  - 1 if the name attribute is set
 %  - 0 otherwise
@@ -92,9 +92,9 @@
 %=========================================================
 % value = LocalParameter_isSetSBOTerm(SBMLLocalParameter)
 %=========================================================
-% takes
-% 1. SBMLLocalParameter; an SBML LocalParameter structure
-% returns
+% Takes
+% 1. SBMLLocalParameter, an SBML LocalParameter structure
+% Returns
 % 1. value = 
 %  - 1 if the sboTerm attribute is set
 %  - 0 otherwise
@@ -102,9 +102,9 @@
 %=======================================================
 % value = LocalParameter_isSetUnits(SBMLLocalParameter)
 %=======================================================
-% takes
-% 1. SBMLLocalParameter; an SBML LocalParameter structure
-% returns
+% Takes
+% 1. SBMLLocalParameter, an SBML LocalParameter structure
+% Returns
 % 1. value = 
 %  - 1 if the units attribute is set
 %  - 0 otherwise
@@ -112,9 +112,9 @@
 %=======================================================
 % value = LocalParameter_isSetValue(SBMLLocalParameter)
 %=======================================================
-% takes
-% 1. SBMLLocalParameter; an SBML LocalParameter structure
-% returns
+% Takes
+% 1. SBMLLocalParameter, an SBML LocalParameter structure
+% Returns
 % 1. value = 
 %  - 1 if the value attribute is set
 %  - 0 otherwise
@@ -122,103 +122,103 @@
 %===================================================================
 % SBMLLocalParameter = LocalParameter_setId(SBMLLocalParameter, id)
 %===================================================================
-% takes
-% 1. SBMLLocalParameter; an SBML LocalParameter structure
+% Takes
+% 1. SBMLLocalParameter, an SBML LocalParameter structure
 % 2. id; a string representing the id to be set
-% returns
+% Returns
 % 1. the SBML LocalParameter structure with the new value for the id attribute
 %
 %===========================================================================
 % SBMLLocalParameter = LocalParameter_setMetaid(SBMLLocalParameter, metaid)
 %===========================================================================
-% takes
-% 1. SBMLLocalParameter; an SBML LocalParameter structure
+% Takes
+% 1. SBMLLocalParameter, an SBML LocalParameter structure
 % 2. metaid; a string representing the metaid to be set
-% returns
+% Returns
 % 1. the SBML LocalParameter structure with the new value for the metaid attribute
 %
 %=======================================================================
 % SBMLLocalParameter = LocalParameter_setName(SBMLLocalParameter, name)
 %=======================================================================
-% takes
-% 1. SBMLLocalParameter; an SBML LocalParameter structure
+% Takes
+% 1. SBMLLocalParameter, an SBML LocalParameter structure
 % 2. name; a string representing the name to be set
-% returns
+% Returns
 % 1. the SBML LocalParameter structure with the new value for the name attribute
 %
 %=============================================================================
 % SBMLLocalParameter = LocalParameter_setSBOTerm(SBMLLocalParameter, sboTerm)
 %=============================================================================
-% takes
-% 1. SBMLLocalParameter; an SBML LocalParameter structure
-% 2. sboTerm; an integer representing the sboTerm to be set
-% returns
+% Takes
+% 1. SBMLLocalParameter, an SBML LocalParameter structure
+% 2. sboTerm, an integer representing the sboTerm to be set
+% Returns
 % 1. the SBML LocalParameter structure with the new value for the sboTerm attribute
 %
 %=========================================================================
 % SBMLLocalParameter = LocalParameter_setUnits(SBMLLocalParameter, units)
 %=========================================================================
-% takes
-% 1. SBMLLocalParameter; an SBML LocalParameter structure
+% Takes
+% 1. SBMLLocalParameter, an SBML LocalParameter structure
 % 2. units; a string representing the units to be set
-% returns
+% Returns
 % 1. the SBML LocalParameter structure with the new value for the units attribute
 %
 %=========================================================================
 % SBMLLocalParameter = LocalParameter_setValue(SBMLLocalParameter, value)
 %=========================================================================
-% takes
-% 1. SBMLLocalParameter; an SBML LocalParameter structure
+% Takes
+% 1. SBMLLocalParameter, an SBML LocalParameter structure
 % 2. value; number representing the value of value to be set
-% returns
+% Returns
 % 1. the SBML LocalParameter structure with the new value for the value attribute
 %
 %=================================================================
 % SBMLLocalParameter = LocalParameter_unsetId(SBMLLocalParameter)
 %=================================================================
-% takes
-% 1. SBMLLocalParameter; an SBML LocalParameter structure
-% returns
+% Takes
+% 1. SBMLLocalParameter, an SBML LocalParameter structure
+% Returns
 % 1. the SBML LocalParameter structure with the id attribute unset
 %
 %=====================================================================
 % SBMLLocalParameter = LocalParameter_unsetMetaid(SBMLLocalParameter)
 %=====================================================================
-% takes
-% 1. SBMLLocalParameter; an SBML LocalParameter structure
-% returns
+% Takes
+% 1. SBMLLocalParameter, an SBML LocalParameter structure
+% Returns
 % 1. the SBML LocalParameter structure with the metaid attribute unset
 %
 %===================================================================
 % SBMLLocalParameter = LocalParameter_unsetName(SBMLLocalParameter)
 %===================================================================
-% takes
-% 1. SBMLLocalParameter; an SBML LocalParameter structure
-% returns
+% Takes
+% 1. SBMLLocalParameter, an SBML LocalParameter structure
+% Returns
 % 1. the SBML LocalParameter structure with the name attribute unset
 %
 %======================================================================
 % SBMLLocalParameter = LocalParameter_unsetSBOTerm(SBMLLocalParameter)
 %======================================================================
-% takes
-% 1. SBMLLocalParameter; an SBML LocalParameter structure
-% returns
+% Takes
+% 1. SBMLLocalParameter, an SBML LocalParameter structure
+% Returns
 % 1. the SBML LocalParameter structure with the sboTerm attribute unset
 %
 %====================================================================
 % SBMLLocalParameter = LocalParameter_unsetUnits(SBMLLocalParameter)
 %====================================================================
-% takes
-% 1. SBMLLocalParameter; an SBML LocalParameter structure
-% returns
+% Takes
+% 1. SBMLLocalParameter, an SBML LocalParameter structure
+% Returns
 % 1. the SBML LocalParameter structure with the units attribute unset
 %
 %====================================================================
 % SBMLLocalParameter = LocalParameter_unsetValue(SBMLLocalParameter)
 %====================================================================
-% takes
-% 1. SBMLLocalParameter; an SBML LocalParameter structure
-% returns
+% Takes
+% 1. SBMLLocalParameter, an SBML LocalParameter structure
+% Returns
 % 1. the SBML LocalParameter structure with the value attribute unset
 %
 

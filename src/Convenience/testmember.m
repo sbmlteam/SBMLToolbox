@@ -1,12 +1,12 @@
 function y = testmember (num, array)
 % y = testmember(value, array)
 % 
-% takes 
+% Takes
 %
-% 1. value; any number/string
-% 2. array; an array of objects 
+% 1. value, any number/string
+% 2. array, an array of objects 
 % 
-% returns 
+% Returns 
 % 
 % 1. y = 
 %   - 1 if value is a member of the array 

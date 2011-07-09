@@ -1,11 +1,11 @@
 function sboTerm = Reaction_getSBOTerm(SBMLReaction)
 % sboTerm = Reaction_getSBOTerm(SBMLReaction)
 %
-% takes
+% Takes
 %
-% 1. SBMLReaction; an SBML Reaction structure
+% 1. SBMLReaction, an SBML Reaction structure
 %
-% returns
+% Returns
 %
 % 1. the value of the sboTerm attribute
 %

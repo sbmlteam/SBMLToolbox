@@ -1,11 +1,11 @@
 function value = Reaction_isSetSBOTerm(SBMLReaction)
 % value = Reaction_isSetSBOTerm(SBMLReaction)
 %
-% takes
+% Takes
 %
-% 1. SBMLReaction; an SBML Reaction structure
+% 1. SBMLReaction, an SBML Reaction structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the sboTerm attribute is set

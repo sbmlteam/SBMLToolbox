@@ -5,42 +5,42 @@
 %===============================================================================================
 % SpeciesConcentrationRule = SpeciesConcentrationRule_create(level(optional), version(optional)
 %===============================================================================================
-% takes
-% 1. level; an integer representing an SBML level (optional)
-% 2. version; an integer representing an SBML version (optional)
-% returns
+% Takes
+% 1. level, an integer representing an SBML level (optional)
+% 2. version, an integer representing an SBML version (optional)
+% Returns
 % 1. a MATLAB_SBML SpeciesConcentrationRule structure of the appropriate level and version
 %
 %=============================================================================
 % formula = SpeciesConcentrationRule_getFormula(SBMLSpeciesConcentrationRule)
 %=============================================================================
-% takes
-% 1. SBMLSpeciesConcentrationRule; an SBML SpeciesConcentrationRule structure
-% returns
+% Takes
+% 1. SBMLSpeciesConcentrationRule, an SBML SpeciesConcentrationRule structure
+% Returns
 % 1. the value of the formula attribute
 %
 %=============================================================================
 % species = SpeciesConcentrationRule_getSpecies(SBMLSpeciesConcentrationRule)
 %=============================================================================
-% takes
-% 1. SBMLSpeciesConcentrationRule; an SBML SpeciesConcentrationRule structure
-% returns
+% Takes
+% 1. SBMLSpeciesConcentrationRule, an SBML SpeciesConcentrationRule structure
+% Returns
 % 1. the value of the species attribute
 %
 %=======================================================================
 % type = SpeciesConcentrationRule_getType(SBMLSpeciesConcentrationRule)
 %=======================================================================
-% takes
-% 1. SBMLSpeciesConcentrationRule; an SBML SpeciesConcentrationRule structure
-% returns
+% Takes
+% 1. SBMLSpeciesConcentrationRule, an SBML SpeciesConcentrationRule structure
+% Returns
 % 1. the value of the type attribute
 %
 %=============================================================================
 % value = SpeciesConcentrationRule_isSetFormula(SBMLSpeciesConcentrationRule)
 %=============================================================================
-% takes
-% 1. SBMLSpeciesConcentrationRule; an SBML SpeciesConcentrationRule structure
-% returns
+% Takes
+% 1. SBMLSpeciesConcentrationRule, an SBML SpeciesConcentrationRule structure
+% Returns
 % 1. value = 
 %  - 1 if the formula attribute is set
 %  - 0 otherwise
@@ -48,9 +48,9 @@
 %=============================================================================
 % value = SpeciesConcentrationRule_isSetSpecies(SBMLSpeciesConcentrationRule)
 %=============================================================================
-% takes
-% 1. SBMLSpeciesConcentrationRule; an SBML SpeciesConcentrationRule structure
-% returns
+% Takes
+% 1. SBMLSpeciesConcentrationRule, an SBML SpeciesConcentrationRule structure
+% Returns
 % 1. value = 
 %  - 1 if the species attribute is set
 %  - 0 otherwise
@@ -58,9 +58,9 @@
 %==========================================================================
 % value = SpeciesConcentrationRule_isSetType(SBMLSpeciesConcentrationRule)
 %==========================================================================
-% takes
-% 1. SBMLSpeciesConcentrationRule; an SBML SpeciesConcentrationRule structure
-% returns
+% Takes
+% 1. SBMLSpeciesConcentrationRule, an SBML SpeciesConcentrationRule structure
+% Returns
 % 1. value = 
 %  - 1 if the type attribute is set
 %  - 0 otherwise
@@ -68,60 +68,60 @@
 %===========================================================================================================
 % SBMLSpeciesConcentrationRule = SpeciesConcentrationRule_setFormula(SBMLSpeciesConcentrationRule, formula)
 %===========================================================================================================
-% takes
-% 1. SBMLSpeciesConcentrationRule; an SBML SpeciesConcentrationRule structure
+% Takes
+% 1. SBMLSpeciesConcentrationRule, an SBML SpeciesConcentrationRule structure
 % 2. formula; a string representing the formula to be set
-% returns
+% Returns
 % 1. the SBML SpeciesConcentrationRule structure with the new value for the formula attribute
 %
 %===========================================================================================================
 % SBMLSpeciesConcentrationRule = SpeciesConcentrationRule_setSpecies(SBMLSpeciesConcentrationRule, species)
 %===========================================================================================================
-% takes
-% 1. SBMLSpeciesConcentrationRule; an SBML SpeciesConcentrationRule structure
+% Takes
+% 1. SBMLSpeciesConcentrationRule, an SBML SpeciesConcentrationRule structure
 % 2. species; a string representing the species to be set
-% returns
+% Returns
 % 1. the SBML SpeciesConcentrationRule structure with the new value for the species attribute
 %
 %=====================================================================================================
 % SBMLSpeciesConcentrationRule = SpeciesConcentrationRule_setType(SBMLSpeciesConcentrationRule, type)
 %=====================================================================================================
-% takes
-% 1. SBMLSpeciesConcentrationRule; an SBML SpeciesConcentrationRule structure
+% Takes
+% 1. SBMLSpeciesConcentrationRule, an SBML SpeciesConcentrationRule structure
 % 2. type; a string representing the type to be set
-% returns
+% Returns
 % 1. the SBML SpeciesConcentrationRule structure with the new value for the type attribute
 %
 %====================================================================================================
 % SBMLSpeciesConcentrationRule = SpeciesConcentrationRule_unsetFormula(SBMLSpeciesConcentrationRule)
 %====================================================================================================
-% takes
-% 1. SBMLSpeciesConcentrationRule; an SBML SpeciesConcentrationRule structure
-% returns
+% Takes
+% 1. SBMLSpeciesConcentrationRule, an SBML SpeciesConcentrationRule structure
+% Returns
 % 1. the SBML SpeciesConcentrationRule structure with the formula attribute unset
 %
 %====================================================================================================
 % SBMLSpeciesConcentrationRule = SpeciesConcentrationRule_unsetSpecies(SBMLSpeciesConcentrationRule)
 %====================================================================================================
-% takes
-% 1. SBMLSpeciesConcentrationRule; an SBML SpeciesConcentrationRule structure
-% returns
+% Takes
+% 1. SBMLSpeciesConcentrationRule, an SBML SpeciesConcentrationRule structure
+% Returns
 % 1. the SBML SpeciesConcentrationRule structure with the species attribute unset
 %
 %=================================================================================================
 % SBMLSpeciesConcentrationRule = SpeciesConcentrationRule_unsetType(SBMLSpeciesConcentrationRule)
 %=================================================================================================
-% takes
-% 1. SBMLSpeciesConcentrationRule; an SBML SpeciesConcentrationRule structure
-% returns
+% Takes
+% 1. SBMLSpeciesConcentrationRule, an SBML SpeciesConcentrationRule structure
+% Returns
 % 1. the SBML SpeciesConcentrationRule structure with the type attribute unset
 %
 %=====================================================================================================
 % SBMLSpeciesConcentrationRule = SpeciesConcentrationRule_unsetVariable(SBMLSpeciesConcentrationRule)
 %=====================================================================================================
-% takes
-% 1. SBMLSpeciesConcentrationRule; an SBML SpeciesConcentrationRule structure
-% returns
+% Takes
+% 1. SBMLSpeciesConcentrationRule, an SBML SpeciesConcentrationRule structure
+% Returns
 % 1. the SBML SpeciesConcentrationRule structure with the variable attribute unset
 %
 

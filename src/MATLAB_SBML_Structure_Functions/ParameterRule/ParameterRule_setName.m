@@ -1,12 +1,12 @@
 function SBMLParameterRule = ParameterRule_setName(SBMLParameterRule, name)
 % SBMLParameterRule = ParameterRule_setName(SBMLParameterRule, name)
 %
-% takes
+% Takes
 %
-% 1. SBMLParameterRule; an SBML ParameterRule structure
+% 1. SBMLParameterRule, an SBML ParameterRule structure
 % 2. name; a string representing the name to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML ParameterRule structure with the new value for the name attribute
 %

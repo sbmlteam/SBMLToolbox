@@ -1,11 +1,11 @@
 function value = Compartment_isSetSBOTerm(SBMLCompartment)
 % value = Compartment_isSetSBOTerm(SBMLCompartment)
 %
-% takes
+% Takes
 %
-% 1. SBMLCompartment; an SBML Compartment structure
+% 1. SBMLCompartment, an SBML Compartment structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the sboTerm attribute is set

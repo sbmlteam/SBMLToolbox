@@ -1,11 +1,11 @@
 function SBMLRule = Rule_unsetFormula(SBMLRule)
 % SBMLRule = Rule_unsetFormula(SBMLRule)
 %
-% takes
+% Takes
 %
-% 1. SBMLRule; an SBML Rule structure
+% 1. SBMLRule, an SBML Rule structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Rule structure with the formula attribute unset
 %

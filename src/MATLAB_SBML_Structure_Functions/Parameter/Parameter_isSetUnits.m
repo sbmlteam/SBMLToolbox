@@ -1,11 +1,11 @@
 function value = Parameter_isSetUnits(SBMLParameter)
 % value = Parameter_isSetUnits(SBMLParameter)
 %
-% takes
+% Takes
 %
-% 1. SBMLParameter; an SBML Parameter structure
+% 1. SBMLParameter, an SBML Parameter structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the units attribute is set

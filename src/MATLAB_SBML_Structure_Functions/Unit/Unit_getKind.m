@@ -1,11 +1,11 @@
 function kind = Unit_getKind(SBMLUnit)
 % kind = Unit_getKind(SBMLUnit)
 %
-% takes
+% Takes
 %
-% 1. SBMLUnit; an SBML Unit structure
+% 1. SBMLUnit, an SBML Unit structure
 %
-% returns
+% Returns
 %
 % 1. the value of the kind attribute
 %

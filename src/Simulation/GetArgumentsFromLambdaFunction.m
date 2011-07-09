@@ -1,18 +1,15 @@
 function Elements = GetArgumentsFromLambdaFunction(OriginalFormula)
 % GetArgumentsFromLambdaFunction takes a string representation of a formula 
-%                                that contains the MathML lambda function 
-% and returns 
-%           an array of the components of the lambda function
-%               which can then be used to substitute 
+% that contains the MathML lambda function and returns an array of the
+% components of the lambda function which can then be used to substitute 
 %     
-%   EXAMPLE:
+% *EXAMPLE:*
 %           elements = GetArgumentsFromLambdaFunction('lambda(x, x+0.5)')
-%
 %                    =  'x'  'x+0.5'   
 %
 %           elements = GetArgumentsFromLambdaFunction('lambda(x, y, x + y)')
-%
 %                    =  'x'  'y'    'x+y'   
+%
 
 %  Filename    :   GetArgumentsFromLambdaFunction.m
 %  Description :

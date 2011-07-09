@@ -1,11 +1,11 @@
 function sboTerm = CompartmentType_getSBOTerm(SBMLCompartmentType)
 % sboTerm = CompartmentType_getSBOTerm(SBMLCompartmentType)
 %
-% takes
+% Takes
 %
-% 1. SBMLCompartmentType; an SBML CompartmentType structure
+% 1. SBMLCompartmentType, an SBML CompartmentType structure
 %
-% returns
+% Returns
 %
 % 1. the value of the sboTerm attribute
 %

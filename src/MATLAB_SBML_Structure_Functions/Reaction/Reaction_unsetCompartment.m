@@ -1,11 +1,11 @@
 function SBMLReaction = Reaction_unsetCompartment(SBMLReaction)
 % SBMLReaction = Reaction_unsetCompartment(SBMLReaction)
 %
-% takes
+% Takes
 %
-% 1. SBMLReaction; an SBML Reaction structure
+% 1. SBMLReaction, an SBML Reaction structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Reaction structure with the compartment attribute unset
 %

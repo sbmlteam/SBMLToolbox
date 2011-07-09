@@ -1,12 +1,12 @@
 function SBMLLocalParameter = LocalParameter_setUnits(SBMLLocalParameter, units)
 % SBMLLocalParameter = LocalParameter_setUnits(SBMLLocalParameter, units)
 %
-% takes
+% Takes
 %
-% 1. SBMLLocalParameter; an SBML LocalParameter structure
+% 1. SBMLLocalParameter, an SBML LocalParameter structure
 % 2. units; a string representing the units to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML LocalParameter structure with the new value for the units attribute
 %

@@ -1,9 +1,9 @@
 function value = isValidUnitKind(kind)%
 % y = isValidUnitKind(kind)
 % 
-% takes 
+% Takes
 % 
-% 1. kind; a string representing a unit kind 
+% 1. kind, a string representing a unit kind 
 %
 % returns 
 %

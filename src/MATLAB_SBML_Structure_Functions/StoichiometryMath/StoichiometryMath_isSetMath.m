@@ -1,11 +1,11 @@
 function value = StoichiometryMath_isSetMath(SBMLStoichiometryMath)
 % value = StoichiometryMath_isSetMath(SBMLStoichiometryMath)
 %
-% takes
+% Takes
 %
-% 1. SBMLStoichiometryMath; an SBML StoichiometryMath structure
+% 1. SBMLStoichiometryMath, an SBML StoichiometryMath structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the math attribute is set

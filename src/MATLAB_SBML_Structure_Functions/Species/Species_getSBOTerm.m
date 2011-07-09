@@ -1,11 +1,11 @@
 function sboTerm = Species_getSBOTerm(SBMLSpecies)
 % sboTerm = Species_getSBOTerm(SBMLSpecies)
 %
-% takes
+% Takes
 %
-% 1. SBMLSpecies; an SBML Species structure
+% 1. SBMLSpecies, an SBML Species structure
 %
-% returns
+% Returns
 %
 % 1. the value of the sboTerm attribute
 %

@@ -1,12 +1,12 @@
 function SBMLModel = Model_addParameter(SBMLModel, SBMLParameter)
 % SBMLModel = Model_addParameter(SBMLModel, SBMLParameter)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
-% 2. SBMLParameter; an SBML Parameter structure
+% 1. SBMLModel, an SBML Model structure
+% 2. SBMLParameter, an SBML Parameter structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Model structure with the SBML Parameter structure added
 %

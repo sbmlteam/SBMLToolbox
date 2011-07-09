@@ -2,12 +2,12 @@ function [SBMLfieldnames, nNumberFields] = getCompartmentTypeFieldnames(level, .
                                                                         version)
 % [fieldnames, num] = getCompartmentTypeFieldnames(level, version)
 %
-% takes
+% Takes
 %
-% 1. level; an integer representing an SBML level
-% 2. version; an integer representing an SBML version
+% 1. level, an integer representing an SBML level
+% 2. version, an integer representing an SBML version
 %
-% returns
+% Returns
 %
 % 1. an array of fieldnames for an SBML CompartmentType structure of the given level and version
 % 2. the number of fieldnames

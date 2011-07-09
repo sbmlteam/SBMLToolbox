@@ -1,12 +1,12 @@
 function SBMLStoichiometryMath = StoichiometryMath_setSBOTerm(SBMLStoichiometryMath, sboTerm)
 % SBMLStoichiometryMath = StoichiometryMath_setSBOTerm(SBMLStoichiometryMath, sboTerm)
 %
-% takes
+% Takes
 %
-% 1. SBMLStoichiometryMath; an SBML StoichiometryMath structure
-% 2. sboTerm; an integer representing the sboTerm to be set
+% 1. SBMLStoichiometryMath, an SBML StoichiometryMath structure
+% 2. sboTerm, an integer representing the sboTerm to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML StoichiometryMath structure with the new value for the sboTerm attribute
 %

@@ -1,11 +1,11 @@
 function SBMLCompartmentVolumeRule = CompartmentVolumeRule_unsetCompartment(SBMLCompartmentVolumeRule)
 % SBMLCompartmentVolumeRule = CompartmentVolumeRule_unsetCompartment(SBMLCompartmentVolumeRule)
 %
-% takes
+% Takes
 %
-% 1. SBMLCompartmentVolumeRule; an SBML CompartmentVolumeRule structure
+% 1. SBMLCompartmentVolumeRule, an SBML CompartmentVolumeRule structure
 %
-% returns
+% Returns
 %
 % 1. the SBML CompartmentVolumeRule structure with the compartment attribute unset
 %

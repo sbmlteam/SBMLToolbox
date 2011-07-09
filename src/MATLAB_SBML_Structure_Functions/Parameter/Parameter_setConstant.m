@@ -1,12 +1,12 @@
 function SBMLParameter = Parameter_setConstant(SBMLParameter, constant)
 % SBMLParameter = Parameter_setConstant(SBMLParameter, constant)
 %
-% takes
+% Takes
 %
-% 1. SBMLParameter; an SBML Parameter structure
-% 2. constant; an integer (0/1) representing the value of constant to be set
+% 1. SBMLParameter, an SBML Parameter structure
+% 2. constant, an integer (0/1) representing the value of constant to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML Parameter structure with the new value for the constant attribute
 %

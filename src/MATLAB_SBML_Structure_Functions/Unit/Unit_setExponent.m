@@ -1,12 +1,12 @@
 function SBMLUnit = Unit_setExponent(SBMLUnit, exponent)
 % SBMLUnit = Unit_setExponent(SBMLUnit, exponent)
 %
-% takes
+% Takes
 %
-% 1. SBMLUnit; an SBML Unit structure
+% 1. SBMLUnit, an SBML Unit structure
 % 2. exponent; number representing the value of exponent to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML Unit structure with the new value for the exponent attribute
 %

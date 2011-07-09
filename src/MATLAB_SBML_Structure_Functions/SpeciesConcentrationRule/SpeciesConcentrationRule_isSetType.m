@@ -1,11 +1,11 @@
 function value = SpeciesConcentrationRule_isSetType(SBMLSpeciesConcentrationRule)
 % value = SpeciesConcentrationRule_isSetType(SBMLSpeciesConcentrationRule)
 %
-% takes
+% Takes
 %
-% 1. SBMLSpeciesConcentrationRule; an SBML SpeciesConcentrationRule structure
+% 1. SBMLSpeciesConcentrationRule, an SBML SpeciesConcentrationRule structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the type attribute is set

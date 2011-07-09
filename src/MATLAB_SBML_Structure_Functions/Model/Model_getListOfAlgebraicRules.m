@@ -1,11 +1,11 @@
 function AlgebraicRules = Model_getListOfAlgebraicRules(SBMLModel)
 % algebraicRule = Model_getListOfAlgebraicRules(SBMLModel)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 %
-% returns
+% Returns
 %
 % 1. an array of the algebraicRule structures
 %

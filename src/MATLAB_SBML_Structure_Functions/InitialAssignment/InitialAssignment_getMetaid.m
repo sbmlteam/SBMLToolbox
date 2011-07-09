@@ -1,11 +1,11 @@
 function metaid = InitialAssignment_getMetaid(SBMLInitialAssignment)
 % metaid = InitialAssignment_getMetaid(SBMLInitialAssignment)
 %
-% takes
+% Takes
 %
-% 1. SBMLInitialAssignment; an SBML InitialAssignment structure
+% 1. SBMLInitialAssignment, an SBML InitialAssignment structure
 %
-% returns
+% Returns
 %
 % 1. the value of the metaid attribute
 %

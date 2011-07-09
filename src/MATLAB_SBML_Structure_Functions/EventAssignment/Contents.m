@@ -5,50 +5,50 @@
 %=============================================================================
 % EventAssignment = EventAssignment_create(level(optional), version(optional)
 %=============================================================================
-% takes
-% 1. level; an integer representing an SBML level (optional)
-% 2. version; an integer representing an SBML version (optional)
-% returns
+% Takes
+% 1. level, an integer representing an SBML level (optional)
+% 2. version, an integer representing an SBML version (optional)
+% Returns
 % 1. a MATLAB_SBML EventAssignment structure of the appropriate level and version
 %
 %=====================================================
 % math = EventAssignment_getMath(SBMLEventAssignment)
 %=====================================================
-% takes
-% 1. SBMLEventAssignment; an SBML EventAssignment structure
-% returns
+% Takes
+% 1. SBMLEventAssignment, an SBML EventAssignment structure
+% Returns
 % 1. the value of the math attribute
 %
 %=========================================================
 % metaid = EventAssignment_getMetaid(SBMLEventAssignment)
 %=========================================================
-% takes
-% 1. SBMLEventAssignment; an SBML EventAssignment structure
-% returns
+% Takes
+% 1. SBMLEventAssignment, an SBML EventAssignment structure
+% Returns
 % 1. the value of the metaid attribute
 %
 %===========================================================
 % sboTerm = EventAssignment_getSBOTerm(SBMLEventAssignment)
 %===========================================================
-% takes
-% 1. SBMLEventAssignment; an SBML EventAssignment structure
-% returns
+% Takes
+% 1. SBMLEventAssignment, an SBML EventAssignment structure
+% Returns
 % 1. the value of the sboTerm attribute
 %
 %=============================================================
 % variable = EventAssignment_getVariable(SBMLEventAssignment)
 %=============================================================
-% takes
-% 1. SBMLEventAssignment; an SBML EventAssignment structure
-% returns
+% Takes
+% 1. SBMLEventAssignment, an SBML EventAssignment structure
+% Returns
 % 1. the value of the variable attribute
 %
 %========================================================
 % value = EventAssignment_isSetMath(SBMLEventAssignment)
 %========================================================
-% takes
-% 1. SBMLEventAssignment; an SBML EventAssignment structure
-% returns
+% Takes
+% 1. SBMLEventAssignment, an SBML EventAssignment structure
+% Returns
 % 1. value = 
 %  - 1 if the math attribute is set
 %  - 0 otherwise
@@ -56,9 +56,9 @@
 %==========================================================
 % value = EventAssignment_isSetMetaid(SBMLEventAssignment)
 %==========================================================
-% takes
-% 1. SBMLEventAssignment; an SBML EventAssignment structure
-% returns
+% Takes
+% 1. SBMLEventAssignment, an SBML EventAssignment structure
+% Returns
 % 1. value = 
 %  - 1 if the metaid attribute is set
 %  - 0 otherwise
@@ -66,9 +66,9 @@
 %===========================================================
 % value = EventAssignment_isSetSBOTerm(SBMLEventAssignment)
 %===========================================================
-% takes
-% 1. SBMLEventAssignment; an SBML EventAssignment structure
-% returns
+% Takes
+% 1. SBMLEventAssignment, an SBML EventAssignment structure
+% Returns
 % 1. value = 
 %  - 1 if the sboTerm attribute is set
 %  - 0 otherwise
@@ -76,9 +76,9 @@
 %============================================================
 % value = EventAssignment_isSetVariable(SBMLEventAssignment)
 %============================================================
-% takes
-% 1. SBMLEventAssignment; an SBML EventAssignment structure
-% returns
+% Takes
+% 1. SBMLEventAssignment, an SBML EventAssignment structure
+% Returns
 % 1. value = 
 %  - 1 if the variable attribute is set
 %  - 0 otherwise
@@ -86,69 +86,69 @@
 %==========================================================================
 % SBMLEventAssignment = EventAssignment_setMath(SBMLEventAssignment, math)
 %==========================================================================
-% takes
-% 1. SBMLEventAssignment; an SBML EventAssignment structure
+% Takes
+% 1. SBMLEventAssignment, an SBML EventAssignment structure
 % 2. math; string representing the math expression math to be set
-% returns
+% Returns
 % 1. the SBML EventAssignment structure with the new value for the math attribute
 %
 %==============================================================================
 % SBMLEventAssignment = EventAssignment_setMetaid(SBMLEventAssignment, metaid)
 %==============================================================================
-% takes
-% 1. SBMLEventAssignment; an SBML EventAssignment structure
+% Takes
+% 1. SBMLEventAssignment, an SBML EventAssignment structure
 % 2. metaid; a string representing the metaid to be set
-% returns
+% Returns
 % 1. the SBML EventAssignment structure with the new value for the metaid attribute
 %
 %================================================================================
 % SBMLEventAssignment = EventAssignment_setSBOTerm(SBMLEventAssignment, sboTerm)
 %================================================================================
-% takes
-% 1. SBMLEventAssignment; an SBML EventAssignment structure
-% 2. sboTerm; an integer representing the sboTerm to be set
-% returns
+% Takes
+% 1. SBMLEventAssignment, an SBML EventAssignment structure
+% 2. sboTerm, an integer representing the sboTerm to be set
+% Returns
 % 1. the SBML EventAssignment structure with the new value for the sboTerm attribute
 %
 %==================================================================================
 % SBMLEventAssignment = EventAssignment_setVariable(SBMLEventAssignment, variable)
 %==================================================================================
-% takes
-% 1. SBMLEventAssignment; an SBML EventAssignment structure
+% Takes
+% 1. SBMLEventAssignment, an SBML EventAssignment structure
 % 2. variable; a string representing the variable to be set
-% returns
+% Returns
 % 1. the SBML EventAssignment structure with the new value for the variable attribute
 %
 %======================================================================
 % SBMLEventAssignment = EventAssignment_unsetMath(SBMLEventAssignment)
 %======================================================================
-% takes
-% 1. SBMLEventAssignment; an SBML EventAssignment structure
-% returns
+% Takes
+% 1. SBMLEventAssignment, an SBML EventAssignment structure
+% Returns
 % 1. the SBML EventAssignment structure with the math attribute unset
 %
 %========================================================================
 % SBMLEventAssignment = EventAssignment_unsetMetaid(SBMLEventAssignment)
 %========================================================================
-% takes
-% 1. SBMLEventAssignment; an SBML EventAssignment structure
-% returns
+% Takes
+% 1. SBMLEventAssignment, an SBML EventAssignment structure
+% Returns
 % 1. the SBML EventAssignment structure with the metaid attribute unset
 %
 %=========================================================================
 % SBMLEventAssignment = EventAssignment_unsetSBOTerm(SBMLEventAssignment)
 %=========================================================================
-% takes
-% 1. SBMLEventAssignment; an SBML EventAssignment structure
-% returns
+% Takes
+% 1. SBMLEventAssignment, an SBML EventAssignment structure
+% Returns
 % 1. the SBML EventAssignment structure with the sboTerm attribute unset
 %
 %==========================================================================
 % SBMLEventAssignment = EventAssignment_unsetVariable(SBMLEventAssignment)
 %==========================================================================
-% takes
-% 1. SBMLEventAssignment; an SBML EventAssignment structure
-% returns
+% Takes
+% 1. SBMLEventAssignment, an SBML EventAssignment structure
+% Returns
 % 1. the SBML EventAssignment structure with the variable attribute unset
 %
 

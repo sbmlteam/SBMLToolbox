@@ -1,12 +1,12 @@
 function SBMLRule = Rule_setSBOTerm(SBMLRule, sboTerm)
 % SBMLRule = Rule_setSBOTerm(SBMLRule, sboTerm)
 %
-% takes
+% Takes
 %
-% 1. SBMLRule; an SBML Rule structure
-% 2. sboTerm; an integer representing the sboTerm to be set
+% 1. SBMLRule, an SBML Rule structure
+% 2. sboTerm, an integer representing the sboTerm to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML Rule structure with the new value for the sboTerm attribute
 %

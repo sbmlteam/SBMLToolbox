@@ -1,13 +1,13 @@
 function [valid, message] = isSBML_Rule(varargin)
 % [valid, message] = isSBML_Rule(SBMLRule, level, version(optional))
 %
-% takes
+% Takes
 %
-% 1. SBMLRule; an SBML Rule structure
-% 2. level; an integer representing an SBML level
-% 3. version (optional); an integer representing an SBML version
+% 1. SBMLRule, an SBML Rule structure
+% 2. level, an integer representing an SBML level
+% 3. version (optional), an integer representing an SBML version
 %
-% returns
+% Returns
 %
 % 1. valid = 
 %   - 1, if the structure represents

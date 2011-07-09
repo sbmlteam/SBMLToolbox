@@ -1,13 +1,13 @@
 function [defaultValues] = getDefaultValues(typecode, level, version)
 % [values] = getDefaultValues(typecode, level, version)
 %
-% takes
+% Takes
 %
 % 1. typecode; a string representing the type of object being queried
-% 2. level; an integer representing an SBML level
-% 3. version; an integer representing an SBML version
+% 2. level, an integer representing an SBML level
+% 3. version, an integer representing an SBML version
 %
-% returns
+% Returns
 %
 % 1. an array of default values for an SBML structure of the given typecode, level and version
 %

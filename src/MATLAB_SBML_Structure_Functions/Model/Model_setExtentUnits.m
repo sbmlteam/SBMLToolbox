@@ -1,12 +1,12 @@
 function SBMLModel = Model_setExtentUnits(SBMLModel, extentUnits)
 % SBMLModel = Model_setExtentUnits(SBMLModel, extentUnits)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 % 2. extentUnits; a string representing the extentUnits to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML Model structure with the new value for the extentUnits attribute
 %

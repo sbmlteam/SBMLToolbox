@@ -1,11 +1,11 @@
 function metaid = Delay_getMetaid(SBMLDelay)
 % metaid = Delay_getMetaid(SBMLDelay)
 %
-% takes
+% Takes
 %
-% 1. SBMLDelay; an SBML Delay structure
+% 1. SBMLDelay, an SBML Delay structure
 %
-% returns
+% Returns
 %
 % 1. the value of the metaid attribute
 %

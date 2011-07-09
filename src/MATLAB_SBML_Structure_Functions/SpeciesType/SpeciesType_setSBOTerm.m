@@ -1,12 +1,12 @@
 function SBMLSpeciesType = SpeciesType_setSBOTerm(SBMLSpeciesType, sboTerm)
 % SBMLSpeciesType = SpeciesType_setSBOTerm(SBMLSpeciesType, sboTerm)
 %
-% takes
+% Takes
 %
-% 1. SBMLSpeciesType; an SBML SpeciesType structure
-% 2. sboTerm; an integer representing the sboTerm to be set
+% 1. SBMLSpeciesType, an SBML SpeciesType structure
+% 2. sboTerm, an integer representing the sboTerm to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML SpeciesType structure with the new value for the sboTerm attribute
 %

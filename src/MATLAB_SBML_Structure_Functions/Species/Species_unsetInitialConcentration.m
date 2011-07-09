@@ -1,11 +1,11 @@
 function SBMLSpecies = Species_unsetInitialConcentration(SBMLSpecies)
 % SBMLSpecies = Species_unsetInitialConcentration(SBMLSpecies)
 %
-% takes
+% Takes
 %
-% 1. SBMLSpecies; an SBML Species structure
+% 1. SBMLSpecies, an SBML Species structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Species structure with the initialConcentration attribute unset
 %

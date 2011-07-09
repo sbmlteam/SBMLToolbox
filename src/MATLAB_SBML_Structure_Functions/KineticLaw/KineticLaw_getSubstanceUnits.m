@@ -1,11 +1,11 @@
 function substanceUnits = KineticLaw_getSubstanceUnits(SBMLKineticLaw)
 % substanceUnits = KineticLaw_getSubstanceUnits(SBMLKineticLaw)
 %
-% takes
+% Takes
 %
-% 1. SBMLKineticLaw; an SBML KineticLaw structure
+% 1. SBMLKineticLaw, an SBML KineticLaw structure
 %
-% returns
+% Returns
 %
 % 1. the value of the substanceUnits attribute
 %

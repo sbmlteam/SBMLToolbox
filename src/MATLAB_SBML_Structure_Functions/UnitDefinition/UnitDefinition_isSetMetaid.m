@@ -1,11 +1,11 @@
 function value = UnitDefinition_isSetMetaid(SBMLUnitDefinition)
 % value = UnitDefinition_isSetMetaid(SBMLUnitDefinition)
 %
-% takes
+% Takes
 %
-% 1. SBMLUnitDefinition; an SBML UnitDefinition structure
+% 1. SBMLUnitDefinition, an SBML UnitDefinition structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the metaid attribute is set

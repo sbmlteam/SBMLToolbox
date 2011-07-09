@@ -1,11 +1,11 @@
 function size = Compartment_getSize(SBMLCompartment)
 % size = Compartment_getSize(SBMLCompartment)
 %
-% takes
+% Takes
 %
-% 1. SBMLCompartment; an SBML Compartment structure
+% 1. SBMLCompartment, an SBML Compartment structure
 %
-% returns
+% Returns
 %
 % 1. the value of the size attribute
 %

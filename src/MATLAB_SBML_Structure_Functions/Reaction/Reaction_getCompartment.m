@@ -1,11 +1,11 @@
 function compartment = Reaction_getCompartment(SBMLReaction)
 % compartment = Reaction_getCompartment(SBMLReaction)
 %
-% takes
+% Takes
 %
-% 1. SBMLReaction; an SBML Reaction structure
+% 1. SBMLReaction, an SBML Reaction structure
 %
-% returns
+% Returns
 %
 % 1. the value of the compartment attribute
 %

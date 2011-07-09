@@ -2,12 +2,12 @@ function [SBMLfieldnames, nNumberFields] = getFunctionDefinitionFieldnames(level
                                                                            version)
 % [fieldnames, num] = getFunctionDefinitionFieldnames(level, version)
 %
-% takes
+% Takes
 %
-% 1. level; an integer representing an SBML level
-% 2. version; an integer representing an SBML version
+% 1. level, an integer representing an SBML level
+% 2. version, an integer representing an SBML version
 %
-% returns
+% Returns
 %
 % 1. an array of fieldnames for an SBML FunctionDefinition structure of the given level and version
 % 2. the number of fieldnames

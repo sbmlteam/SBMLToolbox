@@ -1,12 +1,12 @@
 function [defaultValues] = getCompartmentDefaultValues(level, version)
 % [values] = getCompartmentDefaultValues(level, version)
 %
-% takes
+% Takes
 %
-% 1. level; an integer representing an SBML level
-% 2. version; an integer representing an SBML version
+% 1. level, an integer representing an SBML level
+% 2. version, an integer representing an SBML version
 %
-% returns
+% Returns
 %
 % 1. an array of default values for an SBML Compartment structure of the given level and version
 %

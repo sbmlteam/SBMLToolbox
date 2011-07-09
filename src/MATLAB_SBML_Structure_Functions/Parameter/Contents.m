@@ -5,75 +5,75 @@
 %=================================================================
 % Parameter = Parameter_create(level(optional), version(optional)
 %=================================================================
-% takes
-% 1. level; an integer representing an SBML level (optional)
-% 2. version; an integer representing an SBML version (optional)
-% returns
+% Takes
+% 1. level, an integer representing an SBML level (optional)
+% 2. version, an integer representing an SBML version (optional)
+% Returns
 % 1. a MATLAB_SBML Parameter structure of the appropriate level and version
 %
 %=================================================
 % constant = Parameter_getConstant(SBMLParameter)
 %=================================================
-% takes
-% 1. SBMLParameter; an SBML Parameter structure
-% returns
+% Takes
+% 1. SBMLParameter, an SBML Parameter structure
+% Returns
 % 1. the value of the constant attribute
 %
 %=====================================
 % id = Parameter_getId(SBMLParameter)
 %=====================================
-% takes
-% 1. SBMLParameter; an SBML Parameter structure
-% returns
+% Takes
+% 1. SBMLParameter, an SBML Parameter structure
+% Returns
 % 1. the value of the id attribute
 %
 %=============================================
 % metaid = Parameter_getMetaid(SBMLParameter)
 %=============================================
-% takes
-% 1. SBMLParameter; an SBML Parameter structure
-% returns
+% Takes
+% 1. SBMLParameter, an SBML Parameter structure
+% Returns
 % 1. the value of the metaid attribute
 %
 %=========================================
 % name = Parameter_getName(SBMLParameter)
 %=========================================
-% takes
-% 1. SBMLParameter; an SBML Parameter structure
-% returns
+% Takes
+% 1. SBMLParameter, an SBML Parameter structure
+% Returns
 % 1. the value of the name attribute
 %
 %===============================================
 % sboTerm = Parameter_getSBOTerm(SBMLParameter)
 %===============================================
-% takes
-% 1. SBMLParameter; an SBML Parameter structure
-% returns
+% Takes
+% 1. SBMLParameter, an SBML Parameter structure
+% Returns
 % 1. the value of the sboTerm attribute
 %
 %===========================================
 % units = Parameter_getUnits(SBMLParameter)
 %===========================================
-% takes
-% 1. SBMLParameter; an SBML Parameter structure
-% returns
+% Takes
+% 1. SBMLParameter, an SBML Parameter structure
+% Returns
 % 1. the value of the units attribute
 %
 %===========================================
 % value = Parameter_getValue(SBMLParameter)
 %===========================================
-% takes
-% 1. SBMLParameter; an SBML Parameter structure
-% returns
+% Takes
+% 1. SBMLParameter, an SBML Parameter structure
+% Returns
 % 1. the value of the value attribute
 %
 %==============================================================
 % y = Parameter_isAssignedByRateRule(SBMLParameter, SBMLRules)
 %==============================================================
-% takes
-% 1. SBMLParameter; an SBML Parameter structure
+% Takes
+% 1. SBMLParameter, an SBML Parameter structure
 % 2. SBMLRules; the array of rules from an SBML Model structure
-% returns
+% Returns
 % y = 
 %   - the index of the rateRule used to assigned value to the Parameter
 %   - 0 if the Parameter is not assigned by rateRule 
@@ -99,10 +99,10 @@
 %==========================================================
 % y = Parameter_isAssignedByRule(SBMLParameter, SBMLRules)
 %==========================================================
-% takes
-% 1. SBMLParameter; an SBML Parameter structure
+% Takes
+% 1. SBMLParameter, an SBML Parameter structure
 % 2. SBMLRules; the array of rules from an SBML Model structure
-% returns
+% Returns
 % y = 
 %   - the index of the assignmentRule used to assigned value to the Parameter
 %   - 0 if the Parameter is not assigned by assignmentRule 
@@ -128,10 +128,10 @@
 %===========================================================
 % y = Parameter_isInAlgebraicRule(SBMLParameter, SBMLRules)
 %===========================================================
-% takes
-% 1. SBMLParameter; an SBML Parameter structure
+% Takes
+% 1. SBMLParameter, an SBML Parameter structure
 % 2. SBMLRules; the array of rules from an SBML Model structure
-% returns
+% Returns
 % y = 
 %   - an array of the indices of any algebraicRules the id of the Parameter appears in 
 %   - 0 if the Parameter appears in no algebraicRules 
@@ -157,9 +157,9 @@
 %==========================================
 % value = Parameter_isSetId(SBMLParameter)
 %==========================================
-% takes
-% 1. SBMLParameter; an SBML Parameter structure
-% returns
+% Takes
+% 1. SBMLParameter, an SBML Parameter structure
+% Returns
 % 1. value = 
 %  - 1 if the id attribute is set
 %  - 0 otherwise
@@ -167,9 +167,9 @@
 %==============================================
 % value = Parameter_isSetMetaid(SBMLParameter)
 %==============================================
-% takes
-% 1. SBMLParameter; an SBML Parameter structure
-% returns
+% Takes
+% 1. SBMLParameter, an SBML Parameter structure
+% Returns
 % 1. value = 
 %  - 1 if the metaid attribute is set
 %  - 0 otherwise
@@ -177,9 +177,9 @@
 %============================================
 % value = Parameter_isSetName(SBMLParameter)
 %============================================
-% takes
-% 1. SBMLParameter; an SBML Parameter structure
-% returns
+% Takes
+% 1. SBMLParameter, an SBML Parameter structure
+% Returns
 % 1. value = 
 %  - 1 if the name attribute is set
 %  - 0 otherwise
@@ -187,9 +187,9 @@
 %===============================================
 % value = Parameter_isSetSBOTerm(SBMLParameter)
 %===============================================
-% takes
-% 1. SBMLParameter; an SBML Parameter structure
-% returns
+% Takes
+% 1. SBMLParameter, an SBML Parameter structure
+% Returns
 % 1. value = 
 %  - 1 if the sboTerm attribute is set
 %  - 0 otherwise
@@ -197,9 +197,9 @@
 %=============================================
 % value = Parameter_isSetUnits(SBMLParameter)
 %=============================================
-% takes
-% 1. SBMLParameter; an SBML Parameter structure
-% returns
+% Takes
+% 1. SBMLParameter, an SBML Parameter structure
+% Returns
 % 1. value = 
 %  - 1 if the units attribute is set
 %  - 0 otherwise
@@ -207,9 +207,9 @@
 %=============================================
 % value = Parameter_isSetValue(SBMLParameter)
 %=============================================
-% takes
-% 1. SBMLParameter; an SBML Parameter structure
-% returns
+% Takes
+% 1. SBMLParameter, an SBML Parameter structure
+% Returns
 % 1. value = 
 %  - 1 if the value attribute is set
 %  - 0 otherwise
@@ -217,112 +217,112 @@
 %================================================================
 % SBMLParameter = Parameter_setConstant(SBMLParameter, constant)
 %================================================================
-% takes
-% 1. SBMLParameter; an SBML Parameter structure
-% 2. constant; an integer (0/1) representing the value of constant to be set
-% returns
+% Takes
+% 1. SBMLParameter, an SBML Parameter structure
+% 2. constant, an integer (0/1) representing the value of constant to be set
+% Returns
 % 1. the SBML Parameter structure with the new value for the constant attribute
 %
 %====================================================
 % SBMLParameter = Parameter_setId(SBMLParameter, id)
 %====================================================
-% takes
-% 1. SBMLParameter; an SBML Parameter structure
+% Takes
+% 1. SBMLParameter, an SBML Parameter structure
 % 2. id; a string representing the id to be set
-% returns
+% Returns
 % 1. the SBML Parameter structure with the new value for the id attribute
 %
 %============================================================
 % SBMLParameter = Parameter_setMetaid(SBMLParameter, metaid)
 %============================================================
-% takes
-% 1. SBMLParameter; an SBML Parameter structure
+% Takes
+% 1. SBMLParameter, an SBML Parameter structure
 % 2. metaid; a string representing the metaid to be set
-% returns
+% Returns
 % 1. the SBML Parameter structure with the new value for the metaid attribute
 %
 %========================================================
 % SBMLParameter = Parameter_setName(SBMLParameter, name)
 %========================================================
-% takes
-% 1. SBMLParameter; an SBML Parameter structure
+% Takes
+% 1. SBMLParameter, an SBML Parameter structure
 % 2. name; a string representing the name to be set
-% returns
+% Returns
 % 1. the SBML Parameter structure with the new value for the name attribute
 %
 %==============================================================
 % SBMLParameter = Parameter_setSBOTerm(SBMLParameter, sboTerm)
 %==============================================================
-% takes
-% 1. SBMLParameter; an SBML Parameter structure
-% 2. sboTerm; an integer representing the sboTerm to be set
-% returns
+% Takes
+% 1. SBMLParameter, an SBML Parameter structure
+% 2. sboTerm, an integer representing the sboTerm to be set
+% Returns
 % 1. the SBML Parameter structure with the new value for the sboTerm attribute
 %
 %==========================================================
 % SBMLParameter = Parameter_setUnits(SBMLParameter, units)
 %==========================================================
-% takes
-% 1. SBMLParameter; an SBML Parameter structure
+% Takes
+% 1. SBMLParameter, an SBML Parameter structure
 % 2. units; a string representing the units to be set
-% returns
+% Returns
 % 1. the SBML Parameter structure with the new value for the units attribute
 %
 %==========================================================
 % SBMLParameter = Parameter_setValue(SBMLParameter, value)
 %==========================================================
-% takes
-% 1. SBMLParameter; an SBML Parameter structure
+% Takes
+% 1. SBMLParameter, an SBML Parameter structure
 % 2. value; number representing the value of value to be set
-% returns
+% Returns
 % 1. the SBML Parameter structure with the new value for the value attribute
 %
 %==================================================
 % SBMLParameter = Parameter_unsetId(SBMLParameter)
 %==================================================
-% takes
-% 1. SBMLParameter; an SBML Parameter structure
-% returns
+% Takes
+% 1. SBMLParameter, an SBML Parameter structure
+% Returns
 % 1. the SBML Parameter structure with the id attribute unset
 %
 %======================================================
 % SBMLParameter = Parameter_unsetMetaid(SBMLParameter)
 %======================================================
-% takes
-% 1. SBMLParameter; an SBML Parameter structure
-% returns
+% Takes
+% 1. SBMLParameter, an SBML Parameter structure
+% Returns
 % 1. the SBML Parameter structure with the metaid attribute unset
 %
 %====================================================
 % SBMLParameter = Parameter_unsetName(SBMLParameter)
 %====================================================
-% takes
-% 1. SBMLParameter; an SBML Parameter structure
-% returns
+% Takes
+% 1. SBMLParameter, an SBML Parameter structure
+% Returns
 % 1. the SBML Parameter structure with the name attribute unset
 %
 %=======================================================
 % SBMLParameter = Parameter_unsetSBOTerm(SBMLParameter)
 %=======================================================
-% takes
-% 1. SBMLParameter; an SBML Parameter structure
-% returns
+% Takes
+% 1. SBMLParameter, an SBML Parameter structure
+% Returns
 % 1. the SBML Parameter structure with the sboTerm attribute unset
 %
 %=====================================================
 % SBMLParameter = Parameter_unsetUnits(SBMLParameter)
 %=====================================================
-% takes
-% 1. SBMLParameter; an SBML Parameter structure
-% returns
+% Takes
+% 1. SBMLParameter, an SBML Parameter structure
+% Returns
 % 1. the SBML Parameter structure with the units attribute unset
 %
 %=====================================================
 % SBMLParameter = Parameter_unsetValue(SBMLParameter)
 %=====================================================
-% takes
-% 1. SBMLParameter; an SBML Parameter structure
-% returns
+% Takes
+% 1. SBMLParameter, an SBML Parameter structure
+% Returns
 % 1. the SBML Parameter structure with the value attribute unset
 %
 

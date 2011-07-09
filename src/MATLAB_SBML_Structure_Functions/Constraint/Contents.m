@@ -5,50 +5,50 @@
 %===================================================================
 % Constraint = Constraint_create(level(optional), version(optional)
 %===================================================================
-% takes
-% 1. level; an integer representing an SBML level (optional)
-% 2. version; an integer representing an SBML version (optional)
-% returns
+% Takes
+% 1. level, an integer representing an SBML level (optional)
+% 2. version, an integer representing an SBML version (optional)
+% Returns
 % 1. a MATLAB_SBML Constraint structure of the appropriate level and version
 %
 %===========================================
 % math = Constraint_getMath(SBMLConstraint)
 %===========================================
-% takes
-% 1. SBMLConstraint; an SBML Constraint structure
-% returns
+% Takes
+% 1. SBMLConstraint, an SBML Constraint structure
+% Returns
 % 1. the value of the math attribute
 %
 %=================================================
 % message = Constraint_getMessage(SBMLConstraint)
 %=================================================
-% takes
-% 1. SBMLConstraint; an SBML Constraint structure
-% returns
+% Takes
+% 1. SBMLConstraint, an SBML Constraint structure
+% Returns
 % 1. the value of the message attribute
 %
 %===============================================
 % metaid = Constraint_getMetaid(SBMLConstraint)
 %===============================================
-% takes
-% 1. SBMLConstraint; an SBML Constraint structure
-% returns
+% Takes
+% 1. SBMLConstraint, an SBML Constraint structure
+% Returns
 % 1. the value of the metaid attribute
 %
 %=================================================
 % sboTerm = Constraint_getSBOTerm(SBMLConstraint)
 %=================================================
-% takes
-% 1. SBMLConstraint; an SBML Constraint structure
-% returns
+% Takes
+% 1. SBMLConstraint, an SBML Constraint structure
+% Returns
 % 1. the value of the sboTerm attribute
 %
 %==============================================
 % value = Constraint_isSetMath(SBMLConstraint)
 %==============================================
-% takes
-% 1. SBMLConstraint; an SBML Constraint structure
-% returns
+% Takes
+% 1. SBMLConstraint, an SBML Constraint structure
+% Returns
 % 1. value = 
 %  - 1 if the math attribute is set
 %  - 0 otherwise
@@ -56,9 +56,9 @@
 %=================================================
 % value = Constraint_isSetMessage(SBMLConstraint)
 %=================================================
-% takes
-% 1. SBMLConstraint; an SBML Constraint structure
-% returns
+% Takes
+% 1. SBMLConstraint, an SBML Constraint structure
+% Returns
 % 1. value = 
 %  - 1 if the message attribute is set
 %  - 0 otherwise
@@ -66,9 +66,9 @@
 %================================================
 % value = Constraint_isSetMetaid(SBMLConstraint)
 %================================================
-% takes
-% 1. SBMLConstraint; an SBML Constraint structure
-% returns
+% Takes
+% 1. SBMLConstraint, an SBML Constraint structure
+% Returns
 % 1. value = 
 %  - 1 if the metaid attribute is set
 %  - 0 otherwise
@@ -76,9 +76,9 @@
 %=================================================
 % value = Constraint_isSetSBOTerm(SBMLConstraint)
 %=================================================
-% takes
-% 1. SBMLConstraint; an SBML Constraint structure
-% returns
+% Takes
+% 1. SBMLConstraint, an SBML Constraint structure
+% Returns
 % 1. value = 
 %  - 1 if the sboTerm attribute is set
 %  - 0 otherwise
@@ -86,69 +86,69 @@
 %===========================================================
 % SBMLConstraint = Constraint_setMath(SBMLConstraint, math)
 %===========================================================
-% takes
-% 1. SBMLConstraint; an SBML Constraint structure
+% Takes
+% 1. SBMLConstraint, an SBML Constraint structure
 % 2. math; string representing the math expression math to be set
-% returns
+% Returns
 % 1. the SBML Constraint structure with the new value for the math attribute
 %
 %=================================================================
 % SBMLConstraint = Constraint_setMessage(SBMLConstraint, message)
 %=================================================================
-% takes
-% 1. SBMLConstraint; an SBML Constraint structure
+% Takes
+% 1. SBMLConstraint, an SBML Constraint structure
 % 2. message; a string representing the message to be set
-% returns
+% Returns
 % 1. the SBML Constraint structure with the new value for the message attribute
 %
 %===============================================================
 % SBMLConstraint = Constraint_setMetaid(SBMLConstraint, metaid)
 %===============================================================
-% takes
-% 1. SBMLConstraint; an SBML Constraint structure
+% Takes
+% 1. SBMLConstraint, an SBML Constraint structure
 % 2. metaid; a string representing the metaid to be set
-% returns
+% Returns
 % 1. the SBML Constraint structure with the new value for the metaid attribute
 %
 %=================================================================
 % SBMLConstraint = Constraint_setSBOTerm(SBMLConstraint, sboTerm)
 %=================================================================
-% takes
-% 1. SBMLConstraint; an SBML Constraint structure
-% 2. sboTerm; an integer representing the sboTerm to be set
-% returns
+% Takes
+% 1. SBMLConstraint, an SBML Constraint structure
+% 2. sboTerm, an integer representing the sboTerm to be set
+% Returns
 % 1. the SBML Constraint structure with the new value for the sboTerm attribute
 %
 %=======================================================
 % SBMLConstraint = Constraint_unsetMath(SBMLConstraint)
 %=======================================================
-% takes
-% 1. SBMLConstraint; an SBML Constraint structure
-% returns
+% Takes
+% 1. SBMLConstraint, an SBML Constraint structure
+% Returns
 % 1. the SBML Constraint structure with the math attribute unset
 %
 %==========================================================
 % SBMLConstraint = Constraint_unsetMessage(SBMLConstraint)
 %==========================================================
-% takes
-% 1. SBMLConstraint; an SBML Constraint structure
-% returns
+% Takes
+% 1. SBMLConstraint, an SBML Constraint structure
+% Returns
 % 1. the SBML Constraint structure with the message attribute unset
 %
 %=========================================================
 % SBMLConstraint = Constraint_unsetMetaid(SBMLConstraint)
 %=========================================================
-% takes
-% 1. SBMLConstraint; an SBML Constraint structure
-% returns
+% Takes
+% 1. SBMLConstraint, an SBML Constraint structure
+% Returns
 % 1. the SBML Constraint structure with the metaid attribute unset
 %
 %==========================================================
 % SBMLConstraint = Constraint_unsetSBOTerm(SBMLConstraint)
 %==========================================================
-% takes
-% 1. SBMLConstraint; an SBML Constraint structure
-% returns
+% Takes
+% 1. SBMLConstraint, an SBML Constraint structure
+% Returns
 % 1. the SBML Constraint structure with the sboTerm attribute unset
 %
 

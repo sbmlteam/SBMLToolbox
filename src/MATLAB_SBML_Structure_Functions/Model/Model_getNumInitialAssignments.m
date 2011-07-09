@@ -1,11 +1,11 @@
 function num = Model_getNumInitialAssignments(SBMLModel)
 % num = Model_getNumInitialAssignments(SBMLModel)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 %
-% returns
+% Returns
 %
 % 1. the number of SBML InitialAssignment structures present in the Model
 %

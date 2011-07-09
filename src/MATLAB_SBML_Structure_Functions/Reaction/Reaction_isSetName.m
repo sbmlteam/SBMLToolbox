@@ -1,11 +1,11 @@
 function value = Reaction_isSetName(SBMLReaction)
 % value = Reaction_isSetName(SBMLReaction)
 %
-% takes
+% Takes
 %
-% 1. SBMLReaction; an SBML Reaction structure
+% 1. SBMLReaction, an SBML Reaction structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the name attribute is set

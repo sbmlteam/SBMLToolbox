@@ -1,11 +1,11 @@
 function SBMLSpecies = Species_unsetSBOTerm(SBMLSpecies)
 % SBMLSpecies = Species_unsetSBOTerm(SBMLSpecies)
 %
-% takes
+% Takes
 %
-% 1. SBMLSpecies; an SBML Species structure
+% 1. SBMLSpecies, an SBML Species structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Species structure with the sboTerm attribute unset
 %

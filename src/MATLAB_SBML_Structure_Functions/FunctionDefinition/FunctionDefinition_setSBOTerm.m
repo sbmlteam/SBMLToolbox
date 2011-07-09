@@ -1,12 +1,12 @@
 function SBMLFunctionDefinition = FunctionDefinition_setSBOTerm(SBMLFunctionDefinition, sboTerm)
 % SBMLFunctionDefinition = FunctionDefinition_setSBOTerm(SBMLFunctionDefinition, sboTerm)
 %
-% takes
+% Takes
 %
-% 1. SBMLFunctionDefinition; an SBML FunctionDefinition structure
-% 2. sboTerm; an integer representing the sboTerm to be set
+% 1. SBMLFunctionDefinition, an SBML FunctionDefinition structure
+% 2. sboTerm, an integer representing the sboTerm to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML FunctionDefinition structure with the new value for the sboTerm attribute
 %

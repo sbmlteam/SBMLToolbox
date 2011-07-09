@@ -1,12 +1,12 @@
 function SBMLSpecies = Species_setCompartment(SBMLSpecies, compartment)
 % SBMLSpecies = Species_setCompartment(SBMLSpecies, compartment)
 %
-% takes
+% Takes
 %
-% 1. SBMLSpecies; an SBML Species structure
+% 1. SBMLSpecies, an SBML Species structure
 % 2. compartment; a string representing the compartment to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML Species structure with the new value for the compartment attribute
 %

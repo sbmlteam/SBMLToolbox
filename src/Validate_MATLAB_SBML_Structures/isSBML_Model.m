@@ -1,11 +1,11 @@
 function [valid, message] = isSBML_Model(SBMLStructure)
 % [valid, message] = isSBML_Model(SBMLModel)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 %
-% returns
+% Returns
 %
 % 1. valid = 
 %   - 1, if the structure represents

@@ -1,11 +1,11 @@
 function math = KineticLaw_getMath(SBMLKineticLaw)
 % math = KineticLaw_getMath(SBMLKineticLaw)
 %
-% takes
+% Takes
 %
-% 1. SBMLKineticLaw; an SBML KineticLaw structure
+% 1. SBMLKineticLaw, an SBML KineticLaw structure
 %
-% returns
+% Returns
 %
 % 1. the value of the math attribute
 %

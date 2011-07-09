@@ -1,12 +1,12 @@
 function SBMLCompartment = Compartment_setSpatialDimensions(SBMLCompartment, spatialDimensions)
 % SBMLCompartment = Compartment_setSpatialDimensions(SBMLCompartment, spatialDimensions)
 %
-% takes
+% Takes
 %
-% 1. SBMLCompartment; an SBML Compartment structure
+% 1. SBMLCompartment, an SBML Compartment structure
 % 2. spatialDimensions; number representing the value of spatialDimensions to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML Compartment structure with the new value for the spatialDimensions attribute
 %

@@ -1,12 +1,12 @@
 function SBMLCompartment = Compartment_setConstant(SBMLCompartment, constant)
 % SBMLCompartment = Compartment_setConstant(SBMLCompartment, constant)
 %
-% takes
+% Takes
 %
-% 1. SBMLCompartment; an SBML Compartment structure
-% 2. constant; an integer (0/1) representing the value of constant to be set
+% 1. SBMLCompartment, an SBML Compartment structure
+% 2. constant, an integer (0/1) representing the value of constant to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML Compartment structure with the new value for the constant attribute
 %

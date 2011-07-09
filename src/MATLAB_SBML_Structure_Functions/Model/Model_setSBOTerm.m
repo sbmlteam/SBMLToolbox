@@ -1,12 +1,12 @@
 function SBMLModel = Model_setSBOTerm(SBMLModel, sboTerm)
 % SBMLModel = Model_setSBOTerm(SBMLModel, sboTerm)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
-% 2. sboTerm; an integer representing the sboTerm to be set
+% 1. SBMLModel, an SBML Model structure
+% 2. sboTerm, an integer representing the sboTerm to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML Model structure with the new value for the sboTerm attribute
 %

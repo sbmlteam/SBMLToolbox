@@ -1,11 +1,11 @@
 function SBMLFunctionDefinition = FunctionDefinition_unsetMetaid(SBMLFunctionDefinition)
 % SBMLFunctionDefinition = FunctionDefinition_unsetMetaid(SBMLFunctionDefinition)
 %
-% takes
+% Takes
 %
-% 1. SBMLFunctionDefinition; an SBML FunctionDefinition structure
+% 1. SBMLFunctionDefinition, an SBML FunctionDefinition structure
 %
-% returns
+% Returns
 %
 % 1. the SBML FunctionDefinition structure with the metaid attribute unset
 %

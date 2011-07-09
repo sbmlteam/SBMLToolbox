@@ -1,13 +1,13 @@
 function y = isValid(varargin)
 % [valid, message] = isValid(SBMLStruct, level(optional), version(optional))
 %
-% takes
+% Takes
 %
-% 1. SBMLStruct; an SBML  structure
-% 2. level (optional); an integer representing an SBML level
-% 3. version (optional); an integer representing an SBML version
+% 1. SBMLStruct, an SBML  structure
+% 2. level (optional), an integer representing an SBML level
+% 3. version (optional), an integer representing an SBML version
 %
-% returns
+% Returns
 %
 % 1. valid = 
 %   - 1, if the structure represents

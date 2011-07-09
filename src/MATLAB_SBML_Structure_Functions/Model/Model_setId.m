@@ -1,12 +1,12 @@
 function SBMLModel = Model_setId(SBMLModel, id)
 % SBMLModel = Model_setId(SBMLModel, id)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 % 2. id; a string representing the id to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML Model structure with the new value for the id attribute
 %

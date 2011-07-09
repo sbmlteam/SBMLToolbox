@@ -1,11 +1,11 @@
 function value = Priority_isSetMath(SBMLPriority)
 % value = Priority_isSetMath(SBMLPriority)
 %
-% takes
+% Takes
 %
-% 1. SBMLPriority; an SBML Priority structure
+% 1. SBMLPriority, an SBML Priority structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the math attribute is set

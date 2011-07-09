@@ -1,12 +1,12 @@
 function SBMLEvent = Event_setMetaid(SBMLEvent, metaid)
 % SBMLEvent = Event_setMetaid(SBMLEvent, metaid)
 %
-% takes
+% Takes
 %
-% 1. SBMLEvent; an SBML Event structure
+% 1. SBMLEvent, an SBML Event structure
 % 2. metaid; a string representing the metaid to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML Event structure with the new value for the metaid attribute
 %

@@ -1,12 +1,12 @@
 function reactant = Reaction_getReactantById(SBMLReaction, id)
 % reactant = Reaction_getReactantById(SBMLReaction, id)
 %
-% takes
+% Takes
 %
-% 1. SBMLReaction; an SBML Reaction structure
+% 1. SBMLReaction, an SBML Reaction structure
 % 2. id; a string representing the id of SBML Reactant structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Reactant structure that has this id
 %

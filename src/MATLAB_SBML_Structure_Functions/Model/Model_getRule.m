@@ -1,12 +1,12 @@
 function rule = Model_getRule(SBMLModel, index)
 % rule = Model_getRule(SBMLModel, index)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
-% 2. index; an integer representing the index of SBML Rule structure
+% 1. SBMLModel, an SBML Model structure
+% 2. index, an integer representing the index of SBML Rule structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Rule structure at the indexed position
 %

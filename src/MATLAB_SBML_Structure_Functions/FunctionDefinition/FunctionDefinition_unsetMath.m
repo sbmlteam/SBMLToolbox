@@ -1,11 +1,11 @@
 function SBMLFunctionDefinition = FunctionDefinition_unsetMath(SBMLFunctionDefinition)
 % SBMLFunctionDefinition = FunctionDefinition_unsetMath(SBMLFunctionDefinition)
 %
-% takes
+% Takes
 %
-% 1. SBMLFunctionDefinition; an SBML FunctionDefinition structure
+% 1. SBMLFunctionDefinition, an SBML FunctionDefinition structure
 %
-% returns
+% Returns
 %
 % 1. the SBML FunctionDefinition structure with the math attribute unset
 %

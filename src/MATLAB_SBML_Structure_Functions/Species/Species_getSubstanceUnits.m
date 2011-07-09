@@ -1,11 +1,11 @@
 function substanceUnits = Species_getSubstanceUnits(SBMLSpecies)
 % substanceUnits = Species_getSubstanceUnits(SBMLSpecies)
 %
-% takes
+% Takes
 %
-% 1. SBMLSpecies; an SBML Species structure
+% 1. SBMLSpecies, an SBML Species structure
 %
-% returns
+% Returns
 %
 % 1. the value of the substanceUnits attribute
 %

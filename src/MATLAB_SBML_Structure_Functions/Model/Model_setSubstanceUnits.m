@@ -1,12 +1,12 @@
 function SBMLModel = Model_setSubstanceUnits(SBMLModel, substanceUnits)
 % SBMLModel = Model_setSubstanceUnits(SBMLModel, substanceUnits)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 % 2. substanceUnits; a string representing the substanceUnits to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML Model structure with the new value for the substanceUnits attribute
 %

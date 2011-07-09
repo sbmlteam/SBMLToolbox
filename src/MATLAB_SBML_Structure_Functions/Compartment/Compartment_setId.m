@@ -1,12 +1,12 @@
 function SBMLCompartment = Compartment_setId(SBMLCompartment, id)
 % SBMLCompartment = Compartment_setId(SBMLCompartment, id)
 %
-% takes
+% Takes
 %
-% 1. SBMLCompartment; an SBML Compartment structure
+% 1. SBMLCompartment, an SBML Compartment structure
 % 2. id; a string representing the id to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML Compartment structure with the new value for the id attribute
 %

@@ -1,11 +1,11 @@
 function timeUnits = Event_getTimeUnits(SBMLEvent)
 % timeUnits = Event_getTimeUnits(SBMLEvent)
 %
-% takes
+% Takes
 %
-% 1. SBMLEvent; an SBML Event structure
+% 1. SBMLEvent, an SBML Event structure
 %
-% returns
+% Returns
 %
 % 1. the value of the timeUnits attribute
 %

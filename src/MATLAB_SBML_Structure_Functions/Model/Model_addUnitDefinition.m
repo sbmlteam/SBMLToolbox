@@ -1,12 +1,12 @@
 function SBMLModel = Model_addUnitDefinition(SBMLModel, SBMLUnitDefinition)
 % SBMLModel = Model_addUnitDefinition(SBMLModel, SBMLUnitDefinition)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
-% 2. SBMLUnitDefinition; an SBML UnitDefinition structure
+% 1. SBMLModel, an SBML Model structure
+% 2. SBMLUnitDefinition, an SBML UnitDefinition structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Model structure with the SBML UnitDefinition structure added
 %

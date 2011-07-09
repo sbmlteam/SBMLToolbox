@@ -1,11 +1,11 @@
 function value = Rule_isSetSBOTerm(SBMLRule)
 % value = Rule_isSetSBOTerm(SBMLRule)
 %
-% takes
+% Takes
 %
-% 1. SBMLRule; an SBML Rule structure
+% 1. SBMLRule, an SBML Rule structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the sboTerm attribute is set

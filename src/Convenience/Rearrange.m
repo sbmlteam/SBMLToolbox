@@ -1,12 +1,12 @@
 function output = Rearrange(formula, x)
 % output = Rearrange(expression, name)
 % 
-% takes
+% Takes
 % 
-% 1. expression; a string representation of a math expression
-% 2. name; a string representing the name of a variable
+% 1. expression, a string representation of a math expression
+% 2. name, a string representing the name of a variable
 % 
-% returns
+% Returns
 % 
 % 1. the expression rearranged in terms of the variable
 %

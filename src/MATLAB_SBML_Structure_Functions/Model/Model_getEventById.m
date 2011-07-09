@@ -1,12 +1,12 @@
 function event = Model_getEventById(SBMLModel, id)
 % event = Model_getEventById(SBMLModel, id)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 % 2. id; a string representing the id of SBML Event structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Event structure that has this id
 %

@@ -5,107 +5,107 @@
 %=====================================================================
 % Compartment = Compartment_create(level(optional), version(optional)
 %=====================================================================
-% takes
-% 1. level; an integer representing an SBML level (optional)
-% 2. version; an integer representing an SBML version (optional)
-% returns
+% Takes
+% 1. level, an integer representing an SBML level (optional)
+% 2. version, an integer representing an SBML version (optional)
+% Returns
 % 1. a MATLAB_SBML Compartment structure of the appropriate level and version
 %
 %===================================================================
 % compartmentType = Compartment_getCompartmentType(SBMLCompartment)
 %===================================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
-% returns
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
+% Returns
 % 1. the value of the compartmentType attribute
 %
 %=====================================================
 % constant = Compartment_getConstant(SBMLCompartment)
 %=====================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
-% returns
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
+% Returns
 % 1. the value of the constant attribute
 %
 %=========================================
 % id = Compartment_getId(SBMLCompartment)
 %=========================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
-% returns
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
+% Returns
 % 1. the value of the id attribute
 %
 %=================================================
 % metaid = Compartment_getMetaid(SBMLCompartment)
 %=================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
-% returns
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
+% Returns
 % 1. the value of the metaid attribute
 %
 %=============================================
 % name = Compartment_getName(SBMLCompartment)
 %=============================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
-% returns
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
+% Returns
 % 1. the value of the name attribute
 %
 %===================================================
 % outside = Compartment_getOutside(SBMLCompartment)
 %===================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
-% returns
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
+% Returns
 % 1. the value of the outside attribute
 %
 %===================================================
 % sboTerm = Compartment_getSBOTerm(SBMLCompartment)
 %===================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
-% returns
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
+% Returns
 % 1. the value of the sboTerm attribute
 %
 %=============================================
 % size = Compartment_getSize(SBMLCompartment)
 %=============================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
-% returns
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
+% Returns
 % 1. the value of the size attribute
 %
 %=======================================================================
 % spatialDimensions = Compartment_getSpatialDimensions(SBMLCompartment)
 %=======================================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
-% returns
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
+% Returns
 % 1. the value of the spatialDimensions attribute
 %
 %===============================================
 % units = Compartment_getUnits(SBMLCompartment)
 %===============================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
-% returns
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
+% Returns
 % 1. the value of the units attribute
 %
 %=================================================
 % volume = Compartment_getVolume(SBMLCompartment)
 %=================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
-% returns
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
+% Returns
 % 1. the value of the volume attribute
 %
 %==================================================================
 % y = Compartment_isAssignedByRateRule(SBMLCompartment, SBMLRules)
 %==================================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
 % 2. SBMLRules; the array of rules from an SBML Model structure
-% returns
+% Returns
 % y = 
 %   - the index of the rateRule used to assigned value to the Compartment
 %   - 0 if the Compartment is not assigned by rateRule 
@@ -131,10 +131,10 @@
 %==============================================================
 % y = Compartment_isAssignedByRule(SBMLCompartment, SBMLRules)
 %==============================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
 % 2. SBMLRules; the array of rules from an SBML Model structure
-% returns
+% Returns
 % y = 
 %   - the index of the assignmentRule used to assigned value to the Compartment
 %   - 0 if the Compartment is not assigned by assignmentRule 
@@ -160,10 +160,10 @@
 %===============================================================
 % y = Compartment_isInAlgebraicRule(SBMLCompartment, SBMLRules)
 %===============================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
 % 2. SBMLRules; the array of rules from an SBML Model structure
-% returns
+% Returns
 % y = 
 %   - an array of the indices of any algebraicRules the id of the Compartment appears in 
 %   - 0 if the Compartment appears in no algebraicRules 
@@ -189,9 +189,9 @@
 %===========================================================
 % value = Compartment_isSetCompartmentType(SBMLCompartment)
 %===========================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
-% returns
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
+% Returns
 % 1. value = 
 %  - 1 if the compartmentType attribute is set
 %  - 0 otherwise
@@ -199,9 +199,9 @@
 %==============================================
 % value = Compartment_isSetId(SBMLCompartment)
 %==============================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
-% returns
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
+% Returns
 % 1. value = 
 %  - 1 if the id attribute is set
 %  - 0 otherwise
@@ -209,9 +209,9 @@
 %==================================================
 % value = Compartment_isSetMetaid(SBMLCompartment)
 %==================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
-% returns
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
+% Returns
 % 1. value = 
 %  - 1 if the metaid attribute is set
 %  - 0 otherwise
@@ -219,9 +219,9 @@
 %================================================
 % value = Compartment_isSetName(SBMLCompartment)
 %================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
-% returns
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
+% Returns
 % 1. value = 
 %  - 1 if the name attribute is set
 %  - 0 otherwise
@@ -229,9 +229,9 @@
 %===================================================
 % value = Compartment_isSetOutside(SBMLCompartment)
 %===================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
-% returns
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
+% Returns
 % 1. value = 
 %  - 1 if the outside attribute is set
 %  - 0 otherwise
@@ -239,9 +239,9 @@
 %===================================================
 % value = Compartment_isSetSBOTerm(SBMLCompartment)
 %===================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
-% returns
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
+% Returns
 % 1. value = 
 %  - 1 if the sboTerm attribute is set
 %  - 0 otherwise
@@ -249,9 +249,9 @@
 %================================================
 % value = Compartment_isSetSize(SBMLCompartment)
 %================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
-% returns
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
+% Returns
 % 1. value = 
 %  - 1 if the size attribute is set
 %  - 0 otherwise
@@ -259,9 +259,9 @@
 %=============================================================
 % value = Compartment_isSetSpatialDimensions(SBMLCompartment)
 %=============================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
-% returns
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
+% Returns
 % 1. value = 
 %  - 1 if the spatialDimensions attribute is set
 %  - 0 otherwise
@@ -269,9 +269,9 @@
 %=================================================
 % value = Compartment_isSetUnits(SBMLCompartment)
 %=================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
-% returns
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
+% Returns
 % 1. value = 
 %  - 1 if the units attribute is set
 %  - 0 otherwise
@@ -279,9 +279,9 @@
 %==================================================
 % value = Compartment_isSetVolume(SBMLCompartment)
 %==================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
-% returns
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
+% Returns
 % 1. value = 
 %  - 1 if the volume attribute is set
 %  - 0 otherwise
@@ -289,180 +289,180 @@
 %====================================================================================
 % SBMLCompartment = Compartment_setCompartmentType(SBMLCompartment, compartmentType)
 %====================================================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
 % 2. compartmentType; a string representing the compartmentType to be set
-% returns
+% Returns
 % 1. the SBML Compartment structure with the new value for the compartmentType attribute
 %
 %======================================================================
 % SBMLCompartment = Compartment_setConstant(SBMLCompartment, constant)
 %======================================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
-% 2. constant; an integer (0/1) representing the value of constant to be set
-% returns
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
+% 2. constant, an integer (0/1) representing the value of constant to be set
+% Returns
 % 1. the SBML Compartment structure with the new value for the constant attribute
 %
 %==========================================================
 % SBMLCompartment = Compartment_setId(SBMLCompartment, id)
 %==========================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
 % 2. id; a string representing the id to be set
-% returns
+% Returns
 % 1. the SBML Compartment structure with the new value for the id attribute
 %
 %==================================================================
 % SBMLCompartment = Compartment_setMetaid(SBMLCompartment, metaid)
 %==================================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
 % 2. metaid; a string representing the metaid to be set
-% returns
+% Returns
 % 1. the SBML Compartment structure with the new value for the metaid attribute
 %
 %==============================================================
 % SBMLCompartment = Compartment_setName(SBMLCompartment, name)
 %==============================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
 % 2. name; a string representing the name to be set
-% returns
+% Returns
 % 1. the SBML Compartment structure with the new value for the name attribute
 %
 %====================================================================
 % SBMLCompartment = Compartment_setOutside(SBMLCompartment, outside)
 %====================================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
 % 2. outside; a string representing the outside to be set
-% returns
+% Returns
 % 1. the SBML Compartment structure with the new value for the outside attribute
 %
 %====================================================================
 % SBMLCompartment = Compartment_setSBOTerm(SBMLCompartment, sboTerm)
 %====================================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
-% 2. sboTerm; an integer representing the sboTerm to be set
-% returns
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
+% 2. sboTerm, an integer representing the sboTerm to be set
+% Returns
 % 1. the SBML Compartment structure with the new value for the sboTerm attribute
 %
 %==============================================================
 % SBMLCompartment = Compartment_setSize(SBMLCompartment, size)
 %==============================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
 % 2. size; number representing the value of size to be set
-% returns
+% Returns
 % 1. the SBML Compartment structure with the new value for the size attribute
 %
 %========================================================================================
 % SBMLCompartment = Compartment_setSpatialDimensions(SBMLCompartment, spatialDimensions)
 %========================================================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
 % 2. spatialDimensions; number representing the value of spatialDimensions to be set
-% returns
+% Returns
 % 1. the SBML Compartment structure with the new value for the spatialDimensions attribute
 %
 %================================================================
 % SBMLCompartment = Compartment_setUnits(SBMLCompartment, units)
 %================================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
 % 2. units; a string representing the units to be set
-% returns
+% Returns
 % 1. the SBML Compartment structure with the new value for the units attribute
 %
 %==================================================================
 % SBMLCompartment = Compartment_setVolume(SBMLCompartment, volume)
 %==================================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
 % 2. volume; number representing the value of volume to be set
-% returns
+% Returns
 % 1. the SBML Compartment structure with the new value for the volume attribute
 %
 %=====================================================================
 % SBMLCompartment = Compartment_unsetCompartmentType(SBMLCompartment)
 %=====================================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
-% returns
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
+% Returns
 % 1. the SBML Compartment structure with the compartmentType attribute unset
 %
 %========================================================
 % SBMLCompartment = Compartment_unsetId(SBMLCompartment)
 %========================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
-% returns
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
+% Returns
 % 1. the SBML Compartment structure with the id attribute unset
 %
 %============================================================
 % SBMLCompartment = Compartment_unsetMetaid(SBMLCompartment)
 %============================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
-% returns
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
+% Returns
 % 1. the SBML Compartment structure with the metaid attribute unset
 %
 %==========================================================
 % SBMLCompartment = Compartment_unsetName(SBMLCompartment)
 %==========================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
-% returns
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
+% Returns
 % 1. the SBML Compartment structure with the name attribute unset
 %
 %=============================================================
 % SBMLCompartment = Compartment_unsetOutside(SBMLCompartment)
 %=============================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
-% returns
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
+% Returns
 % 1. the SBML Compartment structure with the outside attribute unset
 %
 %=============================================================
 % SBMLCompartment = Compartment_unsetSBOTerm(SBMLCompartment)
 %=============================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
-% returns
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
+% Returns
 % 1. the SBML Compartment structure with the sboTerm attribute unset
 %
 %==========================================================
 % SBMLCompartment = Compartment_unsetSize(SBMLCompartment)
 %==========================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
-% returns
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
+% Returns
 % 1. the SBML Compartment structure with the size attribute unset
 %
 %=======================================================================
 % SBMLCompartment = Compartment_unsetSpatialDimensions(SBMLCompartment)
 %=======================================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
-% returns
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
+% Returns
 % 1. the SBML Compartment structure with the spatialDimensions attribute unset
 %
 %===========================================================
 % SBMLCompartment = Compartment_unsetUnits(SBMLCompartment)
 %===========================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
-% returns
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
+% Returns
 % 1. the SBML Compartment structure with the units attribute unset
 %
 %============================================================
 % SBMLCompartment = Compartment_unsetVolume(SBMLCompartment)
 %============================================================
-% takes
-% 1. SBMLCompartment; an SBML Compartment structure
-% returns
+% Takes
+% 1. SBMLCompartment, an SBML Compartment structure
+% Returns
 % 1. the SBML Compartment structure with the volume attribute unset
 %
 

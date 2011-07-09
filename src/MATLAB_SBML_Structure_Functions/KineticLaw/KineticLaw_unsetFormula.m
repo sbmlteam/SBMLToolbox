@@ -1,11 +1,11 @@
 function SBMLKineticLaw = KineticLaw_unsetFormula(SBMLKineticLaw)
 % SBMLKineticLaw = KineticLaw_unsetFormula(SBMLKineticLaw)
 %
-% takes
+% Takes
 %
-% 1. SBMLKineticLaw; an SBML KineticLaw structure
+% 1. SBMLKineticLaw, an SBML KineticLaw structure
 %
-% returns
+% Returns
 %
 % 1. the SBML KineticLaw structure with the formula attribute unset
 %

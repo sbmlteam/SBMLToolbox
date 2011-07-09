@@ -1,12 +1,12 @@
 function SBMLModel = Model_addRule(SBMLModel, SBMLRule)
 % SBMLModel = Model_addRule(SBMLModel, SBMLRule)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
-% 2. SBMLRule; an SBML Rule structure
+% 1. SBMLModel, an SBML Model structure
+% 2. SBMLRule, an SBML Rule structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Model structure with the SBML Rule structure added
 %

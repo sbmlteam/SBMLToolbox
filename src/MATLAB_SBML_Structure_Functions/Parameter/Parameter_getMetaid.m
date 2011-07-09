@@ -1,11 +1,11 @@
 function metaid = Parameter_getMetaid(SBMLParameter)
 % metaid = Parameter_getMetaid(SBMLParameter)
 %
-% takes
+% Takes
 %
-% 1. SBMLParameter; an SBML Parameter structure
+% 1. SBMLParameter, an SBML Parameter structure
 %
-% returns
+% Returns
 %
 % 1. the value of the metaid attribute
 %

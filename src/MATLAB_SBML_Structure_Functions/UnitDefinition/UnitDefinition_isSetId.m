@@ -1,11 +1,11 @@
 function value = UnitDefinition_isSetId(SBMLUnitDefinition)
 % value = UnitDefinition_isSetId(SBMLUnitDefinition)
 %
-% takes
+% Takes
 %
-% 1. SBMLUnitDefinition; an SBML UnitDefinition structure
+% 1. SBMLUnitDefinition, an SBML UnitDefinition structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the id attribute is set

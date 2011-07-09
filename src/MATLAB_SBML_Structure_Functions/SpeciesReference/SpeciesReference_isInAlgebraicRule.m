@@ -1,12 +1,12 @@
 function y = SpeciesReference_isInAlgebraicRule(SBMLSpeciesReference, SBMLRules)
 % y = SpeciesReference_isInAlgebraicRule(SBMLSpeciesReference, SBMLRules)
 %
-% takes
+% Takes
 %
-% 1. SBMLSpeciesReference; an SBML SpeciesReference structure
+% 1. SBMLSpeciesReference, an SBML SpeciesReference structure
 % 2. SBMLRules; the array of rules from an SBML Model structure
 %
-% returns
+% Returns
 %
 % y = 
 %   - an array of the indices of any algebraicRules the id of the SpeciesReference appears in 

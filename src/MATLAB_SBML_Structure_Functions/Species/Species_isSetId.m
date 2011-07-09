@@ -1,11 +1,11 @@
 function value = Species_isSetId(SBMLSpecies)
 % value = Species_isSetId(SBMLSpecies)
 %
-% takes
+% Takes
 %
-% 1. SBMLSpecies; an SBML Species structure
+% 1. SBMLSpecies, an SBML Species structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the id attribute is set

@@ -1,11 +1,11 @@
 function value = Event_isSetTimeUnits(SBMLEvent)
 % value = Event_isSetTimeUnits(SBMLEvent)
 %
-% takes
+% Takes
 %
-% 1. SBMLEvent; an SBML Event structure
+% 1. SBMLEvent, an SBML Event structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the timeUnits attribute is set

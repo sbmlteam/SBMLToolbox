@@ -1,11 +1,11 @@
 function num = Model_getNumCompartments(SBMLModel)
 % num = Model_getNumCompartments(SBMLModel)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 %
-% returns
+% Returns
 %
 % 1. the number of SBML Compartment structures present in the Model
 %

@@ -1,11 +1,11 @@
 function value = Compartment_isSetId(SBMLCompartment)
 % value = Compartment_isSetId(SBMLCompartment)
 %
-% takes
+% Takes
 %
-% 1. SBMLCompartment; an SBML Compartment structure
+% 1. SBMLCompartment, an SBML Compartment structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the id attribute is set

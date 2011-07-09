@@ -1,11 +1,11 @@
 function SBMLModel = Model_unsetSBOTerm(SBMLModel)
 % SBMLModel = Model_unsetSBOTerm(SBMLModel)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Model structure with the sboTerm attribute unset
 %

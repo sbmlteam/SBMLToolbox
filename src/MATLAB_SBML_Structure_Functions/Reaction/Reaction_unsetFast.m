@@ -1,11 +1,11 @@
 function SBMLReaction = Reaction_unsetFast(SBMLReaction)
 % SBMLReaction = Reaction_unsetFast(SBMLReaction)
 %
-% takes
+% Takes
 %
-% 1. SBMLReaction; an SBML Reaction structure
+% 1. SBMLReaction, an SBML Reaction structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Reaction structure with the fast attribute unset
 %

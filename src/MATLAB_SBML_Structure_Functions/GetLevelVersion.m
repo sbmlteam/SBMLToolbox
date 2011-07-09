@@ -3,9 +3,9 @@ function [level, version] = GetLevelVersion(SBMLStructure)
 % 
 % takes 
 % 
-% 1. SBMLStructure; any SBML structure
+% 1. SBMLStructure, any SBML structure
 % 
-% returns 
+% Returns 
 % 
 % 1. the SBML level corresponding to this structure
 % 2. the SBML version corresponding to this structure

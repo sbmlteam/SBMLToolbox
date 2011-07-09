@@ -1,11 +1,11 @@
 function metaid = FunctionDefinition_getMetaid(SBMLFunctionDefinition)
 % metaid = FunctionDefinition_getMetaid(SBMLFunctionDefinition)
 %
-% takes
+% Takes
 %
-% 1. SBMLFunctionDefinition; an SBML FunctionDefinition structure
+% 1. SBMLFunctionDefinition, an SBML FunctionDefinition structure
 %
-% returns
+% Returns
 %
 % 1. the value of the metaid attribute
 %

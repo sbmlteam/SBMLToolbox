@@ -1,12 +1,12 @@
 function SBMLModel = Model_setAreaUnits(SBMLModel, areaUnits)
 % SBMLModel = Model_setAreaUnits(SBMLModel, areaUnits)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 % 2. areaUnits; a string representing the areaUnits to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML Model structure with the new value for the areaUnits attribute
 %

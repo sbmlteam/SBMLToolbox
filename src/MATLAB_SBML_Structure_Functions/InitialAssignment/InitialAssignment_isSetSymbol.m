@@ -1,11 +1,11 @@
 function value = InitialAssignment_isSetSymbol(SBMLInitialAssignment)
 % value = InitialAssignment_isSetSymbol(SBMLInitialAssignment)
 %
-% takes
+% Takes
 %
-% 1. SBMLInitialAssignment; an SBML InitialAssignment structure
+% 1. SBMLInitialAssignment, an SBML InitialAssignment structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the symbol attribute is set

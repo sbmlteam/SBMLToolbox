@@ -1,12 +1,12 @@
 function [defaultValues] = getParameterRuleDefaultValues(level, version)
 % [values] = getParameterRuleDefaultValues(level, version)
 %
-% takes
+% Takes
 %
-% 1. level; an integer representing an SBML level
-% 2. version; an integer representing an SBML version
+% 1. level, an integer representing an SBML level
+% 2. version, an integer representing an SBML version
 %
-% returns
+% Returns
 %
 % 1. an array of default values for an SBML ParameterRule structure of the given level and version
 %

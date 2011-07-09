@@ -1,11 +1,11 @@
 function num = Model_getNumEvents(SBMLModel)
 % num = Model_getNumEvents(SBMLModel)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 %
-% returns
+% Returns
 %
 % 1. the number of SBML Event structures present in the Model
 %

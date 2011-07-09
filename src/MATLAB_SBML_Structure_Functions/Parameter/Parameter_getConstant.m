@@ -1,11 +1,11 @@
 function constant = Parameter_getConstant(SBMLParameter)
 % constant = Parameter_getConstant(SBMLParameter)
 %
-% takes
+% Takes
 %
-% 1. SBMLParameter; an SBML Parameter structure
+% 1. SBMLParameter, an SBML Parameter structure
 %
-% returns
+% Returns
 %
 % 1. the value of the constant attribute
 %

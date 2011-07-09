@@ -1,12 +1,12 @@
 function SBMLEvent = Event_setDelay(SBMLEvent, delay)
 % SBMLEvent = Event_setDelay(SBMLEvent, SBMLDelay)
 %
-% takes
+% Takes
 %
-% 1. SBMLEvent; an SBML Event structure
-% 2. SBMLDelay; an SBML Delay structure
+% 1. SBMLEvent, an SBML Event structure
+% 2. SBMLDelay, an SBML Delay structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Event structure with the new value for the delay field
 %

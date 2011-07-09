@@ -1,11 +1,11 @@
 function value = FunctionDefinition_isSetMath(SBMLFunctionDefinition)
 % value = FunctionDefinition_isSetMath(SBMLFunctionDefinition)
 %
-% takes
+% Takes
 %
-% 1. SBMLFunctionDefinition; an SBML FunctionDefinition structure
+% 1. SBMLFunctionDefinition, an SBML FunctionDefinition structure
 %
-% returns
+% Returns
 %
 % 1. value = 
 %  - 1 if the math attribute is set

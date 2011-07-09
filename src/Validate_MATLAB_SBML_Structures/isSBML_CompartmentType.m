@@ -1,13 +1,13 @@
 function [valid, message] = isSBML_CompartmentType(varargin)
 % [valid, message] = isSBML_CompartmentType(SBMLCompartmentType, level, version(optional))
 %
-% takes
+% Takes
 %
-% 1. SBMLCompartmentType; an SBML CompartmentType structure
-% 2. level; an integer representing an SBML level
-% 3. version (optional); an integer representing an SBML version
+% 1. SBMLCompartmentType, an SBML CompartmentType structure
+% 2. level, an integer representing an SBML level
+% 3. version (optional), an integer representing an SBML version
 %
-% returns
+% Returns
 %
 % 1. valid = 
 %   - 1, if the structure represents

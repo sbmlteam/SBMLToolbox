@@ -1,12 +1,12 @@
 function SBMLCompartmentVolumeRule = CompartmentVolumeRule_setFormula(SBMLCompartmentVolumeRule, formula)
 % SBMLCompartmentVolumeRule = CompartmentVolumeRule_setFormula(SBMLCompartmentVolumeRule, formula)
 %
-% takes
+% Takes
 %
-% 1. SBMLCompartmentVolumeRule; an SBML CompartmentVolumeRule structure
+% 1. SBMLCompartmentVolumeRule, an SBML CompartmentVolumeRule structure
 % 2. formula; a string representing the formula to be set
 %
-% returns
+% Returns
 %
 % 1. the SBML CompartmentVolumeRule structure with the new value for the formula attribute
 %

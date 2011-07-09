@@ -1,11 +1,11 @@
 function SBMLTrigger = Trigger_unsetMetaid(SBMLTrigger)
 % SBMLTrigger = Trigger_unsetMetaid(SBMLTrigger)
 %
-% takes
+% Takes
 %
-% 1. SBMLTrigger; an SBML Trigger structure
+% 1. SBMLTrigger, an SBML Trigger structure
 %
-% returns
+% Returns
 %
 % 1. the SBML Trigger structure with the metaid attribute unset
 %

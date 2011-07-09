@@ -1,11 +1,11 @@
 function y = Model_getNumAlgebraicRules(SBMLModel)
 % num = Model_getNumAlgebraicRules(SBMLModel)
 %
-% takes
+% Takes
 %
-% 1. SBMLModel; an SBML Model structure
+% 1. SBMLModel, an SBML Model structure
 %
-% returns
+% Returns
 %
 % 1. the number of SBML AlgebraicRule structures present in the Model
 %
