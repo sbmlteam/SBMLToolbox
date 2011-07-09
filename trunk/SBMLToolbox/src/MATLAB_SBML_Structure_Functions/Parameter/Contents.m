@@ -1,6 +1,6 @@
 % toolbox\MATLAB_SBML_Structure_Functions\Parameter
 %
-% The functions allow users to create and work with the SBML Parameter structure. 
+% The functions allow users to create and work with the SBML Parameter structure.
 %
 %=================================================================
 % Parameter = Parameter_create(level(optional), version(optional)

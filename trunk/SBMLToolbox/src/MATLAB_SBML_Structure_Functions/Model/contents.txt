@@ -1,4 +1,4 @@
-###MATLAB SBML STRUCTURE FUNCTIONS\MODEL
+###MATLAB_SBML_STRUCTURE_FUNCTIONS\MODEL
 
 
 The functions allow users to create and work with the SBML Model structure.
@@ -9,12 +9,12 @@ Function are:
 
 ####SBMLModel = Model_addCompartment(SBMLModel, SBMLCompartment)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
-2. SBMLCompartment; an SBML Compartment structure
+1. SBMLModel, an SBML Model structure
+2. SBMLCompartment, an SBML Compartment structure
 
-returns
+Returns
 
 1. the SBML Model structure with the SBML Compartment structure added
 
@@ -24,12 +24,12 @@ returns
 
 ####SBMLModel = Model_addCompartmentType(SBMLModel, SBMLCompartmentType)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
-2. SBMLCompartmentType; an SBML CompartmentType structure
+1. SBMLModel, an SBML Model structure
+2. SBMLCompartmentType, an SBML CompartmentType structure
 
-returns
+Returns
 
 1. the SBML Model structure with the SBML CompartmentType structure added
 
@@ -39,12 +39,12 @@ returns
 
 ####SBMLModel = Model_addConstraint(SBMLModel, SBMLConstraint)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
-2. SBMLConstraint; an SBML Constraint structure
+1. SBMLModel, an SBML Model structure
+2. SBMLConstraint, an SBML Constraint structure
 
-returns
+Returns
 
 1. the SBML Model structure with the SBML Constraint structure added
 
@@ -54,12 +54,12 @@ returns
 
 ####SBMLModel = Model_addEvent(SBMLModel, SBMLEvent)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
-2. SBMLEvent; an SBML Event structure
+1. SBMLModel, an SBML Model structure
+2. SBMLEvent, an SBML Event structure
 
-returns
+Returns
 
 1. the SBML Model structure with the SBML Event structure added
 
@@ -69,12 +69,12 @@ returns
 
 ####SBMLModel = Model_addFunctionDefinition(SBMLModel, SBMLFunctionDefinition)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
-2. SBMLFunctionDefinition; an SBML FunctionDefinition structure
+1. SBMLModel, an SBML Model structure
+2. SBMLFunctionDefinition, an SBML FunctionDefinition structure
 
-returns
+Returns
 
 1. the SBML Model structure with the SBML FunctionDefinition structure added
 
@@ -84,12 +84,12 @@ returns
 
 ####SBMLModel = Model_addInitialAssignment(SBMLModel, SBMLInitialAssignment)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
-2. SBMLInitialAssignment; an SBML InitialAssignment structure
+1. SBMLModel, an SBML Model structure
+2. SBMLInitialAssignment, an SBML InitialAssignment structure
 
-returns
+Returns
 
 1. the SBML Model structure with the SBML InitialAssignment structure added
 
@@ -99,12 +99,12 @@ returns
 
 ####SBMLModel = Model_addParameter(SBMLModel, SBMLParameter)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
-2. SBMLParameter; an SBML Parameter structure
+1. SBMLModel, an SBML Model structure
+2. SBMLParameter, an SBML Parameter structure
 
-returns
+Returns
 
 1. the SBML Model structure with the SBML Parameter structure added
 
@@ -114,12 +114,12 @@ returns
 
 ####SBMLModel = Model_addReaction(SBMLModel, SBMLReaction)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
-2. SBMLReaction; an SBML Reaction structure
+1. SBMLModel, an SBML Model structure
+2. SBMLReaction, an SBML Reaction structure
 
-returns
+Returns
 
 1. the SBML Model structure with the SBML Reaction structure added
 
@@ -129,12 +129,12 @@ returns
 
 ####SBMLModel = Model_addRule(SBMLModel, SBMLRule)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
-2. SBMLRule; an SBML Rule structure
+1. SBMLModel, an SBML Model structure
+2. SBMLRule, an SBML Rule structure
 
-returns
+Returns
 
 1. the SBML Model structure with the SBML Rule structure added
 
@@ -144,12 +144,12 @@ returns
 
 ####SBMLModel = Model_addSpecies(SBMLModel, SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
-2. SBMLSpecies; an SBML Species structure
+1. SBMLModel, an SBML Model structure
+2. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. the SBML Model structure with the SBML Species structure added
 
@@ -159,12 +159,12 @@ returns
 
 ####SBMLModel = Model_addSpeciesType(SBMLModel, SBMLSpeciesType)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
-2. SBMLSpeciesType; an SBML SpeciesType structure
+1. SBMLModel, an SBML Model structure
+2. SBMLSpeciesType, an SBML SpeciesType structure
 
-returns
+Returns
 
 1. the SBML Model structure with the SBML SpeciesType structure added
 
@@ -174,12 +174,12 @@ returns
 
 ####SBMLModel = Model_addUnitDefinition(SBMLModel, SBMLUnitDefinition)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
-2. SBMLUnitDefinition; an SBML UnitDefinition structure
+1. SBMLModel, an SBML Model structure
+2. SBMLUnitDefinition, an SBML UnitDefinition structure
 
-returns
+Returns
 
 1. the SBML Model structure with the SBML UnitDefinition structure added
 
@@ -189,30 +189,29 @@ returns
 
 ####Model = Model_create(level(optional), version(optional)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level (optional)
-2. version; an integer representing an SBML version (optional)
+1. level, an integer representing an SBML level (optional)
+2. version, an integer representing an SBML version (optional)
 
-returns
+Returns
 
 1. a MATLAB_SBML Model structure of the appropriate level and version
 
-*NOTE:* the optional level and version preserve backwards compatibility: 
-   
-   - a missing version argument will default to L1V2; L2V4 or L3V1
-   - missing both arguments will default to L3V1
+*NOTE:* the optional level and version preserve backwards compatibility
+  a missing version argument will default to L1V2; L2V4 or L3V1
+  missing both arguments will default to L3V1
 
 
 ------------------------------
 
 ####areaUnits = Model_getAreaUnits(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the value of the areaUnits attribute
 
@@ -222,12 +221,12 @@ returns
 
 ####assignmentRule = Model_getAssignmentRuleByVariable(SBMLModel, variable)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 2. variable; a string representing the variable of SBML AssignmentRule structure
 
-returns
+Returns
 
 1. the SBML AssignmentRule structure that has this variable
 
@@ -237,12 +236,12 @@ returns
 
 ####compartment = Model_getCompartment(SBMLModel, index)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
-2. index; an integer representing the index of SBML Compartment structure
+1. SBMLModel, an SBML Model structure
+2. index, an integer representing the index of SBML Compartment structure
 
-returns
+Returns
 
 1. the SBML Compartment structure at the indexed position
 
@@ -252,12 +251,12 @@ returns
 
 ####compartment = Model_getCompartmentById(SBMLModel, id)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 2. id; a string representing the id of SBML Compartment structure
 
-returns
+Returns
 
 1. the SBML Compartment structure that has this id
 
@@ -267,12 +266,12 @@ returns
 
 ####compartmentType = Model_getCompartmentType(SBMLModel, index)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
-2. index; an integer representing the index of SBML CompartmentType structure
+1. SBMLModel, an SBML Model structure
+2. index, an integer representing the index of SBML CompartmentType structure
 
-returns
+Returns
 
 1. the SBML CompartmentType structure at the indexed position
 
@@ -282,12 +281,12 @@ returns
 
 ####compartmentType = Model_getCompartmentTypeById(SBMLModel, id)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 2. id; a string representing the id of SBML CompartmentType structure
 
-returns
+Returns
 
 1. the SBML CompartmentType structure that has this id
 
@@ -297,12 +296,12 @@ returns
 
 ####constraint = Model_getConstraint(SBMLModel, index)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
-2. index; an integer representing the index of SBML Constraint structure
+1. SBMLModel, an SBML Model structure
+2. index, an integer representing the index of SBML Constraint structure
 
-returns
+Returns
 
 1. the SBML Constraint structure at the indexed position
 
@@ -312,11 +311,11 @@ returns
 
 ####conversionFactor = Model_getConversionFactor(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the value of the conversionFactor attribute
 
@@ -326,12 +325,12 @@ returns
 
 ####event = Model_getEvent(SBMLModel, index)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
-2. index; an integer representing the index of SBML Event structure
+1. SBMLModel, an SBML Model structure
+2. index, an integer representing the index of SBML Event structure
 
-returns
+Returns
 
 1. the SBML Event structure at the indexed position
 
@@ -341,12 +340,12 @@ returns
 
 ####event = Model_getEventById(SBMLModel, id)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 2. id; a string representing the id of SBML Event structure
 
-returns
+Returns
 
 1. the SBML Event structure that has this id
 
@@ -356,11 +355,11 @@ returns
 
 ####extentUnits = Model_getExtentUnits(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the value of the extentUnits attribute
 
@@ -370,12 +369,12 @@ returns
 
 ####functionDefinition = Model_getFunctionDefinition(SBMLModel, index)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
-2. index; an integer representing the index of SBML FunctionDefinition structure
+1. SBMLModel, an SBML Model structure
+2. index, an integer representing the index of SBML FunctionDefinition structure
 
-returns
+Returns
 
 1. the SBML FunctionDefinition structure at the indexed position
 
@@ -385,12 +384,12 @@ returns
 
 ####functionDefinition = Model_getFunctionDefinitionById(SBMLModel, id)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 2. id; a string representing the id of SBML FunctionDefinition structure
 
-returns
+Returns
 
 1. the SBML FunctionDefinition structure that has this id
 
@@ -400,11 +399,11 @@ returns
 
 ####functionIds = Model_getFunctionIds(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the value of the functionIds attribute
 
@@ -414,11 +413,11 @@ returns
 
 ####id = Model_getId(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the value of the id attribute
 
@@ -428,12 +427,12 @@ returns
 
 ####initialAssignment = Model_getInitialAssignment(SBMLModel, index)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
-2. index; an integer representing the index of SBML InitialAssignment structure
+1. SBMLModel, an SBML Model structure
+2. index, an integer representing the index of SBML InitialAssignment structure
 
-returns
+Returns
 
 1. the SBML InitialAssignment structure at the indexed position
 
@@ -443,12 +442,12 @@ returns
 
 ####initialAssignment = Model_getInitialAssignmentBySymbol(SBMLModel, symbol)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 2. symbol; a string representing the symbol of SBML InitialAssignment structure
 
-returns
+Returns
 
 1. the SBML InitialAssignment structure that has this symbol
 
@@ -458,11 +457,11 @@ returns
 
 ####lengthUnits = Model_getLengthUnits(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the value of the lengthUnits attribute
 
@@ -472,11 +471,11 @@ returns
 
 ####algebraicRule = Model_getListOfAlgebraicRules(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. an array of the algebraicRule structures
 
@@ -486,11 +485,11 @@ returns
 
 ####assignmentRule = Model_getListOfAssignmentRules(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. an array of the assignmentRule structures
 
@@ -500,12 +499,12 @@ returns
 
 ####listOf = Model_getListOfByTypecode(SBMLModel, typecode)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 2. typecode; a string representing the typecode of SBML ListOf structure
 
-returns
+Returns
 
 1. the SBML ListOf structure that has this typecode
 
@@ -515,11 +514,11 @@ returns
 
 ####compartmentType = Model_getListOfCompartmentTypes(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. an array of the compartmentType structures
 
@@ -529,11 +528,11 @@ returns
 
 ####compartment = Model_getListOfCompartments(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. an array of the compartment structures
 
@@ -543,11 +542,11 @@ returns
 
 ####constraint = Model_getListOfConstraints(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. an array of the constraint structures
 
@@ -557,11 +556,11 @@ returns
 
 ####event = Model_getListOfEvents(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. an array of the event structures
 
@@ -571,11 +570,11 @@ returns
 
 ####functionDefinition = Model_getListOfFunctionDefinitions(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. an array of the functionDefinition structures
 
@@ -585,11 +584,11 @@ returns
 
 ####initialAssignment = Model_getListOfInitialAssignments(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. an array of the initialAssignment structures
 
@@ -599,11 +598,11 @@ returns
 
 ####parameter = Model_getListOfParameters(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. an array of the parameter structures
 
@@ -613,11 +612,11 @@ returns
 
 ####rateRule = Model_getListOfRateRules(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. an array of the rateRule structures
 
@@ -627,11 +626,11 @@ returns
 
 ####reaction = Model_getListOfReactions(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. an array of the reaction structures
 
@@ -641,11 +640,11 @@ returns
 
 ####rule = Model_getListOfRules(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. an array of the rule structures
 
@@ -655,11 +654,11 @@ returns
 
 ####species = Model_getListOfSpecies(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. an array of the species structures
 
@@ -669,11 +668,11 @@ returns
 
 ####speciesType = Model_getListOfSpeciesTypes(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. an array of the speciesType structures
 
@@ -683,11 +682,11 @@ returns
 
 ####species = Model_getListOfSpeciess(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. an array of the species structures
 
@@ -697,11 +696,11 @@ returns
 
 ####unitDefinition = Model_getListOfUnitDefinitions(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. an array of the unitDefinition structures
 
@@ -711,11 +710,11 @@ returns
 
 ####metaid = Model_getMetaid(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the value of the metaid attribute
 
@@ -725,11 +724,11 @@ returns
 
 ####name = Model_getName(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the value of the name attribute
 
@@ -739,11 +738,11 @@ returns
 
 ####num = Model_getNumAlgebraicRules(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the number of SBML AlgebraicRule structures present in the Model
 
@@ -753,11 +752,11 @@ returns
 
 ####num = Model_getNumAssignmentRules(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the number of SBML AssignmentRule structures present in the Model
 
@@ -767,11 +766,11 @@ returns
 
 ####num = Model_getNumCompartmentTypes(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the number of SBML CompartmentType structures present in the Model
 
@@ -781,11 +780,11 @@ returns
 
 ####num = Model_getNumCompartments(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the number of SBML Compartment structures present in the Model
 
@@ -795,11 +794,11 @@ returns
 
 ####num = Model_getNumConstraints(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the number of SBML Constraint structures present in the Model
 
@@ -809,11 +808,11 @@ returns
 
 ####num = Model_getNumEvents(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the number of SBML Event structures present in the Model
 
@@ -823,11 +822,11 @@ returns
 
 ####num = Model_getNumFunctionDefinitions(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the number of SBML FunctionDefinition structures present in the Model
 
@@ -837,11 +836,11 @@ returns
 
 ####num = Model_getNumInitialAssignments(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the number of SBML InitialAssignment structures present in the Model
 
@@ -851,11 +850,11 @@ returns
 
 ####num = Model_getNumParameters(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the number of SBML Parameter structures present in the Model
 
@@ -865,11 +864,11 @@ returns
 
 ####num = Model_getNumRateRules(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the number of SBML RateRule structures present in the Model
 
@@ -879,11 +878,11 @@ returns
 
 ####num = Model_getNumReactions(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the number of SBML Reaction structures present in the Model
 
@@ -893,11 +892,11 @@ returns
 
 ####num = Model_getNumRules(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the number of SBML Rule structures present in the Model
 
@@ -907,11 +906,11 @@ returns
 
 ####num = Model_getNumSpecies(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the number of SBML Species structures present in the Model
 
@@ -921,11 +920,11 @@ returns
 
 ####num = Model_getNumSpeciesTypes(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the number of SBML SpeciesType structures present in the Model
 
@@ -935,11 +934,11 @@ returns
 
 ####num = Model_getNumSpeciess(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the number of SBML Species structures present in the Model
 
@@ -949,11 +948,11 @@ returns
 
 ####num = Model_getNumUnitDefinitions(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the number of SBML UnitDefinition structures present in the Model
 
@@ -963,12 +962,12 @@ returns
 
 ####parameter = Model_getParameter(SBMLModel, index)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
-2. index; an integer representing the index of SBML Parameter structure
+1. SBMLModel, an SBML Model structure
+2. index, an integer representing the index of SBML Parameter structure
 
-returns
+Returns
 
 1. the SBML Parameter structure at the indexed position
 
@@ -978,12 +977,12 @@ returns
 
 ####parameter = Model_getParameterById(SBMLModel, id)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 2. id; a string representing the id of SBML Parameter structure
 
-returns
+Returns
 
 1. the SBML Parameter structure that has this id
 
@@ -993,12 +992,12 @@ returns
 
 ####rateRule = Model_getRateRuleByVariable(SBMLModel, variable)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 2. variable; a string representing the variable of SBML RateRule structure
 
-returns
+Returns
 
 1. the SBML RateRule structure that has this variable
 
@@ -1008,12 +1007,12 @@ returns
 
 ####reaction = Model_getReaction(SBMLModel, index)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
-2. index; an integer representing the index of SBML Reaction structure
+1. SBMLModel, an SBML Model structure
+2. index, an integer representing the index of SBML Reaction structure
 
-returns
+Returns
 
 1. the SBML Reaction structure at the indexed position
 
@@ -1023,12 +1022,12 @@ returns
 
 ####reaction = Model_getReactionById(SBMLModel, id)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 2. id; a string representing the id of SBML Reaction structure
 
-returns
+Returns
 
 1. the SBML Reaction structure that has this id
 
@@ -1038,12 +1037,12 @@ returns
 
 ####rule = Model_getRule(SBMLModel, index)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
-2. index; an integer representing the index of SBML Rule structure
+1. SBMLModel, an SBML Model structure
+2. index, an integer representing the index of SBML Rule structure
 
-returns
+Returns
 
 1. the SBML Rule structure at the indexed position
 
@@ -1053,11 +1052,11 @@ returns
 
 ####sBML_level = Model_getSBML_level(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the value of the sBML_level attribute
 
@@ -1067,11 +1066,11 @@ returns
 
 ####sBML_version = Model_getSBML_version(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the value of the sBML_version attribute
 
@@ -1081,11 +1080,11 @@ returns
 
 ####sboTerm = Model_getSBOTerm(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the value of the sboTerm attribute
 
@@ -1095,12 +1094,12 @@ returns
 
 ####species = Model_getSpecies(SBMLModel, index)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
-2. index; an integer representing the index of SBML Species structure
+1. SBMLModel, an SBML Model structure
+2. index, an integer representing the index of SBML Species structure
 
-returns
+Returns
 
 1. the SBML Species structure at the indexed position
 
@@ -1110,12 +1109,12 @@ returns
 
 ####species = Model_getSpeciesById(SBMLModel, id)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 2. id; a string representing the id of SBML Species structure
 
-returns
+Returns
 
 1. the SBML Species structure that has this id
 
@@ -1125,12 +1124,12 @@ returns
 
 ####speciesType = Model_getSpeciesType(SBMLModel, index)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
-2. index; an integer representing the index of SBML SpeciesType structure
+1. SBMLModel, an SBML Model structure
+2. index, an integer representing the index of SBML SpeciesType structure
 
-returns
+Returns
 
 1. the SBML SpeciesType structure at the indexed position
 
@@ -1140,12 +1139,12 @@ returns
 
 ####speciesType = Model_getSpeciesTypeById(SBMLModel, id)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 2. id; a string representing the id of SBML SpeciesType structure
 
-returns
+Returns
 
 1. the SBML SpeciesType structure that has this id
 
@@ -1155,11 +1154,11 @@ returns
 
 ####substanceUnits = Model_getSubstanceUnits(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the value of the substanceUnits attribute
 
@@ -1169,11 +1168,11 @@ returns
 
 ####timeUnits = Model_getTimeUnits(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the value of the timeUnits attribute
 
@@ -1183,12 +1182,12 @@ returns
 
 ####unitDefinition = Model_getUnitDefinition(SBMLModel, index)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
-2. index; an integer representing the index of SBML UnitDefinition structure
+1. SBMLModel, an SBML Model structure
+2. index, an integer representing the index of SBML UnitDefinition structure
 
-returns
+Returns
 
 1. the SBML UnitDefinition structure at the indexed position
 
@@ -1198,12 +1197,12 @@ returns
 
 ####unitDefinition = Model_getUnitDefinitionById(SBMLModel, id)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 2. id; a string representing the id of SBML UnitDefinition structure
 
-returns
+Returns
 
 1. the SBML UnitDefinition structure that has this id
 
@@ -1213,11 +1212,11 @@ returns
 
 ####volumeUnits = Model_getVolumeUnits(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the value of the volumeUnits attribute
 
@@ -1227,11 +1226,11 @@ returns
 
 ####value = Model_isSetAreaUnits(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the areaUnits attribute is set
@@ -1243,11 +1242,11 @@ returns
 
 ####value = Model_isSetConversionFactor(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the conversionFactor attribute is set
@@ -1259,11 +1258,11 @@ returns
 
 ####value = Model_isSetExtentUnits(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the extentUnits attribute is set
@@ -1275,11 +1274,11 @@ returns
 
 ####value = Model_isSetId(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the id attribute is set
@@ -1291,11 +1290,11 @@ returns
 
 ####value = Model_isSetLengthUnits(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the lengthUnits attribute is set
@@ -1307,11 +1306,11 @@ returns
 
 ####value = Model_isSetMetaid(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the metaid attribute is set
@@ -1323,11 +1322,11 @@ returns
 
 ####value = Model_isSetName(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the name attribute is set
@@ -1339,11 +1338,11 @@ returns
 
 ####value = Model_isSetSBML_level(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the sBML_level attribute is set
@@ -1355,11 +1354,11 @@ returns
 
 ####value = Model_isSetSBML_version(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the sBML_version attribute is set
@@ -1371,11 +1370,11 @@ returns
 
 ####value = Model_isSetSBOTerm(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the sboTerm attribute is set
@@ -1387,11 +1386,11 @@ returns
 
 ####value = Model_isSetSubstanceUnits(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the substanceUnits attribute is set
@@ -1403,11 +1402,11 @@ returns
 
 ####value = Model_isSetTimeUnits(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the timeUnits attribute is set
@@ -1419,11 +1418,11 @@ returns
 
 ####value = Model_isSetVolumeUnits(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the volumeUnits attribute is set
@@ -1435,12 +1434,12 @@ returns
 
 ####SBMLModel = Model_setAreaUnits(SBMLModel, areaUnits)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 2. areaUnits; a string representing the areaUnits to be set
 
-returns
+Returns
 
 1. the SBML Model structure with the new value for the areaUnits attribute
 
@@ -1450,12 +1449,12 @@ returns
 
 ####SBMLModel = Model_setConversionFactor(SBMLModel, conversionFactor)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 2. conversionFactor; a string representing the conversionFactor to be set
 
-returns
+Returns
 
 1. the SBML Model structure with the new value for the conversionFactor attribute
 
@@ -1465,12 +1464,12 @@ returns
 
 ####SBMLModel = Model_setExtentUnits(SBMLModel, extentUnits)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 2. extentUnits; a string representing the extentUnits to be set
 
-returns
+Returns
 
 1. the SBML Model structure with the new value for the extentUnits attribute
 
@@ -1480,12 +1479,12 @@ returns
 
 ####SBMLModel = Model_setId(SBMLModel, id)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 2. id; a string representing the id to be set
 
-returns
+Returns
 
 1. the SBML Model structure with the new value for the id attribute
 
@@ -1495,12 +1494,12 @@ returns
 
 ####SBMLModel = Model_setLengthUnits(SBMLModel, lengthUnits)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 2. lengthUnits; a string representing the lengthUnits to be set
 
-returns
+Returns
 
 1. the SBML Model structure with the new value for the lengthUnits attribute
 
@@ -1510,12 +1509,12 @@ returns
 
 ####SBMLModel = Model_setMetaid(SBMLModel, metaid)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 2. metaid; a string representing the metaid to be set
 
-returns
+Returns
 
 1. the SBML Model structure with the new value for the metaid attribute
 
@@ -1525,12 +1524,12 @@ returns
 
 ####SBMLModel = Model_setName(SBMLModel, name)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 2. name; a string representing the name to be set
 
-returns
+Returns
 
 1. the SBML Model structure with the new value for the name attribute
 
@@ -1540,12 +1539,12 @@ returns
 
 ####SBMLModel = Model_setSBOTerm(SBMLModel, sboTerm)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
-2. sboTerm; an integer representing the sboTerm to be set
+1. SBMLModel, an SBML Model structure
+2. sboTerm, an integer representing the sboTerm to be set
 
-returns
+Returns
 
 1. the SBML Model structure with the new value for the sboTerm attribute
 
@@ -1555,12 +1554,12 @@ returns
 
 ####SBMLModel = Model_setSubstanceUnits(SBMLModel, substanceUnits)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 2. substanceUnits; a string representing the substanceUnits to be set
 
-returns
+Returns
 
 1. the SBML Model structure with the new value for the substanceUnits attribute
 
@@ -1570,12 +1569,12 @@ returns
 
 ####SBMLModel = Model_setTimeUnits(SBMLModel, timeUnits)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 2. timeUnits; a string representing the timeUnits to be set
 
-returns
+Returns
 
 1. the SBML Model structure with the new value for the timeUnits attribute
 
@@ -1585,12 +1584,12 @@ returns
 
 ####SBMLModel = Model_setVolumeUnits(SBMLModel, volumeUnits)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 2. volumeUnits; a string representing the volumeUnits to be set
 
-returns
+Returns
 
 1. the SBML Model structure with the new value for the volumeUnits attribute
 
@@ -1600,11 +1599,11 @@ returns
 
 ####SBMLModel = Model_unsetAreaUnits(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the SBML Model structure with the areaUnits attribute unset
 
@@ -1614,11 +1613,11 @@ returns
 
 ####SBMLModel = Model_unsetConversionFactor(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the SBML Model structure with the conversionFactor attribute unset
 
@@ -1628,11 +1627,11 @@ returns
 
 ####SBMLModel = Model_unsetExtentUnits(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the SBML Model structure with the extentUnits attribute unset
 
@@ -1642,11 +1641,11 @@ returns
 
 ####SBMLModel = Model_unsetId(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the SBML Model structure with the id attribute unset
 
@@ -1656,11 +1655,11 @@ returns
 
 ####SBMLModel = Model_unsetLengthUnits(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the SBML Model structure with the lengthUnits attribute unset
 
@@ -1670,11 +1669,11 @@ returns
 
 ####SBMLModel = Model_unsetMetaid(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the SBML Model structure with the metaid attribute unset
 
@@ -1684,11 +1683,11 @@ returns
 
 ####SBMLModel = Model_unsetName(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the SBML Model structure with the name attribute unset
 
@@ -1698,11 +1697,11 @@ returns
 
 ####SBMLModel = Model_unsetSBOTerm(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the SBML Model structure with the sboTerm attribute unset
 
@@ -1712,11 +1711,11 @@ returns
 
 ####SBMLModel = Model_unsetSubstanceUnits(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the SBML Model structure with the substanceUnits attribute unset
 
@@ -1726,11 +1725,11 @@ returns
 
 ####SBMLModel = Model_unsetTimeUnits(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the SBML Model structure with the timeUnits attribute unset
 
@@ -1740,11 +1739,11 @@ returns
 
 ####SBMLModel = Model_unsetVolumeUnits(SBMLModel)
 
-takes
+Takes
 
-1. SBMLModel; an SBML Model structure
+1. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the SBML Model structure with the volumeUnits attribute unset
 

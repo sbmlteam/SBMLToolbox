@@ -1,6 +1,6 @@
 % toolbox\MATLAB_SBML_Structure_Functions\KineticLaw
 %
-% The functions allow users to create and work with the SBML KineticLaw structure. 
+% The functions allow users to create and work with the SBML KineticLaw structure.
 %
 %===================================================================================
 % SBMLKineticLaw = KineticLaw_addLocalParameter(SBMLKineticLaw, SBMLLocalParameter)

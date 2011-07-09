@@ -1,4 +1,4 @@
-###MATLAB SBML STRUCTURE FUNCTIONS\MODIFIERSPECIESREFERENCE
+###MATLAB_SBML_STRUCTURE_FUNCTIONS\MODIFIERSPECIESREFERENCE
 
 
 The functions allow users to create and work with the SBML ModifierSpeciesReference structure.
@@ -9,30 +9,29 @@ Function are:
 
 ####ModifierSpeciesReference = ModifierSpeciesReference_create(level(optional), version(optional)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level (optional)
-2. version; an integer representing an SBML version (optional)
+1. level, an integer representing an SBML level (optional)
+2. version, an integer representing an SBML version (optional)
 
-returns
+Returns
 
 1. a MATLAB_SBML ModifierSpeciesReference structure of the appropriate level and version
 
-*NOTE:* the optional level and version preserve backwards compatibility: 
-   
-   - a missing version argument will default to L1V2; L2V4 or L3V1
-   - missing both arguments will default to L3V1
+*NOTE:* the optional level and version preserve backwards compatibility
+  a missing version argument will default to L1V2; L2V4 or L3V1
+  missing both arguments will default to L3V1
 
 
 ------------------------------
 
 ####id = ModifierSpeciesReference_getId(SBMLModifierSpeciesReference)
 
-takes
+Takes
 
-1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+1. SBMLModifierSpeciesReference, an SBML ModifierSpeciesReference structure
 
-returns
+Returns
 
 1. the value of the id attribute
 
@@ -42,11 +41,11 @@ returns
 
 ####metaid = ModifierSpeciesReference_getMetaid(SBMLModifierSpeciesReference)
 
-takes
+Takes
 
-1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+1. SBMLModifierSpeciesReference, an SBML ModifierSpeciesReference structure
 
-returns
+Returns
 
 1. the value of the metaid attribute
 
@@ -56,11 +55,11 @@ returns
 
 ####name = ModifierSpeciesReference_getName(SBMLModifierSpeciesReference)
 
-takes
+Takes
 
-1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+1. SBMLModifierSpeciesReference, an SBML ModifierSpeciesReference structure
 
-returns
+Returns
 
 1. the value of the name attribute
 
@@ -70,11 +69,11 @@ returns
 
 ####sboTerm = ModifierSpeciesReference_getSBOTerm(SBMLModifierSpeciesReference)
 
-takes
+Takes
 
-1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+1. SBMLModifierSpeciesReference, an SBML ModifierSpeciesReference structure
 
-returns
+Returns
 
 1. the value of the sboTerm attribute
 
@@ -84,11 +83,11 @@ returns
 
 ####species = ModifierSpeciesReference_getSpecies(SBMLModifierSpeciesReference)
 
-takes
+Takes
 
-1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+1. SBMLModifierSpeciesReference, an SBML ModifierSpeciesReference structure
 
-returns
+Returns
 
 1. the value of the species attribute
 
@@ -98,11 +97,11 @@ returns
 
 ####value = ModifierSpeciesReference_isSetId(SBMLModifierSpeciesReference)
 
-takes
+Takes
 
-1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+1. SBMLModifierSpeciesReference, an SBML ModifierSpeciesReference structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the id attribute is set
@@ -114,11 +113,11 @@ returns
 
 ####value = ModifierSpeciesReference_isSetMetaid(SBMLModifierSpeciesReference)
 
-takes
+Takes
 
-1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+1. SBMLModifierSpeciesReference, an SBML ModifierSpeciesReference structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the metaid attribute is set
@@ -130,11 +129,11 @@ returns
 
 ####value = ModifierSpeciesReference_isSetName(SBMLModifierSpeciesReference)
 
-takes
+Takes
 
-1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+1. SBMLModifierSpeciesReference, an SBML ModifierSpeciesReference structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the name attribute is set
@@ -146,11 +145,11 @@ returns
 
 ####value = ModifierSpeciesReference_isSetSBOTerm(SBMLModifierSpeciesReference)
 
-takes
+Takes
 
-1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+1. SBMLModifierSpeciesReference, an SBML ModifierSpeciesReference structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the sboTerm attribute is set
@@ -162,11 +161,11 @@ returns
 
 ####value = ModifierSpeciesReference_isSetSpecies(SBMLModifierSpeciesReference)
 
-takes
+Takes
 
-1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+1. SBMLModifierSpeciesReference, an SBML ModifierSpeciesReference structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the species attribute is set
@@ -178,12 +177,12 @@ returns
 
 ####SBMLModifierSpeciesReference = ModifierSpeciesReference_setId(SBMLModifierSpeciesReference, id)
 
-takes
+Takes
 
-1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+1. SBMLModifierSpeciesReference, an SBML ModifierSpeciesReference structure
 2. id; a string representing the id to be set
 
-returns
+Returns
 
 1. the SBML ModifierSpeciesReference structure with the new value for the id attribute
 
@@ -193,12 +192,12 @@ returns
 
 ####SBMLModifierSpeciesReference = ModifierSpeciesReference_setMetaid(SBMLModifierSpeciesReference, metaid)
 
-takes
+Takes
 
-1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+1. SBMLModifierSpeciesReference, an SBML ModifierSpeciesReference structure
 2. metaid; a string representing the metaid to be set
 
-returns
+Returns
 
 1. the SBML ModifierSpeciesReference structure with the new value for the metaid attribute
 
@@ -208,12 +207,12 @@ returns
 
 ####SBMLModifierSpeciesReference = ModifierSpeciesReference_setName(SBMLModifierSpeciesReference, name)
 
-takes
+Takes
 
-1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+1. SBMLModifierSpeciesReference, an SBML ModifierSpeciesReference structure
 2. name; a string representing the name to be set
 
-returns
+Returns
 
 1. the SBML ModifierSpeciesReference structure with the new value for the name attribute
 
@@ -223,12 +222,12 @@ returns
 
 ####SBMLModifierSpeciesReference = ModifierSpeciesReference_setSBOTerm(SBMLModifierSpeciesReference, sboTerm)
 
-takes
+Takes
 
-1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
-2. sboTerm; an integer representing the sboTerm to be set
+1. SBMLModifierSpeciesReference, an SBML ModifierSpeciesReference structure
+2. sboTerm, an integer representing the sboTerm to be set
 
-returns
+Returns
 
 1. the SBML ModifierSpeciesReference structure with the new value for the sboTerm attribute
 
@@ -238,12 +237,12 @@ returns
 
 ####SBMLModifierSpeciesReference = ModifierSpeciesReference_setSpecies(SBMLModifierSpeciesReference, species)
 
-takes
+Takes
 
-1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+1. SBMLModifierSpeciesReference, an SBML ModifierSpeciesReference structure
 2. species; a string representing the species to be set
 
-returns
+Returns
 
 1. the SBML ModifierSpeciesReference structure with the new value for the species attribute
 
@@ -253,11 +252,11 @@ returns
 
 ####SBMLModifierSpeciesReference = ModifierSpeciesReference_unsetId(SBMLModifierSpeciesReference)
 
-takes
+Takes
 
-1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+1. SBMLModifierSpeciesReference, an SBML ModifierSpeciesReference structure
 
-returns
+Returns
 
 1. the SBML ModifierSpeciesReference structure with the id attribute unset
 
@@ -267,11 +266,11 @@ returns
 
 ####SBMLModifierSpeciesReference = ModifierSpeciesReference_unsetMetaid(SBMLModifierSpeciesReference)
 
-takes
+Takes
 
-1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+1. SBMLModifierSpeciesReference, an SBML ModifierSpeciesReference structure
 
-returns
+Returns
 
 1. the SBML ModifierSpeciesReference structure with the metaid attribute unset
 
@@ -281,11 +280,11 @@ returns
 
 ####SBMLModifierSpeciesReference = ModifierSpeciesReference_unsetName(SBMLModifierSpeciesReference)
 
-takes
+Takes
 
-1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+1. SBMLModifierSpeciesReference, an SBML ModifierSpeciesReference structure
 
-returns
+Returns
 
 1. the SBML ModifierSpeciesReference structure with the name attribute unset
 
@@ -295,11 +294,11 @@ returns
 
 ####SBMLModifierSpeciesReference = ModifierSpeciesReference_unsetSBOTerm(SBMLModifierSpeciesReference)
 
-takes
+Takes
 
-1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+1. SBMLModifierSpeciesReference, an SBML ModifierSpeciesReference structure
 
-returns
+Returns
 
 1. the SBML ModifierSpeciesReference structure with the sboTerm attribute unset
 
@@ -309,11 +308,11 @@ returns
 
 ####SBMLModifierSpeciesReference = ModifierSpeciesReference_unsetSpecies(SBMLModifierSpeciesReference)
 
-takes
+Takes
 
-1. SBMLModifierSpeciesReference; an SBML ModifierSpeciesReference structure
+1. SBMLModifierSpeciesReference, an SBML ModifierSpeciesReference structure
 
-returns
+Returns
 
 1. the SBML ModifierSpeciesReference structure with the species attribute unset
 

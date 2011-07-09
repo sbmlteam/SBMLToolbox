@@ -1,6 +1,6 @@
 % toolbox\MATLAB_SBML_Structure_Functions\UnitDefinition
 %
-% The functions allow users to create and work with the SBML UnitDefinition structure. 
+% The functions allow users to create and work with the SBML UnitDefinition structure.
 %
 %===========================================================================
 % SBMLUnitDefinition = UnitDefinition_addUnit(SBMLUnitDefinition, SBMLUnit)

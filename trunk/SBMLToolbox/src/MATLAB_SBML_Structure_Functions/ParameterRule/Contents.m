@@ -1,6 +1,6 @@
 % toolbox\MATLAB_SBML_Structure_Functions\ParameterRule
 %
-% The functions allow users to create and work with the SBML ParameterRule structure. 
+% The functions allow users to create and work with the SBML ParameterRule structure.
 %
 %=========================================================================
 % ParameterRule = ParameterRule_create(level(optional), version(optional)

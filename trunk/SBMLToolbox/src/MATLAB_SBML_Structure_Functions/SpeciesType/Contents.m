@@ -1,6 +1,6 @@
 % toolbox\MATLAB_SBML_Structure_Functions\SpeciesType
 %
-% The functions allow users to create and work with the SBML SpeciesType structure. 
+% The functions allow users to create and work with the SBML SpeciesType structure.
 %
 %=====================================================================
 % SpeciesType = SpeciesType_create(level(optional), version(optional)

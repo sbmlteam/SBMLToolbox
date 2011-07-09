@@ -1,6 +1,6 @@
 % toolbox\MATLAB_SBML_Structure_Functions\LocalParameter
 %
-% The functions allow users to create and work with the SBML LocalParameter structure. 
+% The functions allow users to create and work with the SBML LocalParameter structure.
 %
 %===========================================================================
 % LocalParameter = LocalParameter_create(level(optional), version(optional)

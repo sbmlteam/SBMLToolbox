@@ -1,7 +1,7 @@
 function level = GetLevel(SBMLStructure)
 % level = GetLevel(SBMLStructure) 
 % 
-% takes 
+% Takes 
 % 
 % 1. SBMLStructure, any SBML structure
 % 

@@ -1,6 +1,6 @@
 % toolbox\MATLAB_SBML_Structure_Functions\StoichiometryMath
 %
-% The functions allow users to create and work with the SBML StoichiometryMath structure. 
+% The functions allow users to create and work with the SBML StoichiometryMath structure.
 %
 %=================================================================================
 % StoichiometryMath = StoichiometryMath_create(level(optional), version(optional)

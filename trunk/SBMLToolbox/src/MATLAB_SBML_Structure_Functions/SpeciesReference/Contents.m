@@ -1,6 +1,6 @@
 % toolbox\MATLAB_SBML_Structure_Functions\SpeciesReference
 %
-% The functions allow users to create and work with the SBML SpeciesReference structure. 
+% The functions allow users to create and work with the SBML SpeciesReference structure.
 %
 %===============================================================================
 % SpeciesReference = SpeciesReference_create(level(optional), version(optional)

@@ -1,4 +1,4 @@
-###MATLAB SBML STRUCTURE FUNCTIONS\UNITDEFINITION
+###MATLAB_SBML_STRUCTURE_FUNCTIONS\UNITDEFINITION
 
 
 The functions allow users to create and work with the SBML UnitDefinition structure.
@@ -9,12 +9,12 @@ Function are:
 
 ####SBMLUnitDefinition = UnitDefinition_addUnit(SBMLUnitDefinition, SBMLUnit)
 
-takes
+Takes
 
-1. SBMLUnitDefinition; an SBML UnitDefinition structure
-2. SBMLUnit; an SBML Unit structure
+1. SBMLUnitDefinition, an SBML UnitDefinition structure
+2. SBMLUnit, an SBML Unit structure
 
-returns
+Returns
 
 1. the SBML UnitDefinition structure with the SBML Unit structure added
 
@@ -24,30 +24,29 @@ returns
 
 ####UnitDefinition = UnitDefinition_create(level(optional), version(optional)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level (optional)
-2. version; an integer representing an SBML version (optional)
+1. level, an integer representing an SBML level (optional)
+2. version, an integer representing an SBML version (optional)
 
-returns
+Returns
 
 1. a MATLAB_SBML UnitDefinition structure of the appropriate level and version
 
-*NOTE:* the optional level and version preserve backwards compatibility: 
-   
-   - a missing version argument will default to L1V2; L2V4 or L3V1
-   - missing both arguments will default to L3V1
+*NOTE:* the optional level and version preserve backwards compatibility
+  a missing version argument will default to L1V2; L2V4 or L3V1
+  missing both arguments will default to L3V1
 
 
 ------------------------------
 
 ####id = UnitDefinition_getId(SBMLUnitDefinition)
 
-takes
+Takes
 
-1. SBMLUnitDefinition; an SBML UnitDefinition structure
+1. SBMLUnitDefinition, an SBML UnitDefinition structure
 
-returns
+Returns
 
 1. the value of the id attribute
 
@@ -57,11 +56,11 @@ returns
 
 ####unit = UnitDefinition_getListOfUnits(SBMLUnitDefinition)
 
-takes
+Takes
 
-1. SBMLUnitDefinition; an SBML UnitDefinition structure
+1. SBMLUnitDefinition, an SBML UnitDefinition structure
 
-returns
+Returns
 
 1. an array of the unit structures
 
@@ -71,11 +70,11 @@ returns
 
 ####metaid = UnitDefinition_getMetaid(SBMLUnitDefinition)
 
-takes
+Takes
 
-1. SBMLUnitDefinition; an SBML UnitDefinition structure
+1. SBMLUnitDefinition, an SBML UnitDefinition structure
 
-returns
+Returns
 
 1. the value of the metaid attribute
 
@@ -85,11 +84,11 @@ returns
 
 ####name = UnitDefinition_getName(SBMLUnitDefinition)
 
-takes
+Takes
 
-1. SBMLUnitDefinition; an SBML UnitDefinition structure
+1. SBMLUnitDefinition, an SBML UnitDefinition structure
 
-returns
+Returns
 
 1. the value of the name attribute
 
@@ -99,11 +98,11 @@ returns
 
 ####numUnits = UnitDefinition_getNumUnits(SBMLUnitDefinition)
 
-takes
+Takes
 
-1. SBMLUnitDefinition; an SBML UnitDefinition structure
+1. SBMLUnitDefinition, an SBML UnitDefinition structure
 
-returns
+Returns
 
 1. the value of the numUnits attribute
 
@@ -113,11 +112,11 @@ returns
 
 ####sboTerm = UnitDefinition_getSBOTerm(SBMLUnitDefinition)
 
-takes
+Takes
 
-1. SBMLUnitDefinition; an SBML UnitDefinition structure
+1. SBMLUnitDefinition, an SBML UnitDefinition structure
 
-returns
+Returns
 
 1. the value of the sboTerm attribute
 
@@ -127,12 +126,12 @@ returns
 
 ####unit = UnitDefinition_getUnit(SBMLUnitDefinition, index)
 
-takes
+Takes
 
-1. SBMLUnitDefinition; an SBML UnitDefinition structure
-2. index; an integer representing the index of SBML Unit structure
+1. SBMLUnitDefinition, an SBML UnitDefinition structure
+2. index, an integer representing the index of SBML Unit structure
 
-returns
+Returns
 
 1. the SBML Unit structure at the indexed position
 
@@ -142,11 +141,11 @@ returns
 
 ####value = UnitDefinition_isSetId(SBMLUnitDefinition)
 
-takes
+Takes
 
-1. SBMLUnitDefinition; an SBML UnitDefinition structure
+1. SBMLUnitDefinition, an SBML UnitDefinition structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the id attribute is set
@@ -158,11 +157,11 @@ returns
 
 ####value = UnitDefinition_isSetMetaid(SBMLUnitDefinition)
 
-takes
+Takes
 
-1. SBMLUnitDefinition; an SBML UnitDefinition structure
+1. SBMLUnitDefinition, an SBML UnitDefinition structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the metaid attribute is set
@@ -174,11 +173,11 @@ returns
 
 ####value = UnitDefinition_isSetName(SBMLUnitDefinition)
 
-takes
+Takes
 
-1. SBMLUnitDefinition; an SBML UnitDefinition structure
+1. SBMLUnitDefinition, an SBML UnitDefinition structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the name attribute is set
@@ -190,11 +189,11 @@ returns
 
 ####value = UnitDefinition_isSetSBOTerm(SBMLUnitDefinition)
 
-takes
+Takes
 
-1. SBMLUnitDefinition; an SBML UnitDefinition structure
+1. SBMLUnitDefinition, an SBML UnitDefinition structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the sboTerm attribute is set
@@ -206,12 +205,12 @@ returns
 
 ####SBMLUnitDefinition = UnitDefinition_setId(SBMLUnitDefinition, id)
 
-takes
+Takes
 
-1. SBMLUnitDefinition; an SBML UnitDefinition structure
+1. SBMLUnitDefinition, an SBML UnitDefinition structure
 2. id; a string representing the id to be set
 
-returns
+Returns
 
 1. the SBML UnitDefinition structure with the new value for the id attribute
 
@@ -221,12 +220,12 @@ returns
 
 ####SBMLUnitDefinition = UnitDefinition_setMetaid(SBMLUnitDefinition, metaid)
 
-takes
+Takes
 
-1. SBMLUnitDefinition; an SBML UnitDefinition structure
+1. SBMLUnitDefinition, an SBML UnitDefinition structure
 2. metaid; a string representing the metaid to be set
 
-returns
+Returns
 
 1. the SBML UnitDefinition structure with the new value for the metaid attribute
 
@@ -236,12 +235,12 @@ returns
 
 ####SBMLUnitDefinition = UnitDefinition_setName(SBMLUnitDefinition, name)
 
-takes
+Takes
 
-1. SBMLUnitDefinition; an SBML UnitDefinition structure
+1. SBMLUnitDefinition, an SBML UnitDefinition structure
 2. name; a string representing the name to be set
 
-returns
+Returns
 
 1. the SBML UnitDefinition structure with the new value for the name attribute
 
@@ -251,12 +250,12 @@ returns
 
 ####SBMLUnitDefinition = UnitDefinition_setSBOTerm(SBMLUnitDefinition, sboTerm)
 
-takes
+Takes
 
-1. SBMLUnitDefinition; an SBML UnitDefinition structure
-2. sboTerm; an integer representing the sboTerm to be set
+1. SBMLUnitDefinition, an SBML UnitDefinition structure
+2. sboTerm, an integer representing the sboTerm to be set
 
-returns
+Returns
 
 1. the SBML UnitDefinition structure with the new value for the sboTerm attribute
 
@@ -266,11 +265,11 @@ returns
 
 ####SBMLUnitDefinition = UnitDefinition_unsetId(SBMLUnitDefinition)
 
-takes
+Takes
 
-1. SBMLUnitDefinition; an SBML UnitDefinition structure
+1. SBMLUnitDefinition, an SBML UnitDefinition structure
 
-returns
+Returns
 
 1. the SBML UnitDefinition structure with the id attribute unset
 
@@ -280,11 +279,11 @@ returns
 
 ####SBMLUnitDefinition = UnitDefinition_unsetMetaid(SBMLUnitDefinition)
 
-takes
+Takes
 
-1. SBMLUnitDefinition; an SBML UnitDefinition structure
+1. SBMLUnitDefinition, an SBML UnitDefinition structure
 
-returns
+Returns
 
 1. the SBML UnitDefinition structure with the metaid attribute unset
 
@@ -294,11 +293,11 @@ returns
 
 ####SBMLUnitDefinition = UnitDefinition_unsetName(SBMLUnitDefinition)
 
-takes
+Takes
 
-1. SBMLUnitDefinition; an SBML UnitDefinition structure
+1. SBMLUnitDefinition, an SBML UnitDefinition structure
 
-returns
+Returns
 
 1. the SBML UnitDefinition structure with the name attribute unset
 
@@ -308,11 +307,11 @@ returns
 
 ####SBMLUnitDefinition = UnitDefinition_unsetSBOTerm(SBMLUnitDefinition)
 
-takes
+Takes
 
-1. SBMLUnitDefinition; an SBML UnitDefinition structure
+1. SBMLUnitDefinition, an SBML UnitDefinition structure
 
-returns
+Returns
 
 1. the SBML UnitDefinition structure with the sboTerm attribute unset
 

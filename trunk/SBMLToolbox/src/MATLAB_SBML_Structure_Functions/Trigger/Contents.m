@@ -1,6 +1,6 @@
 % toolbox\MATLAB_SBML_Structure_Functions\Trigger
 %
-% The functions allow users to create and work with the SBML Trigger structure. 
+% The functions allow users to create and work with the SBML Trigger structure.
 %
 %=============================================================
 % Trigger = Trigger_create(level(optional), version(optional)

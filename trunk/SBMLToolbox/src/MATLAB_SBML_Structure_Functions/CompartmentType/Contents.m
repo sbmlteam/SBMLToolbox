@@ -1,6 +1,6 @@
 % toolbox\MATLAB_SBML_Structure_Functions\CompartmentType
 %
-% The functions allow users to create and work with the SBML CompartmentType structure. 
+% The functions allow users to create and work with the SBML CompartmentType structure.
 %
 %=============================================================================
 % CompartmentType = CompartmentType_create(level(optional), version(optional)

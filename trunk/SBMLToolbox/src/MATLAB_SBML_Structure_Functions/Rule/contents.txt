@@ -1,4 +1,4 @@
-###MATLAB SBML STRUCTURE FUNCTIONS\RULE
+###MATLAB_SBML_STRUCTURE_FUNCTIONS\RULE
 
 
 The functions allow users to create and work with the SBML Rule structure.
@@ -9,11 +9,11 @@ Function are:
 
 ####formula = Rule_getFormula(SBMLRule)
 
-takes
+Takes
 
-1. SBMLRule; an SBML Rule structure
+1. SBMLRule, an SBML Rule structure
 
-returns
+Returns
 
 1. the value of the formula attribute
 
@@ -23,11 +23,11 @@ returns
 
 ####sboTerm = Rule_getSBOTerm(SBMLRule)
 
-takes
+Takes
 
-1. SBMLRule; an SBML Rule structure
+1. SBMLRule, an SBML Rule structure
 
-returns
+Returns
 
 1. the value of the sboTerm attribute
 
@@ -37,11 +37,11 @@ returns
 
 ####value = Rule_isSetFormula(SBMLRule)
 
-takes
+Takes
 
-1. SBMLRule; an SBML Rule structure
+1. SBMLRule, an SBML Rule structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the formula attribute is set
@@ -53,11 +53,11 @@ returns
 
 ####value = Rule_isSetSBOTerm(SBMLRule)
 
-takes
+Takes
 
-1. SBMLRule; an SBML Rule structure
+1. SBMLRule, an SBML Rule structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the sboTerm attribute is set
@@ -69,12 +69,12 @@ returns
 
 ####SBMLRule = Rule_setFormula(SBMLRule, formula)
 
-takes
+Takes
 
-1. SBMLRule; an SBML Rule structure
+1. SBMLRule, an SBML Rule structure
 2. formula; a string representing the formula to be set
 
-returns
+Returns
 
 1. the SBML Rule structure with the new value for the formula attribute
 
@@ -84,12 +84,12 @@ returns
 
 ####SBMLRule = Rule_setSBOTerm(SBMLRule, sboTerm)
 
-takes
+Takes
 
-1. SBMLRule; an SBML Rule structure
-2. sboTerm; an integer representing the sboTerm to be set
+1. SBMLRule, an SBML Rule structure
+2. sboTerm, an integer representing the sboTerm to be set
 
-returns
+Returns
 
 1. the SBML Rule structure with the new value for the sboTerm attribute
 
@@ -99,11 +99,11 @@ returns
 
 ####SBMLRule = Rule_unsetFormula(SBMLRule)
 
-takes
+Takes
 
-1. SBMLRule; an SBML Rule structure
+1. SBMLRule, an SBML Rule structure
 
-returns
+Returns
 
 1. the SBML Rule structure with the formula attribute unset
 
@@ -113,11 +113,11 @@ returns
 
 ####SBMLRule = Rule_unsetSBOTerm(SBMLRule)
 
-takes
+Takes
 
-1. SBMLRule; an SBML Rule structure
+1. SBMLRule, an SBML Rule structure
 
-returns
+Returns
 
 1. the SBML Rule structure with the sboTerm attribute unset
 

@@ -1,4 +1,4 @@
-###MATLAB SBML STRUCTURE FUNCTIONS\FUNCTIONDEFINITION
+###MATLAB_SBML_STRUCTURE_FUNCTIONS\FUNCTIONDEFINITION
 
 
 The functions allow users to create and work with the SBML FunctionDefinition structure.
@@ -9,30 +9,29 @@ Function are:
 
 ####FunctionDefinition = FunctionDefinition_create(level(optional), version(optional)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level (optional)
-2. version; an integer representing an SBML version (optional)
+1. level, an integer representing an SBML level (optional)
+2. version, an integer representing an SBML version (optional)
 
-returns
+Returns
 
 1. a MATLAB_SBML FunctionDefinition structure of the appropriate level and version
 
-*NOTE:* the optional level and version preserve backwards compatibility: 
-   
-   - a missing version argument will default to L1V2; L2V4 or L3V1
-   - missing both arguments will default to L3V1
+*NOTE:* the optional level and version preserve backwards compatibility
+  a missing version argument will default to L1V2; L2V4 or L3V1
+  missing both arguments will default to L3V1
 
 
 ------------------------------
 
 ####id = FunctionDefinition_getId(SBMLFunctionDefinition)
 
-takes
+Takes
 
-1. SBMLFunctionDefinition; an SBML FunctionDefinition structure
+1. SBMLFunctionDefinition, an SBML FunctionDefinition structure
 
-returns
+Returns
 
 1. the value of the id attribute
 
@@ -42,11 +41,11 @@ returns
 
 ####math = FunctionDefinition_getMath(SBMLFunctionDefinition)
 
-takes
+Takes
 
-1. SBMLFunctionDefinition; an SBML FunctionDefinition structure
+1. SBMLFunctionDefinition, an SBML FunctionDefinition structure
 
-returns
+Returns
 
 1. the value of the math attribute
 
@@ -56,11 +55,11 @@ returns
 
 ####metaid = FunctionDefinition_getMetaid(SBMLFunctionDefinition)
 
-takes
+Takes
 
-1. SBMLFunctionDefinition; an SBML FunctionDefinition structure
+1. SBMLFunctionDefinition, an SBML FunctionDefinition structure
 
-returns
+Returns
 
 1. the value of the metaid attribute
 
@@ -70,11 +69,11 @@ returns
 
 ####name = FunctionDefinition_getName(SBMLFunctionDefinition)
 
-takes
+Takes
 
-1. SBMLFunctionDefinition; an SBML FunctionDefinition structure
+1. SBMLFunctionDefinition, an SBML FunctionDefinition structure
 
-returns
+Returns
 
 1. the value of the name attribute
 
@@ -84,11 +83,11 @@ returns
 
 ####sboTerm = FunctionDefinition_getSBOTerm(SBMLFunctionDefinition)
 
-takes
+Takes
 
-1. SBMLFunctionDefinition; an SBML FunctionDefinition structure
+1. SBMLFunctionDefinition, an SBML FunctionDefinition structure
 
-returns
+Returns
 
 1. the value of the sboTerm attribute
 
@@ -98,11 +97,11 @@ returns
 
 ####value = FunctionDefinition_isSetId(SBMLFunctionDefinition)
 
-takes
+Takes
 
-1. SBMLFunctionDefinition; an SBML FunctionDefinition structure
+1. SBMLFunctionDefinition, an SBML FunctionDefinition structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the id attribute is set
@@ -114,11 +113,11 @@ returns
 
 ####value = FunctionDefinition_isSetMath(SBMLFunctionDefinition)
 
-takes
+Takes
 
-1. SBMLFunctionDefinition; an SBML FunctionDefinition structure
+1. SBMLFunctionDefinition, an SBML FunctionDefinition structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the math attribute is set
@@ -130,11 +129,11 @@ returns
 
 ####value = FunctionDefinition_isSetMetaid(SBMLFunctionDefinition)
 
-takes
+Takes
 
-1. SBMLFunctionDefinition; an SBML FunctionDefinition structure
+1. SBMLFunctionDefinition, an SBML FunctionDefinition structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the metaid attribute is set
@@ -146,11 +145,11 @@ returns
 
 ####value = FunctionDefinition_isSetName(SBMLFunctionDefinition)
 
-takes
+Takes
 
-1. SBMLFunctionDefinition; an SBML FunctionDefinition structure
+1. SBMLFunctionDefinition, an SBML FunctionDefinition structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the name attribute is set
@@ -162,11 +161,11 @@ returns
 
 ####value = FunctionDefinition_isSetSBOTerm(SBMLFunctionDefinition)
 
-takes
+Takes
 
-1. SBMLFunctionDefinition; an SBML FunctionDefinition structure
+1. SBMLFunctionDefinition, an SBML FunctionDefinition structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the sboTerm attribute is set
@@ -178,12 +177,12 @@ returns
 
 ####SBMLFunctionDefinition = FunctionDefinition_setId(SBMLFunctionDefinition, id)
 
-takes
+Takes
 
-1. SBMLFunctionDefinition; an SBML FunctionDefinition structure
+1. SBMLFunctionDefinition, an SBML FunctionDefinition structure
 2. id; a string representing the id to be set
 
-returns
+Returns
 
 1. the SBML FunctionDefinition structure with the new value for the id attribute
 
@@ -193,12 +192,12 @@ returns
 
 ####SBMLFunctionDefinition = FunctionDefinition_setMath(SBMLFunctionDefinition, math)
 
-takes
+Takes
 
-1. SBMLFunctionDefinition; an SBML FunctionDefinition structure
+1. SBMLFunctionDefinition, an SBML FunctionDefinition structure
 2. math; string representing the math expression math to be set
 
-returns
+Returns
 
 1. the SBML FunctionDefinition structure with the new value for the math attribute
 
@@ -208,12 +207,12 @@ returns
 
 ####SBMLFunctionDefinition = FunctionDefinition_setMetaid(SBMLFunctionDefinition, metaid)
 
-takes
+Takes
 
-1. SBMLFunctionDefinition; an SBML FunctionDefinition structure
+1. SBMLFunctionDefinition, an SBML FunctionDefinition structure
 2. metaid; a string representing the metaid to be set
 
-returns
+Returns
 
 1. the SBML FunctionDefinition structure with the new value for the metaid attribute
 
@@ -223,12 +222,12 @@ returns
 
 ####SBMLFunctionDefinition = FunctionDefinition_setName(SBMLFunctionDefinition, name)
 
-takes
+Takes
 
-1. SBMLFunctionDefinition; an SBML FunctionDefinition structure
+1. SBMLFunctionDefinition, an SBML FunctionDefinition structure
 2. name; a string representing the name to be set
 
-returns
+Returns
 
 1. the SBML FunctionDefinition structure with the new value for the name attribute
 
@@ -238,12 +237,12 @@ returns
 
 ####SBMLFunctionDefinition = FunctionDefinition_setSBOTerm(SBMLFunctionDefinition, sboTerm)
 
-takes
+Takes
 
-1. SBMLFunctionDefinition; an SBML FunctionDefinition structure
-2. sboTerm; an integer representing the sboTerm to be set
+1. SBMLFunctionDefinition, an SBML FunctionDefinition structure
+2. sboTerm, an integer representing the sboTerm to be set
 
-returns
+Returns
 
 1. the SBML FunctionDefinition structure with the new value for the sboTerm attribute
 
@@ -253,11 +252,11 @@ returns
 
 ####SBMLFunctionDefinition = FunctionDefinition_unsetId(SBMLFunctionDefinition)
 
-takes
+Takes
 
-1. SBMLFunctionDefinition; an SBML FunctionDefinition structure
+1. SBMLFunctionDefinition, an SBML FunctionDefinition structure
 
-returns
+Returns
 
 1. the SBML FunctionDefinition structure with the id attribute unset
 
@@ -267,11 +266,11 @@ returns
 
 ####SBMLFunctionDefinition = FunctionDefinition_unsetMath(SBMLFunctionDefinition)
 
-takes
+Takes
 
-1. SBMLFunctionDefinition; an SBML FunctionDefinition structure
+1. SBMLFunctionDefinition, an SBML FunctionDefinition structure
 
-returns
+Returns
 
 1. the SBML FunctionDefinition structure with the math attribute unset
 
@@ -281,11 +280,11 @@ returns
 
 ####SBMLFunctionDefinition = FunctionDefinition_unsetMetaid(SBMLFunctionDefinition)
 
-takes
+Takes
 
-1. SBMLFunctionDefinition; an SBML FunctionDefinition structure
+1. SBMLFunctionDefinition, an SBML FunctionDefinition structure
 
-returns
+Returns
 
 1. the SBML FunctionDefinition structure with the metaid attribute unset
 
@@ -295,11 +294,11 @@ returns
 
 ####SBMLFunctionDefinition = FunctionDefinition_unsetName(SBMLFunctionDefinition)
 
-takes
+Takes
 
-1. SBMLFunctionDefinition; an SBML FunctionDefinition structure
+1. SBMLFunctionDefinition, an SBML FunctionDefinition structure
 
-returns
+Returns
 
 1. the SBML FunctionDefinition structure with the name attribute unset
 
@@ -309,11 +308,11 @@ returns
 
 ####SBMLFunctionDefinition = FunctionDefinition_unsetSBOTerm(SBMLFunctionDefinition)
 
-takes
+Takes
 
-1. SBMLFunctionDefinition; an SBML FunctionDefinition structure
+1. SBMLFunctionDefinition, an SBML FunctionDefinition structure
 
-returns
+Returns
 
 1. the SBML FunctionDefinition structure with the sboTerm attribute unset
 

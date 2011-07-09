@@ -1,4 +1,4 @@
-###MATLAB SBML STRUCTURE FUNCTIONS\SPECIESCONCENTRATIONRULE
+###MATLAB_SBML_STRUCTURE_FUNCTIONS\SPECIESCONCENTRATIONRULE
 
 
 The functions allow users to create and work with the SBML SpeciesConcentrationRule structure.
@@ -9,30 +9,29 @@ Function are:
 
 ####SpeciesConcentrationRule = SpeciesConcentrationRule_create(level(optional), version(optional)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level (optional)
-2. version; an integer representing an SBML version (optional)
+1. level, an integer representing an SBML level (optional)
+2. version, an integer representing an SBML version (optional)
 
-returns
+Returns
 
 1. a MATLAB_SBML SpeciesConcentrationRule structure of the appropriate level and version
 
-*NOTE:* the optional level and version preserve backwards compatibility: 
-   
-   - a missing version argument will default to L1V2; L2V4 or L3V1
-   - missing both arguments will default to L3V1
+*NOTE:* the optional level and version preserve backwards compatibility
+  a missing version argument will default to L1V2; L2V4 or L3V1
+  missing both arguments will default to L3V1
 
 
 ------------------------------
 
 ####formula = SpeciesConcentrationRule_getFormula(SBMLSpeciesConcentrationRule)
 
-takes
+Takes
 
-1. SBMLSpeciesConcentrationRule; an SBML SpeciesConcentrationRule structure
+1. SBMLSpeciesConcentrationRule, an SBML SpeciesConcentrationRule structure
 
-returns
+Returns
 
 1. the value of the formula attribute
 
@@ -42,11 +41,11 @@ returns
 
 ####species = SpeciesConcentrationRule_getSpecies(SBMLSpeciesConcentrationRule)
 
-takes
+Takes
 
-1. SBMLSpeciesConcentrationRule; an SBML SpeciesConcentrationRule structure
+1. SBMLSpeciesConcentrationRule, an SBML SpeciesConcentrationRule structure
 
-returns
+Returns
 
 1. the value of the species attribute
 
@@ -56,11 +55,11 @@ returns
 
 ####type = SpeciesConcentrationRule_getType(SBMLSpeciesConcentrationRule)
 
-takes
+Takes
 
-1. SBMLSpeciesConcentrationRule; an SBML SpeciesConcentrationRule structure
+1. SBMLSpeciesConcentrationRule, an SBML SpeciesConcentrationRule structure
 
-returns
+Returns
 
 1. the value of the type attribute
 
@@ -70,11 +69,11 @@ returns
 
 ####value = SpeciesConcentrationRule_isSetFormula(SBMLSpeciesConcentrationRule)
 
-takes
+Takes
 
-1. SBMLSpeciesConcentrationRule; an SBML SpeciesConcentrationRule structure
+1. SBMLSpeciesConcentrationRule, an SBML SpeciesConcentrationRule structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the formula attribute is set
@@ -86,11 +85,11 @@ returns
 
 ####value = SpeciesConcentrationRule_isSetSpecies(SBMLSpeciesConcentrationRule)
 
-takes
+Takes
 
-1. SBMLSpeciesConcentrationRule; an SBML SpeciesConcentrationRule structure
+1. SBMLSpeciesConcentrationRule, an SBML SpeciesConcentrationRule structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the species attribute is set
@@ -102,11 +101,11 @@ returns
 
 ####value = SpeciesConcentrationRule_isSetType(SBMLSpeciesConcentrationRule)
 
-takes
+Takes
 
-1. SBMLSpeciesConcentrationRule; an SBML SpeciesConcentrationRule structure
+1. SBMLSpeciesConcentrationRule, an SBML SpeciesConcentrationRule structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the type attribute is set
@@ -118,12 +117,12 @@ returns
 
 ####SBMLSpeciesConcentrationRule = SpeciesConcentrationRule_setFormula(SBMLSpeciesConcentrationRule, formula)
 
-takes
+Takes
 
-1. SBMLSpeciesConcentrationRule; an SBML SpeciesConcentrationRule structure
+1. SBMLSpeciesConcentrationRule, an SBML SpeciesConcentrationRule structure
 2. formula; a string representing the formula to be set
 
-returns
+Returns
 
 1. the SBML SpeciesConcentrationRule structure with the new value for the formula attribute
 
@@ -133,12 +132,12 @@ returns
 
 ####SBMLSpeciesConcentrationRule = SpeciesConcentrationRule_setSpecies(SBMLSpeciesConcentrationRule, species)
 
-takes
+Takes
 
-1. SBMLSpeciesConcentrationRule; an SBML SpeciesConcentrationRule structure
+1. SBMLSpeciesConcentrationRule, an SBML SpeciesConcentrationRule structure
 2. species; a string representing the species to be set
 
-returns
+Returns
 
 1. the SBML SpeciesConcentrationRule structure with the new value for the species attribute
 
@@ -148,12 +147,12 @@ returns
 
 ####SBMLSpeciesConcentrationRule = SpeciesConcentrationRule_setType(SBMLSpeciesConcentrationRule, type)
 
-takes
+Takes
 
-1. SBMLSpeciesConcentrationRule; an SBML SpeciesConcentrationRule structure
+1. SBMLSpeciesConcentrationRule, an SBML SpeciesConcentrationRule structure
 2. type; a string representing the type to be set
 
-returns
+Returns
 
 1. the SBML SpeciesConcentrationRule structure with the new value for the type attribute
 
@@ -163,11 +162,11 @@ returns
 
 ####SBMLSpeciesConcentrationRule = SpeciesConcentrationRule_unsetFormula(SBMLSpeciesConcentrationRule)
 
-takes
+Takes
 
-1. SBMLSpeciesConcentrationRule; an SBML SpeciesConcentrationRule structure
+1. SBMLSpeciesConcentrationRule, an SBML SpeciesConcentrationRule structure
 
-returns
+Returns
 
 1. the SBML SpeciesConcentrationRule structure with the formula attribute unset
 
@@ -177,11 +176,11 @@ returns
 
 ####SBMLSpeciesConcentrationRule = SpeciesConcentrationRule_unsetSpecies(SBMLSpeciesConcentrationRule)
 
-takes
+Takes
 
-1. SBMLSpeciesConcentrationRule; an SBML SpeciesConcentrationRule structure
+1. SBMLSpeciesConcentrationRule, an SBML SpeciesConcentrationRule structure
 
-returns
+Returns
 
 1. the SBML SpeciesConcentrationRule structure with the species attribute unset
 
@@ -191,11 +190,11 @@ returns
 
 ####SBMLSpeciesConcentrationRule = SpeciesConcentrationRule_unsetType(SBMLSpeciesConcentrationRule)
 
-takes
+Takes
 
-1. SBMLSpeciesConcentrationRule; an SBML SpeciesConcentrationRule structure
+1. SBMLSpeciesConcentrationRule, an SBML SpeciesConcentrationRule structure
 
-returns
+Returns
 
 1. the SBML SpeciesConcentrationRule structure with the type attribute unset
 
@@ -205,11 +204,11 @@ returns
 
 ####SBMLSpeciesConcentrationRule = SpeciesConcentrationRule_unsetVariable(SBMLSpeciesConcentrationRule)
 
-takes
+Takes
 
-1. SBMLSpeciesConcentrationRule; an SBML SpeciesConcentrationRule structure
+1. SBMLSpeciesConcentrationRule, an SBML SpeciesConcentrationRule structure
 
-returns
+Returns
 
 1. the SBML SpeciesConcentrationRule structure with the variable attribute unset
 

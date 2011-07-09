@@ -1,4 +1,4 @@
-###MATLAB SBML STRUCTURE FUNCTIONS\UNIT
+###MATLAB_SBML_STRUCTURE_FUNCTIONS\UNIT
 
 
 The functions allow users to create and work with the SBML Unit structure.
@@ -9,30 +9,29 @@ Function are:
 
 ####Unit = Unit_create(level(optional), version(optional)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level (optional)
-2. version; an integer representing an SBML version (optional)
+1. level, an integer representing an SBML level (optional)
+2. version, an integer representing an SBML version (optional)
 
-returns
+Returns
 
 1. a MATLAB_SBML Unit structure of the appropriate level and version
 
-*NOTE:* the optional level and version preserve backwards compatibility: 
-   
-   - a missing version argument will default to L1V2; L2V4 or L3V1
-   - missing both arguments will default to L3V1
+*NOTE:* the optional level and version preserve backwards compatibility
+  a missing version argument will default to L1V2; L2V4 or L3V1
+  missing both arguments will default to L3V1
 
 
 ------------------------------
 
 ####exponent = Unit_getExponent(SBMLUnit)
 
-takes
+Takes
 
-1. SBMLUnit; an SBML Unit structure
+1. SBMLUnit, an SBML Unit structure
 
-returns
+Returns
 
 1. the value of the exponent attribute
 
@@ -42,11 +41,11 @@ returns
 
 ####kind = Unit_getKind(SBMLUnit)
 
-takes
+Takes
 
-1. SBMLUnit; an SBML Unit structure
+1. SBMLUnit, an SBML Unit structure
 
-returns
+Returns
 
 1. the value of the kind attribute
 
@@ -56,11 +55,11 @@ returns
 
 ####metaid = Unit_getMetaid(SBMLUnit)
 
-takes
+Takes
 
-1. SBMLUnit; an SBML Unit structure
+1. SBMLUnit, an SBML Unit structure
 
-returns
+Returns
 
 1. the value of the metaid attribute
 
@@ -70,11 +69,11 @@ returns
 
 ####multiplier = Unit_getMultiplier(SBMLUnit)
 
-takes
+Takes
 
-1. SBMLUnit; an SBML Unit structure
+1. SBMLUnit, an SBML Unit structure
 
-returns
+Returns
 
 1. the value of the multiplier attribute
 
@@ -84,11 +83,11 @@ returns
 
 ####offset = Unit_getOffset(SBMLUnit)
 
-takes
+Takes
 
-1. SBMLUnit; an SBML Unit structure
+1. SBMLUnit, an SBML Unit structure
 
-returns
+Returns
 
 1. the value of the offset attribute
 
@@ -98,11 +97,11 @@ returns
 
 ####sboTerm = Unit_getSBOTerm(SBMLUnit)
 
-takes
+Takes
 
-1. SBMLUnit; an SBML Unit structure
+1. SBMLUnit, an SBML Unit structure
 
-returns
+Returns
 
 1. the value of the sboTerm attribute
 
@@ -112,11 +111,11 @@ returns
 
 ####scale = Unit_getScale(SBMLUnit)
 
-takes
+Takes
 
-1. SBMLUnit; an SBML Unit structure
+1. SBMLUnit, an SBML Unit structure
 
-returns
+Returns
 
 1. the value of the scale attribute
 
@@ -126,11 +125,11 @@ returns
 
 ####value = Unit_isSetExponent(SBMLUnit)
 
-takes
+Takes
 
-1. SBMLUnit; an SBML Unit structure
+1. SBMLUnit, an SBML Unit structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the exponent attribute is set
@@ -142,11 +141,11 @@ returns
 
 ####value = Unit_isSetKind(SBMLUnit)
 
-takes
+Takes
 
-1. SBMLUnit; an SBML Unit structure
+1. SBMLUnit, an SBML Unit structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the kind attribute is set
@@ -158,11 +157,11 @@ returns
 
 ####value = Unit_isSetMetaid(SBMLUnit)
 
-takes
+Takes
 
-1. SBMLUnit; an SBML Unit structure
+1. SBMLUnit, an SBML Unit structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the metaid attribute is set
@@ -174,11 +173,11 @@ returns
 
 ####value = Unit_isSetMultiplier(SBMLUnit)
 
-takes
+Takes
 
-1. SBMLUnit; an SBML Unit structure
+1. SBMLUnit, an SBML Unit structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the multiplier attribute is set
@@ -190,11 +189,11 @@ returns
 
 ####value = Unit_isSetOffset(SBMLUnit)
 
-takes
+Takes
 
-1. SBMLUnit; an SBML Unit structure
+1. SBMLUnit, an SBML Unit structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the offset attribute is set
@@ -206,11 +205,11 @@ returns
 
 ####value = Unit_isSetSBOTerm(SBMLUnit)
 
-takes
+Takes
 
-1. SBMLUnit; an SBML Unit structure
+1. SBMLUnit, an SBML Unit structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the sboTerm attribute is set
@@ -222,11 +221,11 @@ returns
 
 ####value = Unit_isSetScale(SBMLUnit)
 
-takes
+Takes
 
-1. SBMLUnit; an SBML Unit structure
+1. SBMLUnit, an SBML Unit structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the scale attribute is set
@@ -238,12 +237,12 @@ returns
 
 ####SBMLUnit = Unit_setExponent(SBMLUnit, exponent)
 
-takes
+Takes
 
-1. SBMLUnit; an SBML Unit structure
+1. SBMLUnit, an SBML Unit structure
 2. exponent; number representing the value of exponent to be set
 
-returns
+Returns
 
 1. the SBML Unit structure with the new value for the exponent attribute
 
@@ -253,12 +252,12 @@ returns
 
 ####SBMLUnit = Unit_setKind(SBMLUnit, kind)
 
-takes
+Takes
 
-1. SBMLUnit; an SBML Unit structure
+1. SBMLUnit, an SBML Unit structure
 2. kind; a string representing the kind to be set
 
-returns
+Returns
 
 1. the SBML Unit structure with the new value for the kind attribute
 
@@ -268,12 +267,12 @@ returns
 
 ####SBMLUnit = Unit_setMetaid(SBMLUnit, metaid)
 
-takes
+Takes
 
-1. SBMLUnit; an SBML Unit structure
+1. SBMLUnit, an SBML Unit structure
 2. metaid; a string representing the metaid to be set
 
-returns
+Returns
 
 1. the SBML Unit structure with the new value for the metaid attribute
 
@@ -283,12 +282,12 @@ returns
 
 ####SBMLUnit = Unit_setMultiplier(SBMLUnit, multiplier)
 
-takes
+Takes
 
-1. SBMLUnit; an SBML Unit structure
+1. SBMLUnit, an SBML Unit structure
 2. multiplier; number representing the value of multiplier to be set
 
-returns
+Returns
 
 1. the SBML Unit structure with the new value for the multiplier attribute
 
@@ -298,12 +297,12 @@ returns
 
 ####SBMLUnit = Unit_setOffset(SBMLUnit, offset)
 
-takes
+Takes
 
-1. SBMLUnit; an SBML Unit structure
-2. offset; an integer representing the offset to be set
+1. SBMLUnit, an SBML Unit structure
+2. offset, an integer representing the offset to be set
 
-returns
+Returns
 
 1. the SBML Unit structure with the new value for the offset attribute
 
@@ -313,12 +312,12 @@ returns
 
 ####SBMLUnit = Unit_setSBOTerm(SBMLUnit, sboTerm)
 
-takes
+Takes
 
-1. SBMLUnit; an SBML Unit structure
-2. sboTerm; an integer representing the sboTerm to be set
+1. SBMLUnit, an SBML Unit structure
+2. sboTerm, an integer representing the sboTerm to be set
 
-returns
+Returns
 
 1. the SBML Unit structure with the new value for the sboTerm attribute
 
@@ -328,12 +327,12 @@ returns
 
 ####SBMLUnit = Unit_setScale(SBMLUnit, scale)
 
-takes
+Takes
 
-1. SBMLUnit; an SBML Unit structure
+1. SBMLUnit, an SBML Unit structure
 2. scale; number representing the value of scale to be set
 
-returns
+Returns
 
 1. the SBML Unit structure with the new value for the scale attribute
 
@@ -343,11 +342,11 @@ returns
 
 ####SBMLUnit = Unit_unsetExponent(SBMLUnit)
 
-takes
+Takes
 
-1. SBMLUnit; an SBML Unit structure
+1. SBMLUnit, an SBML Unit structure
 
-returns
+Returns
 
 1. the SBML Unit structure with the exponent attribute unset
 
@@ -357,11 +356,11 @@ returns
 
 ####SBMLUnit = Unit_unsetKind(SBMLUnit)
 
-takes
+Takes
 
-1. SBMLUnit; an SBML Unit structure
+1. SBMLUnit, an SBML Unit structure
 
-returns
+Returns
 
 1. the SBML Unit structure with the kind attribute unset
 
@@ -371,11 +370,11 @@ returns
 
 ####SBMLUnit = Unit_unsetMetaid(SBMLUnit)
 
-takes
+Takes
 
-1. SBMLUnit; an SBML Unit structure
+1. SBMLUnit, an SBML Unit structure
 
-returns
+Returns
 
 1. the SBML Unit structure with the metaid attribute unset
 
@@ -385,11 +384,11 @@ returns
 
 ####SBMLUnit = Unit_unsetMultiplier(SBMLUnit)
 
-takes
+Takes
 
-1. SBMLUnit; an SBML Unit structure
+1. SBMLUnit, an SBML Unit structure
 
-returns
+Returns
 
 1. the SBML Unit structure with the multiplier attribute unset
 
@@ -399,11 +398,11 @@ returns
 
 ####SBMLUnit = Unit_unsetOffset(SBMLUnit)
 
-takes
+Takes
 
-1. SBMLUnit; an SBML Unit structure
+1. SBMLUnit, an SBML Unit structure
 
-returns
+Returns
 
 1. the SBML Unit structure with the offset attribute unset
 
@@ -413,11 +412,11 @@ returns
 
 ####SBMLUnit = Unit_unsetSBOTerm(SBMLUnit)
 
-takes
+Takes
 
-1. SBMLUnit; an SBML Unit structure
+1. SBMLUnit, an SBML Unit structure
 
-returns
+Returns
 
 1. the SBML Unit structure with the sboTerm attribute unset
 
@@ -427,11 +426,11 @@ returns
 
 ####SBMLUnit = Unit_unsetScale(SBMLUnit)
 
-takes
+Takes
 
-1. SBMLUnit; an SBML Unit structure
+1. SBMLUnit, an SBML Unit structure
 
-returns
+Returns
 
 1. the SBML Unit structure with the scale attribute unset
 

@@ -1,4 +1,4 @@
-###MATLAB SBML STRUCTURE FUNCTIONS\SPECIES
+###MATLAB_SBML_STRUCTURE_FUNCTIONS\SPECIES
 
 
 The functions allow users to create and work with the SBML Species structure.
@@ -9,30 +9,29 @@ Function are:
 
 ####Species = Species_create(level(optional), version(optional)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level (optional)
-2. version; an integer representing an SBML version (optional)
+1. level, an integer representing an SBML level (optional)
+2. version, an integer representing an SBML version (optional)
 
-returns
+Returns
 
 1. a MATLAB_SBML Species structure of the appropriate level and version
 
-*NOTE:* the optional level and version preserve backwards compatibility: 
-   
-   - a missing version argument will default to L1V2; L2V4 or L3V1
-   - missing both arguments will default to L3V1
+*NOTE:* the optional level and version preserve backwards compatibility
+  a missing version argument will default to L1V2; L2V4 or L3V1
+  missing both arguments will default to L3V1
 
 
 ------------------------------
 
 ####boundaryCondition = Species_getBoundaryCondition(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. the value of the boundaryCondition attribute
 
@@ -42,11 +41,11 @@ returns
 
 ####charge = Species_getCharge(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. the value of the charge attribute
 
@@ -56,11 +55,11 @@ returns
 
 ####compartment = Species_getCompartment(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. the value of the compartment attribute
 
@@ -70,11 +69,11 @@ returns
 
 ####constant = Species_getConstant(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. the value of the constant attribute
 
@@ -84,11 +83,11 @@ returns
 
 ####conversionFactor = Species_getConversionFactor(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. the value of the conversionFactor attribute
 
@@ -98,11 +97,11 @@ returns
 
 ####hasOnlySubstanceUnits = Species_getHasOnlySubstanceUnits(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. the value of the hasOnlySubstanceUnits attribute
 
@@ -112,11 +111,11 @@ returns
 
 ####id = Species_getId(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. the value of the id attribute
 
@@ -126,11 +125,11 @@ returns
 
 ####initialAmount = Species_getInitialAmount(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. the value of the initialAmount attribute
 
@@ -140,11 +139,11 @@ returns
 
 ####initialConcentration = Species_getInitialConcentration(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. the value of the initialConcentration attribute
 
@@ -154,11 +153,11 @@ returns
 
 ####metaid = Species_getMetaid(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. the value of the metaid attribute
 
@@ -168,11 +167,11 @@ returns
 
 ####name = Species_getName(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. the value of the name attribute
 
@@ -182,11 +181,11 @@ returns
 
 ####sboTerm = Species_getSBOTerm(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. the value of the sboTerm attribute
 
@@ -196,11 +195,11 @@ returns
 
 ####spatialSizeUnits = Species_getSpatialSizeUnits(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. the value of the spatialSizeUnits attribute
 
@@ -210,11 +209,11 @@ returns
 
 ####speciesType = Species_getSpeciesType(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. the value of the speciesType attribute
 
@@ -224,11 +223,11 @@ returns
 
 ####substanceUnits = Species_getSubstanceUnits(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. the value of the substanceUnits attribute
 
@@ -238,11 +237,11 @@ returns
 
 ####units = Species_getUnits(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. the value of the units attribute
 
@@ -252,12 +251,12 @@ returns
 
 ####y = Species_isAssignedByRateRule(SBMLSpecies, SBMLRules)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 2. SBMLRules; the array of rules from an SBML Model structure
 
-returns
+Returns
 
 y = 
   - the index of the rateRule used to assigned value to the Species
@@ -291,12 +290,12 @@ in the file named "LICENSE.txt" included with this software distribution.
 
 ####y = Species_isAssignedByRule(SBMLSpecies, SBMLRules)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 2. SBMLRules; the array of rules from an SBML Model structure
 
-returns
+Returns
 
 y = 
   - the index of the assignmentRule used to assigned value to the Species
@@ -330,12 +329,12 @@ in the file named "LICENSE.txt" included with this software distribution.
 
 ####y = Species_isInAlgebraicRule(SBMLSpecies, SBMLRules)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 2. SBMLRules; the array of rules from an SBML Model structure
 
-returns
+Returns
 
 y = 
   - an array of the indices of any algebraicRules the id of the Species appears in 
@@ -369,11 +368,11 @@ in the file named "LICENSE.txt" included with this software distribution.
 
 ####value = Species_isSetCharge(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the charge attribute is set
@@ -385,11 +384,11 @@ returns
 
 ####value = Species_isSetCompartment(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the compartment attribute is set
@@ -401,11 +400,11 @@ returns
 
 ####value = Species_isSetConversionFactor(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the conversionFactor attribute is set
@@ -417,11 +416,11 @@ returns
 
 ####value = Species_isSetHasOnlySubstanceUnits(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the hasOnlySubstanceUnits attribute is set
@@ -433,11 +432,11 @@ returns
 
 ####value = Species_isSetId(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the id attribute is set
@@ -449,11 +448,11 @@ returns
 
 ####value = Species_isSetInitialAmount(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the initialAmount attribute is set
@@ -465,11 +464,11 @@ returns
 
 ####value = Species_isSetInitialConcentration(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the initialConcentration attribute is set
@@ -481,11 +480,11 @@ returns
 
 ####value = Species_isSetMetaid(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the metaid attribute is set
@@ -497,11 +496,11 @@ returns
 
 ####value = Species_isSetName(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the name attribute is set
@@ -513,11 +512,11 @@ returns
 
 ####value = Species_isSetSBOTerm(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the sboTerm attribute is set
@@ -529,11 +528,11 @@ returns
 
 ####value = Species_isSetSpatialSizeUnits(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the spatialSizeUnits attribute is set
@@ -545,11 +544,11 @@ returns
 
 ####value = Species_isSetSpeciesType(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the speciesType attribute is set
@@ -561,11 +560,11 @@ returns
 
 ####value = Species_isSetSubstanceUnits(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the substanceUnits attribute is set
@@ -577,11 +576,11 @@ returns
 
 ####value = Species_isSetUnits(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the units attribute is set
@@ -593,12 +592,12 @@ returns
 
 ####SBMLSpecies = Species_setBoundaryCondition(SBMLSpecies, boundaryCondition)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
-2. boundaryCondition; an integer (0/1) representing the value of boundaryCondition to be set
+1. SBMLSpecies, an SBML Species structure
+2. boundaryCondition, an integer (0/1) representing the value of boundaryCondition to be set
 
-returns
+Returns
 
 1. the SBML Species structure with the new value for the boundaryCondition attribute
 
@@ -608,12 +607,12 @@ returns
 
 ####SBMLSpecies = Species_setCharge(SBMLSpecies, charge)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
-2. charge; an integer representing the charge to be set
+1. SBMLSpecies, an SBML Species structure
+2. charge, an integer representing the charge to be set
 
-returns
+Returns
 
 1. the SBML Species structure with the new value for the charge attribute
 
@@ -623,12 +622,12 @@ returns
 
 ####SBMLSpecies = Species_setCompartment(SBMLSpecies, compartment)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 2. compartment; a string representing the compartment to be set
 
-returns
+Returns
 
 1. the SBML Species structure with the new value for the compartment attribute
 
@@ -638,12 +637,12 @@ returns
 
 ####SBMLSpecies = Species_setConstant(SBMLSpecies, constant)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
-2. constant; an integer (0/1) representing the value of constant to be set
+1. SBMLSpecies, an SBML Species structure
+2. constant, an integer (0/1) representing the value of constant to be set
 
-returns
+Returns
 
 1. the SBML Species structure with the new value for the constant attribute
 
@@ -653,12 +652,12 @@ returns
 
 ####SBMLSpecies = Species_setConversionFactor(SBMLSpecies, conversionFactor)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 2. conversionFactor; a string representing the conversionFactor to be set
 
-returns
+Returns
 
 1. the SBML Species structure with the new value for the conversionFactor attribute
 
@@ -668,12 +667,12 @@ returns
 
 ####SBMLSpecies = Species_setHasOnlySubstanceUnits(SBMLSpecies, hasOnlySubstanceUnits)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
-2. hasOnlySubstanceUnits; an integer (0/1) representing the value of hasOnlySubstanceUnits to be set
+1. SBMLSpecies, an SBML Species structure
+2. hasOnlySubstanceUnits, an integer (0/1) representing the value of hasOnlySubstanceUnits to be set
 
-returns
+Returns
 
 1. the SBML Species structure with the new value for the hasOnlySubstanceUnits attribute
 
@@ -683,12 +682,12 @@ returns
 
 ####SBMLSpecies = Species_setId(SBMLSpecies, id)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 2. id; a string representing the id to be set
 
-returns
+Returns
 
 1. the SBML Species structure with the new value for the id attribute
 
@@ -698,12 +697,12 @@ returns
 
 ####SBMLSpecies = Species_setInitialAmount(SBMLSpecies, initialAmount)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 2. initialAmount; number representing the value of initialAmount to be set
 
-returns
+Returns
 
 1. the SBML Species structure with the new value for the initialAmount attribute
 
@@ -713,12 +712,12 @@ returns
 
 ####SBMLSpecies = Species_setInitialConcentration(SBMLSpecies, initialConcentration)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 2. initialConcentration; number representing the value of initialConcentration to be set
 
-returns
+Returns
 
 1. the SBML Species structure with the new value for the initialConcentration attribute
 
@@ -728,12 +727,12 @@ returns
 
 ####SBMLSpecies = Species_setMetaid(SBMLSpecies, metaid)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 2. metaid; a string representing the metaid to be set
 
-returns
+Returns
 
 1. the SBML Species structure with the new value for the metaid attribute
 
@@ -743,12 +742,12 @@ returns
 
 ####SBMLSpecies = Species_setName(SBMLSpecies, name)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 2. name; a string representing the name to be set
 
-returns
+Returns
 
 1. the SBML Species structure with the new value for the name attribute
 
@@ -758,12 +757,12 @@ returns
 
 ####SBMLSpecies = Species_setSBOTerm(SBMLSpecies, sboTerm)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
-2. sboTerm; an integer representing the sboTerm to be set
+1. SBMLSpecies, an SBML Species structure
+2. sboTerm, an integer representing the sboTerm to be set
 
-returns
+Returns
 
 1. the SBML Species structure with the new value for the sboTerm attribute
 
@@ -773,12 +772,12 @@ returns
 
 ####SBMLSpecies = Species_setSpatialSizeUnits(SBMLSpecies, spatialSizeUnits)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 2. spatialSizeUnits; a string representing the spatialSizeUnits to be set
 
-returns
+Returns
 
 1. the SBML Species structure with the new value for the spatialSizeUnits attribute
 
@@ -788,12 +787,12 @@ returns
 
 ####SBMLSpecies = Species_setSpeciesType(SBMLSpecies, speciesType)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 2. speciesType; a string representing the speciesType to be set
 
-returns
+Returns
 
 1. the SBML Species structure with the new value for the speciesType attribute
 
@@ -803,12 +802,12 @@ returns
 
 ####SBMLSpecies = Species_setSubstanceUnits(SBMLSpecies, substanceUnits)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 2. substanceUnits; a string representing the substanceUnits to be set
 
-returns
+Returns
 
 1. the SBML Species structure with the new value for the substanceUnits attribute
 
@@ -818,12 +817,12 @@ returns
 
 ####SBMLSpecies = Species_setUnits(SBMLSpecies, units)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 2. units; a string representing the units to be set
 
-returns
+Returns
 
 1. the SBML Species structure with the new value for the units attribute
 
@@ -833,11 +832,11 @@ returns
 
 ####SBMLSpecies = Species_unsetCharge(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. the SBML Species structure with the charge attribute unset
 
@@ -847,11 +846,11 @@ returns
 
 ####SBMLSpecies = Species_unsetCompartment(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. the SBML Species structure with the compartment attribute unset
 
@@ -861,11 +860,11 @@ returns
 
 ####SBMLSpecies = Species_unsetConversionFactor(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. the SBML Species structure with the conversionFactor attribute unset
 
@@ -875,11 +874,11 @@ returns
 
 ####SBMLSpecies = Species_unsetId(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. the SBML Species structure with the id attribute unset
 
@@ -889,11 +888,11 @@ returns
 
 ####SBMLSpecies = Species_unsetInitialAmount(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. the SBML Species structure with the initialAmount attribute unset
 
@@ -903,11 +902,11 @@ returns
 
 ####SBMLSpecies = Species_unsetInitialConcentration(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. the SBML Species structure with the initialConcentration attribute unset
 
@@ -917,11 +916,11 @@ returns
 
 ####SBMLSpecies = Species_unsetMetaid(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. the SBML Species structure with the metaid attribute unset
 
@@ -931,11 +930,11 @@ returns
 
 ####SBMLSpecies = Species_unsetName(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. the SBML Species structure with the name attribute unset
 
@@ -945,11 +944,11 @@ returns
 
 ####SBMLSpecies = Species_unsetSBOTerm(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. the SBML Species structure with the sboTerm attribute unset
 
@@ -959,11 +958,11 @@ returns
 
 ####SBMLSpecies = Species_unsetSpatialSizeUnits(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. the SBML Species structure with the spatialSizeUnits attribute unset
 
@@ -973,11 +972,11 @@ returns
 
 ####SBMLSpecies = Species_unsetSpeciesType(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. the SBML Species structure with the speciesType attribute unset
 
@@ -987,11 +986,11 @@ returns
 
 ####SBMLSpecies = Species_unsetSubstanceUnits(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. the SBML Species structure with the substanceUnits attribute unset
 
@@ -1001,11 +1000,11 @@ returns
 
 ####SBMLSpecies = Species_unsetUnits(SBMLSpecies)
 
-takes
+Takes
 
-1. SBMLSpecies; an SBML Species structure
+1. SBMLSpecies, an SBML Species structure
 
-returns
+Returns
 
 1. the SBML Species structure with the units attribute unset
 

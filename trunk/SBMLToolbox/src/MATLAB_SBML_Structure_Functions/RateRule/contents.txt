@@ -1,4 +1,4 @@
-###MATLAB SBML STRUCTURE FUNCTIONS\RATERULE
+###MATLAB_SBML_STRUCTURE_FUNCTIONS\RATERULE
 
 
 The functions allow users to create and work with the SBML RateRule structure.
@@ -9,30 +9,29 @@ Function are:
 
 ####RateRule = RateRule_create(level(optional), version(optional)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level (optional)
-2. version; an integer representing an SBML version (optional)
+1. level, an integer representing an SBML level (optional)
+2. version, an integer representing an SBML version (optional)
 
-returns
+Returns
 
 1. a MATLAB_SBML RateRule structure of the appropriate level and version
 
-*NOTE:* the optional level and version preserve backwards compatibility: 
-   
-   - a missing version argument will default to L1V2; L2V4 or L3V1
-   - missing both arguments will default to L3V1
+*NOTE:* the optional level and version preserve backwards compatibility
+  a missing version argument will default to L1V2; L2V4 or L3V1
+  missing both arguments will default to L3V1
 
 
 ------------------------------
 
 ####formula = RateRule_getFormula(SBMLRateRule)
 
-takes
+Takes
 
-1. SBMLRateRule; an SBML RateRule structure
+1. SBMLRateRule, an SBML RateRule structure
 
-returns
+Returns
 
 1. the value of the formula attribute
 
@@ -42,11 +41,11 @@ returns
 
 ####metaid = RateRule_getMetaid(SBMLRateRule)
 
-takes
+Takes
 
-1. SBMLRateRule; an SBML RateRule structure
+1. SBMLRateRule, an SBML RateRule structure
 
-returns
+Returns
 
 1. the value of the metaid attribute
 
@@ -56,11 +55,11 @@ returns
 
 ####sboTerm = RateRule_getSBOTerm(SBMLRateRule)
 
-takes
+Takes
 
-1. SBMLRateRule; an SBML RateRule structure
+1. SBMLRateRule, an SBML RateRule structure
 
-returns
+Returns
 
 1. the value of the sboTerm attribute
 
@@ -70,11 +69,11 @@ returns
 
 ####variable = RateRule_getVariable(SBMLRateRule)
 
-takes
+Takes
 
-1. SBMLRateRule; an SBML RateRule structure
+1. SBMLRateRule, an SBML RateRule structure
 
-returns
+Returns
 
 1. the value of the variable attribute
 
@@ -84,11 +83,11 @@ returns
 
 ####value = RateRule_isSetFormula(SBMLRateRule)
 
-takes
+Takes
 
-1. SBMLRateRule; an SBML RateRule structure
+1. SBMLRateRule, an SBML RateRule structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the formula attribute is set
@@ -100,11 +99,11 @@ returns
 
 ####value = RateRule_isSetMetaid(SBMLRateRule)
 
-takes
+Takes
 
-1. SBMLRateRule; an SBML RateRule structure
+1. SBMLRateRule, an SBML RateRule structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the metaid attribute is set
@@ -116,11 +115,11 @@ returns
 
 ####value = RateRule_isSetSBOTerm(SBMLRateRule)
 
-takes
+Takes
 
-1. SBMLRateRule; an SBML RateRule structure
+1. SBMLRateRule, an SBML RateRule structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the sboTerm attribute is set
@@ -132,11 +131,11 @@ returns
 
 ####value = RateRule_isSetVariable(SBMLRateRule)
 
-takes
+Takes
 
-1. SBMLRateRule; an SBML RateRule structure
+1. SBMLRateRule, an SBML RateRule structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the variable attribute is set
@@ -148,12 +147,12 @@ returns
 
 ####SBMLRateRule = RateRule_setFormula(SBMLRateRule, formula)
 
-takes
+Takes
 
-1. SBMLRateRule; an SBML RateRule structure
+1. SBMLRateRule, an SBML RateRule structure
 2. formula; a string representing the formula to be set
 
-returns
+Returns
 
 1. the SBML RateRule structure with the new value for the formula attribute
 
@@ -163,12 +162,12 @@ returns
 
 ####SBMLRateRule = RateRule_setMetaid(SBMLRateRule, metaid)
 
-takes
+Takes
 
-1. SBMLRateRule; an SBML RateRule structure
+1. SBMLRateRule, an SBML RateRule structure
 2. metaid; a string representing the metaid to be set
 
-returns
+Returns
 
 1. the SBML RateRule structure with the new value for the metaid attribute
 
@@ -178,12 +177,12 @@ returns
 
 ####SBMLRateRule = RateRule_setSBOTerm(SBMLRateRule, sboTerm)
 
-takes
+Takes
 
-1. SBMLRateRule; an SBML RateRule structure
-2. sboTerm; an integer representing the sboTerm to be set
+1. SBMLRateRule, an SBML RateRule structure
+2. sboTerm, an integer representing the sboTerm to be set
 
-returns
+Returns
 
 1. the SBML RateRule structure with the new value for the sboTerm attribute
 
@@ -193,12 +192,12 @@ returns
 
 ####SBMLRateRule = RateRule_setVariable(SBMLRateRule, variable)
 
-takes
+Takes
 
-1. SBMLRateRule; an SBML RateRule structure
+1. SBMLRateRule, an SBML RateRule structure
 2. variable; a string representing the variable to be set
 
-returns
+Returns
 
 1. the SBML RateRule structure with the new value for the variable attribute
 
@@ -208,11 +207,11 @@ returns
 
 ####SBMLRateRule = RateRule_unsetFormula(SBMLRateRule)
 
-takes
+Takes
 
-1. SBMLRateRule; an SBML RateRule structure
+1. SBMLRateRule, an SBML RateRule structure
 
-returns
+Returns
 
 1. the SBML RateRule structure with the formula attribute unset
 
@@ -222,11 +221,11 @@ returns
 
 ####SBMLRateRule = RateRule_unsetMetaid(SBMLRateRule)
 
-takes
+Takes
 
-1. SBMLRateRule; an SBML RateRule structure
+1. SBMLRateRule, an SBML RateRule structure
 
-returns
+Returns
 
 1. the SBML RateRule structure with the metaid attribute unset
 
@@ -236,11 +235,11 @@ returns
 
 ####SBMLRateRule = RateRule_unsetSBOTerm(SBMLRateRule)
 
-takes
+Takes
 
-1. SBMLRateRule; an SBML RateRule structure
+1. SBMLRateRule, an SBML RateRule structure
 
-returns
+Returns
 
 1. the SBML RateRule structure with the sboTerm attribute unset
 
@@ -250,11 +249,11 @@ returns
 
 ####SBMLRateRule = RateRule_unsetVariable(SBMLRateRule)
 
-takes
+Takes
 
-1. SBMLRateRule; an SBML RateRule structure
+1. SBMLRateRule, an SBML RateRule structure
 
-returns
+Returns
 
 1. the SBML RateRule structure with the variable attribute unset
 

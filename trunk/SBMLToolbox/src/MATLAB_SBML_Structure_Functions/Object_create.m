@@ -1,11 +1,11 @@
 function SBMLObject = Object_create(typecode, level, version)
 % SBMLStructure = Object_create(typecode, level, version)
 %
-% takes
+% Takes
 %
 % 1. typecode; a string representing the type of object being queried
-% 2. level, an integer representing an SBML level
-% 3. version, an integer representing an SBML version
+% 2. level; an integer representing an SBML level
+% 3. version; an integer representing an SBML version
 %
 % Returns
 %

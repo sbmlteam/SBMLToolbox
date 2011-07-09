@@ -1,4 +1,4 @@
-###MATLAB SBML STRUCTURE FUNCTIONS
+###MATLAB_SBML_STRUCTURE_FUNCTIONS
 
 
 These are general functions for working with MATLAB_SBML structures.
@@ -9,11 +9,11 @@ Function are:
 
 ####level = GetLevel(SBMLStructure) 
 
-takes 
+Takes 
 
-1. SBMLStructure; any SBML structure
+1. SBMLStructure, any SBML structure
 
-returns 
+Returns 
 
 1. the SBML level corresponding to this structure
 
@@ -25,11 +25,11 @@ structure. The most recent SBML level that matches will be reported.
 
 ####[level, version] = GetLevelVersion(SBMLStructure) 
 
-takes 
+Takes 
 
-1. SBMLStructure; any SBML structure
+1. SBMLStructure, any SBML structure
 
-returns 
+Returns 
 
 1. the SBML level corresponding to this structure
 2. the SBML version corresponding to this structure
@@ -42,13 +42,13 @@ structure. The most recent SBML level/version that matches will be reported.
 
 ####SBMLStructure = Object_create(typecode, level, version)
 
-takes
+Takes
 
 1. typecode; a string representing the type of object being queried
 2. level; an integer representing an SBML level
 3. version; an integer representing an SBML version
 
-returns
+Returns
 
 1. an SBML structure representing the given typecode, level and version
 
@@ -58,12 +58,12 @@ returns
 
 ####identical = areIdentical(SBMLStruct1, SBMLStruct2)
 
-takes
+Takes
 
-1. SBMLStruct1; any SBML structure
-2. SBMLStruct2; any SBML structure
+1. SBMLStruct1, any SBML structure
+2. SBMLStruct2, any SBML structure
 
-returns
+Returns
 
 1. identical = 
   - 1 if the structures are identical i.e. contain same fields and the same values

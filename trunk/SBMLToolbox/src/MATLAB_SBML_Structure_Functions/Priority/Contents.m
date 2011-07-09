@@ -1,6 +1,6 @@
 % toolbox\MATLAB_SBML_Structure_Functions\Priority
 %
-% The functions allow users to create and work with the SBML Priority structure. 
+% The functions allow users to create and work with the SBML Priority structure.
 %
 %===============================================================
 % Priority = Priority_create(level(optional), version(optional)

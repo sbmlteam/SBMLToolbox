@@ -1,4 +1,4 @@
-###MATLAB SBML STRUCTURE FUNCTIONS\PRIORITY
+###MATLAB_SBML_STRUCTURE_FUNCTIONS\PRIORITY
 
 
 The functions allow users to create and work with the SBML Priority structure.
@@ -9,30 +9,29 @@ Function are:
 
 ####Priority = Priority_create(level(optional), version(optional)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level (optional)
-2. version; an integer representing an SBML version (optional)
+1. level, an integer representing an SBML level (optional)
+2. version, an integer representing an SBML version (optional)
 
-returns
+Returns
 
 1. a MATLAB_SBML Priority structure of the appropriate level and version
 
-*NOTE:* the optional level and version preserve backwards compatibility: 
-   
-   - a missing version argument will default to L1V2; L2V4 or L3V1
-   - missing both arguments will default to L3V1
+*NOTE:* the optional level and version preserve backwards compatibility
+  a missing version argument will default to L1V2; L2V4 or L3V1
+  missing both arguments will default to L3V1
 
 
 ------------------------------
 
 ####math = Priority_getMath(SBMLPriority)
 
-takes
+Takes
 
-1. SBMLPriority; an SBML Priority structure
+1. SBMLPriority, an SBML Priority structure
 
-returns
+Returns
 
 1. the value of the math attribute
 
@@ -42,11 +41,11 @@ returns
 
 ####metaid = Priority_getMetaid(SBMLPriority)
 
-takes
+Takes
 
-1. SBMLPriority; an SBML Priority structure
+1. SBMLPriority, an SBML Priority structure
 
-returns
+Returns
 
 1. the value of the metaid attribute
 
@@ -56,11 +55,11 @@ returns
 
 ####sboTerm = Priority_getSBOTerm(SBMLPriority)
 
-takes
+Takes
 
-1. SBMLPriority; an SBML Priority structure
+1. SBMLPriority, an SBML Priority structure
 
-returns
+Returns
 
 1. the value of the sboTerm attribute
 
@@ -70,11 +69,11 @@ returns
 
 ####value = Priority_isSetMath(SBMLPriority)
 
-takes
+Takes
 
-1. SBMLPriority; an SBML Priority structure
+1. SBMLPriority, an SBML Priority structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the math attribute is set
@@ -86,11 +85,11 @@ returns
 
 ####value = Priority_isSetMetaid(SBMLPriority)
 
-takes
+Takes
 
-1. SBMLPriority; an SBML Priority structure
+1. SBMLPriority, an SBML Priority structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the metaid attribute is set
@@ -102,11 +101,11 @@ returns
 
 ####value = Priority_isSetSBOTerm(SBMLPriority)
 
-takes
+Takes
 
-1. SBMLPriority; an SBML Priority structure
+1. SBMLPriority, an SBML Priority structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the sboTerm attribute is set
@@ -118,12 +117,12 @@ returns
 
 ####SBMLPriority = Priority_setMath(SBMLPriority, math)
 
-takes
+Takes
 
-1. SBMLPriority; an SBML Priority structure
+1. SBMLPriority, an SBML Priority structure
 2. math; string representing the math expression math to be set
 
-returns
+Returns
 
 1. the SBML Priority structure with the new value for the math attribute
 
@@ -133,12 +132,12 @@ returns
 
 ####SBMLPriority = Priority_setMetaid(SBMLPriority, metaid)
 
-takes
+Takes
 
-1. SBMLPriority; an SBML Priority structure
+1. SBMLPriority, an SBML Priority structure
 2. metaid; a string representing the metaid to be set
 
-returns
+Returns
 
 1. the SBML Priority structure with the new value for the metaid attribute
 
@@ -148,12 +147,12 @@ returns
 
 ####SBMLPriority = Priority_setSBOTerm(SBMLPriority, sboTerm)
 
-takes
+Takes
 
-1. SBMLPriority; an SBML Priority structure
-2. sboTerm; an integer representing the sboTerm to be set
+1. SBMLPriority, an SBML Priority structure
+2. sboTerm, an integer representing the sboTerm to be set
 
-returns
+Returns
 
 1. the SBML Priority structure with the new value for the sboTerm attribute
 
@@ -163,11 +162,11 @@ returns
 
 ####SBMLPriority = Priority_unsetMath(SBMLPriority)
 
-takes
+Takes
 
-1. SBMLPriority; an SBML Priority structure
+1. SBMLPriority, an SBML Priority structure
 
-returns
+Returns
 
 1. the SBML Priority structure with the math attribute unset
 
@@ -177,11 +176,11 @@ returns
 
 ####SBMLPriority = Priority_unsetMetaid(SBMLPriority)
 
-takes
+Takes
 
-1. SBMLPriority; an SBML Priority structure
+1. SBMLPriority, an SBML Priority structure
 
-returns
+Returns
 
 1. the SBML Priority structure with the metaid attribute unset
 
@@ -191,11 +190,11 @@ returns
 
 ####SBMLPriority = Priority_unsetSBOTerm(SBMLPriority)
 
-takes
+Takes
 
-1. SBMLPriority; an SBML Priority structure
+1. SBMLPriority, an SBML Priority structure
 
-returns
+Returns
 
 1. the SBML Priority structure with the sboTerm attribute unset
 

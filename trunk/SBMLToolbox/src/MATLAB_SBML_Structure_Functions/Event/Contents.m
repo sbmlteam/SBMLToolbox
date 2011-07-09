@@ -1,6 +1,6 @@
 % toolbox\MATLAB_SBML_Structure_Functions\Event
 %
-% The functions allow users to create and work with the SBML Event structure. 
+% The functions allow users to create and work with the SBML Event structure.
 %
 %======================================================================
 % SBMLEvent = Event_addEventAssignment(SBMLEvent, SBMLEventAssignment)

@@ -1,4 +1,4 @@
-###MATLAB SBML STRUCTURE FUNCTIONS\TRIGGER
+###MATLAB_SBML_STRUCTURE_FUNCTIONS\TRIGGER
 
 
 The functions allow users to create and work with the SBML Trigger structure.
@@ -9,30 +9,29 @@ Function are:
 
 ####Trigger = Trigger_create(level(optional), version(optional)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level (optional)
-2. version; an integer representing an SBML version (optional)
+1. level, an integer representing an SBML level (optional)
+2. version, an integer representing an SBML version (optional)
 
-returns
+Returns
 
 1. a MATLAB_SBML Trigger structure of the appropriate level and version
 
-*NOTE:* the optional level and version preserve backwards compatibility: 
-   
-   - a missing version argument will default to L1V2; L2V4 or L3V1
-   - missing both arguments will default to L3V1
+*NOTE:* the optional level and version preserve backwards compatibility
+  a missing version argument will default to L1V2; L2V4 or L3V1
+  missing both arguments will default to L3V1
 
 
 ------------------------------
 
 ####initialValue = Trigger_getInitialValue(SBMLTrigger)
 
-takes
+Takes
 
-1. SBMLTrigger; an SBML Trigger structure
+1. SBMLTrigger, an SBML Trigger structure
 
-returns
+Returns
 
 1. the value of the initialValue attribute
 
@@ -42,11 +41,11 @@ returns
 
 ####math = Trigger_getMath(SBMLTrigger)
 
-takes
+Takes
 
-1. SBMLTrigger; an SBML Trigger structure
+1. SBMLTrigger, an SBML Trigger structure
 
-returns
+Returns
 
 1. the value of the math attribute
 
@@ -56,11 +55,11 @@ returns
 
 ####metaid = Trigger_getMetaid(SBMLTrigger)
 
-takes
+Takes
 
-1. SBMLTrigger; an SBML Trigger structure
+1. SBMLTrigger, an SBML Trigger structure
 
-returns
+Returns
 
 1. the value of the metaid attribute
 
@@ -70,11 +69,11 @@ returns
 
 ####persistent = Trigger_getPersistent(SBMLTrigger)
 
-takes
+Takes
 
-1. SBMLTrigger; an SBML Trigger structure
+1. SBMLTrigger, an SBML Trigger structure
 
-returns
+Returns
 
 1. the value of the persistent attribute
 
@@ -84,11 +83,11 @@ returns
 
 ####sboTerm = Trigger_getSBOTerm(SBMLTrigger)
 
-takes
+Takes
 
-1. SBMLTrigger; an SBML Trigger structure
+1. SBMLTrigger, an SBML Trigger structure
 
-returns
+Returns
 
 1. the value of the sboTerm attribute
 
@@ -98,11 +97,11 @@ returns
 
 ####value = Trigger_isSetMath(SBMLTrigger)
 
-takes
+Takes
 
-1. SBMLTrigger; an SBML Trigger structure
+1. SBMLTrigger, an SBML Trigger structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the math attribute is set
@@ -114,11 +113,11 @@ returns
 
 ####value = Trigger_isSetMetaid(SBMLTrigger)
 
-takes
+Takes
 
-1. SBMLTrigger; an SBML Trigger structure
+1. SBMLTrigger, an SBML Trigger structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the metaid attribute is set
@@ -130,11 +129,11 @@ returns
 
 ####value = Trigger_isSetSBOTerm(SBMLTrigger)
 
-takes
+Takes
 
-1. SBMLTrigger; an SBML Trigger structure
+1. SBMLTrigger, an SBML Trigger structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the sboTerm attribute is set
@@ -146,12 +145,12 @@ returns
 
 ####SBMLTrigger = Trigger_setInitialValue(SBMLTrigger, initialValue)
 
-takes
+Takes
 
-1. SBMLTrigger; an SBML Trigger structure
-2. initialValue; an integer (0/1) representing the value of initialValue to be set
+1. SBMLTrigger, an SBML Trigger structure
+2. initialValue, an integer (0/1) representing the value of initialValue to be set
 
-returns
+Returns
 
 1. the SBML Trigger structure with the new value for the initialValue attribute
 
@@ -161,12 +160,12 @@ returns
 
 ####SBMLTrigger = Trigger_setMath(SBMLTrigger, math)
 
-takes
+Takes
 
-1. SBMLTrigger; an SBML Trigger structure
+1. SBMLTrigger, an SBML Trigger structure
 2. math; string representing the math expression math to be set
 
-returns
+Returns
 
 1. the SBML Trigger structure with the new value for the math attribute
 
@@ -176,12 +175,12 @@ returns
 
 ####SBMLTrigger = Trigger_setMetaid(SBMLTrigger, metaid)
 
-takes
+Takes
 
-1. SBMLTrigger; an SBML Trigger structure
+1. SBMLTrigger, an SBML Trigger structure
 2. metaid; a string representing the metaid to be set
 
-returns
+Returns
 
 1. the SBML Trigger structure with the new value for the metaid attribute
 
@@ -191,12 +190,12 @@ returns
 
 ####SBMLTrigger = Trigger_setPersistent(SBMLTrigger, persistent)
 
-takes
+Takes
 
-1. SBMLTrigger; an SBML Trigger structure
-2. persistent; an integer (0/1) representing the value of persistent to be set
+1. SBMLTrigger, an SBML Trigger structure
+2. persistent, an integer (0/1) representing the value of persistent to be set
 
-returns
+Returns
 
 1. the SBML Trigger structure with the new value for the persistent attribute
 
@@ -206,12 +205,12 @@ returns
 
 ####SBMLTrigger = Trigger_setSBOTerm(SBMLTrigger, sboTerm)
 
-takes
+Takes
 
-1. SBMLTrigger; an SBML Trigger structure
-2. sboTerm; an integer representing the sboTerm to be set
+1. SBMLTrigger, an SBML Trigger structure
+2. sboTerm, an integer representing the sboTerm to be set
 
-returns
+Returns
 
 1. the SBML Trigger structure with the new value for the sboTerm attribute
 
@@ -221,11 +220,11 @@ returns
 
 ####SBMLTrigger = Trigger_unsetMath(SBMLTrigger)
 
-takes
+Takes
 
-1. SBMLTrigger; an SBML Trigger structure
+1. SBMLTrigger, an SBML Trigger structure
 
-returns
+Returns
 
 1. the SBML Trigger structure with the math attribute unset
 
@@ -235,11 +234,11 @@ returns
 
 ####SBMLTrigger = Trigger_unsetMetaid(SBMLTrigger)
 
-takes
+Takes
 
-1. SBMLTrigger; an SBML Trigger structure
+1. SBMLTrigger, an SBML Trigger structure
 
-returns
+Returns
 
 1. the SBML Trigger structure with the metaid attribute unset
 
@@ -249,11 +248,11 @@ returns
 
 ####SBMLTrigger = Trigger_unsetSBOTerm(SBMLTrigger)
 
-takes
+Takes
 
-1. SBMLTrigger; an SBML Trigger structure
+1. SBMLTrigger, an SBML Trigger structure
 
-returns
+Returns
 
 1. the SBML Trigger structure with the sboTerm attribute unset
 

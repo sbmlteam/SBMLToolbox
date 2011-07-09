@@ -5,7 +5,7 @@
 %==================================
 % level = GetLevel(SBMLStructure) 
 %==================================
-% takes 
+% Takes 
 % 1. SBMLStructure, any SBML structure
 % Returns 
 % 1. the SBML level corresponding to this structure
@@ -13,7 +13,7 @@
 %====================================================
 % [level, version] = GetLevelVersion(SBMLStructure) 
 %====================================================
-% takes 
+% Takes 
 % 1. SBMLStructure, any SBML structure
 % Returns 
 % 1. the SBML level corresponding to this structure
@@ -24,8 +24,8 @@
 %=========================================================
 % Takes
 % 1. typecode; a string representing the type of object being queried
-% 2. level, an integer representing an SBML level
-% 3. version, an integer representing an SBML version
+% 2. level; an integer representing an SBML level
+% 3. version; an integer representing an SBML version
 % Returns
 % 1. an SBML structure representing the given typecode, level and version
 %

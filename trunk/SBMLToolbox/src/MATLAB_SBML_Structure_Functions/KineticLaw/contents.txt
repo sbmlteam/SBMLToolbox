@@ -1,4 +1,4 @@
-###MATLAB SBML STRUCTURE FUNCTIONS\KINETICLAW
+###MATLAB_SBML_STRUCTURE_FUNCTIONS\KINETICLAW
 
 
 The functions allow users to create and work with the SBML KineticLaw structure.
@@ -9,12 +9,12 @@ Function are:
 
 ####SBMLKineticLaw = KineticLaw_addLocalParameter(SBMLKineticLaw, SBMLLocalParameter)
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
-2. SBMLLocalParameter; an SBML LocalParameter structure
+1. SBMLKineticLaw, an SBML KineticLaw structure
+2. SBMLLocalParameter, an SBML LocalParameter structure
 
-returns
+Returns
 
 1. the SBML KineticLaw structure with the SBML LocalParameter structure added
 
@@ -24,12 +24,12 @@ returns
 
 ####SBMLKineticLaw = KineticLaw_addParameter(SBMLKineticLaw, SBMLParameter)
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
-2. SBMLParameter; an SBML Parameter structure
+1. SBMLKineticLaw, an SBML KineticLaw structure
+2. SBMLParameter, an SBML Parameter structure
 
-returns
+Returns
 
 1. the SBML KineticLaw structure with the SBML Parameter structure added
 
@@ -39,30 +39,29 @@ returns
 
 ####KineticLaw = KineticLaw_create(level(optional), version(optional)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level (optional)
-2. version; an integer representing an SBML version (optional)
+1. level, an integer representing an SBML level (optional)
+2. version, an integer representing an SBML version (optional)
 
-returns
+Returns
 
 1. a MATLAB_SBML KineticLaw structure of the appropriate level and version
 
-*NOTE:* the optional level and version preserve backwards compatibility: 
-   
-   - a missing version argument will default to L1V2; L2V4 or L3V1
-   - missing both arguments will default to L3V1
+*NOTE:* the optional level and version preserve backwards compatibility
+  a missing version argument will default to L1V2; L2V4 or L3V1
+  missing both arguments will default to L3V1
 
 
 ------------------------------
 
 ####formula = KineticLaw_getFormula(SBMLKineticLaw)
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
+1. SBMLKineticLaw, an SBML KineticLaw structure
 
-returns
+Returns
 
 1. the value of the formula attribute
 
@@ -72,11 +71,11 @@ returns
 
 ####localParameter = KineticLaw_getListOfLocalParameters(SBMLKineticLaw)
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
+1. SBMLKineticLaw, an SBML KineticLaw structure
 
-returns
+Returns
 
 1. an array of the localParameter structures
 
@@ -86,11 +85,11 @@ returns
 
 ####parameter = KineticLaw_getListOfParameters(SBMLKineticLaw)
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
+1. SBMLKineticLaw, an SBML KineticLaw structure
 
-returns
+Returns
 
 1. an array of the parameter structures
 
@@ -100,12 +99,12 @@ returns
 
 ####localParameter = KineticLaw_getLocalParameter(SBMLKineticLaw, index)
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
-2. index; an integer representing the index of SBML LocalParameter structure
+1. SBMLKineticLaw, an SBML KineticLaw structure
+2. index, an integer representing the index of SBML LocalParameter structure
 
-returns
+Returns
 
 1. the SBML LocalParameter structure at the indexed position
 
@@ -115,11 +114,11 @@ returns
 
 ####math = KineticLaw_getMath(SBMLKineticLaw)
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
+1. SBMLKineticLaw, an SBML KineticLaw structure
 
-returns
+Returns
 
 1. the value of the math attribute
 
@@ -129,11 +128,11 @@ returns
 
 ####metaid = KineticLaw_getMetaid(SBMLKineticLaw)
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
+1. SBMLKineticLaw, an SBML KineticLaw structure
 
-returns
+Returns
 
 1. the value of the metaid attribute
 
@@ -143,11 +142,11 @@ returns
 
 ####num = KineticLaw_getNumLocalParameters(SBMLKineticLaw)
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
+1. SBMLKineticLaw, an SBML KineticLaw structure
 
-returns
+Returns
 
 1. the number of SBML LocalParameter structures present in the KineticLaw
 
@@ -157,11 +156,11 @@ returns
 
 ####num = KineticLaw_getNumParameters(SBMLKineticLaw)
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
+1. SBMLKineticLaw, an SBML KineticLaw structure
 
-returns
+Returns
 
 1. the number of SBML Parameter structures present in the KineticLaw
 
@@ -171,12 +170,12 @@ returns
 
 ####parameter = KineticLaw_getParameter(SBMLKineticLaw, index)
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
-2. index; an integer representing the index of SBML Parameter structure
+1. SBMLKineticLaw, an SBML KineticLaw structure
+2. index, an integer representing the index of SBML Parameter structure
 
-returns
+Returns
 
 1. the SBML Parameter structure at the indexed position
 
@@ -186,11 +185,11 @@ returns
 
 ####sboTerm = KineticLaw_getSBOTerm(SBMLKineticLaw)
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
+1. SBMLKineticLaw, an SBML KineticLaw structure
 
-returns
+Returns
 
 1. the value of the sboTerm attribute
 
@@ -200,11 +199,11 @@ returns
 
 ####substanceUnits = KineticLaw_getSubstanceUnits(SBMLKineticLaw)
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
+1. SBMLKineticLaw, an SBML KineticLaw structure
 
-returns
+Returns
 
 1. the value of the substanceUnits attribute
 
@@ -214,11 +213,11 @@ returns
 
 ####timeUnits = KineticLaw_getTimeUnits(SBMLKineticLaw)
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
+1. SBMLKineticLaw, an SBML KineticLaw structure
 
-returns
+Returns
 
 1. the value of the timeUnits attribute
 
@@ -228,11 +227,11 @@ returns
 
 ####value = KineticLaw_isSetFormula(SBMLKineticLaw)
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
+1. SBMLKineticLaw, an SBML KineticLaw structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the formula attribute is set
@@ -244,11 +243,11 @@ returns
 
 ####value = KineticLaw_isSetMath(SBMLKineticLaw)
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
+1. SBMLKineticLaw, an SBML KineticLaw structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the math attribute is set
@@ -260,11 +259,11 @@ returns
 
 ####value = KineticLaw_isSetMetaid(SBMLKineticLaw)
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
+1. SBMLKineticLaw, an SBML KineticLaw structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the metaid attribute is set
@@ -276,11 +275,11 @@ returns
 
 ####value = KineticLaw_isSetSBOTerm(SBMLKineticLaw)
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
+1. SBMLKineticLaw, an SBML KineticLaw structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the sboTerm attribute is set
@@ -292,11 +291,11 @@ returns
 
 ####value = KineticLaw_isSetSubstanceUnits(SBMLKineticLaw)
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
+1. SBMLKineticLaw, an SBML KineticLaw structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the substanceUnits attribute is set
@@ -308,11 +307,11 @@ returns
 
 ####value = KineticLaw_isSetTimeUnits(SBMLKineticLaw)
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
+1. SBMLKineticLaw, an SBML KineticLaw structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the timeUnits attribute is set
@@ -324,12 +323,12 @@ returns
 
 ####SBMLKineticLaw = KineticLaw_setFormula(SBMLKineticLaw, formula)
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
+1. SBMLKineticLaw, an SBML KineticLaw structure
 2. formula; a string representing the formula to be set
 
-returns
+Returns
 
 1. the SBML KineticLaw structure with the new value for the formula attribute
 
@@ -339,12 +338,12 @@ returns
 
 ####SBMLKineticLaw = KineticLaw_setFormulaFromMath(SBMLKineticLaw, formulaFromMath)
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
+1. SBMLKineticLaw, an SBML KineticLaw structure
 2. formulaFromMath; a string representing the formulaFromMath to be set
 
-returns
+Returns
 
 1. the SBML KineticLaw structure with the new value for the formulaFromMath attribute
 
@@ -354,12 +353,12 @@ returns
 
 ####SBMLKineticLaw = KineticLaw_setMath(SBMLKineticLaw, math)
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
+1. SBMLKineticLaw, an SBML KineticLaw structure
 2. math; string representing the math expression math to be set
 
-returns
+Returns
 
 1. the SBML KineticLaw structure with the new value for the math attribute
 
@@ -369,12 +368,12 @@ returns
 
 ####SBMLKineticLaw = KineticLaw_setMathFromFormula(SBMLKineticLaw, mathFromFormula)
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
+1. SBMLKineticLaw, an SBML KineticLaw structure
 2. mathFromFormula; string representing the math expression mathFromFormula to be set
 
-returns
+Returns
 
 1. the SBML KineticLaw structure with the new value for the mathFromFormula attribute
 
@@ -384,12 +383,12 @@ returns
 
 ####SBMLKineticLaw = KineticLaw_setMetaid(SBMLKineticLaw, metaid)
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
+1. SBMLKineticLaw, an SBML KineticLaw structure
 2. metaid; a string representing the metaid to be set
 
-returns
+Returns
 
 1. the SBML KineticLaw structure with the new value for the metaid attribute
 
@@ -399,12 +398,12 @@ returns
 
 ####SBMLKineticLaw = KineticLaw_setSBOTerm(SBMLKineticLaw, sboTerm)
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
-2. sboTerm; an integer representing the sboTerm to be set
+1. SBMLKineticLaw, an SBML KineticLaw structure
+2. sboTerm, an integer representing the sboTerm to be set
 
-returns
+Returns
 
 1. the SBML KineticLaw structure with the new value for the sboTerm attribute
 
@@ -414,12 +413,12 @@ returns
 
 ####SBMLKineticLaw = KineticLaw_setSubstanceUnits(SBMLKineticLaw, substanceUnits)
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
+1. SBMLKineticLaw, an SBML KineticLaw structure
 2. substanceUnits; a string representing the substanceUnits to be set
 
-returns
+Returns
 
 1. the SBML KineticLaw structure with the new value for the substanceUnits attribute
 
@@ -429,12 +428,12 @@ returns
 
 ####SBMLKineticLaw = KineticLaw_setTimeUnits(SBMLKineticLaw, timeUnits)
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
+1. SBMLKineticLaw, an SBML KineticLaw structure
 2. timeUnits; a string representing the timeUnits to be set
 
-returns
+Returns
 
 1. the SBML KineticLaw structure with the new value for the timeUnits attribute
 
@@ -444,11 +443,11 @@ returns
 
 ####SBMLKineticLaw = KineticLaw_unsetFormula(SBMLKineticLaw)
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
+1. SBMLKineticLaw, an SBML KineticLaw structure
 
-returns
+Returns
 
 1. the SBML KineticLaw structure with the formula attribute unset
 
@@ -458,11 +457,11 @@ returns
 
 ####SBMLKineticLaw = KineticLaw_unsetMath(SBMLKineticLaw)
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
+1. SBMLKineticLaw, an SBML KineticLaw structure
 
-returns
+Returns
 
 1. the SBML KineticLaw structure with the math attribute unset
 
@@ -472,11 +471,11 @@ returns
 
 ####SBMLKineticLaw = KineticLaw_unsetMetaid(SBMLKineticLaw)
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
+1. SBMLKineticLaw, an SBML KineticLaw structure
 
-returns
+Returns
 
 1. the SBML KineticLaw structure with the metaid attribute unset
 
@@ -486,11 +485,11 @@ returns
 
 ####SBMLKineticLaw = KineticLaw_unsetSBOTerm(SBMLKineticLaw)
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
+1. SBMLKineticLaw, an SBML KineticLaw structure
 
-returns
+Returns
 
 1. the SBML KineticLaw structure with the sboTerm attribute unset
 
@@ -500,11 +499,11 @@ returns
 
 ####SBMLKineticLaw = KineticLaw_unsetSubstanceUnits(SBMLKineticLaw)
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
+1. SBMLKineticLaw, an SBML KineticLaw structure
 
-returns
+Returns
 
 1. the SBML KineticLaw structure with the substanceUnits attribute unset
 
@@ -514,11 +513,11 @@ returns
 
 ####SBMLKineticLaw = KineticLaw_unsetTimeUnits(SBMLKineticLaw)
 
-takes
+Takes
 
-1. SBMLKineticLaw; an SBML KineticLaw structure
+1. SBMLKineticLaw, an SBML KineticLaw structure
 
-returns
+Returns
 
 1. the SBML KineticLaw structure with the timeUnits attribute unset
 

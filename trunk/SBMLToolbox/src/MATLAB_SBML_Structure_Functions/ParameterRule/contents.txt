@@ -1,4 +1,4 @@
-###MATLAB SBML STRUCTURE FUNCTIONS\PARAMETERRULE
+###MATLAB_SBML_STRUCTURE_FUNCTIONS\PARAMETERRULE
 
 
 The functions allow users to create and work with the SBML ParameterRule structure.
@@ -9,30 +9,29 @@ Function are:
 
 ####ParameterRule = ParameterRule_create(level(optional), version(optional)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level (optional)
-2. version; an integer representing an SBML version (optional)
+1. level, an integer representing an SBML level (optional)
+2. version, an integer representing an SBML version (optional)
 
-returns
+Returns
 
 1. a MATLAB_SBML ParameterRule structure of the appropriate level and version
 
-*NOTE:* the optional level and version preserve backwards compatibility: 
-   
-   - a missing version argument will default to L1V2; L2V4 or L3V1
-   - missing both arguments will default to L3V1
+*NOTE:* the optional level and version preserve backwards compatibility
+  a missing version argument will default to L1V2; L2V4 or L3V1
+  missing both arguments will default to L3V1
 
 
 ------------------------------
 
 ####formula = ParameterRule_getFormula(SBMLParameterRule)
 
-takes
+Takes
 
-1. SBMLParameterRule; an SBML ParameterRule structure
+1. SBMLParameterRule, an SBML ParameterRule structure
 
-returns
+Returns
 
 1. the value of the formula attribute
 
@@ -42,11 +41,11 @@ returns
 
 ####name = ParameterRule_getName(SBMLParameterRule)
 
-takes
+Takes
 
-1. SBMLParameterRule; an SBML ParameterRule structure
+1. SBMLParameterRule, an SBML ParameterRule structure
 
-returns
+Returns
 
 1. the value of the name attribute
 
@@ -56,11 +55,11 @@ returns
 
 ####type = ParameterRule_getType(SBMLParameterRule)
 
-takes
+Takes
 
-1. SBMLParameterRule; an SBML ParameterRule structure
+1. SBMLParameterRule, an SBML ParameterRule structure
 
-returns
+Returns
 
 1. the value of the type attribute
 
@@ -70,11 +69,11 @@ returns
 
 ####units = ParameterRule_getUnits(SBMLParameterRule)
 
-takes
+Takes
 
-1. SBMLParameterRule; an SBML ParameterRule structure
+1. SBMLParameterRule, an SBML ParameterRule structure
 
-returns
+Returns
 
 1. the value of the units attribute
 
@@ -84,11 +83,11 @@ returns
 
 ####value = ParameterRule_isSetFormula(SBMLParameterRule)
 
-takes
+Takes
 
-1. SBMLParameterRule; an SBML ParameterRule structure
+1. SBMLParameterRule, an SBML ParameterRule structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the formula attribute is set
@@ -100,11 +99,11 @@ returns
 
 ####value = ParameterRule_isSetName(SBMLParameterRule)
 
-takes
+Takes
 
-1. SBMLParameterRule; an SBML ParameterRule structure
+1. SBMLParameterRule, an SBML ParameterRule structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the name attribute is set
@@ -116,11 +115,11 @@ returns
 
 ####value = ParameterRule_isSetType(SBMLParameterRule)
 
-takes
+Takes
 
-1. SBMLParameterRule; an SBML ParameterRule structure
+1. SBMLParameterRule, an SBML ParameterRule structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the type attribute is set
@@ -132,11 +131,11 @@ returns
 
 ####value = ParameterRule_isSetUnits(SBMLParameterRule)
 
-takes
+Takes
 
-1. SBMLParameterRule; an SBML ParameterRule structure
+1. SBMLParameterRule, an SBML ParameterRule structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the units attribute is set
@@ -148,12 +147,12 @@ returns
 
 ####SBMLParameterRule = ParameterRule_setFormula(SBMLParameterRule, formula)
 
-takes
+Takes
 
-1. SBMLParameterRule; an SBML ParameterRule structure
+1. SBMLParameterRule, an SBML ParameterRule structure
 2. formula; a string representing the formula to be set
 
-returns
+Returns
 
 1. the SBML ParameterRule structure with the new value for the formula attribute
 
@@ -163,12 +162,12 @@ returns
 
 ####SBMLParameterRule = ParameterRule_setName(SBMLParameterRule, name)
 
-takes
+Takes
 
-1. SBMLParameterRule; an SBML ParameterRule structure
+1. SBMLParameterRule, an SBML ParameterRule structure
 2. name; a string representing the name to be set
 
-returns
+Returns
 
 1. the SBML ParameterRule structure with the new value for the name attribute
 
@@ -178,12 +177,12 @@ returns
 
 ####SBMLParameterRule = ParameterRule_setType(SBMLParameterRule, type)
 
-takes
+Takes
 
-1. SBMLParameterRule; an SBML ParameterRule structure
+1. SBMLParameterRule, an SBML ParameterRule structure
 2. type; a string representing the type to be set
 
-returns
+Returns
 
 1. the SBML ParameterRule structure with the new value for the type attribute
 
@@ -193,12 +192,12 @@ returns
 
 ####SBMLParameterRule = ParameterRule_setUnits(SBMLParameterRule, units)
 
-takes
+Takes
 
-1. SBMLParameterRule; an SBML ParameterRule structure
+1. SBMLParameterRule, an SBML ParameterRule structure
 2. units; a string representing the units to be set
 
-returns
+Returns
 
 1. the SBML ParameterRule structure with the new value for the units attribute
 
@@ -208,11 +207,11 @@ returns
 
 ####SBMLParameterRule = ParameterRule_unsetFormula(SBMLParameterRule)
 
-takes
+Takes
 
-1. SBMLParameterRule; an SBML ParameterRule structure
+1. SBMLParameterRule, an SBML ParameterRule structure
 
-returns
+Returns
 
 1. the SBML ParameterRule structure with the formula attribute unset
 
@@ -222,11 +221,11 @@ returns
 
 ####SBMLParameterRule = ParameterRule_unsetName(SBMLParameterRule)
 
-takes
+Takes
 
-1. SBMLParameterRule; an SBML ParameterRule structure
+1. SBMLParameterRule, an SBML ParameterRule structure
 
-returns
+Returns
 
 1. the SBML ParameterRule structure with the name attribute unset
 
@@ -236,11 +235,11 @@ returns
 
 ####SBMLParameterRule = ParameterRule_unsetType(SBMLParameterRule)
 
-takes
+Takes
 
-1. SBMLParameterRule; an SBML ParameterRule structure
+1. SBMLParameterRule, an SBML ParameterRule structure
 
-returns
+Returns
 
 1. the SBML ParameterRule structure with the type attribute unset
 
@@ -250,11 +249,11 @@ returns
 
 ####SBMLParameterRule = ParameterRule_unsetUnits(SBMLParameterRule)
 
-takes
+Takes
 
-1. SBMLParameterRule; an SBML ParameterRule structure
+1. SBMLParameterRule, an SBML ParameterRule structure
 
-returns
+Returns
 
 1. the SBML ParameterRule structure with the units attribute unset
 
