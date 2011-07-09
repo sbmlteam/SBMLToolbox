@@ -7,8 +7,8 @@
 % y = CheckValidUnitKind(kind)
 %==============================
 % Takes
-% 1. kind; a string representing a unit kind 
-% returns 
+% 1. kind, a string representing a unit kind 
+% Returns 
 % 1. y =
 %  - 1 if the string represents a valid unit kind 
 %  - 0 otherwise
@@ -17,74 +17,75 @@
 % newArray = LoseWhiteSpace(charArray)
 %======================================
 % Takes
-% 1. charArray; an array of characters 
-% returns 
+% 1. charArray, an array of characters 
+% Returns 
 % 1. the array with any white space removed
 %
 %===================================
 % pairs = PairBrackets(expression) 
 %===================================
-% takes
-% 1. expression; a string representation of a math expression
-% returns
-% 1. an array of the indices of each pair of brackets ordered from the opening bracket index
+% Takes
+% 1. expression, a string representation of a math expression
+% Returns
+% 1. an array of the indices of each pair of brackets ordered from
+% the opening bracket index
 %
 %======================================
 % output = Rearrange(expression, name)
 %======================================
-% takes
-% 1. expression; a string representation of a math expression
-% 2. name; a string representing the name of a variable
-% returns
+% Takes
+% 1. expression, a string representation of a math expression
+% 2. name, a string representing the name of a variable
+% Returns
 % 1. the expression rearranged in terms of the variable
 %
 %=====================================
 % newArray = RemoveDuplicates(array) 
 %=====================================
-% takes
-% 1. array; any array
-% returns
+% Takes
+% 1. array, any array
+% Returns
 % 1. the array with any duplicate entries removed  
 %
 %============================================
 % value = Substitute(expression, SBMLModel) 
 %============================================
-% takes
-% 1. expression; a string representation of a math expression
-% 2. SBMLModel; an SBML Model structure
-% returns
+% Takes
+% 1. expression, a string representation of a math expression
+% 2. SBMLModel, an SBML Model structure
+% Returns
 % 1. the value of the expression when all variables within the model have
 % been substituted
 %
 %=============================================================
 % newExpression = SubstituteConstants(expression, SBMLModel) 
 %=============================================================
-% takes
-% 1. expression; a string representation of a math expression
-% 2. SBMLModel; an SBML Model structure
-% returns
-% 1. the string representation of the expression when all constants within the model have
-% been substituted
+% Takes
+% 1. expression, a string representation of a math expression
+% 2. SBMLModel, an SBML Model structure
+% Returns
+% 1. the string representation of the expression when all constants within the 
+% model have been substituted
 %
 %=========================================================================
 % newExpression = SubstituteFunction(expression, SBMLFunctionDefinition) 
 %=========================================================================
-% takes
-% 1. expression; a string representation of a math expression
-% 2. SBMLFunctionDefinition; an SBML FunctionDefinition structure
-% returns
+% Takes
+% 1. expression, a string representation of a math expression
+% 2. SBMLFunctionDefinition, an SBML FunctionDefinition structure
+% Returns
 % 1. newExpression
-%  - the string representation of the expression when any instances of the functionDefinition have
-% been substituted
+%  - the string representation of the expression when any instances of the 
+% functionDefinition have been substituted
 %  - an empty string if the functiondefinition is not in the original
 %  expression
 %
 %==============================
 % y = isIntegralNumber(number)
 %==============================
-% takes
-% 1. number; any number
-% returns
+% Takes
+% 1. number, any number
+% Returns
 % 1. y = 
 % - 1 if the number represents an integer 
 % - 0 otherwise 
@@ -93,7 +94,7 @@
 % y = isValidUnitKind(kind)
 %===========================
 % Takes
-% 1. kind; a string representing a unit kind 
+% 1. kind, a string representing a unit kind 
 % returns 
 % 1. y =
 %  - 1 if the string represents a valid unit kind 
@@ -102,29 +103,29 @@
 %=============================================
 % index = matchFunctionName(expression, name)
 %=============================================
-% takes
-% 1. expression; a string representation of a math expression
-% 2. name; a string representing the name of a function
-% returns
+% Takes
+% 1. expression, a string representation of a math expression
+% 2. name, a string representing the name of a function
+% Returns
 % 1. the index of the starting point of 'name' in the 'expression'
 %
 %=====================================
 % index = matchName(expression, name)
 %=====================================
-% takes
-% 1. expression; a string representation of a math expression
-% 2. name; a string representing the name of a variable
-% returns
+% Takes
+% 1. expression, a string representation of a math expression
+% 2. name, a string representing the name of a variable
+% Returns
 % 1. the index of the starting point of 'name' in the 'expression'
 %
 %=========================================
 % value = piecewise(value1, test, value2)
 %=========================================
-% takes
-% 1. value1; the value to return if the test is true
-% 2. test; a boolean test that will return true or false
-% 3. value2; the value to return if the test is false
-% returns
+% Takes
+% 1. value1, the value to return if the test is true
+% 2. test, a boolean test that will return true or false
+% 3. value2, the value to return if the test is false
+% Returns
 % 1. value = 
 %   - value1, if test returns true
 %   - value2, if test returns false
@@ -134,9 +135,9 @@
 % y = testmember(value, array)
 %==============================
 % Takes
-% 1. value; any number/string
-% 2. array; an array of objects 
-% returns 
+% 1. value, any number/string
+% 2. array, an array of objects 
+% Returns 
 % 1. y = 
 %   - 1 if value is a member of the array 
 %   - 0 otherwise
