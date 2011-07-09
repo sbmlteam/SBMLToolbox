@@ -1,6 +1,6 @@
 % toolbox\MATLAB_SBML_Structure_Functions\Delay
 %
-% The functions allow users to create and work with the SBML Delay structure. 
+% The functions allow users to create and work with the SBML Delay structure.
 %
 %=========================================================
 % Delay = Delay_create(level(optional), version(optional)

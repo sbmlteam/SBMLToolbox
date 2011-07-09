@@ -1,6 +1,6 @@
 % toolbox\MATLAB_SBML_Structure_Functions\RateRule
 %
-% The functions allow users to create and work with the SBML RateRule structure. 
+% The functions allow users to create and work with the SBML RateRule structure.
 %
 %===============================================================
 % RateRule = RateRule_create(level(optional), version(optional)

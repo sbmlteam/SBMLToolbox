@@ -1,6 +1,6 @@
 % toolbox\MATLAB_SBML_Structure_Functions\Unit
 %
-% The functions allow users to create and work with the SBML Unit structure. 
+% The functions allow users to create and work with the SBML Unit structure.
 %
 %=======================================================
 % Unit = Unit_create(level(optional), version(optional)

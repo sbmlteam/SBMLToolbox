@@ -1,4 +1,4 @@
-###MATLAB SBML STRUCTURE FUNCTIONS\EVENT
+###MATLAB_SBML_STRUCTURE_FUNCTIONS\EVENT
 
 
 The functions allow users to create and work with the SBML Event structure.
@@ -9,12 +9,12 @@ Function are:
 
 ####SBMLEvent = Event_addEventAssignment(SBMLEvent, SBMLEventAssignment)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
-2. SBMLEventAssignment; an SBML EventAssignment structure
+1. SBMLEvent, an SBML Event structure
+2. SBMLEventAssignment, an SBML EventAssignment structure
 
-returns
+Returns
 
 1. the SBML Event structure with the SBML EventAssignment structure added
 
@@ -24,30 +24,29 @@ returns
 
 ####Event = Event_create(level(optional), version(optional)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level (optional)
-2. version; an integer representing an SBML version (optional)
+1. level, an integer representing an SBML level (optional)
+2. version, an integer representing an SBML version (optional)
 
-returns
+Returns
 
 1. a MATLAB_SBML Event structure of the appropriate level and version
 
-*NOTE:* the optional level and version preserve backwards compatibility: 
-   
-   - a missing version argument will default to L1V2; L2V4 or L3V1
-   - missing both arguments will default to L3V1
+*NOTE:* the optional level and version preserve backwards compatibility
+  a missing version argument will default to L1V2; L2V4 or L3V1
+  missing both arguments will default to L3V1
 
 
 ------------------------------
 
 ####delay = Event_getDelay(SBMLEvent)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
+1. SBMLEvent, an SBML Event structure
 
-returns
+Returns
 
 1. the SBML Delay structure
 
@@ -57,12 +56,12 @@ returns
 
 ####eventAssignment = Event_getEventAssignment(SBMLEvent, index)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
-2. index; an integer representing the index of SBML EventAssignment structure
+1. SBMLEvent, an SBML Event structure
+2. index, an integer representing the index of SBML EventAssignment structure
 
-returns
+Returns
 
 1. the SBML EventAssignment structure at the indexed position
 
@@ -72,11 +71,11 @@ returns
 
 ####id = Event_getId(SBMLEvent)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
+1. SBMLEvent, an SBML Event structure
 
-returns
+Returns
 
 1. the value of the id attribute
 
@@ -86,11 +85,11 @@ returns
 
 ####eventAssignment = Event_getListOfEventAssignments(SBMLEvent)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
+1. SBMLEvent, an SBML Event structure
 
-returns
+Returns
 
 1. an array of the eventAssignment structures
 
@@ -100,11 +99,11 @@ returns
 
 ####metaid = Event_getMetaid(SBMLEvent)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
+1. SBMLEvent, an SBML Event structure
 
-returns
+Returns
 
 1. the value of the metaid attribute
 
@@ -114,11 +113,11 @@ returns
 
 ####name = Event_getName(SBMLEvent)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
+1. SBMLEvent, an SBML Event structure
 
-returns
+Returns
 
 1. the value of the name attribute
 
@@ -128,11 +127,11 @@ returns
 
 ####num = Event_getNumEventAssignments(SBMLEvent)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
+1. SBMLEvent, an SBML Event structure
 
-returns
+Returns
 
 1. the number of SBML EventAssignment structures present in the Event
 
@@ -142,11 +141,11 @@ returns
 
 ####priority = Event_getPriority(SBMLEvent)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
+1. SBMLEvent, an SBML Event structure
 
-returns
+Returns
 
 1. the SBML Priority structure
 
@@ -156,11 +155,11 @@ returns
 
 ####sboTerm = Event_getSBOTerm(SBMLEvent)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
+1. SBMLEvent, an SBML Event structure
 
-returns
+Returns
 
 1. the value of the sboTerm attribute
 
@@ -170,11 +169,11 @@ returns
 
 ####timeUnits = Event_getTimeUnits(SBMLEvent)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
+1. SBMLEvent, an SBML Event structure
 
-returns
+Returns
 
 1. the value of the timeUnits attribute
 
@@ -184,11 +183,11 @@ returns
 
 ####trigger = Event_getTrigger(SBMLEvent)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
+1. SBMLEvent, an SBML Event structure
 
-returns
+Returns
 
 1. the SBML Trigger structure
 
@@ -198,11 +197,11 @@ returns
 
 ####useValuesFromTriggerTime = Event_getUseValuesFromTriggerTime(SBMLEvent)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
+1. SBMLEvent, an SBML Event structure
 
-returns
+Returns
 
 1. the value of the useValuesFromTriggerTime attribute
 
@@ -212,11 +211,11 @@ returns
 
 ####value = Event_isSetDelay(SBMLEvent)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
+1. SBMLEvent, an SBML Event structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the delay structure is set
@@ -228,11 +227,11 @@ returns
 
 ####value = Event_isSetId(SBMLEvent)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
+1. SBMLEvent, an SBML Event structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the id attribute is set
@@ -244,11 +243,11 @@ returns
 
 ####value = Event_isSetMetaid(SBMLEvent)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
+1. SBMLEvent, an SBML Event structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the metaid attribute is set
@@ -260,11 +259,11 @@ returns
 
 ####value = Event_isSetName(SBMLEvent)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
+1. SBMLEvent, an SBML Event structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the name attribute is set
@@ -276,11 +275,11 @@ returns
 
 ####value = Event_isSetPriority(SBMLEvent)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
+1. SBMLEvent, an SBML Event structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the priority structure is set
@@ -292,11 +291,11 @@ returns
 
 ####value = Event_isSetSBOTerm(SBMLEvent)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
+1. SBMLEvent, an SBML Event structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the sboTerm attribute is set
@@ -308,11 +307,11 @@ returns
 
 ####value = Event_isSetTimeUnits(SBMLEvent)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
+1. SBMLEvent, an SBML Event structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the timeUnits attribute is set
@@ -324,11 +323,11 @@ returns
 
 ####value = Event_isSetTrigger(SBMLEvent)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
+1. SBMLEvent, an SBML Event structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the trigger structure is set
@@ -340,12 +339,12 @@ returns
 
 ####SBMLEvent = Event_setDelay(SBMLEvent, SBMLDelay)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
-2. SBMLDelay; an SBML Delay structure
+1. SBMLEvent, an SBML Event structure
+2. SBMLDelay, an SBML Delay structure
 
-returns
+Returns
 
 1. the SBML Event structure with the new value for the delay field
 
@@ -355,12 +354,12 @@ returns
 
 ####SBMLEvent = Event_setId(SBMLEvent, id)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
+1. SBMLEvent, an SBML Event structure
 2. id; a string representing the id to be set
 
-returns
+Returns
 
 1. the SBML Event structure with the new value for the id attribute
 
@@ -370,12 +369,12 @@ returns
 
 ####SBMLEvent = Event_setMetaid(SBMLEvent, metaid)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
+1. SBMLEvent, an SBML Event structure
 2. metaid; a string representing the metaid to be set
 
-returns
+Returns
 
 1. the SBML Event structure with the new value for the metaid attribute
 
@@ -385,12 +384,12 @@ returns
 
 ####SBMLEvent = Event_setName(SBMLEvent, name)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
+1. SBMLEvent, an SBML Event structure
 2. name; a string representing the name to be set
 
-returns
+Returns
 
 1. the SBML Event structure with the new value for the name attribute
 
@@ -400,12 +399,12 @@ returns
 
 ####SBMLEvent = Event_setPriority(SBMLEvent, SBMLPriority)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
-2. SBMLPriority; an SBML Priority structure
+1. SBMLEvent, an SBML Event structure
+2. SBMLPriority, an SBML Priority structure
 
-returns
+Returns
 
 1. the SBML Event structure with the new value for the priority field
 
@@ -415,12 +414,12 @@ returns
 
 ####SBMLEvent = Event_setSBOTerm(SBMLEvent, sboTerm)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
-2. sboTerm; an integer representing the sboTerm to be set
+1. SBMLEvent, an SBML Event structure
+2. sboTerm, an integer representing the sboTerm to be set
 
-returns
+Returns
 
 1. the SBML Event structure with the new value for the sboTerm attribute
 
@@ -430,12 +429,12 @@ returns
 
 ####SBMLEvent = Event_setTimeUnits(SBMLEvent, timeUnits)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
+1. SBMLEvent, an SBML Event structure
 2. timeUnits; a string representing the timeUnits to be set
 
-returns
+Returns
 
 1. the SBML Event structure with the new value for the timeUnits attribute
 
@@ -445,12 +444,12 @@ returns
 
 ####SBMLEvent = Event_setTrigger(SBMLEvent, SBMLTrigger)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
-2. SBMLTrigger; an SBML Trigger structure
+1. SBMLEvent, an SBML Event structure
+2. SBMLTrigger, an SBML Trigger structure
 
-returns
+Returns
 
 1. the SBML Event structure with the new value for the trigger field
 
@@ -460,12 +459,12 @@ returns
 
 ####SBMLEvent = Event_setUseValuesFromTriggerTime(SBMLEvent, useValuesFromTriggerTime)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
-2. useValuesFromTriggerTime; an integer (0/1) representing the value of useValuesFromTriggerTime to be set
+1. SBMLEvent, an SBML Event structure
+2. useValuesFromTriggerTime, an integer (0/1) representing the value of useValuesFromTriggerTime to be set
 
-returns
+Returns
 
 1. the SBML Event structure with the new value for the useValuesFromTriggerTime attribute
 
@@ -475,11 +474,11 @@ returns
 
 ####SBMLEvent = Event_unsetDelay(SBMLEvent)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
+1. SBMLEvent, an SBML Event structure
 
-returns
+Returns
 
 1. the SBML Event structure with the delay field unset
 
@@ -489,11 +488,11 @@ returns
 
 ####SBMLEvent = Event_unsetId(SBMLEvent)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
+1. SBMLEvent, an SBML Event structure
 
-returns
+Returns
 
 1. the SBML Event structure with the id attribute unset
 
@@ -503,11 +502,11 @@ returns
 
 ####SBMLEvent = Event_unsetMetaid(SBMLEvent)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
+1. SBMLEvent, an SBML Event structure
 
-returns
+Returns
 
 1. the SBML Event structure with the metaid attribute unset
 
@@ -517,11 +516,11 @@ returns
 
 ####SBMLEvent = Event_unsetName(SBMLEvent)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
+1. SBMLEvent, an SBML Event structure
 
-returns
+Returns
 
 1. the SBML Event structure with the name attribute unset
 
@@ -531,11 +530,11 @@ returns
 
 ####SBMLEvent = Event_unsetPriority(SBMLEvent)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
+1. SBMLEvent, an SBML Event structure
 
-returns
+Returns
 
 1. the SBML Event structure with the priority field unset
 
@@ -545,11 +544,11 @@ returns
 
 ####SBMLEvent = Event_unsetSBOTerm(SBMLEvent)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
+1. SBMLEvent, an SBML Event structure
 
-returns
+Returns
 
 1. the SBML Event structure with the sboTerm attribute unset
 
@@ -559,11 +558,11 @@ returns
 
 ####SBMLEvent = Event_unsetTimeUnits(SBMLEvent)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
+1. SBMLEvent, an SBML Event structure
 
-returns
+Returns
 
 1. the SBML Event structure with the timeUnits attribute unset
 
@@ -573,11 +572,11 @@ returns
 
 ####SBMLEvent = Event_unsetTrigger(SBMLEvent)
 
-takes
+Takes
 
-1. SBMLEvent; an SBML Event structure
+1. SBMLEvent, an SBML Event structure
 
-returns
+Returns
 
 1. the SBML Event structure with the trigger field unset
 

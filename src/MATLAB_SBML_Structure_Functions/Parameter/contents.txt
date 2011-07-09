@@ -1,4 +1,4 @@
-###MATLAB SBML STRUCTURE FUNCTIONS\PARAMETER
+###MATLAB_SBML_STRUCTURE_FUNCTIONS\PARAMETER
 
 
 The functions allow users to create and work with the SBML Parameter structure.
@@ -9,30 +9,29 @@ Function are:
 
 ####Parameter = Parameter_create(level(optional), version(optional)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level (optional)
-2. version; an integer representing an SBML version (optional)
+1. level, an integer representing an SBML level (optional)
+2. version, an integer representing an SBML version (optional)
 
-returns
+Returns
 
 1. a MATLAB_SBML Parameter structure of the appropriate level and version
 
-*NOTE:* the optional level and version preserve backwards compatibility: 
-   
-   - a missing version argument will default to L1V2; L2V4 or L3V1
-   - missing both arguments will default to L3V1
+*NOTE:* the optional level and version preserve backwards compatibility
+  a missing version argument will default to L1V2; L2V4 or L3V1
+  missing both arguments will default to L3V1
 
 
 ------------------------------
 
 ####constant = Parameter_getConstant(SBMLParameter)
 
-takes
+Takes
 
-1. SBMLParameter; an SBML Parameter structure
+1. SBMLParameter, an SBML Parameter structure
 
-returns
+Returns
 
 1. the value of the constant attribute
 
@@ -42,11 +41,11 @@ returns
 
 ####id = Parameter_getId(SBMLParameter)
 
-takes
+Takes
 
-1. SBMLParameter; an SBML Parameter structure
+1. SBMLParameter, an SBML Parameter structure
 
-returns
+Returns
 
 1. the value of the id attribute
 
@@ -56,11 +55,11 @@ returns
 
 ####metaid = Parameter_getMetaid(SBMLParameter)
 
-takes
+Takes
 
-1. SBMLParameter; an SBML Parameter structure
+1. SBMLParameter, an SBML Parameter structure
 
-returns
+Returns
 
 1. the value of the metaid attribute
 
@@ -70,11 +69,11 @@ returns
 
 ####name = Parameter_getName(SBMLParameter)
 
-takes
+Takes
 
-1. SBMLParameter; an SBML Parameter structure
+1. SBMLParameter, an SBML Parameter structure
 
-returns
+Returns
 
 1. the value of the name attribute
 
@@ -84,11 +83,11 @@ returns
 
 ####sboTerm = Parameter_getSBOTerm(SBMLParameter)
 
-takes
+Takes
 
-1. SBMLParameter; an SBML Parameter structure
+1. SBMLParameter, an SBML Parameter structure
 
-returns
+Returns
 
 1. the value of the sboTerm attribute
 
@@ -98,11 +97,11 @@ returns
 
 ####units = Parameter_getUnits(SBMLParameter)
 
-takes
+Takes
 
-1. SBMLParameter; an SBML Parameter structure
+1. SBMLParameter, an SBML Parameter structure
 
-returns
+Returns
 
 1. the value of the units attribute
 
@@ -112,11 +111,11 @@ returns
 
 ####value = Parameter_getValue(SBMLParameter)
 
-takes
+Takes
 
-1. SBMLParameter; an SBML Parameter structure
+1. SBMLParameter, an SBML Parameter structure
 
-returns
+Returns
 
 1. the value of the value attribute
 
@@ -126,12 +125,12 @@ returns
 
 ####y = Parameter_isAssignedByRateRule(SBMLParameter, SBMLRules)
 
-takes
+Takes
 
-1. SBMLParameter; an SBML Parameter structure
+1. SBMLParameter, an SBML Parameter structure
 2. SBMLRules; the array of rules from an SBML Model structure
 
-returns
+Returns
 
 y = 
   - the index of the rateRule used to assigned value to the Parameter
@@ -165,12 +164,12 @@ in the file named "LICENSE.txt" included with this software distribution.
 
 ####y = Parameter_isAssignedByRule(SBMLParameter, SBMLRules)
 
-takes
+Takes
 
-1. SBMLParameter; an SBML Parameter structure
+1. SBMLParameter, an SBML Parameter structure
 2. SBMLRules; the array of rules from an SBML Model structure
 
-returns
+Returns
 
 y = 
   - the index of the assignmentRule used to assigned value to the Parameter
@@ -204,12 +203,12 @@ in the file named "LICENSE.txt" included with this software distribution.
 
 ####y = Parameter_isInAlgebraicRule(SBMLParameter, SBMLRules)
 
-takes
+Takes
 
-1. SBMLParameter; an SBML Parameter structure
+1. SBMLParameter, an SBML Parameter structure
 2. SBMLRules; the array of rules from an SBML Model structure
 
-returns
+Returns
 
 y = 
   - an array of the indices of any algebraicRules the id of the Parameter appears in 
@@ -243,11 +242,11 @@ in the file named "LICENSE.txt" included with this software distribution.
 
 ####value = Parameter_isSetId(SBMLParameter)
 
-takes
+Takes
 
-1. SBMLParameter; an SBML Parameter structure
+1. SBMLParameter, an SBML Parameter structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the id attribute is set
@@ -259,11 +258,11 @@ returns
 
 ####value = Parameter_isSetMetaid(SBMLParameter)
 
-takes
+Takes
 
-1. SBMLParameter; an SBML Parameter structure
+1. SBMLParameter, an SBML Parameter structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the metaid attribute is set
@@ -275,11 +274,11 @@ returns
 
 ####value = Parameter_isSetName(SBMLParameter)
 
-takes
+Takes
 
-1. SBMLParameter; an SBML Parameter structure
+1. SBMLParameter, an SBML Parameter structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the name attribute is set
@@ -291,11 +290,11 @@ returns
 
 ####value = Parameter_isSetSBOTerm(SBMLParameter)
 
-takes
+Takes
 
-1. SBMLParameter; an SBML Parameter structure
+1. SBMLParameter, an SBML Parameter structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the sboTerm attribute is set
@@ -307,11 +306,11 @@ returns
 
 ####value = Parameter_isSetUnits(SBMLParameter)
 
-takes
+Takes
 
-1. SBMLParameter; an SBML Parameter structure
+1. SBMLParameter, an SBML Parameter structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the units attribute is set
@@ -323,11 +322,11 @@ returns
 
 ####value = Parameter_isSetValue(SBMLParameter)
 
-takes
+Takes
 
-1. SBMLParameter; an SBML Parameter structure
+1. SBMLParameter, an SBML Parameter structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the value attribute is set
@@ -339,12 +338,12 @@ returns
 
 ####SBMLParameter = Parameter_setConstant(SBMLParameter, constant)
 
-takes
+Takes
 
-1. SBMLParameter; an SBML Parameter structure
-2. constant; an integer (0/1) representing the value of constant to be set
+1. SBMLParameter, an SBML Parameter structure
+2. constant, an integer (0/1) representing the value of constant to be set
 
-returns
+Returns
 
 1. the SBML Parameter structure with the new value for the constant attribute
 
@@ -354,12 +353,12 @@ returns
 
 ####SBMLParameter = Parameter_setId(SBMLParameter, id)
 
-takes
+Takes
 
-1. SBMLParameter; an SBML Parameter structure
+1. SBMLParameter, an SBML Parameter structure
 2. id; a string representing the id to be set
 
-returns
+Returns
 
 1. the SBML Parameter structure with the new value for the id attribute
 
@@ -369,12 +368,12 @@ returns
 
 ####SBMLParameter = Parameter_setMetaid(SBMLParameter, metaid)
 
-takes
+Takes
 
-1. SBMLParameter; an SBML Parameter structure
+1. SBMLParameter, an SBML Parameter structure
 2. metaid; a string representing the metaid to be set
 
-returns
+Returns
 
 1. the SBML Parameter structure with the new value for the metaid attribute
 
@@ -384,12 +383,12 @@ returns
 
 ####SBMLParameter = Parameter_setName(SBMLParameter, name)
 
-takes
+Takes
 
-1. SBMLParameter; an SBML Parameter structure
+1. SBMLParameter, an SBML Parameter structure
 2. name; a string representing the name to be set
 
-returns
+Returns
 
 1. the SBML Parameter structure with the new value for the name attribute
 
@@ -399,12 +398,12 @@ returns
 
 ####SBMLParameter = Parameter_setSBOTerm(SBMLParameter, sboTerm)
 
-takes
+Takes
 
-1. SBMLParameter; an SBML Parameter structure
-2. sboTerm; an integer representing the sboTerm to be set
+1. SBMLParameter, an SBML Parameter structure
+2. sboTerm, an integer representing the sboTerm to be set
 
-returns
+Returns
 
 1. the SBML Parameter structure with the new value for the sboTerm attribute
 
@@ -414,12 +413,12 @@ returns
 
 ####SBMLParameter = Parameter_setUnits(SBMLParameter, units)
 
-takes
+Takes
 
-1. SBMLParameter; an SBML Parameter structure
+1. SBMLParameter, an SBML Parameter structure
 2. units; a string representing the units to be set
 
-returns
+Returns
 
 1. the SBML Parameter structure with the new value for the units attribute
 
@@ -429,12 +428,12 @@ returns
 
 ####SBMLParameter = Parameter_setValue(SBMLParameter, value)
 
-takes
+Takes
 
-1. SBMLParameter; an SBML Parameter structure
+1. SBMLParameter, an SBML Parameter structure
 2. value; number representing the value of value to be set
 
-returns
+Returns
 
 1. the SBML Parameter structure with the new value for the value attribute
 
@@ -444,11 +443,11 @@ returns
 
 ####SBMLParameter = Parameter_unsetId(SBMLParameter)
 
-takes
+Takes
 
-1. SBMLParameter; an SBML Parameter structure
+1. SBMLParameter, an SBML Parameter structure
 
-returns
+Returns
 
 1. the SBML Parameter structure with the id attribute unset
 
@@ -458,11 +457,11 @@ returns
 
 ####SBMLParameter = Parameter_unsetMetaid(SBMLParameter)
 
-takes
+Takes
 
-1. SBMLParameter; an SBML Parameter structure
+1. SBMLParameter, an SBML Parameter structure
 
-returns
+Returns
 
 1. the SBML Parameter structure with the metaid attribute unset
 
@@ -472,11 +471,11 @@ returns
 
 ####SBMLParameter = Parameter_unsetName(SBMLParameter)
 
-takes
+Takes
 
-1. SBMLParameter; an SBML Parameter structure
+1. SBMLParameter, an SBML Parameter structure
 
-returns
+Returns
 
 1. the SBML Parameter structure with the name attribute unset
 
@@ -486,11 +485,11 @@ returns
 
 ####SBMLParameter = Parameter_unsetSBOTerm(SBMLParameter)
 
-takes
+Takes
 
-1. SBMLParameter; an SBML Parameter structure
+1. SBMLParameter, an SBML Parameter structure
 
-returns
+Returns
 
 1. the SBML Parameter structure with the sboTerm attribute unset
 
@@ -500,11 +499,11 @@ returns
 
 ####SBMLParameter = Parameter_unsetUnits(SBMLParameter)
 
-takes
+Takes
 
-1. SBMLParameter; an SBML Parameter structure
+1. SBMLParameter, an SBML Parameter structure
 
-returns
+Returns
 
 1. the SBML Parameter structure with the units attribute unset
 
@@ -514,11 +513,11 @@ returns
 
 ####SBMLParameter = Parameter_unsetValue(SBMLParameter)
 
-takes
+Takes
 
-1. SBMLParameter; an SBML Parameter structure
+1. SBMLParameter, an SBML Parameter structure
 
-returns
+Returns
 
 1. the SBML Parameter structure with the value attribute unset
 

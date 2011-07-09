@@ -1,6 +1,6 @@
 % toolbox\MATLAB_SBML_Structure_Functions\Constraint
 %
-% The functions allow users to create and work with the SBML Constraint structure. 
+% The functions allow users to create and work with the SBML Constraint structure.
 %
 %===================================================================
 % Constraint = Constraint_create(level(optional), version(optional)

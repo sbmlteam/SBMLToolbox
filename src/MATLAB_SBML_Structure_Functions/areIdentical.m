@@ -1,7 +1,7 @@
 function identical = areIdentical(struct1, struct2)
 % identical = areIdentical(SBMLStruct1, SBMLStruct2)
 %
-% takes
+% Takes
 %
 % 1. SBMLStruct1, any SBML structure
 % 2. SBMLStruct2, any SBML structure

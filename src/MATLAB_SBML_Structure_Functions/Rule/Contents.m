@@ -1,6 +1,6 @@
 % toolbox\MATLAB_SBML_Structure_Functions\Rule
 %
-% The functions allow users to create and work with the SBML Rule structure. 
+% The functions allow users to create and work with the SBML Rule structure.
 %
 %=====================================
 % formula = Rule_getFormula(SBMLRule)

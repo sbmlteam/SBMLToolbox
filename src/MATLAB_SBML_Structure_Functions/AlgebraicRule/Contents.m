@@ -1,6 +1,6 @@
 % toolbox\MATLAB_SBML_Structure_Functions\AlgebraicRule
 %
-% The functions allow users to create and work with the SBML AlgebraicRule structure. 
+% The functions allow users to create and work with the SBML AlgebraicRule structure.
 %
 %=========================================================================
 % AlgebraicRule = AlgebraicRule_create(level(optional), version(optional)

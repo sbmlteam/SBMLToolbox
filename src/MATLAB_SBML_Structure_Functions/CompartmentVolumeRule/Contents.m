@@ -1,6 +1,6 @@
 % toolbox\MATLAB_SBML_Structure_Functions\CompartmentVolumeRule
 %
-% The functions allow users to create and work with the SBML CompartmentVolumeRule structure. 
+% The functions allow users to create and work with the SBML CompartmentVolumeRule structure.
 %
 %=========================================================================================
 % CompartmentVolumeRule = CompartmentVolumeRule_create(level(optional), version(optional)

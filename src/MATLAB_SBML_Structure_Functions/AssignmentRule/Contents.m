@@ -1,6 +1,6 @@
 % toolbox\MATLAB_SBML_Structure_Functions\AssignmentRule
 %
-% The functions allow users to create and work with the SBML AssignmentRule structure. 
+% The functions allow users to create and work with the SBML AssignmentRule structure.
 %
 %===========================================================================
 % AssignmentRule = AssignmentRule_create(level(optional), version(optional)

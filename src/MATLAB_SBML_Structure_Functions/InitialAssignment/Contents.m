@@ -1,6 +1,6 @@
 % toolbox\MATLAB_SBML_Structure_Functions\InitialAssignment
 %
-% The functions allow users to create and work with the SBML InitialAssignment structure. 
+% The functions allow users to create and work with the SBML InitialAssignment structure.
 %
 %=================================================================================
 % InitialAssignment = InitialAssignment_create(level(optional), version(optional)

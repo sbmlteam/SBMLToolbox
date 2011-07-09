@@ -1,4 +1,4 @@
-###MATLAB SBML STRUCTURE FUNCTIONS\REACTION
+###MATLAB_SBML_STRUCTURE_FUNCTIONS\REACTION
 
 
 The functions allow users to create and work with the SBML Reaction structure.
@@ -9,12 +9,12 @@ Function are:
 
 ####SBMLReaction = Reaction_addModifier(SBMLReaction, SBMLModifier)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
-2. SBMLModifier; an SBML Modifier structure
+1. SBMLReaction, an SBML Reaction structure
+2. SBMLModifier, an SBML Modifier structure
 
-returns
+Returns
 
 1. the SBML Reaction structure with the SBML Modifier structure added
 
@@ -24,12 +24,12 @@ returns
 
 ####SBMLReaction = Reaction_addProduct(SBMLReaction, SBMLProduct)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
-2. SBMLProduct; an SBML Product structure
+1. SBMLReaction, an SBML Reaction structure
+2. SBMLProduct, an SBML Product structure
 
-returns
+Returns
 
 1. the SBML Reaction structure with the SBML Product structure added
 
@@ -39,12 +39,12 @@ returns
 
 ####SBMLReaction = Reaction_addReactant(SBMLReaction, SBMLReactant)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
-2. SBMLReactant; an SBML Reactant structure
+1. SBMLReaction, an SBML Reaction structure
+2. SBMLReactant, an SBML Reactant structure
 
-returns
+Returns
 
 1. the SBML Reaction structure with the SBML Reactant structure added
 
@@ -54,30 +54,29 @@ returns
 
 ####Reaction = Reaction_create(level(optional), version(optional)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level (optional)
-2. version; an integer representing an SBML version (optional)
+1. level, an integer representing an SBML level (optional)
+2. version, an integer representing an SBML version (optional)
 
-returns
+Returns
 
 1. a MATLAB_SBML Reaction structure of the appropriate level and version
 
-*NOTE:* the optional level and version preserve backwards compatibility: 
-   
-   - a missing version argument will default to L1V2; L2V4 or L3V1
-   - missing both arguments will default to L3V1
+*NOTE:* the optional level and version preserve backwards compatibility
+  a missing version argument will default to L1V2; L2V4 or L3V1
+  missing both arguments will default to L3V1
 
 
 ------------------------------
 
 ####compartment = Reaction_getCompartment(SBMLReaction)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 
-returns
+Returns
 
 1. the value of the compartment attribute
 
@@ -87,11 +86,11 @@ returns
 
 ####fast = Reaction_getFast(SBMLReaction)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 
-returns
+Returns
 
 1. the value of the fast attribute
 
@@ -101,11 +100,11 @@ returns
 
 ####id = Reaction_getId(SBMLReaction)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 
-returns
+Returns
 
 1. the value of the id attribute
 
@@ -115,11 +114,11 @@ returns
 
 ####kineticLaw = Reaction_getKineticLaw(SBMLReaction)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 
-returns
+Returns
 
 1. the SBML KineticLaw structure
 
@@ -129,11 +128,11 @@ returns
 
 ####modifier = Reaction_getListOfModifiers(SBMLReaction)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 
-returns
+Returns
 
 1. an array of the modifier structures
 
@@ -143,11 +142,11 @@ returns
 
 ####product = Reaction_getListOfProducts(SBMLReaction)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 
-returns
+Returns
 
 1. an array of the product structures
 
@@ -157,11 +156,11 @@ returns
 
 ####reactant = Reaction_getListOfReactants(SBMLReaction)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 
-returns
+Returns
 
 1. an array of the reactant structures
 
@@ -171,11 +170,11 @@ returns
 
 ####metaid = Reaction_getMetaid(SBMLReaction)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 
-returns
+Returns
 
 1. the value of the metaid attribute
 
@@ -185,12 +184,12 @@ returns
 
 ####modifier = Reaction_getModifier(SBMLReaction, index)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
-2. index; an integer representing the index of SBML Modifier structure
+1. SBMLReaction, an SBML Reaction structure
+2. index, an integer representing the index of SBML Modifier structure
 
-returns
+Returns
 
 1. the SBML Modifier structure at the indexed position
 
@@ -200,12 +199,12 @@ returns
 
 ####modifier = Reaction_getModifierById(SBMLReaction, id)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 2. id; a string representing the id of SBML Modifier structure
 
-returns
+Returns
 
 1. the SBML Modifier structure that has this id
 
@@ -215,11 +214,11 @@ returns
 
 ####name = Reaction_getName(SBMLReaction)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 
-returns
+Returns
 
 1. the value of the name attribute
 
@@ -229,11 +228,11 @@ returns
 
 ####num = Reaction_getNumModifiers(SBMLReaction)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 
-returns
+Returns
 
 1. the number of SBML Modifier structures present in the Reaction
 
@@ -243,11 +242,11 @@ returns
 
 ####num = Reaction_getNumProducts(SBMLReaction)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 
-returns
+Returns
 
 1. the number of SBML Product structures present in the Reaction
 
@@ -257,11 +256,11 @@ returns
 
 ####num = Reaction_getNumReactants(SBMLReaction)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 
-returns
+Returns
 
 1. the number of SBML Reactant structures present in the Reaction
 
@@ -271,12 +270,12 @@ returns
 
 ####product = Reaction_getProduct(SBMLReaction, index)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
-2. index; an integer representing the index of SBML Product structure
+1. SBMLReaction, an SBML Reaction structure
+2. index, an integer representing the index of SBML Product structure
 
-returns
+Returns
 
 1. the SBML Product structure at the indexed position
 
@@ -286,12 +285,12 @@ returns
 
 ####product = Reaction_getProductById(SBMLReaction, id)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 2. id; a string representing the id of SBML Product structure
 
-returns
+Returns
 
 1. the SBML Product structure that has this id
 
@@ -301,12 +300,12 @@ returns
 
 ####reactant = Reaction_getReactant(SBMLReaction, index)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
-2. index; an integer representing the index of SBML Reactant structure
+1. SBMLReaction, an SBML Reaction structure
+2. index, an integer representing the index of SBML Reactant structure
 
-returns
+Returns
 
 1. the SBML Reactant structure at the indexed position
 
@@ -316,12 +315,12 @@ returns
 
 ####reactant = Reaction_getReactantById(SBMLReaction, id)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 2. id; a string representing the id of SBML Reactant structure
 
-returns
+Returns
 
 1. the SBML Reactant structure that has this id
 
@@ -331,11 +330,11 @@ returns
 
 ####reversible = Reaction_getReversible(SBMLReaction)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 
-returns
+Returns
 
 1. the value of the reversible attribute
 
@@ -345,11 +344,11 @@ returns
 
 ####sboTerm = Reaction_getSBOTerm(SBMLReaction)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 
-returns
+Returns
 
 1. the value of the sboTerm attribute
 
@@ -359,11 +358,11 @@ returns
 
 ####value = Reaction_isSetCompartment(SBMLReaction)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the compartment attribute is set
@@ -375,11 +374,11 @@ returns
 
 ####value = Reaction_isSetFast(SBMLReaction)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the fast attribute is set
@@ -391,11 +390,11 @@ returns
 
 ####value = Reaction_isSetId(SBMLReaction)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the id attribute is set
@@ -407,11 +406,11 @@ returns
 
 ####value = Reaction_isSetKineticLaw(SBMLReaction)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the kineticLaw structure is set
@@ -423,11 +422,11 @@ returns
 
 ####value = Reaction_isSetMetaid(SBMLReaction)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the metaid attribute is set
@@ -439,11 +438,11 @@ returns
 
 ####value = Reaction_isSetName(SBMLReaction)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the name attribute is set
@@ -455,11 +454,11 @@ returns
 
 ####value = Reaction_isSetReversible(SBMLReaction)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the reversible attribute is set
@@ -471,11 +470,11 @@ returns
 
 ####value = Reaction_isSetSBOTerm(SBMLReaction)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the sboTerm attribute is set
@@ -487,12 +486,12 @@ returns
 
 ####SBMLReaction = Reaction_setCompartment(SBMLReaction, compartment)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 2. compartment; a string representing the compartment to be set
 
-returns
+Returns
 
 1. the SBML Reaction structure with the new value for the compartment attribute
 
@@ -502,12 +501,12 @@ returns
 
 ####SBMLReaction = Reaction_setFast(SBMLReaction, fast)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
-2. fast; an integer (0/1) representing the value of fast to be set
+1. SBMLReaction, an SBML Reaction structure
+2. fast, an integer (0/1) representing the value of fast to be set
 
-returns
+Returns
 
 1. the SBML Reaction structure with the new value for the fast attribute
 
@@ -517,12 +516,12 @@ returns
 
 ####SBMLReaction = Reaction_setId(SBMLReaction, id)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 2. id; a string representing the id to be set
 
-returns
+Returns
 
 1. the SBML Reaction structure with the new value for the id attribute
 
@@ -532,12 +531,12 @@ returns
 
 ####SBMLReaction = Reaction_setKineticLaw(SBMLReaction, SBMLKineticLaw)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
-2. SBMLKineticLaw; an SBML KineticLaw structure
+1. SBMLReaction, an SBML Reaction structure
+2. SBMLKineticLaw, an SBML KineticLaw structure
 
-returns
+Returns
 
 1. the SBML Reaction structure with the new value for the kineticLaw field
 
@@ -547,12 +546,12 @@ returns
 
 ####SBMLReaction = Reaction_setMetaid(SBMLReaction, metaid)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 2. metaid; a string representing the metaid to be set
 
-returns
+Returns
 
 1. the SBML Reaction structure with the new value for the metaid attribute
 
@@ -562,12 +561,12 @@ returns
 
 ####SBMLReaction = Reaction_setName(SBMLReaction, name)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 2. name; a string representing the name to be set
 
-returns
+Returns
 
 1. the SBML Reaction structure with the new value for the name attribute
 
@@ -577,12 +576,12 @@ returns
 
 ####SBMLReaction = Reaction_setReversible(SBMLReaction, reversible)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
-2. reversible; an integer (0/1) representing the value of reversible to be set
+1. SBMLReaction, an SBML Reaction structure
+2. reversible, an integer (0/1) representing the value of reversible to be set
 
-returns
+Returns
 
 1. the SBML Reaction structure with the new value for the reversible attribute
 
@@ -592,12 +591,12 @@ returns
 
 ####SBMLReaction = Reaction_setSBOTerm(SBMLReaction, sboTerm)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
-2. sboTerm; an integer representing the sboTerm to be set
+1. SBMLReaction, an SBML Reaction structure
+2. sboTerm, an integer representing the sboTerm to be set
 
-returns
+Returns
 
 1. the SBML Reaction structure with the new value for the sboTerm attribute
 
@@ -607,11 +606,11 @@ returns
 
 ####SBMLReaction = Reaction_unsetCompartment(SBMLReaction)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 
-returns
+Returns
 
 1. the SBML Reaction structure with the compartment attribute unset
 
@@ -621,11 +620,11 @@ returns
 
 ####SBMLReaction = Reaction_unsetFast(SBMLReaction)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 
-returns
+Returns
 
 1. the SBML Reaction structure with the fast attribute unset
 
@@ -635,11 +634,11 @@ returns
 
 ####SBMLReaction = Reaction_unsetId(SBMLReaction)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 
-returns
+Returns
 
 1. the SBML Reaction structure with the id attribute unset
 
@@ -649,11 +648,11 @@ returns
 
 ####SBMLReaction = Reaction_unsetKineticLaw(SBMLReaction)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 
-returns
+Returns
 
 1. the SBML Reaction structure with the kineticLaw field unset
 
@@ -663,11 +662,11 @@ returns
 
 ####SBMLReaction = Reaction_unsetMetaid(SBMLReaction)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 
-returns
+Returns
 
 1. the SBML Reaction structure with the metaid attribute unset
 
@@ -677,11 +676,11 @@ returns
 
 ####SBMLReaction = Reaction_unsetName(SBMLReaction)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 
-returns
+Returns
 
 1. the SBML Reaction structure with the name attribute unset
 
@@ -691,11 +690,11 @@ returns
 
 ####SBMLReaction = Reaction_unsetReversible(SBMLReaction)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 
-returns
+Returns
 
 1. the SBML Reaction structure with the reversible attribute unset
 
@@ -705,11 +704,11 @@ returns
 
 ####SBMLReaction = Reaction_unsetSBOTerm(SBMLReaction)
 
-takes
+Takes
 
-1. SBMLReaction; an SBML Reaction structure
+1. SBMLReaction, an SBML Reaction structure
 
-returns
+Returns
 
 1. the SBML Reaction structure with the sboTerm attribute unset
 

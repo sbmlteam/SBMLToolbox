@@ -1,6 +1,6 @@
 % toolbox\MATLAB_SBML_Structure_Functions\Reaction
 %
-% The functions allow users to create and work with the SBML Reaction structure. 
+% The functions allow users to create and work with the SBML Reaction structure.
 %
 %=================================================================
 % SBMLReaction = Reaction_addModifier(SBMLReaction, SBMLModifier)

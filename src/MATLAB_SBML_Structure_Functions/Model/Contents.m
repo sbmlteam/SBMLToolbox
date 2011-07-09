@@ -1,6 +1,6 @@
 % toolbox\MATLAB_SBML_Structure_Functions\Model
 %
-% The functions allow users to create and work with the SBML Model structure. 
+% The functions allow users to create and work with the SBML Model structure.
 %
 %==============================================================
 % SBMLModel = Model_addCompartment(SBMLModel, SBMLCompartment)

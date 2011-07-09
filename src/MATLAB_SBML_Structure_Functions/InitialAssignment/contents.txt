@@ -1,4 +1,4 @@
-###MATLAB SBML STRUCTURE FUNCTIONS\INITIALASSIGNMENT
+###MATLAB_SBML_STRUCTURE_FUNCTIONS\INITIALASSIGNMENT
 
 
 The functions allow users to create and work with the SBML InitialAssignment structure.
@@ -9,30 +9,29 @@ Function are:
 
 ####InitialAssignment = InitialAssignment_create(level(optional), version(optional)
 
-takes
+Takes
 
-1. level; an integer representing an SBML level (optional)
-2. version; an integer representing an SBML version (optional)
+1. level, an integer representing an SBML level (optional)
+2. version, an integer representing an SBML version (optional)
 
-returns
+Returns
 
 1. a MATLAB_SBML InitialAssignment structure of the appropriate level and version
 
-*NOTE:* the optional level and version preserve backwards compatibility: 
-   
-   - a missing version argument will default to L1V2; L2V4 or L3V1
-   - missing both arguments will default to L3V1
+*NOTE:* the optional level and version preserve backwards compatibility
+  a missing version argument will default to L1V2; L2V4 or L3V1
+  missing both arguments will default to L3V1
 
 
 ------------------------------
 
 ####math = InitialAssignment_getMath(SBMLInitialAssignment)
 
-takes
+Takes
 
-1. SBMLInitialAssignment; an SBML InitialAssignment structure
+1. SBMLInitialAssignment, an SBML InitialAssignment structure
 
-returns
+Returns
 
 1. the value of the math attribute
 
@@ -42,11 +41,11 @@ returns
 
 ####metaid = InitialAssignment_getMetaid(SBMLInitialAssignment)
 
-takes
+Takes
 
-1. SBMLInitialAssignment; an SBML InitialAssignment structure
+1. SBMLInitialAssignment, an SBML InitialAssignment structure
 
-returns
+Returns
 
 1. the value of the metaid attribute
 
@@ -56,11 +55,11 @@ returns
 
 ####sboTerm = InitialAssignment_getSBOTerm(SBMLInitialAssignment)
 
-takes
+Takes
 
-1. SBMLInitialAssignment; an SBML InitialAssignment structure
+1. SBMLInitialAssignment, an SBML InitialAssignment structure
 
-returns
+Returns
 
 1. the value of the sboTerm attribute
 
@@ -70,11 +69,11 @@ returns
 
 ####symbol = InitialAssignment_getSymbol(SBMLInitialAssignment)
 
-takes
+Takes
 
-1. SBMLInitialAssignment; an SBML InitialAssignment structure
+1. SBMLInitialAssignment, an SBML InitialAssignment structure
 
-returns
+Returns
 
 1. the value of the symbol attribute
 
@@ -84,11 +83,11 @@ returns
 
 ####value = InitialAssignment_isSetMath(SBMLInitialAssignment)
 
-takes
+Takes
 
-1. SBMLInitialAssignment; an SBML InitialAssignment structure
+1. SBMLInitialAssignment, an SBML InitialAssignment structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the math attribute is set
@@ -100,11 +99,11 @@ returns
 
 ####value = InitialAssignment_isSetMetaid(SBMLInitialAssignment)
 
-takes
+Takes
 
-1. SBMLInitialAssignment; an SBML InitialAssignment structure
+1. SBMLInitialAssignment, an SBML InitialAssignment structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the metaid attribute is set
@@ -116,11 +115,11 @@ returns
 
 ####value = InitialAssignment_isSetSBOTerm(SBMLInitialAssignment)
 
-takes
+Takes
 
-1. SBMLInitialAssignment; an SBML InitialAssignment structure
+1. SBMLInitialAssignment, an SBML InitialAssignment structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the sboTerm attribute is set
@@ -132,11 +131,11 @@ returns
 
 ####value = InitialAssignment_isSetSymbol(SBMLInitialAssignment)
 
-takes
+Takes
 
-1. SBMLInitialAssignment; an SBML InitialAssignment structure
+1. SBMLInitialAssignment, an SBML InitialAssignment structure
 
-returns
+Returns
 
 1. value = 
  - 1 if the symbol attribute is set
@@ -148,12 +147,12 @@ returns
 
 ####SBMLInitialAssignment = InitialAssignment_setMath(SBMLInitialAssignment, math)
 
-takes
+Takes
 
-1. SBMLInitialAssignment; an SBML InitialAssignment structure
+1. SBMLInitialAssignment, an SBML InitialAssignment structure
 2. math; string representing the math expression math to be set
 
-returns
+Returns
 
 1. the SBML InitialAssignment structure with the new value for the math attribute
 
@@ -163,12 +162,12 @@ returns
 
 ####SBMLInitialAssignment = InitialAssignment_setMetaid(SBMLInitialAssignment, metaid)
 
-takes
+Takes
 
-1. SBMLInitialAssignment; an SBML InitialAssignment structure
+1. SBMLInitialAssignment, an SBML InitialAssignment structure
 2. metaid; a string representing the metaid to be set
 
-returns
+Returns
 
 1. the SBML InitialAssignment structure with the new value for the metaid attribute
 
@@ -178,12 +177,12 @@ returns
 
 ####SBMLInitialAssignment = InitialAssignment_setSBOTerm(SBMLInitialAssignment, sboTerm)
 
-takes
+Takes
 
-1. SBMLInitialAssignment; an SBML InitialAssignment structure
-2. sboTerm; an integer representing the sboTerm to be set
+1. SBMLInitialAssignment, an SBML InitialAssignment structure
+2. sboTerm, an integer representing the sboTerm to be set
 
-returns
+Returns
 
 1. the SBML InitialAssignment structure with the new value for the sboTerm attribute
 
@@ -193,12 +192,12 @@ returns
 
 ####SBMLInitialAssignment = InitialAssignment_setSymbol(SBMLInitialAssignment, symbol)
 
-takes
+Takes
 
-1. SBMLInitialAssignment; an SBML InitialAssignment structure
+1. SBMLInitialAssignment, an SBML InitialAssignment structure
 2. symbol; a string representing the symbol to be set
 
-returns
+Returns
 
 1. the SBML InitialAssignment structure with the new value for the symbol attribute
 
@@ -208,11 +207,11 @@ returns
 
 ####SBMLInitialAssignment = InitialAssignment_unsetMath(SBMLInitialAssignment)
 
-takes
+Takes
 
-1. SBMLInitialAssignment; an SBML InitialAssignment structure
+1. SBMLInitialAssignment, an SBML InitialAssignment structure
 
-returns
+Returns
 
 1. the SBML InitialAssignment structure with the math attribute unset
 
@@ -222,11 +221,11 @@ returns
 
 ####SBMLInitialAssignment = InitialAssignment_unsetMetaid(SBMLInitialAssignment)
 
-takes
+Takes
 
-1. SBMLInitialAssignment; an SBML InitialAssignment structure
+1. SBMLInitialAssignment, an SBML InitialAssignment structure
 
-returns
+Returns
 
 1. the SBML InitialAssignment structure with the metaid attribute unset
 
@@ -236,11 +235,11 @@ returns
 
 ####SBMLInitialAssignment = InitialAssignment_unsetSBOTerm(SBMLInitialAssignment)
 
-takes
+Takes
 
-1. SBMLInitialAssignment; an SBML InitialAssignment structure
+1. SBMLInitialAssignment, an SBML InitialAssignment structure
 
-returns
+Returns
 
 1. the SBML InitialAssignment structure with the sboTerm attribute unset
 
@@ -250,11 +249,11 @@ returns
 
 ####SBMLInitialAssignment = InitialAssignment_unsetSymbol(SBMLInitialAssignment)
 
-takes
+Takes
 
-1. SBMLInitialAssignment; an SBML InitialAssignment structure
+1. SBMLInitialAssignment, an SBML InitialAssignment structure
 
-returns
+Returns
 
 1. the SBML InitialAssignment structure with the symbol attribute unset
 
