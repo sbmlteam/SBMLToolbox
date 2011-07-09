@@ -1,5 +1,5 @@
 function Reaction = Reaction_create(varargin)
-% Reaction = Reaction_create(level(optional), version(optional)
+% Reaction = Reaction_create(level(optional), version(optional) )
 %
 % Takes
 %

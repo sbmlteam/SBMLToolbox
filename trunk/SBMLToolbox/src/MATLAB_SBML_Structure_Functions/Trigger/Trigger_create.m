@@ -1,5 +1,5 @@
 function Trigger = Trigger_create(varargin)
-% Trigger = Trigger_create(level(optional), version(optional)
+% Trigger = Trigger_create(level(optional), version(optional) )
 %
 % Takes
 %

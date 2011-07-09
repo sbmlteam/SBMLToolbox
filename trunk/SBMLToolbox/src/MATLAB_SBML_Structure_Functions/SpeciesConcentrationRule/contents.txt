@@ -7,7 +7,7 @@ Function are:
 
 ----------
 
-####SpeciesConcentrationRule = SpeciesConcentrationRule_create(level(optional), version(optional)
+####SpeciesConcentrationRule = SpeciesConcentrationRule_create(level(optional), version(optional) )
 
 Takes
 

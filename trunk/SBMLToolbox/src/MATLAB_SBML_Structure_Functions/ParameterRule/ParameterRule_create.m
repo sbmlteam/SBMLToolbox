@@ -1,5 +1,5 @@
 function ParameterRule = ParameterRule_create(varargin)
-% ParameterRule = ParameterRule_create(level(optional), version(optional)
+% ParameterRule = ParameterRule_create(level(optional), version(optional) )
 %
 % Takes
 %

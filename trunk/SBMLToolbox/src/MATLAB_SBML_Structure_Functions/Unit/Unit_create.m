@@ -1,5 +1,5 @@
 function Unit = Unit_create(varargin)
-% Unit = Unit_create(level(optional), version(optional)
+% Unit = Unit_create(level(optional), version(optional) )
 %
 % Takes
 %

@@ -1,5 +1,5 @@
 function CompartmentType = CompartmentType_create(varargin)
-% CompartmentType = CompartmentType_create(level(optional), version(optional)
+% CompartmentType = CompartmentType_create(level(optional), version(optional) )
 %
 % Takes
 %

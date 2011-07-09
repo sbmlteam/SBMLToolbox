@@ -7,7 +7,7 @@ Function are:
 
 ----------
 
-####Trigger = Trigger_create(level(optional), version(optional)
+####Trigger = Trigger_create(level(optional), version(optional) )
 
 Takes
 

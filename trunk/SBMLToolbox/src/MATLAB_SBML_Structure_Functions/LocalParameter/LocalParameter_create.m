@@ -1,5 +1,5 @@
 function LocalParameter = LocalParameter_create(varargin)
-% LocalParameter = LocalParameter_create(level(optional), version(optional)
+% LocalParameter = LocalParameter_create(level(optional), version(optional) )
 %
 % Takes
 %

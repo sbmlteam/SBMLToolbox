@@ -52,7 +52,7 @@ Returns
 
 ------------------------------
 
-####Reaction = Reaction_create(level(optional), version(optional)
+####Reaction = Reaction_create(level(optional), version(optional) )
 
 Takes
 

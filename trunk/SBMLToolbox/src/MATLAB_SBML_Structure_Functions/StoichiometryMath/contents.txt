@@ -7,7 +7,7 @@ Function are:
 
 ----------
 
-####StoichiometryMath = StoichiometryMath_create(level(optional), version(optional)
+####StoichiometryMath = StoichiometryMath_create(level(optional), version(optional) )
 
 Takes
 

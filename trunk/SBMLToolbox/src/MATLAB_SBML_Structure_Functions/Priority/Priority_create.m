@@ -1,5 +1,5 @@
 function Priority = Priority_create(varargin)
-% Priority = Priority_create(level(optional), version(optional)
+% Priority = Priority_create(level(optional), version(optional) )
 %
 % Takes
 %

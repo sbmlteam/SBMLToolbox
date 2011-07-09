@@ -2,9 +2,9 @@
 %
 % The functions allow users to create and work with the SBML Priority structure.
 %
-%===============================================================
-% Priority = Priority_create(level(optional), version(optional)
-%===============================================================
+%=================================================================
+% Priority = Priority_create(level(optional), version(optional) )
+%=================================================================
 % Takes
 % 1. level, an integer representing an SBML level (optional)
 % 2. version, an integer representing an SBML version (optional)

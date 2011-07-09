@@ -7,7 +7,7 @@ Function are:
 
 ----------
 
-####Priority = Priority_create(level(optional), version(optional)
+####Priority = Priority_create(level(optional), version(optional) )
 
 Takes
 

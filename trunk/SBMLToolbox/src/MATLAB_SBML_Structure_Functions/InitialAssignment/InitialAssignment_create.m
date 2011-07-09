@@ -1,5 +1,5 @@
 function InitialAssignment = InitialAssignment_create(varargin)
-% InitialAssignment = InitialAssignment_create(level(optional), version(optional)
+% InitialAssignment = InitialAssignment_create(level(optional), version(optional) )
 %
 % Takes
 %

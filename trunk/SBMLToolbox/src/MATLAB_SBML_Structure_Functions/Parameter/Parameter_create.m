@@ -1,5 +1,5 @@
 function Parameter = Parameter_create(varargin)
-% Parameter = Parameter_create(level(optional), version(optional)
+% Parameter = Parameter_create(level(optional), version(optional) )
 %
 % Takes
 %

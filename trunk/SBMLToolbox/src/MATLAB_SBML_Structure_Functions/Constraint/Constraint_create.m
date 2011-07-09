@@ -1,5 +1,5 @@
 function Constraint = Constraint_create(varargin)
-% Constraint = Constraint_create(level(optional), version(optional)
+% Constraint = Constraint_create(level(optional), version(optional) )
 %
 % Takes
 %

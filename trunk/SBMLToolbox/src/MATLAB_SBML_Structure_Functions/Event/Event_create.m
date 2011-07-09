@@ -1,5 +1,5 @@
 function Event = Event_create(varargin)
-% Event = Event_create(level(optional), version(optional)
+% Event = Event_create(level(optional), version(optional) )
 %
 % Takes
 %

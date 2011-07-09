@@ -1,5 +1,5 @@
 function ModifierSpeciesReference = ModifierSpeciesReference_create(varargin)
-% ModifierSpeciesReference = ModifierSpeciesReference_create(level(optional), version(optional)
+% ModifierSpeciesReference = ModifierSpeciesReference_create(level(optional), version(optional) )
 %
 % Takes
 %

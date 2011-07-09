@@ -1,5 +1,5 @@
 function Model = Model_create(varargin)
-% Model = Model_create(level(optional), version(optional)
+% Model = Model_create(level(optional), version(optional) )
 %
 % Takes
 %

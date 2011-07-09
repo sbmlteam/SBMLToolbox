@@ -7,7 +7,7 @@ Function are:
 
 ----------
 
-####Delay = Delay_create(level(optional), version(optional)
+####Delay = Delay_create(level(optional), version(optional) )
 
 Takes
 

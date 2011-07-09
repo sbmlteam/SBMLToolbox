@@ -1,5 +1,5 @@
 function KineticLaw = KineticLaw_create(varargin)
-% KineticLaw = KineticLaw_create(level(optional), version(optional)
+% KineticLaw = KineticLaw_create(level(optional), version(optional) )
 %
 % Takes
 %

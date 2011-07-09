@@ -1,5 +1,5 @@
 function SpeciesConcentrationRule = SpeciesConcentrationRule_create(varargin)
-% SpeciesConcentrationRule = SpeciesConcentrationRule_create(level(optional), version(optional)
+% SpeciesConcentrationRule = SpeciesConcentrationRule_create(level(optional), version(optional) )
 %
 % Takes
 %
