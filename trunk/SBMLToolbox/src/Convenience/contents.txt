@@ -1,7 +1,8 @@
 ###CONVENIENCE
 
 
-Put info here.
+The Convenience folder contains a number of convenience functions for checking information or manipulating math expressions.
+
 
 Function are:
 
@@ -9,11 +10,11 @@ Function are:
 
 ####y = CheckValidUnitKind(kind)
 
-takes 
+Takes
 
-1. kind; a string representing a unit kind 
+1. kind, a string representing a unit kind 
 
-returns 
+Returns 
 
 1. y =
  - 1 if the string represents a valid unit kind 
@@ -27,11 +28,11 @@ returns
 
 ####newArray = LoseWhiteSpace(charArray)
 
-takes 
+Takes
 
-1. charArray; an array of characters 
+1. charArray, an array of characters 
 
-returns 
+Returns 
 
 1. the array with any white space removed
 
@@ -47,13 +48,14 @@ returns
 
 ####pairs = PairBrackets(expression) 
 
-takes
+Takes
 
-1. expression; a string representation of a math expression
+1. expression, a string representation of a math expression
 
-returns
+Returns
 
-1. an array of the indices of each pair of brackets ordered from the opening bracket index
+1. an array of the indices of each pair of brackets ordered from
+the opening bracket index
 
 *EXAMPLE:*
 
@@ -71,12 +73,12 @@ returns
 
 ####output = Rearrange(expression, name)
 
-takes
+Takes
 
-1. expression; a string representation of a math expression
-2. name; a string representing the name of a variable
+1. expression, a string representation of a math expression
+2. name, a string representing the name of a variable
 
-returns
+Returns
 
 1. the expression rearranged in terms of the variable
 
@@ -92,11 +94,11 @@ returns
 
 ####newArray = RemoveDuplicates(array) 
 
-takes
+Takes
 
-1. array; any array
+1. array, any array
 
-returns
+Returns
 
 1. the array with any duplicate entries removed  
 
@@ -111,12 +113,12 @@ returns
 
 ####value = Substitute(expression, SBMLModel) 
 
-takes
+Takes
 
-1. expression; a string representation of a math expression
-2. SBMLModel; an SBML Model structure
+1. expression, a string representation of a math expression
+2. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
 1. the value of the expression when all variables within the model have
 been substituted
@@ -136,15 +138,15 @@ been substituted
 
 ####newExpression = SubstituteConstants(expression, SBMLModel) 
 
-takes
+Takes
 
-1. expression; a string representation of a math expression
-2. SBMLModel; an SBML Model structure
+1. expression, a string representation of a math expression
+2. SBMLModel, an SBML Model structure
 
-returns
+Returns
 
-1. the string representation of the expression when all constants within the model have
-been substituted
+1. the string representation of the expression when all constants within the 
+model have been substituted
 
 *EXAMPLE:*
 
@@ -161,16 +163,16 @@ been substituted
 
 ####newExpression = SubstituteFunction(expression, SBMLFunctionDefinition) 
 
-takes
+Takes
 
-1. expression; a string representation of a math expression
-2. SBMLFunctionDefinition; an SBML FunctionDefinition structure
+1. expression, a string representation of a math expression
+2. SBMLFunctionDefinition, an SBML FunctionDefinition structure
 
-returns
+Returns
 
 1. newExpression
- - the string representation of the expression when any instances of the functionDefinition have
-been substituted
+ - the string representation of the expression when any instances of the 
+functionDefinition have been substituted
  - an empty string if the functiondefinition is not in the original
  expression
 
@@ -194,11 +196,11 @@ been substituted
 
 ####y = isIntegralNumber(number)
 
-takes
+Takes
 
-1. number; any number
+1. number, any number
 
-returns
+Returns
 
 1. y = 
 - 1 if the number represents an integer 
@@ -216,7 +218,7 @@ returns
               y = 1
                         
 *NOTE:* The inbuilt 'isinteger' function only returns true if the number 
- has been declared as having an integer type; whereas the default type for numbers 
+ has been declared as having an integer type, whereas the default type for numbers 
  in MATLAB is double. This function will return '1' if the number
  represents an integer.
 
@@ -226,9 +228,9 @@ returns
 
 ####y = isValidUnitKind(kind)
 
-takes 
+Takes
 
-1. kind; a string representing a unit kind 
+1. kind, a string representing a unit kind 
 
 returns 
 
@@ -244,12 +246,12 @@ returns
 
 ####index = matchFunctionName(expression, name)
 
-takes
+Takes
 
-1. expression; a string representation of a math expression
-2. name; a string representing the name of a function
+1. expression, a string representation of a math expression
+2. name, a string representing the name of a function
 
-returns
+Returns
 
 1. the index of the starting point of 'name' in the 'expression'
 
@@ -280,12 +282,12 @@ returns
 
 ####index = matchName(expression, name)
 
-takes
+Takes
 
-1. expression; a string representation of a math expression
-2. name; a string representing the name of a variable
+1. expression, a string representation of a math expression
+2. name, a string representing the name of a variable
 
-returns
+Returns
 
 1. the index of the starting point of 'name' in the 'expression'
 
@@ -315,13 +317,13 @@ returns
 
 ####value = piecewise(value1, test, value2)
 
-takes
+Takes
 
-1. value1; the value to return if the test is true
-2. test; a boolean test that will return true or false
-3. value2; the value to return if the test is false
+1. value1, the value to return if the test is true
+2. test, a boolean test that will return true or false
+3. value2, the value to return if the test is false
 
-returns
+Returns
 
 1. value = 
   - value1, if test returns true
@@ -335,7 +337,7 @@ returns
               value = piecewise(3, 1>2, 4)
               value = 4
               
-*NOTE:* This function provides the functionality of the MathML 'piecewise' function              
+*NOTE:* This function provides the functionality of the MathML 'piecewise' function.
 
 
 
@@ -343,12 +345,12 @@ returns
 
 ####y = testmember(value, array)
 
-takes 
+Takes
 
-1. value; any number/string
-2. array; an array of objects 
+1. value, any number/string
+2. array, an array of objects 
 
-returns 
+Returns 
 
 1. y = 
   - 1 if value is a member of the array 
