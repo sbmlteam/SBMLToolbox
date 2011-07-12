@@ -1,32 +1,64 @@
 function Species = AnalyseSpecies(SBMLModel)
-% AnalyseSpecies takes an SBML model and returns a structure detailing the
-% species and how they are manipulated within the model
-% 
-% The fields in the structure are:
-%     Name
-%     SpeciesType (SBML Level 2 Version 2 only)
-%     constant
-%     boundaryCondition
-%     initialValue
-%     isConcentration
-%     compartment
-%     ChangedByReaction
-%     KineticLaw
-%     ChangedByRateRule
-%     RateRule
-%     ChangedByAssignmentRule
-%     AssignmentRule
-%     InAlgebraicRule
-%     AlgebraicRule
-%     ConvertedToAssignRule
-%     ConvertedRule
-
-%  Filename    :   AnalyseSpecies.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
+% [analysis] = AnalyseSpecies(SBMLModel)
 %
+% Takes
+%
+% 1. SBMLModel, an SBML Model structure
+%
+% Returns
+%
+% 1. a structure detailing the species and how they are manipulated 
+%               within the model
+% 
+% *EXAMPLE*
+%          Using the model from toolbox/Test/test-data/algebraicRules.xml
+%
+%             analysis = AnalyseSpecies(m)
+% 
+%             analysis = 
+% 
+%             1x5 struct array with fields:
+%                 Name
+%                 constant
+%                 boundaryCondition
+%                 initialValue
+%                 is0Dcompartment
+%                 isConcentration
+%                 compartment
+%                 ChangedByReaction
+%                 KineticLaw
+%                 ChangedByRateRule
+%                 RateRule
+%                 ChangedByAssignmentRule
+%                 AssignmentRule
+%                 InAlgebraicRule
+%                 AlgebraicRule
+%                 ConvertedToAssignRule
+%                 ConvertedRule
+% 
+%             analysis(1) = 
+%
+% 
+%                                    Name: {'S1'}
+%                                constant: 0
+%                       boundaryCondition: 0
+%                            initialValue: 0.0300
+%                         is0Dcompartment: 0
+%                         isConcentration: 0
+%                             compartment: 'compartment'
+%                       ChangedByReaction: 1
+%                              KineticLaw: {' - (k*S1)'}
+%                       ChangedByRateRule: 0
+%                                RateRule: ''
+%                 ChangedByAssignmentRule: 0
+%                          AssignmentRule: ''
+%                         InAlgebraicRule: 1
+%                           AlgebraicRule: {{1x1 cell}}
+%                   ConvertedToAssignRule: 0
+%                           ConvertedRule: ''
+% 
+
+
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

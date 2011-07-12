@@ -1,26 +1,33 @@
 function VaryingParameters = AnalyseVaryingParameters(SBMLModel)
-% AnalyseVaryingParameters takes an SBML model and returns a 
-% structure detailing the VaryingParameters and how they are
-% manipulated within the model
-% 
-% The fields in the structure are:
-%     Name
-%     initialValue
-%     ChangedByRateRule
-%     RateRule
-%     ChangedByAssignmentRule
-%     AssignmentRule
-%     InAlgebraicRule
-%     AlgebraicRule
-%     ConvertedToAssignRule
-%     ConvertedRule
-
-%  Filename    :   AnalyseVaryingParameters.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: AnalyseVaryingParameters.m 13259 2011-03-21 05:40:36Z mhucka $
-%  $Source v $
+% [analysis] = AnalyseVaryingParameters(SBMLModel)
 %
+% Takes
+%
+% 1. SBMLModel, an SBML Model structure
+%
+% Returns
+%
+% 1. a structure detailing any parameters that are not constant and how they are manipulated 
+%               within the model
+% 
+% *EXAMPLE:*
+%
+%          Using the model from toolbox/Test/test-data/algebraicRules.xml
+%
+%            analysis = AnalyseVaryingParameters(m)
+%            
+%            analysis = 
+%                        Name: {'s2'}
+%                initialValue: 4
+%           ChangedByRateRule: 0
+%                    RateRule: ''
+%     ChangedByAssignmentRule: 0
+%              AssignmentRule: ''
+%             InAlgebraicRule: 1
+%               AlgebraicRule: {{1x1 cell}}
+%       ConvertedToAssignRule: 1
+%               ConvertedRule: '-(-S2-S3)'
+
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
