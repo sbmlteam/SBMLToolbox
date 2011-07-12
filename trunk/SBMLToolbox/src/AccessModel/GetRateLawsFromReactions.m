@@ -182,7 +182,7 @@ for i = 1:NumberSpecies
                             if (stoichiometry == 1)
                                 output = sprintf('%s + (%s)', output, formula);
                             else
-                                output = sprintf('%s + %u * (%s)', output, stoichiometry, formula);
+                                output = sprintf('%s + %g * (%s)', output, stoichiometry, formula);
                             end;
                           else
                             error('Cannot determine stoichiometry');
@@ -193,7 +193,7 @@ for i = 1:NumberSpecies
                           if (stoichiometry == 1)
                               output = sprintf('%s + (%s)', output, formula);
                           else
-                              output = sprintf('%s + %u * (%s)', output, stoichiometry, formula);
+                              output = sprintf('%s + %g * (%s)', output, stoichiometry, formula);
                           end;
                         end;
                     else
@@ -201,7 +201,7 @@ for i = 1:NumberSpecies
                       if (stoichiometry == 1)
                           output = sprintf('%s + (%s)', output, formula);
                       else
-                          output = sprintf('%s + %u * (%s)', output, stoichiometry, formula);
+                          output = sprintf('%s + %g * (%s)', output, stoichiometry, formula);
                       end;
                          
                     end;
@@ -254,7 +254,7 @@ for i = 1:NumberSpecies
                             if (stoichiometry == 1)
                                 output = sprintf('%s - (%s)', output, formula);
                             else
-                                output = sprintf('%s - %u * (%s)', output, stoichiometry, formula);
+                                output = sprintf('%s - %g * (%s)', output, stoichiometry, formula);
                             end;
                           else
                             error('Cannot determine stoichiometry');
@@ -265,7 +265,7 @@ for i = 1:NumberSpecies
                           if (stoichiometry == 1)
                               output = sprintf('%s - (%s)', output, formula);
                           else
-                              output = sprintf('%s - %u * (%s)', output, stoichiometry, formula);
+                              output = sprintf('%s - %g * (%s)', output, stoichiometry, formula);
                           end;
                         end;
                     else
@@ -273,7 +273,7 @@ for i = 1:NumberSpecies
                       if (stoichiometry == 1)
                           output = sprintf('%s - (%s)', output, formula);
                       else
-                          output = sprintf('%s - %u * (%s)', output, stoichiometry, formula);
+                          output = sprintf('%s - %g * (%s)', output, stoichiometry, formula);
                       end;
 
                          
