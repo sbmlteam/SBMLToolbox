@@ -1,20 +1,24 @@
 function Elements = DealWithPiecewise(OriginalFormula)
-% DealWithPiecewise takes a string representation of a formula 
-% that contains the MathML piecewise function and returns an
-% array of the three components of the piecewise function which
-% can then be written as an if-else statement
+% elements = DealWithPiecewise(formula)
+% 
+% Takes 
+%
+% 1. formula, a string representation of a math expression that contains the MathML piecewise function 
+% 
+% Returns 
+%
+% 1. an array of the three components of the piecewise function
 %     
 % *EXAMPLE:*
+%
 %           elements = DealWithPiecewise('piecewise(le(s2,4),1.5,0.05)')
+%
 %                    =  'le(s2,4)'  '1.5'   '0.05'
 %
+% *NOTE:* The function cannot deal with a piecewise statement with more
+% than three elements.
 
-%  Filename    :   DealWithPiecewise.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
+
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

@@ -1,16 +1,19 @@
 function WriteEventAssignmentFunction(SBMLModel, Name)
-% WriteEventAssignmentFunction takes 1. SBMLModel; an SBML Model structure
-% and outputs 
-%       a file defining a function that assigns values 
-%           following an event 
-%         (for use with the event option of MATLABs ode solvers)
-
-%  Filename    :   WriteEventAssignmentFunction.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
+% WriteEventAssignmentFunction(SBMLModel, name)
 %
+% Takes 
+% 
+% 1. SBMLModel, an SBML Model structure
+% 2. name, a string representing the name of the ode function being used
+%
+% Outputs 
+%
+% 1. a file 'name_eventAssign.m' defining a function that assigns values following an event 
+%         (for use with the event option of MATLABs ode solvers)
+%
+% *NOTE:* This function is called from WriteODEFunction when a model with
+%  events is encountered.
+
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

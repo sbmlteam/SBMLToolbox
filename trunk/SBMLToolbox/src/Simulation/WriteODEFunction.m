@@ -1,18 +1,19 @@
 function WriteODEFunction(varargin)
-% WriteODEFunction takes 
-%               1) an SBMLModel
-%               2) a filename (optional)
-% and outputs 
-%       a file defining a function for use with MATLABs ode solvers
+% WriteODEFunction(SBMLModel, name(optional))
 %
-%  NOTE: if no filename is supplied the model id is used
+% Takes 
+% 
+% 1. SBMLModel, an SBML Model structure
+% 2. name, an optional string representing the name of the ode function to be used
+%        
+%
+% Outputs 
+%
+% 1. a file 'name.m' defining a function that defines the ode equations of
+%   the model for use with the ode solvers
+%    (if no name supplied the model id will be used)
 
-%  Filename    :   WriteODEFunction.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
+
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
