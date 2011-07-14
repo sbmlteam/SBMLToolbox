@@ -218,7 +218,7 @@ Trigger = Trigger(OpenBracket+1:length(Trigger));
             FunctionStrings{length(FunctionStrings)+1} = FunctionString;
         case 'le'
             [left, right, Trigger] = ParseTwoNumericArgumentsAndClose(Trigger); 
-            FunctionString = sprintf('(%s) - (%s)', left, right);
+            FunctionString = sprintf('(%s) - (%s) + eps', left, right);
             FunctionStrings{length(FunctionStrings)+1} = FunctionString;
         case 'gt'
             [left, right, Trigger] = ParseTwoNumericArgumentsAndClose(Trigger);
@@ -226,7 +226,7 @@ Trigger = Trigger(OpenBracket+1:length(Trigger));
             FunctionStrings{length(FunctionStrings)+1} = FunctionString;
         case 'ge'
             [left, right, Trigger] = ParseTwoNumericArgumentsAndClose(Trigger);
-            FunctionString = sprintf('(%s) - (%s)', right, left);
+            FunctionString = sprintf('(%s) - (%s) + eps', right, left);
             FunctionStrings{length(FunctionStrings)+1} = FunctionString;
         otherwise
             error(sprintf('unrecognised function %s in trigger', Func));
