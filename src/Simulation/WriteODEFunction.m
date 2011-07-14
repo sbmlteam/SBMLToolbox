@@ -5,8 +5,7 @@ function WriteODEFunction(varargin)
 % 
 % 1. SBMLModel, an SBML Model structure
 % 2. name, an optional string representing the name of the ode function to be used
-%        
-%
+% 
 % Outputs 
 %
 % 1. a file 'name.m' defining a function that defines the ode equations of

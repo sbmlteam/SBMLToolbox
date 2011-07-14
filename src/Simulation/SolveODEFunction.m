@@ -12,7 +12,7 @@ function [t, data] = SolveODEFunction(varargin)
 %           a comma separated variable (csv) file 
 %           1 output 0 no output (default)
 % 6. a filename (this is needed if WriteODEFunction was used with a
-% filename)
+%                filename)
 %
 % Returns
 %
