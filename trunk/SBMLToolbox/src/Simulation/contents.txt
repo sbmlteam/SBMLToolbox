@@ -1,0 +1,241 @@
+###SIMULATION
+
+
+The functions allow users to simulate SBML Models.
+
+Function are:
+
+----------
+
+####[analysis] = AnalyseSpecies(SBMLModel)
+
+Takes
+
+1. SBMLModel, an SBML Model structure
+
+Returns
+
+1. a structure detailing the species and how they are manipulated 
+              within the model
+
+
+*EXAMPLE:*
+         Using the model from toolbox/Test/test-data/algebraicRules.xml
+
+            analysis = AnalyseSpecies(m)
+
+            analysis = 
+
+            1x5 struct array with fields:
+                Name
+                constant
+                boundaryCondition
+                initialValue
+                is0Dcompartment
+                isConcentration
+                compartment
+                ChangedByReaction
+                KineticLaw
+                ChangedByRateRule
+                RateRule
+                ChangedByAssignmentRule
+                AssignmentRule
+                InAlgebraicRule
+                AlgebraicRule
+                ConvertedToAssignRule
+                ConvertedRule
+
+            analysis(1) = 
+
+
+                                   Name: {'S1'}
+                               constant: 0
+                      boundaryCondition: 0
+                           initialValue: 0.0300
+                        is0Dcompartment: 0
+                        isConcentration: 0
+                            compartment: 'compartment'
+                      ChangedByReaction: 1
+                             KineticLaw: {' - (k*S1)'}
+                      ChangedByRateRule: 0
+                               RateRule: ''
+                ChangedByAssignmentRule: 0
+                         AssignmentRule: ''
+                        InAlgebraicRule: 1
+                          AlgebraicRule: {{1x1 cell}}
+                  ConvertedToAssignRule: 0
+                          ConvertedRule: ''
+
+
+
+------------------------------
+
+####[analysis] = AnalyseVaryingParameters(SBMLModel)
+
+Takes
+
+1. SBMLModel, an SBML Model structure
+
+Returns
+
+1. a structure detailing any parameters that are not constant and how they are manipulated 
+              within the model
+
+*EXAMPLE:*
+
+         Using the model from toolbox/Test/test-data/algebraicRules.xml
+
+           analysis = AnalyseVaryingParameters(m)
+           
+           analysis = 
+                       Name: {'s2'}
+               initialValue: 4
+          ChangedByRateRule: 0
+                   RateRule: ''
+    ChangedByAssignmentRule: 0
+             AssignmentRule: ''
+            InAlgebraicRule: 1
+              AlgebraicRule: {{1x1 cell}}
+      ConvertedToAssignRule: 1
+              ConvertedRule: '-(-S2-S3)'
+
+
+------------------------------
+
+####elements = DealWithPiecewise(formula)
+
+Takes 
+
+1. formula, a string representation of a math expression that contains the MathML piecewise function 
+
+Returns 
+
+1. an array of the three components of the piecewise function
+    
+*EXAMPLE:*
+
+          elements = DealWithPiecewise('piecewise(le(s2,4),1.5,0.05)')
+
+                   =  'le(s2,4)'  '1.5'   '0.05'
+
+*NOTE:* The function cannot deal with a piecewise statement with more
+than three elements.
+
+
+------------------------------
+
+####elements = GetArgumentsFromLambdaFunction(formula)
+
+Takes
+
+1. formula, a string representation of a math expression that contains the MathML lambda function 
+
+Returns 
+
+1. an array of the components of the lambda function
+
+*EXAMPLE:*
+
+          elements = GetArgumentsFromLambdaFunction('lambda(x, x+0.5)')
+
+                   =  'x'  'x+0.5'   
+
+          elements = GetArgumentsFromLambdaFunction('lambda(x, y, x + y)')
+
+                   =  'x'  'y'    'x+y'   
+
+
+------------------------------
+
+####OutputODEFunction 
+
+*NOTE:* This function is deprecated. Use SolveODEFunction instead. 
+
+
+------------------------------
+
+####SolveODEFunction(varargin) 
+
+Takes 
+      
+1. a MATLAB_SBML model structure (required argument)
+2. time limit (default = 10)
+3. number of time steps (default lets the solver decide)
+4. a flag to indicate whether to output species values in amount/concentration
+          1 amount, 0 concentration (default)
+5. a flag to indicate whether to output the simulation data as 
+          a comma separated variable (csv) file 
+          1 output 0 no output (default)
+6. a filename (this is needed if WriteODEFunction was used with a
+               filename)
+
+Returns
+
+1. an array of time values
+2. an array of the values of variables at each time point; species will
+be in concentration or amount as specified by input arguments
+
+Outputs 
+
+1. a file 'name.csv' with the data results (if the flag to output such a
+file is set to 1.
+
+*NOTE:* the results are generated using ode45 solver (MATLAB) or lsode
+(Octave)
+
+
+------------------------------
+
+####WriteEventAssignmentFunction(SBMLModel, name)
+
+Takes 
+
+1. SBMLModel, an SBML Model structure
+2. name, a string representing the name of the ode function being used
+
+Outputs 
+
+1. a file 'name_eventAssign.m' defining a function that assigns values following an event 
+        (for use with the event option of MATLABs ode solvers)
+
+*NOTE:* This function is called from WriteODEFunction when a model with
+ events is encountered.
+
+
+------------------------------
+
+####WriteEventHandlerFunction(SBMLModel, name)
+
+Takes 
+
+1. SBMLModel, an SBML Model structure
+2. name, a string representing the name of the ode function being used
+
+Outputs 
+
+1. a file 'name_events.m' defining a function that tests whether events
+   have been triggered
+        (for use with the event option of MATLABs ode solvers)
+
+*NOTE:* This function is called from WriteODEFunction when a model with
+ events is encountered.
+
+
+------------------------------
+
+####WriteODEFunction(SBMLModel, name(optional))
+
+Takes 
+
+1. SBMLModel, an SBML Model structure
+2. name, an optional string representing the name of the ode function to be used
+
+Outputs 
+
+1. a file 'name.m' defining a function that defines the ode equations of
+  the model for use with the ode solvers
+   (if no name supplied the model id will be used)
+
+
+------------------------------
+

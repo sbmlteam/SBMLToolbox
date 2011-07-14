@@ -9,8 +9,9 @@ function Species = AnalyseSpecies(SBMLModel)
 %
 % 1. a structure detailing the species and how they are manipulated 
 %               within the model
-% 
-% *EXAMPLE*
+%
+%
+% *EXAMPLE:*
 %          Using the model from toolbox/Test/test-data/algebraicRules.xml
 %
 %             analysis = AnalyseSpecies(m)

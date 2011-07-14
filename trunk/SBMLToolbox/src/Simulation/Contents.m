@@ -1,75 +1,104 @@
 % toolbox\Simulation
 %
-% This directory contains functions to simulate an SBML model
+% The functions allow users to simulate SBML models.
 %
-%   AnalyseSpecies  
-%       takes 1. SBMLModel; an SBML Model structure
-%       and returns
-%           structure detailing the species and 
-%               how they are manipulated within the model
+%========================================
+% [analysis] = AnalyseSpecies(SBMLModel)
+%========================================
+% Takes
+% 1. SBMLModel, an SBML Model structure
+% Returns
+% 1. a structure detailing the species and how they are manipulated 
+%               within the model
 %
-%   DealWithPiecewise              
-%       takes a string representation of a formula that contains the MathML
-%               piecewise function 
-%       and returns 
-%           an array of the three components of the piecewise function 
-% 
-%   DisplayODEFunction             
-%       takes 1. SBMLModel; an SBML Model structure and a number of optional arguments 
-%       and plots the results of the ode45 solver 
+%==================================================
+% [analysis] = AnalyseVaryingParameters(SBMLModel)
+%==================================================
+% Takes
+% 1. SBMLModel, an SBML Model structure
+% Returns
+% 1. a structure detailing any parameters that are not constant and how they are manipulated 
+%               within the model
 %
-%   GetArgumentsFromLambdaFunction 
-%       takes a string representation of a formula that contains the MathML 
-%               lambda function 
-%       and returns 
-%           an array of the components of the lambda function
+%=======================================
+% elements = DealWithPiecewise(formula)
+%=======================================
+% Takes 
+% 1. formula, a string representation of a math expression that contains the MathML piecewise function 
+% Returns 
+% 1. an array of the three components of the piecewise function
+%     
 %
-%   OutputAnalyticalSolution             
-%       takes 1. SBMLModel; an SBML Model structure and a number of optional arguments 
-%       and according to flags 
-%       plots the results of the analytical solution
-%       outputs the data as a csv file 
+%====================================================
+% elements = GetArgumentsFromLambdaFunction(formula)
+%====================================================
+% Takes
+% 1. formula, a string representation of a math expression that contains the MathML lambda function 
+% Returns 
+% 1. an array of the components of the lambda function
 %
-%   OutputODEFunction             
-%       takes 1. SBMLModel; an SBML Model structure and a number of optional arguments 
-%       and according to flags 
-%       plots the results of the ode45 solver/outputs the data as a csv file 
+%====================
+% OutputODEFunction 
+%====================
+% DEPRECATED
 %
-%   SelectSpecies                  
-%       takes an SBML Model, 
-%       displays a GUI that allows the user to add/remove species from a list
-%       and returns 
-%           an array of species selected by the user
+%=============================
+% SolveODEFunction(varargin) 
+%=============================
+% Takes 
+%       
+% 1. a MATLAB_SBML model structure (required argument)
+% 2. time limit (default = 10)
+% 3. number of time steps (default lets the solver decide)
+% 4. a flag to indicate whether to output species values in amount/concentration
+%           1 amount, 0 concentration (default)
+% 5. a flag to indicate whether to output the simulation data as 
+%           a comma separated variable (csv) file 
+%           1 output 0 no output (default)
+% 6. a filename (this is needed if WriteODEFunction was used with a
+%                filename)
+% Returns
+% 1. an array of time values
+% 2. an array of the values of variables at each time point; species will
+% be in concentration or amount as specified by input arguments
+% Outputs 
+% 1. a file 'name.csv' with the data results (if the flag to output such a
+% file is set to 1.
 %
-%   SolveAnalytically 
-%       takes an SBML Model 
-%       and returns 
-%           a structure detailing each species and the resulting anaytical 
-%           solution 
+%===============================================
+% WriteEventAssignmentFunction(SBMLModel, name)
+%===============================================
+% Takes 
+% 1. SBMLModel, an SBML Model structure
+% 2. name, a string representing the name of the ode function being used
+% Outputs 
+% 1. a file 'name_eventAssign.m' defining a function that assigns values following an event 
+%         (for use with the event option of MATLABs ode solvers)
 %
-%    NOTE: This function requires the MATLAB Symbolic Toolbox
+%============================================
+% WriteEventHandlerFunction(SBMLModel, name)
+%============================================
+% Takes 
+% 1. SBMLModel, an SBML Model structure
+% 2. name, a string representing the name of the ode function being used
+% Outputs 
+% 1. a file 'name_events.m' defining a function that tests whether events
+%    have been triggered
+%         (for use with the event option of MATLABs ode solvers)
 %
-%   WriteEventAssignmentFunction   
-%       takes 1. SBMLModel; an SBML Model structure
-%       and outputs 
-%           a file defining a function that assigns values following an event
+%=============================================
+% WriteODEFunction(SBMLModel, name(optional))
+%=============================================
+% Takes 
+% 1. SBMLModel, an SBML Model structure
+% 2. name, an optional string representing the name of the ode function to be used
+% Outputs 
+% 1. a file 'name.m' defining a function that defines the ode equations of
+%   the model for use with the ode solvers
+%    (if no name supplied the model id will be used)
 %
-%   WriteEventHandlerFunction      
-%       takes 1. SBMLModel; an SBML Model structure
-%       and outputs 
-%           a file defining a function that handles an event 
-%
-%   WriteODEFunction               
-%       takes 1. SBMLModel; an SBML Model structure and anoptional arguments 
-%       and outputs 
-%           a file defining a function for use with MATLABs ode solvers
 
-%  Filename    :   Contents.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id$
-%  $Source v $
-%
+
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -92,7 +121,5 @@
 % the Free Software Foundation.  A copy of the license agreement is provided
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
-
-
 
 
