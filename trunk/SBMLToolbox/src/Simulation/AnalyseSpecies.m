@@ -12,6 +12,7 @@ function Species = AnalyseSpecies(SBMLModel)
 %
 %
 % *EXAMPLE:*
+%
 %          Using the model from toolbox/Test/test-data/algebraicRules.xml
 %
 %             analysis = AnalyseSpecies(m)
