@@ -7,71 +7,42 @@
 % It works on Windows, Linux, and MacOS systems. 
 % 
 % The SBMLToolbox supports reading and writing of all levels
-% and versions of SBML up to L2V4.
+% and versions of SBML up to L3V1 Core.
 %
 %
 % FUNCTIONS include:
 %
-% toolbox
-%
-%  BuildOutput_Win32 
-%		which builds the TranslateSBML executable
-%  OutputSBML('MATLAB_SBML structure') 
-%		which takes an MATLAB_SBML structure and ouputs an SBML file
 %
 % toolbox\AccessModel
 %
 %       This directory contains functions that allow the user to
 %       derive information from an SBML Model
 %
-% toolbox\AccessToSymbols
-%
-%       This directory provides functions that allow access to the 
-%       Symbolic Math Toolbox
 %
 % toolbox\Convenience
 %
-%       This directory contains functions useful to the simulation 
-%       of an SBML model
+%       This directory contains a number of convenience functions for
+%       checking information or manipulating math expressions.
 %
 % toolbox\MATLAB_SBML_Structure_Functions
 %
 %       This directory contains functions that allow the user to
 %       manipulate a MATLAB_SBML Model structure
 %
-%       The majority of functions mimic their equivalent with in the 
-%       libSBML API with additional functions highlighted in the help 
-%       for the relevant directory
+%       The majority of functions mimic their equivalent within the 
+%       libSBML C API.
 %
 % toolbox\Simulation
 %
 %       This directory contains functions to simulate an SBML model
-%
-% toolbox\StoreModels
-%
-%       This directory contains functions to save and load SBML models
-%       from the data file SBML_Models.mat and functions to browse 
-%       the data file
 %
 % toolbox\Validate_MATLAB_SBML_Structures
 % 
 %       This directory contains functions to validate the MATLAB_SBML
 %       structures
 %
-% toolbox\ViewModelComponents
-%
-%       This directory contains functions to drive GUIs to view 
-%       MATLAB_SBML structures
 
 
-%
-%  Description : This is the top level directory for the functions to translate 
-%				 sbml models into a MATLAB structure which can then be saved.
-%  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
-%
-%  $Id$
-%  $Source$
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

@@ -1,22 +1,48 @@
-% SBMLToolbox
+% toolbox\
 %
-% This is the top level directory for the functions of the SBMLToolbox.
+% SBMLToolbox is an open-source MATLAB toolbox that provides a MATLAB user 
+% with functions for reading, writing and manipulation data expressed 
+% in the Systems Biology Markup Language (SBML).
+% 
+% It works on Windows, Linux, and MacOS systems. 
+% 
+% The SBMLToolbox supports reading and writing of all levels
+% and versions of SBML up to L3V1 Core.
 %
 %
 % FUNCTIONS include:
-%  install 
-%		which adds files to the Path
 %
-% NOTE: TranslateSBML and OutputSBML are part of libsbml.
+%
+% toolbox\AccessModel
+%
+%       This directory contains functions that allow the user to
+%       derive information from a SBML Model
+%
+%
+% toolbox\Convenience
+%
+%       This directory contains a number of convenience functions for
+%       checking information or manipulating math expressions.
+%
+% toolbox\MATLAB_SBML_Structure_Functions
+%
+%       This directory contains functions that allow the user to
+%       manipulate a MATLAB_SBML Model structure
+%
+%       The majority of functions mimic their equivalent within the 
+%       libSBML C API.
+%
+% toolbox\Simulation
+%
+%       This directory contains functions to simulate an SBML model
+%
+% toolbox\Validate_MATLAB_SBML_Structures
+% 
+%       This directory contains functions to validate the MATLAB_SBML
+%       structures
+%
 
-%
-%  Description : This is the top level directory for the functions to translate 
-%				 sbml models into a MATLAB structure which can then be saved.
-%  Author(s)   : SBML Development Group <sbml-team@caltech.edu>
-%
-%  $Id$
-%  $Source$
-%
+
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
