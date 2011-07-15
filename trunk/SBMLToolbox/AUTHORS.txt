@@ -4,7 +4,7 @@
 
 	    with contributions from (in alphabetical order)
 	Arsen Batagov, Ben Bornstein, Will Bryant, Bill Denney,
-     Andrew Finney, Thomas Grotkjær, Mike Hucka, Sumant Turlapati,
+     Andrew Finney, Thomas Grotkjær, Mike Hucka, Pieter Pareit, Sumant Turlapati,
 		   and others in the SBML community.
 
 	For more information about SBML or SBMLToolbox, contact:

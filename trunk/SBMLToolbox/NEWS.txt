@@ -1,6 +1,33 @@
     SBMLToolbox NEWS -- History of user-visible changes
 
 ---------------------------------------------------
+Version 4.0.0 Released 2011-07-18
+---------------------------------------------------
+
+This release reflects the fact that the libSBML-matlab
+binding now includes both the import and export of SBML.
+Thus OutputSBML is not included in this release of
+SBMLToolbox.
+
+SBMLToolbox 4.0.0 has full support for all levels and 
+versions of SBML up to Level 3 Version 1 Core.
+
+Simulation capability has been extended to include support
+for varying parameters.
+
+Some of the functionality has been removed. This includes 
+those functions that required the Symbolic Toolbox for
+MATLAB and any functions involving a Graphical User Interface.
+Thus ALL functionality of SBMLToolbox-4.0.0 is available 
+using Octave as well as MATLAB.  This was functionality that
+appeared to be unused.
+
+The documentation has been overhauled and is now available
+in html format.
+
+
+
+---------------------------------------------------
 Version 3.1.2 Released 2010-04-27
 ---------------------------------------------------
 
