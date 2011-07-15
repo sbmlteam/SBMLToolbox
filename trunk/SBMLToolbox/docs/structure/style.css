@@ -1,0 +1,30 @@
+tr.headers {
+  background: lightgray;  
+}
+
+tr.headers2 {
+  background: navajowhite;  
+  text-align:center;
+}
+
+th.struct {
+    text-align:left
+}
+
+th.type {
+    text-align:left
+}
+
+table.types {
+	width:35%;
+	cellspacing:"1" ;
+	cellpadding:"2" ;
+	border:black;
+}
+
+table.inner {
+    border:none;
+    width:35%;
+    padding:inherit;
+
+}
