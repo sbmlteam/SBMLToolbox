@@ -1,4 +1,8 @@
-function install()
+function install
+% install
+%
+% 1. reports whether the libsbml binding is installed
+% 2. adds the toolbox dirctories to the Path
 
 
 %<!---------------------------------------------------------------------------
