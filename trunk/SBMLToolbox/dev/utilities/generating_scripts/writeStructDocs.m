@@ -23,11 +23,15 @@ name = strcat(lower(obj), '.html');
 
 fOut = fopen(name, 'w');
 
-fprintf(fOut, '<LINK href=\"style.css\" rel=\"stylesheet\" type="text/css\">\n');
-
+%fprintf(fOut, '<LINK href=\"style.css\" rel=\"stylesheet\" type="text/css\">\n');
+fprintf(fOut, '<style type=''text/css''>\n');  
+fprintf(fOut, '/*/*/ /*<![CDATA[*/\n'); 
+fprintf(fOut, '@import "../style.css";\n'); 
+fprintf(fOut, '/*]]>*/ /* */ \n');
+fprintf(fOut, '</style>\n\n');
 % write the Object name as header with an anchor
 fprintf(fOut, '\n\n<a name=\"%s\"></a>\n', obj);
-fprintf(fOut, '<h3> %s </h3>\n', obj);
+fprintf(fOut, '<center>\n<h2> %s </h2>\n', obj);
 
 % get the typecode for the object and write it out
 % double check we have got it since not every object exists in every level/version
@@ -38,7 +42,7 @@ end;
 if isempty(values)
   values = getDefaultValues(obj, 3, 1);
 end;
-%fprintf(fOut, '<p>typecode = %s</p><br/>', values{1});
+fprintf(fOut, '<p>typecode = %s</p><br/>\n</center>', values{1});
 
 % For each level
 % create the outer table with the level/version headers
@@ -118,8 +122,12 @@ elseif level == 2
 else
   width = 35;
 end;
-fprintf(fout, '<center>\n\n<table class=\"borderless-table sm-padding\" width=\"%u%%\">\n', width);
-fprintf(fout, '<caption><strong>SBML Level %u</strong></caption>\n', level);
+%fprintf(fout, '<h2>SBML Level %u</h2>\n', level);
+if (ver < 3)
+fprintf(fout, '<center>\n\n<h2>SBML Level %u</h2>\n\n<table class=\"borderless-table sm-padding\" width=\"%u%%\">\n', level, width);
+else
+fprintf(fout, '<center>\n<table class=\"borderless-table sm-padding\" width=\"%u%%\">\n', level, width);
+end;
 if (ver == 1)
   fprintf(fout, '\t<tr class=\"headers2\">\n\t\t<td>Version 1</td>\n');
   if level < 3
@@ -146,12 +154,12 @@ fprintf(fout, '\t\t\t<center>\n');
 fprintf(fout, '\t\t\t\t<table class=\"borderless-table gray-border sm-padding sm-font alt-row-colors\"\n');
 fprintf(fout, '\t\t\t\t       width=\"35%%\" cellspacing=\"1\" cellpadding=\"2\" border=\"0\">\n');
 fprintf(fout, '\t\t\t\t\t<tr class=\"headers\">\n');
-fprintf(fout, '\t\t\t\t\t\t<td class=\"struct\">Fieldname</td>\n');
-fprintf(fout, '\t\t\t\t\t\t<td class=\"type\">Type</td>\n');
+fprintf(fout, '\t\t\t\t\t\t<th class=\"struct\">Fieldname</th>\n');
+fprintf(fout, '\t\t\t\t\t\t<th class=\"type\">Type</th>\n');
 fprintf(fout, '\t\t\t\t\t</tr>\n');
   fprintf(fout, '\t\t\t\t\t<tr>\n');
   fprintf(fout, '\t\t\t\t\t\t<td><code> %s </code></td>\n', fieldnames{1});
-  fprintf(fout, '\t\t\t\t\t\t<td> %s </td>\n', values{1});
+  fprintf(fout, '\t\t\t\t\t\t<td> as above </td>\n');
   fprintf(fout, '\t\t\t\t\t</tr>\n');
 for i = 2:length(fieldnames)
   fprintf(fout, '\t\t\t\t\t<tr>\n');
