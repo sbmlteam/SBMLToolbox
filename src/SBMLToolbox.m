@@ -1,7 +1,8 @@
 % SBMLToolbox
 %
-% SBMLToolbox is an open-source MATLAB toolbox that provides a MATLAB user 
-% with functions for reading, writing and manipulation data expressed 
+% SBMLToolbox is an open-source MATLAB/Octave toolbox that 
+% provides both MATLAB and Octave users with functions for 
+% reading, writing and manipulation data expressed 
 % in the Systems Biology Markup Language (SBML).
 % 
 % It works on Windows, Linux, and MacOS systems. 
