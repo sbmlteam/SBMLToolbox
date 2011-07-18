@@ -31,12 +31,14 @@ IMPORTANT: You must have installed libSBML with the MATLAB/Octave
 binding prior to installation of SBMLToolbox.
 **************************************************************
 
-Open MATLAB or Octave and navigate to the SBMLToolbox/toolbox directory.
+Start MATLAB or Octave.
 
-Run the install script.
+Navigate to the SBMLToolbox/toolbox directory.
+
+Run the script 'install.m' found in that dirctory.
 
 This will look for the libSBML binding and report whether it
-can be found. In addition, it adds the directories from the
+can be found. In addition, it will add the directories from the
 toolbox to the Path.
 
 ------------
