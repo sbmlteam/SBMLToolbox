@@ -35,12 +35,14 @@ function install
 
   [matlab_octave, bit64]  = check_system();
   
-  disp(sprintf('Checking for libSBML %s binding', matlab_octave));
+  disp(sprintf('\nChecking for libSBML %s binding\n', matlab_octave));
   if doesItRun(matlab_octave)
-    disp(sprintf('libSBML %s binding found and working', matlab_octave));
+    disp(sprintf('libSBML %s binding found and working\n', matlab_octave));
   else
-    disp(sprintf('libSBML %s binding not found\n%s', matlab_octave, ...
-      'You will not be able to import or export SBML'));
+    disp(sprintf('libSBML %s binding not found\n\n%s\n%s\n%s', matlab_octave, ...
+      'NOTE: This is not a fatal error.', ...
+      'You will not be able to import or export SBML but can still use the toolbox', ...
+      'to create and manipulate MATLAB_SBML structures'));
   end;
     
   
@@ -53,11 +55,12 @@ addpath(ToolboxPath);
 
 s = savepath;
 
+
 if (s ~= 0)
-  disp(sprintf('Installation failed\n%s', ...
+  disp(sprintf('\nInstallation failed\n%s', ...
     'The directories were not added to the Path'));
 else
-  disp('Installation successful');
+  disp(sprintf('\nInstallation successful'));
 end;
 
 % =========================================================================
