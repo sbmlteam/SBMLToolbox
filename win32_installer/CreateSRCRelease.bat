@@ -18,27 +18,37 @@ mkdir toolbox
 
 
 cd docs
-copy C:\SBMLToolbox\docs\ManualV3.pdf Manual_SBMLToolbox_V3.pdf
-copy C:\SBMLToolbox\docs\MATLAB_SBML_Structure.pdf MATLAB_SBML_Structure.pdf
-copy C:\SBMLToolbox\docs\Testing.pdf Testing.pdf
+mkdir structure
+mkdir structure-functions
 
+copy C:\SBMLToolbox\docs\*.html
+copy C:\SBMLToolbox\docs\style.css style.css
+
+cd structure
+copy C:\SBMLToolbox\docs\structure\*.html
+
+cd ..
+cd structure-functions
+copy C:\SBMLToolbox\docs\structure-functions\*.html
+
+cd ..
 cd ..
 
 cd toolbox
+
 mkdir AccessModel
 cd AccessModel
 mkdir Test
 cd ..
-mkdir AccessToSymbols
-cd AccessToSymbols
-mkdir Test
-cd ..
+
 mkdir Convenience
 cd Convenience
 mkdir Test
 cd ..
+
 mkdir MATLAB_SBML_Structure_Functions
 cd MATLAB_SBML_Structure_Functions
+mkdir structFieldnames
 mkdir AlgebraicRule
 mkdir AssignmentRule
 mkdir Compartment
@@ -51,10 +61,12 @@ mkdir EventAssignment
 mkdir FunctionDefinition
 mkdir InitialAssignment
 mkdir KineticLaw
+mkdir LocalParameter
 mkdir Model
 mkdir ModifierSpeciesReference
 mkdir Parameter
 mkdir ParameterRule
+mkdir Priority
 mkdir RateRule
 mkdir Reaction
 mkdir Rule
@@ -68,49 +80,34 @@ mkdir Trigger
 mkdir Unit
 mkdir UnitDefinition
 cd ..
+
 mkdir Simulation
 cd Simulation
 mkdir Test
 cd ..
-mkdir StoreModels
-mkdir Test
-cd Test
-mkdir test-data
-cd ..
+
 mkdir Validate_MATLAB_SBML_Structures
 cd Validate_MATLAB_SBML_Structures
 mkdir Test
 cd ..
-mkdir ViewModelComponents
+
+mkdir Test
+cd Test
+mkdir test-data
+cd ..
 
 rem top level files
 
-copy C:\SBMLToolbox\src\buildOutput.m buildOutput.m
-copy C:\SBMLToolbox\src\buildOutput_Octave.m buildOutput_Octave.m
-copy C:\SBMLToolbox\src\OutputSBML.m OutputSBML.m
-copy C:\SBMLToolbox\src\OutputSBML.c OutputSBML.c
-copy C:\SBMLToolbox\src\Makefile Makefile
+copy C:\SBMLToolbox\src\install.m install.m
 copy C:\SBMLToolbox\src\Contents.m Contents.m
 copy C:\SBMLToolbox\src\install.m install.m
 copy C:\SBMLToolbox\src\SBMLToolbox.m SBMLToolbox.m
-copy C:\SBMLToolbox\src\make.bat make.bat
 copy C:\SBMLToolbox\src\test.xml test.xml
-copy C:\SBMLToolbox\src\ConvertFormulaToMathML.m ConvertFormulaToMathML.m
 
 cd C:\SBMLToolbox\src\AccessModel
 copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\AccessModel
-copy *.fig C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\AccessModel
 cd Test
 copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\AccessModel\Test
-copy *.xml C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\AccessModel\Test
-
-cd ..
-cd ..
-cd AccessToSymbols
-copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\AccessToSymbols
-cd Test
-copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\AccessToSymbols\Test
-copy *.xml C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\AccessToSymbols\Test
 
 cd ..
 cd ..
@@ -118,30 +115,20 @@ cd Convenience
 copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Convenience
 cd Test
 copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Convenience\Test
-copy *.xml C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Convenience\Test
 
 cd ..
 cd ..
 cd Simulation
 copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Simulation
-copy *.fig C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Simulation
 cd Test
 copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Simulation\Test
-copy *.xml C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Simulation\Test
 
 cd ..
-cd ..
-cd StoreModels
-copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\StoreModels
-copy *.fig C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\StoreModels
-
 cd ..
 cd Test
 copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Test
-copy *.xml C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Test
 cd test-data
 copy *.xml C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Test\test-data
-copy *.mat C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Test\test-data
 
 cd ..
 cd ..
@@ -149,14 +136,9 @@ cd Validate_MATLAB_SBML_Structures
 copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Validate_MATLAB_SBML_Structures
 cd Test
 copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Validate_MATLAB_SBML_Structures\Test
-copy *.xml C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\Validate_MATLAB_SBML_Structures\Test
+
 
 cd ..
-cd ..
-cd ViewModelComponents
-copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\ViewModelComponents
-copy *.fig C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\ViewModelComponents
-
 cd ..
 cd MATLAB_SBML_Structure_Functions
 copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions
@@ -244,6 +226,15 @@ copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Stru
 cd ..
 cd UnitDefinition
 copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\UnitDefinition
+cd ..
+cd Priority
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\Priority
+cd ..
+cd structFieldnames
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\structFieldnames
+cd ..
+cd LocalParameter
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Structure_Functions\LocalParameter
 cd ..
 
 
