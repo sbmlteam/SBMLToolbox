@@ -31,7 +31,7 @@ spacer = '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%';
 
 % get original isModel_SBML.m
 
-fileOut = fopen('isSBML_Model.m', 'r');
+fileOut = fopen('isValidSBML_Model.m', 'r');
 
 fileIn = fopen('bind_isSBML_Model.m', 'w');
 
@@ -47,22 +47,42 @@ files = dir('isSBML_*.m');
 
 for i = 1:length(files)
   if (~strcmp(files(i).name, 'isSBML_Model.m'))
-    copyFile(files(i).name, fileIn);
+    copyFile(files(i).name, fileIn, 0);
     fprintf(fileIn, '\n%s\n\n', spacer);
   end;
+end;
+
+% get valid level and version
+fileLV = '../MATLAB_SBML_Structure_Functions/structFieldnames/isValidlevelVersionCombination.m';
+copyFile(fileLV, fileIn, 0);
+  fprintf(fileIn, '\n%s\n\n', spacer);
+
+fileInt = '../Convenience/isIntegralNumber.m';
+copyFile(fileInt, fileIn, 0);
+  fprintf(fileIn, '\n%s\n\n', spacer);
+
+files = dir('../MATLAB_SBML_Structure_Functions/structFieldnames/*Fieldnames.m');
+
+for i = 1:length(files)
+  file1 = strcat('../MATLAB_SBML_Structure_Functions/structFieldnames/', files(i).name);
+  copyFile(file1, fileIn, 1);
+  fprintf(fileIn, '\n%s\n\n', spacer);
 end;
 
 fclose(fileOut);
 fclose(fileIn);
 
-function copyFile(filename, fileIn)
+function copyFile(filename, fileIn, a)
 
 fileOut1 = fopen(filename, 'r');
 
 %copy first line
 line = fgetl(fileOut1);
 fprintf(fileIn, '%s\n', line);
-
+if a == 1
+  line = fgetl(fileOut1);
+  fprintf(fileIn, '%s\n', line);
+end;
 end_of_comment = 0;
 
 while (~end_of_comment)
