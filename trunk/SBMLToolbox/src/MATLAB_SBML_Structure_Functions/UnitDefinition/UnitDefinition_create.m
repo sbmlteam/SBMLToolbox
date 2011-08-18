@@ -75,6 +75,8 @@ if (num > 0)
 	values = getUnitDefinitionDefaultValues(level, version);
 	UnitDefinition = cell2struct(values, fieldnames, 2);
 
+  UnitDefinition.unit = Unit_create(level, version);
+  UnitDefinition.unit(1:end) = [];
 	%add level and version
 
 	UnitDefinition.level = level;
