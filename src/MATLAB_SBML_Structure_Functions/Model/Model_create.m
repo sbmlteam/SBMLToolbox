@@ -120,6 +120,18 @@ if (num > 0)
   end;
   warning('on', 'Warn:InvalidLV');
 
+  if level > 1
+    Model.time_symbol = '';
+    Model.delay_symbol = '';
+  end;
+  
+  if level > 2
+    Model.avogadro_symbol = '';
+  end;
+  
+  ns = struct('prefix', [], 'uri', []); 
+  Model.namespaces = ns;
+  Model.namespaces(1:end) = [];
 
 %check correct structure
 
