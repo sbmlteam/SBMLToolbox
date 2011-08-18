@@ -90,7 +90,64 @@ switch (typecode)
     [valid, message] = isSBML_RateRule(SBMLStructure, level, version);
   case 'SBML_SPECIES_CONCENTRATION_RULE'
     [valid, message] = isSBML_SpeciesConcentrationRule(SBMLStructure, level, version);
+  case 'SBML_RULE'
+    [valid, message] = checkRule(SBMLStructure, level, version);
   otherwise
     valid = 0;
     message = 'Incorrect rule typecode';
  end;
+ 
+
+function [valid, message] = checkRule(SBMLStructure, level, version)
+
+
+message = '';
+
+% check that argument is a structure
+valid = isstruct(SBMLStructure);
+
+% check the typecode
+typecode = 'SBML_RULE';
+if (valid == 1 && ~isempty(SBMLStructure))
+  if (strcmp(typecode, SBMLStructure.typecode) ~= 1)
+    valid = 0;
+    message = 'typecode mismatch';
+  end;
+end;
+
+% if the level and version fields exist they must match
+if (valid == 1 && isfield(SBMLStructure, 'level') && ~isempty(SBMLStructure))
+	if ~isequal(level, SBMLStructure.level)
+		valid = 0;
+		message = 'level mismatch';
+	end;
+end;
+if (valid == 1 && isfield(SBMLStructure, 'version') && ~isempty(SBMLStructure))
+	if ~isequal(version, SBMLStructure.version)
+		valid = 0;
+		message = 'version mismatch';
+	end;
+end;
+
+% check that structure contains all the necessary fields
+[SBMLfieldnames, numFields] = getAlgebraicRuleFieldnames(level, version);
+
+if (numFields ==0)
+	valid = 0;
+	message = 'invalid level/version';
+end;
+
+index = 1;
+while (valid == 1 && index <= numFields)
+	valid = isfield(SBMLStructure, char(SBMLfieldnames(index)));
+	if (valid == 0);
+		message = sprintf('%s field missing', char(SBMLfieldnames(index)));
+	end;
+	index = index + 1;
+end;
+
+% report failure
+if (valid == 0)
+	message = sprintf('Invalid Rule\n%s\n', message);
+end;
+

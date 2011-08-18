@@ -77,7 +77,15 @@ if (num > 0)
 	values = getSpeciesReferenceDefaultValues(level, version);
 	SpeciesReference = cell2struct(values, fieldnames, 2);
 
-	%add level and version
+  warning('off', 'Warn:InvalidLV');
+  t = StoichiometryMath_create(level, version);
+  if ~isempty(t)
+    SpeciesReference.stoichiometryMath = t;
+    SpeciesReference.stoichiometryMath(1:end) = [];
+  end;
+  warning('on', 'Warn:InvalidLV');
+
+  %add level and version
 
 	SpeciesReference.level = level;
 	SpeciesReference.version = version;

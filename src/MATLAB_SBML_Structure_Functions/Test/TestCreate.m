@@ -45,6 +45,8 @@ typecodes =  {'SBML_ALGEBRAIC_RULE', 'SBML_ASSIGNMENT_RULE', ...
   'SBML_SPECIES_REFERENCE', 'SBML_SPECIES_TYPE', 'SBML_STOICHIOMETRY_MATH', ...
   'SBML_TRIGGER', 'SBML_UNIT', 'SBML_UNIT_DEFINITION'};
 
+warning('off', 'Warn:InvalidLV');
+
 for i = 1:length(typecodes)
 
   for level = 1:3
@@ -59,6 +61,7 @@ for i = 1:length(typecodes)
         lastver = 1;
     end;
     for version = 1:lastver
+      warning('off', 'Warn:InvalidLV');
       obj = Object_create(typecodes{i} ,level, version);
       numTests = numTests+1;
       if (~isempty(obj) && ~isValid(obj, level, version))
@@ -68,6 +71,8 @@ for i = 1:length(typecodes)
   end;
 
 end;
+
+warning('on', 'Warn:InvalidLV');
 
 disp(sprintf('Number tests: %d', numTests));
 disp(sprintf('Number fails: %d', fail));

@@ -77,6 +77,21 @@ if (num > 0)
 	values = getReactionDefaultValues(level, version);
 	Reaction = cell2struct(values, fieldnames, 2);
 
+  %add empty substructures  
+  Reaction.reactant = SpeciesReference_create(level, version);
+  Reaction.reactant(1:end) = [];
+  Reaction.product = SpeciesReference_create(level, version);
+  Reaction.product(1:end) = [];
+  Reaction.kineticLaw = KineticLaw_create(level, version);
+  Reaction.kineticLaw(1:end) = [];
+  warning('off', 'Warn:InvalidLV');
+  t = ModifierSpeciesReference_create(level, version);
+  if ~isempty(t)
+    Reaction.modifier = t;
+    Reaction.modifier(1:end) = [];
+  end;
+  warning('on', 'Warn:InvalidLV');
+  
 	%add level and version
 
 	Reaction.level = level;

@@ -77,6 +77,19 @@ if (num > 0)
 	values = getKineticLawDefaultValues(level, version);
 	KineticLaw = cell2struct(values, fieldnames, 2);
 
+  %add empty substructures  
+  warning('off', 'Warn:InvalidLV');
+  p = LocalParameter_create(level, version);
+  if ~isempty(p)
+    KineticLaw.localParameter = p;
+    KineticLaw.localParameter(1:end) = [];
+  else
+    p = Parameter_create(level, version);
+    KineticLaw.parameter = p;
+    KineticLaw.parameter(1:end) = [];
+  end;
+  warning('on', 'Warn:InvalidLV');
+
 	%add level and version
 
 	KineticLaw.level = level;

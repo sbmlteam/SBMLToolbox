@@ -79,6 +79,27 @@ if (num > 0)
 	values = getEventDefaultValues(level, version);
 	Event = cell2struct(values, fieldnames, 2);
 
+  %add empty substructures  
+  Event.eventAssignment = EventAssignment_create(level, version);
+  Event.eventAssignment(1:end) = [];
+  warning('off', 'Warn:InvalidLV');
+  t = Trigger_create(level, version);
+  if ~isempty(t)
+    Event.trigger = t;
+    Event.trigger(1:end) = [];
+  end;
+  d = Delay_create(level, version);
+  if ~isempty(d)
+    Event.delay = d;
+    Event.delay(1:end) = [];
+  end;
+  p = Priority_create(level, version);
+  if ~isempty(p)
+    Event.priority = p;
+    Event.priority(1:end) = [];
+  end;
+  warning('on', 'Warn:InvalidLV');
+  
 	%add level and version
 
 	Event.level = level;
