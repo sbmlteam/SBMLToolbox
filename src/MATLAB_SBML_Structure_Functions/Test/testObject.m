@@ -292,6 +292,7 @@ else
   fhandle_isset = sprintf('%s_getNum%ss', component, attribute);
   fhandle_getLO = sprintf('%s_getListOf%ss', component, attribute);
 end;
+fhandle_createSub = sprintf('%s_create%s', component, attribute);
 
 if strcmp(obj.typecode, 'SBML_MODEL')
   newObj = feval(fhandle_create, obj.SBML_level, obj.SBML_version);
@@ -348,6 +349,29 @@ else
     message{1} = sprintf('%s failed', fhandle_getLO);
   end;
 end;
+
+% test create
+if single
+  obj = feval(fhandle_createSub, obj);
+  result = feval(fhandle_isset, obj);
+  if result == 1
+    fail = 0;
+  else
+    fail = 1;
+    message{1} = sprintf('%s failed', fhandle_createSub);
+  end;
+else
+  obj = feval(fhandle_createSub, obj);  
+  lo = feval(fhandle_getLO, obj);
+  result = length(lo);
+  if result == 3
+    fail = 0;
+  else
+    fail = 1;
+    message{1} = sprintf('%s failed', fhandle_createSub);
+  end;
+end;
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function value = isIn(array, thing)
