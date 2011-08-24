@@ -71,7 +71,7 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 3;
+test = test + 4;
 fail = TestGetRateLawsFromReactions;
 if (fail > 0)
     disp('GetRateLawsFromReactions failed');

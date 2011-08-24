@@ -54,3 +54,11 @@ rateLaws = {' - (s*p) * (s*k_r/p)', '0', ' + (s*k_r/p)'};
 
 fail = fail + TestFunction('GetRateLawsFromReactions', 1, 2, m, species, rateLaws);
 
+m = TranslateSBML('../../Test/test-data/testNegativeLocalParameter.xml');
+
+species = {'E', 'ES', 'S', 'P'};
+rateLaws = {' - (cell*(k1_R1*E*S-k2_R1*ES)) + (cell*k3_R2*ES)', ...
+  ' + (cell*(k1_R1*E*S-k2_R1*ES)) - (cell*k3_R2*ES)', ...
+  ' - (cell*(k1_R1*E*S-k2_R1*ES))', ' + (cell*k3_R2*ES)'};
+
+fail = fail + TestFunction('GetRateLawsFromReactions', 1, 2, m, species, rateLaws);
