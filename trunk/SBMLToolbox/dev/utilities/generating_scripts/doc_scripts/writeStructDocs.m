@@ -1,4 +1,18 @@
 function writeStructDocs
+% writes the html for the structure fields
+% should be called from the doc/structure dir
+
+
+
+[top, a] = fileparts(pwd);
+if ~strcmp(a, 'structure')
+  error('need to be in docs/structure directory');
+else
+  [c, d] = fileparts(top);
+  if ~strcmp(d, 'docs')
+    error('need to be in docs/structure directory');
+  end;
+end;
 
 Objects = {'AlgebraicRule', 'AssignmentRule', 'Compartment',  'CompartmentType', ...
    'CompartmentVolumeRule',  'Constraint',  'Delay', 'Event', 'EventAssignment', ...
@@ -163,9 +177,16 @@ fprintf(fout, '\t\t\t\t\t</tr>\n');
   fprintf(fout, '\t\t\t\t\t</tr>\n');
 for i = 2:length(fieldnames)
   fprintf(fout, '\t\t\t\t\t<tr>\n');
-  fprintf(fout, '\t\t\t\t\t\t<td><code> %s </code></td>\n', fieldnames{i});
-  fprintf(fout, '\t\t\t\t\t\t<td> %s </td>\n', getType(values{i}, fieldnames{i}, l, v));
-  fprintf(fout, '\t\t\t\t\t</tr>\n');
+  type = getType(values{i}, fieldnames{i}, l, v);
+  if ~strcmp(type, 'structure') && ~strcmp(type, 'array of structures')
+    fprintf(fout, '\t\t\t\t\t\t<td><code> %s </code></td>\n', fieldnames{i});
+    fprintf(fout, '\t\t\t\t\t\t<td> %s </td>\n', type);
+    fprintf(fout, '\t\t\t\t\t</tr>\n');
+  else
+    fprintf(fout, '\t\t\t\t\t\t<td><a href="%s.html">%s</a></td>\n', fieldnames{i}, fieldnames{i});
+    fprintf(fout, '\t\t\t\t\t\t<td> %s </td>\n', type);
+    fprintf(fout, '\t\t\t\t\t</tr>\n');
+  end;
 end;
 fprintf(fout, '\t\t\t\t</table>\n');
 fprintf(fout, '\t\t\t</center>\n');
