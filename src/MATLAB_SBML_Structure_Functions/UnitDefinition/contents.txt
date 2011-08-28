@@ -40,6 +40,20 @@ Returns
 
 ------------------------------
 
+####SBMLUnitDefinition = UnitDefinition_createUnit(SBMLUnitDefinition)
+
+Takes
+
+1. SBMLUnitDefinition, an SBML UnitDefinition structure
+
+Returns
+
+1. the SBML UnitDefinition structure with a new SBML Unit structure added
+
+
+
+------------------------------
+
 ####id = UnitDefinition_getId(SBMLUnitDefinition)
 
 Takes

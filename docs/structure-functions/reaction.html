@@ -1,10 +1,4 @@
-<style type='text/css'>
-/*/*/ /*<![CDATA[*/
-@import "../style.css";
-/*]]>*/ /* */ 
-</style>
-
-<h3>MATLAB_SBML_STRUCTURE_FUNCTIONS\REACTION</h3>
+<h3>MATLAB<em>SBML</em>STRUCTURE_FUNCTIONS\REACTION</h3>
 
 <p>The functions allow users to create and work with the SBML Reaction structure.</p>
 
@@ -81,6 +75,70 @@
 <p><em>NOTE:</em> the optional level and version preserve backwards compatibility
   a missing version argument will default to L1V2; L2V4 or L3V1
   missing both arguments will default to L3V1</p>
+
+<hr>
+
+<h4>SBMLReaction = Reaction_createKineticLaw(SBMLReaction)</h4>
+
+<p>Takes</p>
+
+<ol>
+<li>SBMLReaction, an SBML Reaction structure</li>
+</ol>
+
+<p>Returns</p>
+
+<ol>
+<li>the SBML Reaction structure with a new SBML KineticLaw structure added</li>
+</ol>
+
+<hr>
+
+<h4>SBMLReaction = Reaction_createModifier(SBMLReaction)</h4>
+
+<p>Takes</p>
+
+<ol>
+<li>SBMLReaction, an SBML Reaction structure</li>
+</ol>
+
+<p>Returns</p>
+
+<ol>
+<li>the SBML Reaction structure with a new SBML ModifierSpeciesReference structure added</li>
+</ol>
+
+<hr>
+
+<h4>SBMLReaction = Reaction_createProduct(SBMLReaction)</h4>
+
+<p>Takes</p>
+
+<ol>
+<li>SBMLReaction, an SBML Reaction structure</li>
+</ol>
+
+<p>Returns</p>
+
+<ol>
+<li>the SBML Reaction structure with a new SBML SpeciesReference structure added</li>
+</ol>
+
+<hr>
+
+<h4>SBMLReaction = Reaction_createReactant(SBMLReaction)</h4>
+
+<p>Takes</p>
+
+<ol>
+<li>SBMLReaction, an SBML Reaction structure</li>
+</ol>
+
+<p>Returns</p>
+
+<ol>
+<li>the SBML Reaction structure with a new SBML SpeciesReference structure added</li>
+</ol>
 
 <hr>
 

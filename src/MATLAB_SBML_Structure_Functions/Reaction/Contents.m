@@ -38,6 +38,38 @@
 % Returns
 % 1. a MATLAB_SBML Reaction structure of the appropriate level and version
 %
+%========================================================
+% SBMLReaction = Reaction_createKineticLaw(SBMLReaction)
+%========================================================
+% Takes
+% 1. SBMLReaction, an SBML Reaction structure
+% Returns
+% 1. the SBML Reaction structure with a new SBML KineticLaw structure added
+%
+%======================================================
+% SBMLReaction = Reaction_createModifier(SBMLReaction)
+%======================================================
+% Takes
+% 1. SBMLReaction, an SBML Reaction structure
+% Returns
+% 1. the SBML Reaction structure with a new SBML ModifierSpeciesReference structure added
+%
+%=====================================================
+% SBMLReaction = Reaction_createProduct(SBMLReaction)
+%=====================================================
+% Takes
+% 1. SBMLReaction, an SBML Reaction structure
+% Returns
+% 1. the SBML Reaction structure with a new SBML SpeciesReference structure added
+%
+%======================================================
+% SBMLReaction = Reaction_createReactant(SBMLReaction)
+%======================================================
+% Takes
+% 1. SBMLReaction, an SBML Reaction structure
+% Returns
+% 1. the SBML Reaction structure with a new SBML SpeciesReference structure added
+%
 %=====================================================
 % compartment = Reaction_getCompartment(SBMLReaction)
 %=====================================================

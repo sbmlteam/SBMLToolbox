@@ -11,6 +11,14 @@
 % Returns
 % 1. a MATLAB_SBML SpeciesReference structure of the appropriate level and version
 %
+%=======================================================================================
+% SBMLSpeciesReference = SpeciesReference_createStoichiometryMath(SBMLSpeciesReference)
+%=======================================================================================
+% Takes
+% 1. SBMLSpeciesReference, an SBML SpeciesReference structure
+% Returns
+% 1. the SBML SpeciesReference structure with a new SBML StoichiometryMath structure added
+%
 %===============================================================
 % constant = SpeciesReference_getConstant(SBMLSpeciesReference)
 %===============================================================

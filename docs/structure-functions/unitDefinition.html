@@ -1,10 +1,4 @@
-<style type='text/css'>
-/*/*/ /*<![CDATA[*/
-@import "../style.css";
-/*]]>*/ /* */ 
-</style>
-
-<h3>MATLAB_SBML_STRUCTURE_FUNCTIONS\UNITDEFINITION</h3>
+<h3>MATLAB<em>SBML</em>STRUCTURE_FUNCTIONS\UNITDEFINITION</h3>
 
 <p>The functions allow users to create and work with the SBML UnitDefinition structure.</p>
 
@@ -47,6 +41,22 @@
 <p><em>NOTE:</em> the optional level and version preserve backwards compatibility
   a missing version argument will default to L1V2; L2V4 or L3V1
   missing both arguments will default to L3V1</p>
+
+<hr>
+
+<h4>SBMLUnitDefinition = UnitDefinition_createUnit(SBMLUnitDefinition)</h4>
+
+<p>Takes</p>
+
+<ol>
+<li>SBMLUnitDefinition, an SBML UnitDefinition structure</li>
+</ol>
+
+<p>Returns</p>
+
+<ol>
+<li>the SBML UnitDefinition structure with a new SBML Unit structure added</li>
+</ol>
 
 <hr>
 

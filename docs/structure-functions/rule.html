@@ -1,14 +1,29 @@
-<style type='text/css'>
-/*/*/ /*<![CDATA[*/
-@import "../style.css";
-/*]]>*/ /* */ 
-</style>
-
-<h3>MATLAB_SBML_STRUCTURE_FUNCTIONS\RULE</h3>
+<h3>MATLAB<em>SBML</em>STRUCTURE_FUNCTIONS\RULE</h3>
 
 <p>The functions allow users to create and work with the SBML Rule structure.</p>
 
 <p>Function are:</p>
+
+<hr>
+
+<h4>Rule = Rule_create(level(optional), version(optional) )</h4>
+
+<p>Takes</p>
+
+<ol>
+<li>level, an integer representing an SBML level (optional)</li>
+<li>version, an integer representing an SBML version (optional)</li>
+</ol>
+
+<p>Returns</p>
+
+<ol>
+<li>a MATLAB_SBML Rule structure of the appropriate level and version</li>
+</ol>
+
+<p><em>NOTE:</em> the optional level and version preserve backwards compatibility
+  a missing version argument will default to L1V2; L2V4 or L3V1
+  missing both arguments will default to L3V1</p>
 
 <hr>
 

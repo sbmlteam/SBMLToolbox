@@ -205,6 +205,174 @@ Returns
 
 ------------------------------
 
+####SBMLModel = Model_createCompartment(SBMLModel)
+
+Takes
+
+1. SBMLModel, an SBML Model structure
+
+Returns
+
+1. the SBML Model structure with the SBML Compartment structure added
+
+
+
+------------------------------
+
+####SBMLModel = Model_createCompartmentType(SBMLModel)
+
+Takes
+
+1. SBMLModel, an SBML Model structure
+
+Returns
+
+1. the SBML Model structure with the SBML CompartmentType structure added
+
+
+
+------------------------------
+
+####SBMLModel = Model_createConstraint(SBMLModel)
+
+Takes
+
+1. SBMLModel, an SBML Model structure
+
+Returns
+
+1. the SBML Model structure with the SBML Constraint structure added
+
+
+
+------------------------------
+
+####SBMLModel = Model_createEvent(SBMLModel)
+
+Takes
+
+1. SBMLModel, an SBML Model structure
+
+Returns
+
+1. the SBML Model structure with the SBML Event structure added
+
+
+
+------------------------------
+
+####SBMLModel = Model_createFunctionDefinition(SBMLModel)
+
+Takes
+
+1. SBMLModel, an SBML Model structure
+
+Returns
+
+1. the SBML Model structure with the SBML FunctionDefinition structure added
+
+
+
+------------------------------
+
+####SBMLModel = Model_createInitialAssignment(SBMLModel)
+
+Takes
+
+1. SBMLModel, an SBML Model structure
+
+Returns
+
+1. the SBML Model structure with the SBML InitialAssignment structure added
+
+
+
+------------------------------
+
+####SBMLModel = Model_createParameter(SBMLModel)
+
+Takes
+
+1. SBMLModel, an SBML Model structure
+
+Returns
+
+1. the SBML Model structure with the SBML Parameter structure added
+
+
+
+------------------------------
+
+####SBMLModel = Model_createReaction(SBMLModel)
+
+Takes
+
+1. SBMLModel, an SBML Model structure
+
+Returns
+
+1. the SBML Model structure with the SBML Reaction structure added
+
+
+
+------------------------------
+
+####SBMLModel = Model_createRule(SBMLModel)
+
+Takes
+
+1. SBMLModel, an SBML Model structure
+
+Returns
+
+1. the SBML Model structure with the SBML Rule structure added
+
+
+
+------------------------------
+
+####SBMLModel = Model_createSpecies(SBMLModel)
+
+Takes
+
+1. SBMLModel, an SBML Model structure
+
+Returns
+
+1. the SBML Model structure with the SBML Species structure added
+
+
+
+------------------------------
+
+####SBMLModel = Model_createSpeciesType(SBMLModel)
+
+Takes
+
+1. SBMLModel, an SBML Model structure
+
+Returns
+
+1. the SBML Model structure with the SBML SpeciesType structure added
+
+
+
+------------------------------
+
+####SBMLModel = Model_createUnitDefinition(SBMLModel)
+
+Takes
+
+1. SBMLModel, an SBML Model structure
+
+Returns
+
+1. the SBML Model structure with the SBML UnitDefinition structure added
+
+
+
+------------------------------
+
 ####areaUnits = Model_getAreaUnits(SBMLModel)
 
 Takes

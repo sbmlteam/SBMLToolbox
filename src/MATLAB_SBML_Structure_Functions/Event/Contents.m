@@ -20,6 +20,38 @@
 % Returns
 % 1. a MATLAB_SBML Event structure of the appropriate level and version
 %
+%==========================================
+% SBMLEvent = Event_createDelay(SBMLEvent)
+%==========================================
+% Takes
+% 1. SBMLEvent, an SBML Event structure
+% Returns
+% 1. the SBML Event structure with a new SBML Delay structure added
+%
+%=====================================================
+% SBMLEvent = Event_acreateEventAssignment(SBMLEvent)
+%=====================================================
+% Takes
+% 1. SBMLEvent, an SBML Event structure
+% Returns
+% 1. the SBML Event structure with a new SBML EventAssignment structure added
+%
+%=============================================
+% SBMLEvent = Event_createPriority(SBMLEvent)
+%=============================================
+% Takes
+% 1. SBMLEvent, an SBML Event structure
+% Returns
+% 1. the SBML Event structure with a new SBML Priority structure added
+%
+%============================================
+% SBMLEvent = Event_createTrigger(SBMLEvent)
+%============================================
+% Takes
+% 1. SBMLEvent, an SBML Event structure
+% Returns
+% 1. the SBML Event structure with a new SBML Trigger structure added
+%
 %===================================
 % delay = Event_getDelay(SBMLEvent)
 %===================================
