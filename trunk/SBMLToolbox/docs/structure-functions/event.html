@@ -1,10 +1,4 @@
-<style type='text/css'>
-/*/*/ /*<![CDATA[*/
-@import "../style.css";
-/*]]>*/ /* */ 
-</style>
-
-<h3>MATLAB_SBML_STRUCTURE_FUNCTIONS\EVENT</h3>
+<h3>MATLAB<em>SBML</em>STRUCTURE_FUNCTIONS\EVENT</h3>
 
 <p>The functions allow users to create and work with the SBML Event structure.</p>
 
@@ -47,6 +41,70 @@
 <p><em>NOTE:</em> the optional level and version preserve backwards compatibility
   a missing version argument will default to L1V2; L2V4 or L3V1
   missing both arguments will default to L3V1</p>
+
+<hr>
+
+<h4>SBMLEvent = Event_createDelay(SBMLEvent)</h4>
+
+<p>Takes</p>
+
+<ol>
+<li>SBMLEvent, an SBML Event structure</li>
+</ol>
+
+<p>Returns</p>
+
+<ol>
+<li>the SBML Event structure with a new SBML Delay structure added</li>
+</ol>
+
+<hr>
+
+<h4>SBMLEvent = Event_acreateEventAssignment(SBMLEvent)</h4>
+
+<p>Takes</p>
+
+<ol>
+<li>SBMLEvent, an SBML Event structure</li>
+</ol>
+
+<p>Returns</p>
+
+<ol>
+<li>the SBML Event structure with a new SBML EventAssignment structure added</li>
+</ol>
+
+<hr>
+
+<h4>SBMLEvent = Event_createPriority(SBMLEvent)</h4>
+
+<p>Takes</p>
+
+<ol>
+<li>SBMLEvent, an SBML Event structure</li>
+</ol>
+
+<p>Returns</p>
+
+<ol>
+<li>the SBML Event structure with a new SBML Priority structure added</li>
+</ol>
+
+<hr>
+
+<h4>SBMLEvent = Event_createTrigger(SBMLEvent)</h4>
+
+<p>Takes</p>
+
+<ol>
+<li>SBMLEvent, an SBML Event structure</li>
+</ol>
+
+<p>Returns</p>
+
+<ol>
+<li>the SBML Event structure with a new SBML Trigger structure added</li>
+</ol>
 
 <hr>
 

@@ -29,6 +29,22 @@
 % Returns
 % 1. a MATLAB_SBML KineticLaw structure of the appropriate level and version
 %
+%==================================================================
+% SBMLKineticLaw = KineticLaw_createLocalParameter(SBMLKineticLaw)
+%==================================================================
+% Takes
+% 1. SBMLKineticLaw, an SBML KineticLaw structure
+% Returns
+% 1. the SBML KineticLaw structure with a new SBML LocalParameter structure added
+%
+%=============================================================
+% SBMLKineticLaw = KineticLaw_createParameter(SBMLKineticLaw)
+%=============================================================
+% Takes
+% 1. SBMLKineticLaw, an SBML KineticLaw structure
+% Returns
+% 1. the SBML KineticLaw structure with a new SBML Parameter structure added
+%
 %=================================================
 % formula = KineticLaw_getFormula(SBMLKineticLaw)
 %=================================================

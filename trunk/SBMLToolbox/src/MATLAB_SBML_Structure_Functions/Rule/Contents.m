@@ -2,6 +2,15 @@
 %
 % The functions allow users to create and work with the SBML Rule structure.
 %
+%=========================================================
+% Rule = Rule_create(level(optional), version(optional) )
+%=========================================================
+% Takes
+% 1. level, an integer representing an SBML level (optional)
+% 2. version, an integer representing an SBML version (optional)
+% Returns
+% 1. a MATLAB_SBML Rule structure of the appropriate level and version
+%
 %=====================================
 % formula = Rule_getFormula(SBMLRule)
 %=====================================

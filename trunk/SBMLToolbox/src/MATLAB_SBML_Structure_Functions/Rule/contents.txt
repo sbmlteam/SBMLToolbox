@@ -7,6 +7,24 @@ Function are:
 
 ----------
 
+####Rule = Rule_create(level(optional), version(optional) )
+
+Takes
+
+1. level, an integer representing an SBML level (optional)
+2. version, an integer representing an SBML version (optional)
+
+Returns
+
+1. a MATLAB_SBML Rule structure of the appropriate level and version
+
+*NOTE:* the optional level and version preserve backwards compatibility
+  a missing version argument will default to L1V2; L2V4 or L3V1
+  missing both arguments will default to L3V1
+
+
+------------------------------
+
 ####formula = Rule_getFormula(SBMLRule)
 
 Takes

@@ -20,6 +20,14 @@
 % Returns
 % 1. a MATLAB_SBML UnitDefinition structure of the appropriate level and version
 %
+%====================================================================
+% SBMLUnitDefinition = UnitDefinition_createUnit(SBMLUnitDefinition)
+%====================================================================
+% Takes
+% 1. SBMLUnitDefinition, an SBML UnitDefinition structure
+% Returns
+% 1. the SBML UnitDefinition structure with a new SBML Unit structure added
+%
 %===============================================
 % id = UnitDefinition_getId(SBMLUnitDefinition)
 %===============================================
