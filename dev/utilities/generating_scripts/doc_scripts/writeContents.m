@@ -1,5 +1,6 @@
 function writeContents()
-
+% writes a Contents.m file for matlab help
+% and a contents.txt file for generating html from
 
 fileOut = fopen('Contents.m', 'w');
 fileTxt = fopen('contents.txt', 'w');
