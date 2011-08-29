@@ -26,6 +26,7 @@ copy C:\SBMLToolbox\docs\style.css style.css
 
 cd structure
 copy C:\SBMLToolbox\docs\structure\*.html
+copy C:\SBMLToolbox\docs\structure\style.css style.css
 
 cd ..
 cd structure-functions
@@ -100,7 +101,6 @@ rem top level files
 
 copy C:\SBMLToolbox\src\install.m install.m
 copy C:\SBMLToolbox\src\Contents.m Contents.m
-copy C:\SBMLToolbox\src\install.m install.m
 copy C:\SBMLToolbox\src\SBMLToolbox.m SBMLToolbox.m
 copy C:\SBMLToolbox\src\test.xml test.xml
 
