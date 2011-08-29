@@ -1,6 +1,27 @@
     SBMLToolbox NEWS -- History of user-visible changes
 
 ---------------------------------------------------
+Version 4.0.1 Released 2011-08-30
+---------------------------------------------------
+* Bug fixes:
+
+  - The functions that create structures now also create
+    empty substructures as appropriate.
+
+  - The structure created by the Model_create function can
+    be exported without crashing.  Thanks to Kieran Smallbone
+    for reporting this.
+
+* New features:
+
+  - There are new functions that will create substructures
+    within the MATLAB_SBML structure functions. For 
+    example, m = Model_createCompartment(m) will return
+    a model structure with a compartment structure
+    created and added to the model.
+
+
+---------------------------------------------------
 Version 4.0.0 Released 2011-07-18
 ---------------------------------------------------
 
