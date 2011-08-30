@@ -33,7 +33,7 @@ warning('off', 'Warn:InvalidLV');
 
 disp('Testing ModelGetByNum');
 
-m = TranslateSBML('..\..\Test\test-data\l2v3-all.xml');
+m = TranslateSBML('../../Test/test-data/l2v3-all.xml');
 
 fd = Model_getFunctionDefinition(m, 1);
 m1 = Model_addFunctionDefinition(m, fd);

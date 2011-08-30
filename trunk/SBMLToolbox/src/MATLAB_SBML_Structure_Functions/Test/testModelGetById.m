@@ -33,7 +33,7 @@ warning('off', 'Warn:InvalidLV');
 
 disp('Testing ModelGetById');
 
-m = TranslateSBML('..\..\Test\test-data\l2v3-all.xml');
+m = TranslateSBML('../../Test/test-data/l2v3-all.xml');
 
 fail = fail + ~areIdentical(Model_getFunctionDefinition(m, 1), ...
                             Model_getFunctionDefinitionById(m, 'fd'));
