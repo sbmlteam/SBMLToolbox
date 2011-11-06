@@ -1,4 +1,4 @@
-function writeSetBool(name, attrib)
+function writeSetBool(name, attrib, fullname)
 
 capAttrib = strcat(upper(attrib(1)), attrib(2:end));
 newfilename = sprintf('%s_set%s.m', name, capAttrib);
@@ -13,7 +13,7 @@ fprintf(fileOut, '%%    takes an SBML %s structure\n', name);
 fprintf(fileOut, '%%    and the %s to be set\n', attrib);
 fprintf(fileOut, '%%\n');
 fprintf(fileOut, '%%    returns\n'); 
-fprintf(fileOut, '%%      the %s with the new value for the %s attribute\n\n', name, attrib);
+fprintf(fileOut, '%%      the %s with the new value for the %s attribute\n\n', name, fullname);
 
 fprintf(fileOut, '%%  Filename    :   %s_set%s.m\n', name, capAttrib);
 fprintf(fileOut, '%%  Description :\n');
@@ -47,11 +47,11 @@ fprintf(fileOut, '%%------------------------------------------------------------
 fprintf(fileOut, '%%get level and version and check the input arguments are appropriate\n\n');
 fprintf(fileOut, '[level, version] = GetLevelVersion(SBML%s);\n\n', name);
 
-fprintf(fileOut, 'if isfield(SBML%s, ''%s'')\n', name, attrib);
+fprintf(fileOut, 'if isfield(SBML%s, ''%s'')\n', name, fullname);
 fprintf(fileOut, '\tif (~isIntegralNumber(%s) || %s < 0 || %s > 1)\n', attrib, attrib, attrib);
 fprintf(fileOut, '\t\terror(''%s must be an integer of value 0/1'') ;\n', attrib);
 fprintf(fileOut, '\telse\n');
-fprintf(fileOut, '\t\tSBML%s.%s = %s;\n', name, attrib, attrib);
+fprintf(fileOut, '\t\tSBML%s.%s = %s;\n', name, fullname, attrib);
 fprintf(fileOut, '\tend;\n');
 fprintf(fileOut, 'else\n');
 fprintf(fileOut, '\terror(''%s not an attribute on SBML L%%dV%%d %s'', level, version);\n', ...
