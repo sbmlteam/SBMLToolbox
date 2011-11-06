@@ -4,7 +4,7 @@ function value = FluxBound_getValue(SBMLFluxBound)
 %    takes an SBML FluxBound structure
 %
 %    returns
-%      the value of the value attribute
+%      the value of the fbc_value attribute
 
 %  Filename    :   FluxBound_getValue.m
 %  Description :
@@ -40,8 +40,8 @@ function value = FluxBound_getValue(SBMLFluxBound)
 
 [level, version] = GetLevelVersion(SBMLFluxBound);
 
-if isfield(SBMLFluxBound, 'value')
-	value = SBMLFluxBound.value;
+if isfield(SBMLFluxBound, 'fbc_value')
+	value = SBMLFluxBound.fbc_value;
 else
 	error('value not an attribute on SBML L%dV%d FluxBound', level, version);
 end;

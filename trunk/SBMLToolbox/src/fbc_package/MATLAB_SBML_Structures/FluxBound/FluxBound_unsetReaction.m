@@ -4,7 +4,7 @@ function SBMLFluxBound = FluxBound_unsetReaction(SBMLFluxBound)
 %    takes an SBML FluxBound structure
 %
 %    returns
-%      the FluxBound with the value for the reaction attribute unset
+%      the FluxBound with the value for the fbc_reaction attribute unset
 
 %  Filename    :   FluxBound_unsetReaction.m
 %  Description :
@@ -40,8 +40,8 @@ function SBMLFluxBound = FluxBound_unsetReaction(SBMLFluxBound)
 
 [level, version] = GetLevelVersion(SBMLFluxBound);
 
-if isfield(SBMLFluxBound, 'reaction')
-	SBMLFluxBound.reaction = '';
+if isfield(SBMLFluxBound, 'fbc_reaction')
+	SBMLFluxBound.fbc_reaction = '';
 else
 	error('reaction not an attribute on SBML L%dV%d FluxBound', level, version);
 end;

@@ -4,7 +4,7 @@ function SBMLFluxBound = FluxBound_unsetValue(SBMLFluxBound)
 %    takes an SBML FluxBound structure
 %
 %    returns
-%      the FluxBound with the value for the value attribute unset
+%      the FluxBound with the value for the fbc_value attribute unset
 
 %  Filename    :   FluxBound_unsetValue.m
 %  Description :
@@ -40,8 +40,8 @@ function SBMLFluxBound = FluxBound_unsetValue(SBMLFluxBound)
 
 [level, version] = GetLevelVersion(SBMLFluxBound);
 
-if isfield(SBMLFluxBound, 'value')
-	SBMLFluxBound.value = NaN;
+if isfield(SBMLFluxBound, 'fbc_value')
+	SBMLFluxBound.fbc_value = NaN;
 else
 	error('value not an attribute on SBML L%dV%d FluxBound', level, version);
 end;

@@ -4,7 +4,7 @@ function SBMLFluxBound = FluxBound_unsetOperation(SBMLFluxBound)
 %    takes an SBML FluxBound structure
 %
 %    returns
-%      the FluxBound with the value for the operation attribute unset
+%      the FluxBound with the value for the fbc_operation attribute unset
 
 %  Filename    :   FluxBound_unsetOperation.m
 %  Description :
@@ -40,8 +40,8 @@ function SBMLFluxBound = FluxBound_unsetOperation(SBMLFluxBound)
 
 [level, version] = GetLevelVersion(SBMLFluxBound);
 
-if isfield(SBMLFluxBound, 'operation')
-	SBMLFluxBound.operation = '';
+if isfield(SBMLFluxBound, 'fbc_operation')
+	SBMLFluxBound.fbc_operation = '';
 else
 	error('operation not an attribute on SBML L%dV%d FluxBound', level, version);
 end;

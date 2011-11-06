@@ -5,7 +5,7 @@ function SBMLFluxBound = FluxBound_setValue(SBMLFluxBound, value)
 %    and the value to be set
 %
 %    returns
-%      the FluxBound with the new value for the value attribute
+%      the FluxBound with the new value for the fbc_value attribute
 
 %  Filename    :   FluxBound_setValue.m
 %  Description :
@@ -41,11 +41,11 @@ function SBMLFluxBound = FluxBound_setValue(SBMLFluxBound, value)
 
 [level, version] = GetLevelVersion(SBMLFluxBound);
 
-if isfield(SBMLFluxBound, 'value')
+if isfield(SBMLFluxBound, 'fbc_value')
 	if ~isnumeric(value)
 		error('value must be numeric') ;
 	else
-		SBMLFluxBound.value = value;
+		SBMLFluxBound.fbc_value = value;
 	end;
 else
 	error('value not an attribute on SBML L%dV%d FluxBound', level, version);

@@ -4,7 +4,7 @@ function id = FluxBound_getId(SBMLFluxBound)
 %    takes an SBML FluxBound structure
 %
 %    returns
-%      the value of the id attribute
+%      the value of the fbc_id attribute
 
 %  Filename    :   FluxBound_getId.m
 %  Description :
@@ -40,8 +40,8 @@ function id = FluxBound_getId(SBMLFluxBound)
 
 [level, version] = GetLevelVersion(SBMLFluxBound);
 
-if isfield(SBMLFluxBound, 'id')
-	id = SBMLFluxBound.id;
+if isfield(SBMLFluxBound, 'fbc_id')
+	id = SBMLFluxBound.fbc_id;
 else
 	error('id not an attribute on SBML L%dV%d FluxBound', level, version);
 end;
