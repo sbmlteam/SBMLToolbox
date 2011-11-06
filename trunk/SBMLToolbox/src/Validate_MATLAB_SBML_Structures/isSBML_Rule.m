@@ -56,7 +56,9 @@ end;
 SBMLStructure = varargin{1};
 
 if (length(SBMLStructure) > 1)
-	error('cannot deal with arrays of structures');
+  valid = 0;
+  message = 'cannot deal with arrays of structures';
+  return;
 end;
 
 level = varargin{2};
@@ -72,7 +74,13 @@ isValidLevelVersionCombination(level, version);
 message = '';
 
 if ~isempty(SBMLStructure)
-  typecode = SBMLStructure.typecode;
+  if isfield(SBMLStructure, 'typecode')
+    typecode = SBMLStructure.typecode;
+  else
+    valid = 0;
+    message = 'missing typecode';
+    return;
+  end;
 else
   typecode = 'SBML_ASSIGNMENT_RULE';
 end;
