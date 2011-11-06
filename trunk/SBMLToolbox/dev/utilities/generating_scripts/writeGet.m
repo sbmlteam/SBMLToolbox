@@ -1,4 +1,13 @@
-function writeGet(name, attrib)
+function writeGet(varargin)
+
+name = varargin{1};
+attrib = varargin{2};
+
+if (nargin == 3)
+  attribName = varargin{3};
+else
+  attribName = attrib;
+end;
 
 capAttrib = strcat(upper(attrib(1)), attrib(2:end));
 newfilename = sprintf('%s_get%s.m', name, capAttrib);
@@ -12,7 +21,7 @@ fprintf(fileOut, '%% %s_get%s\n', name, capAttrib);
 fprintf(fileOut, '%%    takes an SBML %s structure\n', name);
 fprintf(fileOut, '%%\n');
 fprintf(fileOut, '%%    returns\n'); 
-fprintf(fileOut, '%%      the value of the %s attribute\n\n', attrib);
+fprintf(fileOut, '%%      the value of the %s attribute\n\n', attribName);
 
 fprintf(fileOut, '%%  Filename    :   %s_get%s.m\n', name, capAttrib);
 fprintf(fileOut, '%%  Description :\n');
@@ -46,8 +55,8 @@ fprintf(fileOut, '%%------------------------------------------------------------
 fprintf(fileOut, '%%get level and version and check the input arguments are appropriate\n\n');
 fprintf(fileOut, '[level, version] = GetLevelVersion(SBML%s);\n\n', name);
 
-fprintf(fileOut, 'if isfield(SBML%s, ''%s'')\n', name, attrib);
-fprintf(fileOut, '\t%s = SBML%s.%s;\n', attrib, name, attrib);
+fprintf(fileOut, 'if isfield(SBML%s, ''%s'')\n', name, attribName);
+fprintf(fileOut, '\t%s = SBML%s.%s;\n', attrib, name, attribName);
 fprintf(fileOut, 'else\n');
 fprintf(fileOut, '\terror(''%s not an attribute on SBML L%%dV%%d %s'', level, version);\n', ...
   attrib, name);

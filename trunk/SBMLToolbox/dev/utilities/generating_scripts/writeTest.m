@@ -49,7 +49,7 @@ fprintf(fileOut, 'message = {};\n');
 fprintf(fileOut, 'warning(''off'', ''Warn:InvalidLV'');\n\n');
 fprintf(fileOut, 'disp(''Testing %s'');\n\n', name);
 
-ignoreFields = {'typecode', 'notes', 'annotation'};
+ignoreFields = {'typecode', 'notes', 'annotation', 'level', 'version', 'fbc_version'};
 
 for vers = 1:2
   fields = getFieldnames(name, 1, vers);

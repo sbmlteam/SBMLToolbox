@@ -1,4 +1,4 @@
-function writeIssetString(name, attrib)
+function writeIssetString(name, attrib, fullname)
 
 capAttrib = strcat(upper(attrib(1)), attrib(2:end));
 newfilename = sprintf('%s_isSet%s.m', name, capAttrib);
@@ -12,7 +12,7 @@ fprintf(fileOut, '%% %s_isSet%s\n', name, capAttrib);
 fprintf(fileOut, '%%    takes an SBML %s structure\n', name);
 fprintf(fileOut, '%%\n');
 fprintf(fileOut, '%%    returns\n'); 
-fprintf(fileOut, '%%      1 if the value for the %s attribute is set\n', attrib);
+fprintf(fileOut, '%%      1 if the value for the %s attribute is set\n', fullname);
 fprintf(fileOut, '%%      0 otherwise\n\n');
 
 
@@ -48,8 +48,8 @@ fprintf(fileOut, '%%------------------------------------------------------------
 fprintf(fileOut, '%%get level and version and check the input arguments are appropriate\n\n');
 fprintf(fileOut, '[level, version] = GetLevelVersion(SBML%s);\n\n', name);
 
-fprintf(fileOut, 'if isfield(SBML%s, ''%s'')\n', name, attrib);
-fprintf(fileOut, '\tvalue = ~isempty(SBML%s.%s);\n', name, attrib);
+fprintf(fileOut, 'if isfield(SBML%s, ''%s'')\n', name, fullname);
+fprintf(fileOut, '\tvalue = ~isempty(SBML%s.%s);\n', name, fullname);
 fprintf(fileOut, 'else\n');
 fprintf(fileOut, '\terror(''%s not an attribute on SBML L%%dV%%d %s'', level, version);\n', ...
   attrib, name);
