@@ -57,14 +57,22 @@ switch nargin
     sbml_struct = varargin{1};
     level = 3;
     version = 1;
+    fbc_version = 1;
   case 2
     sbml_struct = varargin{1};
     level = varargin{2};
     version = 1;
+    fbc_version = 1;
   case 3
     sbml_struct = varargin{1};
     level = varargin{2};
     version = varargin{3};
+    fbc_version = 1;
+  case 4
+    sbml_struct = varargin{1};
+    level = varargin{2};
+    version = varargin{3};
+    fbc_version = varargin{4}
   otherwise
     error('too many input arguments');
 end;
@@ -139,6 +147,8 @@ switch (typecode)
     fhandle = str2func('isSBML_Unit');
   case 'SBML_UNIT_DEFINITION'
     fhandle = str2func('isSBML_UnitDefinition');
+  case 'SBML_FBC_FLUXBOUND'
+    fhandle = str2func('isSBML_FBC_FluxBound');
   otherwise
     fhandle = str2func('isValidSBML_Model');
 end;
@@ -146,6 +156,8 @@ end;
 if (nargin == 1)
   if strcmp(typecode, 'SBML_MODEL')
     y = feval(fhandle, sbml_struct);
+  elseif strcmp(typecode, 'SBML_FBC_FLUXBOUND')
+    y = feval(fhandle, sbml_struct, 3, 1, 1);
   else
      y = (feval(fhandle, sbml_struct, 1, 1) ...
        || feval(fhandle, sbml_struct, 1, 2) ...
@@ -158,6 +170,8 @@ if (nargin == 1)
 else 
   if strcmp(typecode, 'SBML_MODEL')
     y = feval(fhandle, sbml_struct);
+  elseif strcmp(typecode, 'SBML_FBC_FLUXBOUND')
+    y = feval(fhandle, sbml_struct, level, version, fbc_version);
   else
     y = feval(fhandle, sbml_struct, level, version);
   end;
