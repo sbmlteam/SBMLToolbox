@@ -53,6 +53,8 @@ switch number_out
                 [a] = feval(fhandle, varargin{4}, varargin{5});
             case 3
                 [a] = feval(fhandle, varargin{4}, varargin{5}, varargin{6});
+            case 4
+                [a] = feval(fhandle, varargin{4}, varargin{5}, varargin{6}, varargin{7});
         end;
         fail = fail + ~testEquality(a);
     case 1
@@ -63,6 +65,8 @@ switch number_out
                 [a] = feval(fhandle, varargin{4}, varargin{5});
             case 3
                 [a] = feval(fhandle, varargin{4}, varargin{5}, varargin{6});
+            case 4
+                [a] = feval(fhandle, varargin{4}, varargin{5}, varargin{6}, varargin{7});
         end;
         fail = fail + ~testEquality(a, varargin{start_out});
     case 2
@@ -73,6 +77,8 @@ switch number_out
                 [a, b] = feval(fhandle, varargin{4}, varargin{5});
             case 3
                 [a] = feval(fhandle, varargin{4}, varargin{5}, varargin{6});
+            case 4
+                [a] = feval(fhandle, varargin{4}, varargin{5}, varargin{6}, varargin{7});
         end;
         fail = fail + ~testEquality(a, varargin{start_out});
         fail = fail + ~testEquality(b, varargin{start_out+1});
@@ -84,6 +90,8 @@ switch number_out
                 [a, b, c] = feval(fhandle, varargin{4}, varargin{5});
             case 3
                 [a] = feval(fhandle, varargin{4}, varargin{5}, varargin{6});
+            case 4
+                [a] = feval(fhandle, varargin{4}, varargin{5}, varargin{6}, varargin{7});
         end;
         fail = fail + ~testEquality(a, varargin{start_out});
         fail = fail + ~testEquality(b, varargin{start_out+1});
