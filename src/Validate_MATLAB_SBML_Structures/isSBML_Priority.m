@@ -56,7 +56,9 @@ end;
 SBMLStructure = varargin{1};
 
 if (length(SBMLStructure) > 1)
-	error('cannot deal with arrays of structures');
+  valid = 0;
+  message = 'cannot deal with arrays of structures';
+  return;
 end;
 
 level = varargin{2};
@@ -77,10 +79,17 @@ valid = isstruct(SBMLStructure);
 % check the typecode
 typecode = 'SBML_PRIORITY';
 if (valid == 1 && ~isempty(SBMLStructure))
-	if (strcmp(typecode, SBMLStructure.typecode) ~= 1)
-		valid = 0;
-		message = 'typecode mismatch';
-	end;
+  if isfield(SBMLStructure, 'typecode')
+    if (strcmp(typecode, SBMLStructure.typecode) ~= 1)
+      valid = 0;
+      message = 'typecode mismatch';
+      return;
+    end;
+  else
+    valid = 0;
+    message = 'missing typecode field';
+    return;
+  end;
 end;
 
 % if the level and version fields exist they must match

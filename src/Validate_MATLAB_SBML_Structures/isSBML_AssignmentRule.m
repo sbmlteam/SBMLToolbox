@@ -56,7 +56,9 @@ end;
 SBMLStructure = varargin{1};
 
 if (length(SBMLStructure) > 1)
-	error('cannot deal with arrays of structures');
+  valid = 0;
+  message = 'cannot deal with arrays of structures';
+  return;
 end;
 
 level = varargin{2};
@@ -77,25 +79,34 @@ valid = isstruct(SBMLStructure);
 % check the typecode
 typecode = 'SBML_ASSIGNMENT_RULE';
 if (valid == 1 && ~isempty(SBMLStructure))
-	if (level > 1)
-    if (strcmp(typecode, SBMLStructure.typecode) ~= 1)
-      valid = 0;
-      message = 'typecode mismatch';
+  if isfield(SBMLStructure, 'typecode')
+    if (level > 1)
+      if (strcmp(typecode, SBMLStructure.typecode) ~= 1)
+        valid = 0;
+        message = 'typecode mismatch';
+        return;
+      end;
+    else
+      % check L1 types
+      typecode = SBMLStructure.typecode;
+      cvr = strcmp(typecode, 'SBML_COMPARTMENT_VOLUME_RULE');
+      pr = strcmp(typecode, 'SBML_PARAMETER_RULE');
+      scr = strcmp(typecode, 'SBML_SPECIES_CONCENTRATION_RULE');
+      if (cvr ~= 1 && pr ~= 1 && scr ~= 1)
+        valid = 0;
+        message = 'typecode mismatch';
+        return;
+      elseif (strcmp(SBMLStructure.type, 'scalar') ~= 1)
+        valid = 0;
+        message = 'expected scalar type';
+        return;
+      end;      
     end;
   else
-    % check L1 types
-    typecode = SBMLStructure.typecode;
-    cvr = strcmp(typecode, 'SBML_COMPARTMENT_VOLUME_RULE');
-    pr = strcmp(typecode, 'SBML_PARAMETER_RULE');
-    scr = strcmp(typecode, 'SBML_SPECIES_CONCENTRATION_RULE');
-    if (cvr ~= 1 && pr ~= 1 && scr ~= 1)
-      valid = 0;
-      message = 'typecode mismatch';
-    elseif (strcmp(SBMLStructure.type, 'scalar') ~= 1)
-      valid = 0;
-      message = 'expected scalar type';
-    end;      
-	end;
+    valid = 0;
+    message = 'missing typecode';
+    return;
+  end;
 end;
 
 % if the level and version fields exist they must match
