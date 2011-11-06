@@ -49,6 +49,15 @@ if length(attributes) == 0
   end;
 end;
 
+%remove any fbc prefix
+for i = 1:length(attributes)
+  name = attributes{i}{1};
+  if length(name) > 4
+    if strcmp(name(1:4), 'Fbc_')
+      attributes{i}{1} = strcat(upper(name(5:5)), name(6:end));
+    end;
+  end;
+end;
 for i = 1:length(attributes)
   switch (attributes{i}{2})
     case 7
