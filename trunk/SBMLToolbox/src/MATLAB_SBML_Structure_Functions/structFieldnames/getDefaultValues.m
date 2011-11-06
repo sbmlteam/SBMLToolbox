@@ -45,7 +45,7 @@ function [defaultValues] = getDefaultValues(typecode, level, version)
 
 
 
-
+done = 1;
 
 switch (typecode)
   case {'SBML_ALGEBRAIC_RULE', 'AlgebraicRule', 'algebraicRule'}
@@ -105,9 +105,19 @@ switch (typecode)
   case {'SBML_UNIT_DEFINITION', 'UnitDefinition', 'unitDefinition'}
     fhandle = str2func('getUnitDefinitionDefaultValues');
   otherwise
-    error('%s\n%s', ...
-      'getDefaultValues(typecode, level, version', ...
-      'typecode not recognised');    
+    done = 0; 
 end;
 
-[defaultValues] = feval(fhandle, level, version);
+if done == 1
+  [defaultValues] = feval(fhandle, level, version);
+else
+  switch (typecode)
+    case {'SBML_FBC_FLUXBOUND', 'FluxBound', 'fluxBound'}
+      fhandle = str2func('getFluxBoundDefaultValues');
+    otherwise
+      error('%s\n%s', ...
+        'getDefaultValues(typecode, level, version', ...
+        'typecode not recognised');    
+  end;
+  [defaultValues] = feval(fhandle, level, version, 1);
+end;
