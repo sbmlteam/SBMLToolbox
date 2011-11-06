@@ -4,7 +4,7 @@ function SBMLFluxBound = FluxBound_unsetId(SBMLFluxBound)
 %    takes an SBML FluxBound structure
 %
 %    returns
-%      the FluxBound with the value for the id attribute unset
+%      the FluxBound with the value for the fbc_id attribute unset
 
 %  Filename    :   FluxBound_unsetId.m
 %  Description :
@@ -40,8 +40,8 @@ function SBMLFluxBound = FluxBound_unsetId(SBMLFluxBound)
 
 [level, version] = GetLevelVersion(SBMLFluxBound);
 
-if isfield(SBMLFluxBound, 'id')
-	SBMLFluxBound.id = '';
+if isfield(SBMLFluxBound, 'fbc_id')
+	SBMLFluxBound.fbc_id = '';
 else
 	error('id not an attribute on SBML L%dV%d FluxBound', level, version);
 end;

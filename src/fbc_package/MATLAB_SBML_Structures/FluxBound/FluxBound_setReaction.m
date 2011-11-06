@@ -5,7 +5,7 @@ function SBMLFluxBound = FluxBound_setReaction(SBMLFluxBound, reaction)
 %    and the reaction to be set
 %
 %    returns
-%      the FluxBound with the new value for the reaction attribute
+%      the FluxBound with the new value for the fbc_reaction attribute
 
 %  Filename    :   FluxBound_setReaction.m
 %  Description :
@@ -41,11 +41,11 @@ function SBMLFluxBound = FluxBound_setReaction(SBMLFluxBound, reaction)
 
 [level, version] = GetLevelVersion(SBMLFluxBound);
 
-if isfield(SBMLFluxBound, 'reaction')
+if isfield(SBMLFluxBound, 'fbc_reaction')
 	if ~ischar(reaction)
 		error('reaction must be character array') ;
 	else
-		SBMLFluxBound.reaction = reaction;
+		SBMLFluxBound.fbc_reaction = reaction;
 	end;
 else
 	error('reaction not an attribute on SBML L%dV%d FluxBound', level, version);

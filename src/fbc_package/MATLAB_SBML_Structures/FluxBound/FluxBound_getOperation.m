@@ -4,7 +4,7 @@ function operation = FluxBound_getOperation(SBMLFluxBound)
 %    takes an SBML FluxBound structure
 %
 %    returns
-%      the value of the operation attribute
+%      the value of the fbc_operation attribute
 
 %  Filename    :   FluxBound_getOperation.m
 %  Description :
@@ -40,8 +40,8 @@ function operation = FluxBound_getOperation(SBMLFluxBound)
 
 [level, version] = GetLevelVersion(SBMLFluxBound);
 
-if isfield(SBMLFluxBound, 'operation')
-	operation = SBMLFluxBound.operation;
+if isfield(SBMLFluxBound, 'fbc_operation')
+	operation = SBMLFluxBound.fbc_operation;
 else
 	error('operation not an attribute on SBML L%dV%d FluxBound', level, version);
 end;

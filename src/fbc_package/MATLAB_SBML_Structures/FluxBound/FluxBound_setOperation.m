@@ -5,7 +5,7 @@ function SBMLFluxBound = FluxBound_setOperation(SBMLFluxBound, operation)
 %    and the operation to be set
 %
 %    returns
-%      the FluxBound with the new value for the operation attribute
+%      the FluxBound with the new value for the fbc_operation attribute
 
 %  Filename    :   FluxBound_setOperation.m
 %  Description :
@@ -41,11 +41,11 @@ function SBMLFluxBound = FluxBound_setOperation(SBMLFluxBound, operation)
 
 [level, version] = GetLevelVersion(SBMLFluxBound);
 
-if isfield(SBMLFluxBound, 'operation')
+if isfield(SBMLFluxBound, 'fbc_operation')
 	if ~ischar(operation)
 		error('operation must be character array') ;
 	else
-		SBMLFluxBound.operation = operation;
+		SBMLFluxBound.fbc_operation = operation;
 	end;
 else
 	error('operation not an attribute on SBML L%dV%d FluxBound', level, version);

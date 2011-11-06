@@ -42,7 +42,7 @@ function value = FluxBound_isSetSboTerm(SBMLFluxBound)
 [level, version] = GetLevelVersion(SBMLFluxBound);
 
 if isfield(SBMLFluxBound, 'sboTerm')
-	value = SBMLFluxBound.isSetSboTerm;
+	value = (SBMLFluxBound.sboTerm > 0);
 else
 	error('isSetSboTerm not an attribute on SBML L%dV%d FluxBound', level, version);
 end;

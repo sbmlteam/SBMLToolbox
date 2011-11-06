@@ -4,7 +4,7 @@ function value = FluxBound_isSetOperation(SBMLFluxBound)
 %    takes an SBML FluxBound structure
 %
 %    returns
-%      1 if the value for the operation attribute is set
+%      1 if the value for the fbc_operation attribute is set
 %      0 otherwise
 
 %  Filename    :   FluxBound_isSetOperation.m
@@ -41,8 +41,8 @@ function value = FluxBound_isSetOperation(SBMLFluxBound)
 
 [level, version] = GetLevelVersion(SBMLFluxBound);
 
-if isfield(SBMLFluxBound, 'operation')
-	value = ~isempty(SBMLFluxBound.operation);
+if isfield(SBMLFluxBound, 'fbc_operation')
+	value = ~isempty(SBMLFluxBound.fbc_operation);
 else
 	error('operation not an attribute on SBML L%dV%d FluxBound', level, version);
 end;

@@ -4,7 +4,7 @@ function value = FluxBound_isSetValue(SBMLFluxBound)
 %    takes an SBML FluxBound structure
 %
 %    returns
-%      1 if the value for the value attribute is set
+%      1 if the value for the fbc_value attribute is set
 %      0 otherwise
 
 %  Filename    :   FluxBound_isSetValue.m
@@ -41,8 +41,8 @@ function value = FluxBound_isSetValue(SBMLFluxBound)
 
 [level, version] = GetLevelVersion(SBMLFluxBound);
 
-if isfield(SBMLFluxBound, 'value')
-	value = SBMLFluxBound.isSetValue;
+if isfield(SBMLFluxBound, 'fbc_value')
+	value = ~isnan(SBMLFluxBound.fbc_value);
 else
 	error('isSetValue not an attribute on SBML L%dV%d FluxBound', level, version);
 end;

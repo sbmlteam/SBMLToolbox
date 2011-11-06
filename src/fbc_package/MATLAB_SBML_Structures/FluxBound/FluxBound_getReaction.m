@@ -4,7 +4,7 @@ function reaction = FluxBound_getReaction(SBMLFluxBound)
 %    takes an SBML FluxBound structure
 %
 %    returns
-%      the value of the reaction attribute
+%      the value of the fbc_reaction attribute
 
 %  Filename    :   FluxBound_getReaction.m
 %  Description :
@@ -40,8 +40,8 @@ function reaction = FluxBound_getReaction(SBMLFluxBound)
 
 [level, version] = GetLevelVersion(SBMLFluxBound);
 
-if isfield(SBMLFluxBound, 'reaction')
-	reaction = SBMLFluxBound.reaction;
+if isfield(SBMLFluxBound, 'fbc_reaction')
+	reaction = SBMLFluxBound.fbc_reaction;
 else
 	error('reaction not an attribute on SBML L%dV%d FluxBound', level, version);
 end;

@@ -4,7 +4,7 @@ function value = FluxBound_isSetReaction(SBMLFluxBound)
 %    takes an SBML FluxBound structure
 %
 %    returns
-%      1 if the value for the reaction attribute is set
+%      1 if the value for the fbc_reaction attribute is set
 %      0 otherwise
 
 %  Filename    :   FluxBound_isSetReaction.m
@@ -41,8 +41,8 @@ function value = FluxBound_isSetReaction(SBMLFluxBound)
 
 [level, version] = GetLevelVersion(SBMLFluxBound);
 
-if isfield(SBMLFluxBound, 'reaction')
-	value = ~isempty(SBMLFluxBound.reaction);
+if isfield(SBMLFluxBound, 'fbc_reaction')
+	value = ~isempty(SBMLFluxBound.fbc_reaction);
 else
 	error('reaction not an attribute on SBML L%dV%d FluxBound', level, version);
 end;

@@ -5,7 +5,7 @@ function SBMLFluxBound = FluxBound_setId(SBMLFluxBound, id)
 %    and the id to be set
 %
 %    returns
-%      the FluxBound with the new value for the id attribute
+%      the FluxBound with the new value for the fbc_id attribute
 
 %  Filename    :   FluxBound_setId.m
 %  Description :
@@ -41,11 +41,11 @@ function SBMLFluxBound = FluxBound_setId(SBMLFluxBound, id)
 
 [level, version] = GetLevelVersion(SBMLFluxBound);
 
-if isfield(SBMLFluxBound, 'id')
+if isfield(SBMLFluxBound, 'fbc_id')
 	if ~ischar(id)
 		error('id must be character array') ;
 	else
-		SBMLFluxBound.id = id;
+		SBMLFluxBound.fbc_id = id;
 	end;
 else
 	error('id not an attribute on SBML L%dV%d FluxBound', level, version);

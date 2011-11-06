@@ -4,7 +4,7 @@ function value = FluxBound_isSetId(SBMLFluxBound)
 %    takes an SBML FluxBound structure
 %
 %    returns
-%      1 if the value for the id attribute is set
+%      1 if the value for the fbc_id attribute is set
 %      0 otherwise
 
 %  Filename    :   FluxBound_isSetId.m
@@ -41,8 +41,8 @@ function value = FluxBound_isSetId(SBMLFluxBound)
 
 [level, version] = GetLevelVersion(SBMLFluxBound);
 
-if isfield(SBMLFluxBound, 'id')
-	value = ~isempty(SBMLFluxBound.id);
+if isfield(SBMLFluxBound, 'fbc_id')
+	value = ~isempty(SBMLFluxBound.fbc_id);
 else
 	error('id not an attribute on SBML L%dV%d FluxBound', level, version);
 end;
