@@ -1,18 +1,17 @@
 function value = FluxBound_isSetId(SBMLFluxBound)
+% id = FluxBound_isSetId(SBMLFluxBound)
 %
-% FluxBound_isSetId
-%    takes an SBML FluxBound structure
+% Takes
 %
-%    returns
-%      1 if the value for the fbc_id attribute is set
-%      0 otherwise
+% 1. SBMLFluxBound, an SBML FluxBound structure
+%
+% Returns
+%
+% 1. value = 
+%  - 1 if the fbc_id attribute is set
+%  - 0 otherwise
+%
 
-%  Filename    :   FluxBound_isSetId.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
