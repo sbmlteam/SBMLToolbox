@@ -34,14 +34,14 @@ end;
 cd ..;
 cd MATLAB_SBML_Structures;
 cd test;
-disp('Performing tests in MATLAB_SBML_Structures directory');
+disp('Performing tests in fbc_packages/MATLAB_SBML_Structures directory');
 testFBCStructures(fbcBindingEnabled);
 cd ..;
 
 cd ..;
 cd Validate_MATLAB_SBML_Structures;
 cd Test;
-disp('Performing tests in Validate_MATLAB_SBML_Structures directory');
+disp('Performing tests in fbc_packages/Validate_MATLAB_SBML_Structures directory');
 test_fbc_valid(fbcBindingEnabled);
 cd ..;
 
