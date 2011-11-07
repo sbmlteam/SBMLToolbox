@@ -1,5 +1,4 @@
-function [valid, message] = isSBML_FBC_FluxBound(SBMLStructure, level, ...
-                                                      version, pkgVersion)
+function [valid, message] = isSBML_FBC_FluxBound(varargin)
 % [valid, message] = isSBML_FBC_FluxBound(SBMLFBCFluxBound, level, version, pkgVersion)
 %
 % Takes
@@ -44,6 +43,31 @@ function [valid, message] = isSBML_FBC_FluxBound(SBMLStructure, level, ...
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
 
+switch (nargin)
+  case 4
+    SBMLStructure = varargin{1};
+    level = varargin{2};
+    version = varargin{3};
+    pkgVersion = varargin{4};
+  case 3
+    SBMLStructure = varargin{1};
+    level = varargin{2};
+    version = varargin{3};
+    pkgVersion = 1;
+  case 2
+    SBMLStructure = varargin{1};
+    level = varargin{2};
+    version = 1;
+    pkgVersion = 1;
+  case 1
+    SBMLStructure = varargin{1};
+    level = 3;
+    version = 1;
+    pkgVersion = 1;
+  otherwise
+    error('need at least one argument');
+end;
+   
 
 
 
