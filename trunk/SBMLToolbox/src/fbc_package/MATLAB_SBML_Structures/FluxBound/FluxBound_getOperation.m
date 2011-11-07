@@ -1,17 +1,15 @@
 function operation = FluxBound_getOperation(SBMLFluxBound)
+% operation = FluxBound_getOperation(SBMLFluxBound)
 %
-% FluxBound_getOperation
-%    takes an SBML FluxBound structure
+% Takes
 %
-%    returns
-%      the value of the fbc_operation attribute
+% 1. SBMLFluxBound, an SBML FluxBound structure
+%
+% Returns
+%
+% 1. the value of the fbc_operation attribute
+%
 
-%  Filename    :   FluxBound_getOperation.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

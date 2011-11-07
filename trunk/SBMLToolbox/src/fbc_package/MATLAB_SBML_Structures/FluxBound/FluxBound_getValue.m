@@ -1,17 +1,15 @@
 function value = FluxBound_getValue(SBMLFluxBound)
+% value = FluxBound_getValue(SBMLFluxBound)
 %
-% FluxBound_getValue
-%    takes an SBML FluxBound structure
+% Takes
 %
-%    returns
-%      the value of the fbc_value attribute
+% 1. SBMLFluxBound, an SBML FluxBound structure
+%
+% Returns
+%
+% 1. the value of the fbc_value attribute
+%
 
-%  Filename    :   FluxBound_getValue.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
