@@ -1,18 +1,16 @@
-function SBMLFluxBound = FluxBound_setSboTerm(SBMLFluxBound, sboTerm)
+function SBMLFluxBound = FluxBound_setSBOTerm(SBMLFluxBound, sboTerm)
+% SBMLFluxBound = FluxBound_setSBOTerm(SBMLFluxBound, sboTerm)
 %
-% FluxBound_setSboTerm
-%    takes an SBML FluxBound structure
-%    and the sboTerm to be set
+% Takes
 %
-%    returns
-%      the FluxBound with the new value for the sboTerm attribute
+% 1. SBMLFluxBound, an SBML FluxBound structure
+% 2. sboTerm, a number representing the sboTerm to be set
+%
+% Returns
+%
+% 1. the SBML FBC FluxBound structure with the new value for the sboTerm attribute
+%
 
-%  Filename    :   FluxBound_setSboTerm.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

@@ -1,17 +1,15 @@
-function SBMLFluxBound = FluxBound_unsetSboTerm(SBMLFluxBound)
+function SBMLFluxBound = FluxBound_unsetSBOTerm(SBMLFluxBound)
+% SBMLFluxBound = FluxBound_unsetSBOTerm(SBMLFluxBound)
 %
-% FluxBound_getSboTerm
-%    takes an SBML FluxBound structure
+% Takes
 %
-%    returns
-%      the FluxBound with the value for the sboTerm attribute unset
+% 1. SBMLFluxBound, an SBML FluxBound structure
+%
+% Returns
+%
+% 1. the SBML FBC FluxBound structure with the sboTerm attribute unset
+%
 
-%  Filename    :   FluxBound_unsetSboTerm.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
@@ -41,7 +39,7 @@ function SBMLFluxBound = FluxBound_unsetSboTerm(SBMLFluxBound)
 [level, version] = GetLevelVersion(SBMLFluxBound);
 
 if isfield(SBMLFluxBound, 'sboTerm')
-	SBMLFluxBound.sboTerm = NaN;
+	SBMLFluxBound.sboTerm = -1;
 else
 	error('sboTerm not an attribute on SBML L%dV%d FluxBound', level, version);
 end;
