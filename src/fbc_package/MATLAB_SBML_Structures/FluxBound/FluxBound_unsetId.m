@@ -1,17 +1,15 @@
 function SBMLFluxBound = FluxBound_unsetId(SBMLFluxBound)
+% SBMLFluxBound = FluxBound_unsetId(SBMLFluxBound)
 %
-% FluxBound_getId
-%    takes an SBML FluxBound structure
+% Takes
 %
-%    returns
-%      the FluxBound with the value for the fbc_id attribute unset
+% 1. SBMLFluxBound, an SBML FluxBound structure
+%
+% Returns
+%
+% 1. the SBML FBC FluxBound structure with the fbc_id attribute unset
+%
 
-%  Filename    :   FluxBound_unsetId.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

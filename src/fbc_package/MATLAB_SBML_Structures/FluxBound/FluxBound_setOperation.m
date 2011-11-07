@@ -1,18 +1,16 @@
 function SBMLFluxBound = FluxBound_setOperation(SBMLFluxBound, operation)
+% SBMLFluxBound = FluxBound_setOperation(SBMLFluxBound, operation)
 %
-% FluxBound_setOperation
-%    takes an SBML FluxBound structure
-%    and the operation to be set
+% Takes
 %
-%    returns
-%      the FluxBound with the new value for the fbc_operation attribute
+% 1. SBMLFluxBound, an SBML FluxBound structure
+% 2. operation, a string representing the fbc_operation to be set
+%
+% Returns
+%
+% 1. the SBML FBC FluxBound structure with the new value for the fbc_operation attribute
+%
 
-%  Filename    :   FluxBound_setOperation.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

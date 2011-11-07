@@ -1,18 +1,16 @@
 function SBMLFluxBound = FluxBound_setId(SBMLFluxBound, id)
+% SBMLFluxBound = FluxBound_setId(SBMLFluxBound, id)
 %
-% FluxBound_setId
-%    takes an SBML FluxBound structure
-%    and the id to be set
+% Takes
 %
-%    returns
-%      the FluxBound with the new value for the fbc_id attribute
+% 1. SBMLFluxBound, an SBML FluxBound structure
+% 2. id, a string representing the fbc_id to be set
+%
+% Returns
+%
+% 1. the SBML FBC FluxBound structure with the new value for the fbc_id attribute
+%
 
-%  Filename    :   FluxBound_setId.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

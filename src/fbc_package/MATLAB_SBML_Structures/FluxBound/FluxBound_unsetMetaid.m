@@ -1,17 +1,15 @@
 function SBMLFluxBound = FluxBound_unsetMetaid(SBMLFluxBound)
+% SBMLFluxBound = FluxBound_unsetMetaid(SBMLFluxBound)
 %
-% FluxBound_getMetaid
-%    takes an SBML FluxBound structure
+% Takes
 %
-%    returns
-%      the FluxBound with the value for the metaid attribute unset
+% 1. SBMLFluxBound, an SBML FluxBound structure
+%
+% Returns
+%
+% 1. the SBML FBC FluxBound structure with the metaid attribute unset
+%
 
-%  Filename    :   FluxBound_unsetMetaid.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
