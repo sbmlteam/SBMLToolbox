@@ -1,17 +1,15 @@
 function metaid = FluxBound_getMetaid(SBMLFluxBound)
+% metaid = FluxBound_getMetaid(SBMLFluxBound)
 %
-% FluxBound_getMetaid
-%    takes an SBML FluxBound structure
+% Takes
 %
-%    returns
-%      the value of the metaid attribute
+% 1. SBMLFluxBound, an SBML FluxBound structure
+%
+% Returns
+%
+% 1. the value of the metaid attribute
+%
 
-%  Filename    :   FluxBound_getMetaid.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
