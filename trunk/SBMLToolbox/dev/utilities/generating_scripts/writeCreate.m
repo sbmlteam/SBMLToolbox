@@ -8,25 +8,20 @@ fileOut = fopen(newfilename', 'w');
 fprintf(fileOut, 'function %s = %s_create(varargin)\n', name, name);
 
 % put in header and licence
+fprintf(fileOut, '%% %s = %s_create(level, version, pkgVersion)\n', name, name); 
 fprintf(fileOut, '%%\n');
-fprintf(fileOut, '%% %s_create\n', name); 
-fprintf(fileOut, '%%    takes an SBML level (optional)\n');
-fprintf(fileOut, '%%    and   an SBML version (optional)\n');
+fprintf(fileOut, '%% Takes\n');
 fprintf(fileOut, '%%\n');
-fprintf(fileOut, '%%    returns\n'); 
-fprintf(fileOut, '%%      an MATLAB_SBML %s structure of the appropriate\n', name);
-fprintf(fileOut, '%%           level and version\n');
+fprintf(fileOut, '%% 1. level, an integer representing an SBML level\n');
+fprintf(fileOut, '%% 2. version, an integer representing an SBML version\n');
+fprintf(fileOut, '%% 3. pkgVersion, an integer representing an SBML package version\n');
 fprintf(fileOut, '%%\n');
-fprintf(fileOut, '%% NOTE: the optional level and version preserve backwards compatability\n');
-fprintf(fileOut, '%%         if version is missing the default values will be L1V2; L2V4 or L3V1\n');
-fprintf(fileOut, '%%         if neither argument is supplied the default values will be L3V1\n\n');
+fprintf(fileOut, '%% Returns\n'); 
+fprintf(fileOut, '%%\n');
+fprintf(fileOut, '%% 1. a MATLAB_SBML FBC %s structure of the appropriate level, version and pkgVersion\n', name);
+fprintf(fileOut, '%%\n\n');
 
-fprintf(fileOut, '%%  Filename    :   %s_create.m\n', name);
-fprintf(fileOut, '%%  Description :\n');
-fprintf(fileOut, '%%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>\n');
-fprintf(fileOut, '%%  $Id: $\n');
-fprintf(fileOut, '%%  $Source v $\n');
-fprintf(fileOut, '%%\n');
+
 fprintf(fileOut, '%%<!---------------------------------------------------------------------------\n');
 fprintf(fileOut, '%% This file is part of SBMLToolbox.  Please visit http://sbml.org for more\n');
 fprintf(fileOut, '%% information about SBML, and the latest version of SBMLToolbox.\n');

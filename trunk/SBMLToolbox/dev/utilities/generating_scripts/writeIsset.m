@@ -7,21 +7,19 @@ fileOut = fopen(newfilename', 'w');
 fprintf(fileOut, 'function value = %s_isSet%s(SBML%s)\n', name, capAttrib, name);
 
 % put in header and licence
+fprintf(fileOut, '%% %s = %s_isSet%s(SBML%s)\n', attrib, name, capAttrib, name); 
 fprintf(fileOut, '%%\n');
-fprintf(fileOut, '%% %s_isSet%s\n', name, capAttrib); 
-fprintf(fileOut, '%%    takes an SBML %s structure\n', name);
+fprintf(fileOut, '%% Takes\n');
 fprintf(fileOut, '%%\n');
-fprintf(fileOut, '%%    returns\n'); 
-fprintf(fileOut, '%%      1 if the value for the %s attribute is set\n', fullname);
-fprintf(fileOut, '%%      0 otherwise\n\n');
+fprintf(fileOut, '%% 1. SBML%s, an SBML %s structure\n', name, name);
+fprintf(fileOut, '%%\n');
+fprintf(fileOut, '%% Returns\n'); 
+fprintf(fileOut, '%%\n');
+fprintf(fileOut, '%% 1. value = \n');
+fprintf(fileOut, '%%  - 1 if the %s attribute is set\n', fullname);
+fprintf(fileOut, '%%  - 0 otherwise\n');
+fprintf(fileOut, '%%\n\n');
 
-
-fprintf(fileOut, '%%  Filename    :   %s_isSet%s.m\n', name, capAttrib);
-fprintf(fileOut, '%%  Description :\n');
-fprintf(fileOut, '%%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>\n');
-fprintf(fileOut, '%%  $Id: $\n');
-fprintf(fileOut, '%%  $Source v $\n');
-fprintf(fileOut, '%%\n');
 fprintf(fileOut, '%%<!---------------------------------------------------------------------------\n');
 fprintf(fileOut, '%% This file is part of SBMLToolbox.  Please visit http://sbml.org for more\n');
 fprintf(fileOut, '%% information about SBML, and the latest version of SBMLToolbox.\n');
