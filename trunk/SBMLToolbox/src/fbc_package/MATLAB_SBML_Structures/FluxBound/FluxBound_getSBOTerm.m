@@ -1,17 +1,15 @@
-function sboTerm = FluxBound_getSboTerm(SBMLFluxBound)
+function sboTerm = FluxBound_getSBOTerm(SBMLFluxBound)
+% sboTerm = FluxBound_getSBOTerm(SBMLFluxBound)
 %
-% FluxBound_getSboTerm
-%    takes an SBML FluxBound structure
+% Takes
 %
-%    returns
-%      the value of the sboTerm attribute
+% 1. SBMLFluxBound, an SBML FluxBound structure
+%
+% Returns
+%
+% 1. the value of the sboTerm attribute
+%
 
-%  Filename    :   FluxBound_getSboTerm.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
