@@ -1,18 +1,16 @@
 function SBMLFluxBound = FluxBound_setValue(SBMLFluxBound, value)
+% SBMLFluxBound = FluxBound_setValue(SBMLFluxBound, value)
 %
-% FluxBound_setValue
-%    takes an SBML FluxBound structure
-%    and the value to be set
+% Takes
 %
-%    returns
-%      the FluxBound with the new value for the fbc_value attribute
+% 1. SBMLFluxBound, an SBML FluxBound structure
+% 2. value, a number representing the fbc_value to be set
+%
+% Returns
+%
+% 1. the SBML FBC FluxBound structure with the new value for the fbc_value attribute
+%
 
-%  Filename    :   FluxBound_setValue.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

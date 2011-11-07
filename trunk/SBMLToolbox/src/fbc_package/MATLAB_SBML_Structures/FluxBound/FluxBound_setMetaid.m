@@ -1,18 +1,16 @@
 function SBMLFluxBound = FluxBound_setMetaid(SBMLFluxBound, metaid)
+% SBMLFluxBound = FluxBound_setMetaid(SBMLFluxBound, metaid)
 %
-% FluxBound_setMetaid
-%    takes an SBML FluxBound structure
-%    and the metaid to be set
+% Takes
 %
-%    returns
-%      the FluxBound with the new value for the metaid attribute
+% 1. SBMLFluxBound, an SBML FluxBound structure
+% 2. metaid, a string representing the metaid to be set
+%
+% Returns
+%
+% 1. the SBML FBC FluxBound structure with the new value for the metaid attribute
+%
 
-%  Filename    :   FluxBound_setMetaid.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

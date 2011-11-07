@@ -1,18 +1,16 @@
 function SBMLFluxBound = FluxBound_setReaction(SBMLFluxBound, reaction)
+% SBMLFluxBound = FluxBound_setReaction(SBMLFluxBound, reaction)
 %
-% FluxBound_setReaction
-%    takes an SBML FluxBound structure
-%    and the reaction to be set
+% Takes
 %
-%    returns
-%      the FluxBound with the new value for the fbc_reaction attribute
+% 1. SBMLFluxBound, an SBML FluxBound structure
+% 2. reaction, a string representing the fbc_reaction to be set
+%
+% Returns
+%
+% 1. the SBML FBC FluxBound structure with the new value for the fbc_reaction attribute
+%
 
-%  Filename    :   FluxBound_setReaction.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
