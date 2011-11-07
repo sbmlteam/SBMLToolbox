@@ -114,6 +114,10 @@ else
   switch (typecode)
     case {'SBML_FBC_FLUXBOUND', 'FluxBound', 'fluxBound'}
       fhandle = str2func('getFluxBoundDefaultValues');
+    case {'SBML_FBC_FLUXOBJECTIVE', 'FluxObjective', 'fluxObjective'}
+      fhandle = str2func('getFluxObjectiveDefaultValues');
+    case {'SBML_FBC_OBJECTIVE', 'Objective', 'objective'}
+      fhandle = str2func('getObjectiveDefaultValues');
     otherwise
       error('%s\n%s', ...
         'getDefaultValues(typecode, level, version', ...

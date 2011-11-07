@@ -116,6 +116,10 @@ else
   switch (typecode)
     case {'SBML_FBC_FLUXBOUND', 'FluxBound', 'fluxBound'}
       fhandle = str2func('getFluxBoundFieldnames');
+    case {'SBML_FBC_FLUXOBJECTIVE', 'FluxObjective', 'fluxObjective'}
+      fhandle = str2func('getFluxObjectiveFieldnames');
+    case {'SBML_FBC_OBJECTIVE', 'Objective', 'objective'}
+      fhandle = str2func('getObjectiveFieldnames');
     otherwise
       error('%s\n%s', ...
         'getFieldnames(typecode, level, version', ...
