@@ -118,6 +118,10 @@ else
       fhandle = str2func('getFluxObjectiveDefaultValues');
     case {'SBML_FBC_OBJECTIVE', 'Objective', 'objective'}
       fhandle = str2func('getObjectiveDefaultValues');
+    case {'SBML_FBC_MODEL'}
+      fhandle = str2func('getFBCModelDefaultValues');
+    case {'SBML_FBC_SPECIES'}
+      fhandle = str2func('getFBCSpeciesDefaultValues');
     otherwise
       error('%s\n%s', ...
         'getDefaultValues(typecode, level, version', ...

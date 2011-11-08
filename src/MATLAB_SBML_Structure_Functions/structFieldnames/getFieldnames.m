@@ -120,6 +120,10 @@ else
       fhandle = str2func('getFluxObjectiveFieldnames');
     case {'SBML_FBC_OBJECTIVE', 'Objective', 'objective'}
       fhandle = str2func('getObjectiveFieldnames');
+    case {'SBML_FBC_MODEL'}
+      fhandle = str2func('getFBCModelFieldnames');
+    case {'SBML_FBC_SPECIES'}
+      fhandle = str2func('getFBCSpeciesFieldnames');
     otherwise
       error('%s\n%s', ...
         'getFieldnames(typecode, level, version', ...
