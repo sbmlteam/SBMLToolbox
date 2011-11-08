@@ -89,6 +89,10 @@ end;
 
 isValidLevelVersionCombination(level, version);
 
+if isfield(sbml_struct, 'fbc_version') == 1
+  y = isValidFBC(sbml_struct, level, version, fbc_version);
+  return;
+end;
 
 typecode = sbml_struct.typecode;
 
@@ -147,21 +151,16 @@ switch (typecode)
     fhandle = str2func('isSBML_Unit');
   case 'SBML_UNIT_DEFINITION'
     fhandle = str2func('isSBML_UnitDefinition');
-  case 'SBML_FBC_FLUXBOUND'
-    fhandle = str2func('isSBML_FBC_FluxBound');
-  case 'SBML_FBC_FLUXOBJECTIVE'
-    fhandle = str2func('isSBML_FBC_FluxObjective');
-  case 'SBML_FBC_OBJECTIVE'
-    fhandle = str2func('isSBML_FBC_Objective');
-  otherwise
+  case 'SBML_MODEL'
     fhandle = str2func('isValidSBML_Model');
+  otherwise
+    y = 0;
+    return;
 end;
 
 if (nargin == 1)
   if strcmp(typecode, 'SBML_MODEL')
     y = feval(fhandle, sbml_struct);
-  elseif strcmp(typecode, 'SBML_FBC_FLUXBOUND')
-    y = feval(fhandle, sbml_struct, 3, 1, 1);
   else
      y = (feval(fhandle, sbml_struct, 1, 1) ...
        || feval(fhandle, sbml_struct, 1, 2) ...
@@ -174,12 +173,6 @@ if (nargin == 1)
 else 
   if strcmp(typecode, 'SBML_MODEL')
     y = feval(fhandle, sbml_struct);
-  elseif strcmp(typecode, 'SBML_FBC_FLUXBOUND')
-    y = feval(fhandle, sbml_struct, level, version, fbc_version);
-  elseif strcmp(typecode, 'SBML_FBC_FLUXOBJECTIVE')
-    y = feval(fhandle, sbml_struct, level, version, fbc_version);
-  elseif strcmp(typecode, 'SBML_FBC_OBJECTIVE')
-    y = feval(fhandle, sbml_struct, level, version, fbc_version);
   else
     y = feval(fhandle, sbml_struct, level, version);
   end;
