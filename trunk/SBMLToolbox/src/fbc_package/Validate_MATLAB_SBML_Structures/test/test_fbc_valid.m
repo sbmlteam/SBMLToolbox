@@ -40,24 +40,38 @@ end;
 test = 0;
 Totalfail = 0;
 
-test = test + 14;
+test = test + 44;
 fail = TestIsSBML_FBC_FluxBound;
 if (fail > 0)
     disp('isSBML_FBC_FluxBound failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 14;
+test = test + 66;
 fail = TestIsSBML_FBC_Objective;
 if (fail > 0)
     disp('isSBML_FBC_Objective failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 14;
+test = test + 44;
 fail = TestIsSBML_FBC_FluxObjective;
 if (fail > 0)
     disp('isSBML_FBC_FluxObjective failed');
+end;
+Totalfail = Totalfail + fail;
+
+test = test + 42;
+fail = TestIsSBML_FBC_Species;
+if (fail > 0)
+    disp('isSBML_FBC_Species failed');
+end;
+Totalfail = Totalfail + fail;
+
+test = test + 22;
+fail = TestIsSBML_FBC_Model;
+if (fail > 0)
+    disp('isSBML_FBC_Model failed');
 end;
 Totalfail = Totalfail + fail;
 
@@ -68,15 +82,22 @@ if fbcBindingEnabled == 1
   fb = m.fbc_fluxBound(1);
   o = m.fbc_objective(1);
   fo = o.fbc_fluxObjective(1);
+  s = m.species(1);
 
-  test = test + 2;
+  test = test + 7;
 
   fail = 0;
 
-  pass = isValidSBML_Model(m);
+  pass = isSBML_Model(m);
   if (pass == 0)
       fail = fail + 1;
       disp('l3v1 Model failed');
+  end;
+
+  pass = isSBML_FBC_Model(m, 3, 1, 1);
+  if (pass == 0)
+      fail = fail + 1;
+      disp('l3v1 fbc Model failed');
   end;
 
   pass = isSBML_FBC_FluxBound(fb,3, 1, 1);
@@ -95,6 +116,18 @@ if fbcBindingEnabled == 1
   if (pass == 0)
       fail = fail + 1;
       disp('l3v1 FluxObjective failed');
+  end;
+
+  pass = isSBML_Species(s, 3, 1);
+  if (pass == 0)
+      fail = fail + 1;
+      disp('l3v1 Species failed');
+  end;
+
+  pass = isSBML_FBC_Species(s, 3, 1, 1);
+  if (pass == 0)
+      fail = fail + 1;
+      disp('l3v1 FBC Species failed');
   end;
 end;
 
