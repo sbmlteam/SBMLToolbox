@@ -41,7 +41,7 @@ function value = FluxObjective_isSetCoefficient(SBMLFluxObjective)
 [level, version] = GetLevelVersion(SBMLFluxObjective);
 
 if isfield(SBMLFluxObjective, 'fbc_coefficient')
-	value = SBMLFluxObjective.isSetCoefficient;
+	value = ~isnan(SBMLFluxObjective.fbc_coefficient);
 else
 	error('isSetCoefficient not an attribute on SBML L%dV%d FluxObjective', level, version);
 end;

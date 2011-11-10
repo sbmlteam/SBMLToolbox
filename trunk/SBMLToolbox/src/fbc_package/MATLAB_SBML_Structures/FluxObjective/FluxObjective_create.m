@@ -78,6 +78,12 @@ if (num > 0)
 	values = getFluxObjectiveDefaultValues(level, version, pkgVersion);
 	FluxObjective = cell2struct(values, fieldnames, 2);
 
+	%add level and version
+
+	FluxObjective.level = level;
+	FluxObjective.version = version;
+  FluxObjective.fbc_version = pkgVersion;
+
 %check correct structure
 
 	if ~isSBML_FBC_FluxObjective(FluxObjective, level, version, pkgVersion)
