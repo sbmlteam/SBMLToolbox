@@ -40,6 +40,7 @@ fail = 0;
 
 fail = fail + testFluxBound();
 fail = fail + testFluxObjective();
+fail = fail + testObjective();
 
 y = fail;
 

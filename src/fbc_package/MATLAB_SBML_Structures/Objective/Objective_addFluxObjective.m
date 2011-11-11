@@ -1,18 +1,16 @@
 function SBMLObjective = Objective_addFluxObjective(SBMLObjective, SBMLFluxObjective)
+% SBMLObjective = Objective_addFluxObjective(SBMLObjective, SBMLFluxObjective)
 %
-% Objective_addFluxObjective(SBMLObjective, SBMLFluxObjective)
-%    takes an SBML Objective structure
-%    and an SBML FluxObjective structure
+% Takes
 %
-%    returns
-%      the Objective with the FluxObjective element added
+% 1. SBMLObjective, an SBML Objective structure
+% 2. SBMLFluxObjective, an SBML FluxObjective structure
+%
+% Returns
+%
+% 1. the SBML Objective structure with the SBML FluxObjective structure added
+%
 
-%  Filename    :   Objective_addFluxObjective.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

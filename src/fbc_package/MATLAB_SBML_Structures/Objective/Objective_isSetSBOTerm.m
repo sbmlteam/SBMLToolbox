@@ -41,7 +41,7 @@ function value = Objective_isSetSboTerm(SBMLObjective)
 [level, version] = GetLevelVersion(SBMLObjective);
 
 if isfield(SBMLObjective, 'sboTerm')
-	value = SBMLObjective.isSetSboTerm;
+	value = (SBMLObjective.sboTerm > 0);
 else
 	error('isSetSboTerm not an attribute on SBML L%dV%d Objective', level, version);
 end;

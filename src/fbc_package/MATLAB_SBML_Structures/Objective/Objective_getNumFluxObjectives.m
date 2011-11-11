@@ -1,17 +1,15 @@
 function num = Objective_getNumFluxObjectives(SBMLObjective)
+% num = Objective_getNumFluxObjectives(SBMLObjective)
 %
-% Objective_getNumFluxObjectives
-%    takes an SBML Objective structure
+% Takes
 %
-%    returns
-%      the number of fluxObjective elements
+% 1. SBMLObjective, an SBML Objective structure
+%
+% Returns
+%
+% 1. the number of SBML FluxObjective structures present in the Objective
+%
 
-%  Filename    :   Objective_getNumFluxObjectives.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
