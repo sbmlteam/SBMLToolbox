@@ -1,4 +1,16 @@
-function y = testFBCStructures(varargin)
+function value = FBCSpecies_isSetChemicalFormula(SBMLFBCSpecies)
+% chemicalFormula = FBCSpecies_isSetChemicalFormula(SBMLFBCSpecies)
+%
+% Takes
+%
+% 1. SBMLFBCSpecies, an SBML FBCSpecies structure
+%
+% Returns
+%
+% 1. value = 
+%  - 1 if the fbc_chemicalFormula attribute is set
+%  - 0 otherwise
+%
 
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
@@ -23,26 +35,14 @@ function y = testFBCStructures(varargin)
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
 
-fbcBindingEnabled = 1;
 
-if (nargin == 0)
-  if isBindingFbcEnabled('../../test/test-data/fbc.xml') == 0
-    disp ('The libsbml binding for fbc is not enabled');
-    disp ('not all tests can be run');
-    fbcBindingEnabled = 0;
-  end;
+%get level and version and check the input arguments are appropriate
+
+[level, version] = GetLevelVersion(SBMLFBCSpecies);
+
+if isfield(SBMLFBCSpecies, 'fbc_chemicalFormula')
+	value = ~isempty(SBMLFBCSpecies.fbc_chemicalFormula);
 else
-  fbcBindingEnabled = varargin{1};
+	error('chemicalFormula not an attribute on SBML L%dV%d FBCSpecies', level, version);
 end;
-
-
-fail = 0;
-
-fail = fail + testFluxBound();
-fail = fail + testFluxObjective();
-fail = fail + testObjective();
-fail = fail + testFBCSpecies();
-fail = fail + testFBCModel();
-
-y = fail;
 

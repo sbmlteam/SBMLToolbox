@@ -1,4 +1,15 @@
-function y = testFBCStructures(varargin)
+function SBMLFBCModel = FBCModel_addFluxBound(SBMLFBCModel, SBMLFluxBound)
+% SBMLFBCModel = FBCModel_addFluxBound(SBMLFBCModel, SBMLFluxBound)
+%
+% Takes
+%
+% 1. SBMLFBCModel, an SBML FBCModel structure
+% 2. SBMLFluxBound, an SBML FluxBound structure
+%
+% Returns
+%
+% 1. the SBML FBCModel structure with the SBML FluxBound structure added
+%
 
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
@@ -23,26 +34,26 @@ function y = testFBCStructures(varargin)
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
 
-fbcBindingEnabled = 1;
 
-if (nargin == 0)
-  if isBindingFbcEnabled('../../test/test-data/fbc.xml') == 0
-    disp ('The libsbml binding for fbc is not enabled');
-    disp ('not all tests can be run');
-    fbcBindingEnabled = 0;
-  end;
-else
-  fbcBindingEnabled = varargin{1};
+%get level and version and check the input arguments are appropriate
+
+[level, version] = GetLevelVersion(SBMLFBCModel);
+[fluxBound_level, fluxBound_version] = GetLevelVersion(SBMLFluxBound);
+
+if level ~= fluxBound_level
+	error('mismatch in levels');
+elseif version ~= fluxBound_version
+	error('mismatch in versions');
 end;
 
-
-fail = 0;
-
-fail = fail + testFluxBound();
-fail = fail + testFluxObjective();
-fail = fail + testObjective();
-fail = fail + testFBCSpecies();
-fail = fail + testFBCModel();
-
-y = fail;
+if isfield(SBMLFBCModel, 'fbc_fluxBound')
+	index = length(SBMLFBCModel.fbc_fluxBound);
+	if index == 0
+		SBMLFBCModel.fbc_fluxBound = SBMLFluxBound;
+	else
+		SBMLFBCModel.fbc_fluxBound(index+1) = SBMLFluxBound;
+	end;
+else
+	error('fluxBound not an element on SBML L%dV%d FBCModel', level, version);
+end;
 
