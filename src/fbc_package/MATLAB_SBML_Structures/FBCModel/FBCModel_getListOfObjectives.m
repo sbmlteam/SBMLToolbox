@@ -1,4 +1,14 @@
-function y = testFBCStructures(varargin)
+function objective = FBCModel_getListOfObjectives(SBMLFBCModel)
+% objective = FBCModel_getListOfObjectives(SBMLFBCModel)
+%
+% Takes
+%
+% 1. SBMLFBCModel, an SBML FBCModel structure
+%
+% Returns
+%
+% 1. an array of the objective structures
+%
 
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
@@ -23,26 +33,14 @@ function y = testFBCStructures(varargin)
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
 
-fbcBindingEnabled = 1;
 
-if (nargin == 0)
-  if isBindingFbcEnabled('../../test/test-data/fbc.xml') == 0
-    disp ('The libsbml binding for fbc is not enabled');
-    disp ('not all tests can be run');
-    fbcBindingEnabled = 0;
-  end;
+%get level and version and check the input arguments are appropriate
+
+[level, version] = GetLevelVersion(SBMLFBCModel);
+
+if isfield(SBMLFBCModel, 'fbc_objective')
+	objective = SBMLFBCModel.fbc_objective;
 else
-  fbcBindingEnabled = varargin{1};
+	error('objective not an element on SBML L%dV%d FBCModel', level, version);
 end;
-
-
-fail = 0;
-
-fail = fail + testFluxBound();
-fail = fail + testFluxObjective();
-fail = fail + testObjective();
-fail = fail + testFBCSpecies();
-fail = fail + testFBCModel();
-
-y = fail;
 
