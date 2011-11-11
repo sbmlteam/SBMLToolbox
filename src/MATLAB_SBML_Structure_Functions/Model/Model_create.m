@@ -66,6 +66,10 @@ if ~isValidLevelVersionCombination(level, version)
 	error('invalid level/version combination');
 end;
 
+% note state of the Level version warning
+ss = warning('query', 'Warn:InvalidLV');
+warnLV = strcmp(ss.state, 'off');
+
 %get fields and values and create the structure
 
 [fieldnames, num] = getModelFieldnames(level, version);
@@ -97,7 +101,7 @@ if (num > 0)
     Model.event = t;
     Model.event(1:end) = [];
   end;
-  warning('off', 'Warn:InvalidLV');
+  warning('off', 'Warn:InvalidLV'); 
   t = CompartmentType_create(level, version);
   if ~isempty(t)
     Model.compartmentType = t;
@@ -118,7 +122,11 @@ if (num > 0)
     Model.constraint = t;
     Model.constraint(1:end) = [];
   end;
-  warning('on', 'Warn:InvalidLV');
+  if warnLV == 0
+    warning('on', 'Warn:InvalidLV');
+  else
+    warning('off', 'Warn:InvalidLV');
+  end;
 
   if level > 1
     Model.time_symbol = '';
