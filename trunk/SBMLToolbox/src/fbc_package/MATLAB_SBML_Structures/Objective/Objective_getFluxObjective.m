@@ -1,18 +1,16 @@
 function fluxObjective = Objective_getFluxObjective(SBMLObjective, index)
+% fluxObjective = Objective_getFluxObjective(SBMLObjective, index)
 %
-% Objective_getFluxObjective
-%    takes an SBML Objective structure
-%    and an index
+% Takes
 %
-%    returns
-%      the value of the fluxObjective element at the indexed position
+% 1. SBMLObjective, an SBML Objective structure
+% 2. index, an integer representing the index of SBML FluxObjective structure
+%
+% Returns
+%
+% 1. the SBML FluxObjective structure at the indexed position
+%
 
-%  Filename    :   Objective_getFluxObjective.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.

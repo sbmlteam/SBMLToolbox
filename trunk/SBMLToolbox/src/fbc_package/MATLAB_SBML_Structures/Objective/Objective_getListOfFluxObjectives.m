@@ -1,17 +1,15 @@
 function fluxObjective = Objective_getListOfFluxObjectives(SBMLObjective)
+% fluxObjective = Objective_getListOfFluxObjectives(SBMLObjective)
 %
-% Objective_getListOfFluxObjectives
-%    takes an SBML Objective structure
+% Takes
 %
-%    returns
-%      the array of structures of the fluxObjective elements
+% 1. SBMLObjective, an SBML Objective structure
+%
+% Returns
+%
+% 1. an array of the fluxObjective structures
+%
 
-%  Filename    :   Objective_getListOfFluxObjectives.m
-%  Description :
-%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>
-%  $Id: $
-%  $Source v $
-%
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
