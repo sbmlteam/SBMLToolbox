@@ -1,6 +1,7 @@
 % toolbox\fbc_package\MATLAB_SBML_Structures\structFieldnames
 %
-% Info here. 
+% These functions return the fieldnames and default values for the
+% MATLAB_SBML FBC structures. 
 %
 %=================================================================
 % [values] = getFBCModelDefaultValues(level, version, pkgVersion)
