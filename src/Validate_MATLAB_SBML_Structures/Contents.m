@@ -199,7 +199,7 @@
 % 2. a message explaining any failure
 %
 %============================================
-% [valid, message] = isSBML_Model(SBMLModel)
+% [valid, message] = isValidSBML_Model(SBMLModel)
 %============================================
 % Takes
 % 1. SBMLModel, an SBML Model structure
@@ -452,7 +452,7 @@
 % 2. a message explaining any failure
 %
 %============================================
-% [valid, message] = isSBML_Model(SBMLModel)
+% [valid, message] = isValidSBML_Model(SBMLModel)
 %============================================
 % Takes
 % 1. SBMLModel, an SBML Model structure

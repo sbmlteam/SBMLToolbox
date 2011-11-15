@@ -88,7 +88,7 @@ if fbcBindingEnabled == 1
 
   fail = 0;
 
-  pass = isSBML_Model(m);
+  pass = isValidSBML_Model(m);
   if (pass == 0)
       fail = fail + 1;
       disp('l3v1 Model failed');

@@ -121,7 +121,7 @@ if (valid == 1 && isfield(SBMLStructure, 'fbc_version') && ~isempty(SBMLStructur
 end;
 
 if (valid == 1)
-  [valid, message] = isSBML_Model(SBMLStructure);
+  [valid, message] = isValidSBML_Model(SBMLStructure);
 end;
 
 % check that structure contains all the fbc fields
