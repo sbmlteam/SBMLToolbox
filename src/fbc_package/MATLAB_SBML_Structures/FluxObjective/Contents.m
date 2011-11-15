@@ -1,6 +1,6 @@
 % toolbox\fbc_package\MATLAB_SBML_Structures\FluxObjective
 %
-% Info here. 
+% The functions allow users to create and work with the SBML FBC FluxObjective structure.
 %
 %==================================================================
 % FluxObjective = FluxObjective_create(level, version, pkgVersion)

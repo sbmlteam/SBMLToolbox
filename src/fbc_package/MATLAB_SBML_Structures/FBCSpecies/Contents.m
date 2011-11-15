@@ -1,6 +1,7 @@
 % toolbox\fbc_package\MATLAB_SBML_Structures\FBCSpecies
 %
-% Info here. 
+% The functions allow users to create and work with the FBC elements
+% and attributes of an SBML FBC Species structure.
 %
 %============================================================
 % FBCSpecies = FBCSpecies_create(level, version, pkgVersion)
