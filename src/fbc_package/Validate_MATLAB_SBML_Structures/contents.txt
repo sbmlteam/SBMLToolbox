@@ -1,7 +1,9 @@
 ###FBC_PACKAGE\VALIDATE_MATLAB_SBML_STRUCTURES
 
 
-writeInfo here
+This folder contains tests that checks that the structure supplied as argument 
+is of the appropriate form to represent the intended element of an SBML model
+that includes the fbc package.
 
 Function are:
 

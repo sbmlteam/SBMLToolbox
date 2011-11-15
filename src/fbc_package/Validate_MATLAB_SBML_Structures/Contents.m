@@ -1,6 +1,8 @@
 % toolbox\fbc_package\Validate_MATLAB_SBML_Structures
 %
-% Info here. 
+% This folder contains tests that checks that the structure supplied as argument 
+% is of the appropriate form to represent the intended element of an SBML model
+% that includes the fbc package.
 %
 %=======================================================================================
 % [valid, message] = isSBML_FBC_FluxBound(SBMLFBCFluxBound, level, version, pkgVersion)
