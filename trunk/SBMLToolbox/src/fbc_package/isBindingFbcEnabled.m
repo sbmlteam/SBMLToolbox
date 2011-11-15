@@ -30,7 +30,7 @@ function fbcEnabled = isBindingFbcEnabled(varargin)
 % http://sbml.org/software/libsbml/license.html
 
 % assume not enabled
-fbcEnabled = false;
+fbcEnabled = 0;
 
 if nargin == 0
   % no argument supplied so we must be in the fbc_package directory
@@ -59,7 +59,7 @@ else
     [m, e] = TranslateSBML(path_to_file, 1, 0);
 
     if length(e) == 0
-      fbcEnabled = true;
+      fbcEnabled = 1;
     end;    
   end;
 

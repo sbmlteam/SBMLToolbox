@@ -1,5 +1,5 @@
 function [valid, message] = isValidSBML_Model(SBMLStructure)
-% [valid, message] = isSBML_Model(SBMLModel)
+% [valid, message] = isValidSBML_Model(SBMLModel)
 %
 % Takes
 %
