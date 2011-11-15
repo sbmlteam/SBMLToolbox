@@ -1,0 +1,184 @@
+###FBC_PACKAGE\MATLAB_SBML_STRUCTURES\STRUCTFIELDNAMES
+
+
+writeInfo here
+
+Function are:
+
+----------
+
+####[values] = getFBCModelDefaultValues(level, version, pkgVersion)
+
+Takes
+
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
+3. pkgVersion, an integer representing an SBML package version
+
+Returns
+
+1. an array of default values for teh FBC attributes SBML Model structure of the given level and version
+
+*NOTE:* The corresponding fields present in an SBML FBC Model structure can be found using
+  the function `getFBCModelFieldnames`
+
+
+------------------------------
+
+####[fieldnames, num] = getFBCModelFieldnames(level, version, pkgVersion)
+
+Takes
+
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
+3. pkgVersion, an integer representing an SBML package version
+
+Returns
+
+1. an array of fieldnames for an SBML FBCModel structure of the given level and version
+2. the number of fieldnames
+
+
+
+------------------------------
+
+####[values] = getFBCSpeciesDefaultValues(level, version, pkgVersion)
+
+Takes
+
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
+3. pkgVersion, an integer representing an SBML package version
+
+Returns
+
+1. an array of default values for teh FBC attributes SBML Species structure of the given level and version
+
+*NOTE:* The corresponding fields present in an SBML FBC Species structure can be found using
+  the function `getFBCSpeciesFieldnames`
+
+
+------------------------------
+
+####[fieldnames, num] = getFBCSpeciesFieldnames(level, version, pkgVersion)
+
+Takes
+
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
+3. pkgVersion, an integer representing an SBML package version
+
+Returns
+
+1. an array of fieldnames for an SBML FBCSpecies structure of the given level and version
+2. the number of fieldnames
+
+
+
+------------------------------
+
+####[values] = getFluxBoundsDefaultValues(level, version, pkgVersion)
+
+Takes
+
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
+3. pkgVersion, an integer representing an SBML package version
+
+Returns
+
+1. an array of default values for an SBML FluxBound structure of the given level and version
+
+*NOTE:* The corresponding fields present in an SBML FluxBound structure can be found using
+  the function `getFluxBoundFieldnames`
+
+
+------------------------------
+
+####[fieldnames, num] = getFluxBoundFieldnames(level, version, pkgVersion)
+
+Takes
+
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
+3. pkgVersion, an integer representing an SBML package version
+
+Returns
+
+1. an array of fieldnames for an SBML FluxBound structure of the given level and version
+2. the number of fieldnames
+
+
+
+------------------------------
+
+####[values] = getFluxObjectivesDefaultValues(level, version, pkgVersion)
+
+Takes
+
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
+3. pkgVersion, an integer representing an SBML package version
+
+Returns
+
+1. an array of default values for an SBML FluxObjective structure of the given level and version
+
+*NOTE:* The corresponding fields present in an SBML FluxObjective structure can be found using
+  the function `getFluxObjectiveFieldnames`
+
+
+------------------------------
+
+####[fieldnames, num] = getFluxObjectiveFieldnames(level, version, pkgVersion)
+
+Takes
+
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
+3. pkgVersion, an integer representing an SBML package version
+
+Returns
+
+1. an array of fieldnames for an SBML FluxObjective structure of the given level and version
+2. the number of fieldnames
+
+
+
+------------------------------
+
+####[values] = getObjectiveDefaultValues(level, version, pkgVersion)
+
+Takes
+
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
+3. pkgVersion, an integer representing an SBML package version
+
+Returns
+
+1. an array of default values for an SBML Objective structure of the given level and version
+
+*NOTE:* The corresponding fields present in an SBML Objective structure can be found using
+  the function `getObjectiveFieldnames`
+
+
+------------------------------
+
+####[fieldnames, num] = getObjectiveFieldnames(level, version, pkgVersion)
+
+Takes
+
+1. level, an integer representing an SBML level
+2. version, an integer representing an SBML version
+3. pkgVersion, an integer representing an SBML package version
+
+Returns
+
+1. an array of fieldnames for an SBML Objective structure of the given level and version
+2. the number of fieldnames
+
+
+
+------------------------------
+
