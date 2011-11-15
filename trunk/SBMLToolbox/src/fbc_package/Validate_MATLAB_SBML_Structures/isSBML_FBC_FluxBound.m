@@ -18,8 +18,9 @@ function [valid, message] = isSBML_FBC_FluxBound(varargin)
 % 2. a message explaining any failure
 %
 % *NOTE:* The fields present in a MATLAB_SBML FBC FluxBound structure of the appropriate
-% level and version can be found using getFluxBoundFieldnames(level,
-% version, pkgVersion)
+% level and version can be found using getFluxBoundFieldnames(level, version, pkgVersion)
+%
+
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
 % information about SBML, and the latest version of SBMLToolbox.
