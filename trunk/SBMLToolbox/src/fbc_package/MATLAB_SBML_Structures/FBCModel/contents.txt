@@ -1,7 +1,8 @@
 ###FBC_PACKAGE\MATLAB_SBML_STRUCTURES\FBCMODEL
 
 
-writeInfo here
+The functions allow users to create and work with the FBC elements
+and attributes of an SBML FBC Model structure.
 
 Function are:
 

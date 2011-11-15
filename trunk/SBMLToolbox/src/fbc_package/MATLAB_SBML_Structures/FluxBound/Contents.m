@@ -1,6 +1,6 @@
 % toolbox\fbc_package\MATLAB_SBML_Structures\FluxBound
 %
-% Info here. 
+% The functions allow users to create and work with the SBML FBC FluxBound structure.
 %
 %==========================================================
 % FluxBound = FluxBound_create(level, version, pkgVersion)

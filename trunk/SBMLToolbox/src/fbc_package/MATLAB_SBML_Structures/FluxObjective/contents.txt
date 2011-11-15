@@ -1,7 +1,7 @@
 ###FBC_PACKAGE\MATLAB_SBML_STRUCTURES\FLUXOBJECTIVE
 
 
-writeInfo here
+The functions allow users to create and work with the SBML FBC FluxObjective structure.
 
 Function are:
 
