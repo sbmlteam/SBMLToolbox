@@ -41,35 +41,37 @@ function fbcEnabled = isBindingFbcEnabled(varargin)
 % assume not enabled
 fbcEnabled = 0;
 
-if nargin == 0
-  % no argument supplied so we must be in the fbc_package directory
-  if exist('./test/test-data/fbc.xml') == 0
-    error('%s%s\n%s %s', 'isBindingFbcEnabled requires a test file ', ...
-      'therefore it must be run from the fbc_package directory', ...
-      'or the full path to fbc_package/test/test-data/fbc.xml file', ...
-      'can be supplied as an argument to the function');
-  else
-    [m, e] = TranslateSBML('./test/test-data/fbc.xml', 1, 0);
+filename = fullfile(tempdir, 'fbc.xml');
 
-    if length(e) == 0
-      fbcEnabled = true;
-    end;    
+writeTempFile(filename);
+
+try
+  [m, e] = TranslateSBML(filename, 1, 0);
+
+  if length(e) == 0
+    fbcEnabled = 1;
   end;
-else
   
-  path_to_file = varargin{1};
-
-  if (exist(path_to_file, 'file') == 7)
-    error('%s%s\n%s %s', 'isBindingFbcEnabled requires a test file ', ...
-      'therefore it must be run from the fbc_package directory', ...
-      'or the full path to fbc_package/test/test-data/fbc.xml file', ...
-      'can be supplied as an argument to the function');
-  else
-    [m, e] = TranslateSBML(path_to_file, 1, 0);
-
-    if length(e) == 0
-      fbcEnabled = 1;
-    end;    
-  end;
-
+  delete(filename);
+  
+catch
+  
+  delete(filename);
+  
+  return
 end;
+
+
+
+
+function writeTempFile(filename)
+
+fout = fopen(filename, 'w');
+
+fprintf(fout, '<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n');
+fprintf(fout, '<sbml xmlns=\"http://www.sbml.org/sbml/level3/version1/core\" ');
+fprintf(fout, 'xmlns:fbc=\"http://www.sbml.org/sbml/level3/version1/fbc/version1\" ');
+fprintf(fout, 'level=\"3\" version=\"1\" fbc:required=\"true\">\n');
+fprintf(fout, '  <model/>\n</sbml>\n');
+
+fclose(fout);
