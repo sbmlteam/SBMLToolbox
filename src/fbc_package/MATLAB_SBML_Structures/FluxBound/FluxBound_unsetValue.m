@@ -40,6 +40,7 @@ function SBMLFluxBound = FluxBound_unsetValue(SBMLFluxBound)
 
 if isfield(SBMLFluxBound, 'fbc_value')
 	SBMLFluxBound.fbc_value = NaN;
+	SBMLFluxBound.isSetfbc_value = 0;
 else
 	error('value not an attribute on SBML L%dV%d FluxBound', level, version);
 end;

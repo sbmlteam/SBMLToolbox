@@ -44,6 +44,7 @@ if isfield(SBMLFluxObjective, 'fbc_coefficient')
 		error('coefficient must be numeric') ;
 	else
 		SBMLFluxObjective.fbc_coefficient = coefficient;
+		SBMLFluxObjective.isSetfbc_coefficient = 1;
 	end;
 else
 	error('coefficient not an attribute on SBML L%dV%d FluxObjective', level, version);

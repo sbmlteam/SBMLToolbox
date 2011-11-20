@@ -44,6 +44,7 @@ if isfield(SBMLFluxBound, 'fbc_value')
 		error('value must be numeric') ;
 	else
 		SBMLFluxBound.fbc_value = value;
+		SBMLFluxBound.isSetfbc_value = 1;
 	end;
 else
 	error('value not an attribute on SBML L%dV%d FluxBound', level, version);

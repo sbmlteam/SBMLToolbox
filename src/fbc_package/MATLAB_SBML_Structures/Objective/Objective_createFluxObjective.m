@@ -38,13 +38,13 @@ function SBMLObjective = Objective_createFluxObjective(SBMLObjective)
 
 [level, version] = GetLevelVersion(SBMLObjective);
 
-if isfield(SBMLObjective, 'fluxObjective')
+if isfield(SBMLObjective, 'fbc_fluxObjective')
   SBMLFluxObjective = FluxObjective_create(level, version, SBMLObjective.fbc_version);
-	index = length(SBMLObjective.fluxObjective);
+	index = length(SBMLObjective.fbc_fluxObjective);
 	if index == 0
-		SBMLObjective.fluxObjective = SBMLFluxObjective;
+		SBMLObjective.fbc_fluxObjective = SBMLFluxObjective;
 	else
-		SBMLObjective.fluxObjective(index+1) = SBMLFluxObjective;
+		SBMLObjective.fbc_fluxObjective(index+1) = SBMLFluxObjective;
 	end;
 else
 	error('fluxObjective not an element on SBML L%dV%d Objective', level, version);

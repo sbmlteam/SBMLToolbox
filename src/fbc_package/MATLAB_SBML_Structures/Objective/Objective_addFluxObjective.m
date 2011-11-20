@@ -46,12 +46,12 @@ elseif version ~= fluxObjective_version
 	error('mismatch in versions');
 end;
 
-if isfield(SBMLObjective, 'fluxObjective')
-	index = length(SBMLObjective.fluxObjective);
+if isfield(SBMLObjective, 'fbc_fluxObjective')
+	index = length(SBMLObjective.fbc_fluxObjective);
 	if index == 0
-		SBMLObjective.fluxObjective = SBMLFluxObjective;
+		SBMLObjective.fbc_fluxObjective = SBMLFluxObjective;
 	else
-		SBMLObjective.fluxObjective(index+1) = SBMLFluxObjective;
+		SBMLObjective.fbc_fluxObjective(index+1) = SBMLFluxObjective;
 	end;
 else
 	error('fluxObjective not an element on SBML L%dV%d Objective', level, version);

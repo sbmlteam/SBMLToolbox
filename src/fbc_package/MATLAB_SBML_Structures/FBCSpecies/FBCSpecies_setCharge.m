@@ -44,6 +44,7 @@ if isfield(SBMLFBCSpecies, 'fbc_charge')
 		error('charge must be numeric') ;
 	else
 		SBMLFBCSpecies.fbc_charge = charge;
+		SBMLFBCSpecies.isSetfbc_charge = 1;
 	end;
 else
 	error('charge not an attribute on SBML L%dV%d FBCSpecies', level, version);

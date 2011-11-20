@@ -39,7 +39,8 @@ function SBMLFBCSpecies = FBCSpecies_unsetCharge(SBMLFBCSpecies)
 [level, version] = GetLevelVersion(SBMLFBCSpecies);
 
 if isfield(SBMLFBCSpecies, 'fbc_charge')
-	SBMLFBCSpecies.fbc_charge = 1;
+	SBMLFBCSpecies.fbc_charge = 0;
+	SBMLFBCSpecies.isSetfbc_charge = 0;
 else
 	error('charge not an attribute on SBML L%dV%d FBCSpecies', level, version);
 end;
