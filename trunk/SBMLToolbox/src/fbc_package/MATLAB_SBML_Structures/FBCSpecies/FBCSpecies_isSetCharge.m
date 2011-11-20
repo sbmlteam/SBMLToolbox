@@ -40,8 +40,8 @@ function value = FBCSpecies_isSetCharge(SBMLFBCSpecies)
 
 [level, version] = GetLevelVersion(SBMLFBCSpecies);
 
-if isfield(SBMLFBCSpecies, 'fbc_charge')
-	value = (SBMLFBCSpecies.fbc_charge ~= 1);
+if isfield(SBMLFBCSpecies, 'isSetfbc_charge')
+	value = SBMLFBCSpecies.isSetfbc_charge;
 else
 	error('isSetCharge not an attribute on SBML L%dV%d FBCSpecies', level, version);
 end;

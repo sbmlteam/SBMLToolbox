@@ -38,8 +38,8 @@ function fluxObjective = Objective_getListOfFluxObjectives(SBMLObjective)
 
 [level, version] = GetLevelVersion(SBMLObjective);
 
-if isfield(SBMLObjective, 'fluxObjective')
-	fluxObjective = SBMLObjective.fluxObjective;
+if isfield(SBMLObjective, 'fbc_fluxObjective')
+	fluxObjective = SBMLObjective.fbc_fluxObjective;
 else
 	error('fluxObjective not an element on SBML L%dV%d Objective', level, version);
 end;

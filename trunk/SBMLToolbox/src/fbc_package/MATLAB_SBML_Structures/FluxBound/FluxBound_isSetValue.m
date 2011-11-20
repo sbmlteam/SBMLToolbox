@@ -40,8 +40,8 @@ function value = FluxBound_isSetValue(SBMLFluxBound)
 
 [level, version] = GetLevelVersion(SBMLFluxBound);
 
-if isfield(SBMLFluxBound, 'fbc_value')
-	value = ~isnan(SBMLFluxBound.fbc_value);
+if isfield(SBMLFluxBound, 'isSetfbc_value')
+	value = SBMLFluxBound.isSetfbc_value;
 else
 	error('isSetValue not an attribute on SBML L%dV%d FluxBound', level, version);
 end;

@@ -1,4 +1,4 @@
-function [defaultValues] = getFBCModelDefaultValues(level, version, pkgVersion)
+function [defaultValues, prefix, ns] = getFBCModelDefaultValues(level, version, pkgVersion)
 % [values] = getFBCModelDefaultValues(level, version, pkgVersion)
 %
 % Takes
@@ -52,6 +52,8 @@ if ~isValidLevelVersionCombination(level, version)
 	error('invalid level/version combination');
 end;
 
+prefix = '';
+ns = '';
 if (level == 1)
 	defaultValues = [];
 elseif (level == 2)
@@ -65,6 +67,8 @@ elseif (level == 3)
                        [], ...
                        '', ...
                       };
+     prefix = 'fbc';
+     ns = 'http://www.sbml.org/sbml/level3/version1/fbc/version1';
     end;
 	end;
 end;

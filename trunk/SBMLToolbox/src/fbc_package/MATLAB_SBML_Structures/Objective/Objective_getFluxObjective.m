@@ -39,11 +39,11 @@ function fluxObjective = Objective_getFluxObjective(SBMLObjective, index)
 
 [level, version] = GetLevelVersion(SBMLObjective);
 
-if isfield(SBMLObjective, 'fluxObjective')
+if isfield(SBMLObjective, 'fbc_fluxObjective')
 	if (~isIntegralNumber(index) || index <= 0)
 		error('index must be a positive integer');
-	elseif index <= length(SBMLObjective.fluxObjective)
-		fluxObjective = SBMLObjective.fluxObjective;
+	elseif index <= length(SBMLObjective.fbc_fluxObjective)
+		fluxObjective = SBMLObjective.fbc_fluxObjective;
 	else
 		error('index is out of range');
 	end;

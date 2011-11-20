@@ -78,10 +78,16 @@ if ~isempty(FBCModel)
 
 [fieldnames, num] = getFBCModelFieldnames(level, version, pkgVersion);
 if (num > 0)
-	values = getFBCModelDefaultValues(level, version, pkgVersion);
+	[values, prefix, ns] = getFBCModelDefaultValues(level, version, pkgVersion);
   
   for i=1:num
     FBCModel = setfield(FBCModel, fieldnames{i}, values{i});
+  end;
+  
+  if length(prefix) > 0
+    namespace.prefix = prefix;
+    namespace.uri = ns;
+    FBCModel = setfield(FBCModel, 'namespaces', namespace);
   end;
 
 %check correct structure

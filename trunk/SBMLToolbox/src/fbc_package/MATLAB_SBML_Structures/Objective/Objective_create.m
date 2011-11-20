@@ -79,8 +79,8 @@ if (num > 0)
 	Objective = cell2struct(values, fieldnames, 2);
 
   %add empty substructures  
-  Objective.fluxObjective = FluxObjective_create(level, version, pkgVersion);
-  Objective.fluxObjective(1:end) = [];
+  Objective.fbc_fluxObjective = FluxObjective_create(level, version, pkgVersion);
+  Objective.fbc_fluxObjective(1:end) = [];
 
   %add level and version
 

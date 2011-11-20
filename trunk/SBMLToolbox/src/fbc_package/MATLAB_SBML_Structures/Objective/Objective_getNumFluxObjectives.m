@@ -38,8 +38,8 @@ function num = Objective_getNumFluxObjectives(SBMLObjective)
 
 [level, version] = GetLevelVersion(SBMLObjective);
 
-if isfield(SBMLObjective, 'fluxObjective')
-	num = length(SBMLObjective.fluxObjective);
+if isfield(SBMLObjective, 'fbc_fluxObjective')
+	num = length(SBMLObjective.fbc_fluxObjective);
 else
 	error('fluxObjective not an element on SBML L%dV%d Objective', level, version);
 end;
