@@ -52,8 +52,16 @@ if (length(SBMLStructure) > 1)
 end;
 
 if ~isempty(SBMLStructure)
-  level = SBMLStructure.SBML_level;
-  version = SBMLStructure.SBML_version;
+  if isfield(SBMLStructure, 'SBML_level')
+    level = SBMLStructure.SBML_level;
+  else
+    level = 3;
+  end;
+  if isfield(SBMLStructure, 'SBML_version')
+    version = SBMLStructure.SBML_version;
+  else
+    version = 1;
+  end;
 else
   level = 3;
   version = 1;
@@ -229,6 +237,6 @@ end;
 
 % report failure
 if (valid == 0)
-	message = sprintf('Invalid Model\n%s\n', message);
+	message = sprintf('Invalid Model structure\n%s\n', message);
 end;
 
