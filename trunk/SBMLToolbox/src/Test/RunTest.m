@@ -73,6 +73,13 @@ test_valid;
 cd ..;
 
 cd ..;
+cd fbc_package;
+cd test;
+disp('Performing tests in fbc_package directory');
+runFBCTest;
+cd ..;
+
+cd ..;
 cd Test;
 
 
