@@ -3,10 +3,8 @@
 % Functions for using the SBML L3V1 fbc package
 %
 %===========================================================
-% fbcEnabled = isBindFbcEnabled(path_to_fbc_file(optional))
+% fbcEnabled = isBindFbcEnabled()
 %===========================================================
-% Takes
-% 1. path_to_fbc_file, the path to the fbc.xml file (optional)
 % Returns
 % 1. fbcEnabled = 
 %  - 1 if the executables are enabled with fbc support
