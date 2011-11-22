@@ -24,7 +24,7 @@ function RunTest
 %----------------------------------------------------------------------- -->
 
 fbcBindingEnabled = 1;
-if isBindingFbcEnabled('./test-data/fbc.xml') == 0
+if isBindingFbcEnabled() == 0
   disp ('The libsbml binding for fbc is not enabled');
   disp ('not all tests can be run');
   fbcBindingEnabled = 0;

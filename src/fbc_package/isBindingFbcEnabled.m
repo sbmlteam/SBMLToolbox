@@ -1,9 +1,5 @@
-function fbcEnabled = isBindingFbcEnabled(varargin)
-% fbcEnabled = isBindFbcEnabled(path_to_fbc_file(optional))
-%
-% Takes
-%
-% 1. path_to_fbc_file, the path to the fbc.xml file (optional)
+function fbcEnabled = isBindingFbcEnabled()
+% fbcEnabled = isBindFbcEnabled()
 %
 % Returns
 %
@@ -11,8 +7,6 @@ function fbcEnabled = isBindingFbcEnabled(varargin)
 %  - 1 if the executables are enabled with fbc support
 %  - 0 otherwise
 %
-% *NOTE:* if no argument is supplied it is assumed that the path is
-%    './test/test-data/fbc.xml'
 %
 
 %<!---------------------------------------------------------------------------
