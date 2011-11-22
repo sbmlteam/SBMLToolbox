@@ -25,6 +25,12 @@
 %       This directory contains a number of convenience functions for
 %       checking information or manipulating math expressions.
 %
+% toolbox\fbc_package
+%
+%       This directory contains functions that allow the user to
+%       manipulate the additional elements of a MATLAB_SBML Model 
+%       structure introduced to support the SBML L3 fbc package.
+%
 % toolbox\MATLAB_SBML_Structure_Functions
 %
 %       This directory contains functions that allow the user to
