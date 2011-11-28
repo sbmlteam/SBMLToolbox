@@ -951,3 +951,8 @@ tr.headers2 {
   background: navajowhite;  
   text-align: center;
 }
+
+td.footnote {
+    text-align: center;
+    font-size:small;
+}
