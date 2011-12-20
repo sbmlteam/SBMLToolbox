@@ -42,7 +42,7 @@ writeTempFile(filename);
 try
   [m, e] = TranslateSBML(filename, 1, 0);
 
-  if length(e) == 0
+  if (length(e) == 0 && isfield(m, 'fbc_version') == 1 )
     fbcEnabled = 1;
   end;
   
