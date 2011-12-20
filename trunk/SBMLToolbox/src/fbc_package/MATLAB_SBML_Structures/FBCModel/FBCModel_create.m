@@ -83,6 +83,11 @@ if (num > 0)
   for i=1:num
     FBCModel = setfield(FBCModel, fieldnames{i}, values{i});
   end;
+  %add empty substructures  
+  FBCModel.fbc_fluxBound = FluxBound_create(level, version, pkgVersion);
+  FBCModel.fbc_fluxBound(1:end) = [];
+  FBCModel.fbc_objective = Objective_create(level, version, pkgVersion);
+  FBCModel.fbc_objective(1:end) = [];
   
   if length(prefix) > 0
     namespace.prefix = prefix;
