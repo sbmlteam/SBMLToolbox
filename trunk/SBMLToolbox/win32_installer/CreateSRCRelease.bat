@@ -20,18 +20,35 @@ mkdir toolbox
 cd docs
 mkdir structure
 mkdir structure-functions
+mkdir fbc_package
 
 copy C:\SBMLToolbox\docs\*.html
 copy C:\SBMLToolbox\docs\style.css style.css
 
 cd structure
 copy C:\SBMLToolbox\docs\structure\*.html
-copy C:\SBMLToolbox\docs\structure\style.css style.css
 
 cd ..
 cd structure-functions
 copy C:\SBMLToolbox\docs\structure-functions\*.html
 
+cd ..
+cd fbc_package
+
+copy C:\SBMLToolbox\docs\fbc_package\*.html
+
+mkdir structure
+mkdir structure-functions
+
+cd structure
+copy C:\SBMLToolbox\docs\fbc_package\structure\*.html
+
+cd ..
+cd structure-functions
+copy C:\SBMLToolbox\docs\fbc_package\structure-functions\*.html
+
+
+cd ..
 cd ..
 cd ..
 
@@ -46,6 +63,32 @@ mkdir Convenience
 cd Convenience
 mkdir Test
 cd ..
+
+mkdir fbc_package
+cd fbc_package
+mkdir MATLAB_SBML_Structures
+mkdir test
+mkdir Validate_MATLAB_SBML_Structures
+
+cd MATLAB_SBML_Structures
+mkdir FBCModel
+mkdir FBCSpecies
+mkdir FluxBound
+mkdir FluxObjective
+mkdir Objective
+mkdir structFieldnames
+mkdir test
+cd ..
+
+cd test
+mkdir test-data
+cd ..
+
+cd Validate_MATLAB_SBML_Structures
+mkdir test
+cd ..
+cd ..
+
 
 mkdir MATLAB_SBML_Structure_Functions
 cd MATLAB_SBML_Structure_Functions
@@ -238,8 +281,56 @@ copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\MATLAB_SBML_Stru
 cd ..
 
 
+cd ..
+cd fbc_package
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\fbc_package
+
+cd test
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\fbc_package\test
+cd test-data
+copy *.xml C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\fbc_package\test\test-data
+cd ..
+cd ..
+
+cd Validate_MATLAB_SBML_Structures
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\fbc_package\Validate_MATLAB_SBML_Structures
+cd test
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\fbc_package\Validate_MATLAB_SBML_Structures\test
+cd ..
+cd ..
 
 
+cd MATLAB_SBML_Structures
+cd test
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\fbc_package\MATLAB_SBML_Structures\test
+cd ..
+
+cd FBCModel
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\fbc_package\MATLAB_SBML_Structures\FBCModel
+cd ..
+
+cd FBCSpecies
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\fbc_package\MATLAB_SBML_Structures\FBCSpecies
+cd ..
+
+cd FluxBound
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\fbc_package\MATLAB_SBML_Structures\FluxBound
+cd ..
+
+cd FluxObjective
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\fbc_package\MATLAB_SBML_Structures\FluxObjective
+cd ..
+
+cd Objective
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\fbc_package\MATLAB_SBML_Structures\Objective
+cd ..
+
+cd structFieldnames
+copy *.m C:\SBMLToolbox\win32_installer\SBMLToolbox_src\toolbox\fbc_package\MATLAB_SBML_Structures\structFieldnames
+cd ..
+
+
+cd ..
 
 
 
