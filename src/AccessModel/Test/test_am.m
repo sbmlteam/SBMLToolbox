@@ -178,6 +178,12 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
+test = test + 5;
+fail = test_fbc;
+if (fail > 0)
+    disp('test_fbc in AccessModel failed');
+end;
+Totalfail = Totalfail + fail;
 
 
 disp(sprintf('Number tests: %d', test));

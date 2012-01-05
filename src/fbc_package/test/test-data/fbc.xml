@@ -22,10 +22,10 @@
     <listOfReactions>
       <reaction id="R1" reversible="false" fast="false">
         <listOfReactants>
-          <speciesReference species="S1" constant="false"/>
+          <speciesReference species="S1" constant="false" stoichiometry="1"/>
         </listOfReactants>
         <listOfProducts>
-          <speciesReference species="S2" constant="true"/>
+          <speciesReference species="S2" constant="true" stoichiometry="1"/>
         </listOfProducts>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -42,10 +42,10 @@
       </reaction>
       <reaction id="R2" reversible="false" fast="false">
         <listOfReactants>
-          <speciesReference species="S2" constant="false"/>
+          <speciesReference species="S2" constant="false" stoichiometry="1"/>
         </listOfReactants>
         <listOfProducts>
-          <speciesReference species="S4" constant="true"/>
+          <speciesReference species="S4" constant="true" stoichiometry="1"/>
         </listOfProducts>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">

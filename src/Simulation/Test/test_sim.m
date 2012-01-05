@@ -58,6 +58,12 @@ if (fail > 0)
 end;
 Totalfail = Totalfail + fail;
 
+test = test + 1;
+fail = test_fbc_sim;
+if (fail > 0)
+    disp('test_fbc_sim failed');
+end;
+Totalfail = Totalfail + fail;
 
 disp(sprintf('Number tests: %d', test));
 disp(sprintf('Number fails: %d', Totalfail));
