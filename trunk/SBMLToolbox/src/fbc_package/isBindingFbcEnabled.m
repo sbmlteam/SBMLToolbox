@@ -35,7 +35,11 @@ function fbcEnabled = isBindingFbcEnabled()
 % assume not enabled
 fbcEnabled = 0;
 
-filename = fullfile(tempdir, 'fbc.xml');
+if (isoctave() == '0')
+  filename = fullfile(tempdir, 'fbc.xml');
+else
+  filename = fullfile(pwd, 'fbc.xml');
+end;
 
 writeTempFile(filename);
 
