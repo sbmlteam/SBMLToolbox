@@ -117,3 +117,5 @@ Totalfail = Totalfail + fail;
 disp(sprintf('Number tests: %d', test));
 disp(sprintf('Number fails: %d', Totalfail));
 disp(sprintf('Pass rate: %d%%', ((test-Totalfail)/test)*100));
+
+y = Totalfail;

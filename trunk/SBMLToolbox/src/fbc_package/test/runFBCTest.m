@@ -1,4 +1,4 @@
-function RunTest
+function y = runFBCTest
 
 %<!---------------------------------------------------------------------------
 % This file is part of SBMLToolbox.  Please visit http://sbml.org for more
@@ -35,15 +35,17 @@ cd ..;
 cd MATLAB_SBML_Structures;
 cd test;
 disp('Performing tests in fbc_packages/MATLAB_SBML_Structures directory');
-testFBCStructures(fbcBindingEnabled);
+st = testFBCStructures(fbcBindingEnabled);
 cd ..;
 
 cd ..;
 cd Validate_MATLAB_SBML_Structures;
 cd Test;
 disp('Performing tests in fbc_packages/Validate_MATLAB_SBML_Structures directory');
-test_fbc_valid(fbcBindingEnabled);
+valid = test_fbc_valid(fbcBindingEnabled);
 cd ..;
+
+y = st + valid;
 
 cd ..;
 cd test;
