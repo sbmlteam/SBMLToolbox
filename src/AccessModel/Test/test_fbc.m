@@ -30,7 +30,7 @@ if isBindingFbcEnabled() == 0
 end;
 
 if (fbcBindingEnabled == 0)
-  y = -1;
+  y = 0;
 else
   fail = 0;
   

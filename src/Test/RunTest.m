@@ -29,7 +29,7 @@ cd ..;
 cd AccessModel;
 cd Test;
 disp('Performing tests in AccessModel directory');
-test_am;
+am = test_am;
 cd ..;
 
 % % NEED work to get these to pass in octave
@@ -48,38 +48,78 @@ cd ..;
 cd Convenience;
 cd Test;
 disp('Performing tests in Convenience directory');
-test_conv;
+conv = test_conv;
 cd ..;
 
 cd ..;
 cd MATLAB_SBML_Structure_Functions;
 cd Test;
 disp('Performing tests in MATLAB_SBML_Structure_Functions directory');
-testStructures;
+st = testStructures;
 cd ..;
 
 cd ..;
 cd Simulation;
 cd Test;
 disp('Performing tests in Simulation directory');
-test_sim;
+sim = test_sim;
 cd ..;
 
 cd ..;
 cd Validate_MATLAB_SBML_Structures;
 cd Test;
 disp('Performing tests in Validate_MATLAB_SBML_Structures directory');
-test_valid;
+valid = test_valid;
 cd ..;
 
 cd ..;
 cd fbc_package;
 cd test;
 disp('Performing tests in fbc_package directory');
-runFBCTest;
+fbc = runFBCTest;
 cd ..;
 
 cd ..;
 cd Test;
+
+disp('Overall tests:');
+if (am == 0)
+  disp('AccessModel: PASS');
+else
+  disp('AccessModel: FAILED');
+end;
+if (conv == 0)
+  disp('Convenience: PASS');
+else
+  disp('Convenience: FAILED');
+end;
+if (st == 0)
+  disp('Structures: PASS');
+else
+  disp('Structures: FAILED');
+end;
+if (sim == 0)
+  disp('Simulation: PASS');
+else
+  disp('Simulation: FAILED');
+end;
+if (valid == 0)
+  disp('Validation: PASS');
+else
+  disp('Validation: FAILED');
+end;
+if (fbc == 0)
+  disp('FBC functions: PASS');
+else
+  disp('FBC functions: FAILED');
+end;
+
+if (am+conv+st+sim+valid+fbc) == 0
+  disp('ALL TESTS PASSED');
+else
+  disp('Some errors encountered; refer to above');
+end;
+
+
 
 
