@@ -2,13 +2,13 @@
 %
 % SBMLToolbox is an open-source MATLAB/Octave toolbox that 
 % provides both MATLAB and Octave users with functions for 
-% reading, writing and manipulation data expressed 
-% in the Systems Biology Markup Language (SBML).
+% reading, writing and manipulation data expressed in the
+% Systems Biology Markup Language (SBML).
 % 
 % It works on Windows, Linux, and MacOS systems. 
 % 
 % The SBMLToolbox supports reading and writing of all levels
-% and versions of SBML up to L3V1 Core.
+% and versions of SBML up to Level 3 Version 1 Core.
 %
 %
 % FUNCTIONS include:
@@ -17,36 +17,33 @@
 % toolbox\AccessModel
 %
 %       This directory contains functions that allow the user to
-%       derive information from a SBML Model
-%
+%       derive information from an SBML Model.
 %
 % toolbox\Convenience
 %
-%       This directory contains a number of convenience functions for
-%       checking information or manipulating math expressions.
+%       This directory contains a number of convenience functions 
+%       for checking information or manipulating math expressions.
 %
 % toolbox\fbc_package
 %
 %       This directory contains functions that allow the user to
 %       manipulate the additional elements of a MATLAB_SBML Model 
-%       structure introduced to support the SBML L3 fbc package.
+%       structure introduced to support the SBML L3 'fbc' package.
 %
 % toolbox\MATLAB_SBML_Structure_Functions
 %
 %       This directory contains functions that allow the user to
-%       manipulate a MATLAB_SBML Model structure
-%
-%       The majority of functions mimic their equivalent within the 
-%       libSBML C API.
+%       manipulate a MATLAB_SBML Model structure.  The majority of
+%       functions mimic their equivalent within the libSBML C API.
 %
 % toolbox\Simulation
 %
-%       This directory contains functions to simulate an SBML model
+%       This directory contains functions to simulate an SBML model.
 %
 % toolbox\Validate_MATLAB_SBML_Structures
 % 
 %       This directory contains functions to validate the MATLAB_SBML
-%       structures
+%       structures.
 %
 
 
