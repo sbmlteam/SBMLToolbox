@@ -1,6 +1,17 @@
     SBMLToolbox NEWS -- History of user-visible changes
 
 ---------------------------------------------------
+Version 4.1.0 Released 2012-01-13
+---------------------------------------------------
+
+* New features:
+
+  - The toolbox now supports the creation of SBML with
+    the Level 3 Flux Balance Constraints (fbc) package.
+    
+
+
+---------------------------------------------------
 Version 4.0.1 Released 2011-08-30
 ---------------------------------------------------
 * Bug fixes:
