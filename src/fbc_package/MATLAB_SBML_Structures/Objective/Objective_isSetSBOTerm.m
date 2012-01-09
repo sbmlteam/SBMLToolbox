@@ -1,5 +1,5 @@
-function value = Objective_isSetSboTerm(SBMLObjective)
-% sboTerm = Objective_isSetSboTerm(SBMLObjective)
+function value = Objective_isSetSBOTerm(SBMLObjective)
+% sboTerm = Objective_isSetSBOTerm(SBMLObjective)
 %
 % Takes
 %

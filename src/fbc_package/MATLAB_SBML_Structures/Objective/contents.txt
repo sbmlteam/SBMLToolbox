@@ -123,7 +123,7 @@ Returns
 
 ------------------------------
 
-####sboTerm = Objective_getSboTerm(SBMLObjective)
+####sboTerm = Objective_getSBOTerm(SBMLObjective)
 
 Takes
 
@@ -183,7 +183,7 @@ Returns
 
 ------------------------------
 
-####sboTerm = Objective_isSetSboTerm(SBMLObjective)
+####sboTerm = Objective_isSetSBOTerm(SBMLObjective)
 
 Takes
 
@@ -245,7 +245,7 @@ Returns
 
 ------------------------------
 
-####SBMLObjective = Objective_setSboTerm(SBMLObjective, sboTerm)
+####SBMLObjective = Objective_setSBOTerm(SBMLObjective, sboTerm)
 
 Takes
 
@@ -303,7 +303,7 @@ Returns
 
 ------------------------------
 
-####SBMLObjective = Objective_unsetSboTerm(SBMLObjective)
+####SBMLObjective = Objective_unsetSBOTerm(SBMLObjective)
 
 Takes
 

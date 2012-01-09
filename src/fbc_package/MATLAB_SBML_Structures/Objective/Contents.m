@@ -71,7 +71,7 @@
 % 1. the number of SBML FluxObjective structures present in the Objective
 %
 %===============================================
-% sboTerm = Objective_getSboTerm(SBMLObjective)
+% sboTerm = Objective_getSBOTerm(SBMLObjective)
 %===============================================
 % Takes
 % 1. SBMLObjective, an SBML Objective structure
@@ -107,7 +107,7 @@
 %  - 0 otherwise
 %
 %=================================================
-% sboTerm = Objective_isSetSboTerm(SBMLObjective)
+% sboTerm = Objective_isSetSBOTerm(SBMLObjective)
 %=================================================
 % Takes
 % 1. SBMLObjective, an SBML Objective structure
@@ -145,7 +145,7 @@
 % 1. the SBML FBC Objective structure with the new value for the metaid attribute
 %
 %==============================================================
-% SBMLObjective = Objective_setSboTerm(SBMLObjective, sboTerm)
+% SBMLObjective = Objective_setSBOTerm(SBMLObjective, sboTerm)
 %==============================================================
 % Takes
 % 1. SBMLObjective, an SBML Objective structure
@@ -179,7 +179,7 @@
 % 1. the SBML FBC Objective structure with the metaid attribute unset
 %
 %=======================================================
-% SBMLObjective = Objective_unsetSboTerm(SBMLObjective)
+% SBMLObjective = Objective_unsetSBOTerm(SBMLObjective)
 %=======================================================
 % Takes
 % 1. SBMLObjective, an SBML Objective structure
