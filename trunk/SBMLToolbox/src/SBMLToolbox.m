@@ -8,7 +8,7 @@
 % It works on Windows, Linux, and MacOS systems. 
 % 
 % The SBMLToolbox supports reading and writing of all levels
-% and versions of SBML up to L3V1 Core.
+% and versions of SBML up to Level 3 Version 1 Core.
 %
 %
 % FUNCTIONS include:
