@@ -1,5 +1,5 @@
-function SBMLObjective = Objective_setSboTerm(SBMLObjective, sboTerm)
-% SBMLObjective = Objective_setSboTerm(SBMLObjective, sboTerm)
+function SBMLObjective = Objective_setSBOTerm(SBMLObjective, sboTerm)
+% SBMLObjective = Objective_setSBOTerm(SBMLObjective, sboTerm)
 %
 % Takes
 %

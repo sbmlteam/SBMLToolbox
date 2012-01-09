@@ -1,5 +1,5 @@
-function sboTerm = Objective_getSboTerm(SBMLObjective)
-% sboTerm = Objective_getSboTerm(SBMLObjective)
+function sboTerm = Objective_getSBOTerm(SBMLObjective)
+% sboTerm = Objective_getSBOTerm(SBMLObjective)
 %
 % Takes
 %

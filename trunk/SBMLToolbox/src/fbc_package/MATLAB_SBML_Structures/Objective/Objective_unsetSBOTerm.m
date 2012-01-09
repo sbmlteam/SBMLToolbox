@@ -1,5 +1,5 @@
-function SBMLObjective = Objective_unsetSboTerm(SBMLObjective)
-% SBMLObjective = Objective_unsetSboTerm(SBMLObjective)
+function SBMLObjective = Objective_unsetSBOTerm(SBMLObjective)
+% SBMLObjective = Objective_unsetSBOTerm(SBMLObjective)
 %
 % Takes
 %
