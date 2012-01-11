@@ -1,10 +1,10 @@
-function fbcEnabled = isBindingFbcEnabled()
-% fbcEnabled = isBindingFbcEnabled()
+function installed = isBindingInstalled()
+% installed = isBindingInstalled()
 %
 % Returns
 %
-% 1. fbcEnabled = 
-%  - 1 if the executables are enabled with fbc support
+% 1. installed = 
+%  - 1 if the libSBML executables are installed
 %  - 0 otherwise
 %
 %
@@ -32,48 +32,80 @@ function fbcEnabled = isBindingFbcEnabled()
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
 
-% assume not enabled
-fbcEnabled = 0;
+  installed = 1;
+    
+  if (~exist('OCTAVE_VERSION'))
+    filename = fullfile(tempdir, 'test.xml');
+    outFile = fullfile(tempdir, 'test-out.xml');
+  else
+    if isWindows()
+      filename = fullfile(pwd, 'test.xml');
+      outFile = [tempdir, 'temp', filesep, 'test-out.xml'];
+    else
+      filename = fullfile(pwd, 'test.xml');
+      outFile = [tempdir, 'test-out.xml'];
+    end;
+  end;
+  
+  writeTempFile(filename);
+  
+  try
+    M = TranslateSBML(filename);
+  catch
+    installed = 0;
+    return;
+  end;
 
-if isBindingInstalled() == 0
-  return;
-end;
-
-if (isoctave() == '0')
-  filename = fullfile(tempdir, 'fbc.xml');
-else
-  filename = fullfile(pwd, 'fbc.xml');
-end;
-
-writeTempFile(filename);
-
-try
-  [m, e] = TranslateSBML(filename, 1, 0);
-
-  if (length(e) == 0 && isfield(m, 'fbc_version') == 1 )
-    fbcEnabled = 1;
+ 
+  if (installed == 1)
+    try
+      OutputSBML(M, outFile, 1);
+    catch
+      installed = 0;
+      return;
+    end;
   end;
   
   delete(filename);
+  delete(outFile);
+
+  %
+%
+% Is this windows
+% Mac OS X 10.7 Lion returns true for a call to ispc()
+% since we were using that to distinguish between windows and macs we need
+% to catch this
+% ------------------------------------------------------------------------
+function y = isWindows()
+
+  y = 1;
   
-catch
+  if isunix()
+    y = 0;
+    return;
+  end;
   
-  delete(filename);
+  if ismac()
+    y = 0;
+    return;
+  end;
   
-  return
-end;
-
-
-
-
+  if ~ispc()
+    message = sprintf('\n%s\n%s\n', ...
+      'Unable to determine the type of operating system in use.', ...
+      'Please contact libsbml-team@caltech.edu to help resolve this problem.');
+    error(message);
+  end;
+  
+% write out a temporary file
 function writeTempFile(filename)
 
 fout = fopen(filename, 'w');
 
 fprintf(fout, '<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n');
 fprintf(fout, '<sbml xmlns=\"http://www.sbml.org/sbml/level3/version1/core\" ');
-fprintf(fout, 'xmlns:fbc=\"http://www.sbml.org/sbml/level3/version1/fbc/version1\" ');
-fprintf(fout, 'level=\"3\" version=\"1\" fbc:required=\"true\">\n');
+fprintf(fout, 'level=\"3\" version=\"1\">\n');
 fprintf(fout, '  <model/>\n</sbml>\n');
 
 fclose(fout);
+

@@ -29,9 +29,13 @@ fail = 0;
 
 fail = fail + TestCreate();
 fail = fail + testComponents();
-fail = fail + testModelGetById();
-fail = fail + testModelGetByNum();
-fail = fail + testIsInRules();
+if isBindingInstalled() == 1
+  fail = fail + testModelGetById();
+  fail = fail + testModelGetByNum();
+  fail = fail + testIsInRules();
+else
+  disp('LibSBML binding not installed - some tests could not be run');
+end;
 
 y = fail;
 

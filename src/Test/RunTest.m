@@ -120,6 +120,11 @@ else
   disp('Some errors encountered; refer to above');
 end;
 
+if isBindingInstalled() == 0
+  disp('***********************************************************');
+  disp('LibSBML binding not installed - some tests could not be run');
+  disp('***********************************************************');
+end;
 
 
 

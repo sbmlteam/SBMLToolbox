@@ -13,6 +13,14 @@
 %
 % FUNCTIONS include:
 %
+%===========================================================
+% installed = isBindingInstalled()
+%===========================================================
+% Returns
+% 1. installed 
+%  - 1 if the libSBML executables are installed
+%  - 0 otherwise
+%
 %
 % toolbox\AccessModel
 %

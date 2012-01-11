@@ -36,7 +36,7 @@ function install
   [matlab_octave, bit64]  = check_system();
   
   disp(sprintf('\nChecking for libSBML %s binding\n', matlab_octave));
-  if doesItRun(matlab_octave)
+  if isBindingInstalled() == 1
     disp(sprintf('libSBML %s binding found and working\n', matlab_octave));
   else
     disp(sprintf('libSBML %s binding not found\n\n%s\n%s\n%s', matlab_octave, ...
@@ -261,35 +261,5 @@ function [location, writeAccess, in_installer] = check_location(matlab_octave, .
     myDisp('  - We have write access here!  That makes us happy.', functioning);
     fclose(fid);
     delete('temp.txt');
-  end;
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% test the installation
-function success = doesItRun(matlab_octave)
-    
-  success = 1;
-    
-  try
-    M = TranslateSBML('test.xml');
-  catch
-    success = 0;
-  end;
-
-  if strcmpi(matlab_octave, 'matlab')
-    outFile = [tempdir, filesep, 'test-out.xml'];
-  else
-    if ispc()
-      outFile = [tempdir, 'temp', filesep, 'test-out.xml'];
-    else
-      outFile = [tempdir, 'test-out.xml'];
-    end;
-  end;
-      
-  if (success == 1)
-    try
-      OutputSBML(M, outFile, 1);
-    catch
-      success = 0;
-    end;
   end;
 
