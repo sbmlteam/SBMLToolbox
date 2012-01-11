@@ -1,5 +1,5 @@
 function fbcEnabled = isBindingFbcEnabled()
-% fbcEnabled = isBindFbcEnabled()
+% fbcEnabled = isBindingFbcEnabled()
 %
 % Returns
 %
