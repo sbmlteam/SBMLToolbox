@@ -3,7 +3,7 @@
 % Functions for using the SBML L3V1 fbc package
 %
 %===========================================================
-% fbcEnabled = isBindFbcEnabled()
+% fbcEnabled = isBindingFbcEnabled()
 %===========================================================
 % Returns
 % 1. fbcEnabled = 
