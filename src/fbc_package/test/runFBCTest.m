@@ -40,7 +40,7 @@ cd ..;
 
 cd ..;
 cd Validate_MATLAB_SBML_Structures;
-cd Test;
+cd test;
 disp('Performing tests in fbc_packages/Validate_MATLAB_SBML_Structures directory');
 valid = test_fbc_valid(fbcBindingEnabled);
 cd ..;
