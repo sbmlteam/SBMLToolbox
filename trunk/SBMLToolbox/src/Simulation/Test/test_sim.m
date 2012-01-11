@@ -30,43 +30,47 @@ function y = test_sim()
 test = 0;
 Totalfail = 0;
 
-test = test + 6;
-fail = TestAnalyseSpecies;
-if (fail > 0)
-    disp('AnalyseSpecies failed');
-end;
-Totalfail = Totalfail + fail;
+if isBindingInstalled() == 1
+  test = test + 6;
+  fail = TestAnalyseSpecies;
+  if (fail > 0)
+      disp('AnalyseSpecies failed');
+  end;
+  Totalfail = Totalfail + fail;
 
-test = test + 4;
-fail = TestDealWithPiecewise;
-if (fail > 0)
-    disp('DealWithPiecewise failed');
-end;
-Totalfail = Totalfail + fail;
+  test = test + 4;
+  fail = TestDealWithPiecewise;
+  if (fail > 0)
+      disp('DealWithPiecewise failed');
+  end;
+  Totalfail = Totalfail + fail;
 
-test = test + 3;
-fail = TestGetArgumentsFromLambdaFunction;
-if (fail > 0)
-    disp('GetArgumentsFromLambdaFunction failed');
-end;
-Totalfail = Totalfail + fail;
+  test = test + 3;
+  fail = TestGetArgumentsFromLambdaFunction;
+  if (fail > 0)
+      disp('GetArgumentsFromLambdaFunction failed');
+  end;
+  Totalfail = Totalfail + fail;
 
-test = test + 1;
-fail = TestAnalyseVaryingParameters;
-if (fail > 0)
-    disp('AnalyseSVaryingParameters failed');
-end;
-Totalfail = Totalfail + fail;
+  test = test + 1;
+  fail = TestAnalyseVaryingParameters;
+  if (fail > 0)
+      disp('AnalyseSVaryingParameters failed');
+  end;
+  Totalfail = Totalfail + fail;
 
-test = test + 1;
-fail = test_fbc_sim;
-if (fail > 0)
-    disp('test_fbc_sim failed');
-end;
-Totalfail = Totalfail + fail;
+  test = test + 1;
+  fail = test_fbc_sim;
+  if (fail > 0)
+      disp('test_fbc_sim failed');
+  end;
+  Totalfail = Totalfail + fail;
 
-disp(sprintf('Number tests: %d', test));
-disp(sprintf('Number fails: %d', Totalfail));
-disp(sprintf('Pass rate: %d%%', ((test-Totalfail)/test)*100));
+  disp(sprintf('Number tests: %d', test));
+  disp(sprintf('Number fails: %d', Totalfail));
+  disp(sprintf('Pass rate: %d%%', ((test-Totalfail)/test)*100));
+else
+  disp('LibSBML binding not installed - no tests could be run');
+end;
 
 y = Totalfail;

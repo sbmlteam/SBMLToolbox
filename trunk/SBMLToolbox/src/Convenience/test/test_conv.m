@@ -29,12 +29,67 @@ function y = test_conv()
 test = 0;
 Totalfail = 0;
 
-test = test + 4;
-fail = TestisValidUnitKind;
+if isBindingInstalled() == 1
+  test = test + 4;
+  fail = TestisValidUnitKind;
+  if (fail > 0)
+      disp('isValidUnitKind failed');
+  end;
+  Totalfail = Totalfail + fail;
+
+  test = test + 9;
+  fail = TestSubstituteFunction;
+  if (fail > 0)
+      disp('SubstituteFunction failed');
+  end;
+  Totalfail = Totalfail + fail;
+
+  test = test + 2;
+  fail = TestSubstitute;
+  if (fail > 0)
+      disp('Substitute failed');
+  end;
+  Totalfail = Totalfail + fail;
+
+  test = test + 4;
+  fail = TestSubstituteConstants;
+  if (fail > 0)
+      disp('Substitute failed');
+  end;
+  Totalfail = Totalfail + fail;
+
+  test = test + 1;
+  fail = test_fbc_conv;
+  if (fail > 0)
+      disp('test_fbc_conv failed');
+  end;
+  Totalfail = Totalfail + fail;
+else
+  disp('LibSBML binding not installed - some tests could not be run');
+end;
+
+
+test = test + 22;
+fail = TestRearrange;
 if (fail > 0)
-    disp('isValidUnitKind failed');
+    disp('Rearrange failed');
 end;
 Totalfail = Totalfail + fail;
+
+test = test + 12;
+fail = TestMatchName;
+if (fail > 0)
+    disp('matchName failed');
+end;
+Totalfail = Totalfail + fail;
+
+test = test + 12;
+fail = TestMatchFunctionName;
+if (fail > 0)
+    disp('matchFunctionName failed');
+end;
+Totalfail = Totalfail + fail;
+
 
 test = test + 2;
 fail = TestisIntegralNumber;
@@ -61,55 +116,6 @@ test = test + 2;
 fail = TestRemoveDuplicates;
 if (fail > 0)
     disp('RemoveDuplicates failed');
-end;
-Totalfail = Totalfail + fail;
-
-test = test + 9;
-fail = TestSubstituteFunction;
-if (fail > 0)
-    disp('SubstituteFunction failed');
-end;
-Totalfail = Totalfail + fail;
-
-test = test + 2;
-fail = TestSubstitute;
-if (fail > 0)
-    disp('Substitute failed');
-end;
-Totalfail = Totalfail + fail;
-
-test = test + 4;
-fail = TestSubstituteConstants;
-if (fail > 0)
-    disp('Substitute failed');
-end;
-Totalfail = Totalfail + fail;
-
-test = test + 22;
-fail = TestRearrange;
-if (fail > 0)
-    disp('Rearrange failed');
-end;
-Totalfail = Totalfail + fail;
-
-test = test + 12;
-fail = TestMatchName;
-if (fail > 0)
-    disp('matchName failed');
-end;
-Totalfail = Totalfail + fail;
-
-test = test + 12;
-fail = TestMatchFunctionName;
-if (fail > 0)
-    disp('matchFunctionName failed');
-end;
-Totalfail = Totalfail + fail;
-
-test = test + 1;
-fail = test_fbc_conv;
-if (fail > 0)
-    disp('test_fbc_conv failed');
 end;
 Totalfail = Totalfail + fail;
 
