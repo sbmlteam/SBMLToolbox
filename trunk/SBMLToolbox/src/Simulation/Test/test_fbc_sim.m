@@ -40,7 +40,7 @@ else
   output_2(1).constant = 0;
   output_2(1).boundaryCondition = 0;
   output_2(1).initialValue = 1;
-  output_2(1).is0Dcompartment = 0;
+  output_2(1).hasAmountOnly = 0;
   output_2(1).isConcentration = 0;
   output_2(1).compartment = 'c';
   output_2(1).ChangedByReaction = 0;
@@ -58,7 +58,7 @@ else
   output_2(2).constant = 0;
   output_2(2).boundaryCondition = 0;
   output_2(2).initialValue = 1;
-  output_2(2).is0Dcompartment = 0;
+  output_2(2).hasAmountOnly = 0;
   output_2(2).isConcentration = 0;
   output_2(2).compartment = 'c';
   output_2(2).ChangedByReaction = 1;
@@ -76,7 +76,7 @@ else
   output_2(3).constant = 0;
   output_2(3).boundaryCondition = 0;
   output_2(3).initialValue = 1;
-  output_2(3).is0Dcompartment = 0;
+  output_2(3).hasAmountOnly = 0;
   output_2(3).isConcentration = 0;
   output_2(3).compartment = 'c';
   output_2(3).ChangedByReaction = 1;
@@ -94,7 +94,7 @@ else
   output_2(4).constant = 0;
   output_2(4).boundaryCondition = 0;
   output_2(4).initialValue = 1;
-  output_2(4).is0Dcompartment = 0;
+  output_2(4).hasAmountOnly = 0;
   output_2(4).isConcentration = 0;
   output_2(4).compartment = 'c';
   output_2(4).ChangedByReaction = 0;
@@ -112,7 +112,7 @@ else
   output_2(5).constant = 0;
   output_2(5).boundaryCondition = 0;
   output_2(5).initialValue = 1;
-  output_2(5).is0Dcompartment = 0;
+  output_2(5).hasAmountOnly = 0;
   output_2(5).isConcentration = 0;
   output_2(5).compartment = 'c';
   output_2(5).ChangedByReaction = 1;

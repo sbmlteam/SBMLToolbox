@@ -351,16 +351,21 @@ if allOnes == 1
 else
   for i = 1:length(TimeCourse)
     for j = 1:length(SBMLModel.species)
-      % need to deal with mutliple compartments
-      comp = Model_getCompartmentById(SBMLModel, SBMLModel.species(j).compartment);
-      comp_size = comp.size;
+      % if the species hasOnlySubstanceUnits then it is already in amount
+      if (SBMLModel.species(j).hasOnlySubstanceUnits == 1)
+        amtData(i, j) = SpeciesCourse(i, j);
+      else
+        % need to deal with mutliple compartments
+        comp = Model_getCompartmentById(SBMLModel, SBMLModel.species(j).compartment);
+        comp_size = comp.size;
 
-      % catch any anomalies
-      if (isnan(comp_size))
-        comp_size = 1;
+        % catch any anomalies
+        if (isnan(comp_size))
+          comp_size = 1;
+        end;
+
+        amtData(i, j) =  SpeciesCourse(i,j)*comp_size;
       end;
-
-      amtData(i, j) =  SpeciesCourse(i,j)*comp_size;
     end;
   end;
 end;
