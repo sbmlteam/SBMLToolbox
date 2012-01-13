@@ -24,7 +24,7 @@ function Species = AnalyseSpecies(SBMLModel)
 %                 constant
 %                 boundaryCondition
 %                 initialValue
-%                 is0Dcompartment
+%                 hasAmountOnly
 %                 isConcentration
 %                 compartment
 %                 ChangedByReaction
@@ -45,7 +45,7 @@ function Species = AnalyseSpecies(SBMLModel)
 %                                constant: 0
 %                       boundaryCondition: 0
 %                            initialValue: 0.0300
-%                         is0Dcompartment: 0
+%                         hasAmountOnly: 0
 %                         isConcentration: 0
 %                             compartment: 'compartment'
 %                       ChangedByReaction: 1
@@ -132,9 +132,13 @@ for i = 1:length(SBMLModel.species)
     if (SBMLModel.SBML_level > 1)
       comp = Model_getCompartmentById(SBMLModel, SBMLModel.species(i).compartment);
       if (comp.spatialDimensions == 0)
-        Species(i).is0Dcompartment = 1;
+        Species(i).hasAmountOnly = 1;
       else
-        Species(i).is0Dcompartment = 0;
+        if (SBMLModel.species(i).hasOnlySubstanceUnits == 1)
+          Species(i).hasAmountOnly = 1;
+        else
+          Species(i).hasAmountOnly = 0;
+        end;
       end;
       
       if (SBMLModel.species(i).isSetInitialConcentration == 0 ...

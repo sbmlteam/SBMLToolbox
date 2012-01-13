@@ -279,7 +279,7 @@ fprintf(fileID, '\n\t%% initial values\n');
 for i = 1:NumberSpecies
   if (Species(i).isConcentration == 1)
     fprintf(fileID, '\t%s = %g;\n', char(Species(i).Name), Species(i).initialValue);
-  elseif (Species(i).is0Dcompartment == 1)
+  elseif (Species(i).hasAmountOnly == 1)
     fprintf(fileID, '\t%s = %g;\n', char(Species(i).Name), Species(i).initialValue);
   else
     fprintf(fileID, '\t%s = %g/%s;\n', char(Species(i).Name), Species(i).initialValue, Species(i).compartment);
@@ -350,7 +350,7 @@ for i = 1:NumberSpecies
          else
           if (Species(i).isConcentration == 1)
             fprintf(fileID, '\txdot(%u) = %g;\n', i, Species(i).initialValue);
-          elseif (Species(i).is0Dcompartment == 1)
+          elseif (Species(i).hasAmountOnly == 1)
             fprintf(fileID, '\txdot(%u) = %g;\n', i, Species(i).initialValue);
           else
             fprintf(fileID, '\txdot(%u) = %g/%s;\n', i, Species(i).initialValue, Species(i).compartment);
@@ -395,7 +395,7 @@ for i = 1:NumberSpecies
     if (Species(i).ChangedByReaction == 1)
         % need to look for piecewise functions
         if (isempty(matchFunctionName(char(Species(i).KineticLaw), 'piecewise')))
-             if (Species(i).is0Dcompartment == 0)
+             if (Species(i).hasAmountOnly == 0)
                 Array{i} = sprintf('\txdot(%u) = (%s)/%s;\n', i, char(Species(i).KineticLaw), Species(i).compartment);
             else
                 Array{i} = sprintf('\txdot(%u) = %s;\n', i, char(Species(i).KineticLaw));
