@@ -346,8 +346,10 @@ for i=1:length(comp_values)
   end;
 end;
 
+amtData = SpeciesCourse;
+
 if allOnes == 1
-  amtData = SpeciesCourse;
+  return;
 else
   for i = 1:length(TimeCourse)
     for j = 1:length(SBMLModel.species)
@@ -379,6 +381,14 @@ fileName = strcat(Name, '.csv');
 % open the file for writing
 
 fileID = fopen(fileName, 'w');
+
+numVars = length(Vars);
+numdata = size(VarsCourse);
+
+if (numVars ~= numdata(2)) || (length(TimeCourse) ~= numdata(1))
+  error ('%s\n%s', 'Incorrect numbers of data points from simulation', ...
+    'Please report the problem to libsbml-team @caltech.edu')
+end;
 
 % write the header
 fprintf(fileID,  'time');
