@@ -55,22 +55,15 @@ line = LoseWhiteSpace(line);
 openBracket = strfind(line, '[');
 if length(openBracket) > 1
   error('%s%s', 'currently this function expects the ode function ', ...
-    'to be on one line of form ode=[formula1;formula2, formula3]');
+    'to be on one line of form ode=[formula1;formula2; formula3]');
 end;
 closeBracket = strfind(line, ']');
 if length(closeBracket) > 1
   error('%s%s', 'currently this function expects the ode function ', ...
-    'to be on one line of form ode=[formula1;formula2, formula3]');
+    'to be on one line of form ode=[formula1;formula2; formula3]');
 end;
 
 subLine = line(openBracket+1:closeBracket-1);
-
-% any of the x variables will occur as x(i)
-% need to replace these with x_i
-nameBracket = strcat(name, '(');
-nameUnder = strcat(name, '_');
-subLine = strrep(subLine, nameBracket, nameUnder);
-subLine = strrep(subLine, ')', '');
 
 % find semi colons between []
 semiColons = strfind(subLine, ';');
@@ -84,6 +77,31 @@ for i = 1:numVariables
   else
     xdotFuncs{i} = subLine(start:end);
   end;
+end;
+
+% any of the x variables will occur as x(i)
+% need to replace these with x_i
+for i = 1:numVariables
+  
+  subLineA = xdotFuncs{i};
+  
+  brackets = PairBrackets(subLineA);
+  nameBracket = strcat(name, '(');
+  nameUnder = strcat(name, '_');
+  
+  vars = strfind(subLineA, nameBracket);
+  
+  subLineA = strrep(subLineA, nameBracket, nameUnder);
+
+  for j = length(vars):-1:1
+     [a, b] = find(brackets == vars(j)+1);
+     if (b ~= 1)
+       error('bracket mismatch');
+     end;
+     bb = brackets(a, 2);
+     subLineA = strcat(subLineA(1:bb-1), ' ', subLineA(bb+1:end));   
+  end;
+  xdotFuncs{i} = subLineA;
 end;
 
 
