@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" level="3" version="1">
+  <model>
+    <listOfParameters>
+      <parameter id="a" value="6" constant="true"/>
+      <parameter id="b" value="0.348" constant="true"/>
+      <parameter id="c" value="0.36" constant="true"/>
+      <parameter id="d" value="0.01152" constant="true"/>
+      <parameter id="x_1" value="0" constant="false"/>
+      <parameter id="x_2" value="0" constant="false"/>
+    </listOfParameters>
+    <listOfRules>
+      <rateRule variable="x_1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <ci> a </ci>
+            <apply>
+              <times/>
+              <ci> b </ci>
+              <ci> x_1 </ci>
+            </apply>
+          </apply>
+        </math>
+      </rateRule>
+      <rateRule variable="x_2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <apply>
+              <times/>
+              <ci> c </ci>
+              <ci> x_1 </ci>
+            </apply>
+            <apply>
+              <times/>
+              <ci> d </ci>
+              <ci> x_2 </ci>
+            </apply>
+          </apply>
+        </math>
+      </rateRule>
+    </listOfRules>
+  </model>
+</sbml>
