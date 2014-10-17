@@ -132,14 +132,24 @@ values = [];
 line = LoseWhiteSpace(fgetl(fileId));
 
 while(~strcmp(line, '%SBML-endconstants'))
+  if length(line) == 0 || strcmp(line(1), '%')
+    line = LoseWhiteSpace(fgetl(fileId));
+    continue;
+  end;
   equalSign = strfind(line, '=');
-  if length(equalSign) > 1 || ~strcmp(line(end), ';')
-    error('%s%s', 'currently this function expects the constants ', ...
-      'to be on lines of form name=value;');
+  terminateLine = strfind(line, ';');
+  if length(equalSign) > 1 || length(terminateLine) > 1
+    error('%s%s%s', 'currently this function expects the constants ', ...
+      'to be on lines of form name=value; with only comments after the ;', ...
+      'more than one = or ; found');
+  elseif terminateLine < length(line) && ~strcmp(line(terminateLine+1), '%')
+    error('%s%s%s', 'currently this function expects the constants ', ...
+      'to be on lines of form name=value; with only comments after the ;', ...
+      'the ; must be followed by a %');
   end;
   names{i} = line(1:equalSign-1);
   try
-    values{i} = eval(line(equalSign+1:end-1));
+    values{i} = eval(line(equalSign+1:terminateLine-1));
   catch
     error('%s%s', 'currently this function expects the constants ', ...
       'to be on lines of form name=value;');
