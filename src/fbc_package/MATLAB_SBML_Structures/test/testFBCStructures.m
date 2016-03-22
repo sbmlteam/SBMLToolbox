@@ -43,6 +43,9 @@ fail = fail + testFluxObjective();
 fail = fail + testObjective();
 fail = fail + testFBCSpecies();
 fail = fail + testFBCModel();
+fail = fail + testGeneProduct();
+fail = fail + testGeneProductAssociation();
+fail = fail + testFBCReaction();
 
 y = fail;
 
