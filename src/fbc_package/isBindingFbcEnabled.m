@@ -73,7 +73,7 @@ fout = fopen(filename, 'w');
 fprintf(fout, '<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n');
 fprintf(fout, '<sbml xmlns=\"http://www.sbml.org/sbml/level3/version1/core\" ');
 fprintf(fout, 'xmlns:fbc=\"http://www.sbml.org/sbml/level3/version1/fbc/version1\" ');
-fprintf(fout, 'level=\"3\" version=\"1\" fbc:required=\"true\">\n');
+fprintf(fout, 'level=\"3\" version=\"1\" fbc:required=\"false\">\n');
 fprintf(fout, '  <model/>\n</sbml>\n');
 
 fclose(fout);
