@@ -1,12 +1,14 @@
-function [SBMLfieldnames, nNumberFields] = getFieldnames(typecode, ...
-                                                         level, version)
-% [fieldnames, num] = getFieldnames(typecode, level, version)
+function [SBMLfieldnames, nNumberFields] = getFieldnames(varargin)
+% [fieldnames, num] = getFieldnames(typecode, level, version, pkgversion (optional))
 %
 % Takes
 %
 % 1. typecode; a string representing the type of object being queried
 % 2. level, an integer representing an SBML level
 % 3. version, an integer representing an SBML version
+% 4. pkgversion, an integer representing the SBML package version 
+%       (defaults to 1)
+%
 %
 % Returns
 %
@@ -38,6 +40,15 @@ function [SBMLfieldnames, nNumberFields] = getFieldnames(typecode, ...
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
 
+typecode = varargin{1};
+level = varargin{2};
+version = varargin{3};
+
+if (nargin == 4)
+    pkgversion = varargin{4};
+else
+    pkgversion = 1;
+end;
 
 
 
@@ -124,11 +135,17 @@ else
       fhandle = str2func('getFBCModelFieldnames');
     case {'SBML_FBC_SPECIES', 'FBCSpecies'}
       fhandle = str2func('getFBCSpeciesFieldnames');
+    case {'SBML_FBC_GENE_PRODUCT', 'GeneProduct', 'geneProduct'}
+      fhandle = str2func('getGeneProductFieldnames');
+    case {'SBML_FBC_GENE_PRODUCT_ASSOCIATION', 'GeneProductAssociation', 'geneProductAssociation'}
+      fhandle = str2func('getGeneProductAssociationFieldnames');
+    case {'SBML_FBC_REACTION', 'FBCReaction'}
+      fhandle = str2func('getFBCReactionFieldnames');
     otherwise
       error('%s\n%s', ...
         'getFieldnames(typecode, level, version', ...
         'typecode not recognised');    
   end;
-  [SBMLfieldnames, nNumberFields] = feval(fhandle, level, version, 1);
+  [SBMLfieldnames, nNumberFields] = feval(fhandle, level, version, pkgversion);
 end;
  

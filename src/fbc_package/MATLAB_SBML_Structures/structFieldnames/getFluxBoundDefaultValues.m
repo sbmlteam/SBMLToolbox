@@ -1,5 +1,5 @@
 function [defaultValues] = getFluxBoundDefaultValues(level, version, pkgVersion)
-% [values] = getFluxBoundsDefaultValues(level, version, pkgVersion)
+% [values] = getFluxBoundDefaultValues(level, version, pkgVersion)
 %
 % Takes
 %
@@ -75,5 +75,7 @@ elseif (level == 3)
                        int32(1), ...
                       };
     end;
+    elseif (pkgVersion == 2)
+    	defaultValues = [];
 	end;
 end;

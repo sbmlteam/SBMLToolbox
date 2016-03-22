@@ -67,6 +67,9 @@ elseif (level == 3)
                          'fbc_version', ...
                        };
       nNumberFields = 13;
+    elseif (pkgVersion == 2)
+        SBMLfieldnames = [];
+        nNumberFields = 0;
     end;
 	end;
 end;

@@ -1,11 +1,13 @@
-function [defaultValues] = getDefaultValues(typecode, level, version)
-% [values] = getDefaultValues(typecode, level, version)
+function [defaultValues] = getDefaultValues(varargin)
+% [values] = getDefaultValues(typecode, level, version, pkgversion(optional))
 %
 % Takes
 %
 % 1. typecode; a string representing the type of object being queried
 % 2. level, an integer representing an SBML level
 % 3. version, an integer representing an SBML version
+% 4. pkgversion, an integer representing the SBML package version 
+%       (defaults to 1)
 %
 % Returns
 %
@@ -37,7 +39,15 @@ function [defaultValues] = getDefaultValues(typecode, level, version)
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
 
+typecode = varargin{1};
+level = varargin{2};
+version = varargin{3};
 
+if (nargin == 4)
+    pkgversion = varargin{4};
+else
+    pkgversion = 1;
+end;
 
 
 
@@ -122,10 +132,16 @@ else
       fhandle = str2func('getFBCModelDefaultValues');
     case {'SBML_FBC_SPECIES', 'FBCSpecies'}
       fhandle = str2func('getFBCSpeciesDefaultValues');
+    case {'SBML_FBC_GENE_PRODUCT', 'GeneProduct', 'geneProduct'}
+      fhandle = str2func('getGeneProductDefaultValues');
+    case {'SBML_FBC_GENE_PRODUCT_ASSOCIATION', 'GeneProductAssociation', 'geneProductAssociation'}
+      fhandle = str2func('getGeneProductAssociationDefaultValues');
+    case {'SBML_FBC_REACTION', 'FBCReaction'}
+      fhandle = str2func('getFBCReactionDefaultValues');
     otherwise
       error('%s\n%s', ...
         'getDefaultValues(typecode, level, version', ...
         'typecode not recognised');    
   end;
-  [defaultValues] = feval(fhandle, level, version, 1);
+  [defaultValues] = feval(fhandle, level, version, pkgversion);
 end;

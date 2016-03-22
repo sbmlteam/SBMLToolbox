@@ -69,6 +69,16 @@ elseif (level == 3)
                       };
      prefix = 'fbc';
      ns = 'http://www.sbml.org/sbml/level3/version1/fbc/version1';
+    elseif (pkgVersion == 2)
+      defaultValues = {
+                       int32(2), ...
+                       [], ...
+                       [], ...
+                       '', ...
+                       int32(0)
+                      };
+     prefix = 'fbc';
+     ns = 'http://www.sbml.org/sbml/level3/version1/fbc/version2';
     end;
 	end;
 end;
