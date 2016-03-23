@@ -38,19 +38,19 @@ function FluxObjective = FluxObjective_create(varargin)
 
 %check the input arguments are appropriate
 
-if (nargin > 3)
-	error('too many input arguments');
+if (nargin ~= 3)
+	error('wrong number of input arguments');
 end;
 
 switch (nargin)
 	case 3
 		level = varargin{1};
 		version = varargin{2};
-    pkgVersion = varargin{3};
+		pkgVersion = varargin{3};
 	case 2
 		level = varargin{1};
 		version = varargin{2};
-    pkgVersion = 1;
+		pkgVersion = 1;
 	case 1
 		level = varargin{1};
 		if (level == 1)
@@ -60,11 +60,11 @@ switch (nargin)
 		else
 			version = 1;
 		end;
-    pkgVersion = 1;
+		pkgVersion = 1;
 	otherwise
 		level = 3;
 		version = 1;
-    pkgVersion = 1;
+		pkgVersion = 1;
 end;
 
 if ~isValidLevelVersionCombination(level, version)
@@ -78,12 +78,6 @@ if (num > 0)
 	values = getFluxObjectiveDefaultValues(level, version, pkgVersion);
 	FluxObjective = cell2struct(values, fieldnames, 2);
 
-	%add level and version
-
-	FluxObjective.level = level;
-	FluxObjective.version = version;
-  FluxObjective.fbc_version = pkgVersion;
-
 %check correct structure
 
 	if ~isSBML_FBC_FluxObjective(FluxObjective, level, version, pkgVersion)
@@ -93,6 +87,6 @@ if (num > 0)
 
 else
 	FluxObjective = [];
-	warning('Warn:InvalidLV', 'FluxObjective not an element in SBML L%dV%d', level, version);
+	warning('Warn:InvalidLV', 'FluxObjective not an element in SBML L%dV%d Fbc V%d', level, version, pkgVersion);
 end;
 

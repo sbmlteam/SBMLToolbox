@@ -43,37 +43,7 @@ warning('off', 'Warn:InvalidLV');
 
 disp('Testing FluxBound');
 
-disp('Testing L1V1');
-obj = FluxBound_create(1, 1);
-attributes = {};
-[fail, num, message] = testObject(obj, attributes, 'FluxBound', fail, num, message);
-
-disp('Testing L1V2');
-obj = FluxBound_create(1, 2);
-attributes = {};
-[fail, num, message] = testObject(obj, attributes, 'FluxBound', fail, num, message);
-
-disp('Testing L2V1');
-obj = FluxBound_create(2, 1);
-attributes = {};
-[fail, num, message] = testObject(obj, attributes, 'FluxBound', fail, num, message);
-
-disp('Testing L2V2');
-obj = FluxBound_create(2, 2);
-attributes = {};
-[fail, num, message] = testObject(obj, attributes, 'FluxBound', fail, num, message);
-
-disp('Testing L2V3');
-obj = FluxBound_create(2, 3);
-attributes = {};
-[fail, num, message] = testObject(obj, attributes, 'FluxBound', fail, num, message);
-
-disp('Testing L2V4');
-obj = FluxBound_create(2, 4);
-attributes = {};
-[fail, num, message] = testObject(obj, attributes, 'FluxBound', fail, num, message);
-
-disp('Testing L3V1');
+disp('Testing L3V1 Fbc V1');
 obj = FluxBound_create(3, 1, 1);
 attributes = {...
               {'Metaid', 1}...
@@ -82,7 +52,12 @@ attributes = {...
               {'Fbc_reaction', 1}...
               {'Fbc_operation', 1}...
               {'Fbc_value', 3}...
-              };
+             };
+[fail, num, message] = testObject(obj, attributes, 'FluxBound', fail, num, message);
+
+disp('Testing L3V1 Fbc V2');
+obj = FluxBound_create(3, 1, 2);
+attributes = {};
 [fail, num, message] = testObject(obj, attributes, 'FluxBound', fail, num, message);
 
 disp(sprintf('Number tests: %d', num));

@@ -38,14 +38,19 @@ function GeneProduct = GeneProduct_create(varargin)
 
 %check the input arguments are appropriate
 
-if (nargin > 2)
-	error('too many input arguments');
+if (nargin ~= 3)
+	error('wrong number of input arguments');
 end;
 
 switch (nargin)
+	case 3
+		level = varargin{1};
+		version = varargin{2};
+		pkgVersion = varargin{3};
 	case 2
 		level = varargin{1};
 		version = varargin{2};
+		pkgVersion = 1;
 	case 1
 		level = varargin{1};
 		if (level == 1)
@@ -55,9 +60,11 @@ switch (nargin)
 		else
 			version = 1;
 		end;
+		pkgVersion = 1;
 	otherwise
 		level = 3;
 		version = 1;
+		pkgVersion = 1;
 end;
 
 if ~isValidLevelVersionCombination(level, version)
@@ -66,25 +73,20 @@ end;
 
 %get fields and values and create the structure
 
-[fieldnames, num] = getGeneProductFieldnames(level, version);
+[fieldnames, num] = getGeneProductFieldnames(level, version, pkgVersion);
 if (num > 0)
-	values = getGeneProductDefaultValues(level, version);
+	values = getGeneProductDefaultValues(level, version, pkgVersion);
 	GeneProduct = cell2struct(values, fieldnames, 2);
-
-	%add level and version
-
-	GeneProduct.level = level;
-	GeneProduct.version = version;
 
 %check correct structure
 
-	if ~isSBML_GeneProduct(GeneProduct, level, version)
+	if ~isSBML_FBC_GeneProduct(GeneProduct, level, version, pkgVersion)
 		GeneProduct = struct();
 		warning('Warn:BadStruct', 'Failed to create GeneProduct');
 	end;
 
 else
 	GeneProduct = [];
-	warning('Warn:InvalidLV', 'GeneProduct not an element in SBML L%dV%d', level, version);
+	warning('Warn:InvalidLV', 'GeneProduct not an element in SBML L%dV%d Fbc V%d', level, version, pkgVersion);
 end;
 
