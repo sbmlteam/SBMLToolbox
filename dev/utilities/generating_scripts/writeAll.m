@@ -7,9 +7,16 @@ Objects = {'AlgebraicRule', 'AssignmentRule', 'Compartment',  'CompartmentType',
       'Priority', 'RateRule', 'Reaction', 'Species', 'SpeciesConcentrationRule', ...
        'SpeciesReference', 'SpeciesType', 'StoichiometryMath', 'Trigger', ...
         'Unit', 'UnitDefinition'};
+    
+Fbc_objects= {'FluxBound', 'Objective', 'FluxObjective', 'GeneProduct', 'GeneProductAssociation', ...
+    'FBCModel', 'FBCSpecies', 'FBCReaction'};
 
-for i=1:length(Objects)
-  cd (Objects{i});
-  writeStruct(Objects{i});
-  cd ..
+% for i=1:length(Objects)
+%   cd (Objects{i});
+%   writeStruct(Objects{i});
+%   cd ..
+% end;
+
+for i = 1:length(Fbc_objects)
+    writeCreate(Fbc_objects{i});
 end;

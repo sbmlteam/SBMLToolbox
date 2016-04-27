@@ -1,6 +1,6 @@
 function writeCreate(name)
 
-cd (name);
+% cd (name);
 
 newfilename = sprintf('%s_create.m', name);
 fileOut = fopen(newfilename', 'w');
@@ -46,13 +46,18 @@ fprintf(fileOut, '%% in the file named "LICENSE.txt" included with this software
 fprintf(fileOut, '%%----------------------------------------------------------------------- -->\n\n\n');
 
 fprintf(fileOut, '%%check the input arguments are appropriate\n\n');
-fprintf(fileOut, 'if (nargin > 2)\n');
-fprintf(fileOut, '\terror(''too many input arguments'');\n');
+fprintf(fileOut, 'if (nargin ~= 3)\n');
+fprintf(fileOut, '\terror(''wrong number of input arguments'');\n');
 fprintf(fileOut, 'end;\n\n');
 fprintf(fileOut, 'switch (nargin)\n');
+fprintf(fileOut, '\tcase 3\n');
+fprintf(fileOut, '\t\tlevel = varargin{1};\n');
+fprintf(fileOut, '\t\tversion = varargin{2};\n');
+fprintf(fileOut, '\t\tpkgVersion = varargin{3};\n');
 fprintf(fileOut, '\tcase 2\n');
 fprintf(fileOut, '\t\tlevel = varargin{1};\n');
 fprintf(fileOut, '\t\tversion = varargin{2};\n');
+fprintf(fileOut, '\t\tpkgVersion = 1;\n');
 fprintf(fileOut, '\tcase 1\n');
 fprintf(fileOut, '\t\tlevel = varargin{1};\n');
 fprintf(fileOut, '\t\tif (level == 1)\n');
@@ -62,9 +67,11 @@ fprintf(fileOut, '\t\t\tversion = 4;\n');
 fprintf(fileOut, '\t\telse\n');
 fprintf(fileOut, '\t\t\tversion = 1;\n');
 fprintf(fileOut, '\t\tend;\n');
+fprintf(fileOut, '\t\tpkgVersion = 1;\n');
 fprintf(fileOut, '\totherwise\n');
 fprintf(fileOut, '\t\tlevel = 3;\n');
 fprintf(fileOut, '\t\tversion = 1;\n');
+fprintf(fileOut, '\t\tpkgVersion = 1;\n');
 fprintf(fileOut, 'end;\n\n');
 
 fprintf(fileOut, 'if ~isValidLevelVersionCombination(level, version)\n');
@@ -72,28 +79,24 @@ fprintf(fileOut, '\terror(''invalid level/version combination'');\n');
 fprintf(fileOut, 'end;\n\n');
 
 fprintf(fileOut, '%%get fields and values and create the structure\n\n');
-fprintf(fileOut, '[fieldnames, num] = get%sFieldnames(level, version);\n', name);
+fprintf(fileOut, '[fieldnames, num] = get%sFieldnames(level, version, pkgVersion);\n', name);
 fprintf(fileOut, 'if (num > 0)\n');
-fprintf(fileOut, '\tvalues = get%sDefaultValues(level, version);\n', name);
+fprintf(fileOut, '\tvalues = get%sDefaultValues(level, version, pkgVersion);\n', name);
 fprintf(fileOut, '\t%s = cell2struct(values, fieldnames, 2);\n\n', name);
 
-fprintf(fileOut, '\t%%add level and version\n\n');
-fprintf(fileOut, '\t%s.level = level;\n', name);
-fprintf(fileOut, '\t%s.version = version;\n\n', name);
-
 fprintf(fileOut, '%%check correct structure\n\n');
-fprintf(fileOut, '\tif ~isSBML_%s(%s, level, version)\n', name, name);
+fprintf(fileOut, '\tif ~isSBML_FBC_%s(%s, level, version, pkgVersion)\n', name, name);
 fprintf(fileOut, '\t\t%s = struct();\n', name);
 fprintf(fileOut, '\t\twarning(''Warn:BadStruct'', ''Failed to create %s'');\n', name);
 fprintf(fileOut, '\tend;\n\n');
 
 fprintf(fileOut, 'else\n');
 fprintf(fileOut, '\t%s = [];\n', name);
-fprintf(fileOut, '\twarning(''Warn:InvalidLV'', ''%s not an element in SBML L%%dV%%d'', level, version);\n', name);
+fprintf(fileOut, '\twarning(''Warn:InvalidLV'', ''%s not an element in SBML L%%dV%%d Fbc V%%d'', level, version, pkgVersion);\n', name);
 fprintf(fileOut, 'end;\n\n');
 
 
 
 fclose(fileOut);
 
-cd ..;
+%cd ..;

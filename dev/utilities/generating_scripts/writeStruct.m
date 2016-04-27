@@ -2,22 +2,26 @@ function writeStruct(name)
 
 doneFields = {'typecode', 'notes', 'annotation', 'level', 'version', 'fbc_version'};
 
-fields = getFieldnames(name, 1, 1);
-values = getDefaultValues(name, 1, 1);
+% fields = getFieldnames(name, 1, 1);
+% values = getDefaultValues(name, 1, 1);
+% doneFields = writeFields(name, fields, values, doneFields);
+% 
+% for vers = 1:4
+%   fields = getFieldnames(name, 2, vers);
+%   values = getDefaultValues(name, 2, vers);
+%   doneFields = writeFields(name, fields, values, doneFields);
+% end;
+for vers = 1:2
+fields = getFieldnames(name, 3, 1, vers);
+values = getDefaultValues(name, 3, 1, vers);
 doneFields = writeFields(name, fields, values, doneFields);
-
-for vers = 1:4
-  fields = getFieldnames(name, 2, vers);
-  values = getDefaultValues(name, 2, vers);
-  doneFields = writeFields(name, fields, values, doneFields);
 end;
-fields = getFieldnames(name, 3, 1);
-values = getDefaultValues(name, 3, 1);
-doneFields = writeFields(name, fields, values, doneFields);
+
 
 function df = writeFields(name, fields, values, df)
 
-singleObj = {'kineticLaw', 'trigger', 'delay', 'priority', 'stoichiometryMath'};
+singleObj = {'kineticLaw', 'trigger', 'delay', 'priority', 'stoichiometryMath', 'association', ...
+    'geneProductAssociation'};
 for i=1:length(fields)
   f = fields{i};
   fullname = f;
