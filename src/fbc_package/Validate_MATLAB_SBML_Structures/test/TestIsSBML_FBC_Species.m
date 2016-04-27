@@ -44,7 +44,27 @@ s_l3v1_incorrect = struct('typecode', {'SBML_SPECIES'}, 'metaid', {''}, 'notes',
     'fbc_charge', {''}, ...
     'level', {3}, 'version', {1}, 'fbc_version', {1});
 
+s_l3v1_v2 = struct('typecode', {'SBML_SPECIES'}, 'metaid', {''}, 'notes', {''}, ...
+  'annotation', {''}, 'sboTerm', {''}, 'name', {''}, 'id', {''}, ...
+  'compartment', {''}, 'initialAmount', {''}, 'initialConcentration', {''}, ...
+    'substanceUnits', {''}, 'hasOnlySubstanceUnits', {''}, ...
+    'boundaryCondition', {''}, 'constant', {''},  'conversionFactor', {''}, ...
+    'isSetInitialAmount', {''}, 'isSetInitialConcentration', {''}, ...
+    'fbc_charge', {''}, 'isSetfbc_charge', {0}, 'fbc_chemicalFormula', {''}, ...
+    'level', {3}, 'version', {1}, 'fbc_version', {2});
+
+s_l3v1_v2_incorrect = struct('typecode', {'SBML_SPECIES'}, 'metaid', {''}, 'notes', {''}, ...
+  'annotation', {''}, 'sboTerm', {''}, 'name', {''}, 'id', {''}, ...
+  'compartment', {''}, 'initialAmount', {''}, 'initialConcentration', {''}, ...
+    'substanceUnits', {''}, 'hasOnlySubstanceUnits', {''}, ...
+    'boundaryCondition', {''}, 'constant', {''},  'conversionFactor', {''}, ...
+    'isSetInitialAmount', {''}, 'isSetInitialConcentration', {''}, ...
+    'fbc_charge', {''}, 'fbc_chemicalFormula', {''}, ...
+    'level', {3}, 'version', {1}, 'fbc_version', {2});
+
+
 fail = TestFunction('isSBML_FBC_Species', 4, 1, s_l3v1, 3, 1, 1, 1);
+fail = fail + TestFunction('isSBML_FBC_Species', 4, 1, s_l3v1, 3, 1, 2, 0);
 fail = fail + TestFunction('isSBML_FBC_Species', 3, 1, s_l3v1, 3, 1, 1);
 fail = fail + TestFunction('isSBML_FBC_Species', 3, 1, s_l3v1, 2, 4, 0);
 fail = fail + TestFunction('isSBML_FBC_Species', 2, 1, s_l3v1, 3, 1);
@@ -66,7 +86,9 @@ fail = fail + TestFunction('isValidFBC', 3, 1, s_l3v1, 2, 4, 0);
 fail = fail + TestFunction('isValidFBC', 4, 1, s_l3v1, 3, 1, 1, 1);
 fail = fail + TestFunction('isValidFBC', 4, 1, s_l3v1, 2, 1, 1, 0);
 fail = fail + TestFunction('isValidFBC', 4, 1, s_l3v1, 3, 1, 2, 0);
+
 fail = fail + TestFunction('isSBML_FBC_Species', 4, 1, s_l3v1_incorrect, 3, 1, 1, 0);
+fail = fail + TestFunction('isSBML_FBC_Species', 4, 1, s_l3v1_incorrect, 3, 1, 2, 0);
 fail = fail + TestFunction('isSBML_FBC_Species', 3, 1, s_l3v1_incorrect, 3, 1, 0);
 fail = fail + TestFunction('isSBML_FBC_Species', 3, 1, s_l3v1_incorrect, 2, 4, 0);
 fail = fail + TestFunction('isSBML_FBC_Species', 2, 1, s_l3v1_incorrect, 3, 0);
@@ -89,6 +111,53 @@ fail = fail + TestFunction('isValidFBC', 4, 1, s_l3v1_incorrect, 3, 1, 1, 0);
 fail = fail + TestFunction('isValidFBC', 4, 1, s_l3v1_incorrect, 2, 1, 1, 0);
 fail = fail + TestFunction('isValidFBC', 4, 1, s_l3v1_incorrect, 3, 1, 2, 0);
 
+fail = fail + TestFunction('isSBML_FBC_Species', 4, 1, s_l3v1_v2, 3, 1, 1, 0);
+fail = fail + TestFunction('isSBML_FBC_Species', 4, 1, s_l3v1_v2, 3, 1, 2, 1);
+fail = fail + TestFunction('isSBML_FBC_Species', 3, 1, s_l3v1_v2, 3, 1, 0);
+fail = fail + TestFunction('isSBML_FBC_Species', 3, 1, s_l3v1_v2, 2, 4, 0);
+fail = fail + TestFunction('isSBML_FBC_Species', 2, 1, s_l3v1_v2, 3, 0);
+fail = fail + TestFunction('isSBML_FBC_Species', 2, 1, s_l3v1_v2, 2, 0);
+fail = fail + TestFunction('isSBML_FBC_Species', 1, 1, s_l3v1_v2, 0);
+fail = fail + TestFunction('isValid', 1, 1, s_l3v1_v2, 0);
+fail = fail + TestFunction('isValid', 2, 1, s_l3v1_v2, 3, 0);
+fail = fail + TestFunction('isValid', 2, 1, s_l3v1_v2, 2, 0);
+fail = fail + TestFunction('isValid', 3, 1, s_l3v1_v2, 3, 1, 0);
+fail = fail + TestFunction('isValid', 3, 1, s_l3v1_v2, 2, 4, 0);
+fail = fail + TestFunction('isValid', 4, 1, s_l3v1_v2, 3, 1, 1, 0);
+fail = fail + TestFunction('isValid', 4, 1, s_l3v1_v2, 2, 1, 1, 0);
+fail = fail + TestFunction('isValid', 4, 1, s_l3v1_v2, 3, 1, 2, 1);
+fail = fail + TestFunction('isValidFBC', 1, 1, s_l3v1_v2, 0);
+fail = fail + TestFunction('isValidFBC', 2, 1, s_l3v1_v2, 3, 0);
+fail = fail + TestFunction('isValidFBC', 2, 1, s_l3v1_v2, 2, 0);
+fail = fail + TestFunction('isValidFBC', 3, 1, s_l3v1_v2, 3, 1, 0);
+fail = fail + TestFunction('isValidFBC', 3, 1, s_l3v1_v2, 2, 4, 0);
+fail = fail + TestFunction('isValidFBC', 4, 1, s_l3v1_v2, 3, 1, 1, 0);
+fail = fail + TestFunction('isValidFBC', 4, 1, s_l3v1_v2, 2, 1, 1, 0);
+fail = fail + TestFunction('isValidFBC', 4, 1, s_l3v1_v2, 3, 1, 2, 1);
+
+fail = fail + TestFunction('isSBML_FBC_Species', 4, 1, s_l3v1_v2_incorrect, 3, 1, 1, 0);
+fail = fail + TestFunction('isSBML_FBC_Species', 4, 1, s_l3v1_v2_incorrect, 3, 1, 2, 0);
+fail = fail + TestFunction('isSBML_FBC_Species', 3, 1, s_l3v1_v2_incorrect, 3, 1, 0);
+fail = fail + TestFunction('isSBML_FBC_Species', 3, 1, s_l3v1_v2_incorrect, 2, 4, 0);
+fail = fail + TestFunction('isSBML_FBC_Species', 2, 1, s_l3v1_v2_incorrect, 3, 0);
+fail = fail + TestFunction('isSBML_FBC_Species', 2, 1, s_l3v1_v2_incorrect, 2, 0);
+fail = fail + TestFunction('isSBML_FBC_Species', 1, 1, s_l3v1_v2_incorrect, 0);
+fail = fail + TestFunction('isValid', 1, 1, s_l3v1_v2_incorrect, 0);
+fail = fail + TestFunction('isValid', 2, 1, s_l3v1_v2_incorrect, 3, 0);
+fail = fail + TestFunction('isValid', 2, 1, s_l3v1_v2_incorrect, 2, 0);
+fail = fail + TestFunction('isValid', 3, 1, s_l3v1_v2_incorrect, 3, 1, 0);
+fail = fail + TestFunction('isValid', 3, 1, s_l3v1_v2_incorrect, 2, 4, 0);
+fail = fail + TestFunction('isValid', 4, 1, s_l3v1_v2_incorrect, 3, 1, 1, 0);
+fail = fail + TestFunction('isValid', 4, 1, s_l3v1_v2_incorrect, 2, 1, 1, 0);
+fail = fail + TestFunction('isValid', 4, 1, s_l3v1_v2_incorrect, 3, 1, 2, 0);
+fail = fail + TestFunction('isValidFBC', 1, 1, s_l3v1_v2_incorrect, 0);
+fail = fail + TestFunction('isValidFBC', 2, 1, s_l3v1_v2_incorrect, 3, 0);
+fail = fail + TestFunction('isValidFBC', 2, 1, s_l3v1_v2_incorrect, 2, 0);
+fail = fail + TestFunction('isValidFBC', 3, 1, s_l3v1_v2_incorrect, 3, 1, 0);
+fail = fail + TestFunction('isValidFBC', 3, 1, s_l3v1_v2_incorrect, 2, 4, 0);
+fail = fail + TestFunction('isValidFBC', 4, 1, s_l3v1_v2_incorrect, 3, 1, 1, 0);
+fail = fail + TestFunction('isValidFBC', 4, 1, s_l3v1_v2_incorrect, 2, 1, 1, 0);
+fail = fail + TestFunction('isValidFBC', 4, 1, s_l3v1_v2_incorrect, 3, 1, 2, 0);
 
 
 

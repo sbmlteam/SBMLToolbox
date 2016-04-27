@@ -40,40 +40,62 @@ end;
 test = 0;
 Totalfail = 0;
 
-test = test + 44;
+test = test + 45;
 fail = TestIsSBML_FBC_FluxBound;
 if (fail > 0)
     disp('isSBML_FBC_FluxBound failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 66;
+test = test + 115;
 fail = TestIsSBML_FBC_Objective;
 if (fail > 0)
     disp('isSBML_FBC_Objective failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 44;
+test = test + 90;
 fail = TestIsSBML_FBC_FluxObjective;
 if (fail > 0)
     disp('isSBML_FBC_FluxObjective failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 42;
+test = test + 91;
 fail = TestIsSBML_FBC_Species;
 if (fail > 0)
     disp('isSBML_FBC_Species failed');
 end;
 Totalfail = Totalfail + fail;
 
-test = test + 22;
+test = test + 91;
 fail = TestIsSBML_FBC_Model;
 if (fail > 0)
     disp('isSBML_FBC_Model failed');
 end;
 Totalfail = Totalfail + fail;
+
+test = test + 45;
+fail = TestIsSBML_FBC_GeneProduct;
+if (fail > 0)
+    disp('isSBML_FBC_GeneProduct failed');
+end;
+Totalfail = Totalfail + fail;
+
+test = test + 45;
+fail = TestIsSBML_FBC_GeneProductAssociation;
+if (fail > 0)
+    disp('isSBML_FBC_GeneProductAssociation failed');
+end;
+Totalfail = Totalfail + fail;
+
+test = test + 69;
+fail = TestIsSBML_FBC_Reaction;
+if (fail > 0)
+    disp('isSBML_FBC_Reaction failed');
+end;
+Totalfail = Totalfail + fail;
+
 
 % tests that need fbc libsbml binding enabled
 if fbcBindingEnabled == 1
@@ -129,6 +151,64 @@ if fbcBindingEnabled == 1
       fail = fail + 1;
       disp('l3v1 FBC Species failed');
   end;
+
+% v2 test
+  m = TranslateSBML('../../test/test-data/fbcV2.xml');
+
+  o = m.fbc_objective(1);
+  fo = o.fbc_fluxObjective(1);
+  s = m.species(1);
+  gp = m.fbc_geneProduct(1);
+  r = m.reaction(1);
+  gpa = r.fbc_geneProductAssociation(1);
+
+  test = test + 7;
+
+  fail = 0;
+
+  pass = isSBML_FBC_Model(m, 3, 1, 2);
+  if (pass == 0)
+      fail = fail + 1;
+      disp('l3v1 fbc v2 Model failed');
+  end;
+
+  pass = isSBML_FBC_Objective(o,3, 1, 2);
+  if (pass == 0)
+      fail = fail + 1;
+      disp('l3v1 v2 Objective failed');
+  end;
+
+  pass = isSBML_FBC_FluxObjective(fo,3, 1, 2);
+  if (pass == 0)
+      fail = fail + 1;
+      disp('l3v1 v2 FluxObjective failed');
+  end;
+
+  pass = isSBML_FBC_Species(s, 3, 1, 2);
+  if (pass == 0)
+      fail = fail + 1;
+      disp('l3v1 FBC Species failed');
+  end;
+
+  pass = isSBML_FBC_Reaction(r, 3, 1, 2);
+  if (pass == 0)
+      fail = fail + 1;
+      disp('l3v1 fbc v2 Reaction failed');
+  end;
+
+  pass = isSBML_FBC_GeneProduct(gp, 3, 1, 2);
+  if (pass == 0)
+      fail = fail + 1;
+      disp('l3v1 fbc v2 GeneProduct failed');
+  end;
+
+  pass = isSBML_FBC_GeneProductAssociation(gpa, 3, 1, 2);
+  if (pass == 0)
+      fail = fail + 1;
+      disp('l3v1 fbc v2 GPAssociation failed');
+  end;
+
+
 end;
 
 Totalfail = Totalfail + fail;

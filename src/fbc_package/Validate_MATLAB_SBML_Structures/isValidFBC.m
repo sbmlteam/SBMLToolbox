@@ -106,13 +106,19 @@ switch (typecode)
     fhandle = str2func('isSBML_FBC_FluxObjective');
   case 'SBML_FBC_OBJECTIVE'
     fhandle = str2func('isSBML_FBC_Objective');
+  case 'SBML_FBC_GENE_PRODUCT'
+    fhandle = str2func('isSBML_FBC_GeneProduct');
+  case 'SBML_FBC_GENE_PRODUCT_ASSOCIATION'
+    fhandle = str2func('isSBML_FBC_GeneProductAssociation');
+  case 'SBML_REACTION'
+    fhandle = str2func('isSBML_FBC_Reaction');
   otherwise
     y = 0;
     return;
 end;
 
-if strcmp(typecode, 'SBML_MODEL')
-  y = feval(fhandle, sbml_struct);
-else
+% if strcmp(typecode, 'SBML_MODEL')
+%   y = feval(fhandle, sbml_struct);
+% else
   y = feval(fhandle, sbml_struct, level, version, fbc_version);
-end;
+% end;

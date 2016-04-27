@@ -26,34 +26,43 @@ function fail = TestIsSBML_FBC_Model
 
 
 
-s_l3v1 = Model_create(3,1);
+s_l3v1 = FBCModel_create(3, 1, 1);
 
 s_l3v1_incorrect = Model_create(3,1);
 s_l3v1_incorrect.fbc_version = 1;
+
+s_l3v1_v2  = FBCModel_create(3, 1, 2);
+
+r = Reaction_create(3, 1);
+s_l3v1_v2_incorrect  = FBCModel_create(3, 1, 2);
+s_l3v1_v2_incorrect.reaction = r;
+
 fail = 0;
-% fail = TestFunction('isSBML_FBC_Model', 4, 1, s_l3v1, 3, 1, 1, 1);
-% fail = fail + TestFunction('isSBML_FBC_Model', 3, 1, s_l3v1, 3, 1, 1);
-% fail = fail + TestFunction('isSBML_FBC_Model', 3, 1, s_l3v1, 2, 4, 0);
-% fail = fail + TestFunction('isSBML_FBC_Model', 2, 1, s_l3v1, 3, 1);
-% fail = fail + TestFunction('isSBML_FBC_Model', 2, 1, s_l3v1, 2, 0);
-% fail = fail + TestFunction('isSBML_FBC_Model', 1, 1, s_l3v1, 1);
-% fail = fail + TestFunction('isValid', 1, 1, s_l3v1, 1);
-% fail = fail + TestFunction('isValid', 2, 1, s_l3v1, 3, 1);
-% fail = fail + TestFunction('isValid', 2, 1, s_l3v1, 2, 0);
-% fail = fail + TestFunction('isValid', 3, 1, s_l3v1, 3, 1, 1);
-% fail = fail + TestFunction('isValid', 3, 1, s_l3v1, 2, 4, 0);
-% fail = fail + TestFunction('isValid', 4, 1, s_l3v1, 3, 1, 1, 1);
-% fail = fail + TestFunction('isValid', 4, 1, s_l3v1, 2, 1, 1, 0);
-% fail = fail + TestFunction('isValid', 4, 1, s_l3v1, 3, 1, 2, 0);
-% fail = fail + TestFunction('isValidFBC', 1, 1, s_l3v1, 1);
-% fail = fail + TestFunction('isValidFBC', 2, 1, s_l3v1, 3, 1);
-% fail = fail + TestFunction('isValidFBC', 2, 1, s_l3v1, 2, 0);
-% fail = fail + TestFunction('isValidFBC', 3, 1, s_l3v1, 3, 1, 1);
-% fail = fail + TestFunction('isValidFBC', 3, 1, s_l3v1, 2, 4, 0);
-% fail = fail + TestFunction('isValidFBC', 4, 1, s_l3v1, 3, 1, 1, 1);
-% fail = fail + TestFunction('isValidFBC', 4, 1, s_l3v1, 2, 1, 1, 0);
-% fail = fail + TestFunction('isValidFBC', 4, 1, s_l3v1, 3, 1, 2, 0);
+fail = fail + TestFunction('isSBML_FBC_Model', 4, 1, s_l3v1, 3, 1, 1, 1);
+fail = fail + TestFunction('isSBML_FBC_Model', 3, 1, s_l3v1, 3, 1, 1);
+fail = fail + TestFunction('isSBML_FBC_Model', 3, 1, s_l3v1, 2, 4, 0);
+fail = fail + TestFunction('isSBML_FBC_Model', 2, 1, s_l3v1, 3, 1);
+fail = fail + TestFunction('isSBML_FBC_Model', 2, 1, s_l3v1, 2, 0);
+fail = fail + TestFunction('isSBML_FBC_Model', 1, 1, s_l3v1, 1);
+fail = fail + TestFunction('isValid', 1, 1, s_l3v1, 1);
+fail = fail + TestFunction('isValid', 2, 1, s_l3v1, 3, 1);
+fail = fail + TestFunction('isValid', 2, 1, s_l3v1, 2, 0);
+fail = fail + TestFunction('isValid', 3, 1, s_l3v1, 3, 1, 1);
+fail = fail + TestFunction('isValid', 3, 1, s_l3v1, 2, 4, 0);
+fail = fail + TestFunction('isValid', 4, 1, s_l3v1, 3, 1, 1, 1);
+fail = fail + TestFunction('isValid', 4, 1, s_l3v1, 2, 1, 1, 0);
+fail = fail + TestFunction('isValid', 4, 1, s_l3v1, 3, 1, 2, 0);
+fail = fail + TestFunction('isValidFBC', 1, 1, s_l3v1, 1);
+fail = fail + TestFunction('isValidFBC', 2, 1, s_l3v1, 3, 1);
+fail = fail + TestFunction('isValidFBC', 2, 1, s_l3v1, 2, 0);
+fail = fail + TestFunction('isValidFBC', 3, 1, s_l3v1, 3, 1, 1);
+fail = fail + TestFunction('isValidFBC', 3, 1, s_l3v1, 2, 4, 0);
+fail = fail + TestFunction('isValidFBC', 4, 1, s_l3v1, 3, 1, 1, 1);
+fail = fail + TestFunction('isValidFBC', 4, 1, s_l3v1, 2, 1, 1, 0);
+fail = fail + TestFunction('isValidFBC', 4, 1, s_l3v1, 3, 1, 2, 0);
+
 fail = fail + TestFunction('isSBML_FBC_Model', 4, 1, s_l3v1_incorrect, 3, 1, 1, 0);
+fail = fail + TestFunction('isSBML_FBC_Model', 4, 1, s_l3v1_incorrect, 3, 1, 2, 0);
 fail = fail + TestFunction('isSBML_FBC_Model', 3, 1, s_l3v1_incorrect, 3, 1, 0);
 fail = fail + TestFunction('isSBML_FBC_Model', 3, 1, s_l3v1_incorrect, 2, 4, 0);
 fail = fail + TestFunction('isSBML_FBC_Model', 2, 1, s_l3v1_incorrect, 3, 0);
@@ -77,10 +86,52 @@ fail = fail + TestFunction('isValidFBC', 4, 1, s_l3v1_incorrect, 2, 1, 1, 0);
 fail = fail + TestFunction('isValidFBC', 4, 1, s_l3v1_incorrect, 3, 1, 2, 0);
 
 
+fail = fail + TestFunction('isSBML_FBC_Model', 4, 1, s_l3v1_v2, 3, 1, 1, 0);
+fail = fail + TestFunction('isSBML_FBC_Model', 4, 1, s_l3v1_v2, 3, 1, 2, 1);
+fail = fail + TestFunction('isSBML_FBC_Model', 3, 1, s_l3v1_v2, 3, 1, 0);
+fail = fail + TestFunction('isSBML_FBC_Model', 3, 1, s_l3v1_v2, 2, 4, 0);
+fail = fail + TestFunction('isSBML_FBC_Model', 2, 1, s_l3v1_v2, 3, 0);
+fail = fail + TestFunction('isSBML_FBC_Model', 2, 1, s_l3v1_v2, 2, 0);
+fail = fail + TestFunction('isSBML_FBC_Model', 1, 1, s_l3v1_v2, 0);
+fail = fail + TestFunction('isValid', 1, 1, s_l3v1_v2, 0);
+fail = fail + TestFunction('isValid', 2, 1, s_l3v1_v2, 3, 0);
+fail = fail + TestFunction('isValid', 2, 1, s_l3v1_v2, 2, 0);
+fail = fail + TestFunction('isValid', 3, 1, s_l3v1_v2, 3, 1, 0);
+fail = fail + TestFunction('isValid', 3, 1, s_l3v1_v2, 2, 4, 0);
+fail = fail + TestFunction('isValid', 4, 1, s_l3v1_v2, 3, 1, 1, 0);
+fail = fail + TestFunction('isValid', 4, 1, s_l3v1_v2, 2, 1, 1, 0);
+fail = fail + TestFunction('isValid', 4, 1, s_l3v1_v2, 3, 1, 2, 1);
+fail = fail + TestFunction('isValidFBC', 1, 1, s_l3v1_v2, 0);
+fail = fail + TestFunction('isValidFBC', 2, 1, s_l3v1_v2, 3, 0);
+fail = fail + TestFunction('isValidFBC', 2, 1, s_l3v1_v2, 2, 0);
+fail = fail + TestFunction('isValidFBC', 3, 1, s_l3v1_v2, 3, 1, 0);
+fail = fail + TestFunction('isValidFBC', 3, 1, s_l3v1_v2, 2, 4, 0);
+fail = fail + TestFunction('isValidFBC', 4, 1, s_l3v1_v2, 3, 1, 1, 0);
+fail = fail + TestFunction('isValidFBC', 4, 1, s_l3v1_v2, 2, 1, 1, 0);
+fail = fail + TestFunction('isValidFBC', 4, 1, s_l3v1_v2, 3, 1, 2, 1);
 
 
-
-
-
-
+fail = fail + TestFunction('isSBML_FBC_Model', 4, 1, s_l3v1_v2_incorrect, 3, 1, 1, 0);
+fail = fail + TestFunction('isSBML_FBC_Model', 4, 1, s_l3v1_v2_incorrect, 3, 1, 2, 0);
+fail = fail + TestFunction('isSBML_FBC_Model', 3, 1, s_l3v1_v2_incorrect, 3, 1, 0);
+fail = fail + TestFunction('isSBML_FBC_Model', 3, 1, s_l3v1_v2_incorrect, 2, 4, 0);
+fail = fail + TestFunction('isSBML_FBC_Model', 2, 1, s_l3v1_v2_incorrect, 3, 0);
+fail = fail + TestFunction('isSBML_FBC_Model', 2, 1, s_l3v1_v2_incorrect, 2, 0);
+fail = fail + TestFunction('isSBML_FBC_Model', 1, 1, s_l3v1_v2_incorrect, 0);
+fail = fail + TestFunction('isValid', 1, 1, s_l3v1_v2_incorrect, 0);
+fail = fail + TestFunction('isValid', 2, 1, s_l3v1_v2_incorrect, 3, 0);
+fail = fail + TestFunction('isValid', 2, 1, s_l3v1_v2_incorrect, 2, 0);
+fail = fail + TestFunction('isValid', 3, 1, s_l3v1_v2_incorrect, 3, 1, 0);
+fail = fail + TestFunction('isValid', 3, 1, s_l3v1_v2_incorrect, 2, 4, 0);
+fail = fail + TestFunction('isValid', 4, 1, s_l3v1_v2_incorrect, 3, 1, 1, 0);
+fail = fail + TestFunction('isValid', 4, 1, s_l3v1_v2_incorrect, 2, 1, 1, 0);
+fail = fail + TestFunction('isValid', 4, 1, s_l3v1_v2_incorrect, 3, 1, 2, 0);
+fail = fail + TestFunction('isValidFBC', 1, 1, s_l3v1_v2_incorrect, 0);
+fail = fail + TestFunction('isValidFBC', 2, 1, s_l3v1_v2_incorrect, 3, 0);
+fail = fail + TestFunction('isValidFBC', 2, 1, s_l3v1_v2_incorrect, 2, 0);
+fail = fail + TestFunction('isValidFBC', 3, 1, s_l3v1_v2_incorrect, 3, 1, 0);
+fail = fail + TestFunction('isValidFBC', 3, 1, s_l3v1_v2_incorrect, 2, 4, 0);
+fail = fail + TestFunction('isValidFBC', 4, 1, s_l3v1_v2_incorrect, 3, 1, 1, 0);
+fail = fail + TestFunction('isValidFBC', 4, 1, s_l3v1_v2_incorrect, 2, 1, 1, 0);
+fail = fail + TestFunction('isValidFBC', 4, 1, s_l3v1_v2_incorrect, 3, 1, 2, 0);
 

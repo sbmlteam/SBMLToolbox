@@ -84,10 +84,19 @@ if (num > 0)
     FBCModel = setfield(FBCModel, fieldnames{i}, values{i});
   end;
   %add empty substructures  
-  FBCModel.fbc_fluxBound = FluxBound_create(level, version, pkgVersion);
-  FBCModel.fbc_fluxBound(1:end) = [];
+  if (pkgVersion == 1)
+      FBCModel.fbc_fluxBound = FluxBound_create(level, version, pkgVersion);
+      FBCModel.fbc_fluxBound(1:end) = [];
+  end;
+  
   FBCModel.fbc_objective = Objective_create(level, version, pkgVersion);
   FBCModel.fbc_objective(1:end) = [];
+
+  if (pkgVersion == 2)
+      FBCModel.fbc_geneProduct = GeneProduct_create(level, version, pkgVersion);
+      FBCModel.fbc_geneProduct(1:end) = [];
+  end;
+  
   
   if length(prefix) > 0
     namespace.prefix = prefix;

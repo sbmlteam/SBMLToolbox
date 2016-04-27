@@ -128,7 +128,7 @@ end;
 % check that structure contains all the fbc fields
 if (valid == 1)
   [SBMLfieldnames, numFields] = getFieldnames('SBML_FBC_MODEL', level, ...
-                                                version);
+                                                version, pkgVersion);
 
   if (numFields ==0)
     valid = 0;
@@ -147,7 +147,7 @@ if (valid == 1)
   %check that any nested structures are appropriate
 
   % fluxBound
-  if (valid == 1)
+  if (valid == 1 && pkgVersion == 1)
     index = 1;
     while (valid == 1 && index <= length(SBMLStructure.fbc_fluxBound))
       [valid, message] = isSBML_FBC_FluxBound(SBMLStructure.fbc_fluxBound(index), ...
@@ -171,6 +171,16 @@ if (valid == 1)
     index = 1;
     while (valid == 1 && index <= length(SBMLStructure.species))
       [valid, message] = isSBML_FBC_Species(SBMLStructure.species(index), ...
+                                    level, version, pkgVersion);
+      index = index + 1;
+    end;
+  end;
+  
+  %reaction
+  if (valid == 1 && pkgVersion == 2)
+    index = 1;
+    while (valid == 1 && index <= length(SBMLStructure.reaction))
+      [valid, message] = isSBML_FBC_Reaction(SBMLStructure.reaction(index), ...
                                     level, version, pkgVersion);
       index = index + 1;
     end;
