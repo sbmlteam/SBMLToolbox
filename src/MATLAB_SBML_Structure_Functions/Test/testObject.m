@@ -95,7 +95,7 @@ end;
 function [fail, message] = testEmpty(component, attribute, obj)
 
 message = {};
-singles = {'KineticLaw', 'Trigger', 'Delay', 'Priority', 'StoichiometryMath'};
+singles = {'KineticLaw', 'Trigger', 'Delay', 'Priority', 'StoichiometryMath', 'GeneProductAssociation', 'Association'};
 
 if isIn(singles, attribute)
   fhandle = sprintf('%s_isSet%s', component, attribute);
@@ -275,7 +275,7 @@ function [fail, message] = testAdd(component, attribute, obj)
 fail = 0;
 message = {};
 
-singles = {'KineticLaw', 'Trigger', 'Delay', 'Priority', 'StoichiometryMath'};
+singles = {'KineticLaw', 'Trigger', 'Delay', 'Priority', 'StoichiometryMath', 'GeneProductAssociation', 'Association'};
 if isIn(singles, attribute)
   single = 1;
 else
@@ -303,10 +303,18 @@ else
 end;
 fhandle_createSub = sprintf('%s_create%s', component, attribute);
 
-if strcmp(obj.typecode, 'SBML_MODEL')
-  newObj = feval(fhandle_create, obj.SBML_level, obj.SBML_version);
+if ~isfield(obj, 'fbc_version')
+    if strcmp(obj.typecode, 'SBML_MODEL')
+      newObj = feval(fhandle_create, obj.SBML_level, obj.SBML_version);
+    else
+      newObj = feval(fhandle_create, obj.level, obj.version);
+    end;
 else
-  newObj = feval(fhandle_create, obj.level, obj.version);
+    if strcmp(obj.typecode, 'SBML_MODEL')
+      newObj = feval(fhandle_create, obj.SBML_level, obj.SBML_version, obj.fbc_version);
+    else
+      newObj = feval(fhandle_create, obj.level, obj.version, obj.fbc_version);
+    end;
 end;
 
 % add new obj and check is now set
@@ -315,6 +323,7 @@ obj = feval(fhandle_set, obj, newObj);
 result = feval(fhandle_isset, obj);
 
 if result == 1
+    
   fail = 0;
 else
   fail = 1;

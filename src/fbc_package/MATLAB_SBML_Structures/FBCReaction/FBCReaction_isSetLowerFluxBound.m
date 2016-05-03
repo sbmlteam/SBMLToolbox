@@ -38,7 +38,7 @@ function value = FBCReaction_isSetLowerFluxBound(SBMLFBCReaction)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLFBCReaction);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLFBCReaction);
 
 if isfield(SBMLFBCReaction, 'fbc_lowerFluxBound')
 	value = ~isempty(SBMLFBCReaction.fbc_lowerFluxBound);

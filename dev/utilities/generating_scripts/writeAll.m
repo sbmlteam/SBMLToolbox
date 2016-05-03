@@ -9,14 +9,14 @@ Objects = {'AlgebraicRule', 'AssignmentRule', 'Compartment',  'CompartmentType',
         'Unit', 'UnitDefinition'};
     
 Fbc_objects= {'FluxBound', 'Objective', 'FluxObjective', 'GeneProduct', 'GeneProductAssociation', ...
-    'FBCModel', 'FBCSpecies', 'FBCReaction'};
+    'FBCModel', 'FBCSpecies', 'FBCReaction', 'Association'};
 
-% for i=1:length(Objects)
-%   cd (Objects{i});
-%   writeStruct(Objects{i});
-%   cd ..
-% end;
-
-for i = 1:length(Fbc_objects)
-    writeCreate(Fbc_objects{i});
+for i=1:length(Fbc_objects)
+  cd (Fbc_objects{i});
+  writeStruct(Fbc_objects{i});
+  cd ..
 end;
+
+% for i = 1:length(Fbc_objects)
+%     writeCreate(Fbc_objects{i});
+% end;

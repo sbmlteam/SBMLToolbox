@@ -1,14 +1,15 @@
-function SBMLGeneProductAssociation = GeneProductAssociation_setAssociation(SBMLGeneProductAssociation, association)
-% SBMLGeneProductAssociation = GeneProductAssociation_setAssociation(SBMLGeneProductAssociation, association)
+function SBMLGeneProductAssociation = GeneProductAssociation_setAssociation(SBMLGeneProductAssociation, SBMLFBCAssociation)
+% SBMLGeneProductAssociation = GeneProductAssociation_setAssociation(SBMLGeneProductAssociation, SBMLFBCAssociation)
 %
 % Takes
 %
 % 1. SBMLGeneProductAssociation, an SBML GeneProductAssociation structure
-% 2. association, a number representing the fbc_association to be set
+% 2. SBMLFBCAssociation, the SBML  FBCAssociation structure to set
 %
 % Returns
 %
-% 1. the SBML FBC GeneProductAssociation structure with the new value for the fbc_association attribute
+% 1. the SBML FBC GeneProductAssociation structure with the new value for
+% the fbc_association element
 %
 
 %<!---------------------------------------------------------------------------
@@ -37,14 +38,18 @@ function SBMLGeneProductAssociation = GeneProductAssociation_setAssociation(SBML
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLGeneProductAssociation);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLGeneProductAssociation);
+[geneProduct_level, geneProduct_version, geneProduct_pkgVersion] = GetFBCLevelVersion(SBMLFBCAssociation);
 
+if level ~= geneProduct_level
+	error('mismatch in levels');
+elseif version ~= geneProduct_version
+	error('mismatch in versions');
+elseif pkgVersion ~= geneProduct_pkgVersion
+	error('mismatch in package versions');
+end;
 if isfield(SBMLGeneProductAssociation, 'fbc_association')
-	if ~isnumeric(association)
-		error('association must be numeric') ;
-	else
-		SBMLGeneProductAssociation.fbc_association = association;
-	end;
+    SBMLGeneProductAssociation.fbc_association = SBMLFBCAssociation;
 else
 	error('association not an attribute on SBML L%dV%d GeneProductAssociation', level, version);
 end;

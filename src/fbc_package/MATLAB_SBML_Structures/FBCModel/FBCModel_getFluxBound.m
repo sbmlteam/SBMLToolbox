@@ -4,7 +4,7 @@ function fluxBound = FBCModel_getFluxBound(SBMLFBCModel, index)
 % Takes
 %
 % 1. SBMLFBCModel, an SBML FBCModel structure
-% 2. index, an integer representing the index of SBML FluxBound structure
+% 2. index, an integer representing the index of the SBML FluxBound structure
 %
 % Returns
 %
@@ -37,7 +37,7 @@ function fluxBound = FBCModel_getFluxBound(SBMLFBCModel, index)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLFBCModel);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLFBCModel);
 
 if isfield(SBMLFBCModel, 'fbc_fluxBound')
 	if (~isIntegralNumber(index) || index <= 0)

@@ -37,7 +37,7 @@ function SBMLFBCModel = FBCModel_setActiveObjective(SBMLFBCModel, activeObjectiv
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLFBCModel);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLFBCModel);
 
 if isfield(SBMLFBCModel, 'fbc_activeObjective')
 	if ~ischar(activeObjective)

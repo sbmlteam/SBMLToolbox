@@ -138,6 +138,8 @@ else
       fhandle = str2func('getGeneProductAssociationDefaultValues');
     case {'SBML_FBC_REACTION', 'FBCReaction'}
       fhandle = str2func('getFBCReactionDefaultValues');
+    case {'SBML_FBC_GENE_PRODUCT_REF', 'Association', 'association'}
+      fhandle = str2func('getAssociationDefaultValues');
     otherwise
       error('%s\n%s', ...
         'getDefaultValues(typecode, level, version', ...

@@ -1,5 +1,5 @@
-function SBMLGeneProductAssociation = GeneProductAssociation_setSboTerm(SBMLGeneProductAssociation, sboTerm)
-% SBMLGeneProductAssociation = GeneProductAssociation_setSboTerm(SBMLGeneProductAssociation, sboTerm)
+function SBMLGeneProductAssociation = GeneProductAssociation_setSBOTerm(SBMLGeneProductAssociation, sboTerm)
+% SBMLGeneProductAssociation = GeneProductAssociation_setSBOTerm(SBMLGeneProductAssociation, sboTerm)
 %
 % Takes
 %
@@ -37,7 +37,7 @@ function SBMLGeneProductAssociation = GeneProductAssociation_setSboTerm(SBMLGene
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLGeneProductAssociation);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLGeneProductAssociation);
 
 if isfield(SBMLGeneProductAssociation, 'sboTerm')
 	if ~isnumeric(sboTerm)

@@ -37,7 +37,7 @@ function SBMLFluxObjective = FluxObjective_setMetaid(SBMLFluxObjective, metaid)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLFluxObjective);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLFluxObjective);
 
 if isfield(SBMLFluxObjective, 'metaid')
 	if ~ischar(metaid)

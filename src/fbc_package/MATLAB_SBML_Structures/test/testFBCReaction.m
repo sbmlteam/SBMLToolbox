@@ -78,6 +78,15 @@ obj = FBCReaction_create(3, 1);
 attributes = {};
 [fail, num, message] = testObject(obj, attributes, 'FBCReaction', fail, num, message);
 
+disp('Testing L3V1 FBC V2');
+obj = FBCReaction_create(3, 1, 2);
+attributes = {...
+              {'Fbc_lowerFluxBound', 1}...
+              {'Fbc_upperFluxBound', 1}...
+              {'Fbc_geneProductAssociation', 9}...
+              };
+[fail, num, message] = testObject(obj, attributes, 'FBCReaction', fail, num, message);
+
 disp(sprintf('Number tests: %d', num));
 disp(sprintf('Number fails: %d', fail));
 disp(sprintf('Pass rate: %d%', ((num-fail)/num)*100));

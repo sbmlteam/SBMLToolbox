@@ -38,7 +38,7 @@ function Objective = Objective_create(varargin)
 
 %check the input arguments are appropriate
 
-if (nargin ~= 3)
+if (nargin > 3)
 	error('wrong number of input arguments');
 end;
 
@@ -69,6 +69,11 @@ end;
 
 if ~isValidLevelVersionCombination(level, version)
 	error('invalid level/version combination');
+end;
+
+if ~isValidFBCLevelVersionCombination(level, version, pkgVersion)
+	Objective = [];
+	warning('Warn:InvalidLV', 'Objective not an element in SBML L%dV%d Fbc V%d', level, version, pkgVersion);
 end;
 
 %get fields and values and create the structure

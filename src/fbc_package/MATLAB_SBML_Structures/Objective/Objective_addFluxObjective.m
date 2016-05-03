@@ -37,12 +37,14 @@ function SBMLObjective = Objective_addFluxObjective(SBMLObjective, SBMLFluxObjec
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLObjective);
-[fluxObjective_level, fluxObjective_version] = GetLevelVersion(SBMLFluxObjective);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLObjective);
+[fluxObjective_level, fluxObjective_version, fluxObjective_pkgVersion] = GetFBCLevelVersion(SBMLFluxObjective);
 
 if level ~= fluxObjective_level
 	error('mismatch in levels');
 elseif version ~= fluxObjective_version
+	error('mismatch in versions');
+elseif pkgVersion ~= fluxObjective_pkgVersion
 	error('mismatch in versions');
 end;
 

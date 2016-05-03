@@ -36,7 +36,7 @@ function SBMLFBCReaction = FBCReaction_unsetUpperFluxBound(SBMLFBCReaction)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLFBCReaction);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLFBCReaction);
 
 if isfield(SBMLFBCReaction, 'fbc_upperFluxBound')
 	SBMLFBCReaction.fbc_upperFluxBound = '';

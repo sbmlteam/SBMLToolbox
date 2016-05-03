@@ -36,10 +36,10 @@ function SBMLFBCReaction = FBCReaction_unsetGeneProductAssociation(SBMLFBCReacti
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLFBCReaction);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLFBCReaction);
 
 if isfield(SBMLFBCReaction, 'fbc_geneProductAssociation')
-	SBMLFBCReaction.fbc_geneProductAssociation = NaN;
+	SBMLFBCReaction.fbc_geneProductAssociation = [];
 else
 	error('geneProductAssociation not an attribute on SBML L%dV%d FBCReaction', level, version);
 end;

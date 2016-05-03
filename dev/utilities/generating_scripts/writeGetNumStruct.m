@@ -4,22 +4,20 @@ capAttrib = strcat(upper(attrib(1)), attrib(2:end));
 newfilename = sprintf('%s_getNum%ss.m', name, capAttrib);
 fileOut = fopen(newfilename', 'w');
 
-fprintf(fileOut, 'function %s = %s_getNum%ss(SBML%s)\n', 'num', name, capAttrib, name);
+fprintf(fileOut, 'function num = %s_getNum%ss(SBML%s)\n', name,  capAttrib, name);
 
 % put in header and licence
+fprintf(fileOut, '%% num = %s_getNum%ss(SBML%s)\n', name,  capAttrib, name);
 fprintf(fileOut, '%%\n');
-fprintf(fileOut, '%% %s_getNum%ss\n', name, capAttrib); 
-fprintf(fileOut, '%%    takes an SBML %s structure\n', name);
+fprintf(fileOut, '%% Takes\n');
 fprintf(fileOut, '%%\n');
-fprintf(fileOut, '%%    returns\n'); 
-fprintf(fileOut, '%%      the number of %s elements\n\n', attrib);
-
-fprintf(fileOut, '%%  Filename    :   %s_getNum%ss.m\n', name, capAttrib);
-fprintf(fileOut, '%%  Description :\n');
-fprintf(fileOut, '%%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>\n');
-fprintf(fileOut, '%%  $Id: $\n');
-fprintf(fileOut, '%%  $Source v $\n');
+fprintf(fileOut, '%% 1. SBML%s, an SBML %s structure\n', name, name);
 fprintf(fileOut, '%%\n');
+fprintf(fileOut, '%% Returns\n'); 
+fprintf(fileOut, '%%\n');
+fprintf(fileOut, '%% 1. the number of SBML %s structures present in the %s\n', capAttrib, name);
+fprintf(fileOut, '%%\n');
+fprintf(fileOut, '\n');
 fprintf(fileOut, '%%<!---------------------------------------------------------------------------\n');
 fprintf(fileOut, '%% This file is part of SBMLToolbox.  Please visit http://sbml.org for more\n');
 fprintf(fileOut, '%% information about SBML, and the latest version of SBMLToolbox.\n');
@@ -44,10 +42,10 @@ fprintf(fileOut, '%% in the file named "LICENSE.txt" included with this software
 fprintf(fileOut, '%%----------------------------------------------------------------------- -->\n\n\n');
 
 fprintf(fileOut, '%%get level and version and check the input arguments are appropriate\n\n');
-fprintf(fileOut, '[level, version] = GetLevelVersion(SBML%s);\n\n', name);
+fprintf(fileOut, '[level, version, pkgVersion] = GetFBCLevelVersion(SBML%s);\n\n', name);
 
-fprintf(fileOut, 'if isfield(SBML%s, ''%s'')\n', name, attrib);
-fprintf(fileOut, '\tnum = length(SBML%s.%s);\n', name, attrib);
+fprintf(fileOut, 'if isfield(SBML%s, ''fbc_%s'')\n', name, attrib);
+fprintf(fileOut, '\tnum = length(SBML%s.fbc_%s);\n', name, attrib);
 fprintf(fileOut, 'else\n');
 fprintf(fileOut, '\terror(''%s not an element on SBML L%%dV%%d %s'', level, version);\n', ...
   attrib, name);

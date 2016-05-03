@@ -46,6 +46,7 @@ fail = fail + testFBCModel();
 fail = fail + testGeneProduct();
 fail = fail + testGeneProductAssociation();
 fail = fail + testFBCReaction();
+fail = fail + testAssociation();
 
 y = fail;
 

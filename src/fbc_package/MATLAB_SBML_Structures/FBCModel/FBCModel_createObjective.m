@@ -36,7 +36,7 @@ function FBCModel = FBCModel_createObjective(FBCModel)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(FBCModel);
+[level, version, pkgVersion] = GetFBCLevelVersion(FBCModel);
 
 if isfield(FBCModel, 'fbc_objective')
   SBMLObjective = Objective_create(level, version, FBCModel.fbc_version);
@@ -47,6 +47,6 @@ if isfield(FBCModel, 'fbc_objective')
 		FBCModel.fbc_objective(index+1) = SBMLObjective;
 	end;
 else
-	error('objective not an element on SBML L%dV%d Bound', level, version);
+	error('Objective not an element on SBML L%dV%d FBC V%d Model', level, version, pkgVersion);
 end;
 

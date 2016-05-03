@@ -35,10 +35,18 @@ function identical = areIdentical(struct1, struct2)
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
 
-if ~isValid(struct1)
-  error('first argument must be an SBML Structure');
-elseif ~isValid(struct2)
-  error('second argument must be an SBML Structure');
+if isfield(struct1, 'fbc_version')
+    if ~isValid(struct1, 3, 1, struct1.fbc_version)
+      error('first argument must be an SBML Structure');
+    elseif ~isValid(struct2, 3, 1, struct1.fbc_version)
+      error('second argument must be an SBML Structure');
+    end;
+else
+    if ~isValid(struct1)
+      error('first argument must be an SBML Structure');
+    elseif ~isValid(struct2)
+      error('second argument must be an SBML Structure');
+    end;
 end;
 
 identical = 1;

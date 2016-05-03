@@ -43,7 +43,7 @@ fprintf(fileOut, '%% in the file named "LICENSE.txt" included with this software
 fprintf(fileOut, '%%----------------------------------------------------------------------- -->\n\n\n');
 
 fprintf(fileOut, '%%get level and version and check the input arguments are appropriate\n\n');
-fprintf(fileOut, '[level, version] = GetLevelVersion(SBML%s);\n\n', name);
+fprintf(fileOut, '[level, version, pkgVersion] = GetFBCLevelVersion(SBML%s);\n\n', name);
 
 fprintf(fileOut, 'if isfield(SBML%s, ''%s'')\n', name, fullname);
 fprintf(fileOut, '\tSBML%s.%s = '''';\n', name, fullname);

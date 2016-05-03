@@ -37,13 +37,15 @@ function SBMLFBCModel = FBCModel_addObjective(SBMLFBCModel, SBMLObjective)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLFBCModel);
-[objective_level, objective_version] = GetLevelVersion(SBMLObjective);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLFBCModel);
+[objective_level, objective_version, objective_pkgVersion] = GetFBCLevelVersion(SBMLObjective);
 
 if level ~= objective_level
 	error('mismatch in levels');
 elseif version ~= objective_version
 	error('mismatch in versions');
+elseif pkgVersion ~= objective_pkgVersion
+	error('mismatch in package versions');
 end;
 
 if isfield(SBMLFBCModel, 'fbc_objective')

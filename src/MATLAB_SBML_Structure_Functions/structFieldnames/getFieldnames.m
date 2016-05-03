@@ -141,6 +141,8 @@ else
       fhandle = str2func('getGeneProductAssociationFieldnames');
     case {'SBML_FBC_REACTION', 'FBCReaction'}
       fhandle = str2func('getFBCReactionFieldnames');
+    case {'SBML_FBC_ASSOCIATION', 'Association'}
+      fhandle = str2func('getAssociationFieldnames');
     otherwise
       error('%s\n%s', ...
         'getFieldnames(typecode, level, version', ...

@@ -36,7 +36,7 @@ function FBCModel = FBCModel_createFluxBound(FBCModel)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(FBCModel);
+[level, version, pkgVersion] = GetFBCLevelVersion(FBCModel);
 
 if isfield(FBCModel, 'fbc_fluxBound')
   SBMLFluxBound = FluxBound_create(level, version, FBCModel.fbc_version);
@@ -47,6 +47,6 @@ if isfield(FBCModel, 'fbc_fluxBound')
 		FBCModel.fbc_fluxBound(index+1) = SBMLFluxBound;
 	end;
 else
-	error('fluxBound not an element on SBML L%dV%d Bound', level, version);
+	error('FluxBound not an element on SBML L%dV%d FBC V%d Model', level, version, pkgVersion);
 end;
 

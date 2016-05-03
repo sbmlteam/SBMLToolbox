@@ -1,14 +1,14 @@
-function SBMLFBCReaction = FBCReaction_setGeneProductAssociation(SBMLFBCReaction, geneProductAssociation)
-% SBMLFBCReaction = FBCReaction_setGeneProductAssociation(SBMLFBCReaction, geneProductAssociation)
+function SBMLFBCReaction = FBCReaction_setGeneProductAssociation(SBMLFBCReaction, SBMLFBCGeneProductAssociation)
+% SBMLFBCReaction = FBCReaction_setGeneProductAssociation(SBMLFBCReaction, SBMLFBCGeneProductAssociation)
 %
 % Takes
 %
 % 1. SBMLFBCReaction, an SBML FBCReaction structure
-% 2. geneProductAssociation, a number representing the fbc_geneProductAssociation to be set
+% 2. SBMLFBCGeneProductAssociation, the SBML  FBCGeneProductAssociation structure to set
 %
 % Returns
 %
-% 1. the SBML FBC FBCReaction structure with the new value for the fbc_geneProductAssociation attribute
+% 1. the SBML FBC FBCReaction structure with the new value for the fbc_geneProductAssociation structure
 %
 
 %<!---------------------------------------------------------------------------
@@ -37,15 +37,20 @@ function SBMLFBCReaction = FBCReaction_setGeneProductAssociation(SBMLFBCReaction
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLFBCReaction);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLFBCReaction);
+[geneProduct_level, geneProduct_version, geneProduct_pkgVersion] = GetFBCLevelVersion(SBMLFBCGeneProductAssociation);
+
+if level ~= geneProduct_level
+	error('mismatch in levels');
+elseif version ~= geneProduct_version
+	error('mismatch in versions');
+elseif pkgVersion ~= geneProduct_pkgVersion
+	error('mismatch in package versions');
+end;
 
 if isfield(SBMLFBCReaction, 'fbc_geneProductAssociation')
-	if ~isnumeric(geneProductAssociation)
-		error('geneProductAssociation must be numeric') ;
-	else
-		SBMLFBCReaction.fbc_geneProductAssociation = geneProductAssociation;
-	end;
+    SBMLFBCReaction.fbc_geneProductAssociation = SBMLFBCGeneProductAssociation;
 else
-	error('geneProductAssociation not an attribute on SBML L%dV%d FBCReaction', level, version);
+	error('geneProductAssociation not an element on SBML L%dV%d FBC V%d Reaction', level, version, pkgVersion);
 end;
 

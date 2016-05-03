@@ -36,7 +36,7 @@ function SBMLGeneProduct = GeneProduct_unsetAssociatedSpecies(SBMLGeneProduct)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLGeneProduct);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLGeneProduct);
 
 if isfield(SBMLGeneProduct, 'fbc_associatedSpecies')
 	SBMLGeneProduct.fbc_associatedSpecies = '';

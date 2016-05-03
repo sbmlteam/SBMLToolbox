@@ -38,7 +38,7 @@ function FBCReaction = FBCReaction_create(varargin)
 
 %check the input arguments are appropriate
 
-if (nargin ~= 3)
+if (nargin > 3)
 	error('wrong number of input arguments');
 end;
 
@@ -69,23 +69,35 @@ end;
 
 if ~isValidLevelVersionCombination(level, version)
 	error('invalid level/version combination');
+elseif pkgVersion == 1
+	FBCReaction = [];
+	warning('Warn:InvalidLV', 'FBCReaction not an element in SBML L%dV%d Fbc V%d', level, version, pkgVersion);
+    return;
+end;
+
+if ~isValidFBCLevelVersionCombination(level, version, pkgVersion)
+	FBCReaction = [];
+	warning('Warn:InvalidLV', 'FBCReaction not an element in SBML L%dV%d Fbc V%d', level, version, pkgVersion);
 end;
 
 %get fields and values and create the structure
+FBCReaction = Reaction_create(level, version);
+
+if ~isempty(FBCReaction) 
 
 [fieldnames, num] = getFBCReactionFieldnames(level, version, pkgVersion);
 if (num > 0)
 	values = getFBCReactionDefaultValues(level, version, pkgVersion);
-	FBCReaction = cell2struct(values, fieldnames, 2);
 
-	%add level and version
-
+  for i=1:num
+    FBCReaction = setfield(FBCReaction, fieldnames{i}, values{i});
+  end;
 	FBCReaction.level = level;
 	FBCReaction.version = version;
 
 %check correct structure
 
-	if ~isSBML_FBCReaction(FBCReaction, level, version)
+	if ~isSBML_FBC_Reaction(FBCReaction, level, version, pkgVersion)
 		FBCReaction = struct();
 		warning('Warn:BadStruct', 'Failed to create FBCReaction');
 	end;
@@ -93,5 +105,7 @@ if (num > 0)
 else
 	FBCReaction = [];
 	warning('Warn:InvalidLV', 'FBCReaction not an element in SBML L%dV%d Fbc V%d', level, version, pkgVersion);
+end;
+
 end;
 

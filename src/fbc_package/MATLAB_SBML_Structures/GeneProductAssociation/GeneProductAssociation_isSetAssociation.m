@@ -38,10 +38,10 @@ function value = GeneProductAssociation_isSetAssociation(SBMLGeneProductAssociat
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLGeneProductAssociation);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLGeneProductAssociation);
 
 if isfield(SBMLGeneProductAssociation, 'fbc_association')
-	value = SBMLGeneProductAssociation.isSetAssociation;
+	value = ~isempty(SBMLGeneProductAssociation.fbc_association);
 else
 	error('isSetAssociation not an attribute on SBML L%dV%d GeneProductAssociation', level, version);
 end;

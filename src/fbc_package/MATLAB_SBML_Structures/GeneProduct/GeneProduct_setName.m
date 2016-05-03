@@ -37,7 +37,7 @@ function SBMLGeneProduct = GeneProduct_setName(SBMLGeneProduct, name)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLGeneProduct);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLGeneProduct);
 
 if isfield(SBMLGeneProduct, 'fbc_name')
 	if ~ischar(name)

@@ -37,7 +37,7 @@ function SBMLFluxObjective = FluxObjective_setReaction(SBMLFluxObjective, reacti
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLFluxObjective);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLFluxObjective);
 
 if isfield(SBMLFluxObjective, 'fbc_reaction')
 	if ~ischar(reaction)

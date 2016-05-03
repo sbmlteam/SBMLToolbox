@@ -37,13 +37,15 @@ function SBMLFBCModel = FBCModel_addFluxBound(SBMLFBCModel, SBMLFluxBound)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLFBCModel);
-[fluxBound_level, fluxBound_version] = GetLevelVersion(SBMLFluxBound);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLFBCModel);
+[fluxBound_level, fluxBound_version, fluxBound_pkgVersion] = GetFBCLevelVersion(SBMLFluxBound);
 
 if level ~= fluxBound_level
 	error('mismatch in levels');
 elseif version ~= fluxBound_version
 	error('mismatch in versions');
+elseif pkgVersion ~= fluxBound_pkgVersion
+	error('mismatch in package versions');
 end;
 
 if isfield(SBMLFBCModel, 'fbc_fluxBound')

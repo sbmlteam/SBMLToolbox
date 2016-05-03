@@ -37,7 +37,7 @@ function SBMLFluxBound = FluxBound_setMetaid(SBMLFluxBound, metaid)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLFluxBound);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLFluxBound);
 
 if isfield(SBMLFluxBound, 'metaid')
 	if ~ischar(metaid)

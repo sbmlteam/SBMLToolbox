@@ -4,7 +4,7 @@ function objective = FBCModel_getObjective(SBMLFBCModel, index)
 % Takes
 %
 % 1. SBMLFBCModel, an SBML FBCModel structure
-% 2. index, an integer representing the index of SBML Objective structure
+% 2. index, an integer representing the index of the SBML Objective structure
 %
 % Returns
 %
@@ -37,7 +37,7 @@ function objective = FBCModel_getObjective(SBMLFBCModel, index)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLFBCModel);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLFBCModel);
 
 if isfield(SBMLFBCModel, 'fbc_objective')
 	if (~isIntegralNumber(index) || index <= 0)

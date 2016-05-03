@@ -36,7 +36,7 @@ function SBMLObjective = Objective_createFluxObjective(SBMLObjective)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLObjective);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLObjective);
 
 if isfield(SBMLObjective, 'fbc_fluxObjective')
   SBMLFluxObjective = FluxObjective_create(level, version, SBMLObjective.fbc_version);

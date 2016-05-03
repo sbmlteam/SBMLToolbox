@@ -38,7 +38,7 @@ function value = FluxObjective_isSetReaction(SBMLFluxObjective)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLFluxObjective);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLFluxObjective);
 
 if isfield(SBMLFluxObjective, 'fbc_reaction')
 	value = ~isempty(SBMLFluxObjective.fbc_reaction);

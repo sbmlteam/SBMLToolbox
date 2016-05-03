@@ -1,5 +1,5 @@
-function value = GeneProduct_isSetSboTerm(SBMLGeneProduct)
-% sboTerm = GeneProduct_isSetSboTerm(SBMLGeneProduct)
+function value = GeneProduct_isSetSBOTerm(SBMLGeneProduct)
+% value = GeneProduct_isSetSBOTerm(SBMLGeneProduct)
 %
 % Takes
 %
@@ -38,10 +38,10 @@ function value = GeneProduct_isSetSboTerm(SBMLGeneProduct)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLGeneProduct);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLGeneProduct);
 
 if isfield(SBMLGeneProduct, 'sboTerm')
-	value = SBMLGeneProduct.isSetSboTerm;
+	value = (SBMLGeneProduct.sboTerm > 0);
 else
 	error('isSetSboTerm not an attribute on SBML L%dV%d GeneProduct', level, version);
 end;

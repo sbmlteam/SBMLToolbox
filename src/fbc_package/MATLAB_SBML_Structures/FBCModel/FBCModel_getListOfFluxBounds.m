@@ -36,7 +36,7 @@ function fluxBound = FBCModel_getListOfFluxBounds(SBMLFBCModel)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLFBCModel);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLFBCModel);
 
 if isfield(SBMLFBCModel, 'fbc_fluxBound')
 	fluxBound = SBMLFBCModel.fbc_fluxBound;

@@ -36,7 +36,7 @@ function activeObjective = FBCModel_getActiveObjective(SBMLFBCModel)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLFBCModel);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLFBCModel);
 
 if isfield(SBMLFBCModel, 'fbc_activeObjective')
 	activeObjective = SBMLFBCModel.fbc_activeObjective;

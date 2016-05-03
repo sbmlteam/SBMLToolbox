@@ -38,7 +38,7 @@ function value = FluxBound_isSetValue(SBMLFluxBound)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLFluxBound);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLFluxBound);
 
 if isfield(SBMLFluxBound, 'isSetfbc_value')
 	value = SBMLFluxBound.isSetfbc_value;

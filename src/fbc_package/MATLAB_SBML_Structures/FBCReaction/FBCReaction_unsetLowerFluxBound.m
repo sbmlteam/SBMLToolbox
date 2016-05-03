@@ -36,7 +36,7 @@ function SBMLFBCReaction = FBCReaction_unsetLowerFluxBound(SBMLFBCReaction)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLFBCReaction);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLFBCReaction);
 
 if isfield(SBMLFBCReaction, 'fbc_lowerFluxBound')
 	SBMLFBCReaction.fbc_lowerFluxBound = '';

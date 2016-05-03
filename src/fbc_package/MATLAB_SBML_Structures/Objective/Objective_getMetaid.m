@@ -36,7 +36,7 @@ function metaid = Objective_getMetaid(SBMLObjective)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLObjective);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLObjective);
 
 if isfield(SBMLObjective, 'metaid')
 	metaid = SBMLObjective.metaid;

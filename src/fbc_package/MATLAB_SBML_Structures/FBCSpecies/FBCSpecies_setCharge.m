@@ -37,7 +37,7 @@ function SBMLFBCSpecies = FBCSpecies_setCharge(SBMLFBCSpecies, charge)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLFBCSpecies);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLFBCSpecies);
 
 if isfield(SBMLFBCSpecies, 'fbc_charge')
 	if ~isnumeric(charge)

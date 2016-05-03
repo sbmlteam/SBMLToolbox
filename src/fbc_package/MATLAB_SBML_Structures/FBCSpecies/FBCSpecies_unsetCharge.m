@@ -36,7 +36,7 @@ function SBMLFBCSpecies = FBCSpecies_unsetCharge(SBMLFBCSpecies)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLFBCSpecies);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLFBCSpecies);
 
 if isfield(SBMLFBCSpecies, 'fbc_charge')
 	SBMLFBCSpecies.fbc_charge = 0;

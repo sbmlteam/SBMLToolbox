@@ -36,7 +36,7 @@ function metaid = GeneProduct_getMetaid(SBMLGeneProduct)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLGeneProduct);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLGeneProduct);
 
 if isfield(SBMLGeneProduct, 'metaid')
 	metaid = SBMLGeneProduct.metaid;

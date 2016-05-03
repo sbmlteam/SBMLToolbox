@@ -1,5 +1,5 @@
-function SBMLGeneProduct = GeneProduct_unsetSboTerm(SBMLGeneProduct)
-% SBMLGeneProduct = GeneProduct_unsetSboTerm(SBMLGeneProduct)
+function SBMLGeneProduct = GeneProduct_unsetSBOTerm(SBMLGeneProduct)
+% SBMLGeneProduct = GeneProduct_unsetSBOTerm(SBMLGeneProduct)
 %
 % Takes
 %
@@ -36,10 +36,10 @@ function SBMLGeneProduct = GeneProduct_unsetSboTerm(SBMLGeneProduct)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLGeneProduct);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLGeneProduct);
 
 if isfield(SBMLGeneProduct, 'sboTerm')
-	SBMLGeneProduct.sboTerm = NaN;
+	SBMLGeneProduct.sboTerm = -1;
 else
 	error('sboTerm not an attribute on SBML L%dV%d GeneProduct', level, version);
 end;

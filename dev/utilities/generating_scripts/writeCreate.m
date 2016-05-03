@@ -46,7 +46,7 @@ fprintf(fileOut, '%% in the file named "LICENSE.txt" included with this software
 fprintf(fileOut, '%%----------------------------------------------------------------------- -->\n\n\n');
 
 fprintf(fileOut, '%%check the input arguments are appropriate\n\n');
-fprintf(fileOut, 'if (nargin ~= 3)\n');
+fprintf(fileOut, 'if (nargin > 3)\n');
 fprintf(fileOut, '\terror(''wrong number of input arguments'');\n');
 fprintf(fileOut, 'end;\n\n');
 fprintf(fileOut, 'switch (nargin)\n');
@@ -76,6 +76,11 @@ fprintf(fileOut, 'end;\n\n');
 
 fprintf(fileOut, 'if ~isValidLevelVersionCombination(level, version)\n');
 fprintf(fileOut, '\terror(''invalid level/version combination'');\n');
+fprintf(fileOut, 'end;\n\n');
+
+fprintf(fileOut, 'if ~isValidFBCLevelVersionCombination(level, version, pkgVersion)\n');
+fprintf(fileOut, '\t%s = [];\n', name);
+fprintf(fileOut, '\twarning(''Warn:InvalidLV'', ''%s not an element in SBML L%%dV%%d Fbc V%%d'', level, version, pkgVersion);\n', name);
 fprintf(fileOut, 'end;\n\n');
 
 fprintf(fileOut, '%%get fields and values and create the structure\n\n');

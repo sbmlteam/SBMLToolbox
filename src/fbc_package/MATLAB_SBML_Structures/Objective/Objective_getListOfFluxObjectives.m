@@ -36,7 +36,7 @@ function fluxObjective = Objective_getListOfFluxObjectives(SBMLObjective)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLObjective);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLObjective);
 
 if isfield(SBMLObjective, 'fbc_fluxObjective')
 	fluxObjective = SBMLObjective.fbc_fluxObjective;

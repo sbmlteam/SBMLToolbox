@@ -36,7 +36,7 @@ function num = FBCModel_getNumObjectives(SBMLFBCModel)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLFBCModel);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLFBCModel);
 
 if isfield(SBMLFBCModel, 'fbc_objective')
 	num = length(SBMLFBCModel.fbc_objective);

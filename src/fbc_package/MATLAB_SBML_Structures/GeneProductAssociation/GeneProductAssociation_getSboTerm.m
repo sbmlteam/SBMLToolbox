@@ -1,5 +1,5 @@
-function sboTerm = GeneProductAssociation_getSboTerm(SBMLGeneProductAssociation)
-% sboTerm = GeneProductAssociation_getSboTerm(SBMLGeneProductAssociation)
+function sboTerm = GeneProductAssociation_getSBOTerm(SBMLGeneProductAssociation)
+% sboTerm = GeneProductAssociation_getSBOTerm(SBMLGeneProductAssociation)
 %
 % Takes
 %
@@ -36,7 +36,7 @@ function sboTerm = GeneProductAssociation_getSboTerm(SBMLGeneProductAssociation)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLGeneProductAssociation);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLGeneProductAssociation);
 
 if isfield(SBMLGeneProductAssociation, 'sboTerm')
 	sboTerm = SBMLGeneProductAssociation.sboTerm;

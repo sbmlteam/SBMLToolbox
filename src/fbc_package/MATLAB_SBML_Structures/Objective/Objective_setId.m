@@ -37,7 +37,7 @@ function SBMLObjective = Objective_setId(SBMLObjective, id)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLObjective);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLObjective);
 
 if isfield(SBMLObjective, 'fbc_id')
 	if ~ischar(id)

@@ -7,20 +7,18 @@ fileOut = fopen(newfilename', 'w');
 fprintf(fileOut, 'function %s = %s_get%s(SBML%s, index)\n', attrib, name, capAttrib, name);
 
 % put in header and licence
+fprintf(fileOut, '%% %s = %s_get%s(SBML%s, index)\n', attrib, name, capAttrib, name); 
 fprintf(fileOut, '%%\n');
-fprintf(fileOut, '%% %s_get%s\n', name, capAttrib); 
-fprintf(fileOut, '%%    takes an SBML %s structure\n', name);
-fprintf(fileOut, '%%    and an index\n');
+fprintf(fileOut, '%% Takes\n');
 fprintf(fileOut, '%%\n');
-fprintf(fileOut, '%%    returns\n'); 
-fprintf(fileOut, '%%      the value of the %s element at the indexed position\n\n', attrib);
-
-fprintf(fileOut, '%%  Filename    :   %s_get%s.m\n', name, capAttrib);
-fprintf(fileOut, '%%  Description :\n');
-fprintf(fileOut, '%%  Author(s)   :   SBML Development Group <sbml-team@caltech.edu>\n');
-fprintf(fileOut, '%%  $Id: $\n');
-fprintf(fileOut, '%%  $Source v $\n');
+fprintf(fileOut, '%% 1. SBML%s, an SBML %s structure\n', name, name);
+fprintf(fileOut, '%% 2. index, an integer representing the index of the SBML %s structure\n', capAttrib);
 fprintf(fileOut, '%%\n');
+fprintf(fileOut, '%% Returns\n'); 
+fprintf(fileOut, '%%\n');
+fprintf(fileOut, '%% 1. the SBML %s structure at the indexed position\n', capAttrib);
+fprintf(fileOut, '%%\n');
+fprintf(fileOut, '\n');
 fprintf(fileOut, '%%<!---------------------------------------------------------------------------\n');
 fprintf(fileOut, '%% This file is part of SBMLToolbox.  Please visit http://sbml.org for more\n');
 fprintf(fileOut, '%% information about SBML, and the latest version of SBMLToolbox.\n');
@@ -45,13 +43,13 @@ fprintf(fileOut, '%% in the file named "LICENSE.txt" included with this software
 fprintf(fileOut, '%%----------------------------------------------------------------------- -->\n\n\n');
 
 fprintf(fileOut, '%%get level and version and check the input arguments are appropriate\n\n');
-fprintf(fileOut, '[level, version] = GetLevelVersion(SBML%s);\n\n', name);
+fprintf(fileOut, '[level, version, pkgVersion] = GetFBCLevelVersion(SBML%s);\n\n', name);
 
-fprintf(fileOut, 'if isfield(SBML%s, ''%s'')\n', name, attrib);
+fprintf(fileOut, 'if isfield(SBML%s, ''fbc_%s'')\n', name, attrib);
 fprintf(fileOut, '\tif (~isIntegralNumber(index) || index <= 0)\n');
 fprintf(fileOut, '\t\terror(''index must be a positive integer'');\n');
-fprintf(fileOut, '\telseif index <= length(SBML%s.%s)\n', name, attrib);
-fprintf(fileOut, '\t\t%s = SBML%s.%s;\n', attrib, name, attrib);
+fprintf(fileOut, '\telseif index <= length(SBML%s.fbc_%s)\n', name, attrib);
+fprintf(fileOut, '\t\t%s = SBML%s.fbc_%s;\n', attrib, name, attrib);
 fprintf(fileOut, '\telse\n');
 fprintf(fileOut, '\t\terror(''index is out of range'');\n');
 fprintf(fileOut, '\tend;\n');

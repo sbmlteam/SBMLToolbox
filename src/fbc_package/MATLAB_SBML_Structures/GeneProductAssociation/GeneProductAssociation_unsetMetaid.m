@@ -36,7 +36,7 @@ function SBMLGeneProductAssociation = GeneProductAssociation_unsetMetaid(SBMLGen
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLGeneProductAssociation);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLGeneProductAssociation);
 
 if isfield(SBMLGeneProductAssociation, 'metaid')
 	SBMLGeneProductAssociation.metaid = '';

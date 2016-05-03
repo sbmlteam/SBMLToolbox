@@ -36,7 +36,7 @@ function SBMLFBCSpecies = FBCSpecies_unsetChemicalFormula(SBMLFBCSpecies)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLFBCSpecies);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLFBCSpecies);
 
 if isfield(SBMLFBCSpecies, 'fbc_chemicalFormula')
 	SBMLFBCSpecies.fbc_chemicalFormula = '';

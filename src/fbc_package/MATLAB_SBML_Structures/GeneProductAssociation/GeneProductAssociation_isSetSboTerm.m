@@ -1,5 +1,5 @@
-function value = GeneProductAssociation_isSetSboTerm(SBMLGeneProductAssociation)
-% sboTerm = GeneProductAssociation_isSetSboTerm(SBMLGeneProductAssociation)
+function value = GeneProductAssociation_isSetSBOTerm(SBMLGeneProductAssociation)
+% value = GeneProductAssociation_isSetSBOTerm(SBMLGeneProductAssociation)
 %
 % Takes
 %
@@ -38,10 +38,10 @@ function value = GeneProductAssociation_isSetSboTerm(SBMLGeneProductAssociation)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLGeneProductAssociation);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLGeneProductAssociation);
 
 if isfield(SBMLGeneProductAssociation, 'sboTerm')
-	value = SBMLGeneProductAssociation.isSetSboTerm;
+	value = (SBMLGeneProductAssociation.sboTerm > 0);
 else
 	error('isSetSboTerm not an attribute on SBML L%dV%d GeneProductAssociation', level, version);
 end;

@@ -38,7 +38,7 @@ function value = FluxBound_isSetId(SBMLFluxBound)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLFluxBound);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLFluxBound);
 
 if isfield(SBMLFluxBound, 'fbc_id')
 	value = ~isempty(SBMLFluxBound.fbc_id);

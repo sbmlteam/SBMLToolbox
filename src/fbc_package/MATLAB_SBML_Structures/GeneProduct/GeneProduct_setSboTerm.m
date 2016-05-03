@@ -1,5 +1,5 @@
-function SBMLGeneProduct = GeneProduct_setSboTerm(SBMLGeneProduct, sboTerm)
-% SBMLGeneProduct = GeneProduct_setSboTerm(SBMLGeneProduct, sboTerm)
+function SBMLGeneProduct = GeneProduct_setSBOTerm(SBMLGeneProduct, sboTerm)
+% SBMLGeneProduct = GeneProduct_setSBOTerm(SBMLGeneProduct, sboTerm)
 %
 % Takes
 %
@@ -37,7 +37,7 @@ function SBMLGeneProduct = GeneProduct_setSboTerm(SBMLGeneProduct, sboTerm)
 
 %get level and version and check the input arguments are appropriate
 
-[level, version] = GetLevelVersion(SBMLGeneProduct);
+[level, version, pkgVersion] = GetFBCLevelVersion(SBMLGeneProduct);
 
 if isfield(SBMLGeneProduct, 'sboTerm')
 	if ~isnumeric(sboTerm)

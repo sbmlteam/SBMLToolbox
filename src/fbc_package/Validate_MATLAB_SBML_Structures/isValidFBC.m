@@ -110,8 +110,12 @@ switch (typecode)
     fhandle = str2func('isSBML_FBC_GeneProduct');
   case 'SBML_FBC_GENE_PRODUCT_ASSOCIATION'
     fhandle = str2func('isSBML_FBC_GeneProductAssociation');
+  case 'SBML_FBC_ASSOCIATION'
+    fhandle = str2func('isSBML_FBC_Association');
   case 'SBML_REACTION'
     fhandle = str2func('isSBML_FBC_Reaction');
+  case 'SBML_FBC_GENE_PRODUCT_REF'
+    fhandle = str2func('isSBML_FBC_Association');
   otherwise
     y = 0;
     return;

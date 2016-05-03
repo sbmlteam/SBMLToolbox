@@ -78,6 +78,23 @@ obj = GeneProduct_create(3, 1);
 attributes = {};
 [fail, num, message] = testObject(obj, attributes, 'GeneProduct', fail, num, message);
 
+disp('Testing L3V1');
+obj = GeneProduct_create(3, 1, 1);
+attributes = {};
+[fail, num, message] = testObject(obj, attributes, 'GeneProduct', fail, num, message);
+
+disp('Testing L3V1 FBC V2');
+obj = GeneProduct_create(3, 1, 2);
+attributes = {...
+              {'Metaid', 1}...
+              {'SBOTerm', 2}...
+              {'Fbc_id', 1}...
+              {'Fbc_name', 1}...
+              {'Fbc_label', 1}...
+              {'Fbc_associatedSpecies', 1}...
+             };
+[fail, num, message] = testObject(obj, attributes, 'GeneProduct', fail, num, message);
+
 disp(sprintf('Number tests: %d', num));
 disp(sprintf('Number fails: %d', fail));
 disp(sprintf('Pass rate: %d%', ((num-fail)/num)*100));
