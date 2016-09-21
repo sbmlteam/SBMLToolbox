@@ -72,7 +72,7 @@ elseif (level == 2)
 	elseif (version == 3)
 		SBMLfieldnames = [];
 		nNumberFields = 0;
-	elseif (version == 4)
+    elseif (version == 4 || version == 5)
 		SBMLfieldnames = [];
 		nNumberFields = 0;
 	end;
@@ -80,5 +80,8 @@ elseif (level == 3)
 	if (version == 1)
 		SBMLfieldnames = [];
 		nNumberFields = 0;
+        elseif (version == 2)
+		SBMLfieldnames = [];
+                  nNumberFields = 2;
 	end;
 end;

@@ -75,7 +75,7 @@ elseif (level == 2)
 			               '', ...
 			               '', ...
 		                };
-	elseif (version == 4)
+    elseif (version == 4 || version == 5)
 		defaultValues = {
 			               'SBML_SPECIES_TYPE', ...
 			               '', ...
@@ -88,6 +88,8 @@ elseif (level == 2)
 	end;
 elseif (level == 3)
 	if (version == 1)
+		defaultValues = [];
+        elseif (version == 2)
 		defaultValues = [];
 	end;
 end;

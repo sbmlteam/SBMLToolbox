@@ -71,11 +71,13 @@ elseif (level == 2)
 		defaultValues = [];
 	elseif (version == 3)
 		defaultValues = [];
-	elseif (version == 4)
+    elseif (version == 4 || version == 5)
 		defaultValues = [];
 	end;
 elseif (level == 3)
 	if (version == 1)
+		defaultValues = [];
+        elseif (version == 2)
 		defaultValues = [];
 	end;
 end;
