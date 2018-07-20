@@ -1,5 +1,5 @@
-function value = piecewise(val1, test, val2)
-% value = piecewise(value1, test, value2)
+function value = piecewise(varargin)
+% value = piecewise(varargin)
 % 
 % Takes
 % 
@@ -48,8 +48,20 @@ function value = piecewise(val1, test, val2)
 % in the file named "LICENSE.txt" included with this software distribution.
 %----------------------------------------------------------------------- -->
 
-if test == 1
-  value = val1;
-else
-  value = val2;
+if (rem(nargin,2) ~= 1)
+    disp('piecewise requires an odd number of arguments');
+    return;
+end
+
+done = 0;
+for (i = 1:2:nargin-1)
+    if (varargin{i+1})
+        value = varargin{i};
+        done = 1;
+        break;
+    end
+end;
+
+if (done == 0)
+  value = varargin{end};
 end;
