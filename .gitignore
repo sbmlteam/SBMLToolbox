@@ -59,6 +59,14 @@ target/
 # matlab
 *.asv
 
+# emacs
+*~
+.#*
+.git/COMMIT_EDITMSG
+auto
+*.synctex.gz
+TAGS
+
 #mine
 testOutput/
 .idea/
@@ -70,3 +78,4 @@ pmids.bat
 logs/
 output/
 input/
+
